@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>clientAPT — privacy-first iOS appointment manager · river.io</title>
+  <meta name="description" content="The opposite of the iOS Calendar. End-to-end encrypted on-device vault, dual-PIN sensitive tier, duress decoy. No network. No iCloud. No exits." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="index.html">RIVER.IO</a>
+    <div class="links">
+      <a href="sloth.html">SLOTH</a>
+      <a href="clientapt.html" class="active">CLIENTAPT</a>
+    </div>
+  </nav>
+
+  <main>
+    <section>
+      <div class="monolith" aria-hidden="true"></div>
+      <h1>CLIENTAPT</h1>
+      <p class="tagline">The opposite of the iOS Calendar.</p>
+      <p class="lede">A privacy-first iOS appointment manager for solo service businesses. End-to-end encrypted on-device vault, dual-PIN sensitive tier, duress decoy. No network. No iCloud. No exits.</p>
+      <a class="cta" href="mailto:jeff@river.io?subject=clientAPT%20early%20access">▸ Request early access</a>
+    </section>
+
+    <section>
+      <div class="label">— What it is —</div>
+      <div class="body-text">
+        <p>Solo service businesses — tattoo artists, home cleaners, nail technicians, mobile service providers — hold materially sensitive client data: photos of in-progress work, home addresses, visit schedules. The default tool for tracking that information is the iOS Calendar, a piece of software whose main feature is propagating its contents everywhere it can. iCloud. Spotlight. Siri. Lock-screen widgets. Share extensions. Any third-party app that asks for EventKit access.</p>
+        <p>That is the wrong default for this data. clientAPT is the opposite default: a system whose main feature is keeping the data inside one device, behind several locks, with no exits.</p>
+        <p>The threat model assumes the worst plausible adversary for a small business — someone steals the phone while it is unlocked and tries to extract addresses, contacts, and photographs. That person fails. The deeper threat — a coerced unlock — is addressed by a duress PIN that opens a populated but fake vault. The real vault remains sealed.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">— Highlights —</div>
+      <ol class="highlights">
+        <li>
+          <strong>Encrypted on-device vault.</strong>
+          <p>AES-256-GCM under Argon2-derived keys, SQLite via GRDB, files in Application Support. No network. No iCloud. No EventKit. No Spotlight indexing. No Siri donation.</p>
+        </li>
+        <li>
+          <strong>Dual-PIN sensitive tier.</strong>
+          <p>Flagged clients show as "Private Client" with a 🔑 glyph. Their name, phone, address, and photos require a second, per-client unlock.</p>
+        </li>
+        <li>
+          <strong>Duress PIN.</strong>
+          <p>A separate PIN opens a believable decoy vault — seeded with a plausible personal-trainer client list — under coerced unlock. The real vault stays sealed.</p>
+        </li>
+        <li>
+          <strong>Streaming media cipher.</strong>
+          <p>In-app camera and video capture. EXIF stripped before encryption. A custom AES-GCM streaming envelope (<code>CAPT-S</code>) means a multi-minute 4K recording never has to fit RAM in plaintext.</p>
+        </li>
+        <li>
+          <strong>Hardened clipboard.</strong>
+          <p>Phone and address copy with <code>.localOnly: true</code> and a 30-second expiration. The value never reaches Universal Clipboard and self-destructs.</p>
+        </li>
+        <li>
+          <strong>In-session timer.</strong>
+          <p>A live countdown ring for a running appointment, with pause/resume, completion notification, and idle-timer override so the device doesn't lock mid-session.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <div class="label">— Getting started —</div>
+      <ol class="steps">
+        <li>Install on iPhone (iOS 17 or later).</li>
+        <li>Create your app PIN. Optionally enable biometric unlock.</li>
+        <li>Set a duress PIN. Pick a decoy seed.</li>
+        <li>Add clients. Mark any that are sensitive — they become "Private Client" behind a second-tier PIN.</li>
+        <li>Schedule appointments. The services catalog and add-ons prefill duration. Weekly recurrence follows an RFC 5545 RRULE subset.</li>
+      </ol>
+    </section>
+
+    <section>
+      <div class="label">— Built with —</div>
+      <div class="stack">
+        <span>Swift</span>
+        <span>SwiftUI</span>
+        <span>GRDB.swift</span>
+        <span>AES-256-GCM</span>
+        <span>Argon2</span>
+        <span>Keychain + Secure Enclave</span>
+        <span>StoreKit 2</span>
+        <span>AVFoundation</span>
+        <span>iOS 17+</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    A river.io LLC project · <a href="mailto:jeff@river.io">jeff@river.io</a> <span class="roman">MMXXVI</span>
+  </footer>
+</body>
+</html>

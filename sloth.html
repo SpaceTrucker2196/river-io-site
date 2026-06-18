@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>sloth — passive terminal network monitor · river.io</title>
+  <meta name="description" content="A passive terminal network monitor for Linux. It only watches." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="index.html">RIVER.IO</a>
+    <div class="links">
+      <a href="sloth.html" class="active">SLOTH</a>
+      <a href="clientapt.html">CLIENTAPT</a>
+    </div>
+  </nav>
+
+  <main>
+    <section>
+      <div class="monolith" aria-hidden="true"></div>
+      <h1>SLOTH</h1>
+      <p class="tagline">It only watches.</p>
+      <p class="lede">A passive terminal network monitor for Linux. Sloth never injects packets, never scans, and never modifies kernel state — it observes what your host already sees and turns it into 27 views, six alert rules, and a WiFi SIGINT toolkit.</p>
+      <a class="cta" href="https://github.com/SpaceTrucker2196/sloth" target="_blank" rel="noopener">▸ View on GitHub</a>
+    </section>
+
+    <section>
+      <div class="label">— What it is —</div>
+      <div class="body-text">
+        <p>Most network tools are loud. They scan. They probe. They leave fingerprints on every host they touch. Sloth does none of that. It is built on a single discipline: only watch.</p>
+        <p>That discipline has a payoff. A passive monitor can run on production systems no active tool is welcome on, and the data it captures is the data the host is actually seeing — not a synthesized model of it. Sloth turns that raw observation into twenty-seven ncurses views, six alert rules, a JSONL forensic stream, and an embedded WiFi SIGINT toolkit.</p>
+        <p>It is written in C99. It builds with or without ncurses. With or without libpcap. On Linux, BSD, and embedded targets. The test suite carries 2,122 assertions and a 51% mutation kill rate.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">— Highlights —</div>
+      <ol class="highlights">
+        <li>
+          <strong>Passive by design.</strong>
+          <p>No injection. No scanning. No kernel modification. Sloth reads what the host already sees, and stops there.</p>
+        </li>
+        <li>
+          <strong>Twenty-seven views, one TUI.</strong>
+          <p>Interfaces, connections, packets, processes, DNS, TLS with JA3, QUIC, HTTP, ARP, mDNS, NBNS, DHCP, SSDP, ICMP, NTP — tab-cycled in a single ncurses dashboard.</p>
+        </li>
+        <li>
+          <strong>Six alert rules.</strong>
+          <p>Port scans, deauth floods, NXDOMAIN bursts, threat-intel domain hits, threat-intel IP hits, periodic beaconing. All derived from the same observation pipeline.</p>
+        </li>
+        <li>
+          <strong>WiFi SIGINT toolkit.</strong>
+          <p>Per-MAC PNL aggregation, RSN/cipher/AKM/MFP inventory from beacons, EAPOL and PMKID capture with hashcat-22000 export, hidden-SSID reveal, and sequence-number MAC-randomization deanonymization.</p>
+        </li>
+        <li>
+          <strong>JSONL stream and SIEM forwarder.</strong>
+          <p>Read-only Unix or TCP socket for live consumers. Reference Python forwarders ship for Splunk HEC, RFC 5424 syslog, and Elasticsearch Bulk.</p>
+        </li>
+        <li>
+          <strong>Builds anywhere.</strong>
+          <p>C99, with or without ncurses, with or without pcap. Linux, BSD, and embedded targets. The mutation harness lives in-tree.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <div class="label">— Getting started —</div>
+<pre><span class="c"># 1. Build (full: ncurses + pcap + nl80211)</span>
+make
+
+<span class="c"># 2. Or build headless / embedded</span>
+make embedded
+
+<span class="c"># 3. Run with a JSONL forensic log</span>
+sudo ./sloth -o /tmp/sloth.jsonl
+
+<span class="c"># 4. For WiFi SIGINT, set an iface to monitor mode externally —</span>
+<span class="c">#    sloth never touches link state itself.</span>
+sudo iw dev wlan1 set type monitor
+sudo ./sloth --eapol-dir /tmp/sloth-eapol</pre>
+    </section>
+
+    <section>
+      <div class="label">— Built with —</div>
+      <div class="stack">
+        <span>C99</span>
+        <span>ncurses</span>
+        <span>libpcap</span>
+        <span>nl80211</span>
+        <span>BPF</span>
+        <span>JSONL</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    A river.io LLC project ·
+    <a href="https://github.com/SpaceTrucker2196/sloth" target="_blank" rel="noopener">GitHub</a> ·
+    <a href="mailto:jeff@river.io">jeff@river.io</a>
+    <span class="roman">MMXXVI</span>
+  </footer>
+</body>
+</html>
