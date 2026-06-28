@@ -125,6 +125,21 @@ h3 { font-size: 14px; letter-spacing: var(--track); color: var(--dim); }
   position: relative;
 }
 
+/* ───── App icon hero ───── */
+.app-icon {
+  display: block;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 48px;
+  border-radius: 36px; /* iOS squircle approximation */
+  box-shadow:
+    0 24px 64px -16px rgba(0, 0, 0, 0.6),
+    0 0 0 1px var(--rule);
+}
+@media (max-width: 600px) {
+  .app-icon { width: 128px; height: 128px; margin-bottom: 36px; border-radius: 28px; }
+}
+
 /* ───── CTA ───── */
 .cta {
   display: inline-block;
