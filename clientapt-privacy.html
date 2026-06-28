@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>clientAPT — privacy policy · river.io</title>
+  <meta name="description" content="clientAPT privacy policy. The app collects nothing about you. No analytics, no third-party SDKs phoning home, no network calls during normal operation. Your client book stays encrypted on your device." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="index.html">RIVER.IO</a>
+    <div class="links">
+      <a href="sloth.html">SLOTH</a>
+      <a href="clientapt.html" class="active">CLIENTAPT</a>
+    </div>
+  </nav>
+
+  <main>
+    <section>
+      <div class="label">— clientAPT · Legal —</div>
+      <h1>PRIVACY POLICY</h1>
+      <p class="tagline">Effective 2026-06-28.</p>
+      <p class="lede">clientAPT is published by river.io LLC. This page describes what data the app and this website collect, what we do with it, and what your rights are. The summary is short because the data flows are short — <strong>we do not collect any personal information about you, your clients, or your practice.</strong></p>
+    </section>
+
+    <section>
+      <div class="label">— 01 · What the app collects —</div>
+      <div class="body-text">
+        <p>Nothing. clientAPT does not include analytics, telemetry, crash reporters, advertising SDKs, or any third-party libraries that phone home. The app makes no network calls during normal operation. There is no developer account to sign in to, no server we operate, and no place we could store your data even if we wanted to.</p>
+        <p>Concretely, the app does not:</p>
+        <ul style="text-align:left; max-width:680px; margin:0 auto; padding-left:24px; color:#d4d4d4;">
+          <li>Send appointment, client, photo, or note data anywhere off your device.</li>
+          <li>Sync to iCloud, hand off to the iOS Calendar, expose entries to Spotlight, or donate intents to Siri.</li>
+          <li>Open Maps, <code>tel:</code>, <code>mailto:</code>, or <code>sms:</code> links.</li>
+          <li>Read or write the iOS Contacts database.</li>
+          <li>Place photos in the system Photos library or its iCloud backups.</li>
+          <li>Use any advertising identifier, device identifier, or cross-app tracking signal.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">— 02 · What lives on your device —</div>
+      <div class="body-text">
+        <p>The data you enter — clients, appointments, services, photographs, and notes — is stored in two encrypted SQLite databases inside the app's private container. Both databases are sealed with SQLCipher (AES-256 page encryption). Fields you mark sensitive are wrapped a second time with AES-GCM using a key derived from a separate PIN.</p>
+        <p>Database keys are derived from your PIN at every unlock using Argon2id at a memory-hard work factor. The keys are never stored on disk; they exist only in memory while the vault is open, and they are zeroed out the moment the app re-locks, backgrounds, or you enter a wrong PIN four times.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">— 03 · Encrypted backup files —</div>
+      <div class="body-text">
+        <p>You can export an encrypted backup as a single file. That file contains your vault salts, wrapped keys, and settings, all protected by a passphrase you choose. We never see it. Where you put it — iCloud Drive, an external drive, AirDrop to another device — is entirely up to you and governed by the privacy policy of whatever destination you pick. The backup file is useless to anyone without your passphrase.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">— 04 · App Store purchases —</div>
+      <div class="body-text">
+        <p>clientAPT is sold through Apple's App Store. Apple processes the purchase, handles your payment information, and supplies receipt validation. We receive aggregate sales reports from Apple (units sold per day, by region) that do not identify you. Refer to <a href="https://www.apple.com/legal/privacy/">Apple's privacy policy</a> for how Apple handles its part of the transaction.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">— 05 · This website —</div>
+      <div class="body-text">
+        <p>This site (<code>river.io</code>) is a static page hosted on GitHub Pages. We do not run our own analytics here. GitHub may keep standard web-server access logs for security and abuse-detection purposes; refer to <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's general privacy statement</a> for what they retain. We do not embed advertising tags, tracking pixels, or third-party scripts. The page loads webfonts from Google Fonts; consult <a href="https://policies.google.com/privacy">Google's privacy policy</a> for that connection.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">— 06 · Children —</div>
+      <div class="body-text">
+        <p>clientAPT is built for adults running an appointment-based practice. It is not directed at children under 13 (or under 16 where the applicable law is GDPR), and we do not knowingly collect any data from children. If you believe a child has used the app, please contact us at <code>privacy@river.io</code> and we will help, although practically there is nothing for us to delete because we never had it.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">— 07 · Your rights —</div>
+      <div class="body-text">
+        <p>Because we do not collect or store data about you, the usual rights to access, correct, delete, port, or restrict processing of personal data (GDPR Articles 15–22, CCPA §1798.100 et seq., and equivalents) do not produce a record from us. The data lives on your device. You can delete it by uninstalling the app or wiping the vault from inside Settings. The encrypted backup file is also under your control.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">— 08 · Changes to this policy —</div>
+      <div class="body-text">
+        <p>If we change how the app or this site handles data, we will update this page and the effective date above. Material changes will also be noted on the GitHub repository <a href="https://github.com/SpaceTrucker2196/clientAPT/blob/main/CHANGELOG.md">changelog</a>. Because the app does not phone home, there is no in-app banner to notify you — re-visit this page when a new version ships.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">— 09 · Contact —</div>
+      <div class="body-text">
+        <p>Privacy questions: <code>privacy@river.io</code>.<br />
+        Security disclosure: <code>reporting@river.io</code> with subject <code>clientAPT vuln:</code>.</p>
+      </div>
+      <a class="cta-secondary" href="clientapt.html">▸ Back to clientAPT</a>
+    </section>
+  </main>
+
+  <footer>
+    A river.io LLC project · <a href="mailto:jeff@river.io">jeff@river.io</a> <span class="roman">MMXXVI</span>
+  </footer>
+</body>
+</html>
