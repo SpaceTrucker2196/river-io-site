@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Materials And Practices — privacy policy · river.io</title>
+  <meta name="description" content="Materials And Practices privacy policy. Farm records stay on your device. No accounts, no analytics, no third-party SDKs. The only network calls are Apple WeatherKit for current weather on your dashboard." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="index.html">RIVER.IO</a>
+    <div class="links">
+      <a href="sloth.html">SLOTH</a>
+      <a href="clientapt.html">CLIENTAPT</a>
+    </div>
+  </nav>
+
+  <main>
+    <section>
+      <div class="label">— Materials And Practices · Legal —</div>
+      <h1>PRIVACY POLICY</h1>
+      <p class="tagline">Effective 2026-06-29.</p>
+      <p class="lede">Materials And Practices is published by river.io LLC. This page describes what data the app and this website collect, what we do with it, and what your rights are. The summary is short because the data flows are short — <strong>your farm records stay on your device. We do not operate a server, we do not have an account system, and we do not collect anything about you.</strong></p>
+    </section>
+
+    <section>
+      <div class="label">— 01 · What the app collects —</div>
+      <div class="body-text">
+        <p>Nothing about you. Materials And Practices does not include analytics, telemetry, crash reporters, advertising SDKs, or any third-party libraries that phone home. There is no developer account to sign in to, no server we operate, and no place we could store your data even if we wanted to.</p>
+        <p>Concretely, the app does not:</p>
+        <ul style="text-align:left; max-width:680px; margin:0 auto; padding-left:24px; color:#d4d4d4;">
+          <li>Send grow, field, cultivar, amendment, harvest, lease, worker, or time-clock data anywhere off your device.</li>
+          <li>Use any advertising identifier, device identifier, or cross-app tracking signal.</li>
+          <li>Read or write the iOS Contacts, Calendar, or Reminders databases.</li>
+          <li>Use Siri intents, Spotlight donation, or Handoff.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">— 02 · What lives on your device —</div>
+      <div class="body-text">
+        <p>The data you enter — grows, cultivars, fields, soil tests, amendments, harvests, work orders, worker time entries, lease agreements, photos — is stored in a Core Data SQLite database inside the app's private container. iOS protects the container with the standard Data Protection class tied to your device passcode; the file is not readable by other apps and not exposed outside the device sandbox.</p>
+        <p>The app does not add a second layer of encryption on top of iOS Data Protection. If you require an additional layer (for example, for high-stakes regulatory archives), keep the device passcode strong, enable Face ID / Touch ID, and back the device up to an encrypted destination.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">— 03 · iCloud and cross-device sync —</div>
+      <div class="body-text">
+        <p>This release does not enable iCloud or CloudKit sync. Your records exist only on the device that created them. If you have iOS device backups turned on (encrypted iCloud Backup or encrypted Finder/iTunes backup), your records are included as part of the standard device backup — that is governed by Apple's policies, not ours. We do not have an iCloud container, and we cannot read those backups.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">— 04 · Location and WeatherKit —</div>
+      <div class="body-text">
+        <p>When you open the dashboard, the app asks for "While Using the App" location access at coarse accuracy (roughly the nearest 100 metres). Your location is passed to Apple's <strong>WeatherKit</strong> service so the app can show current conditions for your growing area. Apple handles that request under its own privacy terms; we do not log or store the coordinates. Refer to <a href="https://www.apple.com/legal/privacy/data/en/weather/">Apple's WeatherKit privacy notice</a> for details.</p>
+        <p>If you decline location access, the rest of the app continues to work — only the dashboard weather card is affected.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">— 05 · Camera and photo library —</div>
+      <div class="body-text">
+        <p>You can attach photographs to grows, fields, soil tests, and other farm records. The camera and photo-library permissions are requested by the system the first time you tap to attach a photo. Captured or selected images are stored only inside the app's private Core Data container — they are not added back to the iOS Photos library, not shared with other apps, and not uploaded anywhere.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">— 06 · Organic certification and compliance records —</div>
+      <div class="body-text">
+        <p>The app generates records that you may choose to share with your organic certifier, FSMA inspector, lessor, lessee, or worker. Sharing happens through the standard iOS share sheet — exporting a PDF, emailing a summary, or printing — and is initiated by you. Once exported, that file is governed by the privacy policy of whatever destination you send it to. The app itself does not transmit those records on your behalf.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">— 07 · App Store purchases —</div>
+      <div class="body-text">
+        <p>Materials And Practices is distributed through Apple's App Store. Apple processes the purchase (if any), handles your payment information, and supplies receipt validation. We receive aggregate sales reports from Apple (units sold per day, by region) that do not identify you. Refer to <a href="https://www.apple.com/legal/privacy/">Apple's privacy policy</a> for how Apple handles its part of the transaction.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">— 08 · This website —</div>
+      <div class="body-text">
+        <p>This site (<code>river.io</code>) is a static page hosted on GitHub Pages. We do not run our own analytics here. GitHub may keep standard web-server access logs for security and abuse-detection purposes; refer to <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's general privacy statement</a> for what they retain. We do not embed advertising tags, tracking pixels, or third-party scripts. The page loads webfonts from Google Fonts; consult <a href="https://policies.google.com/privacy">Google's privacy policy</a> for that connection.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">— 09 · Children —</div>
+      <div class="body-text">
+        <p>Materials And Practices is built for adults running a farm. It is not directed at children under 13 (or under 16 where the applicable law is GDPR), and we do not knowingly collect any data from children. If you believe a child has used the app, please contact us at <code>privacy@river.io</code> and we will help, although practically there is nothing for us to delete because we never had it.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">— 10 · Your rights —</div>
+      <div class="body-text">
+        <p>Because we do not collect or store data about you, the usual rights to access, correct, delete, port, or restrict processing of personal data (GDPR Articles 15–22, CCPA §1798.100 et seq., and equivalents) do not produce a record from us. The data lives on your device. You can delete it by uninstalling the app, which removes the app's private container in full.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">— 11 · Changes to this policy —</div>
+      <div class="body-text">
+        <p>If we change how the app or this site handles data, we will update this page and the effective date above. Because the app does not phone home, there is no in-app banner to notify you — re-visit this page when a new version ships.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">— 12 · Contact —</div>
+      <div class="body-text">
+        <p>Privacy questions: <code>privacy@river.io</code>.<br />
+        Security disclosure: <code>reporting@river.io</code> with subject <code>materialsandpractices vuln:</code>.</p>
+      </div>
+      <a class="cta-secondary" href="index.html">▸ Back to river.io</a>
+    </section>
+  </main>
+
+  <footer>
+    A river.io LLC project · <a href="mailto:privacy@river.io">privacy@river.io</a> <span class="roman">MMXXVI</span>
+  </footer>
+</body>
+</html>
