@@ -3,50 +3,143 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>river.io</title>
-  <style>
-    html, body {
-      margin: 0;
-      height: 100%;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    .hero {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .hero img {
-      display: block;
-      width: min(540px, 80vw);
-      height: auto;
-      user-select: none;
-      -webkit-user-drag: none;
-    }
-    .hero p {
-      position: absolute;
-      margin: 0;
-      color: #fff;
-      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-      font-size: clamp(1rem, 2.4vw, 1.6rem);
-      letter-spacing: 0.32em;
-      text-transform: lowercase;
-      text-shadow:
-        0 0 24px rgba(0, 0, 0, 0.85),
-        0 0 10px rgba(0, 0, 0, 0.75),
-        0 1px 2px rgba(0, 0, 0, 0.9);
-      pointer-events: none;
-    }
-  </style>
+  <title>United Cat Foods | Cat Logistics & Orbital Hospitality</title>
+  <meta name="description" content="United Cat Foods operates future space-station cat cafés, live-cat human interaction programs, premium cat nutrition, and orbital water logistics." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="unitedcatfoods/styles.css" />
 </head>
 <body>
-  <div class="hero">
-    <img src="image.png" alt="Io" />
-    <p>river.io</p>
-  </div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="United Cat Foods home">
+      <span class="brand-mark">猫</span>
+      <span><strong>United Cat Foods</strong><small>Cat Logistics & Hospitality Division</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#mission">Mission</a>
+      <a href="#operations">Operations</a>
+      <a href="#facilities">Facilities</a>
+      <a href="#crew">Crew</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="vault-link" href="#reserve">Strategic Record Reserve</a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-art" role="img" aria-label="Anime style orbital cat logistics station with Jupiter in the distance"></div>
+      <div class="hero-copy">
+        <p class="eyebrow">ユナイテッド・キャットフーズ / Orbital Cat Care Network</p>
+        <h1>Live cats make future stations human.</h1>
+        <p class="lead">United Cat Foods maintains cat cafés, feline interaction lounges, premium nutrition systems, and water logistics for deep-space habitats where people still need warmth, routine, and purring company.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#operations">View operations</a>
+          <a class="button secondary" href="#crew">Meet the cats</a>
+        </div>
+      </div>
+      <div class="status-panel">
+        <span>Station Network</span>
+        <strong>12 active cafés</strong>
+        <span>Human Interaction Index</span>
+        <strong>98.7% calm</strong>
+        <span>Water Supply</span>
+        <strong>Certified orbital pure</strong>
+      </div>
+    </section>
+
+    <section id="mission" class="section mission-grid">
+      <div>
+        <p class="eyebrow">Mission</p>
+        <h2>猫が、宇宙を快適にする。</h2>
+        <p>Our work is practical: move food, move water, maintain habitats, and keep trained live cats healthy for human interaction inside future space stations.</p>
+      </div>
+      <article>
+        <span class="icon">◌</span>
+        <h3>Premium Cat Nutrition</h3>
+        <p>Station-safe meals calibrated for long-duration orbital life.</p>
+      </article>
+      <article>
+        <span class="icon">◎</span>
+        <h3>Cat Café Operations</h3>
+        <p>Quiet, supervised social rooms for crew restoration and morale.</p>
+      </article>
+      <article>
+        <span class="icon">◇</span>
+        <h3>Water Logistics</h3>
+        <p>High-reliability water delivery for cats, cafés, and human service zones.</p>
+      </article>
+    </section>
+
+    <section id="operations" class="section">
+      <div class="section-heading">
+        <div><p class="eyebrow">Operations</p><h2>Serious infrastructure for soft contact.</h2></div>
+        <a href="#contact">Request station service →</a>
+      </div>
+      <div class="cards three">
+        <article class="card">
+          <div class="card-image logistics"></div>
+          <h3>Orbital Supply Chain</h3>
+          <p>Food, litter, medical supplies, enrichment equipment, and water moved through climate-controlled cargo routes.</p>
+        </article>
+        <article class="card">
+          <div class="card-image cafe"></div>
+          <h3>Future Cat Cafés</h3>
+          <p>Live-cat interaction spaces designed for station residents, visitors, and off-duty crew under calm behavioral protocols.</p>
+        </article>
+        <article class="card">
+          <div class="card-image water"></div>
+          <h3>U.C.F. Pure Water</h3>
+          <p>A secondary business line supplying sealed water systems for café operations and deep-space hospitality.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="facilities" class="section split">
+      <div>
+        <p class="eyebrow">Facilities</p>
+        <h2>Habitats built around trust, sleep, food, and routine.</h2>
+        <p>Each U.C.F. facility includes cat-first climate control, rest bays, human visitation decks, food prep modules, emergency quiet rooms, and observation protocols.</p>
+      </div>
+      <div class="facility-list">
+        <article><strong>Jupiter Pearl Café</strong><span>Long-window observation café with supervised lap-cat shifts.</span></article>
+        <article><strong>Lagrange Lounge</strong><span>Deep-space decompression room for crew returning from exterior operations.</span></article>
+        <article><strong>Neo Tokyo Meow Salon</strong><span>Premium interaction facility for orbital visitors and corporate crews.</span></article>
+      </div>
+    </section>
+
+    <section id="crew" class="section">
+      <div class="section-heading">
+        <div><p class="eyebrow">Crew</p><h2>The cats who run the company.</h2></div>
+      </div>
+      <div class="crew-grid">
+        <article><span class="cat orange"></span><h3>Heathcliff</h3><p>Orange logistics founder. Specializes in morale and meal audits.</p></article>
+        <article><span class="cat black"></span><h3>Laser 128</h3><p>Black systems operator. Watches every route, silently.</p></article>
+        <article><span class="cat grey"></span><h3>Supervisor</h3><p>Grey senior inspector. Approves all café nap architecture.</p></article>
+        <article><span class="cat calico"></span><h3>Value Meal</h3><p>Dark calico procurement lead. Ruthless with vendor contracts.</p></article>
+        <article><span class="cat tiger"></span><h3>Speedy</h3><p>Grey tiger courier. Fastest paws in the orbital supply chain.</p></article>
+      </div>
+    </section>
+
+    <section id="reserve" class="section reserve">
+      <p class="eyebrow">Strategic Record Reserve</p>
+      <h2>Culture is also cargo.</h2>
+      <p>U.C.F. preserves station audio, cat café ambience, feeding logs, and morale recordings for future colonies that need proof the universe was once warm.</p>
+    </section>
+
+    <section id="contact" class="section contact">
+      <div>
+        <p class="eyebrow">Station Onboarding</p>
+        <h2>Bring cats to your habitat.</h2>
+        <p>For orbital cafés, feline logistics, water service, and long-duration human interaction programs.</p>
+      </div>
+      <a class="button primary" href="mailto:operations@unitedcatfoods.example">Contact Operations</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="brand small"><span class="brand-mark">猫</span><span><strong>United Cat Foods</strong><small>Future Hospitality for Cats and Humans</small></span></div>
+    <span>© 3025 United Cat Foods Corporation</span>
+  </footer>
 </body>
 </html>
