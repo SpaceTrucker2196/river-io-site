@@ -25,9 +25,10 @@ a { color: inherit; text-decoration: none; }
   position: sticky; top: 0; z-index: 20;
   height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
   padding: 0 32px;
-  background: rgba(5, 11, 13, .82);
+  background: rgba(5, 11, 13, .28);
   border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
 }
 .brand { display: inline-flex; align-items: center; gap: 14px; text-transform: uppercase; }
 img.brand-mark {
@@ -84,9 +85,9 @@ p { color: var(--muted); line-height: 1.65; font-size: .82rem; }
 .card h3, .card p { padding-left: 22px; padding-right: 22px; }
 .card p { padding-bottom: 22px; }
 .card-image { height: 220px; border-bottom: 1px solid var(--line); background-size: cover; background-position: center; }
-.card-image.logistics { background-image: linear-gradient(135deg, rgba(11,24,27,.15), rgba(11,24,27,.85)), radial-gradient(circle at 30% 45%, #7f8f91 0 3rem, transparent 3.2rem), repeating-linear-gradient(150deg, #263a40 0 16px, #14262b 16px 34px); }
-.card-image.cafe { background-image: linear-gradient(135deg, rgba(11,24,27,.18), rgba(11,24,27,.74)), radial-gradient(circle at 65% 70%, #b88451 0 2.2rem, transparent 2.3rem), repeating-linear-gradient(90deg, #233c37 0 20px, #18302f 20px 42px); }
-.card-image.water { background-image: linear-gradient(135deg, rgba(11,24,27,.25), rgba(11,24,27,.8)), radial-gradient(ellipse at 50% 45%, rgba(111,209,215,.7) 0 3.5rem, transparent 3.7rem), repeating-linear-gradient(0deg, #0e2630 0 12px, #162f38 12px 30px); }
+.card-image.logistics { background-image: linear-gradient(180deg, rgba(11,24,27,.05), rgba(11,24,27,.45)), url('card-logistics.jpg'); }
+.card-image.cafe { background-image: linear-gradient(180deg, rgba(11,24,27,.05), rgba(11,24,27,.45)), url('card-cafe.jpg'); }
+.card-image.water { background-image: linear-gradient(180deg, rgba(11,24,27,.05), rgba(11,24,27,.45)), url('card-water.jpg'); }
 .split { display: grid; grid-template-columns: .9fr 1.2fr; gap: 42px; align-items: start; }
 .facility-list { display: grid; gap: 16px; }
 .facility-list article { padding: 24px; display: grid; gap: 8px; }
