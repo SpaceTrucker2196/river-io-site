@@ -1,108 +1,532 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>sloth — passive terminal network monitor · river.io</title>
-  <meta name="description" content="A passive terminal network monitor for Linux. It only watches." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sloth — the calm, observant network monitor</title>
+<meta name="description" content="A passive network SIGINT console for Linux. 27 views, six alert rules, embedded WiFi SIGINT toolkit. Never injects, never scans, never modifies kernel state. White-hat only.">
+<meta property="og:title" content="sloth — the calm, observant network monitor">
+<meta property="og:description" content="Passive network SIGINT for Linux. Eyes, not hands.">
+<meta property="og:image" content="assets/sloth/sloth.png">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@400;500;600;700&family=VT323&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/sloth/style.css">
+<link rel="icon" type="image/png" href="assets/sloth/sloth.png">
 </head>
 <body>
+
+<!-- ── Vaporwave sun + grid + palm silhouettes (hero backdrop) ─────── -->
+<svg class="canopy-overlay" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <!-- The classic vaporwave sun gradient -->
+    <linearGradient id="vw-sun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"    stop-color="#ffec3d"/>
+      <stop offset="0.45" stop-color="#ff6b35"/>
+      <stop offset="0.85" stop-color="#ff006e"/>
+      <stop offset="1"    stop-color="#9f00ff"/>
+    </linearGradient>
+    <!-- Sky → space gradient -->
+    <linearGradient id="vw-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"    stop-color="#0a0014"/>
+      <stop offset="0.55" stop-color="#1a0033"/>
+      <stop offset="0.85" stop-color="#2d1b69"/>
+      <stop offset="1"    stop-color="#3a1054"/>
+    </linearGradient>
+    <!-- Grid floor fade -->
+    <linearGradient id="grid-fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff006e" stop-opacity="0"/>
+      <stop offset="1" stop-color="#ff006e" stop-opacity="0.85"/>
+    </linearGradient>
+    <linearGradient id="grid-fade-cyan" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#00ffe5" stop-opacity="0"/>
+      <stop offset="1" stop-color="#00ffe5" stop-opacity="0.65"/>
+    </linearGradient>
+    <!-- Neon glow for the sun -->
+    <filter id="neon-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background sky -->
+  <rect width="1200" height="600" fill="url(#vw-sky)"/>
+
+  <!-- Stars / sparkle -->
+  <g fill="#fff8f8" opacity="0.65">
+    <circle cx="120"  cy="60"  r="1.2"/>
+    <circle cx="280"  cy="35"  r="0.9"/>
+    <circle cx="460"  cy="90"  r="1.5"/>
+    <circle cx="690"  cy="50"  r="0.8"/>
+    <circle cx="880"  cy="80"  r="1.1"/>
+    <circle cx="1050" cy="42"  r="1.3"/>
+    <circle cx="1140" cy="105" r="0.9"/>
+    <circle cx="180"  cy="130" r="0.7"/>
+    <circle cx="780"  cy="120" r="1.0"/>
+  </g>
+
+  <!-- Vaporwave sun: disc with horizontal cuts at the bottom half -->
+  <g filter="url(#neon-glow)">
+    <circle cx="600" cy="290" r="170" fill="url(#vw-sun)"/>
+    <!-- Cuts through the lower half of the sun: black (sky-colour) slats -->
+    <g fill="#0a0014">
+      <rect x="430" y="300" width="340" height="6"/>
+      <rect x="430" y="318" width="340" height="7"/>
+      <rect x="430" y="338" width="340" height="8"/>
+      <rect x="430" y="362" width="340" height="9"/>
+      <rect x="430" y="390" width="340" height="11"/>
+      <rect x="430" y="424" width="340" height="14"/>
+      <rect x="430" y="464" width="340" height="18"/>
+    </g>
+  </g>
+
+  <!-- Perspective grid floor -->
+  <g stroke="url(#grid-fade)" stroke-width="1.5" fill="none">
+    <line x1="0"    y1="475" x2="1200" y2="475"/>
+    <line x1="0"    y1="498" x2="1200" y2="498"/>
+    <line x1="0"    y1="525" x2="1200" y2="525"/>
+    <line x1="0"    y1="556" x2="1200" y2="556"/>
+    <line x1="0"    y1="592" x2="1200" y2="592"/>
+  </g>
+  <!-- Perspective verticals converging on a horizon at 600x475 -->
+  <g stroke="url(#grid-fade-cyan)" stroke-width="1.5" fill="none">
+    <line x1="600" y1="475" x2="-200" y2="610"/>
+    <line x1="600" y1="475" x2="0"    y2="610"/>
+    <line x1="600" y1="475" x2="200"  y2="610"/>
+    <line x1="600" y1="475" x2="400"  y2="610"/>
+    <line x1="600" y1="475" x2="600"  y2="610"/>
+    <line x1="600" y1="475" x2="800"  y2="610"/>
+    <line x1="600" y1="475" x2="1000" y2="610"/>
+    <line x1="600" y1="475" x2="1200" y2="610"/>
+    <line x1="600" y1="475" x2="1400" y2="610"/>
+  </g>
+
+  <!-- Palm silhouettes — left -->
+  <g fill="#0a0014" stroke="#39ff14" stroke-width="1" opacity="0.9">
+    <!-- trunk -->
+    <path d="M 60 600 Q 70 480 78 360 Q 84 280 92 220" stroke-width="3" fill="none"/>
+    <!-- coconuts -->
+    <circle cx="88"  cy="225" r="5" fill="#39ff14" stroke="none" opacity="0.7"/>
+    <circle cx="98"  cy="232" r="4" fill="#39ff14" stroke="none" opacity="0.7"/>
+  </g>
+  <!-- Palm fronds — left -->
+  <g stroke="#39ff14" stroke-width="2.5" fill="none" opacity="0.95">
+    <path d="M 92 220 Q 20 195 -10 230"/>
+    <path d="M 92 220 Q 30 180 5 170"/>
+    <path d="M 92 220 Q 130 175 175 175"/>
+    <path d="M 92 220 Q 155 195 195 235"/>
+    <path d="M 92 220 Q 95 175 75 130"/>
+  </g>
+
+  <!-- Palm silhouettes — right -->
+  <g fill="#0a0014" stroke="#39ff14" stroke-width="1" opacity="0.9">
+    <path d="M 1140 600 Q 1130 480 1122 360 Q 1116 280 1108 220" stroke-width="3" fill="none"/>
+    <circle cx="1112" cy="225" r="5" fill="#39ff14" stroke="none" opacity="0.7"/>
+    <circle cx="1102" cy="232" r="4" fill="#39ff14" stroke="none" opacity="0.7"/>
+  </g>
+  <g stroke="#39ff14" stroke-width="2.5" fill="none" opacity="0.95">
+    <path d="M 1108 220 Q 1180 195 1210 230"/>
+    <path d="M 1108 220 Q 1170 180 1195 170"/>
+    <path d="M 1108 220 Q 1070 175 1025 175"/>
+    <path d="M 1108 220 Q 1045 195 1005 235"/>
+    <path d="M 1108 220 Q 1105 175 1125 130"/>
+  </g>
+</svg>
+
+<!-- ── Header / Nav ───────────────────────────────────────────────── -->
+<header class="site-header">
   <nav class="nav">
-    <a class="brand" href="index.html">RIVER.IO</a>
-    <div class="links">
-      <a href="sloth.html" class="active">SLOTH</a>
-      <a href="clientapt.html">CLIENTAPT</a>
-      <a href="galactic.html">GALACTIC</a>
+    <a href="#top" class="brand">
+      <span class="brand-mark">🦥</span>
+      <span class="brand-name">sloth</span>
+    </a>
+    <div class="nav-links">
+      <a href="#what">What it sees</a>
+      <a href="sloth-views.html">27 views</a>
+      <a href="sloth-philosophy.html">Philosophy</a>
+      <a href="sloth-streaming.html">Stream</a>
+      <a href="sloth-quickstart.html">Quickstart</a>
+      <a href="https://github.com/SpaceTrucker2196/sloth" class="github-link" target="_blank" rel="noopener">GitHub →</a>
     </div>
   </nav>
+</header>
 
-  <main>
-    <section>
-      <img class="mascot" src="https://spacetrucker2196.github.io/sloth/assets/sloth.png" alt="sloth mascot — a watching sloth in the wifi canopy" width="240" height="240" style="width:240px;max-width:62%;height:auto;display:block;margin:0 auto 48px;filter:drop-shadow(0 0 24px rgba(122,232,255,0.35));" />
-      <h1>SLOTH</h1>
-      <p class="tagline">It only watches.</p>
-      <p class="lede">A passive terminal network monitor for Linux. Sloth never injects packets, never scans, and never modifies kernel state — it observes what your host already sees and turns it into 27 views, six alert rules, and a WiFi SIGINT toolkit.</p>
-      <a class="cta" href="https://github.com/SpaceTrucker2196/sloth" target="_blank" rel="noopener">▸ View on GitHub</a>
-    </section>
-
-    <section>
-      <div class="label">— What it is —</div>
-      <div class="body-text">
-        <p>Most network tools are loud. They scan. They probe. They leave fingerprints on every host they touch. Sloth does none of that. It is built on a single discipline: only watch.</p>
-        <p>That discipline has a payoff. A passive monitor can run on production systems no active tool is welcome on, and the data it captures is the data the host is actually seeing — not a synthesized model of it. Sloth turns that raw observation into twenty-seven ncurses views, six alert rules, a JSONL forensic stream, and an embedded WiFi SIGINT toolkit.</p>
-        <p>It is written in C99. It builds with or without ncurses. With or without libpcap. On Linux, BSD, and embedded targets. The test suite carries 2,122 assertions and a 51% mutation kill rate.</p>
+<!-- ── Hero ───────────────────────────────────────────────────────── -->
+<section id="top" class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="eyebrow">A passive SIGINT console</p>
+      <h1>The calm, observant<br/>network monitor.</h1>
+      <p class="lede">
+        27 live views. Six alert rules. An embedded WiFi-SIGINT toolkit.
+        A JSONL stream you can plug into Splunk, Elastic, or syslog in
+        five minutes. <strong>Never injects. Never scans. Never modifies kernel state.</strong>
+        Sloth is the eyes, not the hands.
+      </p>
+      <div class="cta-row">
+        <a class="cta cta-primary" href="sloth-quickstart.html">Get started</a>
+        <a class="cta cta-secondary" href="sloth-views.html">See the views</a>
       </div>
-    </section>
+      <p class="hero-meta">
+        <span class="badge badge-green">C99 · Linux · libpcap</span>
+        <span class="badge badge-gold">2,122 test assertions</span>
+        <span class="badge badge-clay">White-hat only</span>
+      </p>
+    </div>
+    <div class="hero-image">
+      <img src="assets/sloth/sloth.png" alt="sloth — a watching sloth in the wifi canopy" />
+    </div>
+  </div>
+</section>
 
-    <section>
-      <div class="label">— Highlights —</div>
-      <ol class="highlights">
-        <li>
-          <strong>Passive by design.</strong>
-          <p>No injection. No scanning. No kernel modification. Sloth reads what the host already sees, and stops there.</p>
-        </li>
-        <li>
-          <strong>Twenty-seven views, one TUI.</strong>
-          <p>Interfaces, connections, packets, processes, DNS, TLS with JA3, QUIC, HTTP, ARP, mDNS, NBNS, DHCP, SSDP, ICMP, NTP — tab-cycled in a single ncurses dashboard.</p>
-        </li>
-        <li>
-          <strong>Six alert rules.</strong>
-          <p>Port scans, deauth floods, NXDOMAIN bursts, threat-intel domain hits, threat-intel IP hits, periodic beaconing. All derived from the same observation pipeline.</p>
-        </li>
-        <li>
-          <strong>WiFi SIGINT toolkit.</strong>
-          <p>Per-MAC PNL aggregation, RSN/cipher/AKM/MFP inventory from beacons, EAPOL and PMKID capture with hashcat-22000 export, hidden-SSID reveal, and sequence-number MAC-randomization deanonymization.</p>
-        </li>
-        <li>
-          <strong>JSONL stream and SIEM forwarder.</strong>
-          <p>Read-only Unix or TCP socket for live consumers. Reference Python forwarders ship for Splunk HEC, RFC 5424 syslog, and Elasticsearch Bulk.</p>
-        </li>
-        <li>
-          <strong>Builds anywhere.</strong>
-          <p>C99, with or without ncurses, with or without pcap. Linux, BSD, and embedded targets. The mutation harness lives in-tree.</p>
-        </li>
-      </ol>
-    </section>
+<!-- ── What sloth sees ────────────────────────────────────────────── -->
+<section id="what" class="section section-cream">
+  <div class="section-inner">
+    <h2>Eyes on every layer of the canopy.</h2>
+    <p class="section-lede">
+      Sloth reads what your host already sees — <code>/proc</code>, <code>/sys</code>,
+      rtnetlink, nl80211, INET_DIAG, and an optional libpcap stream — and
+      synthesises it into views, alerts, and a forensic log. Nothing is
+      injected. Nothing is solicited. The bytes you observe are bytes that
+      were already there.
+    </p>
 
-    <section>
-      <div class="label">— Getting started —</div>
-<pre><span class="c"># 1. Build (full: ncurses + pcap + nl80211)</span>
-make
-
-<span class="c"># 2. Or build headless / embedded</span>
-make embedded
-
-<span class="c"># 3. Run with a JSONL forensic log</span>
-sudo ./sloth -o /tmp/sloth.jsonl
-
-<span class="c"># 4. For WiFi SIGINT, set an iface to monitor mode externally —</span>
-<span class="c">#    sloth never touches link state itself.</span>
-sudo iw dev wlan1 set type monitor
-sudo ./sloth --eapol-dir /tmp/sloth-eapol</pre>
-    </section>
-
-    <section>
-      <div class="label">— Built with —</div>
-      <div class="stack">
-        <span>C99</span>
-        <span>ncurses</span>
-        <span>libpcap</span>
-        <span>nl80211</span>
-        <span>BPF</span>
-        <span>JSONL</span>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🌿</div>
+        <h3>Eyes, not hands</h3>
+        <p>
+          Sloth never sends a packet, never decrypts a frame, never runs
+          a passphrase against a captured handshake. It detects WEP,
+          WPA-TKIP, weak TLS, evil twins, rogue DHCP, DGA-style DNS,
+          KARMA/Pineapple — and flags them. <em>Operating</em> on them is
+          the operator's job, under their own legal cover.
+        </p>
+        <a class="card-link" href="sloth-philosophy.html">Read the mission →</a>
       </div>
-    </section>
-  </main>
 
-  <footer>
-    A river.io LLC project ·
-    <a href="https://github.com/SpaceTrucker2196/sloth" target="_blank" rel="noopener">GitHub</a> ·
-    <a href="mailto:privacy@river.io">privacy@river.io</a>
-    <span class="roman">MMXXVI</span>
-  </footer>
+      <div class="feature-card">
+        <div class="feature-icon">🪶</div>
+        <h3>WiFi-SIGINT depth</h3>
+        <p>
+          Per-MAC Preferred Network List aggregation. RSN / cipher / AKM /
+          MFP inventory from beacon IEs. EAPOL / PMKID / 4-way handshake
+          capture with hashcat-22000 export. Sequence-number based
+          MAC-randomisation deanonymisation. Hidden-SSID reveal from
+          probe-responses.
+        </p>
+        <a class="card-link" href="sloth-views.html#wifi-sigint">See the WiFi SIGINT views →</a>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🦋</div>
+        <h3>Stream it anywhere</h3>
+        <p>
+          The same JSONL records that sloth writes to <code>-o FILE</code> are
+          served over a read-only stream socket
+          (<code>--data-socket unix:</code> or <code>tcp:</code>). A reference
+          Python consumer plus a three-sink SIEM forwarder ship in
+          <code>examples/</code> — Splunk HEC, RFC 5424 syslog,
+          Elasticsearch Bulk API.
+        </p>
+        <a class="card-link" href="#streaming">See the streaming section →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Neon horizon divider ─────────────────────────────────────── -->
+<div class="wave-divider" aria-hidden="true">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="horizon" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0"   stop-color="#ff006e" stop-opacity="0"/>
+        <stop offset="0.3" stop-color="#ff006e"/>
+        <stop offset="0.5" stop-color="#00ffe5"/>
+        <stop offset="0.7" stop-color="#ff006e"/>
+        <stop offset="1"   stop-color="#ff006e" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <rect width="1200" height="60" fill="#0a0014"/>
+    <line x1="0" y1="30" x2="1200" y2="30" stroke="url(#horizon)" stroke-width="2"/>
+    <line x1="0" y1="34" x2="1200" y2="34" stroke="url(#horizon)" stroke-width="1" opacity="0.4"/>
+  </svg>
+</div>
+
+<!-- ── 27 views ───────────────────────────────────────────────────── -->
+<section id="views" class="section section-canopy">
+  <div class="section-inner">
+    <h2>Twenty-seven live views,<br/>tiled into the terminal.</h2>
+    <p class="section-lede pale">
+      Each view is a complete protocol or synthesis — its own keybinding,
+      its own ring buffer, its own per-view documentation. Tab to cycle.
+      Press <kbd>o</kbd> for the composite dashboard. Press <kbd>l</kbd>
+      for the OSI synthesis grid.
+    </p>
+
+    <div class="ascii-frame">
+<pre class="ascii-screen"><span class="ansi-dim"> OSI / TCP-IP stack — passive observation per layer   conns:24 ifaces:2</span>
+
+ ────────────────────────────────────────────────────────────────────
+<span class="ansi-bright">  L7 Application</span>    │ DNS:142  HTTP:7  TLS:88  QUIC:12  mDNS:31  NBNS:0  NTP:3
+<span class="ansi-bright">  L6 Presentation</span>   │ TLS 1.3:74  TLS 1.2:14  legacy:0   JA3:9 distinct
+<span class="ansi-bright">  L5 Session</span>        │ TLS sessions:88  QUIC:12  EAPOL:1
+<span class="ansi-bright">  L4 Transport</span>      │ TCP:22 (E:14 L:6 ?:2)  UDP:2  ICMP:3
+<span class="ansi-bright">  L3 Network</span>        │ IPv4 hosts:18  IPv6 hosts:3  ARP mappings:14
+<span class="ansi-bright">  L2 Data Link</span>      │ ifaces:2  APs:7  STAs:11  devices:21  beacons:43
+<span class="ansi-bright">  L1 Physical</span>       │ probe iface: wlan0mon (monitor mode)
+ ────────────────────────────────────────────────────────────────────
+</pre>
+    </div>
+
+    <div class="view-categories">
+      <div class="view-category">
+        <h4>Observation</h4>
+        <p>
+          Interfaces · Connections · WiFi · Packets · Processes · Stats ·
+          Probe · ARP · mDNS · NBNS · DHCP · SSDP · Beacons · Deauth ·
+          HTTP · TLS · QUIC · DNS · NTP · ICMP
+        </p>
+      </div>
+      <div class="view-category">
+        <h4>Synthesis</h4>
+        <p>
+          Alerts · Devices · Dashboard · OSI stack
+        </p>
+      </div>
+      <div class="view-category">
+        <h4>WiFi SIGINT (v1.1)</h4>
+        <p>
+          PNL · EAPOL · Seqnum · Assoc · Channel
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Philosophy ─────────────────────────────────────────────────── -->
+<section id="philosophy" class="section section-cream">
+  <div class="section-inner">
+    <h2>Built for the long watch.</h2>
+    <p class="section-lede">
+      In manufacturing, a "dark factory" is one that runs without lights
+      because no humans need to be on the floor. Sloth is built that way,
+      both in its code repository and in its operational stance: the
+      machine just watches, all night long, and tells you what it saw.
+    </p>
+
+    <div class="value-grid">
+      <div class="value">
+        <span class="value-num">1.</span>
+        <h4>Passive only.</h4>
+        <p>
+          Never injects packets. Never sends probes. Never deauths. Never
+          beacons. Never ARP-poisons. Never modifies kernel state. It
+          reads. It never writes to the wire.
+        </p>
+      </div>
+      <div class="value">
+        <span class="value-num">2.</span>
+        <h4>No active key recovery.</h4>
+        <p>
+          Captures EAPOL / PMKID material and exports it in hashcat 22000
+          format. Doesn't run a passphrase against it. That step is the
+          operator's responsibility, on the operator's clock, on hardware
+          they own, against a target they're authorised to test.
+        </p>
+      </div>
+      <div class="value">
+        <span class="value-num">3.</span>
+        <h4>Vulnerabilities flagged, not exploited.</h4>
+        <p>
+          WEP, WPA-TKIP, MFP-off, weak TLS, attack-tool user-agents, evil
+          twins, rogue DHCP, DGA-style DNS, deauth floods, KARMA / Pineapple
+          behaviour, dnscat / iodine tunnels, ARP spoofing. Detection emits
+          an alert. It never follows up with an active step.
+        </p>
+      </div>
+      <div class="value">
+        <span class="value-num">4.</span>
+        <h4>White hat only.</h4>
+        <p>
+          Built for defenders, blue teams in a SOC, incident responders,
+          researchers, CTF and training environments, and security-aware
+          travellers who want to know what the café Wi-Fi is doing. Not
+          for surveillance, harassment, or operating against any network
+          you don't have written authority to observe.
+        </p>
+      </div>
+    </div>
+
+    <p class="philosophy-pullquote">
+      &ldquo;Sloth is a passive, white-hat SIGINT console: it watches, it
+      flags, it never attacks.&rdquo;
+    </p>
+  </div>
+</section>
+
+<!-- ── Streaming ──────────────────────────────────────────────────── -->
+<section id="streaming" class="section section-canopy">
+  <div class="section-inner">
+    <h2>Plug into the rest of your stack.</h2>
+    <p class="section-lede pale">
+      One JSON object per line, terminated by <code>\n</code>. File sink
+      (<code>-o FILE</code>) for log forwarders. Stream sink
+      (<code>--data-socket SPEC</code>) for live consumers, with
+      per-client backpressure isolation. Both deliver the same records.
+    </p>
+
+    <div class="code-grid">
+      <div class="code-card">
+        <div class="code-header">
+          <span class="code-lang">sh</span>
+          <span class="code-title">Splunk HEC</span>
+        </div>
+<pre class="code-block">python3 examples/forwarder/sloth-forward.py \
+    unix:/tmp/sloth.sock \
+    --sink hec \
+    --hec-url       https://splunk.example.com:8088/services/collector \
+    --hec-token-env SLOTH_HEC_TOKEN</pre>
+      </div>
+
+      <div class="code-card">
+        <div class="code-header">
+          <span class="code-lang">sh</span>
+          <span class="code-title">Elasticsearch (rolled daily)</span>
+        </div>
+<pre class="code-block">python3 examples/forwarder/sloth-forward.py \
+    unix:/tmp/sloth.sock \
+    --sink elastic \
+    --es-url       https://elastic.example.com:9200 \
+    --es-index     'sloth-events-%Y.%m.%d' \
+    --es-api-key-env SLOTH_ES_API_KEY</pre>
+      </div>
+
+      <div class="code-card">
+        <div class="code-header">
+          <span class="code-lang">sh</span>
+          <span class="code-title">RFC 5424 syslog (UDP)</span>
+        </div>
+<pre class="code-block">python3 examples/forwarder/sloth-forward.py \
+    unix:/tmp/sloth.sock \
+    --sink syslog \
+    --syslog-host siem.example.com \
+    --syslog-port 514</pre>
+      </div>
+
+      <div class="code-card">
+        <div class="code-header">
+          <span class="code-lang">json</span>
+          <span class="code-title">One record per line</span>
+        </div>
+<pre class="code-block">{"type":"alert","ts":1700000006,
+ "title":"THREAT_DOMAIN",
+ "detail":"192.168.1.5 queried malware.testing.com",
+ "key":"threat-d:malware.testing.com",
+ "sev":2,"ty":3,"count":1}</pre>
+      </div>
+    </div>
+
+    <p class="footnote pale">
+      The sink interface is two members (<code>.name</code>,
+      <code>.send(batch)</code>). Adding Loki, Datadog, OpenSearch, or
+      a generic webhook is ~30 lines. <a href="sloth-streaming.html">Full
+      streaming guide →</a>
+    </p>
+  </div>
+</section>
+
+<!-- ── Quickstart ─────────────────────────────────────────────────── -->
+<section id="quickstart" class="section section-cream">
+  <div class="section-inner">
+    <h2>Quickstart.</h2>
+    <p class="section-lede">
+      One binary. No daemon. No config file. Build it, point it at an
+      interface, watch what your host sees.
+    </p>
+
+    <div class="quickstart-grid">
+      <div class="qs-card">
+        <h4>1. Install dependencies (Debian / Ubuntu)</h4>
+<pre class="code-block">sudo apt-get install -y \
+    build-essential \
+    libpcap-dev \
+    libncursesw5-dev</pre>
+      </div>
+
+      <div class="qs-card">
+        <h4>2. Build</h4>
+<pre class="code-block">cd sloth
+make test    # 2,122 assertions, no root needed
+make         # builds ./sloth</pre>
+      </div>
+
+      <div class="qs-card">
+        <h4>3. Run (needs <code>CAP_NET_RAW</code>)</h4>
+<pre class="code-block">sudo ./sloth                              # TUI on default iface
+sudo ./sloth -i eth0                      # pin capture iface
+sudo ./sloth -o /var/log/sloth.jsonl      # forensic stream
+sudo ./sloth --data-socket unix:/tmp/sloth.sock
+sudo ./sloth --eapol-dir /tmp/sloth-eapol # WiFi handshake export</pre>
+      </div>
+
+      <div class="qs-card">
+        <h4>4. Inside sloth</h4>
+        <p>
+          <kbd>1</kbd>–<kbd>0</kbd> direct view jumps. <kbd>Tab</kbd>
+          cycles. <kbd>o</kbd> dashboard. <kbd>l</kbd> OSI stack.
+          <kbd>?</kbd> help. <kbd>q</kbd> quit. Filter any list view
+          with <kbd>/</kbd>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ────────────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-inner footer-3col">
+    <div class="footer-col">
+      <p class="brand brand-footer">
+        <span class="brand-mark">🦥</span>
+        <span class="brand-name">sloth</span>
+      </p>
+      <p class="footer-tag">Eyes, not hands.</p>
+    </div>
+
+    <div class="footer-col">
+      <h5>Navigate</h5>
+      <ul>
+        <li><a href="#top">Top</a></li>
+        <li><a href="sloth-views.html">27 views</a></li>
+        <li><a href="sloth-philosophy.html">Philosophy</a></li>
+        <li><a href="sloth-streaming.html">Stream</a></li>
+        <li><a href="sloth-quickstart.html">Quickstart</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col footer-about">
+      <h5>About</h5>
+      <p>
+        Passive, white-hat SIGINT for IP and 802.11. Twenty-seven
+        live views, six alert rules, a WiFi-SIGINT toolkit, and a
+        JSONL stream you can pipe into any SIEM. Built in C99 for
+        Linux, with a small reference consumer + forwarder in
+        Python.
+      </p>
+    </div>
+  </div>
+  <div class="footer-meta">
+    <p>
+      Run sloth only on networks you have explicit authority to
+      observe.
+    </p>
+  </div>
+</footer>
+
 </body>
 </html>
