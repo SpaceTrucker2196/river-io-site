@@ -162,6 +162,26 @@
     }
     .plate figcaption::before { content: "Plate "; font-style: italic; }
 
+    /* ---- the year, tick by tick ---- */
+    .season-loop { margin-top: 16px; border: 1.5px solid var(--ink); box-shadow: 5px 6px 0 rgba(43,33,22,0.12); background: rgba(255,250,236,0.55); }
+    .loop-row { display: grid; grid-template-columns: 118px 1fr; gap: 14px; padding: 11px 18px; border-bottom: 1px dashed rgba(43,33,22,0.3); }
+    .loop-row:last-child { border-bottom: 0; }
+    .loop-row .when {
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--barn); padding-top: 5px;
+    }
+    .loop-row .what { color: var(--ink-soft); font-size: 15.5px; }
+
+    /* ---- eras ---- */
+    .eras { margin-top: 16px; }
+    .era {
+      display: grid; grid-template-columns: 96px 1fr; gap: 16px;
+      padding: 10px 2px; border-bottom: 1px solid rgba(43,33,22,0.18);
+    }
+    .era .year { font-family: "Ultra", Georgia, serif; color: var(--barn); font-size: 19px; line-height: 1.3; }
+    .era .desc { color: var(--ink-soft); font-size: 15.5px; padding-top: 3px; }
+
     /* ---- provenance ---- */
     .callout {
       border: 1.5px solid var(--ink);
@@ -201,7 +221,7 @@
       .hero { grid-template-columns: 1fr; }
       .phone { max-width: 230px; }
       .plates { grid-template-columns: 1fr 1fr; }
-      .ledger-row { grid-template-columns: 1fr; gap: 4px; }
+      .ledger-row, .loop-row, .era { grid-template-columns: 1fr; gap: 4px; }
     }
   </style>
 </head>
@@ -238,6 +258,20 @@
     <div class="fleuron">❦ ❦ ❦</div>
 
     <section class="rise d3">
+      <div class="kicker">How a season plays</div>
+      <div class="season-loop">
+        <div class="loop-row"><span class="when">Fortnight 3</span><span class="what">The season plan — every field on one card. Corn or beans, and how hard to push the nitrogen, quoted against what the ground supplies on its own.</span></div>
+        <div class="loop-row"><span class="when">Fortnight 5</span><span class="what">Deep winter. Haul manure while the ground's froze; sweeten sour fields with lime.</span></div>
+        <div class="loop-row"><span class="when">Fortnight 9</span><span class="what">Ground's fit. Pick your seed and roll the planter — or mud it in early and gamble on the spring.</span></div>
+        <div class="loop-row"><span class="when">Fortnight 12–15</span><span class="what">Sidedress the corn if it's hungry. Walk the rounds; the rootworm doesn't announce itself.</span></div>
+        <div class="loop-row"><span class="when">Fortnight 21–24</span><span class="what">Harvest, then the elevator: sell off the combine, or bin it and carry to March. The board at the scale house quotes your odds.</span></div>
+        <div class="loop-row"><span class="when">Year's end</span><span class="what">The books. A ruled ledger that foots to the bushel — what the weather took, what the rotation paid, what your own hands moved — then the Farmer's Log files the season away.</span></div>
+      </div>
+    </section>
+
+    <div class="fleuron">❦</div>
+
+    <section>
       <div class="kicker">What the work is</div>
       <dl class="ledger">
         <div class="ledger-row">
@@ -265,6 +299,21 @@
           <dd><strong>Entirely on your device.</strong> No ads, no accounts, no tracking, no in-app purchases, nothing sold but the app. <a class="quiet" href="corn3000-privacy.html">The privacy policy is one page</a> because there is nothing to disclose.</dd>
         </div>
       </dl>
+    </section>
+
+    <div class="fleuron">❦</div>
+
+    <section>
+      <div class="kicker">Pick your era — it tells you what it costs</div>
+      <div class="eras">
+        <div class="era"><span class="year">1930</span><span class="desc">The hardest row in the book — drought years and dime corn. Sign the AAA contract and hold on.</span></div>
+        <div class="era"><span class="year">1939</span><span class="desc">War prices and a fair wind. A forgiving decade to learn the ground.</span></div>
+        <div class="era"><span class="year">1950</span><span class="desc">Steady but tight — price supports floor the worst of it.</span></div>
+        <div class="era"><span class="year">1973</span><span class="desc">Boom years. Land runs hot, and a trap is being set for the borrowers.</span></div>
+        <div class="era"><span class="year">1980</span><span class="desc">The farm crisis. Rates near 15%, land falling — the auctioneer is busy.</span></div>
+        <div class="era"><span class="year">2007</span><span class="desc">The ethanol boom — the best grain prices in a generation.</span></div>
+        <div class="era"><span class="year">Today</span><span class="desc">Thin margins and big machines. Revenue insurance is the backstop.</span></div>
+      </div>
     </section>
 
     <div class="fleuron">❦</div>
