@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Corn 3000 — privacy policy · river.io</title>
+  <meta name="description" content="Corn 3000 privacy policy. The app collects nothing: no analytics, no accounts, no tracking, no third-party SDKs. Your farm stays on your device." />
+  <link rel="icon" href="assets/corn3000/icon-512.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ultra&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #f2e9d3; --ink: #2b2116; --ink-soft: #5a4c38; --ink-faint: #8a7a60;
+      --barn: #a4441f; --field: #55743a; --rule: rgba(43, 33, 22, 0.85);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--paper); color: var(--ink);
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 17px; line-height: 1.65;
+      background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(255, 250, 235, 0.7), rgba(0,0,0,0) 60%),
+        repeating-linear-gradient(0deg, rgba(90, 70, 40, 0.028) 0 1px, rgba(0,0,0,0) 1px 28px);
+    }
+    .sheet { max-width: 700px; margin: 0 auto; padding: 0 22px 60px; }
+    .dateline {
+      display: flex; justify-content: space-between;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.22em;
+      color: var(--ink-soft); text-transform: uppercase;
+      padding: 14px 2px 10px; border-bottom: 1.5px solid var(--rule);
+    }
+    .dateline a { color: inherit; text-decoration: none; }
+    header { text-align: center; padding: 34px 0 4px; }
+    header h1 {
+      font-family: "Ultra", Georgia, serif; font-weight: 400;
+      font-size: clamp(30px, 6.5vw, 46px); line-height: 1.05;
+    }
+    header .tagline { font-style: italic; color: var(--ink-soft); margin-top: 8px; font-size: 15px; }
+    .double-rule { border: 0; border-top: 2.5px solid var(--rule); margin: 18px 0 0; }
+    .double-rule::after { content: ""; display: block; border-top: 1px solid var(--rule); margin-top: 2px; }
+    section { padding: 26px 0 0; }
+    .kicker {
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 10.5px; font-weight: 800; letter-spacing: 0.24em;
+      text-transform: uppercase; color: var(--barn);
+      display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+    }
+    .kicker::before { content: ""; width: 26px; height: 2px; background: var(--barn); }
+    p + p { margin-top: 10px; }
+    p { color: var(--ink-soft); }
+    p strong { color: var(--ink); }
+    a { color: var(--barn); }
+    .fleuron { text-align: center; color: var(--ink-faint); letter-spacing: 0.6em; padding: 26px 0 0; }
+    .motto {
+      text-align: center; font-style: italic; letter-spacing: 0.14em;
+      color: var(--ink-soft); font-size: 14px; padding: 34px 0 8px;
+    }
+    footer {
+      border-top: 1.5px solid var(--rule); margin-top: 20px; padding: 16px 2px 0;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 10.5px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--ink-faint);
+    }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="dateline">
+      <span><a href="corn3000.html">← Corn 3000</a></span>
+      <span><a href="index.html">river.io</a></span>
+      <span>Legal</span>
+    </div>
+
+    <header>
+      <h1>PRIVACY POLICY</h1>
+      <p class="tagline">Corn 3000 · published by river.io LLC · effective at the 1.0 release</p>
+      <hr class="double-rule" />
+    </header>
+
+    <section>
+      <div class="kicker">The whole of it</div>
+      <p>Corn 3000 is a single-player historical farming simulation that runs entirely on your device. <strong>It collects no personal data, no usage data, no analytics, no identifiers, and no diagnostics.</strong> There are no accounts, no advertising, no tracking, and no third-party SDKs. This page is short because the data flows are short.</p>
+    </section>
+
+    <section>
+      <div class="kicker">01 · What stays on your device</div>
+      <p>Your careers, save data, and settings are stored only on your device, and in your own device backups under your control. We operate no server; there is nowhere for your farm to go and no way for us to see it.</p>
+    </section>
+
+    <section>
+      <div class="kicker">02 · The optional narration key</div>
+      <p>Settings offers an optional field for a personal Anthropic API key. If — and only if — you enter one, the app sends a short summary of your in-game season (year, state, crop, yield, in-game finances; nothing about you) to Anthropic's API over HTTPS to fetch one line of narrative flavor text, governed by <a href="https://www.anthropic.com/privacy">Anthropic's privacy policy</a>. The key is stored on your device and the app is technically restricted (App Transport Security) from talking to any host other than api.anthropic.com.</p>
+      <p><strong>Without a key — the default — the app makes no network connections at all.</strong></p>
+    </section>
+
+    <section>
+      <div class="kicker">03 · The historical data</div>
+      <p>The game ships with a read-only database of public historical records — USDA crop statistics, NOAA weather. It describes the Corn Belt, not you.</p>
+    </section>
+
+    <section>
+      <div class="kicker">04 · This website</div>
+      <p>This site is static pages served by GitHub Pages. We set no cookies and run no analytics. GitHub may log requests (IP addresses and the like) to operate the service, per <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.</p>
+    </section>
+
+    <section>
+      <div class="kicker">05 · Changes &amp; correspondence</div>
+      <p>Material changes to this policy will be noted in App Store release notes and on this page. Questions: <a href="mailto:jeff@river.io">jeff@river.io</a>.</p>
+    </section>
+
+    <div class="fleuron">❦</div>
+    <p class="motto">· YOUR DATA IS LIKE THE FARM · IT STAYS IN THE FAMILY ·</p>
+
+    <footer>
+      <span>© river.io LLC</span>
+      <span><a href="corn3000.html">Corn 3000</a> · <a href="index.html">river.io</a></span>
+    </footer>
+  </div>
+</body>
+</html>

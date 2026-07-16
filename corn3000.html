@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Corn 3000 — A Farm Almanac · river.io</title>
+  <meta name="description" content="Corn 3000 is a turn-based historical farming life for iPhone. Inherit a mortgaged quarter-section anywhere from 1930 to today and farm it for thirty seasons against real USDA prices, NOAA weather, and the actual farm bills. No ads, no accounts, entirely on your device." />
+  <meta property="og:title" content="Corn 3000 — A Farm Almanac" />
+  <meta property="og:description" content="Ninety years. One farm. A letterpress farming life built on the real numbers." />
+  <meta property="og:image" content="https://www.river.io/assets/corn3000/icon-512.png" />
+  <link rel="icon" href="assets/corn3000/icon-512.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ultra&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #f2e9d3;
+      --paper-deep: #e9dcbc;
+      --ink: #2b2116;
+      --ink-soft: #5a4c38;
+      --ink-faint: #8a7a60;
+      --amber: #ce8a12;
+      --amber-bright: #efa41d;
+      --barn: #a4441f;
+      --field: #55743a;
+      --rule: rgba(43, 33, 22, 0.85);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 17px;
+      line-height: 1.65;
+      /* aged paper: soft vignette + faint laid-paper lines */
+      background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(255, 250, 235, 0.7), rgba(0,0,0,0) 60%),
+        radial-gradient(ellipse at 50% 100%, rgba(120, 90, 40, 0.10), rgba(0,0,0,0) 55%),
+        repeating-linear-gradient(0deg, rgba(90, 70, 40, 0.028) 0 1px, rgba(0,0,0,0) 1px 28px);
+    }
+    .sheet {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 22px 60px;
+    }
+
+    /* ---- masthead ---- */
+    .dateline {
+      display: flex; justify-content: space-between;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.22em;
+      color: var(--ink-soft); text-transform: uppercase;
+      padding: 14px 2px 10px;
+      border-bottom: 1.5px solid var(--rule);
+    }
+    .masthead { text-align: center; padding: 34px 0 6px; }
+    .masthead h1 {
+      font-family: "Ultra", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(52px, 11vw, 96px);
+      line-height: 0.95;
+      letter-spacing: 0.01em;
+    }
+    .masthead h1 .num { color: var(--barn); }
+    .masthead .tagline {
+      font-style: italic; color: var(--ink-soft);
+      font-size: 17px; margin-top: 10px;
+    }
+    .double-rule { border: 0; border-top: 2.5px solid var(--rule); position: relative; margin: 18px 0 0; }
+    .double-rule::after { content: ""; display: block; border-top: 1px solid var(--rule); margin-top: 2px; }
+
+    .kicker {
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 10.5px; font-weight: 800; letter-spacing: 0.24em;
+      text-transform: uppercase; color: var(--barn);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .kicker::before { content: ""; width: 26px; height: 2px; background: var(--barn); }
+
+    .fleuron { text-align: center; color: var(--ink-faint); font-size: 15px; letter-spacing: 0.6em; padding: 26px 0; }
+
+    /* ---- hero ---- */
+    .hero {
+      display: grid; grid-template-columns: 1.15fr 0.85fr;
+      gap: 34px; align-items: center; padding: 44px 0 8px;
+    }
+    .hero-copy h2 {
+      font-family: "Ultra", Georgia, serif; font-weight: 400;
+      font-size: clamp(30px, 5.4vw, 44px); line-height: 1.08;
+      margin: 12px 0 18px;
+    }
+    .hero-copy p.lede { font-size: 18.5px; }
+    .lede::first-letter {
+      font-family: "Ultra", Georgia, serif;
+      font-size: 2.1em; line-height: 1; color: var(--barn);
+      padding-right: 2px;
+    }
+    .phone {
+      justify-self: center;
+      transform: rotate(2.2deg);
+      border: 2px solid var(--ink);
+      outline: 6px solid var(--paper);
+      outline-offset: -8px;
+      box-shadow: 10px 14px 0 rgba(43, 33, 22, 0.16);
+      max-width: 270px; width: 100%;
+      background: var(--ink);
+    }
+    .phone img { display: block; width: 100%; height: auto; }
+
+    .badge-row { margin-top: 26px; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+    .stamp-btn {
+      display: inline-block; text-decoration: none;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 12px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--paper); background: var(--barn);
+      padding: 13px 22px; border: 2px solid var(--ink);
+      box-shadow: 4px 4px 0 var(--ink);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+    .stamp-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+    .stamp-btn.ghost { color: var(--ink); background: transparent; }
+    .badge-note { font-size: 12.5px; font-style: italic; color: var(--ink-faint); }
+
+    /* ---- ledger table ---- */
+    section { padding: 30px 0 6px; }
+    .ledger { margin-top: 16px; border-top: 2.5px solid var(--rule); }
+    .ledger-row {
+      display: grid; grid-template-columns: 168px 1fr;
+      gap: 18px; padding: 15px 2px;
+      border-bottom: 1px solid rgba(43, 33, 22, 0.25);
+    }
+    .ledger-row dt {
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 11px; font-weight: 800; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--field);
+      padding-top: 4px;
+    }
+    .ledger-row dd { color: var(--ink-soft); }
+    .ledger-row dd strong { color: var(--ink); }
+
+    /* ---- plates (screenshots) ---- */
+    .plates {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 26px 20px; margin-top: 26px;
+    }
+    .plate { text-align: center; }
+    .plate a { display: block; }
+    .plate img {
+      width: 100%; height: auto; display: block;
+      border: 1.5px solid var(--ink);
+      box-shadow: 5px 7px 0 rgba(43, 33, 22, 0.14);
+      transition: transform 0.15s ease;
+      background: var(--paper-deep);
+    }
+    .plate:nth-child(odd) img { transform: rotate(-1.1deg); }
+    .plate:nth-child(even) img { transform: rotate(1.3deg); }
+    .plate a:hover img { transform: rotate(0deg) translateY(-4px); }
+    .plate figcaption {
+      font-size: 12.5px; font-style: italic; color: var(--ink-soft);
+      margin-top: 10px;
+    }
+    .plate figcaption::before { content: "Plate "; font-style: italic; }
+
+    /* ---- provenance ---- */
+    .callout {
+      border: 1.5px solid var(--ink);
+      background: rgba(255, 250, 236, 0.55);
+      padding: 22px 24px; margin-top: 18px;
+      box-shadow: 5px 6px 0 rgba(43, 33, 22, 0.12);
+    }
+    .callout p { color: var(--ink-soft); }
+    .callout p + p { margin-top: 10px; }
+
+    .motto {
+      text-align: center; font-style: italic; letter-spacing: 0.14em;
+      color: var(--ink-soft); font-size: 14px; padding: 34px 0 8px;
+    }
+
+    footer {
+      border-top: 1.5px solid var(--rule); margin-top: 26px;
+      padding: 16px 2px 0;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 10.5px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--ink-faint);
+    }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--barn); }
+    a.quiet { color: var(--barn); }
+
+    /* load-in */
+    @media (prefers-reduced-motion: no-preference) {
+      .rise { opacity: 0; transform: translateY(14px); animation: rise 0.7s ease forwards; }
+      .rise.d1 { animation-delay: 0.08s; } .rise.d2 { animation-delay: 0.18s; }
+      .rise.d3 { animation-delay: 0.30s; }
+      @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+    }
+
+    @media (max-width: 640px) {
+      .hero { grid-template-columns: 1fr; }
+      .phone { max-width: 230px; }
+      .plates { grid-template-columns: 1fr 1fr; }
+      .ledger-row { grid-template-columns: 1fr; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="dateline">
+      <span>Vol. I · No. 1</span>
+      <span><a href="index.html" style="color:inherit;text-decoration:none;">river.io</a></span>
+      <span>Price 5¢</span>
+    </div>
+
+    <header class="masthead rise">
+      <h1>CORN <span class="num">3000</span></h1>
+      <p class="tagline">· An Almanack Perpetual · Being a faithful record of one farmer's years upon the Corn Belt ·</p>
+      <hr class="double-rule" />
+    </header>
+
+    <div class="hero">
+      <div class="hero-copy rise d1">
+        <div class="kicker">A farming life for iPhone</div>
+        <h2>Ninety years.<br/>One farm.</h2>
+        <p class="lede">A telegram arrives: your grandfather's quarter-section passes to you — the team, the barn, the herd, and the mortgage with it. Pick your year, 1930 to the present. Pick your state. Farm it for thirty seasons.</p>
+        <div class="badge-row">
+          <!-- Swap href for the real App Store URL at release. -->
+          <a class="stamp-btn" href="#support">☞ Coming to the App&nbsp;Store</a>
+          <span class="badge-note">Paid once. No ads, ever.</span>
+        </div>
+      </div>
+      <figure class="phone rise d2">
+        <img src="assets/corn3000/01-field.png" alt="The Field screen: the season clock, the note on the farm, and the ground's own numbers." />
+      </figure>
+    </div>
+
+    <div class="fleuron">❦ ❦ ❦</div>
+
+    <section class="rise d3">
+      <div class="kicker">What the work is</div>
+      <dl class="ledger">
+        <div class="ledger-row">
+          <dt>The real numbers</dt>
+          <dd><strong>Every coefficient is cited.</strong> USDA yields and prices, NOAA weather, the actual farm bills — the AAA corn-hog contract, the CCC loan floor at 45¢, deficiency payments, ARC and PLC. When the paper promises a price floor, the ledger keeps the promise.</dd>
+        </div>
+        <div class="ledger-row">
+          <dt>The ground remembers</dt>
+          <dd>Field-by-field soil that builds or breaks under your practice. Rotation, manure, cover crops, and lime move the organic matter — and the organic matter moves the yield, for decades. Mine it and the crop starves; keep it in good heart and it carries you.</dd>
+        </div>
+        <div class="ledger-row">
+          <dt>Kitchen-table decisions</dt>
+          <dd>Sign with the insurance agent. Sell off the combine or bin it and carry to March — the board at the scale house quotes your odds. Sow rye after harvest. Every card is a real decision with its numbers on it; anything with one answer answers itself.</dd>
+        </div>
+        <div class="ledger-row">
+          <dt>The books foot</dt>
+          <dd>Year's end brings a ruled ledger that accounts for every bushel: what the weather took, what the rotation paid, what your own hands moved — down to the bushel, with a hand-star ✳ on the lines you chose.</dd>
+        </div>
+        <div class="ledger-row">
+          <dt>History arrives</dt>
+          <dd>The Dust Bowl, the war years, the 1970s boom, the farm crisis at 15% interest, the ethanol run. Survive them in order or start inside one — the era tells you what it costs before you sign.</dd>
+        </div>
+        <div class="ledger-row">
+          <dt>Yours alone</dt>
+          <dd><strong>Entirely on your device.</strong> No ads, no accounts, no tracking, no in-app purchases, nothing sold but the app. <a class="quiet" href="corn3000-privacy.html">The privacy policy is one page</a> because there is nothing to disclose.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <div class="fleuron">❦</div>
+
+    <section>
+      <div class="kicker">Plates from the almanack</div>
+      <div class="plates">
+        <figure class="plate">
+          <a href="assets/corn3000/02-newspaper.png"><img src="assets/corn3000/02-newspaper.png" alt="A newspaper event card: Roosevelt signs the Agricultural Adjustment Act." loading="lazy" /></a>
+          <figcaption>I — history arrives with the mail.</figcaption>
+        </figure>
+        <figure class="plate">
+          <a href="assets/corn3000/03-season-plan.png"><img src="assets/corn3000/03-season-plan.png" alt="The Season Plan card: every field, one sitting." loading="lazy" /></a>
+          <figcaption>II — every field, one sitting.</figcaption>
+        </figure>
+        <figure class="plate">
+          <a href="assets/corn3000/04-ledger.png"><img src="assets/corn3000/04-ledger.png" alt="The year-end ledger: revenue, costs, and net income in the black." loading="lazy" /></a>
+          <figcaption>III — the books foot to the bushel.</figcaption>
+        </figure>
+        <figure class="plate">
+          <a href="assets/corn3000/05-soil-record.png"><img src="assets/corn3000/05-soil-record.png" alt="The Soil Record: organic matter by field, year by year." loading="lazy" /></a>
+          <figcaption>IV — the ground remembers.</figcaption>
+        </figure>
+        <figure class="plate">
+          <a href="assets/corn3000/06-reckoning.png"><img src="assets/corn3000/06-reckoning.png" alt="The Reckoning: you held the ground." loading="lazy" /></a>
+          <figcaption>V — what you made, and what you leave.</figcaption>
+        </figure>
+        <figure class="plate">
+          <a href="assets/corn3000/01-field.png"><img src="assets/corn3000/01-field.png" alt="The Field screen with the season clock." loading="lazy" /></a>
+          <figcaption>VI — thirty seasons, one quarter-section.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div class="fleuron">❦</div>
+
+    <section>
+      <div class="kicker">On the provenance of the numbers</div>
+      <div class="callout">
+        <p>Corn 3000 was built the way an extension bulletin is written: nothing ships without a source. Yield response to nitrogen follows Cerrato &amp; Blackmer's linear-response-plateau. Land values follow the USDA-NASS series through the 1920 peak, the Depression trough, and the 1980s crash. The insurance agent quotes real subsidy schedules; the haymaking bill comes off the Iowa custom-rate survey. If we couldn't cite it, we didn't ship it.</p>
+        <p>Which means the game teaches the real thing: why rotations pay, why the 1979 land buyer met the auctioneer in 1985, and why the paying rate on nitrogen is <em>enough, not the most</em>.</p>
+      </div>
+    </section>
+
+    <section id="support">
+      <div class="kicker">Support &amp; correspondence</div>
+      <div class="callout">
+        <p>Questions, trouble, or corrections to the record: write <a class="quiet" href="mailto:jeff@river.io">jeff@river.io</a> and a human will answer. The <a class="quiet" href="corn3000-privacy.html">privacy policy</a> is the shortest page on this site.</p>
+      </div>
+    </section>
+
+    <p class="motto">· A STALK PALE IN JUNE · A BIN LIGHT IN OCTOBER ·</p>
+
+    <footer>
+      <span>© river.io LLC</span>
+      <span><a href="corn3000-privacy.html">Privacy</a> · <a href="mailto:jeff@river.io">Support</a> · <a href="index.html">river.io</a></span>
+    </footer>
+  </div>
+</body>
+</html>
