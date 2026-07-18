@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Jeff Kunzelman, software engineer: native iOS and Android, network security, and DevOps. Maker of sloth, ClientAPT, and Materials and Practices." />
+<title>Jeff Kunzelman, Software Engineer</title>
+<style>
+  :root{
+    --ground:#0b0f14; --panel:#121821; --panel-2:#0e141b;
+    --ink:#e9eef4; --ink-2:#aeb9c6; --muted:#6f7d8e;
+    --line:#1d2833; --line-2:#2b3846;
+    --accent:#ffb454; --accent-ink:#ffca7a; --accent-deep:#c77d2a;
+    --accent-soft:rgba(255,180,84,.12);
+    --grid:rgba(120,150,180,.055);
+    --shadow:0 1px 0 rgba(255,255,255,.02), 0 24px 50px -34px rgba(0,0,0,.8);
+    --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --maxw:1080px;
+  }
+  @media (prefers-color-scheme:light){
+    :root{
+      --ground:#f4f6f9; --panel:#ffffff; --panel-2:#f8fafc;
+      --ink:#0f1720; --ink-2:#3c4956; --muted:#6a7787;
+      --line:#e3e8ee; --line-2:#d0d9e2;
+      --accent:#b96a12; --accent-ink:#8f4f0b; --accent-deep:#b96a12;
+      --accent-soft:rgba(185,106,18,.10);
+      --grid:rgba(30,60,90,.05);
+      --shadow:0 1px 0 rgba(15,23,32,.02), 0 20px 44px -32px rgba(15,23,32,.28);
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#f4f6f9; --panel:#ffffff; --panel-2:#f8fafc;
+    --ink:#0f1720; --ink-2:#3c4956; --muted:#6a7787;
+    --line:#e3e8ee; --line-2:#d0d9e2;
+    --accent:#b96a12; --accent-ink:#8f4f0b; --accent-deep:#b96a12;
+    --accent-soft:rgba(185,106,18,.10); --grid:rgba(30,60,90,.05);
+    --shadow:0 1px 0 rgba(15,23,32,.02), 0 20px 44px -32px rgba(15,23,32,.28);
+  }
+  :root[data-theme="dark"]{
+    --ground:#0b0f14; --panel:#121821; --panel-2:#0e141b;
+    --ink:#e9eef4; --ink-2:#aeb9c6; --muted:#6f7d8e;
+    --line:#1d2833; --line-2:#2b3846;
+    --accent:#ffb454; --accent-ink:#ffca7a; --accent-deep:#c77d2a;
+    --accent-soft:rgba(255,180,84,.12); --grid:rgba(120,150,180,.055);
+    --shadow:0 1px 0 rgba(255,255,255,.02), 0 24px 50px -34px rgba(0,0,0,.8);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0;background:var(--ground);color:var(--ink);
+    font-family:var(--sans);line-height:1.65;font-size:16px;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  a{color:inherit}
+  ::selection{background:var(--accent-soft);color:var(--accent-ink)}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
+
+  /* top status bar */
+  .topbar{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--ground) 88%,transparent);
+    backdrop-filter:blur(9px);border-bottom:1px solid var(--line)}
+  .topbar .in{max-width:var(--maxw);margin:0 auto;padding:11px 26px;display:flex;align-items:center;
+    justify-content:space-between;gap:16px}
+  .id{font-family:var(--mono);font-size:.82rem;letter-spacing:.02em;font-weight:600}
+  .id .dot{color:var(--accent)}
+  .toplinks{display:flex;align-items:center;gap:6px}
+  .toplinks a{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none;padding:6px 9px;border-radius:7px;transition:color .15s,background .15s}
+  .toplinks a:hover{color:var(--accent-ink);background:var(--accent-soft)}
+  .themetoggle{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);background:transparent;border:1px solid var(--line-2);border-radius:999px;
+    padding:6px 11px;cursor:pointer;transition:border-color .15s,color .15s}
+  .themetoggle:hover{border-color:var(--accent);color:var(--accent-ink)}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .grid-bg{position:absolute;inset:0;pointer-events:none;z-index:0;
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:30px 30px;
+    -webkit-mask-image:radial-gradient(120% 90% at 15% 0%,#000 30%,transparent 78%);
+    mask-image:radial-gradient(120% 90% at 15% 0%,#000 30%,transparent 78%)}
+  .hero .in{position:relative;z-index:1;padding:74px 0 66px}
+  .status{display:inline-flex;flex-wrap:wrap;gap:0;font-family:var(--mono);font-size:.7rem;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+    border:1px solid var(--line-2);border-radius:999px;padding:7px 4px;margin-bottom:26px;background:var(--panel-2)}
+  .status span{padding:0 13px;border-right:1px solid var(--line);white-space:nowrap}
+  .status span:last-child{border-right:0}
+  .status b{color:var(--accent-ink);font-weight:600}
+  h1{font-size:clamp(2.5rem,6vw,4.3rem);line-height:1.02;letter-spacing:-.035em;font-weight:800;
+    margin:0;text-wrap:balance;max-width:16ch}
+  .lede{font-size:clamp(1.08rem,1.9vw,1.35rem);color:var(--ink-2);max-width:60ch;margin:24px 0 0;line-height:1.55}
+  .cur{display:inline-block;width:.6ch;height:1.05em;background:var(--accent);translate:0 .12em;
+    margin-left:.1ch;animation:blink 1.15s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  @media (prefers-reduced-motion:reduce){.cur{animation:none}}
+  .actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:34px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.78rem;
+    letter-spacing:.04em;text-decoration:none;padding:11px 17px;border-radius:10px;border:1px solid var(--line-2);
+    color:var(--ink);transition:border-color .15s,background .15s,transform .12s}
+  .btn:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .btn.primary{background:var(--accent);color:#1a1206;border-color:var(--accent);font-weight:700}
+  .btn.primary:hover{background:var(--accent-ink)}
+  .meta{margin-top:30px;display:flex;flex-wrap:wrap;gap:22px;font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+  .meta a{color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--line-2)}
+  .meta a:hover{color:var(--accent-ink);border-color:var(--accent)}
+
+  /* section scaffolding */
+  section{padding:70px 0;border-bottom:1px solid var(--line)}
+  .eyebrow{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:.72rem;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--accent-ink);margin:0 0 26px}
+  .eyebrow .num{color:var(--muted)}
+  .eyebrow .rule{flex:1;height:1px;background:var(--line-2);max-width:170px}
+  h2{font-size:clamp(1.55rem,3.1vw,2.15rem);letter-spacing:-.02em;font-weight:750;margin:0 0 8px;text-wrap:balance}
+  .section-lede{color:var(--ink-2);max-width:64ch;margin:0 0 30px}
+  p{max-width:66ch}
+
+  /* stance: three specialties */
+  .specs{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+  .spec{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 22px 24px;box-shadow:var(--shadow)}
+  .spec .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:11px}
+  .spec h3{margin:0 0 8px;font-size:1.08rem;letter-spacing:-.01em}
+  .spec p{margin:0;color:var(--ink-2);font-size:.94rem;max-width:none}
+
+  /* apps */
+  .apps{display:flex;flex-direction:column;gap:20px}
+  .app{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+  .app .bar{display:flex;align-items:center;gap:10px;padding:12px 20px;border-bottom:1px solid var(--line);
+    font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;color:var(--muted);background:var(--panel-2)}
+  .app .bar .lights{display:flex;gap:6px}
+  .app .bar .lights i{width:10px;height:10px;border-radius:50%;background:var(--line-2);display:block}
+  .app .bar .path{color:var(--ink-2)}
+  .app .bar .pill{margin-left:auto;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;
+    padding:4px 9px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2)}
+  .app .bar .pill.live{color:#1a1206;background:var(--accent);border-color:var(--accent);font-weight:700}
+  .app .body{padding:24px 24px 26px;display:grid;grid-template-columns:1.4fr 1fr;gap:26px}
+  @media (max-width:720px){.app .body{grid-template-columns:1fr;gap:18px}}
+  .app h3{margin:0;font-size:1.5rem;letter-spacing:-.02em}
+  .app .tag{font-family:var(--mono);font-size:.8rem;color:var(--accent-ink);margin:4px 0 12px}
+  .app p{margin:0 0 14px;color:var(--ink-2);font-size:.96rem}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px}
+  .chip{font-family:var(--mono);font-size:.68rem;letter-spacing:.02em;color:var(--ink-2);
+    background:var(--panel-2);border:1px solid var(--line-2);border-radius:7px;padding:4px 9px}
+  .app .side{border-left:1px solid var(--line);padding-left:24px}
+  @media (max-width:720px){.app .side{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:18px}}
+  .facts{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-direction:column;gap:9px}
+  .facts li{display:flex;gap:10px;font-size:.9rem;color:var(--ink-2)}
+  .facts li b{font-family:var(--mono);color:var(--accent-ink);font-weight:600;font-size:.78rem;
+    letter-spacing:.04em;min-width:82px;flex:0 0 82px;padding-top:1px}
+  .app .links{display:flex;flex-wrap:wrap;gap:9px}
+  .app .links a{font-family:var(--mono);font-size:.74rem;text-decoration:none;color:var(--ink);
+    border:1px solid var(--line-2);border-radius:9px;padding:8px 12px;transition:border-color .15s,color .15s}
+  .app .links a:hover{border-color:var(--accent);color:var(--accent-ink)}
+
+  /* posture manifesto */
+  .posture{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+  .tenet{padding:20px;border:1px solid var(--line);border-radius:13px;background:var(--panel)}
+  .tenet .n{font-family:var(--mono);color:var(--accent);font-size:.82rem;letter-spacing:.08em}
+  .tenet h4{margin:8px 0 6px;font-size:1rem;letter-spacing:-.01em}
+  .tenet p{margin:0;font-size:.9rem;color:var(--ink-2);max-width:none}
+
+  /* experience timeline */
+  .xp{display:flex;flex-direction:column}
+  .row{display:grid;grid-template-columns:132px 1fr;gap:22px;padding:16px 2px;border-top:1px solid var(--line);align-items:baseline}
+  .row:first-child{border-top:0}
+  .row .yr{font-family:var(--mono);font-size:.78rem;color:var(--muted);letter-spacing:.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .row .role b{font-weight:700}
+  .row .role .org{color:var(--accent-ink)}
+  .row .role .d{display:block;color:var(--ink-2);font-size:.9rem;margin-top:3px;max-width:64ch}
+  @media (max-width:620px){.row{grid-template-columns:1fr;gap:4px}}
+
+  /* stack table */
+  .stack{display:grid;gap:0;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    border:1px solid var(--line);border-radius:13px;overflow:hidden}
+  .stackrow{display:grid;grid-template-columns:130px 1fr;gap:14px;padding:13px 18px;border-top:1px solid var(--line);background:var(--panel)}
+  .stackrow:nth-child(1),.stackrow:nth-child(2){border-top:0}
+  .stackrow .cat{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);padding-top:2px}
+  .stackrow .items{font-size:.9rem;color:var(--ink-2)}
+
+  /* contact */
+  .contact{text-align:left}
+  .contact h2{max-width:20ch}
+  .contact .big{font-family:var(--mono);font-size:clamp(1.1rem,2.6vw,1.6rem);margin-top:14px}
+  .contact .big a{color:var(--accent-ink);text-decoration:none;border-bottom:2px solid var(--accent-soft)}
+  .contact .big a:hover{border-color:var(--accent)}
+
+  footer{padding:34px 0 48px}
+  footer .in{max-width:var(--maxw);margin:0 auto;padding:0 26px;display:flex;flex-wrap:wrap;
+    justify-content:space-between;gap:12px;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+</style>
+
+<header class="topbar">
+  <div class="in">
+    <span class="id">jeff kunzelman<span class="dot"> · </span>river.io</span>
+    <nav class="toplinks">
+      <a href="#apps">Apps</a>
+      <a href="#work">Experience</a>
+      <a href="#stack">Stack</a>
+      <a href="#contact">Contact</a>
+      <button class="themetoggle" id="tt" type="button" aria-label="Toggle colour theme">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="wrap in">
+    <div class="status" role="note">
+      <span><b>NATIVE</b></span><span><b>COMPILED</b></span><span><b>TEST-DRIVEN</b></span><span><b>ON-DEVICE</b></span>
+    </div>
+    <h1>I build software the durable way<span class="cur" aria-hidden="true"></span></h1>
+    <p class="lede">Jeff Kunzelman, a software engineer with 25+ years across native mobile,
+      infrastructure automation, and low-level network security. I write compiled, tested code
+      close to the metal, and I keep people's data on their own devices.</p>
+    <div class="actions">
+      <a class="btn primary" href="#apps">See what I ship &rarr;</a>
+      <a class="btn" href="#work">Experience</a>
+      <a class="btn" href="mailto:jeff@river.io">Get in touch</a>
+    </div>
+    <div class="meta">
+      <span>River.io LLC, Owner</span>
+      <a href="mailto:jeff@river.io">jeff@river.io</a>
+      <a href="https://github.com/SpaceTrucker2196" target="_blank" rel="noopener">github.com/SpaceTrucker2196</a>
+      <span>Arizona · remote</span>
+    </div>
+  </div>
+</div>
+
+<section id="do">
+  <div class="wrap reveal">
+    <div class="eyebrow"><span class="num">01</span> · What I do <span class="rule"></span></div>
+    <h2>Three converging specialties, one engineering standard.</h2>
+    <p class="section-lede">I've spent a career refusing the easy abstraction when the correct one costs
+      more up front and pays back in performance, correctness, and years of supportability.</p>
+    <div class="specs">
+      <div class="spec">
+        <div class="k">Native mobile</div>
+        <h3>iOS &amp; Android, test-first</h3>
+        <p>10+ years of native iOS (Swift / SwiftUI / SwiftData, Objective-C) and now Kotlin 2.0 /
+          Jetpack Compose / Room / Hilt, with a 1:1 unit-test parity rule between platforms and zero
+          third-party UI dependencies.</p>
+      </div>
+      <div class="spec">
+        <div class="k">Network security</div>
+        <h3>802.11 &amp; protocol analysis</h3>
+        <p>Passive Wi-Fi monitoring in C99 from the kernel-facing code up: beacon / probe / deauth
+          sniffing via <code>nl80211</code>, TLS ClientHello and JA3 fingerprinting, and per-alert
+          pcap forensics.</p>
+      </div>
+      <div class="spec">
+        <div class="k">DevOps &amp; infra</div>
+        <h3>Pipelines &amp; agent ops</h3>
+        <p>Multi-repo CI/CD with GitHub Actions, Debian packaging and auto-versioned releases,
+          Linux VPS administration, BDD-tested tooling, and multi-agent AI operations platforms
+          running on real production servers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="apps">
+  <div class="wrap reveal">
+    <div class="eyebrow"><span class="num">02</span> · Selected work <span class="rule"></span></div>
+    <h2>Apps I designed, built, and ship.</h2>
+    <p class="section-lede">Three products that share a spine: compiled native code, tests as the
+      contract, and data that stays where it belongs.</p>
+
+    <div class="apps">
+
+      <article class="app">
+        <div class="bar">
+          <span class="lights"><i></i><i></i><i></i></span>
+          <span class="path">sloth &nbsp;·&nbsp; C99 · Linux · ncurses + libpcap + nl80211</span>
+          <span class="pill">Open source</span>
+        </div>
+        <div class="body">
+          <div class="main">
+            <h3>sloth</h3>
+            <div class="tag">Passive Wi-Fi &amp; network security analysis</div>
+            <p>A fully passive forensic tool. It never injects packets, scans, or touches kernel
+              state. 23 live ncurses views: 802.11 beacon / probe / deauth sniffing, ARP / mDNS /
+              NBNS / DHCP / SSDP device discovery, TLS ClientHello and JA3 fingerprint capture, and
+              synthesized alerts for port scans, deauth floods, NXDOMAIN bursts, threat-intel hits,
+              and periodic beaconing. JSONL log and per-alert pcap for downstream analysis.</p>
+            <div class="chips">
+              <span class="chip">C99</span><span class="chip">libpcap</span><span class="chip">nl80211</span>
+              <span class="chip">ncurses</span><span class="chip">JA3 / TLS</span><span class="chip">CMake</span>
+            </div>
+          </div>
+          <div class="side">
+            <ul class="facts">
+              <li><b>Language</b><span>C99, from the kernel-facing code up</span></li>
+              <li><b>Tests</b><span>50 C unit tests plus a <code>fake_platform</code> shim</span></li>
+              <li><b>Posture</b><span>Passive only: observe, never emit</span></li>
+              <li><b>Output</b><span>Forensic JSONL + per-alert pcap</span></li>
+            </ul>
+            <div class="links">
+              <a href="https://github.com/SpaceTrucker2196" target="_blank" rel="noopener">Source &amp; releases &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="app">
+        <div class="bar">
+          <span class="lights"><i></i><i></i><i></i></span>
+          <span class="path">ClientAPT &nbsp;·&nbsp; iOS (Swift) + Android (Kotlin) · at parity</span>
+          <span class="pill live">Live on App Store &amp; Play</span>
+        </div>
+        <div class="body">
+          <div class="main">
+            <h3>ClientAPT</h3>
+            <div class="tag">Your book. Their secrets.</div>
+            <p>A privacy-first appointment book for solo service providers, the tattoo artists, nail
+              techs, stylists, and cleaners whose client list is itself confidential. It is the sole
+              source of calendar truth: it never integrates with the system Calendar, never reaches
+              the network, never enrolls in iCloud, never donates a Siri intent, never indexes to
+              Spotlight. Client photos and notes live in an encrypted vault behind an app PIN, with a
+              second per-client PIN for flagged clients and a <strong>duress PIN</strong> that opens a
+              believable decoy vault when unlock is coerced.</p>
+            <div class="chips">
+              <span class="chip">Swift / SwiftUI / SwiftData</span><span class="chip">Kotlin / Compose / Room</span>
+              <span class="chip">On-device encryption</span><span class="chip">PBKDF2</span>
+              <span class="chip">Zero deps</span>
+            </div>
+          </div>
+          <div class="side">
+            <ul class="facts">
+              <li><b>Platforms</b><span>Native iOS + Android at feature parity</span></li>
+              <li><b>Privacy</b><span>No network, no cloud, no previews</span></li>
+              <li><b>Safety</b><span>App PIN, per-client PIN, duress decoy</span></li>
+              <li><b>Status</b><span>Shipped v1.0 in 2026</span></li>
+            </ul>
+            <div class="links">
+              <a href="https://apps.apple.com/app/id6779647015" target="_blank" rel="noopener">App Store &rarr;</a>
+              <a href="https://play.google.com/store/apps/details?id=io.river.clientapt" target="_blank" rel="noopener">Google Play &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="app">
+        <div class="bar">
+          <span class="lights"><i></i><i></i><i></i></span>
+          <span class="path">MaterialsAndPractices &nbsp;·&nbsp; iOS · SwiftUI + Core Data + CloudKit</span>
+          <span class="pill">Universal iPad / iPhone</span>
+        </div>
+        <div class="body">
+          <div class="main">
+            <h3>Materials &amp; Practices</h3>
+            <div class="tag">Records &amp; compliance for small-scale organic farms</div>
+            <p>A universal iPhone / iPad app for small organic growers: a USDA-sourced plant-cultivar
+              database, grow management, soil-health monitoring with a pH spectrum and lab
+              integration, agricultural lease management with payment tracking, worker time tracking
+              with overtime detection, FDA FSMA harvest-safety checklists, and full traceability of
+              organic amendments. Syncs across devices with CloudKit; fully localized in English and
+              Spanish.</p>
+            <div class="chips">
+              <span class="chip">SwiftUI</span><span class="chip">Core Data</span><span class="chip">CloudKit sync</span>
+              <span class="chip">EN + ES</span><span class="chip">FSMA</span><span class="chip">Zero deps</span>
+            </div>
+          </div>
+          <div class="side">
+            <ul class="facts">
+              <li><b>Domain</b><span>Organic certification &amp; farm records</span></li>
+              <li><b>Data</b><span>USDA cultivars, soil labs, traceability</span></li>
+              <li><b>Sync</b><span>NSPersistentCloudKitContainer</span></li>
+              <li><b>Deps</b><span>Apple frameworks only</span></li>
+            </ul>
+            <div class="links">
+              <a href="https://github.com/SpaceTrucker2196" target="_blank" rel="noopener">More on GitHub &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="posture">
+  <div class="wrap reveal">
+    <div class="eyebrow"><span class="num">03</span> · Engineering posture <span class="rule"></span></div>
+    <h2>How I choose to build.</h2>
+    <p class="section-lede">Not dogma. A set of trade-offs I've made deliberately and can defend.</p>
+    <div class="posture">
+      <div class="tenet"><div class="n">→</div><h4>Native over cross-platform</h4>
+        <p>C / Swift / Kotlin over Flutter, React Native, Electron: smaller binaries, lower battery
+          and memory cost, direct platform APIs, no framework treadmill.</p></div>
+      <div class="tenet"><div class="n">→</div><h4>Tests are the contract</h4>
+        <p>1:1 unit-test parity across platforms; drift is caught by audit prompts and logged, never
+          papered over. 22 XCTest suites mirrored by 30 JUnit suites on my current work.</p></div>
+      <div class="tenet"><div class="n">→</div><h4>Zero third-party deps</h4>
+        <p>Apple frameworks on iOS; AndroidX, Room, and Hilt on Android. No Firebase, Retrofit,
+          Glide, or RxJava. Nothing to abandon me at the next OS release.</p></div>
+      <div class="tenet"><div class="n">→</div><h4>Data stays on device</h4>
+        <p>Encrypted vaults, no silent network, tamper-evident SHA-256 audit chains. Privacy as an
+          architecture decision, not a policy page.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap reveal">
+    <div class="eyebrow"><span class="num">04</span> · Experience <span class="rule"></span></div>
+    <h2>25+ years, from BlackBerry to multi-agent ops.</h2>
+    <div class="xp">
+      <div class="row"><span class="yr">2025 to now</span><span class="role">
+        <b>Owner / Engineer</b> · <span class="org">River.io LLC</span>
+        <span class="d">Shipping CareTime (native iOS + Android caregiver time-tracking with EVV and a
+          SHA-256 audit chain), ClientAPT, Materials &amp; Practices, and sloth. Operating a
+          multi-agent AI ops platform and OpenClaw agents that manage real-world rental units.</span>
+      </span></div>
+      <div class="row"><span class="yr">2024 to 2025</span><span class="role">
+        <b>IT Specialist</b> · <span class="org">VARC Inc.</span>
+        <span class="d">Automated Microsoft 365 administration via PowerShell and Microsoft Graph;
+          built custom Copilot agents for HR and IT workflows.</span>
+      </span></div>
+      <div class="row"><span class="yr">2021 to 2024</span><span class="role">
+        <b>IT Manager</b> · <span class="org">Cosanti Foundation</span>
+        <span class="d">Ran network infrastructure across the Cosanti and Arcosanti sites; migrated web
+          and VoIP to save $7.5K+/month; led fiber and Cat-6 upgrades at the historic site.</span>
+      </span></div>
+      <div class="row"><span class="yr">2021 to 2023</span><span class="role">
+        <b>Lead iOS Developer</b> · <span class="org">AgPilotX</span>
+        <span class="d">Agricultural-aviation guidance for iPad: Swift and MVVM integrated with aircraft
+          hardware, Bluetooth/Wi-Fi valve controls, and heads-up displays.</span>
+      </span></div>
+      <div class="row"><span class="yr">2019 to 2020</span><span class="role">
+        <b>Senior iOS Developer</b> · <span class="org">Haulynx</span>
+        <span class="d">Long-haul trucking logistics: electronic driver logs, CI/CD with Bitrise,
+          Splunk and Amplitude, and a Firebase to AWS GraphQL migration.</span>
+      </span></div>
+      <div class="row"><span class="yr">2016 to 2019</span><span class="role">
+        <b>Lead Mobile Developer</b> · <span class="org">GPS Insight · General Motors (Maven)</span>
+        <span class="d">Led an eight-month iOS rewrite of a fleet asset-tracking app; built test
+          infrastructure and Concourse CI delivery for the Maven car-sharing app.</span>
+      </span></div>
+      <div class="row"><span class="yr">2009 to 2015</span><span class="role">
+        <b>Senior Developer &amp; Lead</b> · <span class="org">AAA · Charles Schwab · Ashley Furniture</span>
+        <span class="d">Led an iOS/Android team with Pivotal Labs (BDD); built native IT-service-management
+          clients and Splunk dashboards; launched the iAshley iPad catalog to 500+ stores.</span>
+      </span></div>
+      <div class="row"><span class="yr">1992 to 2009</span><span class="role">
+        <b>Systems &amp; Software Engineer</b> · <span class="org">DHL · IBM · State of WA · Target · Thomson Reuters</span>
+        <span class="d">Principal systems engineering and BlackBerry sales/tracking apps; earlier
+          programmer roles across enterprise and public-sector systems.</span>
+      </span></div>
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="wrap reveal">
+    <div class="eyebrow"><span class="num">05</span> · Stack <span class="rule"></span></div>
+    <h2>What I reach for.</h2>
+    <div class="stack">
+      <div class="stackrow"><span class="cat">Languages</span><span class="items">C99 / C11, C++, Swift, Objective-C, Kotlin 2.0, PowerShell</span></div>
+      <div class="stackrow"><span class="cat">Mobile</span><span class="items">SwiftUI, SwiftData, Jetpack Compose, Room, Hilt, CloudKit, Live Activities, Glance widgets</span></div>
+      <div class="stackrow"><span class="cat">Systems</span><span class="items">nl80211, libpcap, ncurses, TLS / JA3, Debian packaging, Linux VPS</span></div>
+      <div class="stackrow"><span class="cat">DevOps</span><span class="items">GitHub Actions, Bitrise, Concourse, cron orchestration, auto-versioned releases</span></div>
+      <div class="stackrow"><span class="cat">Enterprise</span><span class="items">Microsoft Graph, M365 automation, REST APIs, ITIL (certified)</span></div>
+      <div class="stackrow"><span class="cat">Testing</span><span class="items">XCTest, JUnit, Behave / Cucumber, Nimble / Quick, mutation testing</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap reveal">
+    <div class="eyebrow"><span class="num">06</span> · Contact <span class="rule"></span></div>
+    <h2>Open to roles building direct services for public needs.</h2>
+    <p class="section-lede">Disability services, recovery, healthcare: anywhere careful, compiled,
+      well-tested software does real good. Web, full-stack, back-end, and native mobile.</p>
+    <div class="big">
+      <a href="mailto:jeff@river.io">jeff@river.io</a> &nbsp;·&nbsp;
+      <a href="https://github.com/SpaceTrucker2196" target="_blank" rel="noopener">github.com/SpaceTrucker2196</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="in">
+    <span>Jeff Kunzelman · River.io LLC</span>
+    <span>Native · Compiled · Test-driven · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+  (function(){
+    var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+    var els=[].slice.call(document.querySelectorAll('.reveal'));
+    if(reduce||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:.12});
+    els.forEach(function(e){io.observe(e);});
+  })();
+</script>
+
+</body>
+</html>
