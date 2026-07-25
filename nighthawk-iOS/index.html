@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nighthawk Tube: a stereo oscillator meditation instrument</title>
+<meta name="description" content="Nighthawk Tube is a stereo oscillator meditation instrument. Two tones, one in each ear, meet inside a glowing vacuum tube; the beat between them slides through the brainwave bands and lights the chakras.">
+<meta property="og:title" content="Nighthawk Tube">
+<meta property="og:description" content="A stereo oscillator meditation instrument. Watch two tones interfere inside a glowing vacuum tube; steer the beat through the brainwave bands.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --void:#050208; --void2:#0a0512; --panel:#0e0817;
+    --phosphor:#6bffcc; --ice:#4cebff; --violet:#996bff; --brass:#b88c40;
+    --ink:#e8e2f2; --dim:#8a82a0; --dimmer:#5a536e;
+    /* chakra ladder, root -> crown, straight from the app */
+    --c0:#f24033; --c1:#ff8c26; --c2:#ffd933; --c3:#4de673;
+    --c4:#40a6ff; --c5:#7366ff; --c6:#bf73ff;
+    --mono:ui-monospace,"SF Mono",Menlo,"DejaVu Sans Mono",monospace;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--void); color:var(--ink);
+    font-family:var(--mono); font-size:16px; line-height:1.65;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+    background-image:
+      radial-gradient(60% 45% at 50% -5%, rgba(107,255,204,.10), transparent 70%),
+      radial-gradient(50% 40% at 12% 30%, rgba(153,107,255,.08), transparent 70%),
+      radial-gradient(50% 40% at 90% 65%, rgba(76,235,255,.06), transparent 70%);
+    background-attachment:fixed;
+  }
+  /* faint CRT scanlines */
+  body::after{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:9; opacity:.35;
+    background:repeating-linear-gradient(180deg, rgba(0,0,0,0) 0 2px, rgba(0,0,0,.35) 2px 3px);
+    mix-blend-mode:multiply;
+  }
+  a{color:var(--ice); text-decoration:none}
+  a:hover{color:var(--phosphor)}
+  .wrap{max-width:960px; margin:0 auto; padding:0 24px}
+  .mono{font-family:var(--mono)}
+  .glow{text-shadow:0 0 12px rgba(107,255,204,.55),0 0 30px rgba(107,255,204,.25)}
+  .kicker{font-size:11px; letter-spacing:.42em; text-transform:uppercase; color:var(--brass)}
+  h2{font-family:var(--mono); font-size:clamp(22px,3.4vw,30px); letter-spacing:.02em; margin:.2em 0 .4em}
+  h3{font-size:15px; letter-spacing:.06em; text-transform:uppercase; color:var(--phosphor); margin:0 0 .35em}
+  p{color:var(--ink); opacity:.92}
+  .lead{font-size:clamp(17px,2.2vw,20px); color:var(--dim)}
+  section{padding:76px 0; border-top:1px solid rgba(184,140,64,.14)}
+  .eyebrow{display:inline-block; margin-bottom:14px}
+
+  /* ---------- hero ---------- */
+  header.hero{position:relative; padding:70px 0 40px; text-align:center; overflow:hidden}
+  .scope{width:min(340px,74vw); height:min(340px,74vw); margin:0 auto 6px; display:block}
+  .scope .ring{fill:none; stroke:rgba(107,255,204,.14); stroke-width:1}
+  .scope .lissa{fill:none; stroke:var(--phosphor); stroke-width:2.2;
+    filter:drop-shadow(0 0 4px rgba(107,255,204,.9)) drop-shadow(0 0 12px rgba(107,255,204,.5));
+    stroke-linecap:round; transform-origin:center; animation:turn 26s linear infinite}
+  .scope .lissa2{fill:none; stroke:var(--ice); stroke-width:1.4; opacity:.5;
+    transform-origin:center; animation:turn 40s linear infinite reverse}
+  @keyframes turn{to{transform:rotate(360deg)}}
+  .wordmark{font-family:var(--mono); font-weight:700; letter-spacing:.02em;
+    font-size:clamp(40px,10vw,88px); line-height:.9; margin:2px 0 0}
+  .wordmark .tube{display:block; font-size:.30em; letter-spacing:.72em; margin-left:.72em;
+    color:var(--brass); font-weight:600}
+  .tagline{font-size:clamp(16px,2.4vw,21px); color:var(--dim); margin:20px auto 6px; max-width:620px}
+  .sub{font-size:12px; letter-spacing:.28em; text-transform:uppercase; color:var(--dimmer)}
+  .cta{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin:34px 0 6px}
+  .btn{font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    padding:13px 22px; border-radius:999px; border:1px solid rgba(107,255,204,.5);
+    color:var(--phosphor); background:rgba(107,255,204,.06); transition:.18s}
+  .btn:hover{background:rgba(107,255,204,.14); box-shadow:0 0 22px rgba(107,255,204,.28); color:var(--phosphor)}
+  .btn.ghost{border-color:rgba(153,107,255,.5); color:var(--violet); background:rgba(153,107,255,.05)}
+  .btn.ghost:hover{background:rgba(153,107,255,.14); box-shadow:0 0 22px rgba(153,107,255,.28)}
+  .pricebar{font-size:12px; color:var(--dim); margin-top:18px; letter-spacing:.04em}
+  .pricebar b{color:var(--ink)}
+
+  /* ---------- generic cards ---------- */
+  .grid{display:grid; gap:18px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:1.1fr .9fr; align-items:center}
+  .card{background:linear-gradient(180deg, rgba(20,12,32,.85), rgba(10,5,18,.85));
+    border:1px solid rgba(184,140,64,.22); border-radius:14px; padding:22px}
+  .card h3{color:var(--phosphor)}
+  .card p{font-size:14.5px; color:var(--dim); margin:.2em 0 0}
+
+  /* ---------- how beat is made ---------- */
+  .earflow{display:grid; grid-template-columns:1fr auto 1fr; gap:14px; align-items:center;
+    margin:22px 0 10px; text-align:center}
+  .osc{border:1px solid; border-radius:12px; padding:16px; background:rgba(0,0,0,.35)}
+  .oscA{border-color:rgba(107,255,204,.5); color:var(--phosphor)}
+  .oscB{border-color:rgba(76,235,255,.5); color:var(--ice)}
+  .osc .lab{font-size:10px; letter-spacing:.24em; opacity:.8}
+  .osc .hz{font-size:26px; font-weight:700; margin-top:4px}
+  .osc .side{font-size:11px; color:var(--dim); margin-top:4px; letter-spacing:.1em}
+  .eq{font-size:12px; color:var(--brass); letter-spacing:.1em; white-space:nowrap}
+  .beatout{margin-top:6px; text-align:center; font-size:14px; color:var(--dim)}
+  .beatout b{color:var(--violet)}
+  .formula{font-family:var(--mono); font-size:13px; color:var(--dim);
+    background:rgba(0,0,0,.4); border-left:2px solid var(--brass); border-radius:6px;
+    padding:12px 16px; margin:16px 0; overflow-x:auto}
+  .formula b{color:var(--phosphor)}
+
+  /* ---------- brainwave table ---------- */
+  .bands{width:100%; border-collapse:collapse; font-size:14px; margin-top:8px}
+  .bands th,.bands td{text-align:left; padding:11px 12px; border-bottom:1px solid rgba(184,140,64,.14)}
+  .bands th{font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--dimmer); font-weight:600}
+  .bands td:first-child{font-weight:700; letter-spacing:.12em; white-space:nowrap}
+  .bands .rng{color:var(--dim); white-space:nowrap; font-variant-numeric:tabular-nums}
+  .bands td:last-child{color:var(--dim)}
+  .swatch{display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:9px; vertical-align:middle;
+    box-shadow:0 0 8px currentColor}
+
+  /* ---------- chakra ladder ---------- */
+  .chakra-row{display:grid; grid-template-columns:120px 1fr 1fr auto; gap:12px; align-items:center;
+    padding:12px 4px; border-bottom:1px solid rgba(184,140,64,.14)}
+  .chakra-row .dot{display:inline-block; width:12px; height:12px; border-radius:50%; margin-right:10px;
+    vertical-align:-1px; box-shadow:0 0 10px currentColor}
+  .chakra-row .san{font-weight:700; letter-spacing:.1em; font-size:13px}
+  .chakra-row .cen{color:var(--dim); font-size:13.5px}
+  .chakra-row .mean{color:var(--dim); font-size:13.5px}
+  .chakra-row .pc{font-family:var(--mono); font-size:12px; color:var(--brass); text-align:right}
+  .spine{width:130px; height:340px}
+  .spine text{font:600 8px var(--mono); letter-spacing:.06em; fill:var(--dimmer)}
+
+  /* ---------- rack ---------- */
+  .rack{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:10px}
+  .modn{border-radius:12px; padding:16px; text-align:center;
+    background:linear-gradient(180deg, rgba(14,8,18,.9), rgba(6,3,10,.9));
+    border:1px solid rgba(184,140,64,.3)}
+  .modn .t{font-size:10px; letter-spacing:.22em; font-weight:700; text-transform:uppercase}
+  .modn .d{font-size:12px; color:var(--dim); margin-top:8px; line-height:1.5}
+
+  footer{padding:56px 0 70px; border-top:1px solid rgba(184,140,64,.14); text-align:center; color:var(--dimmer); font-size:12.5px}
+  footer a{color:var(--dim)} footer a:hover{color:var(--phosphor)}
+  .disc{max-width:640px; margin:18px auto 0; font-size:11.5px; color:var(--dimmer); line-height:1.7}
+
+  @media(max-width:720px){
+    .g3,.rack{grid-template-columns:1fr 1fr}
+    .g2{grid-template-columns:1fr}
+    .chakra-row{grid-template-columns:1fr 1fr; gap:6px}
+    .chakra-row .pc{text-align:left}
+    .spine{display:none}
+    .earflow{grid-template-columns:1fr; }
+    .eq{transform:rotate(90deg)}
+  }
+
+  /* ---------- theme screenshots ---------- */
+  .shots{display:grid; gap:30px; margin-top:30px; grid-template-columns:repeat(2,1fr)}
+  .shot{margin:0}
+  .shot .pair{display:flex; gap:10px; justify-content:center}
+  .shot img{width:49%; border-radius:16px; border:1px solid rgba(184,140,64,.28);
+    box-shadow:0 8px 34px rgba(0,0,0,.45); display:block}
+  .shot figcaption{text-align:center; font-size:11px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--dim); margin-top:12px}
+  :root[data-theme=light] .shot img{ box-shadow:0 6px 24px rgba(60,45,25,.14); }
+  @media(max-width:720px){ .shots{grid-template-columns:1fr} }
+
+  /* ===== light / dark theming ===== */
+  :root[data-theme=light]{
+    --void:#f4efe4; --void2:#ece4d5; --panel:#fbf6ec;
+    --phosphor:#0b8c6a; --ice:#1a7ea1; --violet:#6742d4; --brass:#8a5f18;
+    --ink:#26202f; --dim:#5b5470; --dimmer:#8f8799;
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme]){
+    --void:#f4efe4; --void2:#ece4d5; --panel:#fbf6ec;
+    --phosphor:#0b8c6a; --ice:#1a7ea1; --violet:#6742d4; --brass:#8a5f18;
+    --ink:#26202f; --dim:#5b5470; --dimmer:#8f8799;
+    }
+  }
+  /* light-ground fixes for the hardcoded-dark surfaces */
+  :root[data-theme=light] body::after{ opacity:.05; }
+  :root[data-theme=light] body{
+    background-image:
+      radial-gradient(60% 45% at 50% -5%, rgba(11,140,106,.10), transparent 70%),
+      radial-gradient(50% 40% at 12% 30%, rgba(103,66,212,.08), transparent 70%),
+      radial-gradient(50% 40% at 90% 65%, rgba(26,126,161,.07), transparent 70%);
+  }
+  :root[data-theme=light] .glow{ text-shadow:none; }
+  :root[data-theme=light] .card,
+  :root[data-theme=light] .modn,
+  :root[data-theme=light] .tldr{
+    background:var(--panel); border-color:rgba(138,95,24,.30);
+    box-shadow:0 1px 2px rgba(60,45,25,.05);
+  }
+  :root[data-theme=light] .osc,
+  :root[data-theme=light] .formula,
+  :root[data-theme=light] .note{ background:rgba(255,255,255,.6); }
+  :root[data-theme=light] .scope .lissa{
+    filter:drop-shadow(0 0 2px rgba(11,140,106,.45)); }
+  :root[data-theme=light] .scope .ring{ stroke:rgba(11,140,106,.16); }
+  :root[data-theme=light] .btn{ background:rgba(11,140,106,.09); }
+  :root[data-theme=light] .btn.ghost{ background:rgba(103,66,212,.09); }
+  /* the theme toggle, upper right */
+  .themetoggle{
+    position:fixed; top:14px; right:14px; z-index:30;
+    width:38px; height:38px; border-radius:50%; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; font-size:15px;
+    border:1px solid rgba(184,140,64,.42); color:var(--brass);
+    background:rgba(0,0,0,.22); backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px); transition:.18s; line-height:1;
+  }
+  .themetoggle:hover{ border-color:var(--brass); color:var(--phosphor);
+    box-shadow:0 0 16px rgba(184,140,64,.3); }
+  :root[data-theme=light] .themetoggle{ background:rgba(255,255,255,.55); }
+</style>
+<script>(function(){var r=document.documentElement,s=null;try{s=localStorage.getItem('nh-theme')}catch(e){}r.setAttribute('data-theme',s||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark'))})();</script>
+
+</head>
+<body>
+<button class="themetoggle" onclick="toggleTheme()" aria-label="Toggle light or dark theme">☾</button>
+
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <svg class="scope" viewBox="0 0 200 200" aria-hidden="true">
+      <circle class="ring" cx="100" cy="100" r="94"/>
+      <circle class="ring" cx="100" cy="100" r="66"/>
+      <circle class="ring" cx="100" cy="100" r="34"/>
+      <!-- 3:2 Lissajous = a fifth = the app's default turning figure -->
+      <path class="lissa2" d="M100,20
+        C160,40 172,120 128,168 C92,206 24,168 30,108 C36,52 90,30 100,20 Z"/>
+      <path class="lissa" d="
+        M100,18
+        C 158,44 182,96 150,146
+        C 122,188 58,182 44,132
+        C 30,84 66,44 100,18
+        C 134,-8 178,44 168,100
+        C 158,156 106,190 62,164
+        C 22,140 30,72 74,44
+        C 100,28 100,18 100,18 Z"/>
+    </svg>
+    <h1 class="wordmark glow">nighthawk<span class="tube">TUBE</span></h1>
+    <p class="tagline">A stereo oscillator meditation instrument.</p>
+    <p class="sub">two tones · one tube · the beat between them</p>
+    <div class="cta">
+      <a class="btn" href="#how">How the beat is made</a>
+      <a class="btn ghost" href="#presets">The preset library</a>
+      <a class="btn ghost" href="research.html">The research</a>
+    </div>
+    <p class="pricebar">Free 5-minute demo sessions · <b>$2.99</b> one-time <b>Pro</b> unlock for the full timer &amp; presets, forever.</p>
+  </div>
+</header>
+
+<!-- ============ WHAT IT IS ============ -->
+<section id="what">
+  <div class="wrap">
+    <span class="kicker eyebrow">The instrument</span>
+    <h2>What you see is exactly what you hear.</h2>
+    <p class="lead">Nighthawk Tube is two audio oscillators, one panned to each ear, meeting
+      inside a glowing vacuum tube rendered entirely in particles. Their waveforms pour across the
+      glass floor, sum into a slowly rotating interference drum, and trace a live Lissajous figure
+      in phosphor blue-green. Turn a knob and the sound and the picture move together.</p>
+    <div class="grid g3" style="margin-top:28px">
+      <div class="card">
+        <h3>An oscilloscope you can meditate to</h3>
+        <p>No presets to hunt, no menus. A single tube, a small brass-and-ebonite rack, and a figure
+           seated inside the glass. Set a tone, set a timer, and watch it breathe.</p>
+      </div>
+      <div class="card">
+        <h3>Every grain is a voice</h3>
+        <p>The visuals aren't decoration. Each mote of light on the glass is a real oscillator sample;
+           the interference you watch <em>is</em> the beat you feel.</p>
+      </div>
+      <div class="card">
+        <h3>On-device, offline, silent about you</h3>
+        <p>It makes sound and light and nothing else. No account, no network, no analytics,
+           no data collected. <a href="privacy.html">Read the privacy policy</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIGHT & DARK ============ -->
+<section id="looks">
+  <div class="wrap">
+    <span class="kicker eyebrow">Two moods</span>
+    <h2>Dark for the night. Light for the day.</h2>
+    <p class="lead">The instrument follows your device's appearance. Dark is the
+      original violet-ray void, the tube glowing in near-black. Light inverts the
+      phosphor into deep green ink on warm paper, for when an open, bright space
+      suits the sit better than a dark one.</p>
+    <div class="shots">
+      <figure class="shot">
+        <div class="pair">
+          <img src="screenshots/themes/main-dark.png" alt="The instrument in dark mode: a glowing vacuum tube on a near-black ground.">
+          <img src="screenshots/themes/main-light.png" alt="The instrument in light mode: the tube drawn as green ink on warm paper.">
+        </div>
+        <figcaption>The instrument</figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="pair">
+          <img src="screenshots/themes/presets-dark.png" alt="The preset library in dark mode.">
+          <img src="screenshots/themes/presets-light.png" alt="The preset library in light mode.">
+        </div>
+        <figcaption>The preset library</figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="pair">
+          <img src="screenshots/themes/detail-dark.png" alt="A preset's detail page with its lore and citations, dark mode.">
+          <img src="screenshots/themes/detail-light.png" alt="A preset's detail page with its lore and citations, light mode.">
+        </div>
+        <figcaption>A preset, in full</figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="pair">
+          <img src="screenshots/themes/focus-dark.png" alt="A focus session in dark mode: the scope alone with a countdown ring.">
+          <img src="screenshots/themes/focus-light.png" alt="A focus session in light mode: green ink scope with a phosphor countdown ring.">
+        </div>
+        <figcaption>A session in progress</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW THE BEAT IS MADE ============ -->
+<section id="how">
+  <div class="wrap">
+    <span class="kicker eyebrow">Signal path</span>
+    <h2>How the beat tones are created</h2>
+    <p class="lead">A beat is the interference between two nearby tones. Play a note in one ear and a
+      slightly different note in the other, and your auditory system fuses them and hears a third,
+      slower pulse, the <b>binaural beat</b>, throbbing at exactly the difference between the two
+      frequencies.</p>
+
+    <div class="earflow">
+      <div class="osc oscA">
+        <div class="lab">OSC A · EMERALD</div>
+        <div class="hz">freqA</div>
+        <div class="side">◀ left ear</div>
+      </div>
+      <div class="eq">→ Δ →</div>
+      <div class="osc oscB">
+        <div class="lab">OSC B · ICE</div>
+        <div class="hz">freqB</div>
+        <div class="side">right ear ▶</div>
+      </div>
+    </div>
+    <p class="beatout">The perceived beat is the difference: <b>Δ = | freqB − freqA |</b> hertz.</p>
+
+    <p style="margin-top:26px">You steer it with two knobs on the <b>TUBE</b> chassis. <b>FREQ</b> sets the
+      base pitch (30&nbsp;Hz–1.5&nbsp;kHz, logarithmic); <b>BEAT</b> dials the difference tone
+      <em>directly</em>, from half a hertz of shimmer up to a 120&nbsp;Hz snarl on one logarithmic sweep,
+      and holds it while FREQ moves, so the rhythm you chose survives any carrier you sweep to:</p>
+
+    <div class="formula">
+      <b>beat</b> = | freqB − freqA |&nbsp;&nbsp;→&nbsp;&nbsp;set directly, shown live as <b>Δ&nbsp;x.x&nbsp;Hz</b><br>
+      with the band it would entrain: delta · theta · alpha · beta · gamma
+    </div>
+
+    <p>Each oscillator has its own wave morph, sine → triangle → sawtooth → pulse, its trace drawn
+      live beneath the dial. And the <b>BEAM</b> switch chooses what kind of beat you're inside:
+      <b>SPLIT</b> is the classic binaural pair, one tone per ear, headphones on.
+      <b>FUSE</b> sums both tones into both ears: a monaural beat, a real physical pulse that works
+      on speakers. <b>ORBIT</b> sweeps continuously between the two as the scope turns, and its
+      <b>BREATHE</b> tempo paces that orbit at six breaths a minute, a breath pacer you don't have to
+      watch. <a href="research.html#stimulus">Why the distinction matters →</a></p>
+  </div>
+</section>
+
+<!-- ============ BRAINWAVE STATES ============ -->
+<section id="brainwaves">
+  <div class="wrap">
+    <span class="kicker eyebrow">The readout</span>
+    <h2>The beat, named for the brainwave it rides.</h2>
+    <p class="lead">As you turn BEAT, Nighthawk Tube reads the beat frequency back to you and labels it
+      with the EEG band that same rhythm sits in, the brainwave rate a steady pulse at that speed aligns
+      with. Slower toward sleep, faster toward alertness; past gamma it's simply an audible tone.</p>
+
+    <table class="bands" aria-label="Brainwave bands">
+      <thead><tr><th>Band</th><th>Beat rate</th><th>State it names</th></tr></thead>
+      <tbody>
+        <tr><td><span class="swatch" style="color:#7f7f7f"></span>STILL</td><td class="rng">&lt; 0.5 Hz</td><td>The two tones all but locked: a held drone, almost no beat.</td></tr>
+        <tr><td><span class="swatch" style="color:#5966ff"></span>DELTA</td><td class="rng">0.5 – 4 Hz</td><td>The slowest rhythm: deep, dreamless sleep and stillness.</td></tr>
+        <tr><td><span class="swatch" style="color:#996bff"></span>THETA</td><td class="rng">4 – 8 Hz</td><td>Drowsy, dreamlike, the drifting edge of deep meditation.</td></tr>
+        <tr><td><span class="swatch" style="color:#4cccff"></span>ALPHA</td><td class="rng">8 – 12 Hz</td><td>Calm, relaxed alertness: eyes-closed ease, unforced attention.</td></tr>
+        <tr><td><span class="swatch" style="color:#59f28c"></span>BETA</td><td class="rng">12 – 30 Hz</td><td>Awake and engaged: ordinary focused, thinking wakefulness.</td></tr>
+        <tr><td><span class="swatch" style="color:#ffbf40"></span>GAMMA</td><td class="rng">30 – 100 Hz</td><td>The fast band: heightened, binding, keen concentration.</td></tr>
+        <tr><td><span class="swatch" style="color:#7f7f7f"></span>TONE</td><td class="rng">&gt; 100 Hz</td><td>Past entrainment. No longer a rhythm, just a low difference tone.</td></tr>
+      </tbody>
+    </table>
+    <p class="disc" style="text-align:left; margin-top:22px">
+      Nighthawk Tube is an instrument for listening and calm focus, not a medical or therapeutic device.
+      The band labels describe the frequency of the beat, not a promised effect.</p>
+  </div>
+</section>
+
+<!-- ============ CHAKRA SYSTEM ============ -->
+<section id="chakra">
+  <div class="wrap">
+    <span class="kicker eyebrow">The subtle body</span>
+    <h2>The chakra system, tuned by pitch.</h2>
+    <div class="grid g2">
+      <div>
+        <p class="lead">Seated inside the tube is a figure in phosphor line-art: the subtle body, its seven
+          chakras marked along the spine. Each oscillator's <em>pitch</em> is read to its nearest note, and
+          the traditional seven-note mapping (C at the root, up to B at the crown) lights the chakra that
+          note belongs to. Two oscillators, so two centres glow at once in their own colour while the rest
+          rest dim in the tube's green. Change the tone and the light climbs or falls along the spine.</p>
+      </div>
+      <div style="text-align:center">
+        <svg class="spine" viewBox="0 0 130 340" role="img" aria-label="The subtle body with seven chakras">
+          <!-- faint seated figure -->
+          <g stroke="#6bffcc" stroke-opacity=".28" fill="none" stroke-width="1.1" stroke-linecap="round">
+            <circle cx="65" cy="40" r="17"/>
+            <path d="M50,64 C40,72 34,120 30,170 C26,210 16,250 10,270 C40,300 90,300 120,270 C114,250 104,210 100,170 C96,120 90,72 80,64"/>
+            <path d="M40,262 C60,246 70,246 90,262"/>
+          </g>
+          <!-- chakra dots root(bottom) -> crown(top) -->
+          <g>
+            <circle cx="65" cy="258" r="6" fill="#f24033"/><text x="80" y="261">MULADHARA</text>
+            <circle cx="65" cy="214" r="6" fill="#ff8c26"/><text x="80" y="217">SVADHISTHANA</text>
+            <circle cx="65" cy="176" r="6" fill="#ffd933"/><text x="80" y="179">MANIPURA</text>
+            <circle cx="65" cy="140" r="6" fill="#4de673"/><text x="80" y="143">ANAHATA</text>
+            <circle cx="65" cy="96"  r="6" fill="#40a6ff"/><text x="80" y="99">VISHUDDHA</text>
+            <circle cx="65" cy="56"  r="6" fill="#7366ff"/><text x="80" y="59">AJNA</text>
+            <circle cx="65" cy="16"  r="6" fill="#bf73ff"/><text x="80" y="19">SAHASRARA</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div style="margin-top:26px">
+      <div class="chakra-row" style="border-top:1px solid rgba(184,140,64,.14)">
+        <div><span class="dot" style="color:#bf73ff"></span><span class="san">Sahasrara</span></div>
+        <div class="cen">Crown</div><div class="mean">Unity, the top of the tube</div><div class="pc">B</div>
+      </div>
+      <div class="chakra-row">
+        <div><span class="dot" style="color:#7366ff"></span><span class="san">Ajna</span></div>
+        <div class="cen">Third Eye</div><div class="mean">Insight, seeing</div><div class="pc">A · A♯</div>
+      </div>
+      <div class="chakra-row">
+        <div><span class="dot" style="color:#40a6ff"></span><span class="san">Vishuddha</span></div>
+        <div class="cen">Throat</div><div class="mean">Voice, expression</div><div class="pc">G · G♯</div>
+      </div>
+      <div class="chakra-row">
+        <div><span class="dot" style="color:#4de673"></span><span class="san">Anahata</span></div>
+        <div class="cen">Heart</div><div class="mean">Balance, breath</div><div class="pc">F · F♯</div>
+      </div>
+      <div class="chakra-row">
+        <div><span class="dot" style="color:#ffd933"></span><span class="san">Manipura</span></div>
+        <div class="cen">Solar Plexus</div><div class="mean">Will, warmth</div><div class="pc">E</div>
+      </div>
+      <div class="chakra-row">
+        <div><span class="dot" style="color:#ff8c26"></span><span class="san">Svadhisthana</span></div>
+        <div class="cen">Sacral</div><div class="mean">Flow, feeling</div><div class="pc">D · D♯</div>
+      </div>
+      <div class="chakra-row">
+        <div><span class="dot" style="color:#f24033"></span><span class="san">Muladhara</span></div>
+        <div class="cen">Root</div><div class="mean">Ground, the base of the spine</div><div class="pc">C · C♯</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRESETS ============ -->
+<section id="presets">
+  <div class="wrap">
+    <span class="kicker eyebrow">The library</span>
+    <h2>Twenty-three presets, every one with a footnote.</h2>
+    <p class="lead">Nothing in the preset drawer is folklore without a citation. Each patch carries a
+      neon sign, a provenance line, and a page of lore with live links to its sources: the studies,
+      the primary texts, the arithmetic.</p>
+    <div class="grid g3" style="margin-top:26px">
+      <div class="card">
+        <h3>Bands · δ θ α β γ</h3>
+        <p>Nine rhythms from a 2&nbsp;Hz felt-not-heard delta to a 40&nbsp;Hz monaural gamma, on
+           carriers the psychoacoustics actually favors. Each names the study its numbers came from.</p>
+      </div>
+      <div class="card">
+        <h3>Chakras · diatonic A440</h3>
+        <p>The seven-note scale, C at the root, the one chart the app's own pitch readout agrees
+           with, 7 for 7. Each preset wears its bija syllable in neon and carries a 9&nbsp;Hz beat.</p>
+      </div>
+      <div class="card">
+        <h3>Chakras · Cousto planetary</h3>
+        <p>Orbital periods octave-doubled into hearing: the Earth's day, the Moon's month, the year
+           at 136.10&nbsp;Hz. Real arithmetic, planetary signs in neon, chakras declared honestly.</p>
+      </div>
+    </div>
+    <div class="cta" style="margin-top:26px">
+      <a class="btn ghost" href="research.html">Read the research notebook →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE RACK / DESIGN ============ -->
+<section id="rack">
+  <div class="wrap">
+    <span class="kicker eyebrow">The console</span>
+    <h2>Ebonite, brass, and violet-ray.</h2>
+    <p class="lead">Everything lives on one small rack under the tube: near-black panels edged in
+      dim brass, a whisper of velvet violet under the lacquer, monospace legends. Four modules, no
+      patch cords.</p>
+    <div class="rack">
+      <div class="modn" style="border-color:rgba(107,255,204,.5)">
+        <div class="t" style="color:var(--phosphor)">TUBE</div>
+        <div class="d">FREQ · BAL · BEAT and both wave morphs on one double-wide chassis, with the
+          BEAM switch (SPLIT · ORBIT · FUSE) and its DRIFT / BREATHE tempo below.</div>
+      </div>
+      <div class="modn" style="border-color:rgba(191,115,255,.5)">
+        <div class="t" style="color:#bf73ff">PRESET</div>
+        <div class="d">The library behind a neon marquee: bands, chakra scales, planetary tones,
+          provenance included.</div>
+      </div>
+      <div class="modn" style="border-color:rgba(153,107,255,.5)">
+        <div class="t" style="color:var(--violet)">TIMER</div>
+        <div class="d">START a 1 · 5 · 10 · 15 · 20 · 30 minute sit. The bench clears, the scope
+          centers, a phosphor ring counts it down, and the sound fades out click-free at zero.</div>
+      </div>
+      <div class="modn" style="border-color:rgba(255,150,60,.6)">
+        <div class="t" style="color:#ff9640">OUT</div>
+        <div class="d">Master LEVEL in dB and a smoothed ON / MUTE for the whole tube.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section id="get">
+  <div class="wrap" style="text-align:center">
+    <span class="kicker eyebrow">Play it</span>
+    <h2>Free to sit with. Yours to keep for $2.99.</h2>
+    <p class="lead" style="max-width:640px;margin:0 auto">Nighthawk Tube plays free 5-minute demo
+      sessions, a few times a day, long enough to find a tone and watch the figure light. A single
+      $2.99 purchase unlocks <b>Pro</b>: the full session timer and the preset library, forever.
+      No subscription, ever.</p>
+    <div class="cta" style="margin-top:30px">
+      <a class="btn" href="https://apps.apple.com/app/id0000000000">Download on the App Store</a>
+      <a class="btn ghost" href="research.html">The research</a>
+      <a class="btn ghost" href="privacy.html">Privacy policy</a>
+    </div>
+    <p class="pricebar">Nighthawk Tube · <b>$2.99</b> Pro unlock · iOS</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="glow mono" style="letter-spacing:.5em;font-size:13px;color:var(--dim)">◐ NIGHTHAWK TUBE ◑</div>
+    <p style="margin:12px 0 0">A stereo oscillator meditation instrument.</p>
+    <p style="margin:8px 0 0"><a href="research.html">Research</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="mailto:jeff@river.io">jeff@river.io</a> &nbsp;·&nbsp; io.river.nighthawk</p>
+    <p class="disc">Nighthawk Tube produces sound and light for meditation, ambience, and focus. It is not a
+      medical device and makes no health claims; brainwave-band labels describe the beat frequency, not a
+      guaranteed physiological effect. Use headphones for the binaural effect. Made with care in the dark.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var r=document.documentElement,K='nh-theme';
+  function icon(){var l=r.getAttribute('data-theme')==='light';
+    document.querySelectorAll('.themetoggle').forEach(function(b){b.textContent=l?'\u2600':'\u263e';});}
+  window.toggleTheme=function(){
+    var n=r.getAttribute('data-theme')==='light'?'dark':'light';
+    r.setAttribute('data-theme',n);
+    try{localStorage.setItem(K,n)}catch(e){}
+    icon();
+  };
+  icon();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy · Nighthawk Tube</title>
+<meta name="description" content="Nighthawk Tube collects no personal data. No accounts, no network, no analytics, no tracking. Everything happens on your device.">
+<style>
+  :root{
+    --void:#050208; --phosphor:#6bffcc; --ice:#4cebff; --violet:#996bff; --brass:#b88c40;
+    --ink:#e8e2f2; --dim:#8a82a0; --dimmer:#5a536e;
+    --mono:ui-monospace,"SF Mono",Menlo,"DejaVu Sans Mono",monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--void); color:var(--ink);
+    font-family:var(--mono); font-size:16px; line-height:1.72;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(55% 40% at 50% -5%, rgba(107,255,204,.10), transparent 70%),
+      radial-gradient(45% 40% at 90% 30%, rgba(153,107,255,.07), transparent 70%);
+    background-attachment:fixed;
+  }
+  body::after{content:""; position:fixed; inset:0; pointer-events:none; z-index:9; opacity:.30;
+    background:repeating-linear-gradient(180deg, rgba(0,0,0,0) 0 2px, rgba(0,0,0,.35) 2px 3px);
+    mix-blend-mode:multiply}
+  a{color:var(--ice); text-decoration:none} a:hover{color:var(--phosphor)}
+  .wrap{max-width:760px; margin:0 auto; padding:0 24px}
+  .glow{text-shadow:0 0 12px rgba(107,255,204,.5),0 0 30px rgba(107,255,204,.22)}
+  header{padding:64px 0 20px; text-align:center; border-bottom:1px solid rgba(184,140,64,.16)}
+  .kicker{font-size:11px; letter-spacing:.42em; text-transform:uppercase; color:var(--brass)}
+  h1{font-family:var(--mono); font-weight:700; letter-spacing:.02em; font-size:clamp(28px,6vw,46px); margin:10px 0 4px}
+  .back{display:inline-block; margin-top:14px; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--violet)}
+  .updated{font-size:12px; color:var(--dimmer); letter-spacing:.06em; margin-top:8px}
+  main{padding:36px 0 40px}
+  .tldr{background:linear-gradient(180deg, rgba(20,12,32,.85), rgba(10,5,18,.85));
+    border:1px solid rgba(107,255,204,.35); border-left:3px solid var(--phosphor);
+    border-radius:12px; padding:20px 22px; margin:0 0 34px}
+  .tldr b{color:var(--phosphor)}
+  h2{font-size:15px; letter-spacing:.08em; text-transform:uppercase; color:var(--phosphor);
+    margin:38px 0 .5em; padding-top:10px; border-top:1px solid rgba(184,140,64,.14)}
+  p{color:var(--ink); opacity:.94; font-size:15px}
+  ul{padding-left:1.1em} li{margin:.4em 0; color:var(--ink); opacity:.92; font-size:15px}
+  strong{color:var(--ink)}
+  footer{padding:44px 0 64px; border-top:1px solid rgba(184,140,64,.14); text-align:center; color:var(--dimmer); font-size:12.5px}
+  footer a{color:var(--dim)} footer a:hover{color:var(--phosphor)}
+
+  /* ===== light / dark theming ===== */
+  :root[data-theme=light]{
+    --void:#f4efe4; --void2:#ece4d5; --panel:#fbf6ec;
+    --phosphor:#0b8c6a; --ice:#1a7ea1; --violet:#6742d4; --brass:#8a5f18;
+    --ink:#26202f; --dim:#5b5470; --dimmer:#8f8799;
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme]){
+    --void:#f4efe4; --void2:#ece4d5; --panel:#fbf6ec;
+    --phosphor:#0b8c6a; --ice:#1a7ea1; --violet:#6742d4; --brass:#8a5f18;
+    --ink:#26202f; --dim:#5b5470; --dimmer:#8f8799;
+    }
+  }
+  /* light-ground fixes for the hardcoded-dark surfaces */
+  :root[data-theme=light] body::after{ opacity:.05; }
+  :root[data-theme=light] body{
+    background-image:
+      radial-gradient(60% 45% at 50% -5%, rgba(11,140,106,.10), transparent 70%),
+      radial-gradient(50% 40% at 12% 30%, rgba(103,66,212,.08), transparent 70%),
+      radial-gradient(50% 40% at 90% 65%, rgba(26,126,161,.07), transparent 70%);
+  }
+  :root[data-theme=light] .glow{ text-shadow:none; }
+  :root[data-theme=light] .card,
+  :root[data-theme=light] .modn,
+  :root[data-theme=light] .tldr{
+    background:var(--panel); border-color:rgba(138,95,24,.30);
+    box-shadow:0 1px 2px rgba(60,45,25,.05);
+  }
+  :root[data-theme=light] .osc,
+  :root[data-theme=light] .formula,
+  :root[data-theme=light] .note{ background:rgba(255,255,255,.6); }
+  :root[data-theme=light] .scope .lissa{
+    filter:drop-shadow(0 0 2px rgba(11,140,106,.45)); }
+  :root[data-theme=light] .scope .ring{ stroke:rgba(11,140,106,.16); }
+  :root[data-theme=light] .btn{ background:rgba(11,140,106,.09); }
+  :root[data-theme=light] .btn.ghost{ background:rgba(103,66,212,.09); }
+  /* the theme toggle, upper right */
+  .themetoggle{
+    position:fixed; top:14px; right:14px; z-index:30;
+    width:38px; height:38px; border-radius:50%; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; font-size:15px;
+    border:1px solid rgba(184,140,64,.42); color:var(--brass);
+    background:rgba(0,0,0,.22); backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px); transition:.18s; line-height:1;
+  }
+  .themetoggle:hover{ border-color:var(--brass); color:var(--phosphor);
+    box-shadow:0 0 16px rgba(184,140,64,.3); }
+  :root[data-theme=light] .themetoggle{ background:rgba(255,255,255,.55); }
+</style>
+<script>(function(){var r=document.documentElement,s=null;try{s=localStorage.getItem('nh-theme')}catch(e){}r.setAttribute('data-theme',s||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark'))})();</script>
+
+</head>
+<body>
+<button class="themetoggle" onclick="toggleTheme()" aria-label="Toggle light or dark theme">☾</button>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">Nighthawk Tube</div>
+    <h1 class="glow">Privacy Policy</h1>
+    <div class="updated">Last updated: 25 July 2026</div>
+    <a class="back" href="index.html">◀ back to nighthawk</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="tldr">
+      <b>The short version:</b> Nighthawk Tube collects nothing about you. There is no account, no sign-in,
+      no network connection, no analytics, no advertising, and no tracking. The app makes sound and light on
+      your device and keeps to itself.
+    </div>
+
+    <h2>Who this covers</h2>
+    <p>This policy applies to the <strong>Nighthawk Tube</strong> iOS app (bundle identifier
+      <strong>io.river.nighthawk</strong>), published by River. Contact:
+      <a href="mailto:jeff@river.io">jeff@river.io</a>.</p>
+
+    <h2>Information we collect</h2>
+    <p><strong>None.</strong> Nighthawk Tube does not collect, store, transmit, or share any personal
+      information. Specifically, the app:</p>
+    <ul>
+      <li>has no user accounts and asks for no name, email, or login;</li>
+      <li>makes no network requests and contains no server or cloud backend of its own;</li>
+      <li>includes no analytics, crash-reporting, advertising, or third-party tracking SDKs;</li>
+      <li>does not use the microphone, camera, contacts, photos, or location, and never
+          <em>reads</em> any health data; it only <em>outputs</em> audio through your device's
+          speakers or headphones (with one optional exception noted under Apple Health below);</li>
+      <li>does not employ Apple's App Tracking Transparency, because it tracks nothing.</li>
+    </ul>
+
+    <h2>What stays on your device</h2>
+    <p>The app saves a small amount of information locally, on your device only, and never sends it anywhere:</p>
+    <ul>
+      <li><strong>Your unlock status</strong>, a single flag recording whether you've purchased
+          Pro, so the app remembers it between launches;</li>
+      <li><strong>Your last knob and timer settings</strong>, where applicable, so the instrument opens
+          the way you left it.</li>
+    </ul>
+    <p>This data lives in the app's private storage and is removed if you delete the app.</p>
+
+    <h2>Apple Health (optional)</h2>
+    <p>If you start a session timer, Nighthawk Tube can record the completed minutes to Apple Health
+      as a Mindful Minutes entry, but only after you explicitly grant permission when the app asks.
+      This is strictly write-only: the app logs finished sessions and never reads anything from your
+      Health data. Those entries live in Apple's Health app under your own control, are never
+      transmitted to us or to anyone else, and are governed by
+      <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple's Privacy Policy</a>. You can
+      decline the prompt, or revoke access at any time in Settings &rsaquo; Privacy &amp; Security
+      &rsaquo; Health, and the instrument works exactly the same without it.</p>
+
+    <h2>Purchases</h2>
+    <p>Nighthawk Tube offers one optional, non-consumable in-app purchase, <strong>Pro</strong>
+      ($2.99), which unlocks the full session timer and the preset library. Payments are handled
+      entirely by <strong>Apple</strong> through the App Store and StoreKit. We never see or receive your
+      payment details, card number, or Apple Account information. Apple's handling of that transaction is
+      governed by <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple's Privacy Policy</a>.
+      To restore a previous purchase, the app asks Apple to confirm your entitlement, again with no
+      personal data passing to us.</p>
+
+    <h2>Children</h2>
+    <p>Nighthawk Tube is safe for all ages and collects no data from anyone, including children. It contains
+      no user-generated content, messaging, or external links to unmoderated spaces.</p>
+
+    <h2>Data sharing &amp; sale</h2>
+    <p>Because we collect no personal data, there is nothing to share, sell, rent, or disclose to anyone,
+      for any purpose, ever.</p>
+
+    <h2>Your rights</h2>
+    <p>Regulations such as the GDPR and CCPA grant rights to access, correct, or delete personal data held
+      about you. We hold none, so there is nothing to request. Any settings the app stores locally are fully
+      under your control and are erased by deleting the app.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>If the app ever changes in a way that affects privacy, this page will be updated and the "last updated"
+      date above revised. Material changes would be noted in the app's release notes.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about privacy in Nighthawk Tube? Write to <a href="mailto:jeff@river.io">jeff@river.io</a>.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="glow" style="letter-spacing:.5em;font-size:12px;color:var(--dim)">◐ NIGHTHAWK TUBE ◑</div>
+    <p style="margin:12px 0 0"><a href="index.html">Home</a> &nbsp;·&nbsp; <a href="mailto:jeff@river.io">jeff@river.io</a> &nbsp;·&nbsp; io.river.nighthawk</p>
+  </div>
+</footer>
+<script>
+(function(){
+  var r=document.documentElement,K='nh-theme';
+  function icon(){var l=r.getAttribute('data-theme')==='light';
+    document.querySelectorAll('.themetoggle').forEach(function(b){b.textContent=l?'\u2600':'\u263e';});}
+  window.toggleTheme=function(){
+    var n=r.getAttribute('data-theme')==='light'?'dark':'light';
+    r.setAttribute('data-theme',n);
+    try{localStorage.setItem(K,n)}catch(e){}
+    icon();
+  };
+  icon();
+})();
+</script>
+</body>
+</html>
