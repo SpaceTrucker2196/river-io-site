@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reverse Cat Simulator — Feline-Derived Circadian Prescription</title>
+<style>
+  /* ============================================================
+     Palette. Roles only; hex lives here and nowhere else.
+     Categorical + ordinal ramps validated with the dataviz
+     validator against both surfaces (see footer note).
+     ============================================================ */
+  :root {
+    color-scheme: light;
+    --surface-1: #fcfcfb;
+    --plane:     #f9f9f7;
+    --ink:       #0b0b0b;
+    --ink-2:     #52514e;
+    --ink-3:     #898781;
+    --hair:      #e1e0d9;
+    --axis:      #c3c2b7;
+    --ring:      rgba(11,11,11,0.10);
+
+    /* cat arousal — ordinal blue ramp, light -> dark = asleep -> predatory */
+    --ar-1: #86b6ef;  /* slow-wave sleep      */
+    --ar-2: #5598e7;  /* paradoxical sleep    */
+    --ar-3: #2a78d6;  /* drowse / loaf        */
+    --ar-4: #1c5cab;  /* alert                */
+    --ar-5: #0d366b;  /* predatory sequence   */
+
+    /* human prescription — categorical */
+    --rx-sleep: #4a3aa7;
+    --rx-eat:   #eb6834;
+    --rx-cog:   #1baf7a;
+
+    --good: #0ca30c;
+    --warn: #fab219;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --surface-1: #1a1a19; --plane: #0d0d0d;
+      --ink: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+      --hair: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,0.10);
+      --ar-1: #184f95; --ar-2: #256abf; --ar-3: #3987e5; --ar-4: #6da7ec; --ar-5: #b7d3f6;
+      --rx-sleep: #9085e9; --rx-eat: #d95926; --rx-cog: #199e70;
+      --good: #0ca30c; --warn: #fab219;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface-1: #1a1a19; --plane: #0d0d0d;
+    --ink: #ffffff; --ink-2: #c3c2b7; --ink-3: #898781;
+    --hair: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,0.10);
+    --ar-1: #184f95; --ar-2: #256abf; --ar-3: #3987e5; --ar-4: #6da7ec; --ar-5: #b7d3f6;
+    --rx-sleep: #9085e9; --rx-eat: #d95926; --rx-cog: #199e70;
+    --good: #0ca30c; --warn: #fab219;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--plane);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 40px 28px 64px; }
+
+  /* ---------- masthead ---------- */
+  header.mast { border-bottom: 1px solid var(--axis); padding-bottom: 18px; margin-bottom: 26px; }
+  .mast-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+  h1 { font-size: 21px; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 4px; }
+  .sub { color: var(--ink-2); font-size: 13.5px; max-width: 62ch; margin: 0; }
+  .instr-id {
+    font-size: 10.5px; letter-spacing: 0.09em; text-transform: uppercase;
+    color: var(--ink-3); text-align: right; white-space: nowrap;
+  }
+  .instr-id div { line-height: 1.75; }
+
+  /* ---------- controls ---------- */
+  .controls {
+    display: flex; flex-wrap: wrap; gap: 0; align-items: stretch;
+    background: var(--surface-1); border: 1px solid var(--hair); border-radius: 3px;
+    margin-bottom: 22px; overflow: hidden;
+  }
+  .ctl { padding: 10px 16px; border-right: 1px solid var(--hair); display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .ctl:last-child { border-right: 0; }
+  .ctl > label { font-size: 9.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); white-space: nowrap; }
+  .ctl-body { display: flex; align-items: center; gap: 8px; }
+  input[type=number], select {
+    font: inherit; font-size: 13px; background: transparent; color: var(--ink);
+    border: 0; border-bottom: 1px solid var(--axis); padding: 1px 0; width: 82px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-variant-numeric: tabular-nums;
+  }
+  select { width: auto; max-width: 168px; font-family: inherit; }
+  input[type=range] { width: 118px; accent-color: var(--ar-4); }
+  input:focus-visible, select:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--ar-4); outline-offset: 2px;
+  }
+  .val { font-size: 12.5px; color: var(--ink-2); min-width: 58px;
+         font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-variant-numeric: tabular-nums; }
+  button.mini {
+    font: inherit; font-size: 11.5px; padding: 3px 10px; cursor: pointer;
+    background: transparent; color: var(--ink-2);
+    border: 1px solid var(--axis); border-radius: 2px;
+  }
+  button.mini:hover { color: var(--ink); border-color: var(--ink-3); }
+
+  /* ---------- hero directive ---------- */
+  .hero {
+    background: var(--surface-1); border: 1px solid var(--hair); border-radius: 3px;
+    padding: 26px 30px; margin-bottom: 20px;
+    display: grid; grid-template-columns: 1fr auto; gap: 30px; align-items: center;
+  }
+  .hero-label { font-size: 9.5px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+  /* Inline, not flex: as a flex row the swatch wraps onto its own line at narrow
+     widths and detaches from the word it labels. */
+  .hero-fig { font-size: 54px; line-height: 1.04; font-weight: 600; letter-spacing: -0.025em; }
+  .hero-dot {
+    display: inline-block; width: 13px; height: 13px; border-radius: 50%;
+    margin-right: 15px; vertical-align: 0.30em;
+  }
+  .hero-note { color: var(--ink-2); font-size: 14px; margin-top: 10px; max-width: 56ch; }
+  .hero-right { text-align: right; border-left: 1px solid var(--hair); padding-left: 30px; }
+  .cd { font-size: 30px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
+  .cd-cap { font-size: 9.5px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; }
+  .cd-next { font-size: 12px; color: var(--ink-2); margin-top: 9px; }
+
+  /* ---------- KPI row ---------- */
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
+  .tile { background: var(--surface-1); border: 1px solid var(--hair); border-radius: 3px; padding: 14px 16px; }
+  .tile .k { font-size: 9.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); }
+  .tile .v { font-size: 27px; font-weight: 600; letter-spacing: -0.02em; margin-top: 5px; line-height: 1.15; }
+  .tile .v small { font-size: 14px; font-weight: 500; color: var(--ink-2); letter-spacing: 0; }
+  .tile .d { font-size: 11.5px; color: var(--ink-2); margin-top: 3px; }
+  .meter { height: 5px; border-radius: 3px; background: var(--ar-1); margin-top: 9px; overflow: hidden; }
+  .meter > i { display: block; height: 100%; background: var(--ar-4); border-radius: 3px; }
+
+  /* ---------- panels ---------- */
+  .panel { background: var(--surface-1); border: 1px solid var(--hair); border-radius: 3px; margin-bottom: 20px; }
+  .panel-hd { padding: 14px 18px 0; }
+  .panel-hd h2 { font-size: 13.5px; font-weight: 600; margin: 0; }
+  .panel-hd p { font-size: 12px; color: var(--ink-2); margin: 3px 0 0; max-width: 82ch; }
+  .panel-bd { padding: 14px 18px 18px; }
+
+  .split { display: grid; grid-template-columns: minmax(0,1fr) 300px; gap: 0; }
+  .split > .dial-cell { padding: 8px 18px 18px; }
+  .split > .side { border-left: 1px solid var(--hair); padding: 16px 18px; }
+  .side h3 { font-size: 9.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 9px; font-weight: 600; }
+  .side + .side { border-top: 1px solid var(--hair); }
+  .side h3 + .legend { margin-bottom: 4px; }
+  .side dl.read + h3, .side .legend + h3 { margin-top: 18px; }
+  dl.read { margin: 0 0 18px; display: grid; grid-template-columns: 1fr auto; gap: 5px 12px; font-size: 12.5px; }
+  dl.read dt { color: var(--ink-2); }
+  dl.read dd { margin: 0; text-align: right; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-variant-numeric: tabular-nums; }
+
+  /* ---------- legend ---------- */
+  .legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 12px; color: var(--ink-2); }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+  .sw { width: 11px; height: 11px; border-radius: 2px; flex: none; }
+  .sw.line { height: 3px; border-radius: 2px; }
+
+  /* ---------- svg ---------- */
+  svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .tick-txt { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 10px; fill: var(--ink-3); }
+  .lab { font-size: 10.5px; fill: var(--ink-2); }
+  .lab-in { font-size: 10px; font-weight: 600; }
+  .seg { cursor: crosshair; }
+  .seg:focus { outline: none; }
+  .seg:focus-visible { stroke: var(--ink); stroke-width: 1.5; }
+
+  /* ---------- tooltip ---------- */
+  #tip {
+    position: fixed; pointer-events: none; opacity: 0; transition: opacity .1s;
+    background: var(--surface-1); color: var(--ink);
+    border: 1px solid var(--ring); border-radius: 3px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.13);
+    padding: 9px 12px; font-size: 12px; max-width: 270px; z-index: 40; line-height: 1.5;
+  }
+  #tip .t-h { font-weight: 600; margin-bottom: 3px; }
+  #tip .t-m { color: var(--ink-2); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-variant-numeric: tabular-nums; font-size: 11.5px; }
+  #tip .t-b { color: var(--ink-2); margin-top: 4px; }
+
+  /* ---------- tables ---------- */
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th, td { text-align: left; padding: 7px 12px 7px 0; border-bottom: 1px solid var(--hair); vertical-align: top; }
+  th { font-size: 9.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; border-bottom-color: var(--axis); }
+  td.num, th.num { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tbody tr:last-child td { border-bottom: 0; }
+  .chip { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+  details { border-top: 1px solid var(--hair); }
+  details summary {
+    cursor: pointer; padding: 13px 18px; font-size: 13.5px; font-weight: 600;
+    list-style: none; display: flex; align-items: center; gap: 8px;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before { content: "+"; color: var(--ink-3); font-weight: 400; font-size: 15px; }
+  details[open] summary::before { content: "–"; }
+  details .panel-bd { padding-top: 0; }
+
+  footer { margin-top: 34px; padding-top: 18px; border-top: 1px solid var(--axis); font-size: 11.5px; color: var(--ink-3); }
+  footer p { margin: 0 0 9px; max-width: 92ch; }
+  footer a { color: var(--ink-2); }
+
+  /* Narrow screens scroll these sideways rather than compressing them: a 24-hour
+     strip squeezed into 330px is unreadable, and a prose column squeezed to two
+     words per line is worse than a swipe. */
+  .scroll-x { overflow-x: auto; }
+  .scroll-x > * { min-width: 660px; }
+  .scroll-x[data-min="820"] > * { min-width: 820px; }
+
+  @media (max-width: 900px) {
+    .kpis { grid-template-columns: repeat(2, 1fr); }
+    .split { grid-template-columns: 1fr; }
+    .split > .side { border-left: 0; border-top: 1px solid var(--hair); }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { text-align: left; border-left: 0; border-top: 1px solid var(--hair); padding: 16px 0 0; }
+    .hero-fig { font-size: 36px; }
+    .hero-dot { width: 11px; height: 11px; margin-right: 12px; }
+    .instr-id { text-align: left; }
+  }
+  @media (min-width: 901px) {
+    .scroll-x { overflow-x: visible; }
+    .scroll-x > *, .scroll-x[data-min="820"] > * { min-width: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="mast">
+    <div class="mast-row">
+      <div>
+        <h1>Reverse Cat Simulator</h1>
+        <p class="sub">A modelled domestic cat (<i>Felis catus</i>) is simulated over one solar day. Its
+        rest–activity architecture is then inverted into a sleep and intake schedule for the operator.
+        The cat is not real. The schedule is issued regardless.</p>
+      </div>
+      <div class="instr-id mono">
+        <div id="idDate">—</div>
+        <div id="idLoc">—</div>
+        <div id="idSeed">—</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ---------------- controls ---------------- -->
+  <div class="controls" role="group" aria-label="Model parameters">
+    <div class="ctl">
+      <label for="preset">Subject location</label>
+      <div class="ctl-body">
+        <select id="preset" aria-label="Location preset"></select>
+        <button class="mini" id="geo" type="button" title="Use this device's location">Locate</button>
+      </div>
+    </div>
+    <div class="ctl">
+      <label for="lat">Latitude / longitude</label>
+      <div class="ctl-body">
+        <input type="number" id="lat" step="0.01" min="-89" max="89" aria-label="Latitude">
+        <input type="number" id="lon" step="0.01" min="-180" max="180" aria-label="Longitude">
+      </div>
+    </div>
+    <div class="ctl">
+      <label for="sleepH">Cat sleep total</label>
+      <div class="ctl-body">
+        <input type="range" id="sleepH" min="12" max="18" step="0.5">
+        <span class="val" id="sleepHv">15.0 h</span>
+      </div>
+    </div>
+    <div class="ctl">
+      <label for="coreH">Operator core block</label>
+      <div class="ctl-body">
+        <input type="range" id="coreH" min="6" max="9" step="0.5">
+        <span class="val" id="coreHv">7.5 h</span>
+      </div>
+    </div>
+    <div class="ctl">
+      <label for="offset">Anthropocentric offset</label>
+      <div class="ctl-body">
+        <input type="range" id="offset" min="0" max="180" step="15">
+        <span class="val" id="offsetv">+1h 30m</span>
+      </div>
+    </div>
+    <div class="ctl" style="margin-left:auto">
+      <label for="theme">Display</label>
+      <div class="ctl-body">
+        <select id="theme" aria-label="Colour mode">
+          <option value="auto">Auto</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---------------- hero directive ---------------- -->
+  <section class="hero" aria-live="polite">
+    <div>
+      <div class="hero-label">Current directive</div>
+      <div class="hero-fig"><i class="hero-dot" id="hDot"></i><span id="hFig">—</span></div>
+      <p class="hero-note" id="hNote">—</p>
+    </div>
+    <div class="hero-right">
+      <div class="cd-cap">Holds for</div>
+      <div class="cd mono" id="hCd">—</div>
+      <div class="cd-next" id="hNext">—</div>
+    </div>
+  </section>
+
+  <!-- ---------------- KPI row ---------------- -->
+  <div class="kpis">
+    <div class="tile">
+      <div class="k">Modelled cat sleep</div>
+      <div class="v" id="kSleep">—</div>
+      <div class="d" id="kSleepD">—</div>
+    </div>
+    <div class="tile">
+      <div class="k">Sleep bouts / 24 h</div>
+      <div class="v" id="kBouts">—</div>
+      <div class="d" id="kBoutsD">—</div>
+    </div>
+    <div class="tile">
+      <div class="k">Feline alignment</div>
+      <div class="v" id="kAlign">—</div>
+      <div class="d" id="kAlignD">—</div>
+      <div class="meter"><i id="kAlignM" style="width:0%"></i></div>
+    </div>
+    <div class="tile">
+      <div class="k">Intake occasions</div>
+      <div class="v" id="kMeals">—</div>
+      <div class="d" id="kMealsD">—</div>
+    </div>
+  </div>
+
+  <!-- ---------------- dial ---------------- -->
+  <section class="panel">
+    <div class="panel-hd">
+      <h2>24-hour phase dial</h2>
+      <p>Outer ring: the modelled cat's arousal state, minute by minute. Ticks outside it: the cat's discrete
+      feeding events. Inner ring: the schedule issued to the operator. The hand marks now.</p>
+    </div>
+    <div class="split">
+      <div class="dial-cell"><svg id="dial" viewBox="0 0 600 600" role="img"
+        aria-label="Radial 24-hour dial. The full schedule is also listed in the prescription table below."></svg></div>
+      <div>
+        <div class="side">
+          <h3>Solar anchors</h3>
+          <dl class="read" id="solarRead"></dl>
+          <h3>Cat ethogram, outer ring</h3>
+          <div class="legend" id="legCat"></div>
+        </div>
+        <div class="side">
+          <h3>Operator schedule, inner ring</h3>
+          <div class="legend" id="legRx"></div>
+          <div style="height:14px"></div>
+          <h3>Model parameters</h3>
+          <dl class="read" id="paramRead"></dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------------- linear timeline ---------------- -->
+  <section class="panel">
+    <div class="panel-hd">
+      <h2>Noon-anchored day plot</h2>
+      <p>The same 24 hours unrolled from noon to noon, per actigraphy convention, so the nocturnal
+      block reads contiguously rather than split across midnight.</p>
+    </div>
+    <div class="panel-bd"><div class="scroll-x" data-min="820"><svg id="strip" viewBox="0 0 1000 182" role="img"
+      aria-label="Linear 24-hour timeline of cat arousal state and operator schedule, noon to noon. Values are listed in the tables below."></svg></div></div>
+  </section>
+
+  <!-- ---------------- prescription table ---------------- -->
+  <section class="panel">
+    <div class="panel-hd">
+      <h2>Prescription schedule</h2>
+      <p>Every issued window, with the feline observation it was derived from.</p>
+    </div>
+    <div class="panel-bd"><div class="scroll-x" data-min="820">
+      <table>
+        <thead><tr>
+          <th>Window</th><th class="num">Start</th><th class="num">End</th>
+          <th class="num">Duration</th><th>Derived from</th>
+        </tr></thead>
+        <tbody id="rxRows"></tbody>
+      </table>
+    </div></div>
+    <details>
+      <summary>Modelled cat ethogram — full bout listing</summary>
+      <div class="panel-bd"><div class="scroll-x">
+        <table>
+          <thead><tr>
+            <th class="num">Start</th><th class="num">End</th><th class="num">Min</th>
+            <th>State</th><th>Recorded behaviour</th>
+          </tr></thead>
+          <tbody id="catRows"></tbody>
+        </table>
+      </div></div>
+    </details>
+  </section>
+
+  <footer>
+    <p><strong>Basis.</strong> Adult cats sleep roughly 12–18 h per day, and more than a third
+    exceed 18 h. Individual sleep bouts average about 78 minutes, commonly 50–113. Roughly a
+    quarter of feline sleep is paradoxical (REM). Cats are crepuscular rather than nocturnal, with
+    two activity peaks — one shortly before sunrise, one around sunset — and feral cats may spend
+    upwards of 12 of every 24 hours locating and catching food, taken in many small meals across
+    the whole day and night. Sunrise, sunset and solar noon are computed from the sunrise equation
+    for the coordinates entered. Everything downstream of those figures — the bout placement, the
+    inversion, the prescription — is invention with a straight face.</p>
+    <p><strong>Not medical advice.</strong> Nobody has shown that eating on a cat's schedule does
+    anything for a human. The one defensible claim here is that a fixed sleep time, a fixed wake
+    time, and no food immediately before bed are reasonable habits, and that arriving at them via
+    an imaginary cat does not make them less reasonable.</p>
+    <p>Colour: cat arousal is a single-hue ordinal ramp, five steps, monotone in lightness; the
+    operator schedule uses three categorical hues. Both sets were checked against the light and
+    dark surfaces for lightness banding, chroma, colour-vision separation and contrast. Every
+    encoded value is also reachable in the tables above.</p>
+    <p>Sources: <a href="https://www.sleepfoundation.org/animals-and-sleep/how-much-do-cats-sleep">Sleep
+    Foundation, “How Many Hours Do Cats Sleep?”</a> · <a href="https://en.wikivet.net/Timing_of_Feline_Activity">WikiVet,
+    “Timing of Feline Activity”</a> · <a href="https://icatcare.org/articles/feeding-your-cat-or-kitten">International
+    Cat Care, “Feeding your cat or kitten”</a></p>
+  </footer>
+</div>
+
+<div id="tip" role="status" aria-live="polite"></div>
+
+<script>
+/* ============================================================================
+   PART 1 — MODEL
+   Convention: tzOffsetMin is the UTC offset in minutes (UTC-7 -> -420).
+   Times of day are minutes after local midnight, in [0, 1440).
+   ============================================================================ */
+const DAY = 1440;
+const wrap = (m) => ((m % DAY) + DAY) % DAY;
+const cdist = (a, b) => { let d = wrap(b - a); if (d > DAY / 2) d -= DAY; return d; };
+const gauss = (t, mu, s) => { const d = cdist(mu, t); return Math.exp(-(d * d) / (2 * s * s)); };
+const wrapDeg = (d) => ((d % 360) + 360) % 360;
+
+function solarEvents(dateUTCms, tzOffsetMin, latDeg, lonDeg) {
+  const rad = Math.PI / 180;
+  const jdNoon = (dateUTCms + 12 * 3600000) / 86400000 + 2440587.5;
+  const n = Math.round(jdNoon - 2451545.0 + 0.0008);
+  const Jstar = n - lonDeg / 360;
+  const M = wrapDeg(357.5291 + 0.98560028 * Jstar);
+  const C = 1.9148 * Math.sin(M * rad) + 0.0200 * Math.sin(2 * M * rad) + 0.0003 * Math.sin(3 * M * rad);
+  const lambda = wrapDeg(M + C + 180 + 102.9372);
+  const Jtransit = 2451545.0 + Jstar + 0.0053 * Math.sin(M * rad) - 0.0069 * Math.sin(2 * lambda * rad);
+  const sinDelta = Math.sin(lambda * rad) * Math.sin(23.4397 * rad);
+  const delta = Math.asin(sinDelta);
+  const toLocalMin = (jd) => wrap((((jd - 2440587.5) * 86400000) + tzOffsetMin * 60000) / 60000);
+  const solarNoon = toLocalMin(Jtransit);
+  const cosOmega = (Math.sin(-0.833 * rad) - Math.sin(latDeg * rad) * sinDelta) /
+                   (Math.cos(latDeg * rad) * Math.cos(delta));
+  if (cosOmega > 1)  return { sunrise: wrap(solarNoon - 60),  sunset: wrap(solarNoon + 60),  solarNoon, dayLen: 0,   polar: 'night' };
+  if (cosOmega < -1) return { sunrise: wrap(solarNoon - 660), sunset: wrap(solarNoon + 660), solarNoon, dayLen: DAY, polar: 'day' };
+  const omega = Math.acos(cosOmega) / rad;
+  return { sunrise: toLocalMin(Jtransit - omega / 360), sunset: toLocalMin(Jtransit + omega / 360),
+           solarNoon, dayLen: (omega / 180) * DAY, polar: null };
+}
+
+function hashStr(s) {
+  let h = 2166136261 >>> 0;
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+function mulberry32(a) {
+  return function () {
+    a |= 0; a = a + 0x6D2B79F5 | 0;
+    let t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+function maskOf(windows) {
+  const m = new Uint8Array(DAY);
+  for (const w of windows) {
+    const s = Math.round(w.start), L = Math.round(w.len);   // typed arrays ignore fractional indices
+    for (let k = 0; k < L; k++) m[wrap(s + k)] = 1;
+  }
+  return m;
+}
+function windowsOf(mask) {
+  let all = true;
+  for (let t = 0; t < DAY; t++) if (!mask[t]) { all = false; break; }
+  if (all) return [{ start: 0, len: DAY }];
+  const out = [];
+  for (let t = 0; t < DAY; t++) {
+    if (mask[t] && !mask[wrap(t - 1)]) {
+      let len = 0, u = t;
+      while (mask[wrap(u)] && len < DAY) { u = wrap(u + 1); len++; }
+      out.push({ start: t, len });
+    }
+  }
+  return out;
+}
+function subtract(A, B) {
+  const a = maskOf(A), b = maskOf(B);
+  for (let t = 0; t < DAY; t++) if (b[t]) a[t] = 0;
+  return windowsOf(a);
+}
+
+/* --- environmental arousal: twin crepuscular peaks --- */
+function buildArousal(solar, p) {
+  const dawnPeak = Math.round(wrap(solar.sunrise - p.dawnLead));
+  const duskPeak = Math.round(wrap(solar.sunset + p.duskLag));
+  const env = new Float64Array(DAY);
+  const dayHalf = Math.min(DAY / 2 - 1, Math.max(60, (solar.dayLen || 720) / 2));
+  const nightCenter = wrap(solar.solarNoon + DAY / 2);
+  let lo = Infinity, hi = -Infinity;
+  for (let t = 0; t < DAY; t++) {
+    let v = gauss(t, dawnPeak, p.peakSigma) + gauss(t, duskPeak, p.peakSigma);
+    const inDay = Math.abs(cdist(solar.solarNoon, t)) < dayHalf ? 1 : 0;
+    v += 0.30 * inDay * (1 - 0.55 * gauss(t, solar.solarNoon, dayHalf * 0.55));
+    v -= 0.22 * gauss(t, nightCenter, 150);
+    env[t] = v;
+    if (v < lo) lo = v; if (v > hi) hi = v;
+  }
+  const span = hi - lo || 1;
+  for (let t = 0; t < DAY; t++) env[t] = (env[t] - lo) / span;
+  return { env, dawnPeak, duskPeak, nightCenter };
+}
+
+function runsOf(awake) {
+  let uniform = true;
+  for (let t = 1; t < DAY; t++) if (awake[t] !== awake[0]) { uniform = false; break; }
+  if (uniform) return [{ start: 0, len: DAY, awake: awake[0] === 1 }];
+  let startIdx = 0;
+  for (let t = 0; t < DAY; t++) if (awake[t] !== awake[wrap(t - 1)]) { startIdx = t; break; }
+  const out = [];
+  let t = startIdx;
+  do {
+    const s = t, state = awake[t]; let len = 0;
+    while (awake[wrap(t)] === state && len < DAY) { t = wrap(t + 1); len++; }
+    out.push({ start: s, len, awake: state === 1 });
+  } while (t !== startIdx);
+  return out;
+}
+
+/* --- ultradian oscillator + threshold, bisected onto the sleep target --- */
+function segmentDay(arousal, p, rnd) {
+  const { env } = arousal;
+  const phase = rnd() * 2 * Math.PI;
+  const total = new Float64Array(DAY);
+  for (let t = 0; t < DAY; t++) {
+    total[t] = env[t] + p.oscAmp * Math.sin((2 * Math.PI * t) / p.cyclePeriod + phase);
+  }
+  const sorted = Array.from(total).sort((a, b) => b - a);
+  const sleepTarget = Math.min(DAY - 60, Math.max(60, Math.round(p.sleepHours * 60)));
+  const microSeed = rnd();
+
+  function buildFrom(idx) {
+    const theta = sorted[Math.min(DAY - 1, Math.max(0, idx))];
+    const awake = new Uint8Array(DAY);
+    for (let t = 0; t < DAY; t++) awake[t] = total[t] > theta ? 1 : 0;
+    for (let pass = 0; pass < 8; pass++) {                 // absorb sub-floor bouts
+      const runs = runsOf(awake);
+      if (runs.length <= 2) break;
+      let changed = false;
+      for (const r of runs) {
+        const floor = r.awake ? p.minWake : p.minSleep;
+        if (r.len < floor) {
+          for (let k = 0; k < r.len; k++) awake[wrap(r.start + k)] = r.awake ? 0 : 1;
+          changed = true;
+        }
+      }
+      if (!changed) break;
+    }
+    const microArousals = [];                              // split over-ceiling bouts
+    let mi = 0;
+    for (const r of runsOf(awake)) {
+      if (r.awake || r.len <= p.maxSleep) continue;
+      const pieces = Math.ceil(r.len / p.maxSleep);
+      for (let i = 1; i < pieces; i++) {
+        const mLen = 3 + Math.floor((((microSeed * 977 + mi++ * 131) % 1) + 1) % 1 * 4);
+        const at = wrap(r.start + Math.round((r.len * i) / pieces));
+        for (let k = 0; k < mLen; k++) awake[wrap(at + k)] = 1;
+        microArousals.push({ start: at, len: mLen });
+      }
+    }
+    let sleepMin = 0;
+    for (let t = 0; t < DAY; t++) if (!awake[t]) sleepMin++;
+    return { awake, microArousals, sleepMin, theta };
+  }
+
+  let lo = 30, hi = DAY - 30, out = buildFrom(DAY - sleepTarget);
+  if (Math.abs(out.sleepMin - sleepTarget) > 8) {
+    for (let it = 0; it < 24 && hi - lo > 1; it++) {
+      const mid = (lo + hi) >> 1;
+      const cand = buildFrom(mid);
+      if (Math.abs(cand.sleepMin - sleepTarget) < Math.abs(out.sleepMin - sleepTarget)) out = cand;
+      if (cand.sleepMin > sleepTarget) lo = mid; else hi = mid;
+    }
+  }
+  const microSet = new Set(out.microArousals.map((m) => m.start));
+  const bouts = runsOf(out.awake).map((r) => ({ ...r, micro: microSet.has(r.start) }));
+  const sleepMin = bouts.filter((b) => !b.awake).reduce((a, b) => a + b.len, 0);
+  return { bouts, total, theta: out.theta, microArousals: out.microArousals,
+           sleepMin, wakeMin: DAY - sleepMin, sleepTarget };
+}
+
+const STATES = {
+  NREM:      { label: 'Slow-wave sleep',      v: '--ar-1', step: 1 },
+  REM:       { label: 'Paradoxical sleep',    v: '--ar-2', step: 2 },
+  DROWSE:    { label: 'Drowse / loaf',        v: '--ar-3', step: 3 },
+  ALERT:     { label: 'Alert',                v: '--ar-4', step: 4 },
+  PREDATORY: { label: 'Predatory sequence',   v: '--ar-5', step: 5 },
+};
+
+/* Deadpan behaviour notes, chosen deterministically from the span's own start. */
+const BEHAVIOUR = {
+  NREM: ['recumbent, thermoregulatory curl', 'sternal recumbency, forepaws tucked',
+         'full lateral sprawl, no postural tone', 'wedged into a container of insufficient size'],
+  REM: ['vibrissal and pedal twitching', 'atonia with intermittent phasic activity',
+        'irregular respiration, tail-tip movement', 'brief unexplained ear rotation'],
+  DROWSE: ['eyes at half aperture, ears tracking', 'loaf posture, immobile, monitoring',
+           'intermittent slow blink', 'upright but non-responsive'],
+  ALERT: ['sustained observation of a static object', 'perimeter patrol, low arousal',
+          'vocalisation directed at no recipient', 'thermoregulatory positioning in insolation',
+          'seated in a doorway, obstructing it'],
+  PREDATORY: ['stalk and pounce, no prey present', 'locomotor burst, corridor transit',
+              'object displaced from an elevated surface', 'ambush of an unoccupied stair',
+              'high-speed circuit of the premises'],
+};
+const GROOM = ['autogrooming, cranial-to-caudal sequence', 'autogrooming, interdigital attention',
+               'autogrooming, post-ingestive facial wash'];
+
+function classify(seg, arousal, p) {
+  const { env } = arousal;
+  const spans = [];
+  const es = Array.from(env).sort((a, b) => a - b);
+  const envHigh = es[Math.floor(DAY * 0.78)];
+  for (const b of seg.bouts) {
+    const mid = Math.round(wrap(b.start + b.len / 2)) % DAY;
+    if (!b.awake) {
+      const remLen = Math.min(b.len - 1, Math.max(2, Math.round(b.len * p.remFraction)));
+      const nremLen = b.len - remLen;
+      const deep = b.len >= p.boutMean * 0.8 && env[mid] < 0.45;
+      if (nremLen > 0) spans.push({ start: b.start, len: nremLen, state: deep ? 'NREM' : 'DROWSE', bout: b.len });
+      spans.push({ start: wrap(b.start + nremLen), len: remLen, state: 'REM', bout: b.len });
+    } else if (b.len <= 8) {
+      spans.push({ start: b.start, len: b.len, state: 'DROWSE', micro: true, bout: b.len });
+    } else {
+      const predatory = env[mid] >= envHigh;
+      const groomLen = Math.max(1, Math.round(b.len * p.groomFraction));
+      const actLen = b.len - groomLen;
+      if (actLen > 0) spans.push({ start: b.start, len: actLen, state: predatory ? 'PREDATORY' : 'ALERT', bout: b.len });
+      spans.push({ start: wrap(b.start + actLen), len: groomLen, state: 'ALERT', groom: true, bout: b.len });
+    }
+  }
+  for (const s of spans) {
+    if (s.micro) { s.note = 'micro-arousal, cause not established'; continue; }
+    const pool = s.groom ? GROOM : BEHAVIOUR[s.state];
+    s.note = pool[hashStr('b' + s.start + s.state) % pool.length];
+  }
+  return spans;
+}
+
+function catMeals(seg, arousal, p) {
+  const { env } = arousal;
+  const wakes = seg.bouts.filter((b) => b.awake && b.len > 8);
+  if (!wakes.length) return [];
+  const scored = wakes
+    .map((b) => ({ t: Math.round(wrap(b.start + Math.min(6, b.len * 0.18))),
+                   score: env[Math.round(wrap(b.start + b.len / 2)) % DAY] * Math.log(1 + b.len) }))
+    .sort((x, y) => y.score - x.score);
+  const out = scored.slice(0, p.catMeals).map((s) => s.t);
+  const byLen = [...wakes].sort((a, b) => b.len - a.len);
+  let i = 0;
+  while (out.length < p.catMeals && byLen.length) {
+    const b = byLen[i % byLen.length];
+    const nth = Math.floor(i / byLen.length) + 1;
+    const t = Math.round(wrap(b.start + b.len * Math.min(0.92, 0.45 + 0.22 * nth)));
+    if (!out.some((x) => Math.abs(cdist(x, t)) < 12)) out.push(t);
+    i++;
+    if (i > p.catMeals * 4) break;
+  }
+  return out.sort((a, b) => a - b);
+}
+
+function prescribe(arousal, seg, cmeals, p) {
+  const { env, dawnPeak, duskPeak } = arousal;
+  const coreLen = Math.round(p.coreSleepHours * 60);
+
+  let best = { t: 0, m: Infinity };
+  for (let t = 0; t < DAY; t++) {
+    let s = 0, n = 0;
+    for (let k = 0; k < coreLen; k += 5) { s += env[wrap(t + k)]; n++; }
+    if (s / n < best.m) best = { t, m: s / n };
+  }
+  const felineCoreStart = best.t;
+  const coreStart = wrap(felineCoreStart + p.anthroOffset);
+  const core = { start: coreStart, len: coreLen };
+  const inCore = (t) => wrap(t - coreStart) < coreLen;
+
+  let nap = null;
+  const cands = seg.bouts
+    .filter((b) => !b.awake && b.len >= p.minSleep)
+    .filter((b) => { for (let k = 0; k < b.len; k++) if (inCore(wrap(b.start + k))) return false; return true; })
+    .sort((a, b) => b.len - a.len);
+  if (cands.length) {
+    const c = cands[0], centre = wrap(c.start + c.len / 2);
+    const len = Math.round(Math.min(p.napMinutes, c.len));
+    nap = { start: Math.round(wrap(centre - len / 2)), len, sourceBout: c.len };
+  }
+
+  const fastStart = wrap(coreStart - p.fastLead);
+  const fastLen = Math.min(DAY - 120, p.fastLead + coreLen + p.fastTrail);
+  const inFast = (t) => wrap(t - fastStart) < fastLen;
+
+  let meals = [];
+  const legal = cmeals.filter((t) => !inFast(t));
+  const origin = wrap(fastStart + fastLen);
+  if (legal.length) {
+    const xs = [...new Set(legal.map((t) => wrap(t - origin)))].sort((a, b) => a - b);
+    const k = Math.min(p.humanMeals, xs.length);
+    let cent = Array.from({ length: k }, (_, i) =>
+      xs[Math.min(xs.length - 1, Math.floor(((i + 0.5) / k) * xs.length))]);
+    for (let it = 0; it < 50; it++) {
+      const buckets = Array.from({ length: k }, () => []);
+      for (const x of xs) {
+        let bi = 0, bd = Infinity;
+        cent.forEach((c, i) => { const d = Math.abs(x - c); if (d < bd) { bd = d; bi = i; } });
+        buckets[bi].push(x);
+      }
+      const next = cent.map((c, i) => buckets[i].length ? buckets[i].reduce((a, b) => a + b, 0) / buckets[i].length : c);
+      const done = next.every((v, i) => Math.abs(v - cent[i]) < 0.5);
+      cent = next;
+      if (done) break;
+    }
+    const snapped = [...new Set(cent.map((c) => {
+      let bx = xs[0], bd = Infinity;
+      for (const x of xs) { const d = Math.abs(x - c); if (d < bd) { bd = d; bx = x; } }
+      return bx;
+    }))].sort((a, b) => a - b);
+    const ded = [];
+    for (const x of snapped) if (!ded.length || x - ded[ded.length - 1] >= p.mealGap) ded.push(x);
+
+    const span = DAY - fastLen;
+    let guard = 0;
+    while (ded.length < p.humanMeals && guard++ < 12) {
+      const edges = [0, ...ded, span];
+      let gi = 0, gw = -1;
+      for (let i = 0; i < edges.length - 1; i++) {
+        const w = edges[i + 1] - edges[i];
+        if (w > gw) { gw = w; gi = i; }
+      }
+      if (gw < p.mealGap * 1.6) break;
+      const target = (edges[gi] + edges[gi + 1]) / 2;
+      let pick = null, pd = Infinity;
+      for (const x of xs) {
+        if (ded.some((y) => Math.abs(y - x) < p.mealGap)) continue;
+        const d = Math.abs(x - target);
+        if (d < pd) { pd = d; pick = x; }
+      }
+      if (pick === null) break;
+      ded.push(pick); ded.sort((a, b) => a - b);
+    }
+    meals = ded.map((x) => wrap(origin + x));
+  }
+  if (!meals.length) {
+    let bt = origin, bv = -1;
+    for (let k = 0; k < DAY - fastLen; k++) { const t = wrap(origin + k); if (env[t] > bv) { bv = env[t]; bt = t; } }
+    meals = [bt];
+  }
+
+  const blocked = [core];
+  if (nap) blocked.push(nap);
+  const cog = subtract(
+    [dawnPeak, duskPeak].map((pk) => ({ start: wrap(pk - p.cogHalf), len: p.cogHalf * 2 })), blocked
+  ).filter((w) => w.len >= 45);
+
+  const catAsleep = new Uint8Array(DAY);
+  for (const b of seg.bouts) if (!b.awake) for (let k = 0; k < b.len; k++) catAsleep[wrap(b.start + k)] = 1;
+  let overlap = 0;
+  for (let k = 0; k < coreLen; k++) if (catAsleep[wrap(coreStart + k)]) overlap++;
+
+  return { felineCoreStart, coreStart, coreLen, coreEnd: wrap(coreStart + coreLen), core,
+           nap, fastStart, fastLen, meals, cog, alignment: overlap / coreLen,
+           windDown: { start: wrap(coreStart - p.windDown), len: p.windDown } };
+}
+
+const DEFAULTS = {
+  lat: 33.4484, lon: -112.0740,
+  sleepHours: 15, boutMean: 78, minSleep: 50, maxSleep: 113, minWake: 12,
+  cyclePeriod: 104, oscAmp: 0.36, peakSigma: 80,
+  dawnLead: 30, duskLag: 30, remFraction: 0.26, groomFraction: 0.30, catMeals: 12,
+  coreSleepHours: 7.5, anthroOffset: 90, napMinutes: 26, humanMeals: 4,
+  mealGap: 90, fastLead: 150, fastTrail: 30, windDown: 45, cogHalf: 90,
+  mealHalf: 20,
+};
+
+function runModel(opts) {
+  const p = { ...DEFAULTS, ...opts };
+  const solar = solarEvents(p.dateUTCms, p.tzOffsetMin, p.lat, p.lon);
+  const rnd = mulberry32(hashStr(`${p.seedDate}|${p.lat.toFixed(3)}|${p.lon.toFixed(3)}|${p.sleepHours}`));
+  const arousal = buildArousal(solar, p);
+  const seg = segmentDay(arousal, p, rnd);
+  const spans = classify(seg, arousal, p);
+  const cmeals = catMeals(seg, arousal, p);
+  const rx = prescribe(arousal, seg, cmeals, p);
+  return { p, solar, arousal, seg, spans, cmeals, rx };
+}
+
+/* ============================================================================
+   PART 2 — DIRECTIVE RESOLUTION
+   ============================================================================ */
+function directiveAt(t, M) {
+  const { rx, p } = M;
+  const inW = (w) => wrap(t - w.start) < w.len;
+  const endOf = (w) => wrap(w.start + w.len);
+
+  if (inW(rx.core)) return {
+    key: 'SLEEP', tone: 'sleep', head: 'SLEEP',
+    note: 'Core block in progress. The cat is also down; this is the one window where you agree.',
+    until: endOf(rx.core), why: 'Deepest trough in modelled feline arousal.',
+  };
+  if (inW(rx.windDown)) return {
+    key: 'WIND', tone: 'sleep', head: 'WIND DOWN',
+    note: 'Terminate input. Screens down, lights low. The core block opens shortly.',
+    until: rx.core.start, why: 'Terminal ' + p.windDown + ' minutes before the core block.',
+  };
+  if (rx.nap && inW(rx.nap)) return {
+    key: 'NAP', tone: 'sleep', head: 'NAP',
+    note: 'Authorised for ' + rx.nap.len + ' minutes. Do not exceed it — the cat can absorb a ' +
+          rx.nap.sourceBout + '-minute bout and you cannot.',
+    until: endOf(rx.nap), why: 'Longest daytime feline sleep bout (' + rx.nap.sourceBout + ' min).',
+  };
+  for (let i = 0; i < rx.meals.length; i++) {
+    const w = { start: wrap(rx.meals[i] - p.mealHalf), len: p.mealHalf * 2 };
+    if (inW(w)) return {
+      key: 'EAT', tone: 'eat', head: 'EAT',
+      note: 'Intake occasion ' + (i + 1) + ' of ' + rx.meals.length + '. The cat takes ' + p.catMeals +
+            ' small meals across this day; yours are the consolidation of them.',
+      until: endOf(w), why: 'Cluster centre of the cat’s feeding events.',
+    };
+  }
+  const fast = { start: rx.fastStart, len: rx.fastLen };
+  const nextMeal = rx.meals.slice().sort((a, b) => wrap(a - t) - wrap(b - t))[0];
+  // a window that permits activity but not food carries the fasting state as a rider,
+  // so the operator is never told to "spend" a window without knowing intake is closed
+  const rider = inW(fast) ? ' Fasting window is open — no intake until ' + fmt(nextMeal) + '.' : '';
+
+  for (const w of rx.cog) if (inW(w)) return {
+    key: 'COG', tone: 'cog', head: 'PEAK COGNITION',
+    note: 'Crepuscular arousal peak. Spend it on the hardest thing you have; the cat is spending it hunting.' + rider,
+    until: endOf(w), why: 'Modelled arousal peak, ' + (w.len >= 120 ? 'broad' : 'clipped') + '.',
+  };
+  if (inW(fast)) return {
+    key: 'FAST', tone: 'none', head: 'NO INTAKE',
+    note: 'Fasting window. Next intake occasion at ' + fmt(nextMeal) + '.',
+    until: endOf(fast), why: 'Brackets the core block by −' + p.fastLead + '/+' + p.fastTrail + ' min.',
+  };
+  return {
+    key: 'MAINT', tone: 'none', head: 'MAINTENANCE',
+    note: 'Nothing is due. Water, movement, daylight. The cat is grooming; consider the parallel.' + rider,
+    until: nextBoundary(t, M), why: 'Interval between issued windows.',
+  };
+}
+
+function scheduleWindows(M) {
+  const { rx, p } = M;
+  const out = [];
+  out.push({ ...rx.core, key: 'SLEEP', name: 'Core sleep block', tone: 'sleep',
+             why: 'Deepest ' + (rx.coreLen / 60).toFixed(1) + '‑hour trough in modelled feline arousal, shifted +' +
+                  fmtDur(p.anthroOffset) + ' for human society' });
+  out.push({ ...rx.windDown, key: 'WIND', name: 'Wind-down', tone: 'sleep',
+             why: 'Fixed ' + p.windDown + ' min before the core block' });
+  if (rx.nap) out.push({ ...rx.nap, key: 'NAP', name: 'Nap, capped', tone: 'sleep',
+             why: 'Longest daytime feline sleep bout, ' + rx.nap.sourceBout + ' min, truncated to ' + rx.nap.len });
+  rx.meals.forEach((m, i) => out.push({
+    start: wrap(m - p.mealHalf), len: p.mealHalf * 2, key: 'EAT',
+    name: 'Intake ' + (i + 1) + ' of ' + rx.meals.length, tone: 'eat',
+    why: 'Cluster centre of feline feeding events, snapped to the event at ' + fmt(m),
+  }));
+  rx.cog.forEach((w, i) => out.push({ ...w, key: 'COG',
+    name: 'Peak cognition' + (rx.cog.length > 1 ? ' ' + (i + 1) : ''), tone: 'cog',
+    why: 'Crepuscular arousal peak, minus any overlap with sleep windows' }));
+  out.push({ start: rx.fastStart, len: rx.fastLen, key: 'FAST', name: 'Fasting window', tone: 'none',
+             why: 'Core block extended −' + p.fastLead + ' / +' + p.fastTrail + ' min' });
+  return out;
+}
+
+function nextBoundary(t, M) {
+  let best = wrap(t + DAY - 1), bd = DAY;
+  for (const w of scheduleWindows(M)) {
+    if (w.key === 'FAST') continue;
+    for (const edge of [w.start, wrap(w.start + w.len)]) {
+      const d = wrap(edge - t);
+      if (d > 0 && d < bd) { bd = d; best = edge; }
+    }
+  }
+  return best;
+}
+
+function upcoming(t, M, n) {
+  const evs = [];
+  for (const w of scheduleWindows(M)) {
+    if (w.key === 'FAST' || w.key === 'WIND') continue;
+    const d = wrap(w.start - t);
+    if (d > 0) evs.push({ d, at: w.start, name: w.name, key: w.key });
+  }
+  evs.sort((a, b) => a.d - b.d);
+  return evs.slice(0, n);
+}
+
+/* ============================================================================
+   PART 3 — FORMATTING
+   ============================================================================ */
+const fmt = (m) => {
+  m = Math.round(wrap(m));
+  return String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+};
+function fmtDur(m) {
+  m = Math.round(m);
+  const h = Math.floor(m / 60), mm = m % 60;
+  if (h === 0) return mm + 'm';
+  if (mm === 0) return h + 'h';
+  return h + 'h ' + String(mm).padStart(2, '0') + 'm';
+}
+function fmtCd(m) {
+  const s = Math.max(0, Math.round(m));
+  const h = Math.floor(s / 60), mm = s % 60;
+  return h > 0 ? h + 'h ' + String(mm).padStart(2, '0') + 'm' : mm + 'm';
+}
+const TONE_VAR = { sleep: '--rx-sleep', eat: '--rx-eat', cog: '--rx-cog', none: '--ink-3' };
+
+/* ============================================================================
+   PART 4 — SVG HELPERS
+   ============================================================================ */
+const NS = 'http://www.w3.org/2000/svg';
+const el = (n, a) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); return e; };
+const ang = (t) => (t / DAY) * 360 - 90;              // minute -> degrees, 00:00 at top
+const pol = (cx, cy, r, a) => [cx + r * Math.cos(a * Math.PI / 180), cy + r * Math.sin(a * Math.PI / 180)];
+
+function annulus(cx, cy, ri, ro, a0, a1) {
+  const sweep = a1 - a0;
+  if (sweep >= 359.99) {
+    // Full ring. The inner circle must wind the OPPOSITE way to the outer one,
+    // or the default nonzero fill rule leaves no hole and the "track" paints as
+    // a solid disc over everything inside it.
+    const p = [];
+    [[ro, 1], [ri, 0]].forEach(([r, sw]) => {
+      const [x0, y0] = pol(cx, cy, r, 0), [x1, y1] = pol(cx, cy, r, 180);
+      p.push(`M ${x0} ${y0} A ${r} ${r} 0 1 ${sw} ${x1} ${y1} A ${r} ${r} 0 1 ${sw} ${x0} ${y0} Z`);
+    });
+    return p.join(' ');
+  }
+  const large = sweep > 180 ? 1 : 0;
+  const [x1, y1] = pol(cx, cy, ro, a0), [x2, y2] = pol(cx, cy, ro, a1);
+  const [x3, y3] = pol(cx, cy, ri, a1), [x4, y4] = pol(cx, cy, ri, a0);
+  return `M ${x1} ${y1} A ${ro} ${ro} 0 ${large} 1 ${x2} ${y2} L ${x3} ${y3} A ${ri} ${ri} 0 ${large} 0 ${x4} ${y4} Z`;
+}
+
+/* ============================================================================
+   PART 5 — TOOLTIP
+   ============================================================================ */
+const tip = document.getElementById('tip');
+function showTip(evt, head, meta, body) {
+  tip.innerHTML = '';
+  const h = document.createElement('div'); h.className = 't-h'; h.textContent = head; tip.appendChild(h);
+  const m = document.createElement('div'); m.className = 't-m'; m.textContent = meta; tip.appendChild(m);
+  if (body) { const b = document.createElement('div'); b.className = 't-b'; b.textContent = body; tip.appendChild(b); }
+  tip.style.opacity = '1';
+  moveTip(evt);
+}
+function moveTip(evt) {
+  let x, y;
+  if (evt && typeof evt.clientX === 'number' && evt.clientX) { x = evt.clientX + 14; y = evt.clientY + 14; }
+  else {
+    const r = (evt && evt.target && evt.target.getBoundingClientRect) ? evt.target.getBoundingClientRect() : null;
+    if (!r) return;
+    x = r.left + r.width / 2 + 12; y = r.top + r.height + 8;
+  }
+  const w = tip.offsetWidth, h = tip.offsetHeight;
+  if (x + w > innerWidth - 10) x = Math.max(10, x - w - 28);
+  if (y + h > innerHeight - 10) y = Math.max(10, y - h - 28);
+  tip.style.left = x + 'px'; tip.style.top = y + 'px';
+}
+const hideTip = () => { tip.style.opacity = '0'; };
+function bindTip(node, head, meta, body) {
+  node.addEventListener('mouseenter', (e) => showTip(e, head, meta, body));
+  node.addEventListener('mousemove', moveTip);
+  node.addEventListener('mouseleave', hideTip);
+  node.addEventListener('focus', (e) => showTip(e, head, meta, body));
+  node.addEventListener('blur', hideTip);
+  node.setAttribute('tabindex', '0');
+  node.setAttribute('role', 'img');
+  node.setAttribute('aria-label', head + '. ' + meta + (body ? '. ' + body : ''));
+}
+
+/* ============================================================================
+   PART 6 — RENDER: DIAL
+   ============================================================================ */
+function drawDial(M, nowMin) {
+  const svg = document.getElementById('dial');
+  svg.innerHTML = '';
+  const cx = 300, cy = 300;
+  const catRo = 236, catRi = 208;      // cat arousal ring
+  const feedR = 245;                   // feeding ticks, in their own band outside it
+  const tickR = 258;                   // hour ticks, clear of the feeding band
+  const rxRo = 190, rxRi = 166;        // operator schedule ring
+  const gapAt = (r, spanDeg) => Math.min(spanDeg * 0.22, (2 / r) * (180 / Math.PI));
+
+  const gRing = el('g', {}); svg.appendChild(gRing);
+
+  // track under both rings so short spans still read as sitting on a scale
+  for (const [ri, ro] of [[catRi, catRo], [rxRi, rxRo]]) {
+    gRing.appendChild(el('path', { d: annulus(cx, cy, ri, ro, 0, 360), fill: 'var(--hair)', opacity: .5 }));
+  }
+
+  // ---- cat arousal arcs ----
+  for (const s of M.spans) {
+    const a0 = ang(s.start), a1 = ang(s.start + s.len);
+    const g = gapAt(catRo, a1 - a0);
+    const p = el('path', {
+      d: annulus(cx, cy, catRi, catRo, a0 + g, a1 - g),
+      fill: `var(${STATES[s.state].v})`, class: 'seg',
+    });
+    bindTip(p, STATES[s.state].label,
+      fmt(s.start) + '–' + fmt(s.start + s.len) + '  ·  ' + fmtDur(s.len),
+      s.note);
+    gRing.appendChild(p);
+  }
+
+  // ---- cat feeding ticks ----
+  for (const t of M.cmeals) {
+    const a = ang(t);
+    const [x1, y1] = pol(cx, cy, feedR - 4, a), [x2, y2] = pol(cx, cy, feedR + 4, a);
+    const l = el('line', { x1, y1, x2, y2, stroke: 'var(--rx-eat)', 'stroke-width': 2.5,
+                           'stroke-linecap': 'round', class: 'seg' });
+    bindTip(l, 'Feline feeding event', fmt(t),
+      'One of ' + M.p.catMeals + ' small meals modelled across the 24 hours.');
+    gRing.appendChild(l);
+  }
+
+  // ---- operator schedule arcs ----
+  for (const w of scheduleWindows(M)) {
+    if (w.key === 'FAST') continue;
+    const a0 = ang(w.start), a1 = ang(w.start + w.len);
+    const g = gapAt(rxRo, a1 - a0);
+    const isWind = w.key === 'WIND';
+    const p = el('path', {
+      d: annulus(cx, cy, isWind ? rxRi + 8 : rxRi, isWind ? rxRo - 8 : rxRo, a0 + g, a1 - g),
+      fill: `var(${TONE_VAR[w.tone]})`, opacity: isWind ? .38 : 1, class: 'seg',
+    });
+    bindTip(p, w.name, fmt(w.start) + '–' + fmt(w.start + w.len) + '  ·  ' + fmtDur(w.len), w.why);
+    gRing.appendChild(p);
+  }
+
+  // ---- fasting bracket: an absence, drawn as a hairline, not a fill ----
+  const fa0 = ang(M.rx.fastStart), fa1 = ang(M.rx.fastStart + M.rx.fastLen);
+  const fr = rxRi - 11;
+  const [fx1, fy1] = pol(cx, cy, fr, fa0), [fx2, fy2] = pol(cx, cy, fr, fa1);
+  gRing.appendChild(el('path', {
+    d: `M ${fx1} ${fy1} A ${fr} ${fr} 0 ${(fa1 - fa0) > 180 ? 1 : 0} 1 ${fx2} ${fy2}`,
+    fill: 'none', stroke: 'var(--ink-3)', 'stroke-width': 1.25,
+  }));
+  for (const a of [fa0, fa1]) {
+    const [ax1, ay1] = pol(cx, cy, fr - 4, a), [ax2, ay2] = pol(cx, cy, fr + 4, a);
+    gRing.appendChild(el('line', { x1: ax1, y1: ay1, x2: ax2, y2: ay2, stroke: 'var(--ink-3)', 'stroke-width': 1.25 }));
+  }
+
+  // ---- hour ticks + labels ----
+  for (let h = 0; h < 24; h++) {
+    const a = ang(h * 60), major = h % 3 === 0;
+    const [x1, y1] = pol(cx, cy, tickR - (major ? 6 : 3), a);
+    const [x2, y2] = pol(cx, cy, tickR + 5, a);
+    gRing.appendChild(el('line', { x1, y1, x2, y2, stroke: 'var(--axis)', 'stroke-width': major ? 1.25 : 1 }));
+    if (major) {
+      const [tx, ty] = pol(cx, cy, tickR + 19, a);
+      const tt = el('text', { x: tx, y: ty, class: 'tick-txt', 'text-anchor': 'middle', 'dominant-baseline': 'middle' });
+      tt.textContent = String(h).padStart(2, '0');
+      gRing.appendChild(tt);
+    }
+  }
+
+  // ---- sunrise / sunset marks ----
+  for (const [t, label] of [[M.solar.sunrise, 'sunrise'], [M.solar.sunset, 'sunset']]) {
+    const a = ang(t);
+    const [x, y] = pol(cx, cy, tickR + 5, a);
+    const c = el('circle', { cx: x, cy: y, r: 3.2, fill: 'var(--warn)', stroke: 'var(--surface-1)', 'stroke-width': 2, class: 'seg' });
+    bindTip(c, label[0].toUpperCase() + label.slice(1), fmt(t), 'Computed from the sunrise equation.');
+    gRing.appendChild(c);
+  }
+
+  // ---- now hand ----
+  const na = ang(nowMin);
+  const [hx1, hy1] = pol(cx, cy, 108, na), [hx2, hy2] = pol(cx, cy, catRo - 2, na);
+  svg.appendChild(el('line', { x1: hx1, y1: hy1, x2: hx2, y2: hy2, stroke: 'var(--ink)', 'stroke-width': 1.75, 'stroke-linecap': 'round' }));
+  svg.appendChild(el('circle', { cx: hx2, cy: hy2, r: 4.5, fill: 'var(--ink)', stroke: 'var(--surface-1)', 'stroke-width': 2 }));
+
+  // ---- hub ----
+  const d = directiveAt(nowMin, M);
+  const hub = el('g', {}); svg.appendChild(hub);
+  hub.appendChild(el('circle', { cx, cy, r: 100, fill: 'var(--surface-1)', stroke: 'var(--hair)', 'stroke-width': 1 }));
+
+  const catNow = M.spans.find((s) => wrap(nowMin - s.start) < s.len) || M.spans[0];
+  const rows = [
+    ['CAT', STATES[catNow.state].label, `var(${STATES[catNow.state].v})`],
+    ['YOU', d.head, `var(${TONE_VAR[d.tone]})`],
+  ];
+  let y = cy - 46;
+  const t0 = el('text', { x: cx, y, class: 'tick-txt', 'text-anchor': 'middle' });
+  t0.textContent = fmt(nowMin);
+  hub.appendChild(t0);
+  y += 25;
+
+  const DOT_GAP = 8, DOT_R = 3.6;
+  for (const [k, v, col] of rows) {
+    const kk = el('text', { x: cx, y, 'text-anchor': 'middle', class: 'tick-txt' });
+    kk.textContent = k; hub.appendChild(kk);
+    y += 18;
+
+    // The dot sits left of the label, so the pair — not the text alone — is what
+    // gets centred. Measure the rendered text; an estimate collides at some widths.
+    const vv = el('text', { x: cx, y, 'text-anchor': 'middle', style: 'font-size:13.5px;font-weight:600;fill:var(--ink)' });
+    vv.textContent = v;
+    hub.appendChild(vv);
+    let tw = vv.getComputedTextLength ? vv.getComputedTextLength() : v.length * 7;
+    const budget = 150;                                    // usable hub width
+    if (tw > budget) {                                     // truncate to fit, then re-measure
+      let s = v;
+      while (s.length > 4 && tw > budget) {
+        s = s.slice(0, -1);
+        vv.textContent = s + '…';
+        tw = vv.getComputedTextLength();
+      }
+    }
+    const shift = (DOT_R * 2 + DOT_GAP) / 2;
+    vv.setAttribute('x', cx + shift);
+    hub.appendChild(el('circle', { cx: cx + shift - tw / 2 - DOT_GAP - DOT_R, cy: y - 4.5, r: DOT_R, fill: col }));
+    y += 25;
+  }
+  const cdt = el('text', { x: cx, y: y + 1, 'text-anchor': 'middle', class: 'tick-txt' });
+  cdt.textContent = fmtCd(wrap(d.until - nowMin)) + ' remaining';
+  hub.appendChild(cdt);
+}
+
+/* ============================================================================
+   PART 7 — RENDER: NOON-ANCHORED STRIP
+   ============================================================================ */
+const STRIP_ORIGIN = 720;   // 12:00
+function drawStrip(M, nowMin) {
+  const svg = document.getElementById('strip');
+  svg.innerHTML = '';
+  const x0 = 46, x1 = 986, w = x1 - x0;
+  const X = (t) => x0 + (wrap(t - STRIP_ORIGIN) / DAY) * w;
+  const catY = 22, catH = 30;              // cat arousal band
+  const feedY = catY + catH + 7;           // feeding ticks, 9px tall
+  const rxY = 88, rxH = 30;                // operator band
+  const brkY = rxY + rxH + 5;              // fasting bracket rule
+  const axisY = 148;                       // x-axis
+  const gridTop = catY - 10;
+
+  // hour grid + axis
+  for (let h = 0; h <= 24; h += 3) {
+    const x = x0 + (h / 24) * w;
+    svg.appendChild(el('line', { x1: x, y1: gridTop, x2: x, y2: axisY, stroke: 'var(--hair)', 'stroke-width': 1 }));
+    const tt = el('text', { x, y: axisY + 16, class: 'tick-txt', 'text-anchor': 'middle' });
+    tt.textContent = fmt(STRIP_ORIGIN + h * 60);
+    svg.appendChild(tt);
+  }
+  svg.appendChild(el('line', { x1: x0, y1: axisY, x2: x1, y2: axisY, stroke: 'var(--axis)', 'stroke-width': 1 }));
+
+  // night shading between sunset and sunrise
+  const nightSegs = subtract([{ start: 0, len: DAY }],
+    [{ start: Math.round(M.solar.sunrise), len: Math.round(wrap(M.solar.sunset - M.solar.sunrise)) }]);
+  for (const ns of nightSegs) {
+    for (const piece of splitAtOrigin(ns)) {
+      svg.appendChild(el('rect', { x: X(piece.start), y: gridTop, width: Math.max(0.5, (piece.len / DAY) * w),
+        height: axisY - gridTop, fill: 'var(--ink)', opacity: 0.035 }));
+    }
+  }
+
+  // row labels
+  for (const [y, txt] of [[catY + catH / 2, 'CAT'], [rxY + rxH / 2, 'YOU']]) {
+    const tt = el('text', { x: x0 - 10, y, class: 'tick-txt', 'text-anchor': 'end', 'dominant-baseline': 'middle' });
+    tt.textContent = txt;
+    svg.appendChild(tt);
+  }
+
+  // cat arousal band
+  for (const s of M.spans) {
+    for (const piece of splitAtOrigin(s)) {
+      const xa = X(piece.start), wd = Math.max(1, (piece.len / DAY) * w);
+      const r = el('rect', { x: xa + 1, y: catY, width: Math.max(0.75, wd - 2), height: catH,
+        fill: `var(${STATES[s.state].v})`, rx: 1.5, class: 'seg' });
+      bindTip(r, STATES[s.state].label,
+        fmt(s.start) + '–' + fmt(s.start + s.len) + '  ·  ' + fmtDur(s.len), s.note);
+      svg.appendChild(r);
+    }
+  }
+
+  // feeding ticks
+  for (const t of M.cmeals) {
+    const x = X(t);
+    const l = el('line', { x1: x, y1: feedY, x2: x, y2: feedY + 9, stroke: 'var(--rx-eat)',
+      'stroke-width': 2.5, 'stroke-linecap': 'round', class: 'seg' });
+    bindTip(l, 'Feline feeding event', fmt(t), 'One of ' + M.p.catMeals + ' small meals across 24 h.');
+    svg.appendChild(l);
+  }
+
+  // operator schedule band
+  for (const wn of scheduleWindows(M)) {
+    if (wn.key === 'FAST') continue;
+    const isWind = wn.key === 'WIND';
+    for (const piece of splitAtOrigin(wn)) {
+      const xa = X(piece.start), wd = Math.max(1.5, (piece.len / DAY) * w);
+      const r = el('rect', { x: xa + 1, y: isWind ? rxY + 8 : rxY, width: Math.max(1, wd - 2),
+        height: isWind ? rxH - 16 : rxH, fill: `var(${TONE_VAR[wn.tone]})`,
+        opacity: isWind ? .38 : 1, rx: 1.5, class: 'seg' });
+      bindTip(r, wn.name, fmt(wn.start) + '–' + fmt(wn.start + wn.len) + '  ·  ' + fmtDur(wn.len), wn.why);
+      svg.appendChild(r);
+
+      // direct-label the windows wide enough to carry text (relief for the low-contrast hues)
+      if (wd > 74 && !isWind) {
+        const tt = el('text', { x: xa + wd / 2, y: rxY + rxH / 2 + 3.5, class: 'lab-in',
+          'text-anchor': 'middle', fill: labelInk(wn.tone) });
+        tt.textContent = wn.key === 'SLEEP' ? 'CORE SLEEP' : wn.key === 'COG' ? 'PEAK COGNITION' : wn.name.toUpperCase();
+        svg.appendChild(tt);
+      }
+    }
+  }
+
+  // fasting bracket — an absence of intake, so it is drawn as a rule, not a fill,
+  // and its label hangs below the bracket rather than over the operator band
+  for (const piece of splitAtOrigin({ start: M.rx.fastStart, len: M.rx.fastLen })) {
+    const xa = X(piece.start), wd = (piece.len / DAY) * w;
+    svg.appendChild(el('path', { d: `M ${xa} ${brkY + 5} L ${xa} ${brkY} L ${xa + wd} ${brkY} L ${xa + wd} ${brkY + 5}`,
+      fill: 'none', stroke: 'var(--ink-3)', 'stroke-width': 1.25 }));
+    if (wd > 130) {
+      const tt = el('text', { x: xa + wd / 2, y: brkY + 18, class: 'lab', 'text-anchor': 'middle' });
+      tt.textContent = 'no intake';
+      svg.appendChild(tt);
+    }
+  }
+
+  // now marker
+  const nx = X(nowMin);
+  svg.appendChild(el('line', { x1: nx, y1: gridTop, x2: nx, y2: axisY, stroke: 'var(--ink)', 'stroke-width': 1.5 }));
+  const nl = el('text', { x: nx, y: gridTop - 5, class: 'tick-txt', 'text-anchor': 'middle', style: 'fill:var(--ink)' });
+  nl.textContent = 'now ' + fmt(nowMin);
+  svg.appendChild(nl);
+}
+// split a circular window so it never straddles the strip's noon origin
+function splitAtOrigin(wn) {
+  const s = wrap(wn.start - STRIP_ORIGIN), e = s + wn.len;
+  if (e <= DAY) return [{ start: wn.start, len: wn.len }];
+  return [{ start: wn.start, len: DAY - s }, { start: STRIP_ORIGIN, len: e - DAY }];
+}
+/* A label set inside a coloured fill picks white or ink by the fill's own
+   luminance, resolved from the live custom property — so it stays legible when
+   the palette swaps for dark mode instead of assuming one mode's steps. */
+function labelInk(tone) {
+  const raw = getComputedStyle(document.documentElement).getPropertyValue(TONE_VAR[tone]).trim();
+  const m = /^#?([0-9a-f]{6})$/i.exec(raw);
+  if (!m) return '#ffffff';
+  const n = parseInt(m[1], 16);
+  const ch = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((v) => {
+    const s = v / 255;
+    return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+  });
+  const L = 0.2126 * ch[0] + 0.7152 * ch[1] + 0.0722 * ch[2];
+  const onWhite = 1.05 / (L + 0.05);          // contrast of white text on this fill
+  const onInk = (L + 0.05) / 0.05;            // contrast of near-black text on it
+  return onInk > onWhite ? '#0b0b0b' : '#ffffff';
+}
+
+/* ============================================================================
+   PART 8 — RENDER: TEXT PANELS & TABLES
+   ============================================================================ */
+function dl(target, rows) {
+  const n = document.getElementById(target);
+  n.innerHTML = '';
+  for (const [k, v] of rows) {
+    const dt = document.createElement('dt'); dt.textContent = k;
+    const dd = document.createElement('dd'); dd.textContent = v;
+    n.appendChild(dt); n.appendChild(dd);
+  }
+}
+function legend(target, items) {
+  const n = document.getElementById(target);
+  n.innerHTML = '';
+  for (const [label, cssVar, kind] of items) {
+    const s = document.createElement('span');
+    const sw = document.createElement('i');
+    sw.className = 'sw' + (kind === 'line' ? ' line' : '');
+    sw.style.background = `var(${cssVar})`;
+    if (kind === 'ghost') sw.style.opacity = '.38';
+    if (kind === 'hair') { sw.style.background = 'transparent'; sw.style.borderTop = '1.25px solid var(--ink-3)'; sw.style.height = '0'; }
+    s.appendChild(sw);
+    s.appendChild(document.createTextNode(label));
+    n.appendChild(s);
+  }
+}
+
+function drawPanels(M, nowMin) {
+  const { rx, p, seg, solar } = M;
+  const d = directiveAt(nowMin, M);
+
+  // hero
+  document.getElementById('hFig').textContent = d.head;
+  document.getElementById('hDot').style.background = `var(${TONE_VAR[d.tone]})`;
+  document.getElementById('hNote').textContent = d.note;
+  document.getElementById('hCd').textContent = fmtCd(wrap(d.until - nowMin));
+  const up = upcoming(nowMin, M, 2);
+  document.getElementById('hNext').textContent = up.length
+    ? 'Next: ' + up.map((e) => e.name.toLowerCase() + ' at ' + fmt(e.at)).join(', then ')
+    : 'Nothing further today.';
+
+  // KPI tiles
+  const sleepB = seg.bouts.filter((b) => !b.awake);
+  const meanBout = sleepB.length ? sleepB.reduce((a, b) => a + b.len, 0) / sleepB.length : 0;
+  const kS = document.getElementById('kSleep');
+  kS.innerHTML = '';
+  kS.appendChild(document.createTextNode((seg.sleepMin / 60).toFixed(1)));
+  const sm = document.createElement('small'); sm.textContent = ' h'; kS.appendChild(sm);
+  document.getElementById('kSleepD').textContent = 'Reference range 12–18 h';
+
+  document.getElementById('kBouts').textContent = String(sleepB.length);
+  document.getElementById('kBoutsD').textContent = 'Mean ' + Math.round(meanBout) + ' min · reference 50–113';
+
+  const al = Math.round(rx.alignment * 100);
+  document.getElementById('kAlign').textContent = al + '%';
+  document.getElementById('kAlignD').textContent = 'Of your core block the cat also sleeps';
+  document.getElementById('kAlignM').style.width = al + '%';
+
+  document.getElementById('kMeals').textContent = rx.meals.length + ' ← ' + p.catMeals;
+  document.getElementById('kMealsD').textContent = 'Feline meals consolidated for you';
+
+  // side readouts
+  dl('solarRead', [
+    ['Sunrise', fmt(solar.sunrise)],
+    ['Solar noon', fmt(solar.solarNoon)],
+    ['Sunset', fmt(solar.sunset)],
+    ['Day length', fmtDur(solar.dayLen)],
+    ['Dawn arousal peak', fmt(M.arousal.dawnPeak)],
+    ['Dusk arousal peak', fmt(M.arousal.duskPeak)],
+  ].concat(solar.polar ? [['Note', solar.polar === 'day' ? 'polar day' : 'polar night']] : []));
+
+  dl('paramRead', [
+    ['Rest–activity cycle', p.cyclePeriod + ' min'],
+    ['Bout floor / ceiling', p.minSleep + ' / ' + p.maxSleep + ' min'],
+    ['Paradoxical fraction', Math.round(p.remFraction * 100) + '%'],
+    ['Feline-optimal bedtime', fmt(rx.felineCoreStart)],
+    ['Issued bedtime', fmt(rx.coreStart)],
+    ['Offset applied', '+' + fmtDur(p.anthroOffset)],
+  ]);
+
+  legend('legCat', [
+    ['Slow-wave sleep', '--ar-1'], ['Paradoxical (REM)', '--ar-2'], ['Drowse / loaf', '--ar-3'],
+    ['Alert', '--ar-4'], ['Predatory', '--ar-5'], ['Feeding event', '--rx-eat', 'line'],
+  ]);
+  legend('legRx', [
+    ['Sleep — core & nap', '--rx-sleep'], ['Wind-down', '--rx-sleep', 'ghost'],
+    ['Intake occasion', '--rx-eat'], ['Peak cognition', '--rx-cog'], ['No intake', '--ink-3', 'hair'],
+  ]);
+
+  // prescription table
+  const rxBody = document.getElementById('rxRows');
+  rxBody.innerHTML = '';
+  // read the day from the moment the operator gets up, not from midnight
+  const dayOrigin = rx.coreEnd;
+  const ordered = scheduleWindows(M).slice().sort((a, b) =>
+    wrap(a.start - dayOrigin) - wrap(b.start - dayOrigin));
+  for (const wn of ordered) {
+    const tr = document.createElement('tr');
+    const c1 = document.createElement('td');
+    const chip = document.createElement('span'); chip.className = 'chip';
+    const sw = document.createElement('i'); sw.className = 'sw';
+    sw.style.background = `var(${TONE_VAR[wn.tone]})`;
+    if (wn.key === 'WIND') sw.style.opacity = '.38';
+    if (wn.key === 'FAST') { sw.style.background = 'transparent'; sw.style.borderTop = '1.25px solid var(--ink-3)'; sw.style.height = '0'; }
+    chip.appendChild(sw); chip.appendChild(document.createTextNode(wn.name));
+    c1.appendChild(chip); tr.appendChild(c1);
+    for (const v of [fmt(wn.start), fmt(wn.start + wn.len), fmtDur(wn.len)]) {
+      const td = document.createElement('td'); td.className = 'num'; td.textContent = v; tr.appendChild(td);
+    }
+    const c5 = document.createElement('td'); c5.textContent = wn.why; c5.style.color = 'var(--ink-2)';
+    tr.appendChild(c5);
+    rxBody.appendChild(tr);
+  }
+
+  // ethogram table
+  const catBody = document.getElementById('catRows');
+  catBody.innerHTML = '';
+  const spansOrdered = M.spans.slice().sort((a, b) => a.start - b.start);
+  for (const s of spansOrdered) {
+    const tr = document.createElement('tr');
+    for (const v of [fmt(s.start), fmt(s.start + s.len), String(s.len)]) {
+      const td = document.createElement('td'); td.className = 'num'; td.textContent = v; tr.appendChild(td);
+    }
+    const c4 = document.createElement('td');
+    const chip = document.createElement('span'); chip.className = 'chip';
+    const sw = document.createElement('i'); sw.className = 'sw';
+    sw.style.background = `var(${STATES[s.state].v})`;
+    chip.appendChild(sw); chip.appendChild(document.createTextNode(STATES[s.state].label));
+    c4.appendChild(chip); tr.appendChild(c4);
+    const c5 = document.createElement('td'); c5.textContent = s.note; c5.style.color = 'var(--ink-2)';
+    tr.appendChild(c5);
+    catBody.appendChild(tr);
+  }
+}
+
+/* ============================================================================
+   PART 9 — STATE, CONTROLS, LOOP
+   ============================================================================ */
+const PRESETS = [
+  ['Phoenix, US', 33.4484, -112.0740],
+  ['New York, US', 40.7128, -74.0060],
+  ['London, UK', 51.5072, -0.1276],
+  ['Berlin, DE', 52.5200, 13.4050],
+  ['Nairobi, KE', -1.2921, 36.8219],
+  ['Mumbai, IN', 19.0760, 72.8777],
+  ['Tokyo, JP', 35.6762, 139.6503],
+  ['Singapore, SG', 1.3521, 103.8198],
+  ['São Paulo, BR', -23.5505, -46.6333],
+  ['Sydney, AU', -33.8688, 151.2093],
+  ['Reykjavík, IS', 64.1466, -21.9426],
+  ['Tromsø, NO', 69.6492, 18.9553],
+];
+
+const S = { lat: DEFAULTS.lat, lon: DEFAULTS.lon, sleepHours: 15, coreSleepHours: 7.5, anthroOffset: 90 };
+let MODEL = null;
+
+function nowLocalMin() {
+  const d = new Date();
+  return d.getHours() * 60 + d.getMinutes() + d.getSeconds() / 60;
+}
+function todayContext() {
+  const d = new Date();
+  const tzOffsetMin = -d.getTimezoneOffset();
+  const local = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  const dateUTCms = local.getTime();          // UTC instant of local midnight
+  const seedDate = local.getFullYear() + '-' + String(local.getMonth() + 1).padStart(2, '0') +
+                   '-' + String(local.getDate()).padStart(2, '0');
+  return { tzOffsetMin, dateUTCms, seedDate, local };
+}
+
+function rebuild() {
+  const ctx = todayContext();
+  MODEL = runModel({
+    lat: S.lat, lon: S.lon, sleepHours: S.sleepHours,
+    coreSleepHours: S.coreSleepHours, anthroOffset: S.anthroOffset,
+    dateUTCms: ctx.dateUTCms, tzOffsetMin: ctx.tzOffsetMin, seedDate: ctx.seedDate,
+  });
+
+  const tzh = ctx.tzOffsetMin / 60;
+  document.getElementById('idDate').textContent =
+    ctx.local.toLocaleDateString(undefined, { weekday: 'short', year: 'numeric', month: 'short', day: '2-digit' });
+  document.getElementById('idLoc').textContent =
+    Math.abs(S.lat).toFixed(2) + (S.lat >= 0 ? '°N ' : '°S ') +
+    Math.abs(S.lon).toFixed(2) + (S.lon >= 0 ? '°E' : '°W') +
+    '  UTC' + (tzh >= 0 ? '+' : '−') + Math.abs(tzh).toFixed(tzh % 1 ? 1 : 0);
+  document.getElementById('idSeed').textContent = 'model seed ' + ctx.seedDate;
+
+  paint();
+}
+function paint() {
+  if (!MODEL) return;
+  const t = nowLocalMin();
+  drawDial(MODEL, t);
+  drawStrip(MODEL, t);
+  drawPanels(MODEL, t);
+  centreNow(t);
+}
+
+/* On a narrow screen the day plot scrolls sideways; centre it on now so the
+   marker is on screen at load rather than somewhere off to the right. */
+let nowCentred = false;
+function centreNow(t) {
+  if (nowCentred) return;
+  const box = document.querySelector('#strip').closest('.scroll-x');
+  if (!box) return;
+  const over = box.scrollWidth - box.clientWidth;
+  if (over <= 2) return;
+  const frac = wrap(t - STRIP_ORIGIN) / DAY;
+  box.scrollLeft = Math.max(0, Math.min(over, frac * box.scrollWidth - box.clientWidth / 2));
+  nowCentred = true;
+}
+
+/* ---- wire controls ---- */
+const $ = (id) => document.getElementById(id);
+const presetSel = $('preset');
+PRESETS.forEach(([name], i) => {
+  const o = document.createElement('option'); o.value = String(i); o.textContent = name;
+  presetSel.appendChild(o);
+});
+const custom = document.createElement('option');
+custom.value = 'custom'; custom.textContent = 'Custom coordinates';
+presetSel.appendChild(custom);
+
+function syncPresetSelection() {
+  const i = PRESETS.findIndex(([, la, lo]) => Math.abs(la - S.lat) < 0.02 && Math.abs(lo - S.lon) < 0.02);
+  presetSel.value = i >= 0 ? String(i) : 'custom';
+}
+presetSel.addEventListener('change', () => {
+  if (presetSel.value === 'custom') return;
+  const [, la, lo] = PRESETS[+presetSel.value];
+  S.lat = la; S.lon = lo;
+  $('lat').value = la.toFixed(4); $('lon').value = lo.toFixed(4);
+  rebuild();
+});
+$('lat').addEventListener('change', () => {
+  const v = parseFloat($('lat').value);
+  if (Number.isFinite(v)) { S.lat = Math.max(-89, Math.min(89, v)); $('lat').value = S.lat.toFixed(4); syncPresetSelection(); rebuild(); }
+});
+$('lon').addEventListener('change', () => {
+  const v = parseFloat($('lon').value);
+  if (Number.isFinite(v)) { S.lon = Math.max(-180, Math.min(180, v)); $('lon').value = S.lon.toFixed(4); syncPresetSelection(); rebuild(); }
+});
+$('geo').addEventListener('click', () => {
+  if (!navigator.geolocation) { $('geo').textContent = 'n/a'; return; }
+  $('geo').textContent = '…';
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      S.lat = pos.coords.latitude; S.lon = pos.coords.longitude;
+      $('lat').value = S.lat.toFixed(4); $('lon').value = S.lon.toFixed(4);
+      $('geo').textContent = 'Locate'; syncPresetSelection(); rebuild();
+    },
+    () => { $('geo').textContent = 'denied'; setTimeout(() => { $('geo').textContent = 'Locate'; }, 2200); },
+    { timeout: 8000 }
+  );
+});
+$('sleepH').addEventListener('input', () => {
+  S.sleepHours = parseFloat($('sleepH').value);
+  $('sleepHv').textContent = S.sleepHours.toFixed(1) + ' h';
+  rebuild();
+});
+$('coreH').addEventListener('input', () => {
+  S.coreSleepHours = parseFloat($('coreH').value);
+  $('coreHv').textContent = S.coreSleepHours.toFixed(1) + ' h';
+  rebuild();
+});
+$('offset').addEventListener('input', () => {
+  S.anthroOffset = parseInt($('offset').value, 10);
+  $('offsetv').textContent = S.anthroOffset === 0 ? 'none' : '+' + fmtDur(S.anthroOffset);
+  rebuild();
+});
+$('theme').addEventListener('change', () => {
+  const v = $('theme').value;
+  if (v === 'auto') document.documentElement.removeAttribute('data-theme');
+  else document.documentElement.setAttribute('data-theme', v);
+  requestAnimationFrame(paint);
+});
+window.addEventListener('resize', () => { hideTip(); });
+
+/* ---- init ---- */
+$('lat').value = S.lat.toFixed(4);
+$('lon').value = S.lon.toFixed(4);
+$('sleepH').value = S.sleepHours;
+$('coreH').value = S.coreSleepHours;
+$('offset').value = S.anthroOffset;
+$('sleepHv').textContent = S.sleepHours.toFixed(1) + ' h';
+$('coreHv').textContent = S.coreSleepHours.toFixed(1) + ' h';
+$('offsetv').textContent = '+' + fmtDur(S.anthroOffset);
+syncPresetSelection();
+document.documentElement.removeAttribute('data-theme');
+$('theme').value = 'auto';
+rebuild();
+
+// re-render every 20 s so the hand, hero and countdown stay live;
+// rebuild the model when the local calendar date rolls over
+let lastSeed = todayContext().seedDate;
+setInterval(() => {
+  const s = todayContext().seedDate;
+  if (s !== lastSeed) { lastSeed = s; rebuild(); } else { paint(); }
+}, 20000);
+</script>
+</body>
+</html>
