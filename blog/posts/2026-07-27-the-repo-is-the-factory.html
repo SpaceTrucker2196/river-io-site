@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="A dark factory repo is one where the mission, the conventions, the tests and the autonomy boundary are all in-tree, so an agent can walk in cold and keep building without a human in the inner loop. What that takes, and what it looks like when it works." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Pattern, Autonomy, Metrics" />
+<title>The repo is the factory — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 001</b><span>27 July 2026</span><span>9 min</span><span>Pattern</span></div>
+    <h1>The repo is the factory</h1>
+    <p class="dek">A dark factory repo is one where the mission, the conventions, the tests and the
+      autonomy boundary are all in-tree — so an agent can walk in cold and keep building without a
+      human in the inner loop. Here is what that actually takes.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">In manufacturing, a dark factory is a plant that runs without humans on the
+      floor. The lights are off because no human eyes need to see. Nobody stands at a station; the
+      machines feed each other, inspect each other, and call for help only on exception. It is not
+      a metaphor for working faster. It is a claim about where the humans stand — at the edges,
+      setting direction and accepting output, rather than in the middle passing parts along.</p>
+
+    <p>Point that at a software repository and you get a useful, uncomfortable question: what would
+      have to be true about this repo for the entire build, test and review loop to run with no
+      human in the inner loop? Not "could an AI write this function" — that question is settled and
+      boring. The question is whether the repo itself is built so that an agent never has a
+      legitimate reason to stop and ask.</p>
+
+    <p>Most repos fail that test immediately, and they fail it for reasons that have nothing to do
+      with model capability.</p>
+
+    <h2>Be honest about your level</h2>
+
+    <p>It helps to steal the SAE driving-autonomy levels, because they force an honest answer to a
+      question people usually answer aspirationally.</p>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="num">Level</th><th>Name</th><th>Writes code</th><th>Runs tests</th><th>Reviews</th><th>Decides scope</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">0</td><td>Manual</td><td>Human</td><td>Human</td><td>Human</td><td>Human</td></tr>
+        <tr><td class="num">1</td><td>Assisted</td><td>Human</td><td>Human</td><td>Human</td><td>Human</td></tr>
+        <tr><td class="num">2</td><td>Partial</td><td>Human + agent</td><td>Human</td><td>Human</td><td>Human</td></tr>
+        <tr><td class="num">3</td><td>Conditional</td><td>Agent, supervised</td><td>Agent + human</td><td>Human</td><td>Human</td></tr>
+        <tr><td class="num">4</td><td>High</td><td>Agent</td><td>Agent</td><td>Agent, spot-checked</td><td>Human</td></tr>
+        <tr><td class="num">5</td><td>Full</td><td>Agent</td><td>Agent</td><td>Agent</td><td>Agent, within mission</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p>Nearly all "AI-assisted development" in the wild is Level 2 or Level 3. That is fine. The
+      point of naming the levels is not to shame anyone up the ladder; it is that the work required
+      to move from 3 to 4 is <strong>not model work</strong>. It is repository work. A dark factory
+      repo is the substrate that makes Level 4 or 5 possible for a given project. It does not
+      guarantee the agent is good enough yet — it removes every reason the agent would have to stop
+      and ask.</p>
+
+    <div class="note">
+      <div class="k">The distinction that matters</div>
+      <p>An agent stopping because the task is genuinely ambiguous is the system working. An agent
+        stopping because the build command lives in someone's shell history is the system failing.
+        Almost every interruption in practice is the second kind.</p>
+    </div>
+
+    <h2>What has to be in the tree</h2>
+
+    <p>The pattern is a checklist, and the test for each item is the same: a fresh clone, on a fresh
+      machine, handed to an agent that has never seen the project.</p>
+
+    <h3>The mission</h3>
+
+    <p>A file at the root that says why the software exists in one paragraph, what it must never
+      become, where the project honestly is right now, and where the gravity is pointing. The
+      "must never become" list is the load-bearing part — ethical, legal and architectural lines
+      that are not to be crossed even when crossing them would help.</p>
+
+    <p>If the mission lives in someone's head, in a Slack channel, or in a private doc, the project
+      is not Level 5. It is Level 3 with a brittle dependency on one person being awake.</p>
+
+    <h3>The conventions</h3>
+
+    <p>Build and test commands. Where new files go. Comment policy. Recipes for the changes that
+      recur — how to add a view, how to add an alert rule, how to add a parser. And the hard don'ts.</p>
+
+    <p>There is a clean test for whether this document is finished: hand it to an agent and ask for
+      a routine feature without being in the room. Every question it has to ask is a gap. Closing
+      that gap is part of the work, not a chore for later.</p>
+
+    <h3>Tests as the oracle</h3>
+
+    <p>Green has to actually mean ship-ready, because in a dark factory nothing else is going to
+      catch the problem. Three rules earn their keep:</p>
+
+    <ul>
+      <li>Tests are written from first principles. Never write a test that feeds a parser its own
+        output — that loop passes happily when both halves are wrong.</li>
+      <li>Every bug fix ships with the test that would have caught it. This is how the factory
+        learns: each escape becomes a new inspection step.</li>
+      <li>Builds are warning-clean. Warnings are the only signal that something compiled but is
+        nonetheless wrong. Treat them as background noise and the signal is gone.</li>
+    </ul>
+
+    <p>If the honest description of the suite is "it mostly catches things," the human is still the
+      oracle and the level is still 3.</p>
+
+    <h3>The repo is the working directory</h3>
+
+    <p>Nothing the agent needs lives outside the clone. No environment variables only the owner
+      knows, no licence key in a password manager, no "run this one script first" folklore. Agent
+      memory outside the repo is a convenience; the repo must never depend on it.</p>
+
+    <h2>The part everyone skips</h2>
+
+    <p>The mission says what the software does. The conventions say how to build it. Neither one
+      tells the agent <em>when to stop</em>. That omission is the single most common reason
+      autonomy fails in practice, and it fails in both directions: an agent with no written
+      boundary either asks about everything, which is Level 2 wearing a costume, or decides
+      everything, which is Level 5 with no brakes.</p>
+
+    <p>So the boundary gets written down, in the repo, in three buckets. <strong>Decides</strong>:
+      naming, structure, which helper to extract, bug fixes whose cause is obvious from the
+      evidence, features that fit a pattern the docs already describe, refactors that preserve the
+      public contract. <strong>Decides and flags</strong>: choosing between two reasonable
+      architectures, disabling a test, adding a dependency, changing a long-stable default — the
+      call is the agent's, but the commit message has to say what was decided and why.
+      <strong>Stops and asks</strong>: anything that edits the non-negotiable rules, breaks an
+      external contract, is destructive, reaches outside the repo, costs money, or expands the
+      scope beyond what was ordered.</p>
+
+    <blockquote>
+      <p>Decisions inside the mission are yours. Decisions about the mission are not.</p>
+    </blockquote>
+
+    <p>There is a subtler line inside that last bucket, and it is worth stating separately, because
+      it is the one agents get wrong. Tactical uncertainty — "I don't know how to centre this
+      div" — is not a reason to stop; go and find out. Structural uncertainty — "I don't know
+      whether this feature belongs in this product at all" — is exactly the reason to stop. Most
+      bad autonomous work is a structural question quietly answered as though it were a tactical
+      one.</p>
+
+    <h2>What one production order looks like</h2>
+
+    <p>With those pieces in place, the unit of work stops being a pull request and becomes a
+      <strong>production order</strong>: a GitHub issue whose body is the spec. A single command
+      takes it to a pushed, instrumented commit, and the steps never skip forward — a failed gate
+      loops back.</p>
+
+    <pre><code>1. Read the order      issue body is the spec; ambiguity -> comment and stop
+2. Plan               files touched, tests to add, risks
+3. Generate           implement; tests land with the code
+4. Converge           run the oracle until green; count the iterations
+5. Self-review        read the diff end to end; simplify
+6. Risk gate          anything in stops-and-asks -> surface before shipping
+7. Ship               commit with why in the body, push
+8. Instrument         append the metrics row; append the cost ledger row
+9. Report             comment the shipped commit back on the issue</code></pre>
+
+    <p>Step 8 is the one that turns a nice idea into a factory. Every shipped order appends a row to
+      an append-only <code>METRICS.md</code>: issue number, commit, date, how many converge
+      iterations it took, how many tests existed at ship time. Cost goes in a separate append-only
+      ledger, joined on the commit sha. Rows are never rewritten. You cannot manage a process you
+      are not measuring, and a process that only remembers its successes is not being measured.</p>
+
+    <h2>What the records actually say</h2>
+
+    <p>A worked example, from the tree of an iOS instrument shipped this month. Nine production
+      orders, run in a single day:</p>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th class="num">Order</th><th>What shipped</th><th class="num">Converge iters</th><th class="num">Tests at ship</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">1</td><td>Timer ladder</td><td class="num">1</td><td class="num">5</td></tr>
+        <tr><td class="num">2</td><td>Alpha band split</td><td class="num">1</td><td class="num">6</td></tr>
+        <tr><td class="num">4</td><td>Preset launch hook</td><td class="num">1</td><td class="num">7</td></tr>
+        <tr><td class="num">3</td><td>Health logging</td><td class="num">1</td><td class="num">8</td></tr>
+        <tr><td class="num">5</td><td>Beat knob</td><td class="num">1</td><td class="num">11</td></tr>
+        <tr><td class="num">6</td><td>Beam modes</td><td class="num">1</td><td class="num">13</td></tr>
+        <tr><td class="num">7</td><td>Orbit rate, phase threading</td><td class="num">1</td><td class="num">15</td></tr>
+        <tr><td class="num">10</td><td>Demo gate</td><td class="num">1</td><td class="num">18</td></tr>
+        <tr><td class="num">8</td><td>Preset browser</td><td class="num">2</td><td class="num">26</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p>Two things in that table are worth more than the throughput. The first is the tests column:
+      5 to 26 across nine orders, because tests ship with the code rather than after it. The second
+      is the single 2 in the converge column — order 8 needed a second lap to fix a band-boundary
+      rounding error. That row is the useful one. It is a recorded, attributable escape, caught by
+      the oracle rather than by a user, and it is in the permanent record precisely because rows
+      are append-only.</p>
+
+    <p>A factory that reports only its clean runs is a brochure.</p>
+
+    <h2>The drill</h2>
+
+    <p>Converting an existing repo is five steps, in order, and the order matters: write the
+      mission, write the conventions, make the tests the oracle, write the autonomy contract, then
+      run the drill.</p>
+
+    <p>The drill is the whole thing. Clone the repo onto a machine that has never built it. Hand it
+      to an agent that has never seen it. Ask for one real feature, and then stay out of the room.
+      Whatever the agent has to ask you is the next document you owe the repo.</p>
+
+    <p>You are at Level 5 when the drill succeeds. Not when the model is good enough — when the
+      repo is.</p>
+
+    <hr />
+
+    <p>This is the first post of a running log about building this way: the pattern, the places it
+      breaks, the numbers it produces, and the things it turns out not to be good at. Future orders
+      are queued on the archive page.</p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

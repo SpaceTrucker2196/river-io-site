@@ -1,0 +1,180 @@
+/* ────────────────────────────────────────────────────────────────
+   river.io — The Dark Factory (blog)
+
+   Same flat Swiss system as /software/: neo-grotesque, hard 1px
+   rules, no shadows, no gradients, no radii. Light and dark are both
+   first-class. One stylesheet for the index and every post, so a new
+   post is a single HTML file with no styling of its own.
+   ──────────────────────────────────────────────────────────────── */
+:root{
+  --bg:#ffffff; --surface:#fafafa; --surface-2:#f2f2f4;
+  --ink:#0a0a0b; --ink-2:#3f3f46; --muted:#84848c;
+  --line:#e0e0e4; --line-strong:#0a0a0b;
+  --brand:#1f4fd8;
+  --sans:"Helvetica Neue",Helvetica,"Archivo",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --maxw:1180px; --measure:70ch; --gut:32px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#08080a; --surface:#0f0f12; --surface-2:#16161a;
+    --ink:#f4f4f6; --ink-2:#b4b4bd; --muted:#6f6f78;
+    --line:#26262c; --line-strong:#f4f4f6;
+    --brand:#5b87ff;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#08080a; --surface:#0f0f12; --surface-2:#16161a;
+  --ink:#f4f4f6; --ink-2:#b4b4bd; --muted:#6f6f78;
+  --line:#26262c; --line-strong:#f4f4f6;
+  --brand:#5b87ff;
+}
+:root[data-theme="light"]{
+  --bg:#ffffff; --surface:#fafafa; --surface-2:#f2f2f4;
+  --ink:#0a0a0b; --ink-2:#3f3f46; --muted:#84848c;
+  --line:#e0e0e4; --line-strong:#0a0a0b;
+  --brand:#1f4fd8;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+::selection{background:var(--brand);color:#fff}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+img{display:block;max-width:100%;height:auto}
+.in{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+
+/* ── top bar ──────────────────────────────────────────────────── */
+.bar{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar .in{height:52px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.id{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.04em;
+  text-transform:uppercase;text-decoration:none;white-space:nowrap}
+.id span{color:var(--muted);font-weight:400}
+.id b{color:var(--brand);font-weight:600;padding:0 .3em}
+nav.top{display:flex;align-items:center}
+nav.top a{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;padding:8px 14px;border-left:1px solid var(--line);
+  transition:color .12s,background .12s}
+nav.top a:hover{color:var(--ink);background:var(--surface-2)}
+.toggle{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);background:transparent;border:0;border-left:1px solid var(--line);
+  padding:8px 14px;cursor:pointer;transition:color .12s,background .12s}
+.toggle:hover{color:var(--ink);background:var(--surface-2)}
+
+/* ── masthead (index) ─────────────────────────────────────────── */
+.masthead{border-bottom:1px solid var(--line)}
+.masthead .in{padding:78px var(--gut) 0}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);display:flex;flex-wrap:wrap;gap:18px;margin:0 0 40px}
+.kicker b{color:var(--ink);font-weight:500}
+h1.title{font-size:clamp(2.6rem,7vw,5.1rem);line-height:.94;letter-spacing:-.045em;
+  font-weight:700;margin:0;max-width:16ch}
+h1.title span{color:var(--muted);font-weight:400}
+.standfirst{font-size:clamp(1rem,1.5vw,1.18rem);color:var(--ink-2);max-width:58ch;margin:30px 0 0}
+.standfirst b{color:var(--ink);font-weight:600}
+.strip{display:grid;grid-template-columns:repeat(4,1fr);margin:54px 0 0;
+  border-top:1px solid var(--line-strong);border-left:1px solid var(--line)}
+@media (max-width:720px){.strip{grid-template-columns:repeat(2,1fr)}}
+.strip div{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 18px 18px}
+.strip .n{font-size:2.1rem;line-height:1;letter-spacing:-.04em;font-weight:600;
+  font-variant-numeric:tabular-nums;display:block;margin-bottom:9px}
+.strip .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);display:block}
+
+/* ── post list ────────────────────────────────────────────────── */
+.list{border-bottom:1px solid var(--line)}
+.post-row{border-bottom:1px solid var(--line);transition:background .12s}
+.post-row:last-child{border-bottom:0}
+.post-row:hover{background:var(--surface)}
+.post-row .in{display:grid;grid-template-columns:96px minmax(0,1fr) 150px;gap:28px;
+  padding:30px var(--gut) 34px;align-items:start}
+@media (max-width:860px){
+  .post-row .in{grid-template-columns:72px minmax(0,1fr);gap:20px}
+  .post-row .when{grid-column:2;margin-top:4px}
+}
+@media (max-width:560px){
+  .post-row .in{grid-template-columns:1fr;gap:10px}
+  .post-row .when{grid-column:1}
+}
+.order{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);padding-top:6px;font-variant-numeric:tabular-nums}
+.post-row h2{margin:0;font-size:1.55rem;line-height:1.14;letter-spacing:-.03em;font-weight:700;
+  max-width:24ch}
+.post-row h2 a{text-decoration:none}
+.post-row h2 a:hover{color:var(--brand)}
+.post-row .dek{margin:12px 0 0;color:var(--ink-2);font-size:.98rem;max-width:62ch}
+.tags{display:flex;flex-wrap:wrap;gap:0;margin-top:16px;
+  border-top:1px solid var(--line);border-left:1px solid var(--line);width:fit-content;max-width:100%}
+.tags span{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--muted);
+  padding:5px 10px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);white-space:nowrap}
+.when{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);
+  text-transform:uppercase;padding-top:6px}
+.when b{display:block;color:var(--ink-2);font-weight:400}
+
+/* ── article ──────────────────────────────────────────────────── */
+.article-head{border-bottom:1px solid var(--line)}
+.article-head .in{padding:70px var(--gut) 0;max-width:var(--maxw)}
+.article-head .meta{font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);display:flex;flex-wrap:wrap;gap:16px;margin:0 0 34px}
+.article-head .meta b{color:var(--brand);font-weight:500}
+.article-head h1{font-size:clamp(2.2rem,5.2vw,3.7rem);line-height:1.0;letter-spacing:-.04em;
+  font-weight:700;margin:0;max-width:20ch}
+.article-head .dek{font-size:clamp(1.05rem,1.6vw,1.24rem);color:var(--ink-2);
+  max-width:58ch;margin:26px 0 0}
+.article-head .rule{margin:44px 0 0;border-top:1px solid var(--line-strong);padding-bottom:0}
+article.post{padding:0 0 20px}
+article.post .in{max-width:var(--maxw);padding:54px var(--gut) 0}
+article.post p,article.post ul,article.post ol,article.post blockquote,article.post h2,article.post h3,article.post .note,article.post figure,article.post table,article.post pre{max-width:var(--measure)}
+article.post p{margin:0 0 24px;font-size:1.06rem;line-height:1.68;color:var(--ink-2)}
+article.post p strong,article.post li strong{color:var(--ink);font-weight:600}
+article.post h2{font-size:1.65rem;letter-spacing:-.03em;font-weight:700;margin:56px 0 16px;color:var(--ink)}
+article.post h3{font-size:1.16rem;letter-spacing:-.02em;font-weight:600;margin:40px 0 12px;color:var(--ink)}
+article.post ul,article.post ol{margin:0 0 24px;padding-left:22px}
+article.post li{margin:9px 0;font-size:1.06rem;line-height:1.62;color:var(--ink-2)}
+article.post a{color:var(--brand);text-decoration:none;border-bottom:1px solid var(--line)}
+article.post a:hover{border-color:var(--brand)}
+article.post blockquote{margin:0 0 26px;padding:20px 24px;background:var(--surface);
+  border-left:2px solid var(--brand)}
+article.post blockquote p{margin:0;color:var(--ink);font-size:1.06rem}
+article.post code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding:2px 6px}
+article.post pre{background:var(--surface);border:1px solid var(--line);padding:18px 20px;
+  overflow-x:auto;margin:0 0 26px}
+article.post pre code{background:none;padding:0;font-size:.84rem;line-height:1.6}
+article.post hr{border:0;border-top:1px solid var(--line);margin:48px 0}
+article.post .lede-cap::first-letter{font-size:3.1rem;line-height:.86;font-weight:700;
+  float:left;margin:6px 10px 0 0;color:var(--ink)}
+
+/* a bordered aside for definitions and asides */
+article.post .note{border:1px solid var(--line);padding:20px 22px 22px;margin:0 0 30px;background:var(--surface)}
+article.post .note .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:11px}
+article.post .note p:last-child{margin:0}
+
+/* data tables — the factory keeps records, so posts show them */
+article.post table{border-collapse:collapse;width:100%;margin:0 0 28px;font-size:.9rem}
+article.post th,article.post td{border-top:1px solid var(--line);padding:9px 12px;text-align:left;
+  color:var(--ink-2)}
+article.post thead th{border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);font-weight:500}
+article.post td.num,article.post th.num{text-align:right;font-variant-numeric:tabular-nums}
+.table-wrap{overflow-x:auto;max-width:var(--measure)}
+
+/* ── article footer ───────────────────────────────────────────── */
+.article-foot{border-top:1px solid var(--line);margin-top:56px}
+.article-foot .in{padding:30px var(--gut) 60px;display:flex;flex-wrap:wrap;gap:14px 26px;
+  justify-content:space-between;align-items:baseline}
+.article-foot a{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none}
+.article-foot a:hover{color:var(--brand)}
+
+/* ── page footer ──────────────────────────────────────────────── */
+footer{border-top:1px solid var(--line)}
+footer .in{padding:26px var(--gut) 58px;display:flex;flex-wrap:wrap;gap:12px 28px;
+  justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted)}
+footer a{color:var(--ink-2);text-decoration:none}
+footer a:hover{color:var(--brand)}

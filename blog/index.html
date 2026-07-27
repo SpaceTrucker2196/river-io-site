@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The Dark Factory — a running log from River.io LLC about building software the lights-out way: repos designed so an agent can walk in cold and keep building, production orders, the autonomy boundary, and the numbers the process produces." />
+<meta name="color-scheme" content="light dark" />
+<title>The Dark Factory — river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="feed.xml" />
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="#archive">Archive</a>
+      <a href="../software/">Software</a>
+      <a href="feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="masthead">
+  <div class="in">
+    <div class="kicker"><span>River.io LLC</span><span>Notes from a lights-out repo</span><b>Since 2026</b></div>
+    <h1 class="title">The Dark<br />Factory<span>.</span></h1>
+    <p class="standfirst">A running log about building software the lights-out way: repos designed so
+      that an agent can walk in cold and keep building, <b>production orders instead of tickets</b>,
+      an autonomy boundary written down where the machine can read it, and the numbers the process
+      actually produces — including the runs that needed a second lap.</p>
+    <div class="strip">
+      <div><span class="n">1</span><span class="l">Posts</span></div>
+      <div><span class="n">5</span><span class="l">Autonomy levels</span></div>
+      <div><span class="n">9</span><span class="l">Converge steps</span></div>
+      <div><span class="n">0</span><span class="l">Humans in the loop</span></div>
+    </div>
+  </div>
+</div>
+
+<main class="list" id="archive">
+
+  <!-- POSTS:BEGIN — new-post.py rewrites everything between these markers -->
+  <article class="post-row">
+    <div class="in">
+      <div class="order">Order 001</div>
+      <div>
+        <h2><a href="posts/2026-07-27-the-repo-is-the-factory.html">The repo is the factory</a></h2>
+        <p class="dek">A dark factory repo is one where the mission, the conventions, the tests and the autonomy boundary are all in-tree — so an agent can walk in cold and keep building without a human in the inner loop. Here is what that actually takes.</p>
+        <div class="tags"><span>Pattern</span><span>Autonomy</span><span>Metrics</span></div>
+      </div>
+      <div class="when">27 Jul 2026<b>9 min read</b></div>
+    </div>
+  </article>
+  <!-- POSTS:END -->
+
+</main>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../software/">Software register</a> · <a href="../jeff/">Who writes this</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span><a href="feed.xml">RSS</a></span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

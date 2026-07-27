@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The Dark Factory</title>
+    <link>https://www.river.io/blog/</link>
+    <description>Notes from River.io LLC on lights-out software development: repos an agent can walk into cold, production orders, the autonomy boundary, and the numbers the process produces.</description>
+    <language>en</language>
+    <lastBuildDate>Mon, 27 Jul 2026 12:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.river.io/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The repo is the factory</title>
+      <link>https://www.river.io/blog/posts/2026-07-27-the-repo-is-the-factory.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-07-27-the-repo-is-the-factory.html</guid>
+      <pubDate>Mon, 27 Jul 2026 12:00:00 +0000</pubDate>
+      <description>A dark factory repo is one where the mission, the conventions, the tests and the autonomy boundary are all in-tree — so an agent can walk in cold and keep building without a human in the inner loop. Here is what that actually takes.</description>
+      <category>Pattern</category>
+      <category>Autonomy</category>
+      <category>Metrics</category>
+    </item>
+  </channel>
+</rss>
