@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fil">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CareTime EVV — Isang timesheet na sumasabay sa iyo</title>
+<meta name="description" content="Ang CareTime EVV ay isang pribadong app para sa timesheet at pagberipika ng pagbisita, ginawa para sa mga binabayarang tagapag-alaga ng pamilya at home care workers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1c2b2d;
+    --ink-soft: #4a5e60;
+    --paper: #f4efe6;
+    --paper-warm: #ece4d6;
+    --card: #fffdf8;
+    --teal: #1f6f6b;
+    --teal-deep: #16524f;
+    --clay: #c66a4a;
+    --clay-deep: #a8543a;
+    --line: #d8cebb;
+    --shadow: 28px 28px 60px -30px rgba(28,43,45,.45);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Newsreader', Georgia, serif;
+    background: var(--paper); color: var(--ink); line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(31,111,107,.06), transparent 40%),
+      radial-gradient(circle at 88% 72%, rgba(198,106,74,.07), transparent 42%);
+    background-attachment: fixed;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  .lang { display: flex; justify-content: center; gap: 4px; padding: 18px 0 0; font-size: .88rem; flex-wrap: wrap; }
+  .lang a { color: var(--ink-soft); text-decoration: none; padding: 6px 12px; border-radius: 100px; transition: color .15s ease, background .15s ease; }
+  .lang a:hover { color: var(--teal-deep); background: var(--paper-warm); }
+  .lang a[aria-current="page"] { color: var(--teal-deep); background: var(--paper-warm); font-weight: 500; }
+  header { padding: 36px 0 12px; text-align: center; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; font-size: .82rem; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-deep); font-family: 'Newsreader', serif; font-weight: 500; border: 1px solid var(--line); border-radius: 100px; padding: 7px 16px; background: var(--card); }
+  .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--clay); }
+  h1 { font-family: 'Fraunces', serif; font-weight: 600; font-size: clamp(2.6rem, 9vw, 4rem); line-height: 1.02; letter-spacing: -.02em; margin: 26px 0 14px; color: var(--ink); }
+  h1 .evv { color: var(--teal); font-style: italic; font-weight: 500; }
+  .tagline { font-size: clamp(1.1rem, 3.5vw, 1.35rem); color: var(--ink-soft); max-width: 34ch; margin: 0 auto; }
+  section { margin: 56px 0; }
+  section h2 { font-family: 'Fraunces', serif; font-weight: 600; font-size: clamp(1.7rem, 5vw, 2.1rem); line-height: 1.15; letter-spacing: -.01em; margin-bottom: 18px; }
+  section h2 .accent { color: var(--teal); font-style: italic; font-weight: 500; }
+  section p { font-size: 1.07rem; color: var(--ink-soft); margin-bottom: 14px; }
+  section p:last-child { margin-bottom: 0; }
+  section p strong { color: var(--ink); font-weight: 500; }
+  .lede { padding-top: 8px; }
+  .lede p:first-of-type { font-size: 1.18rem; color: var(--ink); line-height: 1.55; }
+  .feature { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 28px 28px; margin-bottom: 16px; transition: transform .18s ease, border-color .18s ease; }
+  .feature:hover { transform: translateY(-2px); border-color: var(--clay); }
+  .feature h3 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.3rem; line-height: 1.2; margin-bottom: 10px; letter-spacing: -.005em; }
+  .feature p { font-size: 1.02rem; line-height: 1.6; }
+  .privacy { background: var(--paper-warm); border: 1px solid var(--line); border-radius: 22px; padding: 32px; }
+  .privacy h2 { color: var(--teal-deep); }
+  .privacy ul { list-style: none; padding: 0; margin-top: 14px; }
+  .privacy li { padding: 10px 0 10px 30px; position: relative; color: var(--ink-soft); font-size: 1.02rem; border-bottom: 1px solid var(--line); }
+  .privacy li:last-child { border-bottom: 0; }
+  .privacy li::before { content: "✓"; position: absolute; left: 4px; top: 10px; color: var(--teal); font-weight: 600; font-size: 1.1rem; }
+  .stores { text-align: center; }
+  .stores h2 { margin-bottom: 22px; }
+  .store-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .store-btn { display: inline-flex; align-items: center; gap: 11px; background: var(--ink); color: var(--paper); text-decoration: none; padding: 13px 22px; border-radius: 14px; transition: transform .18s ease, background .18s ease; }
+  .store-btn:hover { transform: translateY(-2px); background: var(--teal-deep); }
+  .store-btn svg { width: 26px; height: 26px; flex-shrink: 0; }
+  .store-btn .label { text-align: left; line-height: 1.1; }
+  .store-btn .label small { display: block; font-size: .68rem; opacity: .8; letter-spacing: .03em; }
+  .store-btn .label strong { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.1rem; }
+  .info { background: var(--paper-warm); border-radius: 18px; padding: 32px; border: 1px solid var(--line); }
+  .info h2 { color: var(--teal-deep); font-size: 1.55rem; }
+  .info p { color: var(--ink-soft); font-size: 1.02rem; }
+  .feedback { background: var(--teal); color: #f4efe6; border-radius: 22px; padding: 40px 32px; box-shadow: var(--shadow); position: relative; overflow: hidden; text-align: center; }
+  .feedback::after { content: ""; position: absolute; right: -60px; top: -60px; width: 200px; height: 200px; border-radius: 50%; background: rgba(255,255,255,.06); }
+  .feedback h2 { font-size: 1.8rem; margin-bottom: 10px; color: #f4efe6; }
+  .feedback p { color: rgba(244,239,230,.85); margin-bottom: 24px; font-size: 1.05rem; max-width: 42ch; margin-left: auto; margin-right: auto; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--paper); color: var(--teal-deep); font-family: 'Newsreader', serif; font-weight: 500; font-size: 1.15rem; text-decoration: none; padding: 16px 30px; border-radius: 100px; transition: transform .18s ease, box-shadow .18s ease; box-shadow: 0 10px 24px -10px rgba(0,0,0,.4); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 30px -12px rgba(0,0,0,.5); }
+  .btn-primary .arrow { transition: transform .18s ease; }
+  .btn-primary:hover .arrow { transform: translateX(4px); }
+  .feedback .email-link { display: block; margin-top: 18px; color: rgba(244,239,230,.75); font-size: .95rem; text-decoration: underline; text-underline-offset: 3px; }
+  .feedback .email-link:hover { color: var(--paper); }
+  footer { text-align: center; padding: 48px 0; color: var(--ink-soft); font-size: .9rem; }
+  footer a { color: var(--teal-deep); text-decoration: underline; text-underline-offset: 3px; }
+  header > * { opacity: 0; transform: translateY(16px); animation: rise .7s cubic-bezier(.2,.7,.3,1) forwards; }
+  header .badge { animation-delay: .05s; }
+  header h1 { animation-delay: .15s; }
+  header .tagline { animation-delay: .28s; }
+  section { opacity: 0; transform: translateY(16px); animation: rise .7s cubic-bezier(.2,.7,.3,1) .35s forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="lang" aria-label="Wika">
+    <a href="./">English</a>
+    <a href="./es.html">Español</a>
+    <a href="./fil.html" aria-current="page">Filipino</a>
+    <a href="./vi.html">Tiếng Việt</a>
+  </nav>
+
+  <header>
+    <span class="badge"><span class="dot"></span>CareTime · Para sa mga tagapag-alaga</span>
+    <h1>CareTime <span class="evv">EVV</span></h1>
+    <p class="tagline">Isang timesheet na sumasabay sa iyo, hindi ang baliktad.</p>
+  </header>
+
+  <section class="lede">
+    <h2>Ginawa para sa mga <span class="accent">gumagawa ng trabaho</span></h2>
+    <p>Binabayaran ka para mag-alaga ng isang tao — isang magulang, isang anak, isang kapitbahay, isang kliyente. Ang mga oras na inilalagay mo ay kung paano mo binabayaran ang upa, gasolina, grocery. Ginawa ang CareTime EVV para mapunta ang mga oras na iyon sa isang malinis at sisingilin na timesheet, nang hindi mo na kailangang tandaan ang bawat minuto sa katapusan ng labindalawang oras na shift.</p>
+    <p>Walang dashboard ng ahensya na nakatingin sa iyo. Walang kumpanyang naniningil ng iyong mga oras nang palihim. Isang app lang sa iyong telepono na alam na nagsimula kang maligo nang 7:14 dahil doon ka pumindot sa <strong>Pagliligo</strong>.</p>
+  </section>
+
+  <section>
+    <h2>Ano ang <span class="accent">magagawa nito para sa iyo</span></h2>
+
+    <div class="feature">
+      <h3>Pindot. Lipat. Hinto. Iyon ang buong interaksyon.</h3>
+      <p>Isang grid ng malalaking buton para sa mga gawain na talagang ginagawa mo — pagliligo, paglilipat, paghahanda ng pagkain, gamot, paglalaba, pamimili. Pindutin ang isang gawain at magsisimula ang timer. Pindutin ang ibang gawain at magsasara ang una, magbubukas ang bago, sa isang galaw. Walang clock-out na screen. Walang menu na hahanapin.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Kinukuha ang pagbisita, hindi ang buong araw mo.</h3>
+      <p>Sa simula at katapusan ng bawat pagbisita, hihilingan ka ng CareTime EVV ng isang location fix — patunay na nasa lugar ka kung saan mo sinabing pupunta (iyon ang EVV part). Isang beses sa simula. Isang beses sa katapusan. <strong>Hindi sa pagitan.</strong> Hindi ka sinusubaybayan ng iyong telepono, at gayundin kami.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Isang PDF sa katapusan ng pay period.</h3>
+      <p>Kapag sarado na ang pay period, gagawa ang Export tab ng PDF ng timesheet — petsa, pag-umpisa, pagtatapos, kabuuan, mga gawain na natapos, ang pirma mo, ang pirma ng kliyente. I-email, i-AirDrop, i-print at i-fax, o iabot nang personal. Anuman ang tinatanggap ng iyong billing provider.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Sumasabay sa iyo.</h3>
+      <p>Magpapalit ng telepono? Mag-sign in sa iyong Apple ID o Google account sa bagong telepono at ibalik mula sa naka-encrypt na backup ng device — babalik ang iyong kasaysayan sa CareTime kasama ng iba pang mga app mo. Wala kaming server. Walang dapat pasukin.</p>
+    </div>
+  </section>
+
+  <section class="privacy">
+    <h2>Ano ang <span class="accent">hindi ginagawa</span> ng CareTime EVV</h2>
+    <p>Kung humahawak ka ng pribadong impormasyon tungkol sa pag-aalaga ng isang tao, ang huling kailangan mo ay isa pang app na nangongolekta nito. Hindi iyon ang ginagawa ng CareTime EVV.</p>
+    <ul>
+      <li>Walang account na ipa-sign up. Walang password na tatandaan.</li>
+      <li>Walang analytics, walang ads, walang third-party na tracker.</li>
+      <li>Walang background location. Dalawang location fix bawat pagbisita — simula at katapusan — at iyon lang.</li>
+      <li>Walang pagbebenta ng iyong data. Walang ibinebenta dahil hindi namin natatanggap.</li>
+      <li>Walang corporate na dashboard. Sa iyo ang iyong mga oras.</li>
+    </ul>
+  </section>
+
+  <section class="stores">
+    <h2>Kunin ang CareTime EVV</h2>
+    <div class="store-row">
+      <a class="store-btn" href="https://apps.apple.com/app/id6772758106">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.89-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.79 1.3 10.34.86 1.25 1.89 2.65 3.24 2.6 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.02 2.28-1.27 3.13-2.53.99-1.45 1.4-2.86 1.42-2.93-.03-.01-2.72-1.04-2.75-4.13zM14.6 4.59c.72-.87 1.2-2.08 1.07-3.29-1.03.04-2.28.69-3.02 1.56-.66.77-1.24 2-1.09 3.18 1.15.09 2.32-.58 3.04-1.45z"/></svg>
+        <span class="label"><small>I-download sa</small><strong>App Store</strong></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="info">
+    <h2>Ano ang EVV?</h2>
+    <p>Ang <strong>Electronic Visit Verification</strong> (Elektronikong Pagberipika ng Pagbisita) ay isang pederal na rekisitos — ang 21st Century Cures Act — para sa karamihan ng mga serbisyong home at community-based na pinopondohan ng Medicaid. Ang patakaran: kapag nagbigay ng pagbisita ang isang binabayarang tagapag-alaga, kailangang i-log ng sistema kung kailan nagsimula ang pagbisita, kailan nagtapos, saan nangyari, anong serbisyo ang isinagawa, sino ang nagbigay, at sino ang tumanggap.</p>
+    <p>Malamang na sinusubaybayan na ito ng iyong billing provider, sa pamamagitan ng kung anumang app o sistema sa papel na pinapagamit nila sa iyo. <strong>Hindi pinapalitan ng CareTime EVV iyon.</strong> Binibigyan ka nito ng sarili mong kumpletong rekord, sa sarili mong bulsa, sa isang timesheet na talagang mababasa mo.</p>
+  </section>
+
+  <section class="feedback">
+    <h2>Sabihin sa amin kung ano ang kailangan mo</h2>
+    <p>May nakitang problema? May ideya? Gusto mong sabihin sa amin na sinagip ng app na ito ang linggo mo? Magpadala ng mensahe. Walang kailangang account, walang sign-in — i-type lang at ipadala.</p>
+    <a class="btn-primary" href="mailto:support@river.io?subject=Feedback%20sa%20CareTime">
+      Magpadala ng feedback <span class="arrow">→</span>
+    </a>
+  </section>
+
+  <footer>
+    Ginawa nang may pagmamahal para sa mga taong nagmamalasakit.<br>
+    <span style="opacity:.85">Makipag-ugnayan sa amin sa <a href="mailto:support@river.io">support@river.io</a>.</span>
+    <div style="margin-top:18px; font-size:.88rem; opacity:.85">
+      <a href="privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="support.html">Suporta</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy — CareTime EVV · river.io</title>
+<meta name="description" content="CareTime EVV privacy policy — what the app does with your data. Everything stays on your device.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:#1c2b2d; --ink-soft:#4a5e60; --paper:#f4efe6; --paper-warm:#ece4d6;
+    --card:#fffdf8; --teal:#1f6f6b; --teal-deep:#16524f; --clay:#c66a4a;
+    --clay-deep:#a8543a; --line:#d8cebb;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-size:18px;line-height:1.65;
+    -webkit-font-smoothing:antialiased}
+  .nav{border-bottom:1px solid var(--line);background:var(--card)}
+  .nav div{max-width:760px;margin:0 auto;padding:16px 24px;display:flex;gap:18px;
+    align-items:baseline;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase}
+  .nav a{color:var(--teal);text-decoration:none}
+  .nav a:hover{color:var(--clay-deep)}
+  .nav .sp{flex:1}
+  main{max-width:760px;margin:0 auto;padding:52px 24px 90px}
+  h1{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:2.2rem;line-height:1.15;
+    letter-spacing:-.02em;margin:0 0 24px}
+  h2{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.42rem;letter-spacing:-.015em;
+    margin:44px 0 12px}
+  h3{font-family:"Fraunces",Georgia,serif;font-weight:500;font-size:1.14rem;margin:32px 0 10px}
+  p,li{color:var(--ink-soft)}
+  a{color:var(--teal-deep)}
+  ul,ol{padding-left:22px}
+  li{margin:6px 0}
+  blockquote{margin:22px 0;padding:16px 20px;background:var(--card);
+    border-left:3px solid var(--clay);color:var(--ink)}
+  blockquote p{margin:0 0 10px;color:inherit}
+  blockquote p:last-child{margin:0}
+  hr{border:0;border-top:1px solid var(--line);margin:38px 0}
+  code{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.88em;
+    background:var(--paper-warm);padding:1px 5px;border-radius:3px}
+  strong{color:var(--ink)}
+  footer{border-top:1px solid var(--line);background:var(--card)}
+  footer div{max-width:760px;margin:0 auto;padding:22px 24px 40px;font-size:.82rem;color:var(--ink-soft)}
+</style>
+</head>
+<body>
+<nav class="nav"><div>
+  <a href="./">CareTime EVV</a><span class="sp"></span>
+  <a href="privacy.html">Privacy</a><a href="support.html">Support</a>
+  <a href="../software/">river.io software</a>
+</div></nav>
+<main>
+<h1>CareTime EVV — Privacy Policy</h1>
+<p><em>Effective date: 2026-05-22. Version 1.0. Last revised 2026-07-27 — wording only; no change to what the app does with your data.</em></p>
+<blockquote><p><strong>This is the privacy policy in effect for CareTime EVV</strong>, written in plain language rather than legal boilerplate: it describes what the app actually does with data, in the terms a caregiver would use. The statements below are accurate to the shipping version, 1.0.</p></blockquote>
+<hr />
+<h2>Who this app is for</h2>
+<p>CareTime EVV is built for <strong>paid family caregivers</strong> working under Medicaid Self-Directed Support waivers (IHSS, CDPAP, Money Follows the Person, Section 1915(c), state-direct programs). It is <strong>not certified for use by HIPAA Covered Entities</strong> — that is, home-care agencies, healthcare providers, health plans, or healthcare clearinghouses. If you are employed by such an entity, ask your compliance officer before installing.</p>
+<p>The app is engineered with HIPAA Security Rule technical safeguards in mind (encryption at rest, access control with PBKDF2 + Keychain, tamper-evident audit chain, no third-party data egress) but you, the operator, are responsible for the Administrative and Physical safeguards: passcode-locking the phone, not photographing or forwarding generated PDFs, and disposing of data on the phone (Settings → Erase all local data) before the device changes hands.</p>
+<hr />
+<h2>Summary in one sentence</h2>
+<p>CareTime EVV stores everything you enter on your phone, and uploads nothing — not to us, not to your billing provider, not to any third party — unless you explicitly tap <strong>Generate &amp; Share</strong> on a PDF.</p>
+<hr />
+<h2>What we collect</h2>
+<p><strong>Nothing leaves your device.</strong> CareTime has no backend, no analytics, no crash reporters, and no third-party SDKs. The app developer (SpaceTrucker2196) has no servers, no database of users, and no way to see what's in your CareTime install.</p>
+<p>The data CareTime <strong>captures and stores locally on your iPhone</strong>:</p>
+<ul><li><strong>Care recipient information</strong> you type in (name, role label, per-recipient timesheet code).</li><li><strong>Care activities</strong> you log: start time, end time, optional notes, the activity tapped, and which recipient the time is attributed to.</li><li><strong>Location</strong> at clock-in and clock-out, <strong>only if</strong> you grant Location permission. One fix per tap; no background tracking. Used for EVV (electronic visit verification) so visits can be verified later. If you don't grant Location, CareTime still works — the segments just don't get location data.</li><li><strong>Participant signatures</strong> you collect through the app, stored as an image alongside the segment.</li><li><strong>Optional PINs</strong> (4-digit participant PIN, 4–6-digit app-lock PIN). Both are hashed with PBKDF2-HMAC-SHA256 (210,000 iterations) before storage. The original numbers cannot be recovered.</li><li><strong>A SHA-256 audit log</strong> of every segment lifecycle event (start, stop, edit, etc.) so the record is tamper-evident.</li><li><strong>Settings</strong> you configure: employee + supervisor name and phone for the PDF header, pay period anchor, shift-block gap, billing provider name and submission contact line, default service code.</li></ul>
+<p>All of the above is stored inside the app's sandbox on this device.</p>
+<h2>What we don't collect</h2>
+<ul><li><strong>No account.</strong> You don't sign up. There's no "sign in" button.</li><li><strong>No analytics.</strong> We don't know how often you open the app, what buttons you tap, or whether you finished onboarding.</li><li><strong>No crash reports.</strong> The app does not phone home when something goes wrong.</li><li><strong>No advertising identifiers.</strong> Apple's IDFA is never requested.</li><li><strong>No tracking across other apps or websites.</strong></li><li><strong>No HealthKit, Motion, or photo-library access.</strong></li><li><strong>No background location.</strong> Permission is "When-In-Use" only.</li><li><strong>No microphone access.</strong> (Dictation in notes happens via the iOS keyboard, which Apple handles on-device — CareTime never sees the raw audio.)</li><li><strong>No automatic uploads</strong> to any billing provider, Sandata, HHAeXchange, CareBridge, AuthentiCare, or any state EVV system. Submissions to those systems happen out-of-app via your existing flow with your billing provider.</li></ul>
+<h2>When data leaves the device</h2>
+<p>The only paths data takes off your device are user-initiated:</p>
+<ol><li><strong>PDF Share.</strong> When you tap <strong>Generate &amp; Share</strong> on a timesheet, EVV report, or plan-adherence report, iOS's standard share sheet decides where the PDF goes. CareTime doesn't pick a destination — you do. The PDF contains the data you'd expect (recipient name, care segments, times, signatures, etc.).</li><li><strong>iPhone iCloud Backup.</strong> If you have <strong>Settings → [your name] → iCloud → iCloud Backup</strong> enabled, your iPhone backs up the entire app sandbox to your private iCloud as part of the system backup. This is encrypted end-to-end if you have Advanced Data Protection on, and encrypted in transit + at rest in all configurations. It is <strong>the operating system</strong> doing this, not CareTime — CareTime itself never uploads anything to iCloud. The benefit: if you lose or replace your phone, your CareTime data restores with the rest of your apps.</li></ol>
+<h2>Children</h2>
+<p>CareTime is not directed at children under 13. The expected user is an adult caregiver. The app does not request a date of birth or any information sufficient to identify a person as a child.</p>
+<h2>Health information</h2>
+<p>CareTime stores notes about care provided to your recipient(s). In the United States, this information <strong>may be considered Protected Health Information (PHI) under HIPAA</strong>, depending on your role and your billing provider's status as a covered entity. CareTime is <strong>designed to minimise the risk</strong> of inadvertent PHI exposure by:</p>
+<ul><li>Storing all data locally on your device.</li><li>Never transmitting any data to any third party.</li><li>Hashing PINs before storage.</li><li>Sandboxing the app per iOS standards.</li><li>Optional app lock (PIN + biometrics + auto-lock).</li></ul>
+<p>We do not sign Business Associate Agreements; CareTime is sold as a <strong>personal-use</strong> caregiving tool to caregivers, not to billing providers or covered entities. If you are subject to HIPAA obligations through your employer / billing provider, consult your compliance officer before using CareTime for record-keeping.</p>
+<h2>Cookies, beacons, web tracking</h2>
+<p>The CareTime iOS app does not embed a web view that loads remote content. The only web request it can make is to open a support contact link in your default browser when you tap <strong>Settings → Help → Support / report a bug</strong> — that flow opens your browser, not an in-app webview, and CareTime sends no data with the URL.</p>
+<h2>Changes to this policy</h2>
+<p>If we change what CareTime does with data, we'll update this page and bump the version number above. App Store will require us to re-confirm the App Privacy disclosures for the next release.</p>
+<h2>Contact</h2>
+<p>This policy is hosted at <strong><a href="https://spacetrucker2196.github.io/TimeForCare/privacy">spacetrucker2196.github.io/TimeForCare/privacy</a></strong> and mirrored at <strong><a href="https://www.river.io/caretime/privacy.html">www.river.io/caretime/privacy.html</a></strong>.</p>
+<p>To ask a question about this policy or about how CareTime EVV handles data, email <strong><a href="mailto:support@river.io">support@river.io</a></strong>. We respond within a few business days.</p>
+<hr />
+<p><a href="./">← back to CareTime EVV</a></p>
+</main>
+<footer><div>CareTime EVV · River.io LLC · <a href="mailto:support@river.io">support@river.io</a></div></footer>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Crane — vendor-neutral healthcare workforce infrastructure</title>
+<meta name="description" content="Crane is a graph-backed, vendor-neutral marketplace for healthcare contingent labor: post once, everyone bids fairly, only credential-compliant workers get through, and the provider keeps the fee." />
+<link rel="icon" type="image/png" href="assets/crane.png" />
+<link rel="stylesheet" href="site.css" />
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand"><img src="assets/crane.png" alt="" /> Crane</div>
+    <nav class="nav-links">
+      <a href="#loop">How it works</a>
+      <a href="#personas">Who it serves</a>
+      <a href="#guarantees">Guarantees</a>
+      <a href="pitch.html">Pitch</a>
+      <a href="https://spacetrucker-galactic.tail01d814.ts.net/">Live demo</a>
+      <a href="security.html">Security</a>
+      <a href="https://github.com/SpaceTrucker2196/crane">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <img class="crane" src="assets/crane.png" alt="The Crane mark — a crane with a stethoscope" />
+    <div class="eyebrow">Healthcare workforce infrastructure</div>
+    <h1>Run your own staffing market.<br/>Keep the fee.</h1>
+    <p class="lede">Crane is a vendor-neutral marketplace for healthcare contingent labor,
+    built on a graph database — because staffing is a fairness network, not a spreadsheet.</p>
+    <p class="tagline">Post once. Everyone bids fairly. Only compliant workers get through.
+    The 2–6% an outside MSP would skim stays with you.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://spacetrucker-galactic.tail01d814.ts.net/">Try the live demo</a>
+      <a class="btn ghost" href="pitch.html">See the pitch</a>
+      <a class="btn ghost" href="https://github.com/SpaceTrucker2196/crane">See the code</a>
+    </div>
+  </div>
+</div>
+
+<section id="loop">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>One honest loop</h2>
+      <p>The whole product is a single loop a charge nurse can explain — with a hard gate at both doors.</p>
+    </div>
+    <div class="loop">
+      <div class="card"><h3>Post</h3><p>Four fields. Requirements derive from your accreditation — you see exactly what the shift will demand before you post it.</p></div>
+      <div class="card"><h3>Broadcast</h3><p>Every panel agency gets the shift in one transaction at one timestamp — or rung by rung on your tier ladder, each rung atomic.</p></div>
+      <div class="card"><h3>Bid</h3><p>Agencies submit candidates blind to each other. Recruiters see a ranked roster with every point of the match explained.</p></div>
+      <div class="card"><h3>Gate</h3><p>Non-compliant workers are hard-blocked at submission <em>and re-checked at award</em>. No override, no per-tenant switch.</p></div>
+      <div class="card"><h3>Place &amp; pay</h3><p>Award, geofenced time, invoice and vendor pay from the graph path — exact integer cents, traceable to the edges they came from.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Bids land while you watch</h2>
+      <p>The order page streams. A recruiter submits; the row appears — rates, margin, and the live
+      credential-gate verdict — before you've touched anything.</p>
+    </div>
+    <div class="panel" role="img" aria-label="The provider's live order view">
+      <div class="bar"><span class="dot2"></span><span class="dot2"></span><span class="dot2"></span>
+        <span class="title">RN · ICU · starts 2026-07-18 07:00 &nbsp;·&nbsp; Submissions <span class="chip info">live</span></span>
+      </div>
+      <table>
+        <thead><tr><th>Agency</th><th>Worker</th><th class="num">Bill</th><th class="num">Pay</th><th class="num">Margin</th><th>Credential gate</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>Valley Staffing</td><td>Dana Ruiz</td><td class="num">$92.00</td><td class="num">$64.00</td><td class="num">$28.00</td><td><span class="chip ok">compliant</span></td><td><span class="pill">Award</span></td></tr>
+          <tr><td>Desert Medical</td><td>P. Kim</td><td class="num">$88.00</td><td class="num">$60.00</td><td class="num">$28.00</td><td><span class="chip warn">blocked</span> <span class="mutedsm">missing: ACLS</span></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="caption">You see every rate — bill, pay, and the spread. A blocked candidate can't be awarded,
+    however cheap the bid; the gate names exactly what's missing.</p>
+  </div>
+</section>
+
+<section id="personas">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Built for all three sides</h2>
+      <p>One data spine, three portals — each shows its people exactly their own work, and nothing else.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="k">Facilities &amp; health systems</div>
+        <h3>Fill fast, stay survey-ready</h3>
+        <p>Post in seconds with derived requirements. Compare bids with the margin visible. Watch fills live.
+        Cancel late and the contract guarantee is computed for you. Every gate decision is on record —
+        download the evidence pack when the surveyor asks.</p>
+      </div>
+      <div class="card">
+        <div class="k">Staffing agencies</div>
+        <h3>Win on fit, not refresh speed</h3>
+        <p>Every broadcast reaches you at the same instant as everyone else — provably. Your roster is ranked
+        per order with the reasons spelled out, blocked workers flagged before you waste a submission, and
+        raised hands from your own clinicians land in your inbox.</p>
+      </div>
+      <div class="card">
+        <div class="k">Clinicians</div>
+        <h3>Your credentials travel with you</h3>
+        <p>A worker-owned wallet: share your credential status with any facility, revoke any time, see exactly
+        who can look. A ranked shift feed shows what you can work today — and which single credential unlocks
+        the next one. Late cancellation? The guarantee pays.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="guarantees" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Four things Crane guarantees</h2>
+      <p>Not policies — invariants. Each one is enforced by code and proven by a test that ships with the product.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3>Vendor-neutral by construction</h3>
+        <p>A broadcast writes every agency's edge in one transaction with one identical timestamp.
+        Neutrality isn't asserted — it's a query any auditor can run, per tier.</p>
+      </div>
+      <div class="card">
+        <h3>The gate hard-blocks</h3>
+        <p>Requirements derive from your accreditation, state, role, and unit. A worker missing any of them —
+        or on a sanctions list — cannot be submitted <em>or awarded</em>. Incumbents alert; Crane enforces.</p>
+      </div>
+      <div class="card">
+        <h3>Money math is exact</h3>
+        <p>Integer cents, computed from the graph money path, never estimated or silently rounded.
+        Every invoice, vendor payment, fee, and cancellation guarantee traces to the edges it came from.</p>
+      </div>
+      <div class="card">
+        <h3>PHI never touches the marketplace</h3>
+        <p>Documents, license numbers — even names — live in an encrypted vault, decryptable only along a
+        valid authorization edge. The graph holds relationships and opaque references. Provable by scan.</p>
+      </div>
+    </div>
+    <p class="quoteline">Post once. Everyone bids fairly. Only compliant workers get through. The provider keeps the fee.</p>
+  </div>
+</section>
+
+<section id="receipts">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The receipts, not just the alerts</h2>
+      <p>Credentialing platforms tell you something expired. Crane is the enforcement layer — and it keeps the evidence.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="k">Gate-decision trail</div>
+        <h3>Every allow and block, on record</h3>
+        <p>Each gate evaluation — including blocked attempts that never became submissions — leaves a decision
+        with the reason and timestamp. Export any survey window as CSV. Nobody else sells the decision record.</p>
+      </div>
+      <div class="card">
+        <div class="k">Continuous monitoring</div>
+        <h3>Truth doesn't go stale</h3>
+        <p>Primary-source re-verification on a cadence; exclusion feeds and public-list screening that flag
+        candidates for human review — a confirmed hit blocks instantly, a name match alone never does.</p>
+      </div>
+      <div class="card">
+        <div class="k">Self-healing market</div>
+        <h3>A pulled shift reposts itself</h3>
+        <p>Cancellation marks the record, reposts to your whole panel at one instant, demands no less than the
+        original order — and pays the worker's contract guarantee when you cancelled late.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Why a graph</h2>
+      <p>Staffing is a cross-tenant routing and fairness network — who may see whom, who reached whom first,
+      which path the money took. Those are graph questions. Crane keeps them as edges in Neo4j, so
+      neutrality, eligibility, authorization, and money are all answered the same way: by traversal,
+      provably, one hop from the data they came from.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand center"><img src="assets/crane.png" alt="" /> Crane</div>
+    <div>
+      <a href="security.html">Security &amp; compliance</a> ·
+      <a href="https://github.com/SpaceTrucker2196/crane">GitHub</a> ·
+      <a href="https://github.com/SpaceTrucker2196/crane/blob/main/MISSION.md">Mission</a> ·
+      <a href="https://github.com/SpaceTrucker2196/crane/blob/main/TECHNICAL.md">Technical</a>
+    </div>
+    <div class="foot-note">Elixir · Neo4j · an encrypted PHI vault · tested invariants</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Otter — the operating system for a solo software-development business. A native macOS app: stage-gated client pipeline, CRM and billing in local SQLite, specs as plain Markdown, billing imported exactly from append-only ledgers." />
+<meta name="color-scheme" content="light dark" />
+<title>Otter — the operating system for a solo software business · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* ────────────────────────────────────────────────────────────
+     Otter — same flat Swiss system as the river.io software
+     register: neo-grotesque, hard 1px rules, no shadows, no
+     gradients, no radii. Light and dark are both first-class.
+     ──────────────────────────────────────────────────────────── */
+  :root{
+    --bg:#ffffff; --surface:#fafafa; --surface-2:#f2f2f4;
+    --ink:#0a0a0b; --ink-2:#4a4a51; --muted:#84848c;
+    --line:#e0e0e4; --line-strong:#0a0a0b;
+    --brand:#1f4fd8; --a:#c2410c;
+    --sans:"Helvetica Neue",Helvetica,"Archivo",Arial,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --maxw:1180px; --gut:32px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#08080a; --surface:#0f0f12; --surface-2:#16161a;
+      --ink:#f4f4f6; --ink-2:#a9a9b2; --muted:#6f6f78;
+      --line:#26262c; --line-strong:#f4f4f6;
+      --brand:#5b87ff; --a:#f97316;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#08080a; --surface:#0f0f12; --surface-2:#16161a;
+    --ink:#f4f4f6; --ink-2:#a9a9b2; --muted:#6f6f78;
+    --line:#26262c; --line-strong:#f4f4f6;
+    --brand:#5b87ff; --a:#f97316;
+  }
+  :root[data-theme="light"]{
+    --bg:#ffffff; --surface:#fafafa; --surface-2:#f2f2f4;
+    --ink:#0a0a0b; --ink-2:#4a4a51; --muted:#84848c;
+    --line:#e0e0e4; --line-strong:#0a0a0b;
+    --brand:#1f4fd8; --a:#c2410c;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  ::selection{background:var(--a);color:#fff}
+  :focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+  img{display:block;max-width:100%}
+  .in{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+
+  /* bar */
+  .bar{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+  .bar .in{height:52px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .id{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.04em;
+    text-transform:uppercase;text-decoration:none;white-space:nowrap}
+  .id span{color:var(--muted);font-weight:400}
+  .id b{color:var(--a);padding:0 .3em}
+  nav.top{display:flex;align-items:center}
+  nav.top a{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none;padding:8px 14px;border-left:1px solid var(--line);
+    transition:color .12s,background .12s}
+  nav.top a:hover{color:var(--ink);background:var(--surface-2)}
+  .toggle{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);background:transparent;border:0;border-left:1px solid var(--line);
+    padding:8px 14px;cursor:pointer;transition:color .12s,background .12s}
+  .toggle:hover{color:var(--ink);background:var(--surface-2)}
+
+  /* hero */
+  .hero{border-bottom:1px solid var(--line)}
+  .hero .in{padding:74px var(--gut) 66px}
+  .status{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;
+    letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);
+    border:1px solid var(--line);padding:7px 13px;margin-bottom:40px}
+  .status::before{content:"";width:8px;height:8px;background:var(--a);display:block}
+  h1{font-size:clamp(2.6rem,7vw,5.1rem);line-height:.94;letter-spacing:-.045em;font-weight:700;
+    margin:0;max-width:18ch}
+  h1 span{color:var(--muted);font-weight:400}
+  .lede{font-size:clamp(1rem,1.5vw,1.18rem);color:var(--ink-2);max-width:60ch;margin:30px 0 0}
+  .cta{display:flex;flex-wrap:wrap;margin:38px 0 0;
+    border-top:1px solid var(--line);border-left:1px solid var(--line);width:fit-content;max-width:100%}
+  .cta a{font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-decoration:none;
+    padding:13px 18px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    transition:background .12s,color .12s}
+  .cta a:hover{background:var(--a);color:#fff}
+  .cta a.key{background:var(--a);color:#fff;font-weight:500}
+  .cta a.key:hover{background:var(--ink);color:var(--bg)}
+
+  section{border-bottom:1px solid var(--line)}
+  section .in{padding:64px var(--gut) 70px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted);margin:0 0 26px}
+  h2{font-size:clamp(1.55rem,3.4vw,2.35rem);letter-spacing:-.035em;font-weight:700;margin:0 0 12px}
+  .sub{color:var(--ink-2);max-width:62ch;margin:0 0 38px;font-size:.98rem}
+
+  /* stage rail */
+  .rail{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));
+    border-top:1px solid var(--line-strong);border-left:1px solid var(--line)}
+  @media (max-width:980px){.rail{grid-template-columns:repeat(4,minmax(0,1fr))}}
+  @media (max-width:560px){.rail{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  .gate{padding:18px 15px 22px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    transition:background .12s}
+  .gate:hover{background:var(--surface-2)}
+  .gate .n{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--a);margin-bottom:12px}
+  .gate h3{font-size:.95rem;font-weight:600;letter-spacing:-.015em;margin:0 0 6px}
+  .gate p{margin:0;font-size:.81rem;line-height:1.45;color:var(--muted)}
+  .railnote{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--muted);margin-top:20px}
+
+  /* feature grid */
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--line-strong);border-left:1px solid var(--line)}
+  @media (max-width:900px){.grid3{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:600px){.grid3{grid-template-columns:1fr}}
+  .grid3 > div{padding:24px 24px 28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .grid3 .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:14px}
+  .grid3 h3{margin:0 0 8px;font-size:1.02rem;font-weight:600;letter-spacing:-.02em}
+  .grid3 p{margin:0;font-size:.89rem;line-height:1.52;color:var(--ink-2)}
+  .grid3 code{font-family:var(--mono);font-size:.86em;background:var(--surface-2);padding:1px 5px}
+
+  /* rules table */
+  .table{border-top:1px solid var(--line-strong)}
+  .trow{display:grid;grid-template-columns:220px minmax(0,1fr);gap:28px;
+    padding:20px 0 22px;border-bottom:1px solid var(--line)}
+  @media (max-width:660px){.trow{grid-template-columns:1fr;gap:6px}}
+  .trow .t{font-size:1rem;font-weight:600;letter-spacing:-.02em}
+  .trow .d{color:var(--ink-2);font-size:.92rem}
+
+  /* phases */
+  .phases{border-top:1px solid var(--line-strong)}
+  .ph{display:grid;grid-template-columns:44px 230px minmax(0,1fr);gap:20px;align-items:baseline;
+    padding:13px 0;border-bottom:1px solid var(--line)}
+  .ph .box{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .ph.done .box{color:var(--a)}
+  .ph .nm{font-size:.96rem;font-weight:600;letter-spacing:-.015em}
+  .ph .st{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--muted)}
+  @media (max-width:660px){.ph{grid-template-columns:34px minmax(0,1fr);row-gap:2px}.ph .st{grid-column:2}}
+
+  footer .in{padding:26px var(--gut) 58px;display:flex;flex-wrap:wrap;gap:12px 28px;
+    justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--muted)}
+  footer a{color:var(--ink-2);text-decoration:none}
+  footer a:hover{color:var(--a)}
+
+  .reveal{opacity:0;transition:opacity .4s linear}
+  .reveal.in{opacity:1}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transition:none}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>otter</span></a>
+    <nav class="top">
+      <a href="#pipeline">Pipeline</a>
+      <a href="#what">Capabilities</a>
+      <a href="#rules">Rules</a>
+      <a href="../software/">Register</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="in">
+    <div class="status">v0.1.0 · In development · macOS</div>
+    <h1>Otter.<br /><span>The operating system for a solo software business.</span></h1>
+    <p class="lede">One native Mac app for the whole practice: leads, scopes, deposits, sign-offs,
+      change requests, handoffs and invoices. The CRM lives in a SQLite file on your own machine.
+      Specs and proposals are plain Markdown you can grep, edit in any editor, and hand straight to a
+      coding agent. Nothing syncs anywhere you did not ask it to.</p>
+    <div class="cta">
+      <a class="key" href="mailto:info@river.io?subject=Otter%20—%20early%20access">Ask about early access</a>
+      <a href="#pipeline">See the pipeline</a>
+      <a href="../software/">River.io software register</a>
+    </div>
+  </div>
+</div>
+
+<section id="pipeline">
+  <div class="in reveal">
+    <div class="eyebrow">01 · The pipeline</div>
+    <h2>Eight gates between a stranger and a paid, closed-out project.</h2>
+    <p class="sub">Every freelance disaster is a skipped step. Otter makes each one a gate with a
+      checklist, tracks how long work has sat in a stage, and nudges when something goes quiet — but
+      any gate can be overridden with a reason, and the override is recorded.</p>
+    <div class="rail">
+      <div class="gate"><div class="n">01</div><h3>Qualify</h3><p>Is this real work, for a client who can pay?</p></div>
+      <div class="gate"><div class="n">02</div><h3>Scope</h3><p>Written, with what is explicitly out of scope.</p></div>
+      <div class="gate"><div class="n">03</div><h3>Deposit</h3><p>Money before build. No exceptions worth making.</p></div>
+      <div class="gate"><div class="n">04</div><h3>Sign-off</h3><p>Requirements agreed in writing, then frozen.</p></div>
+      <div class="gate"><div class="n">05</div><h3>Build</h3><p>Milestones, time and the files in one workspace.</p></div>
+      <div class="gate"><div class="n">06</div><h3>Changes</h3><p>Every change request priced against the original.</p></div>
+      <div class="gate"><div class="n">07</div><h3>Handoff</h3><p>Deliverables, credentials, documentation, done.</p></div>
+      <div class="gate"><div class="n">08</div><h3>Close-out</h3><p>Ask for the testimonial and portfolio permission.</p></div>
+    </div>
+    <p class="railnote">Kanban board · days-in-stage badges · nudge rules · a ranked NOW list of five things · quick-capture hotkey into the inbox</p>
+  </div>
+</section>
+
+<section id="what">
+  <div class="in reveal">
+    <div class="eyebrow">02 · Capabilities</div>
+    <h2>A business system that survives being deleted.</h2>
+    <p class="sub">Everything Otter manages stays in formats that outlive it: a SQLite file, a folder
+      of Markdown, your own repositories.</p>
+    <div class="grid3">
+      <div>
+        <div class="k">CRM &amp; pipeline</div>
+        <h3>Clients, leads and the board</h3>
+        <p>Leads from Fiverr, Twine, LinkedIn and plain referral, moving through the stage gates with
+          interactions, checklists and nudges. Stored in local SQLite via GRDB — one file, yours.</p>
+      </div>
+      <div>
+        <div class="k">Files workspace</div>
+        <h3>Specs as plain Markdown</h3>
+        <p>Proposals, scopes, requirements and meeting notes are Markdown in a folder you choose,
+          watched live. Grep them, edit them anywhere, feed them to an agent.</p>
+      </div>
+      <div>
+        <div class="k">Billing</div>
+        <h3>Ledger truth, never an estimate</h3>
+        <p>Invoices are built from append-only per-repo <code>LEDGER.md</code> files, parsed exactly.
+          Invoiced rows become immutable; an ambiguity is an error, not a guess.</p>
+      </div>
+      <div>
+        <div class="k">Integrations</div>
+        <h3>Nothing that risks the accounts</h3>
+        <p>The official GitHub API, official LinkedIn posting OAuth, and parsing of your own
+          notification emails. No scraping, no credential replay, no stored marketplace passwords.</p>
+      </div>
+      <div>
+        <div class="k">Factory feed</div>
+        <h3>Every repository, read-only</h3>
+        <p>A live, read-only view of each project repo: recent commits, metrics, progress notes and
+          the tail of its ledger — so the business view and the code view agree.</p>
+      </div>
+      <div>
+        <div class="k">Showcase</div>
+        <h3>Close-out feeds the portfolio</h3>
+        <p>Testimonials and portfolio permissions are captured at close-out, while the client is
+          still delighted, rather than chased down six months later.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="rules">
+  <div class="in reveal">
+    <div class="eyebrow">03 · Non-negotiables</div>
+    <h2>Five rules the app is not allowed to break.</h2>
+    <p class="sub">These are architectural, not preferences — they constrain what Otter is permitted
+      to do with your business.</p>
+    <div class="table">
+      <div class="trow"><div class="t">Billing is bill-quality</div>
+        <div class="d">Ledgers are parsed exactly, never estimated. Once a row has been invoiced it is
+          immutable. Ambiguity is an error the owner sees, not a number the app invents.</div></div>
+      <div class="trow"><div class="t">Never risk the income</div>
+        <div class="d">No automated login, credential replay, headless scraping or unofficial API calls
+          against the marketplaces. Official OAuth and your own mailbox, or nothing.</div></div>
+      <div class="trow"><div class="t">Client data stays local</div>
+        <div class="d">No telemetry, no cloud sync, no outbound calls beyond the integrations you
+          explicitly connected. Secrets live in the macOS Keychain, never in the database.</div></div>
+      <div class="trow"><div class="t">Advise, don't imprison</div>
+        <div class="d">Every stage gate can be overridden with a reason, and every override is written
+          into the stage history. The process serves you, not the other way round.</div></div>
+      <div class="trow"><div class="t">The files are yours</div>
+        <div class="d">The workspace stays plain Markdown that remains fully usable if Otter is
+          deleted. The database holds references and hashes, never the only copy of anything.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="status">
+  <div class="in reveal">
+    <div class="eyebrow">04 · Status</div>
+    <h2>Built in eight phases. Six are done.</h2>
+    <p class="sub">Otter is a working tool for River.io LLC first and a product for other freelancers
+      second. It is not on the Mac App Store yet and there is no public download — if the shape of it
+      is interesting to you, write and say so.</p>
+    <div class="phases">
+      <div class="ph done"><span class="box">[x]</span><span class="nm">0 · Scaffold</span><span class="st">Project, library shells, factory docs</span></div>
+      <div class="ph done"><span class="box">[x]</span><span class="nm">1 · Domain &amp; storage</span><span class="st">Entities, stage machines, gates, schema</span></div>
+      <div class="ph done"><span class="box">[x]</span><span class="nm">2 · CRM &amp; leads</span><span class="st">Kanban, nudges, NOW list, quick capture</span></div>
+      <div class="ph done"><span class="box">[x]</span><span class="nm">3 · Files &amp; projects</span><span class="st">Markdown workspace, milestones, handoff</span></div>
+      <div class="ph done"><span class="box">[x]</span><span class="nm">4 · Ledger &amp; invoicing</span><span class="st">Time, ledger import, invoices</span></div>
+      <div class="ph done"><span class="box">[x]</span><span class="nm">5 · GitHub &amp; showcase</span><span class="st">Repository feed, testimonials, portfolio</span></div>
+      <div class="ph"><span class="box">[~]</span><span class="nm">6 · Publishing &amp; email</span><span class="st">In progress</span></div>
+      <div class="ph"><span class="box">[~]</span><span class="nm">7 · Polish &amp; packaging</span><span class="st">In progress</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="in">
+    <span>Otter · River.io LLC</span>
+    <span><a href="../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Local-first · macOS</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+  (function(){
+    var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+    var els=[].slice.call(document.querySelectorAll('.reveal'));
+    if(reduce||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:.04});
+    els.forEach(function(e){io.observe(e);});
+  })();
+</script>
+</body>
+</html>

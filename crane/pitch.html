@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Crane — Pitch Deck</title>
+<link rel="icon" type="image/png" href="assets/crane.png" />
+<style>
+  :root{
+    --ground:#f5f8f7; --panel:#ffffff; --ink:#0c1a1c; --ink-2:#213133;
+    --muted:#5b6f6d; --line:#dde7e5; --line-2:#c9d7d4;
+    --accent:#0e8f8c; --accent-ink:#0a6b69; --accent-soft:#e3f2f0;
+    --signal:#b9761b; --signal-soft:#f7ecdb;
+    --grid:rgba(14,143,140,.10);
+    --shadow:0 1px 0 rgba(12,26,28,.03), 0 18px 40px -28px rgba(12,26,28,.28);
+    --mono:ui-monospace,"SF Mono",Menlo,"Cascadia Mono",Consolas,monospace;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --maxw:1080px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#0b1315; --panel:#0f1c1e; --ink:#e8f1ef; --ink-2:#c3d3d0;
+      --muted:#8ba39f; --line:#213437; --line-2:#2c4247;
+      --accent:#22b3ad; --accent-ink:#57cfc8; --accent-soft:#122a2a;
+      --signal:#e0a24a; --signal-soft:#2a2113;
+      --grid:rgba(34,179,173,.10);
+      --shadow:0 1px 0 rgba(0,0,0,.4), 0 22px 46px -30px rgba(0,0,0,.75);
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#f5f8f7; --panel:#ffffff; --ink:#0c1a1c; --ink-2:#213133;
+    --muted:#5b6f6d; --line:#dde7e5; --line-2:#c9d7d4;
+    --accent:#0e8f8c; --accent-ink:#0a6b69; --accent-soft:#e3f2f0;
+    --signal:#b9761b; --signal-soft:#f7ecdb; --grid:rgba(14,143,140,.10);
+    --shadow:0 1px 0 rgba(12,26,28,.03), 0 18px 40px -28px rgba(12,26,28,.28);
+  }
+  :root[data-theme="dark"]{
+    --ground:#0b1315; --panel:#0f1c1e; --ink:#e8f1ef; --ink-2:#c3d3d0;
+    --muted:#8ba39f; --line:#213437; --line-2:#2c4247;
+    --accent:#22b3ad; --accent-ink:#57cfc8; --accent-soft:#122a2a;
+    --signal:#e0a24a; --signal-soft:#2a2113; --grid:rgba(34,179,173,.10);
+    --shadow:0 1px 0 rgba(0,0,0,.4), 0 22px 46px -30px rgba(0,0,0,.75);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0;background:var(--ground);color:var(--ink);
+    font-family:var(--sans);line-height:1.6;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+
+  /* progress rail + brand bar */
+  .rail{position:fixed;top:0;left:0;height:3px;width:100%;z-index:40;background:transparent}
+  .rail>i{display:block;height:100%;width:0;background:var(--accent);transition:width .12s linear}
+  .topbar{
+    position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--ground) 86%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  }
+  .topbar .in{
+    max-width:var(--maxw);margin:0 auto;padding:12px 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-weight:600;letter-spacing:.02em}
+  .brand .mark{width:22px;height:22px;flex:0 0 auto}
+  .brand b{font-weight:700;letter-spacing:.14em;font-size:.92rem}
+  .kicker{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .themetoggle{
+    font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:999px;
+    padding:6px 12px;cursor:pointer;transition:border-color .15s,color .15s;
+  }
+  .themetoggle:hover{border-color:var(--accent);color:var(--accent-ink)}
+
+  main{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .slide{
+    padding:88px 0;border-top:1px solid var(--line);
+    opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;
+  }
+  .slide:first-of-type{border-top:0}
+  .slide.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.slide{opacity:1;transform:none;transition:none}}
+
+  .eyebrow{
+    display:flex;align-items:center;gap:12px;
+    font-family:var(--mono);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-ink);
+    margin-bottom:22px;
+  }
+  .eyebrow .n{color:var(--muted)}
+  .eyebrow .bar{height:1px;flex:1;background:var(--line-2);max-width:120px}
+
+  h1,h2,h3{text-wrap:balance;margin:0}
+  h2{font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:750;letter-spacing:-.02em;line-height:1.08}
+  h3{font-size:1.02rem;font-weight:700;letter-spacing:-.01em}
+  .lead{font-size:clamp(1.05rem,1.6vw,1.28rem);color:var(--ink-2);max-width:62ch;margin-top:18px}
+  p{max-width:64ch}
+  .muted{color:var(--muted)}
+  strong{color:var(--ink);font-weight:680}
+
+  /* hero */
+  .hero{
+    padding:96px 0 84px;border-top:0;position:relative;overflow:hidden;
+  }
+  .hero .grid-bg{
+    position:absolute;inset:-2px -40px auto -40px;height:340px;pointer-events:none;z-index:0;
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:34px 34px;
+    -webkit-mask-image:linear-gradient(to bottom,#000,transparent);mask-image:linear-gradient(to bottom,#000,transparent);
+  }
+  .hero>*{position:relative;z-index:1}
+  .hero h1{
+    font-size:clamp(2.5rem,6.2vw,4.6rem);font-weight:800;letter-spacing:-.035em;line-height:1.02;
+    max-width:16ch;margin-top:8px;
+  }
+  .hero h1 .em{color:var(--accent-ink)}
+  .hero .sub{font-size:clamp(1.05rem,1.7vw,1.32rem);color:var(--ink-2);max-width:58ch;margin-top:24px}
+  .tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+  .tag{
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--accent-ink);
+    background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);
+    padding:7px 13px;border-radius:999px;
+  }
+  .wordmark{font-family:var(--mono);font-size:.8rem;letter-spacing:.34em;color:var(--muted);text-transform:uppercase}
+
+  /* generic lists */
+  .rows{display:flex;flex-direction:column;gap:2px;margin-top:30px}
+  .row{
+    display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;
+    padding:18px 2px;border-bottom:1px solid var(--line);
+  }
+  .row:last-child{border-bottom:0}
+  .row .lbl{font-weight:700;color:var(--ink);min-width:0}
+  .row .dsc{color:var(--muted)}
+  .row .idx{font-family:var(--mono);color:var(--accent);font-size:.95rem;font-weight:600;padding-top:2px}
+
+  /* cards */
+  .cards{display:grid;gap:16px;margin-top:32px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;
+    box-shadow:var(--shadow);
+  }
+  .card .who{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:10px}
+  .card p{margin:6px 0 0;color:var(--muted);font-size:.96rem}
+
+  /* the spine / flow diagram */
+  .flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:10px;margin-top:34px}
+  .step{
+    flex:1 1 150px;min-width:150px;background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:16px 16px 18px;position:relative;box-shadow:var(--shadow);
+  }
+  .step .t{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink)}
+  .step .h{font-weight:700;margin-top:8px;font-size:1.02rem}
+  .step .m{color:var(--muted);font-size:.86rem;margin-top:4px}
+  .flow .arrow{display:flex;align-items:center;color:var(--line-2);flex:0 0 auto}
+  @media (max-width:720px){.flow .arrow{transform:rotate(90deg)}}
+  .gatestep{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));background:var(--accent-soft)}
+
+  /* problem/cost accents */
+  .signal .eyebrow{color:var(--signal)}
+  .signal .row .idx{color:var(--signal)}
+  .costgrid{display:grid;gap:14px;margin-top:30px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .cost{
+    background:var(--signal-soft);border:1px solid color-mix(in srgb,var(--signal) 28%,transparent);
+    border-radius:14px;padding:20px 22px;
+  }
+  .cost .t{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--signal);margin-bottom:8px}
+  .cost p{margin:0;color:var(--ink-2);font-size:.98rem}
+
+  /* pull statement */
+  .pull{
+    margin-top:34px;padding:26px 28px;border-left:3px solid var(--accent);
+    background:var(--accent-soft);border-radius:0 12px 12px 0;
+    font-size:clamp(1.1rem,1.8vw,1.4rem);font-weight:650;letter-spacing:-.01em;color:var(--ink);max-width:none;
+  }
+
+  /* status metrics */
+  .metrics{display:grid;gap:14px;margin-top:30px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+  .metric{border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--panel)}
+  .metric .v{font-size:1.9rem;font-weight:750;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .metric .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+
+  /* CTA */
+  .cta{padding-bottom:110px}
+  .cta h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.03em}
+  .cta .actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+  .btn{
+    font-family:var(--mono);font-size:.82rem;letter-spacing:.04em;text-decoration:none;
+    padding:13px 20px;border-radius:10px;border:1px solid var(--line-2);color:var(--ink);
+    transition:border-color .15s,background .15s,color .15s;
+  }
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  :root[data-theme="dark"] .btn.primary{color:#04211f}
+  @media (prefers-color-scheme:dark){.btn.primary{color:#04211f}}
+  .btn:hover{border-color:var(--accent)}
+  .btn.primary:hover{background:var(--accent-ink)}
+
+  a{color:var(--accent-ink)}
+  a:focus-visible,button:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+  .foot{border-top:1px solid var(--line);padding:26px 0 60px;color:var(--muted);font-family:var(--mono);font-size:.72rem;letter-spacing:.08em}
+  .foot .in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+</style>
+</head>
+<body>
+<div class="rail"><i id="rail"></i></div>
+
+<header class="topbar">
+  <div class="in">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="4" stroke="var(--accent)" stroke-width="1.6"/>
+        <path d="M7 15.5 L11 9 L14 13 L17 8.5" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <b>CRANE</b>
+    </div>
+    <span class="kicker">Healthcare workforce infrastructure</span>
+    <a class="themetoggle" href="index.html" style="text-decoration:none;margin-right:8px">← Site</a>
+    <button class="themetoggle" id="tt" aria-label="Toggle colour theme">Theme</button>
+  </div>
+</header>
+
+<main>
+
+  <section class="slide hero in" id="s0">
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="wordmark">Crane</div>
+    <h1>The neutral operating system for <span class="em">healthcare shift work</span>.</h1>
+    <p class="sub">One place a hospital posts a shift, every credentialed agency competes for it at the
+      same instant, and only a compliant clinician can be placed — with exact, auditable money end to end.</p>
+    <div class="tags">
+      <span class="tag">Vendor-neutral</span>
+      <span class="tag">Credential-gated</span>
+      <span class="tag">HIPAA-postured</span>
+    </div>
+  </section>
+
+  <section class="slide signal" id="s1">
+    <div class="eyebrow"><span class="n">01</span> · The problem <span class="bar"></span></div>
+    <h2>Filling clinical shifts is fragmented, opaque, and risky.</h2>
+    <div class="rows">
+      <div class="row"><span class="idx">01</span><div><span class="lbl">Fragmentation. </span><span class="dsc">A scheduler juggles a dozen agency portals, emails, and spreadsheets to cover one open shift.</span></div></div>
+      <div class="row"><span class="idx">02</span><div><span class="lbl">Opaque markups. </span><span class="dsc">MSP/VMS intermediaries insert a house agency and skim; the buyer can't see the real bill-vs-pay spread.</span></div></div>
+      <div class="row"><span class="idx">03</span><div><span class="lbl">Compliance exposure. </span><span class="dsc">Nothing structurally stops an under-credentialed or excluded worker from being placed — a patient-safety and liability landmine.</span></div></div>
+      <div class="row"><span class="idx">04</span><div><span class="lbl">Coverage gaps. </span><span class="dsc">Shifts starting tonight go unfilled while bids sit unseen; the fallback is overtime and burnout.</span></div></div>
+      <div class="row"><span class="idx">05</span><div><span class="lbl">Credentials don't travel. </span><span class="dsc">A nurse re-proves the same licenses to every agency; the wallet is trapped.</span></div></div>
+    </div>
+  </section>
+
+  <section class="slide signal" id="s2">
+    <div class="eyebrow"><span class="n">02</span> · Why it costs real money <span class="bar"></span></div>
+    <h2>The buyer pays more, moves slower, and carries risk they can't measure.</h2>
+    <div class="costgrid">
+      <div class="cost"><div class="t">Unfilled shift</div><p>Patient risk, plus premium overtime or a last-minute premium-rate agency call.</p></div>
+      <div class="cost"><div class="t">Non-compliant placement</div><p>Regulatory exposure and reputational risk — the kind that ends contracts.</p></div>
+      <div class="cost"><div class="t">Hidden markup</div><p>Every dollar of intermediary skim is margin the facility and the clinician never see.</p></div>
+    </div>
+  </section>
+
+  <section class="slide" id="s3">
+    <div class="eyebrow"><span class="n">03</span> · The solution <span class="bar"></span></div>
+    <h2>Crane is the neutral marketplace — and the infrastructure under it.</h2>
+    <p class="lead">Providers post shifts once. The shift is broadcast to the whole eligible agency panel
+      <strong>atomically</strong> — one transaction, one timestamp, no agency favored. Agencies bid their
+      workers; the <strong>credential gate hard-blocks</strong> anyone missing a required credential. The buyer
+      awards the best <em>compliant</em> bid, sees the exact spread, and the money flows through GAAP-clean
+      invoicing and payroll.</p>
+    <div class="pull">No house agency. No hidden markup. No un-credentialed placement.</div>
+  </section>
+
+  <section class="slide" id="s4">
+    <div class="eyebrow"><span class="n">04</span> · How it works <span class="bar"></span></div>
+    <h2>Every step is a fact on the graph, not a promise.</h2>
+    <div class="flow">
+      <div class="step"><div class="t">Provider</div><div class="h">Post shift</div><div class="m">Role, unit, time — with the required credentials shown up front.</div></div>
+      <div class="arrow" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 12h15m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="step"><div class="t">Atomic</div><div class="h">Broadcast</div><div class="m">All panel agencies, one instant — neutrality provable by query.</div></div>
+      <div class="arrow" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 12h15m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="step gatestep"><div class="t">Hard gate</div><div class="h">Bid + screen</div><div class="m">A worker missing any credential simply can't be submitted.</div></div>
+      <div class="arrow" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 12h15m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="step"><div class="t">Money</div><div class="h">Award → invoice</div><div class="m">Best compliant bid; exact cents, GAAP double-entry, payroll out.</div></div>
+    </div>
+  </section>
+
+  <section class="slide" id="s5">
+    <div class="eyebrow"><span class="n">05</span> · The moats <span class="bar"></span></div>
+    <h2>Five invariants — enforced in code, each with a test that is its oracle.</h2>
+    <p class="muted" style="margin-top:16px">Competitors <em>promise</em> neutrality and compliance. Crane makes them structural.</p>
+    <div class="rows">
+      <div class="row"><span class="idx">01</span><div><span class="lbl">Vendor-neutral broadcast. </span><span class="dsc">All agencies get the shift in one transaction with one identical timestamp — provable by query, not asserted.</span></div></div>
+      <div class="row"><span class="idx">02</span><div><span class="lbl">Hard credential gate. </span><span class="dsc">A worker missing any required credential cannot be submitted or awarded. Never bypassed, never advisory.</span></div></div>
+      <div class="row"><span class="idx">03</span><div><span class="lbl">Exact, auditable money. </span><span class="dsc">Every fee, invoice, and payout is integer cents traced to the graph edges — never estimated or silently rounded.</span></div></div>
+      <div class="row"><span class="idx">04</span><div><span class="lbl">PHI stays in the vault. </span><span class="dsc">Documents, license numbers, even worker names are encrypted per-tenant; the graph holds only opaque references.</span></div></div>
+      <div class="row"><span class="idx">05</span><div><span class="lbl">Tamper-evident audit. </span><span class="dsc">A hash-chained trail plus least-privilege, per-area access. SOC 2-style controls, built in.</span></div></div>
+    </div>
+  </section>
+
+  <section class="slide" id="s6">
+    <div class="eyebrow"><span class="n">06</span> · The product today <span class="bar"></span></div>
+    <h2>A working, deployed platform — not slideware.</h2>
+    <p class="lead">Every user class has a purpose-built workspace and a role-tailored in-app guide.
+      Least-privilege throughout: a finance login never sees CRM; marketing never sees ops data.</p>
+    <div class="cards">
+      <div class="card"><div class="who">Providers</div><h3>Keep shifts covered</h3><p>A coverage worklist — bids to review, at-risk shifts starting soon — live bidding, one-click award, private worker ratings.</p></div>
+      <div class="card"><div class="who">Agencies</div><h3>Win on merit</h3><p>Broadcast board, gate-aware candidate submission, roster and credential management.</p></div>
+      <div class="card"><div class="who">Clinicians</div><h3>Own your wallet</h3><p>A day-by-day shift feed, a portable credential wallet with document upload, and granular sharing.</p></div>
+      <div class="card"><div class="who">Finance</div><h3>GAAP comptroller</h3><p>Double-entry ledger, AR aging & collections worklist, printable PDF invoices, ADP/CSV payroll export.</p></div>
+      <div class="card"><div class="who">Sales &amp; recruiting</div><h3>A real CRM</h3><p>Pipeline, contacts, follow-ups, one-step "log a touch," lead-to-client conversion.</p></div>
+      <div class="card"><div class="who">Operations</div><h3>Watch the platform</h3><p>Product, growth, and security dashboards over a hash-chained audit trail.</p></div>
+    </div>
+  </section>
+
+  <section class="slide" id="s7">
+    <div class="eyebrow"><span class="n">07</span> · Who buys it <span class="bar"></span></div>
+    <h2>Four buyers, one neutral rail.</h2>
+    <div class="cards">
+      <div class="card"><div class="who">Health systems</div><p>Fill faster, provably compliant, with a transparent bill-vs-pay spread.</p></div>
+      <div class="card"><div class="who">MSPs / programs</div><p>Run a genuinely neutral program instead of a conflicted one — keep the tech, drop the skim.</p></div>
+      <div class="card"><div class="who">Staffing agencies</div><p>Win on merit and rate, not on portal lock-in.</p></div>
+      <div class="card"><div class="who">Clinicians</div><p>A credential wallet that travels with them, not the agency.</p></div>
+    </div>
+  </section>
+
+  <section class="slide" id="s8">
+    <div class="eyebrow"><span class="n">08</span> · Business model <span class="bar"></span></div>
+    <h2>We earn when a shift is filled compliantly — not when a middleman is inserted.</h2>
+    <div class="rows">
+      <div class="row"><span class="idx">→</span><div><span class="lbl">Marketplace fee. </span><span class="dsc">A transparent take on the bill/pay spread, shown to both sides. No hidden markup is the product.</span></div></div>
+      <div class="row"><span class="idx">→</span><div><span class="lbl">Platform / SaaS. </span><span class="dsc">For MSPs and enterprises running their own neutral program on Crane.</span></div></div>
+      <div class="row"><span class="idx">→</span><div><span class="lbl">Aligned incentives. </span><span class="dsc">Crane profits from compliant fills, never from inserting an intermediary.</span></div></div>
+    </div>
+  </section>
+
+  <section class="slide" id="s8b">
+    <div class="eyebrow"><span class="n">09</span> · Distribution <span class="bar"></span></div>
+    <h2>We plug into the systems agencies already run — and list where they shop.</h2>
+    <p class="lead">Adoption doesn't mean ripping out an ATS or a credential wallet. Crane meets each side
+      where it already works, over a vendor-neutral adapter seam — and the integration doubles as the sales
+      channel.</p>
+    <div class="cards">
+      <div class="card"><div class="who">Credential wallet · built</div><h3>Workers arrive pre-documented</h3><p>Import a clinician's <strong>Kamana</strong> wallet straight toward the gate. Imports land unverified — another platform's word is a lead, not truth — so the gate still enforces until primary-source verification.</p></div>
+      <div class="card"><div class="who">ATS / CRM sync</div><h3>Recruiters never leave their desk</h3><p>Pull an agency's open reqs from <strong>Bullhorn</strong> or <strong>LaborEdge</strong> into Crane to broadcast, and push our candidate submissions back onto their req. Avionté / TempWorks follow.</p></div>
+      <div class="card"><div class="who">Distribution</div><h3>List where buyers shop</h3><p>A <strong>Bullhorn Marketplace</strong> listing is both the integration's proof and a channel to the exact agencies Crane wants — the working adapter is the shop window.</p></div>
+    </div>
+    <p class="muted" style="margin-top:22px">Neutral by construction: a sync only ever moves that agency's own demand and candidates — never a rival's bids or a provider's other vendors.</p>
+  </section>
+
+  <section class="slide" id="s9">
+    <div class="eyebrow"><span class="n">10</span> · Security &amp; compliance <span class="bar"></span></div>
+    <h2>Compliance by construction, not by policy PDF.</h2>
+    <div class="cards">
+      <div class="card"><div class="who">HIPAA</div><p>PHI never touches the marketplace graph — it's encrypted in a vault, decryptable only along a valid authorization edge.</p></div>
+      <div class="card"><div class="who">SOC 2-style</div><p>Hash-chained audit log, role-based least-privilege access, per-endpoint authorization, credential provenance.</p></div>
+      <div class="card"><div class="who">Continuous</div><p>The gate honors exclusion-list monitoring and re-checks at award — a credential that lapsed after submission is caught.</p></div>
+    </div>
+  </section>
+
+  <section class="slide" id="s10">
+    <div class="eyebrow"><span class="n">11</span> · Where we are <span class="bar"></span></div>
+    <h2>Pilot-ready product with every invariant enforced and tested.</h2>
+    <div class="metrics">
+      <div class="metric"><div class="v">~14</div><div class="k">Facilities (demo)</div></div>
+      <div class="metric"><div class="v">~10</div><div class="k">Agencies</div></div>
+      <div class="metric"><div class="v">~160</div><div class="k">Clinicians</div></div>
+      <div class="metric"><div class="v">~520</div><div class="k">Shifts / 90 days</div></div>
+    </div>
+    <p class="muted" style="margin-top:26px">Working backend + web app on a graph datastore, CI-gated (warnings-as-errors,
+      format, lint, types, unit + live-database integration — all hard gates). A deployed demo with a sign-in for
+      every role. <strong>Next: a design-partner health system.</strong></p>
+  </section>
+
+  <section class="slide cta" id="s11">
+    <div class="eyebrow"><span class="n">12</span> · The ask <span class="bar"></span></div>
+    <h2>Let's fill a shift the neutral way.</h2>
+    <p class="lead">A design-partner pilot — one unit, one panel — measured against your current fill time,
+      compliance exceptions, and blended rate. Walk the live demo end to end: sign in as a provider, an
+      agency, a clinician, and finance, and watch the same shift move through the whole spine.</p>
+    <div class="actions">
+      <a class="btn primary" href="#s0">Book the walkthrough</a>
+      <a class="btn" href="#s5">See the moats</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="in" style="max-width:var(--maxw);margin:0 auto;padding-left:24px;padding-right:24px">
+    <span>CRANE · Vendor-neutral healthcare workforce infrastructure</span>
+    <span>Pitch deck · confidential</span>
+  </div>
+</footer>
+
+<script>
+  // theme toggle: stamp data-theme so it wins over the media query both ways
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+  // scroll-reveal + progress rail
+  (function(){
+    var rail=document.getElementById('rail');
+    var slides=[].slice.call(document.querySelectorAll('.slide'));
+    var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if('IntersectionObserver' in window && !reduce){
+      var io=new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+      },{threshold:.16});
+      slides.forEach(function(s){ if(!s.classList.contains('hero')) io.observe(s); });
+    } else { slides.forEach(function(s){s.classList.add('in');}); }
+    function onScroll(){
+      var h=document.documentElement, sc=h.scrollTop||document.body.scrollTop;
+      var max=(h.scrollHeight-h.clientHeight)||1;
+      rail.style.width=(100*sc/max)+'%';
+    }
+    addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  })();
+</script>
+
+</body>
+</html>

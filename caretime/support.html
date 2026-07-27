@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support — CareTime EVV · river.io</title>
+<meta name="description" content="CareTime EVV support — how to get help, report a bug, or send feedback.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:#1c2b2d; --ink-soft:#4a5e60; --paper:#f4efe6; --paper-warm:#ece4d6;
+    --card:#fffdf8; --teal:#1f6f6b; --teal-deep:#16524f; --clay:#c66a4a;
+    --clay-deep:#a8543a; --line:#d8cebb;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-size:18px;line-height:1.65;
+    -webkit-font-smoothing:antialiased}
+  .nav{border-bottom:1px solid var(--line);background:var(--card)}
+  .nav div{max-width:760px;margin:0 auto;padding:16px 24px;display:flex;gap:18px;
+    align-items:baseline;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase}
+  .nav a{color:var(--teal);text-decoration:none}
+  .nav a:hover{color:var(--clay-deep)}
+  .nav .sp{flex:1}
+  main{max-width:760px;margin:0 auto;padding:52px 24px 90px}
+  h1{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:2.2rem;line-height:1.15;
+    letter-spacing:-.02em;margin:0 0 24px}
+  h2{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.42rem;letter-spacing:-.015em;
+    margin:44px 0 12px}
+  h3{font-family:"Fraunces",Georgia,serif;font-weight:500;font-size:1.14rem;margin:32px 0 10px}
+  p,li{color:var(--ink-soft)}
+  a{color:var(--teal-deep)}
+  ul,ol{padding-left:22px}
+  li{margin:6px 0}
+  blockquote{margin:22px 0;padding:16px 20px;background:var(--card);
+    border-left:3px solid var(--clay);color:var(--ink)}
+  blockquote p{margin:0 0 10px;color:inherit}
+  blockquote p:last-child{margin:0}
+  hr{border:0;border-top:1px solid var(--line);margin:38px 0}
+  code{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.88em;
+    background:var(--paper-warm);padding:1px 5px;border-radius:3px}
+  strong{color:var(--ink)}
+  footer{border-top:1px solid var(--line);background:var(--card)}
+  footer div{max-width:760px;margin:0 auto;padding:22px 24px 40px;font-size:.82rem;color:var(--ink-soft)}
+</style>
+</head>
+<body>
+<nav class="nav"><div>
+  <a href="./">CareTime EVV</a><span class="sp"></span>
+  <a href="privacy.html">Privacy</a><a href="support.html">Support</a>
+  <a href="../software/">river.io software</a>
+</div></nav>
+<main>
+<h1>CareTime EVV — Support</h1>
+<blockquote><p>Questions, bugs, or feedback: email <strong><a href="mailto:support@river.io">support@river.io</a></strong>. We'll respond within a few business days.</p></blockquote>
+<hr />
+<h2>Common questions</h2>
+<h3>My timesheet didn't match what my billing provider expects.</h3>
+<p>CareTime exports a single generic Self Determination Timesheet template. The <strong>data fields</strong> (date, service code, time in/out, total, tasks completed, signatures) carry the right information for most self-directed Medicaid programs — but the exact <strong>form layout</strong> your billing provider uses may differ. If your billing provider requires a specific form, tap <strong>Settings → Help → Request a timesheet template</strong> to email us — we'll add your provider's template. In the meantime, you can print the CareTime PDF as a worksheet and transcribe to their form. Set your provider name, submission contact line, and default service code in <strong>Settings → Pay period &amp; gap → Your billing provider</strong> so the header reflects your program.</p>
+<h3>A timer is running and I want to stop it.</h3>
+<p>Tap the active tile a second time, or tap the red <strong>Stop</strong> button in the bottom bar. Care under 30 seconds is discarded automatically (you'll see a "Discarded — under 30 seconds" toast).</p>
+<h3>I tapped the wrong activity.</h3>
+<p>Open the <strong>Day</strong> tab, tap the segment, change the activity in the edit sheet, and save. Editing a segment's start or end time auto-applies a "manual edit" flag so the audit trail shows the change.</p>
+<h3>Where do I edit Mom and Dad's names / codes?</h3>
+<p><strong>Settings → Recipients</strong>. Each recipient has a name, role label, primary toggle, and a per-recipient timesheet code that prints on the PDF header.</p>
+<h3>How do I change which Medicaid waiver / service code prints on rows?</h3>
+<p>Two places. <strong>Settings → Pay period &amp; gap → Default service code</strong> sets the code applied to new activities you add. To change the code on an existing activity, <strong>Settings → Activities → [tap the activity]</strong>.</p>
+<h3>A segment crossed midnight — what happened?</h3>
+<p>CareTime automatically splits segments at local midnight so each calendar day's hours stay clean. The split version flags both pieces as "cross-midnight split" — you can dismiss the flag from the Day tab with the <strong>Mark reviewed</strong> swipe (leading edge).</p>
+<h3>What about my data if I lose / replace my phone?</h3>
+<p>CareTime doesn't sync to iCloud or any cloud service — that's deliberate. Your care records may be considered protected health information, and CareTime is designed so they never leave the device.</p>
+<p>Your safety net is <strong>iPhone's encrypted iCloud Backup</strong> in <strong>Settings → [your name] → iCloud → iCloud Backup</strong>. CareTime's data lives inside the app sandbox, which gets backed up alongside the rest of your apps. To restore on a new device, sign into the same Apple ID and restore from backup during setup. CareTime itself never uploads anything.</p>
+<h3>How do I export a timesheet for my pay period?</h3>
+<p><strong>Export tab → pick Current / Previous / Custom range → pick a recipient → Generate &amp; Share</strong>. The iOS share sheet decides where the PDF goes — email, AirDrop, Files, Print, anything you have configured.</p>
+<h3>The participant needs to sign before I can submit. How?</h3>
+<p>Tap a segment in the <strong>Day</strong> tab → <strong>Review with participant</strong> (leading swipe). The participant draws their signature on screen and optionally sets a 4-digit PIN. The signature is stored on this device as an image alongside the segment; the PIN is hashed with PBKDF2 before storage so the number can't be recovered.</p>
+<h3>What's the audit log for?</h3>
+<p>Every segment lifecycle event (start, stop, pause, resume, edit, location capture, approve, unsign, flag review) is appended to a tamper-evident log on this device. Each row is linked to the previous row by SHA-256, so any after-the-fact change is detectable. This is for your records / family review / an aggregator audit — CareTime never uploads it.</p>
+<h3>How do I lock the app?</h3>
+<p><strong>Settings → App Lock</strong>. Set a 4–6 digit PIN; optionally enable Face ID or Touch ID. Auto-lock can fire after 1 / 5 / 15 minutes of inactivity, or never (set in the same screen). After three wrong PIN attempts the keypad cools down for 30 seconds.</p>
+<h3>I want to redo the onboarding tour.</h3>
+<p><strong>Settings → Help → Replay tutorial</strong>.</p>
+<hr />
+<h2>What CareTime does not do</h2>
+<ul><li><strong>Submit your timesheet anywhere.</strong> The PDF goes wherever you send it via the share sheet. CareTime doesn't have a backend.</li><li><strong>Sync between devices.</strong> One phone per install. Use iPhone's iCloud Backup to move to a new device.</li><li><strong>Replace EVV systems</strong> like Sandata, HHAeXchange, CareBridge, or AuthentiCare. Those flows still happen out of CareTime.</li><li><strong>Collect analytics or send crash reports.</strong> No third-party SDKs.</li><li><strong>Background location.</strong> Location is captured only at clock-in and clock-out, one fix per tap.</li></ul>
+<hr />
+<h2>Reporting a bug</h2>
+<p>Email <strong><a href="mailto:support@river.io">support@river.io</a></strong> with:</p>
+<ul><li>The version (Settings → at the bottom, e.g. <em>v1.0.0 build 1</em>).</li><li>What you were doing when the bug happened.</li><li>What you expected vs. what actually happened.</li><li>A screenshot if you can.</li></ul>
+<p>We don't collect logs or diagnostics from the app. If a bug is reproducible you'll need to walk us through it.</p>
+<hr />
+<p><a href="./">← back to CareTime EVV</a></p>
+</main>
+<footer><div>CareTime EVV · River.io LLC · <a href="mailto:support@river.io">support@river.io</a></div></footer>
+</body>
+</html>

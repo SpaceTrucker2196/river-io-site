@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CareTime EVV — Una hoja de horas que te sigue el ritmo</title>
+<meta name="description" content="CareTime EVV es una aplicación privada, en el dispositivo, para hojas de horas y verificación de visitas, hecha para cuidadores familiares pagados y trabajadores del cuidado en el hogar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1c2b2d;
+    --ink-soft: #4a5e60;
+    --paper: #f4efe6;
+    --paper-warm: #ece4d6;
+    --card: #fffdf8;
+    --teal: #1f6f6b;
+    --teal-deep: #16524f;
+    --clay: #c66a4a;
+    --clay-deep: #a8543a;
+    --line: #d8cebb;
+    --shadow: 28px 28px 60px -30px rgba(28,43,45,.45);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Newsreader', Georgia, serif;
+    background: var(--paper); color: var(--ink); line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(31,111,107,.06), transparent 40%),
+      radial-gradient(circle at 88% 72%, rgba(198,106,74,.07), transparent 42%);
+    background-attachment: fixed;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  .lang { display: flex; justify-content: center; gap: 4px; padding: 18px 0 0; font-size: .88rem; flex-wrap: wrap; }
+  .lang a { color: var(--ink-soft); text-decoration: none; padding: 6px 12px; border-radius: 100px; transition: color .15s ease, background .15s ease; }
+  .lang a:hover { color: var(--teal-deep); background: var(--paper-warm); }
+  .lang a[aria-current="page"] { color: var(--teal-deep); background: var(--paper-warm); font-weight: 500; }
+  header { padding: 36px 0 12px; text-align: center; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; font-size: .82rem; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-deep); font-family: 'Newsreader', serif; font-weight: 500; border: 1px solid var(--line); border-radius: 100px; padding: 7px 16px; background: var(--card); }
+  .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--clay); }
+  h1 { font-family: 'Fraunces', serif; font-weight: 600; font-size: clamp(2.6rem, 9vw, 4rem); line-height: 1.02; letter-spacing: -.02em; margin: 26px 0 14px; color: var(--ink); }
+  h1 .evv { color: var(--teal); font-style: italic; font-weight: 500; }
+  .tagline { font-size: clamp(1.1rem, 3.5vw, 1.35rem); color: var(--ink-soft); max-width: 34ch; margin: 0 auto; }
+  section { margin: 56px 0; }
+  section h2 { font-family: 'Fraunces', serif; font-weight: 600; font-size: clamp(1.7rem, 5vw, 2.1rem); line-height: 1.15; letter-spacing: -.01em; margin-bottom: 18px; }
+  section h2 .accent { color: var(--teal); font-style: italic; font-weight: 500; }
+  section p { font-size: 1.07rem; color: var(--ink-soft); margin-bottom: 14px; }
+  section p:last-child { margin-bottom: 0; }
+  section p strong { color: var(--ink); font-weight: 500; }
+  .lede { padding-top: 8px; }
+  .lede p:first-of-type { font-size: 1.18rem; color: var(--ink); line-height: 1.55; }
+  .feature { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 28px 28px; margin-bottom: 16px; transition: transform .18s ease, border-color .18s ease; }
+  .feature:hover { transform: translateY(-2px); border-color: var(--clay); }
+  .feature h3 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.3rem; line-height: 1.2; margin-bottom: 10px; letter-spacing: -.005em; }
+  .feature p { font-size: 1.02rem; line-height: 1.6; }
+  .privacy { background: var(--paper-warm); border: 1px solid var(--line); border-radius: 22px; padding: 32px; }
+  .privacy h2 { color: var(--teal-deep); }
+  .privacy ul { list-style: none; padding: 0; margin-top: 14px; }
+  .privacy li { padding: 10px 0 10px 30px; position: relative; color: var(--ink-soft); font-size: 1.02rem; border-bottom: 1px solid var(--line); }
+  .privacy li:last-child { border-bottom: 0; }
+  .privacy li::before { content: "✓"; position: absolute; left: 4px; top: 10px; color: var(--teal); font-weight: 600; font-size: 1.1rem; }
+  .stores { text-align: center; }
+  .stores h2 { margin-bottom: 22px; }
+  .store-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .store-btn { display: inline-flex; align-items: center; gap: 11px; background: var(--ink); color: var(--paper); text-decoration: none; padding: 13px 22px; border-radius: 14px; transition: transform .18s ease, background .18s ease; }
+  .store-btn:hover { transform: translateY(-2px); background: var(--teal-deep); }
+  .store-btn svg { width: 26px; height: 26px; flex-shrink: 0; }
+  .store-btn .label { text-align: left; line-height: 1.1; }
+  .store-btn .label small { display: block; font-size: .68rem; opacity: .8; letter-spacing: .03em; }
+  .store-btn .label strong { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.1rem; }
+  .info { background: var(--paper-warm); border-radius: 18px; padding: 32px; border: 1px solid var(--line); }
+  .info h2 { color: var(--teal-deep); font-size: 1.55rem; }
+  .info p { color: var(--ink-soft); font-size: 1.02rem; }
+  .feedback { background: var(--teal); color: #f4efe6; border-radius: 22px; padding: 40px 32px; box-shadow: var(--shadow); position: relative; overflow: hidden; text-align: center; }
+  .feedback::after { content: ""; position: absolute; right: -60px; top: -60px; width: 200px; height: 200px; border-radius: 50%; background: rgba(255,255,255,.06); }
+  .feedback h2 { font-size: 1.8rem; margin-bottom: 10px; color: #f4efe6; }
+  .feedback p { color: rgba(244,239,230,.85); margin-bottom: 24px; font-size: 1.05rem; max-width: 42ch; margin-left: auto; margin-right: auto; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--paper); color: var(--teal-deep); font-family: 'Newsreader', serif; font-weight: 500; font-size: 1.15rem; text-decoration: none; padding: 16px 30px; border-radius: 100px; transition: transform .18s ease, box-shadow .18s ease; box-shadow: 0 10px 24px -10px rgba(0,0,0,.4); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 30px -12px rgba(0,0,0,.5); }
+  .btn-primary .arrow { transition: transform .18s ease; }
+  .btn-primary:hover .arrow { transform: translateX(4px); }
+  .feedback .email-link { display: block; margin-top: 18px; color: rgba(244,239,230,.75); font-size: .95rem; text-decoration: underline; text-underline-offset: 3px; }
+  .feedback .email-link:hover { color: var(--paper); }
+  footer { text-align: center; padding: 48px 0; color: var(--ink-soft); font-size: .9rem; }
+  footer a { color: var(--teal-deep); text-decoration: underline; text-underline-offset: 3px; }
+  header > * { opacity: 0; transform: translateY(16px); animation: rise .7s cubic-bezier(.2,.7,.3,1) forwards; }
+  header .badge { animation-delay: .05s; }
+  header h1 { animation-delay: .15s; }
+  header .tagline { animation-delay: .28s; }
+  section { opacity: 0; transform: translateY(16px); animation: rise .7s cubic-bezier(.2,.7,.3,1) .35s forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="lang" aria-label="Idioma">
+    <a href="./">English</a>
+    <a href="./es.html" aria-current="page">Español</a>
+    <a href="./fil.html">Filipino</a>
+    <a href="./vi.html">Tiếng Việt</a>
+  </nav>
+
+  <header>
+    <span class="badge"><span class="dot"></span>CareTime · Para cuidadores</span>
+    <h1>CareTime <span class="evv">EVV</span></h1>
+    <p class="tagline">Una hoja de horas que te sigue el ritmo, no al revés.</p>
+  </header>
+
+  <section class="lede">
+    <h2>Hecha para quienes <span class="accent">hacen el trabajo</span></h2>
+    <p>Te pagan por cuidar a alguien — un padre, un hijo, un vecino, un cliente. Las horas que dedicas son cómo pagas la renta, la gasolina, el supermercado. CareTime EVV está hecho para que esas horas terminen en una hoja de horas limpia y cobrable, sin que tengas que recordar cada minuto al final de una jornada de doce horas.</p>
+    <p>Ningún tablero de la agencia vigilándote por encima del hombro. Ninguna empresa juntando tus horas a tus espaldas. Solo una app en tu teléfono que sabe que empezaste el baño a las 7:14 porque a esa hora pulsaste <strong>Baño</strong>.</p>
+  </section>
+
+  <section>
+    <h2>Lo que <span class="accent">hace por ti</span></h2>
+
+    <div class="feature">
+      <h3>Pulsa. Cambia. Para. Esa es toda la interacción.</h3>
+      <p>Una cuadrícula de botones grandes para las tareas que de verdad haces — baño, traslados, comidas, medicamentos, lavandería, mandados. Pulsa una tarea y arranca el cronómetro. Pulsa otra tarea y la primera se cierra, la nueva se abre, en un solo gesto. Sin pantalla de salida. Sin menús que rebuscar.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Registra la visita, no tu día.</h3>
+      <p>Al empezar y al terminar cada visita, CareTime EVV pide una ubicación — prueba de que estuviste donde dijiste que estarías (la parte de EVV). Una vez al comenzar. Una vez al terminar. <strong>Nunca en medio.</strong> Tu teléfono no te sigue, y nosotros tampoco.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Un PDF al final del periodo de pago.</h3>
+      <p>Cuando cierra el periodo, la pestaña Exportar genera un PDF con la hoja de horas — fecha, hora de entrada, hora de salida, total, tareas completadas, tu firma, la firma de la persona atendida. Envíalo por correo, AirDrop, impreso por fax, o entrégalo en mano. Lo que acepte tu proveedor de facturación.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Se queda contigo.</h3>
+      <p>¿Cambias de teléfono? Inicia sesión con tu Apple ID o tu cuenta de Google en el nuevo y restaura desde tu copia de seguridad cifrada — tu historial de CareTime regresa con el resto de tus apps. No tenemos servidor. No hay nada en lo que iniciar sesión.</p>
+    </div>
+  </section>
+
+  <section class="privacy">
+    <h2>Lo que CareTime EVV <span class="accent">no hace</span></h2>
+    <p>Si manejas información privada sobre el cuidado de una persona, lo último que necesitas es otra app más recolectándola. CareTime EVV no lo hace.</p>
+    <ul>
+      <li>Sin cuenta para registrarte. Sin contraseña que recordar.</li>
+      <li>Sin analíticas, sin anuncios, sin rastreadores de terceros.</li>
+      <li>Sin ubicación en segundo plano. Dos capturas de ubicación por visita — inicio y fin — y nada más.</li>
+      <li>Sin venta de tus datos. No hay nada que vender porque nunca los recibimos.</li>
+      <li>Sin panel corporativo. Tus horas son tuyas.</li>
+    </ul>
+  </section>
+
+  <section class="stores">
+    <h2>Consigue CareTime EVV</h2>
+    <div class="store-row">
+      <a class="store-btn" href="https://apps.apple.com/app/id6772758106">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.89-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.79 1.3 10.34.86 1.25 1.89 2.65 3.24 2.6 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.02 2.28-1.27 3.13-2.53.99-1.45 1.4-2.86 1.42-2.93-.03-.01-2.72-1.04-2.75-4.13zM14.6 4.59c.72-.87 1.2-2.08 1.07-3.29-1.03.04-2.28.69-3.02 1.56-.66.77-1.24 2-1.09 3.18 1.15.09 2.32-.58 3.04-1.45z"/></svg>
+        <span class="label"><small>Descárgalo en</small><strong>App Store</strong></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="info">
+    <h2>¿Qué es EVV?</h2>
+    <p><strong>Verificación Electrónica de Visitas</strong> (Electronic Visit Verification) es un requisito federal — la Ley Cures del Siglo XXI — para la mayoría de los servicios domiciliarios y comunitarios financiados por Medicaid. La regla dice: cuando un cuidador pagado proporciona una visita, el sistema tiene que registrar cuándo empezó la visita, cuándo terminó, dónde ocurrió, qué servicio se prestó, quién lo prestó y quién lo recibió.</p>
+    <p>Tu proveedor de facturación seguramente ya hace este seguimiento, mediante la app o el sistema en papel que te pida usar. <strong>CareTime EVV no lo reemplaza.</strong> Te da tu propio registro completo, en tu propio bolsillo, en una hoja de horas que de verdad puedes leer.</p>
+  </section>
+
+  <section class="feedback">
+    <h2>Cuéntanos lo que necesitas</h2>
+    <p>¿Encontraste un problema? ¿Tienes una idea? ¿Quieres contarnos que esta app te salvó la semana? Envíanos una nota. Sin cuenta, sin inicio de sesión — escribe y envía.</p>
+    <a class="btn-primary" href="mailto:support@river.io?subject=Comentarios%20de%20CareTime">
+      Enviar comentarios <span class="arrow">→</span>
+    </a>
+  </section>
+
+  <footer>
+    Hecho con cariño para quienes se dedican a cuidar.<br>
+    <span style="opacity:.85">Escríbenos a <a href="mailto:support@river.io">support@river.io</a>.</span>
+    <div style="margin-top:18px; font-size:.88rem; opacity:.85">
+      <a href="privacy.html">Privacidad</a> &nbsp;·&nbsp; <a href="support.html">Soporte</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

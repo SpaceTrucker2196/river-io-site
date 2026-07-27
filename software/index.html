@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The software register of River.io LLC — twelve native, compiled, on-device products for iPhone, iPad, Apple Watch, Android, Mac and Linux: ClientAPT, CareTime EVV, Materials &amp; Practices, Corn 3000, Spacetrucker Galactic, Nighthawk Tube, Sloth, Meowpass, MeowPass, Otter, Cygnus and Crane." />
+<meta name="color-scheme" content="light dark" />
+<title>Software — river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* ────────────────────────────────────────────────────────────
+     river.io — software register
+     Flat Swiss grid: neo-grotesque, hard 1px rules, no shadows,
+     no gradients, no radii. Colour appears only as a product's
+     signal square. Light and dark are both first-class.
+     ──────────────────────────────────────────────────────────── */
+  :root{
+    --bg:#ffffff; --surface:#fafafa; --surface-2:#f2f2f4;
+    --ink:#0a0a0b; --ink-2:#4a4a51; --muted:#84848c;
+    --line:#e0e0e4; --line-strong:#0a0a0b;
+    --brand:#1f4fd8;
+    --sans:"Helvetica Neue",Helvetica,"Archivo",Arial,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --maxw:1180px;
+    --gut:32px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#08080a; --surface:#0f0f12; --surface-2:#16161a;
+      --ink:#f4f4f6; --ink-2:#a9a9b2; --muted:#6f6f78;
+      --line:#26262c; --line-strong:#f4f4f6;
+      --brand:#5b87ff;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#08080a; --surface:#0f0f12; --surface-2:#16161a;
+    --ink:#f4f4f6; --ink-2:#a9a9b2; --muted:#6f6f78;
+    --line:#26262c; --line-strong:#f4f4f6;
+    --brand:#5b87ff;
+  }
+  :root[data-theme="light"]{
+    --bg:#ffffff; --surface:#fafafa; --surface-2:#f2f2f4;
+    --ink:#0a0a0b; --ink-2:#4a4a51; --muted:#84848c;
+    --line:#e0e0e4; --line-strong:#0a0a0b;
+    --brand:#1f4fd8;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:var(--sans);font-size:16px;line-height:1.5;font-weight:400;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  ::selection{background:var(--brand);color:#fff}
+  :focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+  img{display:block;max-width:100%}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+  .mono{font-family:var(--mono)}
+
+  /* ── masthead bar ───────────────────────────────────────── */
+  .bar{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+  .bar .in{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut);height:52px;
+    display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .id{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.04em;
+    text-transform:uppercase;text-decoration:none;white-space:nowrap}
+  .id span{color:var(--muted);font-weight:400}
+  .id b{color:var(--brand);font-weight:600;padding:0 .3em}
+  nav.top{display:flex;align-items:center;gap:0}
+  nav.top a{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none;padding:8px 14px;
+    border-left:1px solid var(--line);transition:color .12s,background .12s}
+  nav.top a:hover{color:var(--ink);background:var(--surface-2)}
+  .toggle{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);background:transparent;border:0;border-left:1px solid var(--line);
+    padding:8px 14px;cursor:pointer;height:100%;transition:color .12s,background .12s}
+  .toggle:hover{color:var(--ink);background:var(--surface-2)}
+
+  /* ── masthead ───────────────────────────────────────────── */
+  .masthead{border-bottom:1px solid var(--line);padding:0}
+  .masthead .in{max-width:var(--maxw);margin:0 auto;padding:76px var(--gut) 0}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted);display:flex;gap:18px;margin:0 0 44px}
+  .kicker b{color:var(--ink);font-weight:500}
+  h1{font-size:clamp(2.6rem,7vw,5.1rem);line-height:.94;letter-spacing:-.045em;font-weight:700;
+    margin:0;max-width:17ch}
+  h1 span{color:var(--muted);font-weight:400}
+  .lede{font-size:clamp(1rem,1.5vw,1.18rem);line-height:1.5;color:var(--ink-2);
+    max-width:56ch;margin:30px 0 0;font-weight:400}
+  .lede b{color:var(--ink);font-weight:600}
+
+  /* data strip — swiss table, hard rules, tabular figures */
+  .strip{display:grid;grid-template-columns:repeat(5,1fr);margin:56px 0 0;
+    border-top:1px solid var(--line-strong);border-left:1px solid var(--line)}
+  @media (max-width:720px){.strip{grid-template-columns:repeat(2,1fr)}}
+  .strip div{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 18px 18px}
+  .strip .n{font-size:2.1rem;line-height:1;letter-spacing:-.04em;font-weight:600;
+    font-variant-numeric:tabular-nums;display:block;margin-bottom:9px}
+  .strip .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--muted);display:block}
+
+  /* ── the register ───────────────────────────────────────── */
+  .register{padding:0 0 0}
+  .entry{border-bottom:1px solid var(--line)}
+  .entry:first-child{border-top:0}
+
+  /* header row: ordinal · signal · name · platform · status */
+  .head{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut);
+    display:grid;grid-template-columns:60px 1fr auto;gap:20px;align-items:center;
+    height:56px;border-bottom:1px solid var(--line)}
+  .ord{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--muted);
+    font-variant-numeric:tabular-nums}
+  .name{display:flex;align-items:center;gap:14px;min-width:0}
+  .sig{width:11px;height:11px;background:var(--a);flex:0 0 11px}
+  .name h2{font-size:1.05rem;font-weight:600;letter-spacing:-.02em;margin:0;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .name h2 a{text-decoration:none}
+  .name h2 a:hover{color:var(--brand)}
+  .name .tag{font-family:var(--mono);font-size:11.5px;color:var(--muted);white-space:nowrap;
+    overflow:hidden;text-overflow:ellipsis}
+  @media (max-width:860px){.name .tag{display:none}}
+  .state{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--ink-2);white-space:nowrap;display:flex;align-items:center;gap:9px}
+  .state::before{content:"";width:6px;height:6px;background:var(--a);display:block}
+
+  /* body row: plate · prose · specs */
+  .row{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut);
+    display:grid;grid-template-columns:132px minmax(0,1fr) 300px}
+  @media (max-width:1000px){.row{grid-template-columns:104px minmax(0,1fr)}}
+  @media (max-width:640px){.row{grid-template-columns:1fr}}
+  .cell{padding:30px 26px 32px;border-left:1px solid var(--line)}
+  .cell:first-child{border-left:0;padding-left:0}
+  .cell:last-child{border-right:0}
+  @media (max-width:1000px){
+    .cell.specs{grid-column:1 / -1;border-left:0;border-top:1px solid var(--line);padding-left:0}
+  }
+  @media (max-width:640px){
+    .cell{border-left:0;padding-left:0;padding-right:0}
+    .cell.prose{border-top:1px solid var(--line)}
+  }
+
+  .plate{width:100%;aspect-ratio:1;border:1px solid var(--line);background:var(--surface)}
+  .plate img{width:100%;height:100%;object-fit:cover}
+  .plate.mark{display:flex;align-items:center;justify-content:center;
+    font-size:1.9rem;font-weight:700;letter-spacing:-.05em;color:var(--a);background:var(--surface)}
+  @media (max-width:640px){.plate{width:96px}}
+
+  .prose p{margin:0;font-size:.95rem;line-height:1.58;color:var(--ink-2);max-width:64ch}
+  .prose p em{font-style:italic;color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:0;margin-top:20px;border-top:1px solid var(--line);
+    border-left:1px solid var(--line);width:fit-content;max-width:100%}
+  .chips span{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--muted);
+    padding:6px 11px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    white-space:nowrap}
+
+  .specs dl{margin:0;display:grid;grid-template-columns:88px minmax(0,1fr);gap:0}
+  .specs dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--muted);padding:9px 0;border-top:1px solid var(--line)}
+  .specs dd{margin:0;font-size:.86rem;color:var(--ink-2);padding:9px 0;border-top:1px solid var(--line)}
+  .specs dt:first-of-type,.specs dd:first-of-type{border-top:0;padding-top:0}
+  .links{display:flex;flex-wrap:wrap;gap:0;margin-top:22px;
+    border-top:1px solid var(--line);border-left:1px solid var(--line);width:fit-content;max-width:100%}
+  .links a{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-decoration:none;
+    color:var(--ink);padding:9px 13px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    transition:background .12s,color .12s}
+  .links a:hover{background:var(--a);color:#fff}
+  .links a.key{background:var(--surface-2);font-weight:500}
+  .links a.key:hover{background:var(--a);color:#fff}
+
+  /* ── house rules ────────────────────────────────────────── */
+  .rules{border-bottom:1px solid var(--line)}
+  .rules .in{max-width:var(--maxw);margin:0 auto;padding:70px var(--gut) 78px}
+  h3{font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:-.035em;font-weight:700;margin:0 0 10px}
+  .sub{color:var(--ink-2);margin:0 0 40px;max-width:58ch;font-size:.98rem}
+  .quad{display:grid;grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line-strong);border-left:1px solid var(--line)}
+  @media (max-width:900px){.quad{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:540px){.quad{grid-template-columns:1fr}}
+  .quad > div{padding:22px 22px 26px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .quad .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:14px}
+  .quad h4{margin:0 0 8px;font-size:1rem;font-weight:600;letter-spacing:-.02em}
+  .quad p{margin:0;font-size:.88rem;line-height:1.5;color:var(--ink-2)}
+  .foot-note{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--muted);margin-top:22px}
+
+  /* ── footer ─────────────────────────────────────────────── */
+  footer .in{max-width:var(--maxw);margin:0 auto;padding:26px var(--gut) 60px;
+    display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;
+    font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  footer a{color:var(--ink-2);text-decoration:none}
+  footer a:hover{color:var(--brand)}
+
+  .reveal{opacity:0;transition:opacity .4s linear}
+  .reveal.in{opacity:1}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transition:none}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>software</span></a>
+    <nav class="top">
+      <a href="#register">Register</a>
+      <a href="#rules">Standard</a>
+      <a href="../jeff/">Who</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="masthead">
+  <div class="in">
+    <div class="kicker"><span>River.io LLC</span><span>Software register</span><b>2026</b></div>
+    <h1>Twelve products.<br /><span>One engineering standard.</span></h1>
+    <p class="lede">Everything River.io ships is <b>native and compiled</b>, carries its own tests, and
+      keeps its data <b>on the machine that made it</b>. Five are on the App Store, one is in review,
+      two are open source, four are in development. No telemetry, no subscriptions, and no account to
+      create before the software does its job.</p>
+    <div class="strip">
+      <div><span class="n">12</span><span class="l">Products</span></div>
+      <div><span class="n">5</span><span class="l">On the App Store</span></div>
+      <div><span class="n">1</span><span class="l">In review</span></div>
+      <div><span class="n">2</span><span class="l">Open source</span></div>
+      <div><span class="n">4</span><span class="l">In development</span></div>
+    </div>
+  </div>
+</div>
+
+<main class="register" id="register">
+
+  <!-- 01 ─────────────────────────────────────────────── Crane -->
+  <section class="entry reveal" style="--a:#0e7c86">
+    <div class="head">
+      <div class="ord">01</div>
+      <div class="name">
+        <span class="sig" aria-hidden="true"></span>
+        <h2><a href="../crane/">Crane</a></h2>
+        <span class="tag">Post once. Everyone bids fairly.</span>
+      </div>
+      <div class="state">Backend MVP</div>
+    </div>
+    <div class="row">
+      <div class="cell"><div class="plate"><img src="icons/crane.png" alt="Crane logo" width="256" height="256" loading="lazy" /></div></div>
+      <div class="cell prose">
+        <p>Vendor-neutral infrastructure for healthcare contingent labor. Hidden middleman fees skim a
+          few percent off every dollar of travel, per-diem and surgical-tech staffing, and expired
+          credentials cancel surgeries on the day. Crane turns the whole thing into a graph-backed
+          market the provider runs themselves: one posting broadcast fairly to a panel of agencies,
+          submissions gated on live credential compliance, transparent rates, and the fee kept in
+          house — order to panel to award to timesheet to settlement, in integer cents.</p>
+        <div class="chips">
+          <span>Elixir</span><span>Graph database</span><span>HTTP API</span><span>Credential compliance</span>
+        </div>
+      </div>
+      <div class="cell specs">
+        <dl>
+          <dt>Shape</dt><dd>Server-side platform</dd>
+          <dt>Spine</dt><dd>Drivable end to end over the API</dd>
+          <dt>Money</dt><dd>Integer cents, explicit rounding</dd>
+          <dt>Gates</dt><dd>Format, credo, unit, live integration</dd>
+        </dl>
+        <div class="links">
+          <a class="key" href="../crane/">Overview</a>
+          <a href="../crane/security.html">Security</a>
+          <a href="mailto:info@river.io?subject=Crane">Enquire</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 ─────────────────────────────────────────────── Sloth -->
+  <section class="entry reveal" style="--a:#4d7c0f">
+    <div class="head">
+      <div class="ord">02</div>
+      <div class="name">
+        <span class="sig" aria-hidden="true"></span>
+        <h2><a href="../sloth/">Sloth</a></h2>
+        <span class="tag">The calm, observant network monitor.</span>
+      </div>
+      <div class="state">Open source</div>
+    </div>
+    <div class="row">
+      <div class="cell"><div class="plate"><img src="icons/sloth.png" alt="Sloth mascot" width="256" height="256" loading="lazy" /></div></div>
+      <div class="cell prose">
+        <p>A passive network SIGINT console for Linux, written in C99 from the kernel-facing code up.
+          Twenty-seven live ncurses views: 802.11 beacon, probe and deauth sniffing, ARP / mDNS / NBNS
+          / DHCP / SSDP device discovery, TLS ClientHello and JA3 fingerprint capture, and six alert
+          rules for port scans, deauth floods, NXDOMAIN bursts and periodic beaconing. It never
+          injects, never scans and never modifies kernel state — it only watches, and writes JSONL
+          plus a per-alert pcap for whatever comes next.</p>
+        <div class="chips">
+          <span>C99</span><span>libpcap</span><span>nl80211</span><span>ncurses</span>
+          <span>JA3 / TLS</span><span>50 unit tests</span>
+        </div>
+      </div>
+      <div class="cell specs">
+        <dl>
+          <dt>Platform</dt><dd>Linux</dd>
+          <dt>Licence</dt><dd>Open, on GitHub</dd>
+          <dt>Posture</dt><dd>Passive only: observe, never emit</dd>
+          <dt>Output</dt><dd>Forensic JSONL + pcap</dd>
+        </dl>
+        <div class="links">
+          <a class="key" href="../sloth/">Overview</a>
+          <a href="../sloth/quickstart.html">Quickstart</a>
+          <a href="https://github.com/SpaceTrucker2196/sloth">Source</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 ────────────────────────────────────────── Meowpass CLI -->
+  <section class="entry reveal" style="--a:#0891b2">
+    <div class="head">
+      <div class="ord">03</div>
+      <div class="name">
+        <span class="sig" aria-hidden="true"></span>
+        <h2><a href="../meowpass/">Meowpass CLI</a></h2>
+        <span class="tag">Cats are more complex than dogs.</span>
+      </div>
+      <div class="state">Open source</div>
+    </div>
+    <div class="row">
+      <div class="cell"><div class="plate mark" aria-hidden="true">&gt;_</div></div>
+      <div class="cell prose">
+        <p>Phrase-passwords you can say out loud, drawn from 16,913 embedded cat names, sprinkled with
+          digits and symbols, then scored — five candidates measured with Shannon entropy and a stack
+          of complexity heuristics, and the best one handed to you. Pure C11: a single binary for
+          Linux and macOS with no runtime dependencies, no configuration file and no network. The
+          same idea wearing a very different coat runs as an app — see MeowPass below.</p>
+        <div class="chips">
+          <span>C11</span><span>Single binary</span><span>Shannon entropy</span>
+          <span>16,913 cat names</span><span>MeowGram steganography</span>
+        </div>
+      </div>
+      <div class="cell specs">
+        <dl>
+          <dt>Platform</dt><dd>Linux · macOS command line</dd>
+          <dt>Sibling</dt><dd>MeowPass, the iOS · macOS app</dd>
+          <dt>Licence</dt><dd>Open, on GitHub</dd>
+          <dt>Method</dt><dd>Five candidates, best score wins</dd>
+        </dl>
+        <div class="links">
+          <a class="key" href="../meowpass/">Overview</a>
+          <a href="https://github.com/SpaceTrucker2196/MeowPasswordC">Source</a>
+          <a href="https://github.com/SpaceTrucker2196/MeowPasswordC/releases">Releases</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 ─────────────────────────────────────────── ClientAPT -->
+  <section class="entry reveal" style="--a:#2f6fed">
+    <div class="head">
+      <div class="ord">04</div>
+      <div class="name">
+        <span class="sig" aria-hidden="true"></span>
+        <h2><a href="../clientapt.html">ClientAPT</a></h2>
+        <span class="tag">Your book. Their secrets.</span>
+      </div>
+      <div class="state">On both stores</div>
+    </div>
+    <div class="row">
+      <div class="cell"><div class="plate"><img src="icons/clientapt.png" alt="ClientAPT icon" width="256" height="256" loading="lazy" /></div></div>
+      <div class="cell prose">
+        <p>A privacy-first appointment book for solo service providers — the tattoo artists, nail
+          techs, stylists and cleaners whose client list is itself confidential. It is the sole source
+          of calendar truth: it never integrates with the system Calendar, never reaches the network,
+          never enrolls in iCloud, never donates a Siri intent, never indexes to Spotlight. Photos and
+          notes live in an encrypted vault behind an app PIN, with a second per-client PIN for flagged
+          clients and a duress PIN that opens a believable decoy vault when unlock is coerced.</p>
+        <div class="chips">
+          <span>Swift · SwiftUI · SwiftData</span><span>Kotlin · Compose · Room</span>
+          <span>On-device encryption</span><span>Zero dependencies</span>
+        </div>
+      </div>
+      <div class="cell specs">
+        <dl>
+          <dt>Platform</dt><dd>iPhone · Android, at parity</dd>
+          <dt>Version</dt><dd>1.0</dd>
+          <dt>Price</dt><dd>$8.99, paid once</dd>
+          <dt>Data</dt><dd>Local vault. No network.</dd>
+        </dl>
+        <div class="links">
+          <a class="key" href="https://apps.apple.com/app/id6779647015">App Store</a>
+          <a href="https://play.google.com/store/apps/details?id=io.river.clientapt">Google Play</a>
+          <a href="../clientapt.html">Overview</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 ────────────────────────────────────────── CareTime EVV -->
+  <section class="entry reveal" style="--a:#e11d48">
+    <div class="head">
+      <div class="ord">05</div>
+      <div class="name">
+        <span class="sig" aria-hidden="true"></span>
+        <h2><a href="../caretime/">CareTime EVV</a></h2>
+        <span class="tag">A timesheet that keeps up with you.</span>
+      </div>
+      <div class="state">On the App Store</div>
+    </div>
+    <div class="row">
+      <div class="cell"><div class="plate"><img src="icons/caretime.png" alt="CareTime EVV icon" width="256" height="256" loading="lazy" /></div></div>
+      <div class="cell prose">
+        <p>Private, on-device time tracking and Electronic Visit Verification for family caregivers
+          doing self-directed care work. Clock in from a Home Screen widget or a Siri shortcut, log
+          the service performed, take the participant's PIN approval, and export a timesheet PDF for
+          whichever channel the billing provider uses — fax, email, upload or print-and-sign. Daily
+          totals, midnight splits and pay-period arithmetic are done for you; location is captured at
+          clock-in and clock-out only, never in between; and every event is written into a
+          tamper-evident SHA-256 audit chain. No account, no server, nothing shared.</p>
+        <div class="chips">
+          <span>SwiftUI</span><span>Live Activity · Widgets</span><span>SHA-256 audit chain</span>
+          <span>PDF timesheets</span><span>EN · ES · VI · FIL</span>
+        </div>
+      </div>
+      <div class="cell specs">
+        <dl>
+          <dt>Platform</dt><dd>iPhone · Android in development</dd>
+          <dt>Version</dt><dd>1.0</dd>
+          <dt>Price</dt><dd>$7.99, paid once</dd>
+          <dt>Data</dt><dd>On device. No account.</dd>
+        </dl>
+        <div class="links">
+          <a class="key" href="https://apps.apple.com/app/id6772758106">App Store</a>
+          <a href="../caretime/">Overview</a>
+          <a href="../caretime/privacy.html">Privacy</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 ─────────────────────────────── Materials & Practices -->
+  <section class="entry reveal" style="--a:#1f8a4c">
+    <div class="head">
+      <div class="ord">06</div>
+      <div class="name">
+        <span class="sig" aria-hidden="true"></span>
+        <h2><a href="../MaterialsAndPractices/">Materials &amp; Practices</a></h2>
+        <span class="tag">Every record your certifier asks for.</span>
+      </div>
+      <div class="state">On the App Store</div>
+    </div>
+    <div class="row">
+      <div class="cell"><div class="plate"><img src="icons/materialsandpractices.png" alt="Materials and Practices icon" width="256" height="256" loading="lazy" /></div></div>
+      <div class="cell prose">
+        <p>Organic-farm recordkeeping for iPhone and iPad: a USDA-sourced plant-cultivar database,
+          grow management, soil-health monitoring with a pH spectrum and lab integration, agricultural
+          lease management with payment tracking, worker time tracking with overtime detection, FDA
+          FSMA harvest-safety checklists, and full traceability of organic amendments — everything an
+          inspector asks to see, already in your pocket. Syncs across your own devices with CloudKit;
+          fully localized in English and Spanish.</p>
+        <div class="chips">
+          <span>SwiftUI</span><span>Core Data</span><span>CloudKit sync</span>
+          <span>EN + ES</span><span>FSMA</span>
+        </div>
+      </div>
+      <div class="cell specs">
+        <dl>
+          <dt>Platform</dt><dd>iPhone · iPad</dd>
+          <dt>Version</dt><dd>1.0</dd>
+          <dt>Price</dt><dd>Free</dd>
+          <dt>Sync</dt><dd>Your private CloudKit</dd>
+        </dl>
+        <div class="links">
+          <a class="key" href="https://apps.apple.com/us/app/materials-and-practices/id6752317282">App Store</a>
+          <a href="../MaterialsAndPractices/">Overview</a>
+          <a href="https://github.com/SpaceTrucker2196/MaterialsAndPractices">Source</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 ─────────────────────────────────────────── Corn 3000 -->
+  <section class="entry reveal" style="--a:#e0a100">
+    <div class="head">
+      <div class="ord">07</div>
+      <div class="name">
+        <span class="sig" aria-hidden="true"></span>
+        <h2><a href="../corn3000.html">Corn 3000</a></h2>
+        <span class="tag">A farm almanac, thirty seasons deep.</span>
+      </div>
+      <div class="state">On the App Store</div>
+    </div>
+    <div class="row">
+      <div class="cell"><div class="plate"><img src="icons/corn3000.png" alt="Corn 3000 icon" width="256" height="256" loading="lazy" /></div></div>
+      <div class="cell prose">
+        <p>A turn-based historical farming life for iPhone. Inherit a mortgaged quarter-section
+          anywhere from 1930 to today and farm it for thirty seasons against real USDA prices, NOAA
+          weather and the actual farm bills of the era — the almanac, the newspaper, the ledger and
+          the reckoning. Paid once. No ads, no accounts, entirely on your device.</p>
+        <div class="chips">
+          <span>SwiftUI</span><span>USDA price series</span><span>NOAA weather</span><span>39 locales</span>
+        </div>
+      </div>
+      <div class="cell specs">
+        <dl>
+          <dt>Platform</dt><dd>iPhone</dd>
+          <dt>Version</dt><dd>1.0.1</dd>
+          <dt>Price</dt><dd>$0.99, paid once</dd>
+          <dt>Data</dt><dd>Entirely on device</dd>
+        </dl>
+        <div class="links">
+          <a class="key" href="https://apps.apple.com/app/id6791683816">App Store</a>
+          <a href="../corn3000.html">Overview</a>
+          <a href="../corn3000-privacy.html">Privacy</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 ──────────────────────────── Spacetrucker Galactic -->
+  <section class="entry reveal" style="--a:#c81e78">
+    <div class="head">
+      <div class="ord">08</div>
+      <div class="name">
+        <span class="sig" aria-hidden="true"></span>
+        <h2><a href="../galactic.html">Spacetrucker Galactic</a></h2>
+        <span class="tag">A daily almanac for radio operators.</span>
+      </div>
+      <div class="state">On the App Store</div>
+    </div>
+    <div class="row">
+      <div class="cell"><div class="plate"><img src="icons/galactic.png" alt="Spacetrucker Galactic icon" width="256" height="256" loading="lazy" /></div></div>
+      <div class="cell prose">
+        <p>Live HF propagation, aurora, POTA, SOTA, DX cluster and APRS — plus sun, moon, marine and
+          weather, folded into one brief for exactly where you are. Panels and widgets you arrange
+          yourself, computed on the device rather than fetched from someone else's dashboard.</p>
+        <div class="chips">
+          <span>SwiftUI</span><span>Widgets</span><span>watchOS companion</span><span>On-device almanac</span>
+        </div>
+      </div>
+      <div class="cell specs">
+        <dl>
+          <dt>Platform</dt><dd>iPhone · Apple Watch</dd>
+          <dt>Version</dt><dd>1.1</dd>
+          <dt>Price</dt><dd>Free</dd>
+          <dt>Bands</dt><dd>HF propagation, aurora, DX</dd>
+        </dl>
+        <div class="links">
+          <a class="key" href="https://apps.apple.com/app/id6772206132">App Store</a>
+          <a href="../galactic.html">Overview</a>
+          <a href="https://github.com/SpaceTrucker2196/StatusGalactic-iOS">Source</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 ─────────────────────────────────────── Nighthawk Tube -->
+  <section class="entry reveal" style="--a:#7c3aed">
+    <div class="head">
+      <div class="ord">09</div>
+      <div class="name">
+        <span class="sig" aria-hidden="true"></span>
+        <h2><a href="../nighthawk-iOS/">Nighthawk Tube</a></h2>
+        <span class="tag">A stereo oscillator meditation instrument.</span>
+      </div>
+      <div class="state">In App Store review</div>
+    </div>
+    <div class="row">
+      <div class="cell"><div class="plate"><img src="icons/nighthawk.png" alt="Nighthawk Tube icon" width="256" height="256" loading="lazy" /></div></div>
+      <div class="cell prose">
+        <p>Two tones, one in each ear, meet inside a glowing vacuum tube; the beat between them slides
+          through the brainwave bands and lights the chakras. Two band-limited morphing oscillators
+          render straight to the output through a lock-free parameter bridge, and a Metal particle
+          scene draws the same signal as it sounds — the stereo field is the instrument.</p>
+        <div class="chips">
+          <span>AVAudioSourceNode</span><span>Metal</span><span>Lock-free bridge</span><span>Apple Health</span>
+        </div>
+      </div>
+      <div class="cell specs">
+        <dl>
+          <dt>Platform</dt><dd>iPhone · iPad</dd>
+          <dt>Version</dt><dd>1.0.0, submitted</dd>
+          <dt>Price</dt><dd>Free, with a Pro unlock</dd>
+          <dt>Audio</dt><dd>Rendered live, never streamed</dd>
+        </dl>
+        <div class="links">
+          <a class="key" href="../nighthawk-iOS/">Overview</a>
+          <a href="../nighthawk-iOS/research.html">Research</a>
+          <a href="../nighthawk-iOS/privacy.html">Privacy</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 ─────────────────────────────────────────────── Otter -->
+  <section class="entry reveal" style="--a:#c2410c">
+    <div class="head">
+      <div class="ord">10</div>
+      <div class="name">
+        <span class="sig" aria-hidden="true"></span>
+        <h2><a href="../otter/">Otter</a></h2>
+        <span class="tag">The operating system for a solo software business.</span>
+      </div>
+      <div class="state">In development</div>
+    </div>
+    <div class="row">
+      <div class="cell"><div class="plate mark" aria-hidden="true">ot</div></div>
+      <div class="cell prose">
+        <p>A native macOS app that turns freelance client work into a stage-gated practice: leads from
+          Fiverr, Twine, LinkedIn and referral move through qualification, a written scope with
+          explicit out-of-scope, a deposit before build, signed-off requirements, change requests
+          priced against the original, a clean handoff, and a close-out that asks for the testimonial
+          and the portfolio permission. CRM and billing sit in local SQLite; specs and proposals stay
+          plain Markdown you can grep, edit anywhere and hand to an agent. Billing is imported exactly
+          from append-only ledgers — never estimated.</p>
+        <div class="chips">
+          <span>SwiftUI · macOS</span><span>GRDB / SQLite</span><span>Markdown workspace</span><span>Local-first</span>
+        </div>
+      </div>
+      <div class="cell specs">
+        <dl>
+          <dt>Platform</dt><dd>macOS</dd>
+          <dt>Version</dt><dd>0.1.0, pre-release</dd>
+          <dt>Data</dt><dd>Local SQLite + your files</dd>
+          <dt>Network</dt><dd>Only what you connect</dd>
+        </dl>
+        <div class="links">
+          <a class="key" href="../otter/">Overview</a>
+          <a href="mailto:info@river.io?subject=otter%20—%20early%20access">Early access</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 ────────────────────────────────────────────── Cygnus -->
+  <section class="entry reveal" style="--a:#64748b">
+    <div class="head">
+      <div class="ord">11</div>
+      <div class="name">
+        <span class="sig" aria-hidden="true"></span>
+        <h2><a href="../cygnus/">Cygnus</a></h2>
+        <span class="tag">Repositories, understood.</span>
+      </div>
+      <div class="state">In development</div>
+    </div>
+    <div class="row">
+      <div class="cell"><div class="plate"><img src="icons/cygnus.png" alt="cygnus icon" width="256" height="256" loading="lazy" /></div></div>
+      <div class="cell prose">
+        <p>A native macOS app that models the software <em>system</em> a repository represents — not
+          its files — as a knowledge graph built from literal repository evidence, then renders it as
+          a pattern visualizer: cycles, coverage, callers and architectural roles in one view. The
+          graph is append-only and content-addressed, so every fact keeps its provenance and every
+          revision can be replayed. Analysis runs entirely on your machine.</p>
+        <div class="chips">
+          <span>Swift · SwiftUI</span><span>SwiftSyntax + tree-sitter</span>
+          <span>GRDB / SQLite</span><span>Swift · Python · C</span>
+        </div>
+      </div>
+      <div class="cell specs">
+        <dl>
+          <dt>Platform</dt><dd>macOS</dd>
+          <dt>Engine</dt><dd>Immutable graph revisions</dd>
+          <dt>Network</dt><dd>None — no entitlement in v1</dd>
+          <dt>Provenance</dt><dd>Every fact traces to evidence</dd>
+        </dl>
+        <div class="links">
+          <a class="key" href="../cygnus/">Overview</a>
+          <a href="https://github.com/SpaceTrucker2196/cygnus">Source</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 ──────────────────────────────────────────── MeowPass -->
+  <section class="entry reveal" style="--a:#db2777">
+    <div class="head">
+      <div class="ord">12</div>
+      <div class="name">
+        <span class="sig" aria-hidden="true"></span>
+        <h2><a href="../meowpassword/">MeowPass</a></h2>
+        <span class="tag">Cat-name passwords and cat-mail.</span>
+      </div>
+      <div class="state">In development</div>
+    </div>
+    <div class="row">
+      <div class="cell"><div class="plate"><img src="icons/meowpass.png" alt="MeowPass app icon" width="256" height="256" loading="lazy" /></div></div>
+      <div class="cell prose">
+        <p>The native app the command-line generator grew into, in a Shōwa-era game-show register.
+          It does three things: conjures five sayable passwords from a thousand-odd cat names and
+          crowns the one with the best complexity score; judges any password you paste, nought to
+          ten, with a verdict somewhere between "a kitten could paw this open" and "fur-midably
+          complex"; and composes a <em>MeowGram</em> — a secret note tucked invisibly inside an
+          ordinary cat photo with DCT steganography, optionally sealed with a ChaCha20-Poly1305
+          passphrase. There is an iMessage extension for sending them and a share extension for
+          decoding them. No accounts, no servers, no tracking; the Android build ships without the
+          network permission at all.</p>
+        <div class="chips">
+          <span>SwiftUI</span><span>iMessage + share extensions</span>
+          <span>DCT steganography</span><span>ChaCha20-Poly1305</span><span>Offline</span>
+        </div>
+      </div>
+      <div class="cell specs">
+        <dl>
+          <dt>Platform</dt><dd>iPhone · iPad · Mac, one record</dd>
+          <dt>Android</dt><dd>Kotlin port, in development</dd>
+          <dt>Price</dt><dd>Base app free; optional extras planned</dd>
+          <dt>Network</dt><dd>None. Offline forever.</dd>
+        </dl>
+        <div class="links">
+          <a class="key" href="../meowpassword/">Overview</a>
+          <a href="../meowpassword/docs/privacy-policy.html">Privacy</a>
+          <a href="mailto:jeff@river.io?subject=MeowPass%20TestFlight">TestFlight</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<section class="rules" id="rules">
+  <div class="in">
+    <h3>How all twelve are built.</h3>
+    <p class="sub">Not dogma — a set of trade-offs made deliberately, and made the same way every
+      time.</p>
+    <div class="quad">
+      <div>
+        <div class="k">01 · Native</div>
+        <h4>Compiled, not wrapped</h4>
+        <p>C, Swift, Kotlin and Elixir over Flutter, React Native or Electron. Smaller binaries,
+          lower battery cost, direct platform APIs, no framework treadmill.</p>
+      </div>
+      <div>
+        <div class="k">02 · Tested</div>
+        <h4>Tests are the contract</h4>
+        <p>Unit-test parity across platforms, audited rather than assumed. Drift is logged and fixed,
+          never papered over.</p>
+      </div>
+      <div>
+        <div class="k">03 · Unencumbered</div>
+        <h4>Dependencies you can defend</h4>
+        <p>Platform frameworks first — the shipping apps carry none at all. Where a library earns its
+          place, the reason is written down and audited.</p>
+      </div>
+      <div>
+        <div class="k">04 · Private</div>
+        <h4>Data stays on device</h4>
+        <p>Encrypted vaults, no silent network, no analytics. Privacy as an architecture decision
+          rather than a policy page.</p>
+      </div>
+    </div>
+    <p class="foot-note">Versions and prices are current as of the last deploy of this page.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../jeff/">Who builds these</a> · <a href="mailto:info@river.io">info@river.io</a> · <a href="https://github.com/SpaceTrucker2196">GitHub</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+  (function(){
+    var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+    var els=[].slice.call(document.querySelectorAll('.reveal'));
+    if(reduce||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:.04,rootMargin:'0px 0px -4% 0px'});
+    els.forEach(function(e){io.observe(e);});
+  })();
+</script>
+</body>
+</html>

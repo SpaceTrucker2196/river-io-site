@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Security &amp; compliance — Crane</title>
+<meta name="description" content="How Crane protects PHI and keeps a healthcare provider survey-ready: an encrypted vault, a hard credential gate with a full decision trail, tamper-evident audit, least-privilege access, and continuous monitoring." />
+<link rel="icon" type="image/png" href="assets/crane.png" />
+<link rel="stylesheet" href="site.css" />
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand"><img src="assets/crane.png" alt="" /> Crane</div>
+    <nav class="nav-links">
+      <a href="index.html">Product</a>
+      <a href="#phi">PHI</a>
+      <a href="#gate">Credential gate</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#controls">Control catalog</a>
+      <a href="pitch.html">Pitch</a>
+      <a href="https://spacetrucker-galactic.tail01d814.ts.net/">Live demo</a>
+      <a href="https://github.com/SpaceTrucker2196/crane">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero compact">
+  <div class="wrap">
+    <img class="crane" src="assets/crane.png" alt="" />
+    <div class="eyebrow">Security &amp; compliance</div>
+    <h1>Built like the surveyor<br/>is already in the lobby.</h1>
+    <p class="lede">Most staffing platforms bolt compliance on. Crane was designed from its first commit
+    around five non-negotiable rules — and every one of them is enforced by code, proven by a test,
+    and documented in the open.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/SpaceTrucker2196/crane/blob/main/SECURITY.md">Read the full control catalog</a>
+      <a class="btn ghost" href="#controls">The short version</a>
+    </div>
+  </div>
+</div>
+
+<section id="phi">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>PHI never touches the marketplace</h2>
+      <p>The strongest data protection is data that isn't there.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="k">Architecture, not policy</div>
+        <h3>An encrypted vault beside the graph</h3>
+        <p>Credential documents, license numbers, pay detail — even worker names — live in an
+        AES-256-GCM vault with per-tenant keys, durable ciphertext at rest, and a HashiCorp Vault Transit
+        option where key material never leaves your KMS. The marketplace graph holds relationships and
+        opaque references, nothing else.</p>
+      </div>
+      <div class="card">
+        <div class="k">Provable, not promised</div>
+        <h3>A test scans every node</h3>
+        <p>Crane's test suite literally sweeps every property of every node in the graph and asserts
+        that no protected value appears. That test is a merge gate: a build that would leak PHI onto
+        the marketplace cannot ship.</p>
+      </div>
+      <div class="card">
+        <div class="k">Access by relationship</div>
+        <h3>Decryptable only along an authorization edge</h3>
+        <p>Who can see a worker's credential status is a graph question — employment, an active
+        submission, or the worker's own explicit wallet share. No relationship, no read. And workers see
+        the whole truth: everyone with access to their wallet, listed, revocable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gate" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The credential gate enforces — at both doors</h2>
+      <p>Alert fatigue doesn't survive a survey. Enforcement does.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="k">Derived requirements</div>
+        <h3>Right rules, every shift</h3>
+        <p>Requirements derive from your accreditation regime (AAAHC, Joint Commission, state/CMS),
+        state law, role, and unit — automatically, per shift. Nobody hand-types the ACLS requirement
+        and nobody forgets it.</p>
+      </div>
+      <div class="card">
+        <div class="k">Hard block</div>
+        <h3>No override. No advisory mode.</h3>
+        <p>A worker missing any required credential — or holding one that lapses before shift end —
+        cannot be submitted, and is re-checked at award, so a credential that expired in between
+        never gets placed. There is no per-tenant switch to turn this off.</p>
+      </div>
+      <div class="card">
+        <div class="k">Continuous truth</div>
+        <h3>Verified at the source, watched between shifts</h3>
+        <p>Primary-source verification on a re-check cadence; the board's expiry date outranks the
+        hand-entered one. OIG/SAM exclusion feeds and public-list screening flag possible matches for
+        human review — a confirmed hit blocks instantly and alerts everyone with a stake.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="evidence">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Evidence on demand</h2>
+      <p>When the surveyor asks "how do you know?", you hand them a file, not a story.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="k">Gate-decision trail</div>
+        <h3>Every allow and block, with the reason</h3>
+        <p>Each credential-gate evaluation — including blocked attempts that never became
+        submissions — is recorded with its timestamp and the exact requirements that were missing.
+        Export any survey lookback window as CSV, straight from the immutable trail.</p>
+      </div>
+      <div class="card">
+        <div class="k">Tamper-evident audit</div>
+        <h3>A hash-chained record of everything</h3>
+        <p>Every sign-in, denial, mutation, and export lands in an append-only, hash-chained audit
+        trail with one-click chain verification — a broken link is mathematically visible. Events
+        stream as structured JSON to your SIEM.</p>
+      </div>
+      <div class="card">
+        <div class="k">Fairness you can audit</div>
+        <h3>Neutrality is a query</h3>
+        <p>Every broadcast writes all agency notifications in one transaction with one identical
+        timestamp — tier by tier if you ladder your panel. Any auditor can run the query that proves
+        no vendor ever saw a shift early.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="controls" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The control catalog, in one screen</h2>
+      <p>Mapped to SOC 2 trust criteria in <a href="https://github.com/SpaceTrucker2196/crane/blob/main/SECURITY.md">SECURITY.md</a>,
+      with the enforcing code linked control by control. Highlights:</p>
+    </div>
+    <div class="control-list">
+      <div class="control"><div class="tag">Encryption</div>
+        <div><h3>PHI vault with per-tenant keys</h3>
+        <p>AES-256-GCM, tenant id bound into the AEAD so ciphertext can't be replayed across tenants;
+        durable encrypted store; pluggable HashiCorp Vault Transit backend. TLS to the graph (bolt+s).</p></div></div>
+      <div class="control"><div class="tag">Access control</div>
+        <div><h3>Least privilege, relationship-based</h3>
+        <p>Every read and write is authorization-checked by graph reachability (ReBAC). API keys are
+        stored hashed, carry scopes, expire, rotate, and revoke. Magic-link sign-in with single-use,
+        hashed tokens — and no account-existence oracle on the login surface.</p></div></div>
+      <div class="control"><div class="tag">Auditability</div>
+        <div><h3>Append-only, hash-chained, verifiable</h3>
+        <p>Auth denials, authorization decisions, mutations, and evidence exports are all chained.
+        Verification is a first-class endpoint; auditors get read-only access that is itself audited.</p></div></div>
+      <div class="control"><div class="tag">Monitoring</div>
+        <div><h3>Continuous, not annual</h3>
+        <p>Daily expiry-alert escalations, primary-source re-verification sweeps, sanctions screening
+        with human adjudication, live health/readiness/metrics endpoints, rate limiting, and
+        structured security events to your SIEM.</p></div></div>
+      <div class="control"><div class="tag">Integrity</div>
+        <div><h3>Exact money, honest failure</h3>
+        <p>Integer-cent money computed from the graph path with explicit, documented rounding — never
+        estimated. Input validation at every boundary. Feeds that go down change nothing: an outage
+        can never silently alter a credential's standing.</p></div></div>
+      <div class="control"><div class="tag">Resilience</div>
+        <div><h3>Runbooks in the repo</h3>
+        <p>Backup/DR and log-shipping runbooks ship with the code. The whole system builds from a
+        clean clone and runs anywhere — container or bare host — with schema applied on boot.</p></div></div>
+    </div>
+    <p class="quoteline">Five rules, each with a test that is its oracle. Weakening a test to pass is forbidden — by the mission document itself.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Honest about the road ahead</h2>
+      <p>Crane's SOC 2 gap list is public, in the same file as the finished controls. You can read
+      exactly what's done, what's next, and which code enforces each claim — before you ever talk to us.</p>
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/SpaceTrucker2196/crane/blob/main/SECURITY.md">SECURITY.md — the full catalog</a>
+        <a class="btn ghost" href="index.html">Back to the product</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand center"><img src="assets/crane.png" alt="" /> Crane</div>
+    <div>
+      <a href="index.html">Product</a> ·
+      <a href="https://github.com/SpaceTrucker2196/crane">GitHub</a> ·
+      <a href="https://github.com/SpaceTrucker2196/crane/blob/main/SECURITY.md">Security catalog</a>
+    </div>
+    <div class="foot-note">Elixir · Neo4j · an encrypted PHI vault · tested invariants</div>
+  </div>
+</footer>
+
+</body>
+</html>
