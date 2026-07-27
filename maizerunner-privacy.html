@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MaizeRunner — privacy policy · river.io</title>
+  <meta name="description" content="MaizeRunner privacy policy. No accounts, no analytics, no tracking, no third-party SDKs. Your farm data stays on your device; only field coordinates are sent to public soil and weather services." />
+  <link rel="icon" href="assets/maizerunner/icon-512.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ultra&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #f2e9d3; --ink: #2b2116; --ink-soft: #5a4c38; --ink-faint: #8a7a60;
+      --barn: #a4441f; --field: #55743a; --rule: rgba(43, 33, 22, 0.85);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--paper); color: var(--ink);
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 17px; line-height: 1.65;
+      background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(255, 250, 235, 0.7), rgba(0,0,0,0) 60%),
+        repeating-linear-gradient(0deg, rgba(90, 70, 40, 0.028) 0 1px, rgba(0,0,0,0) 1px 28px);
+    }
+    .sheet { max-width: 700px; margin: 0 auto; padding: 0 22px 60px; }
+    .dateline {
+      display: flex; justify-content: space-between;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.22em;
+      color: var(--ink-soft); text-transform: uppercase;
+      padding: 14px 2px 10px; border-bottom: 1.5px solid var(--rule);
+    }
+    .dateline a { color: inherit; text-decoration: none; }
+    header { text-align: center; padding: 34px 0 4px; }
+    header h1 {
+      font-family: "Ultra", Georgia, serif; font-weight: 400;
+      font-size: clamp(30px, 6.5vw, 46px); line-height: 1.05;
+    }
+    header .tagline { font-style: italic; color: var(--ink-soft); margin-top: 8px; font-size: 15px; }
+    .double-rule { border: 0; border-top: 2.5px solid var(--rule); margin: 18px 0 0; }
+    .double-rule::after { content: ""; display: block; border-top: 1px solid var(--rule); margin-top: 2px; }
+    section { padding: 26px 0 0; }
+    .kicker {
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 10.5px; font-weight: 800; letter-spacing: 0.24em;
+      text-transform: uppercase; color: var(--barn);
+      display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+    }
+    .kicker::before { content: ""; width: 26px; height: 2px; background: var(--barn); }
+    p + p { margin-top: 10px; }
+    p { color: var(--ink-soft); }
+    p strong { color: var(--ink); }
+    a { color: var(--barn); }
+    .fleuron { text-align: center; color: var(--ink-faint); letter-spacing: 0.6em; padding: 26px 0 0; }
+    .motto {
+      text-align: center; font-style: italic; letter-spacing: 0.14em;
+      color: var(--ink-soft); font-size: 14px; padding: 34px 0 8px;
+    }
+    footer {
+      border-top: 1.5px solid var(--rule); margin-top: 20px; padding: 16px 2px 0;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 10.5px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--ink-faint);
+    }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="dateline">
+      <span><a href="maizerunner.html">← MaizeRunner</a></span>
+      <span><a href="index.html">river.io</a></span>
+      <span>Legal</span>
+    </div>
+
+    <header>
+      <h1>PRIVACY POLICY</h1>
+      <p class="tagline">MaizeRunner · published by river.io LLC · effective at the 1.0 release</p>
+      <hr class="double-rule" />
+    </header>
+
+    <section>
+      <div class="kicker">The whole of it</div>
+      <p>MaizeRunner is a soil-first tool for corn farmers that runs on your device. <strong>It collects no personal data, no usage data, no analytics, no identifiers, and no diagnostics.</strong> There are no accounts, no sign-in, no advertising, no tracking, and no third-party SDKs. This page is short because the data flows are short.</p>
+    </section>
+
+    <section>
+      <div class="kicker">01 · What stays on your device</div>
+      <p>Your fields, soil tests, seasons, field operations, notes, and photos are stored only on your device, and in your own device backups under your control. We operate no server and keep no account for you; there is nowhere for your farm to go and no way for us to see it. <strong>river.io never receives your farm data.</strong></p>
+    </section>
+
+    <section>
+      <div class="kicker">02 · Location &amp; the soil and weather lookups</div>
+      <p>MaizeRunner uses your device location for one purpose: to place fields on the map and to look up the soil and weather for that ground. When you map or detect a field, the app queries public services with <strong>the field's coordinates only</strong> — the USDA Soil Survey (SSURGO), ISRIC SoilGrids, Open-Meteo for weather, and Apple Maps for satellite imagery. No name, no account, no device identifier, and nothing about you is sent with those requests, and the results are cached on your device.</p>
+      <p><strong>Your location is never sent to river.io</strong>, and the app works offline once a field's soil and weather have been fetched.</p>
+    </section>
+
+    <section>
+      <div class="kicker">03 · Purchases</div>
+      <p>MaizeRunner Pro is a one-time, non-consumable in-app purchase that raises the field limit. It is handled entirely by Apple's App Store; <strong>river.io never sees your payment details</strong> and stores no billing information.</p>
+    </section>
+
+    <section>
+      <div class="kicker">04 · This website</div>
+      <p>This site is static pages. We set no cookies and run no analytics. Our hosting provider may log requests (IP addresses and the like) as part of operating the service, under its own privacy statement.</p>
+    </section>
+
+    <section>
+      <div class="kicker">05 · Changes &amp; correspondence</div>
+      <p>Material changes to this policy will be noted in App Store release notes and on this page. Questions: <a href="mailto:jeff@river.io">jeff@river.io</a>.</p>
+    </section>
+
+    <div class="fleuron">❦</div>
+    <p class="motto">· KNOW YOUR GROUND · IT STAYS ON YOUR DEVICE ·</p>
+
+    <footer>
+      <span>© river.io LLC</span>
+      <span><a href="maizerunner.html">MaizeRunner</a> · <a href="index.html">river.io</a></span>
+    </footer>
+  </div>
+</body>
+</html>

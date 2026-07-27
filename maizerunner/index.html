@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="MaizeRunner — a real-world, soil-first companion for corn farmers. Map your fields, auto-detect your soil from USDA and ISRIC data, take proper soil samples, track the growing season by growing-degree days, and project ten years of soil health under restorative practices. On-device, offline, no account." />
+<meta name="color-scheme" content="light dark" />
+<title>MaizeRunner — know your soil, grow better · river.io</title>
+<meta property="og:title" content="MaizeRunner — know your soil, grow better" />
+<meta property="og:description" content="A real-world, soil-first companion for corn farmers. On-device, offline, no account. Your farm data never leaves your phone." />
+<meta property="og:image" content="../software/icons/maizerunner.png" />
+<link rel="icon" href="../software/icons/maizerunner.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* ────────────────────────────────────────────────────────────
+     MaizeRunner — same flat Swiss system as the river.io software
+     register: neo-grotesque, hard 1px rules, no shadows, no
+     gradients, no radii. Light and dark are both first-class.
+     ──────────────────────────────────────────────────────────── */
+  :root{
+    --bg:#ffffff; --surface:#fafafa; --surface-2:#f2f2f4;
+    --ink:#0a0a0b; --ink-2:#4a4a51; --muted:#84848c;
+    --line:#e0e0e4; --line-strong:#0a0a0b;
+    --brand:#1f4fd8; --a:#7a4f1d;
+    --sans:"Helvetica Neue",Helvetica,"Archivo",Arial,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --maxw:1180px; --gut:32px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#08080a; --surface:#0f0f12; --surface-2:#16161a;
+      --ink:#f4f4f6; --ink-2:#a9a9b2; --muted:#6f6f78;
+      --line:#26262c; --line-strong:#f4f4f6;
+      --brand:#5b87ff; --a:#c08a3e;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#08080a; --surface:#0f0f12; --surface-2:#16161a;
+    --ink:#f4f4f6; --ink-2:#a9a9b2; --muted:#6f6f78;
+    --line:#26262c; --line-strong:#f4f4f6;
+    --brand:#5b87ff; --a:#c08a3e;
+  }
+  :root[data-theme="light"]{
+    --bg:#ffffff; --surface:#fafafa; --surface-2:#f2f2f4;
+    --ink:#0a0a0b; --ink-2:#4a4a51; --muted:#84848c;
+    --line:#e0e0e4; --line-strong:#0a0a0b;
+    --brand:#1f4fd8; --a:#7a4f1d;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  ::selection{background:var(--a);color:#fff}
+  :focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+  img{display:block;max-width:100%}
+  .in{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+
+  /* bar */
+  .bar{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+  .bar .in{height:52px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .id{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.04em;
+    text-transform:uppercase;text-decoration:none;white-space:nowrap}
+  .id span{color:var(--muted);font-weight:400}
+  .id b{color:var(--a);padding:0 .3em}
+  nav.top{display:flex;align-items:center}
+  nav.top a{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none;padding:8px 14px;border-left:1px solid var(--line);
+    transition:color .12s,background .12s}
+  nav.top a:hover{color:var(--ink);background:var(--surface-2)}
+  .toggle{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);background:transparent;border:0;border-left:1px solid var(--line);
+    padding:8px 14px;cursor:pointer;transition:color .12s,background .12s}
+  .toggle:hover{color:var(--ink);background:var(--surface-2)}
+
+  /* hero */
+  .hero{border-bottom:1px solid var(--line)}
+  .hero .in{padding:74px var(--gut) 66px;display:grid;grid-template-columns:minmax(0,1fr) 168px;gap:44px;align-items:start}
+  @media (max-width:760px){.hero .in{grid-template-columns:1fr;gap:0}.hero .icon{display:none}}
+  .hero .icon{width:168px;height:168px;border:1px solid var(--line);background:var(--surface)}
+  .hero .icon img{width:100%;height:100%;object-fit:cover}
+  .status{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;
+    letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);
+    border:1px solid var(--line);padding:7px 13px;margin-bottom:40px}
+  .status::before{content:"";width:8px;height:8px;background:var(--a);display:block}
+  h1{font-size:clamp(2.6rem,7vw,5.1rem);line-height:.94;letter-spacing:-.045em;font-weight:700;
+    margin:0;max-width:18ch}
+  h1 span{color:var(--muted);font-weight:400}
+  .lede{font-size:clamp(1rem,1.5vw,1.18rem);color:var(--ink-2);max-width:60ch;margin:30px 0 0}
+  .lede b{color:var(--ink);font-weight:600}
+  .cta{display:flex;flex-wrap:wrap;margin:38px 0 0;
+    border-top:1px solid var(--line);border-left:1px solid var(--line);width:fit-content;max-width:100%}
+  .cta a{font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-decoration:none;
+    padding:13px 18px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    transition:background .12s,color .12s}
+  .cta a:hover{background:var(--a);color:#fff}
+  .cta a.key{background:var(--a);color:#fff;font-weight:500}
+  .cta a.key:hover{background:var(--ink);color:var(--bg)}
+  .cta a.disabled{color:var(--muted);cursor:default}
+  .cta a.disabled:hover{background:transparent;color:var(--muted)}
+
+  section{border-bottom:1px solid var(--line)}
+  section .in{padding:64px var(--gut) 70px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted);margin:0 0 26px}
+  h2{font-size:clamp(1.55rem,3.4vw,2.35rem);letter-spacing:-.035em;font-weight:700;margin:0 0 12px}
+  .sub{color:var(--ink-2);max-width:62ch;margin:0 0 38px;font-size:.98rem}
+
+  /* workflow rail */
+  .rail{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));
+    border-top:1px solid var(--line-strong);border-left:1px solid var(--line)}
+  @media (max-width:980px){.rail{grid-template-columns:repeat(4,minmax(0,1fr))}}
+  @media (max-width:560px){.rail{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  .gate{padding:18px 15px 22px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    transition:background .12s}
+  .gate:hover{background:var(--surface-2)}
+  .gate .n{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--a);margin-bottom:12px}
+  .gate h3{font-size:.95rem;font-weight:600;letter-spacing:-.015em;margin:0 0 6px}
+  .gate p{margin:0;font-size:.81rem;line-height:1.45;color:var(--muted)}
+  .railnote{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--muted);margin-top:20px}
+
+  /* feature grid */
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--line-strong);border-left:1px solid var(--line)}
+  @media (max-width:900px){.grid3{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:600px){.grid3{grid-template-columns:1fr}}
+  .grid3 > div{padding:24px 24px 28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .grid3 .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:14px}
+  .grid3 h3{margin:0 0 8px;font-size:1.02rem;font-weight:600;letter-spacing:-.02em}
+  .grid3 p{margin:0;font-size:.89rem;line-height:1.52;color:var(--ink-2)}
+  .grid3 code{font-family:var(--mono);font-size:.86em;background:var(--surface-2);padding:1px 5px}
+
+  /* rules table */
+  .table{border-top:1px solid var(--line-strong)}
+  .trow{display:grid;grid-template-columns:260px minmax(0,1fr);gap:28px;
+    padding:20px 0 22px;border-bottom:1px solid var(--line)}
+  @media (max-width:660px){.trow{grid-template-columns:1fr;gap:6px}}
+  .trow .t{font-size:1rem;font-weight:600;letter-spacing:-.02em}
+  .trow .d{color:var(--ink-2);font-size:.92rem}
+
+  /* specs */
+  .specs{border-top:1px solid var(--line-strong)}
+  .srow{display:grid;grid-template-columns:200px minmax(0,1fr);gap:28px;
+    padding:15px 0 16px;border-bottom:1px solid var(--line)}
+  @media (max-width:660px){.srow{grid-template-columns:1fr;gap:2px}}
+  .srow dt{font-family:var(--mono);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+  .srow dd{margin:0;color:var(--ink-2);font-size:.94rem}
+
+  footer .in{padding:26px var(--gut) 58px;display:flex;flex-wrap:wrap;gap:12px 28px;
+    justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--muted)}
+  footer a{color:var(--ink-2);text-decoration:none}
+  footer a:hover{color:var(--a)}
+
+  .reveal{opacity:0;transition:opacity .4s linear}
+  .reveal.in{opacity:1}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transition:none}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>maizerunner</span></a>
+    <nav class="top">
+      <a href="#workflow">Workflow</a>
+      <a href="#what">Capabilities</a>
+      <a href="#rules">Rules</a>
+      <a href="../software/">Register</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="in">
+    <div>
+      <div class="status">Coming to the App Store · iPhone · iOS 17</div>
+      <h1>MaizeRunner.<br /><span>Know your soil. Grow better.</span></h1>
+      <p class="lede">A real-world, soil-first companion for corn farmers — the practical sibling of the
+        Corn&nbsp;3000 game. Map your fields, learn what your ground is actually made of, and watch it
+        get better year after year. Everything runs <b>on your phone</b>: no account, no login, no
+        analytics. Your farm data never leaves the device.</p>
+      <div class="cta">
+        <a class="key disabled" href="#" aria-disabled="true" title="App Store link pending">On the App Store — soon</a>
+        <a href="#workflow">See how it works</a>
+        <a href="../software/">River.io software register</a>
+      </div>
+    </div>
+    <div class="icon"><img src="../software/icons/maizerunner.png" alt="MaizeRunner app icon" width="168" height="168" /></div>
+  </div>
+</div>
+
+<section id="workflow">
+  <div class="in reveal">
+    <div class="eyebrow">01 · The season, end to end</div>
+    <h2>From an unmapped field to ground that improves every year.</h2>
+    <p class="sub">MaizeRunner walks a brand-new user through the whole arc — mapping, sampling,
+      the growing season, and the long game of building fertility — in the order the work actually
+      happens. Nothing here needs a signal in the field.</p>
+    <div class="rail">
+      <div class="gate"><div class="n">01</div><h3>Map</h3><p>Draw or walk field boundaries on satellite imagery.</p></div>
+      <div class="gate"><div class="n">02</div><h3>Detect</h3><p>Soil type auto-read from USDA and ISRIC data by location.</p></div>
+      <div class="gate"><div class="n">03</div><h3>Sample</h3><p>A step-by-step guide to taking a proper soil sample.</p></div>
+      <div class="gate"><div class="n">04</div><h3>Record</h3><p>Enter lab results; a measurement always beats an estimate.</p></div>
+      <div class="gate"><div class="n">05</div><h3>Track</h3><p>Log planting; follow growing-degree days to the current stage.</p></div>
+      <div class="gate"><div class="n">06</div><h3>Outlook</h3><p>A caveated yield range — never a single false promise.</p></div>
+      <div class="gate"><div class="n">07</div><h3>Project</h3><p>Ten years of organic matter, pH and soil life, modeled.</p></div>
+      <div class="gate"><div class="n">08</div><h3>Log</h3><p>Every operation recorded, so the trend line is real.</p></div>
+    </div>
+    <p class="railnote">Grounded in USDA, NRCS and land-grant university research · honest numbers, plainly explained</p>
+  </div>
+</section>
+
+<section id="what">
+  <div class="in reveal">
+    <div class="eyebrow">02 · Capabilities</div>
+    <h2>Soil and the growing season, made legible.</h2>
+    <p class="sub">Soil is the spine. Every feature exists to help a working farmer understand their
+      ground, track a real season against it, and make it better over time.</p>
+    <div class="grid3">
+      <div>
+        <div class="k">Field mapping</div>
+        <h3>Your fields, on the map</h3>
+        <p>Draw a boundary by hand or walk it with the phone in your pocket. Split a field into
+          management zones and track each part of it on its own.</p>
+      </div>
+      <div>
+        <div class="k">Soil detection</div>
+        <h3>What your ground is made of</h3>
+        <p>Auto-detect soil type by location — USDA <code>SSURGO</code> in the US, ISRIC
+          <code>SoilGrids</code> worldwide. Every survey value carries an <em>estimated</em> badge; it
+          is never dressed up as a lab result.</p>
+      </div>
+      <div>
+        <div class="k">Sampling</div>
+        <h3>A real test, made easy</h3>
+        <p>A plain, step-by-step guide to pulling a proper soil sample, and a place to record the lab
+          results when they come back. The app's job is to make a real test legible, not replace it.</p>
+      </div>
+      <div>
+        <div class="k">Season tracking</div>
+        <h3>Growing-degree days, live</h3>
+        <p>Log planting and follow the real season — weather to growing-degree days to the current corn
+          growth stage — so you always know where the crop stands.</p>
+      </div>
+      <div>
+        <div class="k">Yield outlook</div>
+        <h3>A range, with its reasons</h3>
+        <p>A caveated low–high band with the factors helping and hurting, and its state-level caveat in
+          plain sight. Withheld mid-season when the weather-to-date would only mislead.</p>
+      </div>
+      <div>
+        <div class="k">Soil projection</div>
+        <h3>Ten years, restored</h3>
+        <p>Project organic matter, pH and soil life a decade out under cover crops, reduced tillage,
+          manure and rotation. Record every operation and watch the trend the numbers actually make.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="rules">
+  <div class="in reveal">
+    <div class="eyebrow">03 · Sacred invariants</div>
+    <h2>Five things MaizeRunner is not allowed to do.</h2>
+    <p class="sub">These are architectural, not preferences. They are what keep the numbers honest and
+      the farm data yours.</p>
+    <div class="table">
+      <div class="trow"><div class="t">Farm data stays on the device</div>
+        <div class="d">No backend, no account, no login, no analytics, no outbound telemetry. Fields,
+          soil tests, seasons, photos and notes live only in on-device SQLite and the local
+          filesystem.</div></div>
+      <div class="trow"><div class="t">A measurement beats an estimate</div>
+        <div class="d">A lab result always overrides a survey or model value, and estimates are never
+          dressed as measurements — every survey-derived number carries an "estimated" provenance
+          badge.</div></div>
+      <div class="trow"><div class="t">The yield outlook is a range</div>
+        <div class="d">Always a caveated low–high band with its factor breakdown and state-level
+          caveat — never a single-number "prediction," and withheld when the season-to-date would
+          mislead.</div></div>
+      <div class="trow"><div class="t">Agronomy stays cited and honest</div>
+        <div class="d">Model coefficients carry provenance and citations to USDA, NRCS and land-grant
+          research; the trajectory math is locked by golden tests. A change is a conscious, cited
+          decision.</div></div>
+      <div class="trow"><div class="t">Free is three fields; Pro is a hundred</div>
+        <div class="d">Every other feature works identically in the free tier. The paywall appears only
+          when you add a fourth field — nothing else is gated.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="specs">
+  <div class="in reveal">
+    <div class="eyebrow">04 · The particulars</div>
+    <h2>Native, offline, and honest about what it is.</h2>
+    <p class="sub">A greenfield SwiftUI app for iOS 17, on-device from the ground up. GRDB/SQLite for
+      storage; public soil and weather sources sit behind protocols so a new backend slots in without
+      touching the app.</p>
+    <dl class="specs">
+      <div class="srow"><dt>Platform</dt><dd>iPhone · iOS 17 and later</dd></div>
+      <div class="srow"><dt>Price</dt><dd>Free for 3 fields · MaizeRunner Pro (in-app) for up to 100</dd></div>
+      <div class="srow"><dt>Data</dt><dd>On device. No account, no network beyond public soil and weather sources you look up.</dd></div>
+      <div class="srow"><dt>Languages</dt><dd>Localized into 33 languages</dd></div>
+      <div class="srow"><dt>Sources</dt><dd>USDA SSURGO · ISRIC SoilGrids · Open-Meteo · NRCS and land-grant research</dd></div>
+      <div class="srow"><dt>Sibling</dt><dd><a href="../corn3000.html">Corn 3000</a>, the historical farming game it grew out of</dd></div>
+      <div class="srow"><dt>Availability</dt><dd>Coming to the App Store — link pending</dd></div>
+    </dl>
+  </div>
+</section>
+
+<footer>
+  <div class="in">
+    <span>MaizeRunner · River.io LLC</span>
+    <span><a href="../software/">Software register</a> · <a href="../corn3000.html">Corn 3000</a> · <a href="mailto:info@river.io?subject=MaizeRunner">info@river.io</a></span>
+    <span>Native · On-device · Offline</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+  (function(){
+    var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+    var els=[].slice.call(document.querySelectorAll('.reveal'));
+    if(reduce||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:.04});
+    els.forEach(function(e){io.observe(e);});
+  })();
+</script>
+</body>
+</html>
