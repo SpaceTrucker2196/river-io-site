@@ -194,7 +194,7 @@ blockquote.transmission cite { display: block; margin-top: 8px; color: var(--mut
 /* footer build-out */
 footer.site-footer { display: block; max-width: none; padding: 0 0 50px; margin: 0; }
 footer.site-footer .foot-bottom { max-width: 1280px; margin: 0 auto; padding: 26px 32px 0; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
-.footer-links { max-width: 1280px; margin: 0 auto; padding: 44px 32px 8px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.footer-links { max-width: 1280px; margin: 0 auto; padding: 44px 32px 8px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; }
 .footer-links h4 { font-size: .6rem; text-transform: uppercase; letter-spacing: .16em; color: var(--gold); margin: 0 0 12px; font-weight: 600; }
 .footer-links a { display: block; color: var(--muted); font-size: .68rem; padding: 4px 0; letter-spacing: .04em; }
 .footer-links a:hover { color: var(--cyan); }
