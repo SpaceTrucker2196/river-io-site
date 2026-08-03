@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Download Henge for Mac</title>
+<meta name="description" content="Download the early macOS build of Henge — a photoreal Stonehenge that keeps real time. Universal binary, macOS 14 or later.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='8' width='7' height='20' fill='%23C9A227'/%3E%3Crect x='21' y='8' width='7' height='20' fill='%23C9A227'/%3E%3Crect x='2' y='3' width='28' height='6' fill='%23C9A227'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --night:   #0E1626;
+    --dusk:    #1B2740;
+    --violet:  #3D3A5C;
+    --ember:   #8A4A2F;
+    --gold:    #C9A227;
+    --gold-hi: #E8C55A;
+    --chalk:   #EDE8DA;
+    --parch:   #D8D0BC;
+    --ink:     #14110C;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --mono: ui-monospace, "SF Mono", Menlo, "Cascadia Mono", Consolas, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--serif);
+    background:
+      linear-gradient(to bottom, var(--night) 0%, var(--dusk) 46%, var(--violet) 74%, var(--ember) 96%);
+    min-height: 100vh;
+    color: var(--chalk);
+    line-height: 1.6;
+    font-size: 17px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+  }
+  main { max-width: 640px; text-align: center; }
+  .back {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .3em;
+    color: var(--gold-hi); text-decoration: none;
+  }
+  .back:hover { color: var(--chalk); }
+  .glyph { margin: 34px auto 26px; display: block; }
+  h1 {
+    font-size: clamp(38px, 7vw, 58px);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+  .sub { margin-top: 12px; font-style: italic; font-size: 19px; color: var(--parch); }
+  .button {
+    display: inline-block; margin-top: 40px;
+    font-family: var(--mono); font-size: 15px; letter-spacing: .16em;
+    color: var(--ink); background: var(--gold);
+    text-decoration: none; padding: 18px 34px;
+    border: 1px solid var(--gold-hi);
+    box-shadow: 0 6px 30px rgba(201,162,39,.35);
+  }
+  .button:hover { background: var(--gold-hi); }
+  .meta {
+    margin-top: 16px; font-family: var(--mono); font-size: 12.5px;
+    letter-spacing: .12em; color: rgba(216,208,188,.75);
+  }
+  .notes {
+    margin: 44px auto 0; max-width: 560px; text-align: left;
+    border-top: 1px solid rgba(237,232,218,.25); padding-top: 26px;
+    font-size: 15.5px; color: rgba(237,232,218,.85);
+  }
+  .notes p + p { margin-top: 12px; }
+  .notes b { color: var(--gold-hi); font-weight: 700; }
+  .fine {
+    margin-top: 40px; font-size: 13.5px; font-style: italic;
+    color: rgba(216,208,188,.55);
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="../software/">&larr; RIVER.IO SOFTWARE</a>
+  <svg class="glyph" width="88" height="66" viewBox="0 0 88 66" aria-hidden="true">
+    <rect x="10" y="16" width="18" height="50" fill="#C9A227"/>
+    <rect x="60" y="16" width="18" height="50" fill="#C9A227"/>
+    <rect x="4" y="2" width="80" height="12" fill="#C9A227"/>
+  </svg>
+  <h1>Henge for&nbsp;Mac</h1>
+  <p class="sub">The early build &mdash; the whole instrument, still on the workbench.</p>
+
+  <a class="button" href="Henge.dmg" download>DOWNLOAD HENGE.DMG</a>
+  <p class="meta">v<!--v-->0.1.0<!--/v--> &middot; <!--s-->8.7M<!--/s--> &middot; UNIVERSAL &middot; macOS 14+</p>
+
+  <div class="notes">
+    <p><b>To install:</b> open the image and drag Henge into Applications.</p>
+    <p><b>First launch:</b> this early build is not yet notarized with Apple, so
+    macOS will warn you. Right-click the app, choose <b>Open</b>, and confirm
+    once &mdash; after that it opens normally. When the app ships properly it
+    will carry a Developer&nbsp;ID signature and this paragraph will be deleted
+    with some ceremony.</p>
+    <p><b>What you get:</b> the working almanac &mdash; the computed sky over the
+    surveyed stones, the time scrubber to 100,000&times;, both monument states
+    and the four-thousand-year passage between them. It is a build in progress,
+    and it behaves like one in places.</p>
+  </div>
+
+  <p class="fine">No network, no telemetry, no account. The almanac works in a
+  field with no signal.<br>
+  The astronomy, the archaeology and the accuracy figures live on
+  <a href="https://spacetrucker2196.github.io/henge/" style="color:var(--gold-hi)">the research site</a>.</p>
+</main>
+</body>
+</html>
