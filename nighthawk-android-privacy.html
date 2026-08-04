@@ -37,7 +37,7 @@
     <section>
       <div class="label">— 02 · Permissions —</div>
       <div class="body-text">
-        <p>The app declares exactly one permission: <code>com.android.vending.BILLING</code>, used only to offer the one-time purchase that unlocks the full session timer. It requests no internet, microphone, camera, location, storage, or contacts permission.</p>
+        <p>Our own manifest declares exactly one permission: <code>com.android.vending.BILLING</code>, used only to offer the one-time purchase that unlocks the full session timer. The Google Play Billing library we depend on merges in <code>INTERNET</code> and <code>ACCESS_NETWORK_STATE</code>, so those appear in the installed app too; they exist solely so Play Billing can reach Google's servers, and nothing else in Nighthawk Tube uses them. The app requests no microphone, camera, location, storage, or contacts permission.</p>
       </div>
     </section>
 
