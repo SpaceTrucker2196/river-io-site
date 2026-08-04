@@ -106,3 +106,13 @@ blockquote.transmission cite { display: block; margin-top: 8px; color: var(--mut
   .figure-row, .figure-row.three, .gallery-grid, .wiki-card-row { grid-template-columns: 1fr; }
   .wiki-shell { padding: 0 20px; }
 }
+
+/* ── Fleet schematics (wide landscape blueprint sheets) ── */
+.schematic-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 20px; }
+.schematic-grid a { display: block; border: 1px solid var(--line); background: var(--panel-strong); overflow: hidden; }
+.schematic-grid img { width: 100%; height: 300px; object-fit: cover; display: block; border-bottom: 1px solid var(--line); transition: transform .35s ease, opacity .35s ease; }
+.schematic-grid a:hover img { transform: scale(1.03); opacity: .9; }
+.schematic-grid figure { margin: 0; }
+.schematic-grid figcaption { padding: 10px 14px 12px; font-size: .64rem; color: var(--muted); letter-spacing: .05em; line-height: 1.5; }
+.schematic-grid figcaption strong { color: var(--ink); font-weight: 600; }
+@media (max-width: 700px){ .schematic-grid { grid-template-columns: 1fr; } .schematic-grid img { height: 220px; } }
