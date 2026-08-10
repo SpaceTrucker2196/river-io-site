@@ -119,16 +119,22 @@
     </div>
 
     <h2>Who this covers</h2>
-    <p>This policy applies to the <strong>Nighthawk Tube</strong> iOS app (bundle identifier
-      <strong>io.river.nighthawk</strong>), published by River. Contact:
-      <a href="mailto:jeff@river.io">jeff@river.io</a>.</p>
+    <p>This policy applies to <strong>Nighthawk Tube</strong> on both platforms — the iOS app
+      (bundle identifier <strong>io.river.nighthawk</strong>) and the Android app (package
+      <strong>io.river.nighthawk</strong>) — published by River. Contact:
+      <a href="mailto:jeff@river.io">jeff@river.io</a>. Where the two differ, the difference is
+      called out below; there is exactly one, and it is the store's billing library.</p>
 
     <h2>Information we collect</h2>
     <p><strong>None.</strong> Nighthawk Tube does not collect, store, transmit, or share any personal
       information. Specifically, the app:</p>
     <ul>
       <li>has no user accounts and asks for no name, email, or login;</li>
-      <li>makes no network requests and contains no server or cloud backend of its own;</li>
+      <li>has no server or cloud backend of its own, and makes no network requests of its own.
+          <em>On Android</em>, Google's Play Billing library merges the <code>INTERNET</code> and
+          <code>ACCESS_NETWORK_STATE</code> permissions into the installed app and reaches Google's
+          servers to process a purchase; nothing else in the app uses the network, on either
+          platform;</li>
       <li>includes no analytics, crash-reporting, advertising, or third-party tracking SDKs;</li>
       <li>does not use the microphone, camera, contacts, photos, or location, and never
           <em>reads</em> any health data; it only <em>outputs</em> audio through your device's
@@ -146,7 +152,7 @@
     </ul>
     <p>This data lives in the app's private storage and is removed if you delete the app.</p>
 
-    <h2>Apple Health (optional)</h2>
+    <h2>Health logging (optional)</h2>
     <p>If you start a session timer, Nighthawk Tube can record the completed minutes to Apple Health
       as a Mindful Minutes entry, but only after you explicitly grant permission when the app asks.
       This is strictly write-only: the app logs finished sessions and never reads anything from your
@@ -155,14 +161,24 @@
       <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple's Privacy Policy</a>. You can
       decline the prompt, or revoke access at any time in Settings &rsaquo; Privacy &amp; Security
       &rsaquo; Health, and the instrument works exactly the same without it.</p>
+    <p><strong>On Android</strong>, the same applies through <strong>Health Connect</strong>: a
+      completed session can be written as a mindfulness record, only after you grant the optional
+      permission, which the app asks for when you press START and never at launch. The permission
+      is <strong>write-only</strong> — there is deliberately no matching read permission, because
+      the app has no reason to look at your health data. A session you cancel is never recorded;
+      only one that runs to the end. Those records live in Health Connect on your device, under
+      your control, and are never transmitted to us. You can revoke access at any time in Health
+      Connect's app permissions.</p>
 
     <h2>Purchases</h2>
     <p>Nighthawk Tube offers one optional, non-consumable in-app purchase, <strong>Pro</strong>
       ($2.99), which unlocks the full session timer and the preset library. Payments are handled
-      entirely by <strong>Apple</strong> through the App Store and StoreKit. We never see or receive your
+      entirely by the store — <strong>Apple</strong> through the App Store and StoreKit on iOS,
+      <strong>Google</strong> through Play Billing on Android. We never see or receive your
       payment details, card number, or Apple Account information. Apple's handling of that transaction is
-      governed by <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple's Privacy Policy</a>.
-      To restore a previous purchase, the app asks Apple to confirm your entitlement, again with no
+      governed by <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple's Privacy Policy</a>
+      and <a href="https://policies.google.com/privacy" rel="noopener">Google's Privacy Policy</a>
+      respectively. To restore a previous purchase, the app asks Apple to confirm your entitlement, again with no
       personal data passing to us.</p>
 
     <h2>Children</h2>
