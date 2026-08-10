@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Navigation &amp; Flight | U.C.F. Wiki</title>
+  <meta name="description" content="United Cat Foods flight operations: the continuous-thrust drive, delta-v budgets, the three hull classes, gravity assists, and the seasons that govern the freight network." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="wiki.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html" aria-label="United Cat Foods home">
+      <img class="brand-mark" src="../logo.png" alt="United Cat Foods" />
+      <span><strong>United Cat Foods</strong></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../index.html">Home</a>
+      <a href="index.html">Wiki</a>
+      <a href="gallery.html">Art Archive</a>
+      <a href="../reverse-cat-simulator.html">Reverse Cat Simulator</a>
+    </nav>
+  </header>
+
+  <div class="wiki-shell">
+    <nav class="wiki-nav" aria-label="Wiki navigation">
+      <p class="wiki-nav-title">U.C.F. Archive</p>
+      <a href="index.html">Overview</a>
+      <a href="history.html">History</a>
+      <a href="products.html">Products</a>
+      <a href="technology.html">Technology</a>
+      <a href="navigation.html" class="active">Navigation &amp; Flight</a>
+      <a href="people-places.html">People &amp; Places</a>
+      <a href="culture.html">Culture &amp; Media</a>
+      <a href="gallery.html">Art Archive</a>
+      <a href="../index.html" class="back">← Corporate Site</a>
+    </nav>
+
+    <main class="wiki-main">
+      <p class="eyebrow">Corporate Archive / Navigation &amp; Flight</p>
+      <h1 class="page-title">Navigation &amp; Flight</h1>
+      <p class="page-sub">How the fleet crosses the system. The company flies the solar system we actually live in, at distances nobody negotiated, on a drive that never stops burning.</p>
+
+      <section class="wiki-section">
+        <h2>The crossing</h2>
+        <aside class="infobox">
+          <p class="infobox-title">Standard Drive Profile</p>
+          <dl>
+            <dt>Acceleration</dt><dd>1.8538 m/s², or 0.189 g</dd>
+            <dt>Profile</dt><dd>Continuous thrust, flip at midpoint</dd>
+            <dt>Anchor</dt><dd>Earth orbit to Luna, eight hours</dd>
+            <dt>Coasting</dt><dd>None</dd>
+            <dt>Exhaust velocity</dt><dd>3,000 km/s</dd>
+          </dl>
+        </aside>
+        <p>U.C.F. hulls do not coast. A crossing is flown under power the entire way: thrust to the midpoint, flip end over end, and decelerate the rest of the distance so the ship arrives at rest alongside the berth rather than through it. Navigators call it the brachistochrone profile. Loaders call it the reason nothing in the hold is allowed to be round.</p>
+        <p>Because the drive never rests, distance and time are related by a single law. Half the crossing is spent accelerating, so <code>d = a(t/2)²</code>, and flight time is therefore <code>t = 2√(d/a)</code>. Time goes as the <em>square root</em> of distance, which is the one mercy in the whole arrangement: a run four times as far takes only twice as long.</p>
+        <p>The company's standard acceleration is fixed by its oldest published number. Earth orbit to Luna is quoted at eight hours, and 384,399 km in eight hours under this profile requires 1.8538 m/s². Every other figure in the timetable descends from that one promise.</p>
+      </section>
+
+      <section class="wiki-section">
+        <h2>What the drive costs</h2>
+        <p>Speed is not the expensive part. Velocity is. A continuous-thrust crossing must buy its speed on the way out and then buy the same speed again to shed it on the way in, so the total velocity budget is <code>Δv = 2√(dA)</code>. The figures are large, and they are meant to be.</p>
+        <table class="data-table">
+          <tr><th>Route</th><th>Distance</th><th>Flight time</th><th>Delta-v</th></tr>
+          <tr><td>Earth orbit to Luna</td><td>384,399 km</td><td>8.0 h</td><td>53 km/s</td></tr>
+          <tr><td>Earth orbit to Mars</td><td>272.6M km</td><td>213.1 h</td><td>1,422 km/s</td></tr>
+          <tr><td>Earth orbit to Callisto</td><td>792.7M km</td><td>363.3 h</td><td>2,424 km/s</td></tr>
+          <tr><td>Earth orbit to Titan</td><td>1.441B km</td><td>489.9 h</td><td>3,269 km/s</td></tr>
+          <tr><td>Titan to Titania</td><td>3.209B km</td><td>730.9 h</td><td>4,878 km/s</td></tr>
+        </table>
+        <p>Distances above are quoted at mean separation. A ship routed Earth orbit to Titania by way of Titan spends 8,147 km/s across the two legs, which is the largest single commitment on the published network.</p>
+        <p>Propellant is charged by the arithmetic that has governed every rocket ever built. To change velocity by a given amount, a ship throws away a fraction of its own mass, and that fraction climbs faster than the velocity does. At the company's 3,000 km/s exhaust velocity, Luna costs a hull under two percent of itself, Mars at mean separation costs about thirty eight percent, and Titan to Triton costs a freight train fifty four percent. The same Triton run on a torchship costs ninety two percent, which is a number the yards will quote a price for and then decline to build.</p>
+      </section>
+
+      <section class="wiki-section">
+        <h2>The three hulls</h2>
+        <p>Pushing harder shortens the crossing but raises the velocity bill, because time falls as one over the square root of acceleration while delta-v rises as its square root. A hull cannot be fast and cheap. It can be fast, or it can carry things.</p>
+        <table class="data-table">
+          <tr><th>Class</th><th>Acceleration</th><th>Hold</th><th>Crossing time</th><th>Delta-v</th></tr>
+          <tr><td>Freight train</td><td>0.03 g</td><td>240</td><td>×2.51</td><td>×0.40</td></tr>
+          <tr><td>Standard hauler</td><td>0.189 g</td><td>120</td><td>baseline</td><td>baseline</td></tr>
+          <tr><td>Torchship</td><td>0.30 g</td><td>60</td><td>×0.79</td><td>×1.26</td></tr>
+        </table>
+        <p>On the Earth to Mars run a freight train burns seventeen percent of itself as propellant and a torchship forty five. Out at Titan to Triton the same comparison is brutal: fifty four percent against ninety two. The freight train is not a lesser ship. It is the only class for which the outer runs close at all, and everything beyond Saturn moves because a freight train was willing to take four times as long about it.</p>
+        <p>The exception is cargo that spoils. Salmon mousse loses roughly a seventh of itself on a freight train to Titania and about a twentieth on a torchship, and on a full presentation-tin manifest that difference is worth several times the fuel. Perishables fly fast. Grain, ore, cometary ice, tinplate and bonded clay do not care how long they are in the dark, and they are loaded accordingly.</p>
+        <blockquote class="transmission">
+          Amazonian Prime Freight operates three torchships and names them after delivery windows. We operate six freight trains and name them after naps. Both fleets arrive. Only one of them arrives with the whole manifest.
+          <cite>Fleet Operations bulletin, Cannery Row</cite>
+        </blockquote>
+      </section>
+
+      <section class="wiki-section">
+        <h2>Seasons</h2>
+        <p>The planets do not hold station for the convenience of the timetable. A lane is not the same lane twice, and the separation a navigator is quoted this morning is a fact about this morning.</p>
+        <p>Earth and Mars sit anywhere from 78 to 378 million kilometres apart depending on where each happens to be, and since flight time follows the square root of distance, the same run can take half as long in a good season as in a bad one for very nearly the same fuel. Luna is exempt. Luna comes with us.</p>
+        <table class="data-table">
+          <tr><th>Pair</th><th>Season length</th><th>Character</th></tr>
+          <tr><td>Earth and Jupiter</td><td>399 days</td><td>The fast season. Opens and closes twice a year.</td></tr>
+          <tr><td>Earth and Saturn</td><td>378 days</td><td>Near-annual. Predictable enough to schedule against.</td></tr>
+          <tr><td>Earth and Mars</td><td>780 days</td><td>The classic window. Long enough to plan, short enough to live through.</td></tr>
+          <tr><td>Jupiter and Saturn</td><td>7,253 days</td><td>A career.</td></tr>
+          <tr><td>Uranus and Neptune</td><td>62,606 days</td><td>Fixed, for operational purposes.</td></tr>
+        </table>
+        <p>The outer pairs are worth stating plainly. Titania and Triton are on a cycle no employee of this company has seen turn over, and the schedule between them is best described as permanent. That run belongs to the freight trains and always will.</p>
+      </section>
+
+      <section class="wiki-section">
+        <h2>Gravity assists</h2>
+        <p>A close pass by a massive body rotates a ship's velocity vector, and in the Sun's frame that rotation is free speed. The gain is bounded by the body's mass and by how close a pilot dares fly, which is why Jupiter is worth a detour and Luna is not.</p>
+        <p>Company minimums place periapsis no nearer than three body radii. Closer than that is not a pass, it is a landing, and the paperwork differs considerably. In practice assists matter most on the short Jovian transfers, where a swing past Jupiter can buy back several hours on a twelve hour hop. On the long outer crossings the ship is simply moving too quickly for any planet to bend its course enough to matter, and the flight plan will say so.</p>
+      </section>
+
+      <section class="wiki-section">
+        <h2>A note on quoted distances</h2>
+        <p>Published lane figures are quoted at root mean square separation, which is the honest long-run average of a pair over a full season rather than a convenient midpoint. For two roughly circular orbits this works out to the square root of the sum of the squares of the two orbital radii. It is the number a lane costs on average across every season it will ever have, which makes it the right basis for a rate card and the wrong basis for a departure.</p>
+        <p>Navigators file against the sky in front of them. Accounting files against the average. Both are correct and the difference is called a launch window.</p>
+      </section>
+
+      <section class="wiki-section">
+        <h2>Related</h2>
+        <a class="tag gold" href="technology.html">Fusion &amp; propulsion research</a>
+        <a class="tag" href="people-places.html">Stations &amp; facilities</a>
+        <a class="tag" href="products.html">What ships in the hold</a>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <div class="brand small"><img class="brand-mark" src="../logo.png" alt="United Cat Foods" /><span><strong>United Cat Foods</strong><small>Corporate Archive · Wiki</small></span></div>
+    <span>© 3025 United Cat Foods Corporation</span>
+  </footer>
+</body>
+</html>
