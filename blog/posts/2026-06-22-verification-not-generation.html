@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="AI now writes most new code at the largest software companies, but the strongest June 2026 evidence shows the limit on autonomy has moved from generating code to proving it is fit to ship." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing, Autonomy, Security, Metrics" />
+<title>Verification, not generation, is the new ceiling on autonomous software — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 006</b><span>22 June 2026</span><span>8 min</span><span>Briefing</span></div>
+    <h1>Verification, not generation, is the new ceiling on autonomous software</h1>
+    <p class="dek">AI now writes most new code at the largest software companies, but the strongest
+      June 2026 evidence shows the limit on autonomy has moved from generating code to proving it
+      is fit to ship.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">In late June 2026, the headline proof points for autonomous software
+      production kept climbing. At Google Cloud Next 2026, Sundar Pichai put AI-generated new code
+      at 75 percent of Google's output, up from roughly 50 percent the previous fall and roughly
+      25 percent the year before that. Stripe's autonomous "Minions" are now cited at about 1,300
+      pull requests per week. The more important story sits on the other side of the ledger. When
+      the Software Improvement Group benchmarked a browser engine built by an agent swarm in a
+      single week, it scored in the bottom 5 percent of all systems for maintainability. Generation
+      is no longer the constraint on autonomous software. Verification is.</p>
+
+    <h2>The proof points, and what they actually say</h2>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Organization</th><th>Claim</th><th>Human role</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Google</td><td>~75% of new code AI-generated (up from ~50% Oct 2025, ~25% Oct 2024)</td><td>Every change engineer-approved</td></tr>
+        <tr><td>Microsoft</td><td>~20&ndash;30% AI-generated (early to mid 2025 figure)</td><td>Reviewed</td></tr>
+        <tr><td>Stripe</td><td>~1,300 agent-authored PRs per week</td><td>Every PR ends in human review</td></tr>
+        <tr><td>Cursor</td><td>~30% of internally merged PRs agent-created</td><td>Merge-ready PRs, human merge</td></tr>
+        <tr><td>StrongDM</td><td>Full software factory in production</td><td>Human review eliminated</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p>The details matter more than the percentages. Stripe's Minions are one-shot autonomous
+      agents built on "blueprints" (deterministic code wrapped around agent loops) that generate
+      code, tests, and documentation, and every run concludes with a pull request for human review.
+      Cursor's Cloud Agents, launched 24 February 2026, run on isolated virtual machines,
+      self-test, record demo videos of their work, and ship merge-ready pull requests; about 30
+      percent of Cursor's own merged PRs are now agent-created.</p>
+
+    <p>StrongDM remains the most radical public example, having eliminated human review entirely.
+      The company open-sourced Attractor, a non-interactive coding agent published as a
+      natural-language specification under Apache-2.0 (roughly 1,200 stars), and CXDB, an agent
+      context store. One caveat: Delinea completed its acquisition of StrongDM on 5 March 2026,
+      which clouds how independent that factory will remain.</p>
+
+    <p>Telemetry from DX and GitClear-style datasets fills in the aggregate picture: AI-authored
+      code nearly doubled year over year, daily AI users merge about 60 percent more pull requests,
+      and median PR size rose from about 44 to about 72 lines.</p>
+
+    <div class="note">
+      <div class="k">READ WITH CARE</div>
+      <p>Widely repeated anecdotes like "our engineers haven't written code since December" (a
+        claim often attributed to Spotify) are directional marketing, not audited fact. Analyst
+        framing is more useful: Forrester describes 2023 and 2024 as the code-assistant era, 2025
+        as design and test support, and 2026 as orchestrated end-to-end SDLC agents running
+        multi-step work between defined human checkpoints.</p>
+    </div>
+
+    <h2>The cautionary benchmark: FastRender</h2>
+
+    <p>The Software Improvement Group benchmarked FastRender, a browser engine built by Cursor's
+      agent swarms: more than 3 million lines of code in about 7 days, compressing roughly 110
+      person-years of typing. The result scored 1.3 out of 5 for maintainability, placing it in the
+      bottom 5 percent of benchmarked systems, and 2.1 out of 5 for architecture: tightly coupled,
+      low modularity, with unpredictable change propagation. It runs. It is also the clearest
+      archetype yet of what optimizing for "does it run" instead of "can anyone maintain it"
+      produces at scale.</p>
+
+    <p>The churn data points the same direction. Code churn is up 39 percent in AI-heavy projects,
+      and larger pull requests strain exactly the review capacity that autonomous throughput
+      depends on. Rising churn alongside rising throughput is a maintainability warning sign, not a
+      productivity win.</p>
+
+    <h2>The security ledger</h2>
+
+    <p>OWASP's 2026 reporting puts prompt-injection attacks up 340 percent year over year, the
+      fastest-growing attack category it tracks, and several analysts now argue the flaw may be
+      structural rather than patchable. Of the 53 agentic projects OWASP tracks, 28 are coding
+      agents, including the five fastest-growing tools: Claude Code, Gemini CLI, Codex, Cline, and
+      Aider. The attack surface is concentrated precisely where the autonomy is.</p>
+
+    <p>The supply chain is already being probed by autonomous attackers. Between February and March
+      2026, a bot dubbed "hackerbot-claw" exploited GitHub Actions misconfigurations, harvested a
+      publishing token via a compromised Trivy Action, and pushed backdoored LiteLLM builds to
+      PyPI. LiteLLM is the LLM gateway underneath CrewAI, DSPy, GraphRAG, and other agent
+      frameworks. Microsoft separately documented remote-code-execution vulnerabilities in agent
+      frameworks where, in its phrase, prompts become shells.</p>
+
+    <h2>Specs and the planner-generator-evaluator loop</h2>
+
+    <p>Spec-driven development crossed from interesting idea to default discipline this cycle.
+      GitHub Spec Kit reached v0.10.4 on 16 June 2026 (it was at v0.5.0 only weeks earlier) and now
+      ships Claude Code as a native skill as of v0.4.5. The surrounding ecosystem matters more than
+      any single release: AWS Kiro is a dedicated spec-driven IDE, and Tessl is pushing
+      "spec-as-source," where the specification is the primary artifact and code is regenerated
+      from it. The durable asset in an autonomous factory is the spec, not the code.</p>
+
+    <p>On the control-loop side, the planner-generator-evaluator pattern (GAN-inspired: a planner
+      sets the approach, a generator builds, an independent evaluator scores and gates) has become
+      the reference architecture for trustworthy autonomy. The key design rule: the evaluator must
+      be structurally separate from the generator and tuned for skepticism, because
+      self-evaluation bias is the main failure mode. Eval platforms such as Braintrust and Galileo
+      are wiring this into CI/CD so agent evals run like regression tests with configurable quality
+      gates. The merge gate becomes a policy artifact, not a human gut-check.</p>
+
+    <blockquote>
+      <p>Velocity only counts once a team can confidently verify what the agents produced.</p>
+    </blockquote>
+
+    <h2>What the week distilled into practice</h2>
+
+    <ul>
+      <li><strong>Specs are the source of truth.</strong> Version the spec, regenerate code from
+        it, and review the spec diff, not just the code diff.</li>
+      <li><strong>Separate the evaluator.</strong> Generation and evaluation should be different
+        agents in different contexts; the evaluator gates merges and needs a track record of
+        catching what the generator misses.</li>
+      <li><strong>Make quality gates executable.</strong> Tests, lint, types, security, and eval
+        thresholds belong in CI as merge-blocking gates so autonomy cannot outrun
+        verification.</li>
+      <li><strong>Tier autonomy by blast radius.</strong> Reversible, low-stakes changes can run
+        lights-out; irreversible or regulated changes stay human-gated.</li>
+      <li><strong>Watch churn, not just throughput.</strong> PR size and code churn are rising
+        alongside AI authorship. Throughput without a maintainability gate is debt on a
+        schedule.</li>
+    </ul>
+
+    <h2>How we apply this at River.io</h2>
+
+    <p>Our operating posture is native compiled code, zero third-party dependencies, test-driven
+      development, and a GitHub-issue-driven SDLC. This week's evidence lines up with that posture
+      unusually well.</p>
+
+    <p><strong>TDD is the moat, not a tax.</strong> Every credible reliable-autonomy pattern,
+      whether planner-generator-evaluator or eval-gated CI, reduces to making verification
+      executable and independent. We build verification-first, so the test suite is the merge gate
+      an agent must pass, and agents iterate against it. Autonomy rides on top of TDD rather than
+      around it.</p>
+
+    <p><strong>Zero dependencies neutralizes the biggest current risk vector.</strong> The
+      LiteLLM/PyPI supply-chain compromise and the agent-framework RCE findings are dependency-tree
+      problems. A no-dependency, compiled codebase removes most of that attack surface by
+      construction, so we do not adopt heavyweight agent frameworks into our repositories. Where an
+      orchestration loop is needed, we author a thin, native harness ourselves.</p>
+
+    <p><strong>Regulated work stays human-gated.</strong> Our CareTime and TimeForCare Medicaid
+      EVV applications and our MaterialsAndPractices organic-farm compliance application touch
+      regulated data and irreversible actions. Those repositories run at human-on-the-loop
+      autonomy: an agent proposes, a human approves the pull request. That mirrors Stripe's
+      Minions-to-human-review model, not StrongDM's no-review model, and blast-radius tiering makes
+      it an explicit written policy rather than a habit.</p>
+
+    <p><strong>Lights-out experiments run where failure is cheap.</strong> MeowPassword,
+      weathergalactic, and sloth are our sandboxes for a full autonomous loop: issue to spec to
+      planner and generator to an independent evaluator (tests plus a skeptical review agent) to
+      auto-merge-on-green. We measure maintainability and churn there, not just PR count, with
+      FastRender as the cautionary baseline.</p>
+
+    <p><strong>Spec discipline, adopted lightly.</strong> The Spec Kit, Kiro, and Tessl direction
+      fits an issue-driven SDLC naturally: the GitHub issue is the spec, kept precise enough to
+      regenerate from, with spec diffs reviewed. That is a process change, not a tool adoption,
+      and it adds no dependencies.</p>
+
+    <hr />
+
+    <h2>Sources</h2>
+
+    <ul>
+      <li><a href="https://www.mindstudio.ai/blog/what-is-a-dark-factory-ai-agent">MindStudio: What Is a Dark Factory AI Agent?</a> · <a href="https://www.mindstudio.ai/blog/what-is-a-dark-factory-codebase">What Is a Dark Factory Codebase?</a> · <a href="https://www.mindstudio.ai/blog/what-is-dark-factory-autonomous-ai-codebase">What Is a Dark Factory? (autonomous AI codebase)</a></li>
+      <li><a href="https://www.bcgplatinion.com/insights/the-dark-software-factory">BCG Platinion: The Dark Software Factory</a></li>
+      <li><a href="https://hackernoon.com/the-dark-factory-pattern-moving-from-ai-assisted-to-fully-autonomous-coding">HackerNoon: The Dark Factory Pattern</a></li>
+      <li><a href="https://www.danshapiro.com/blog/2026/01/the-five-levels-from-spicy-autocomplete-to-the-software-factory/">Dan Shapiro: The Five Levels, from Spicy Autocomplete to the Software Factory</a></li>
+      <li><a href="https://www.forrester.com/blogs/agentic-software-development-takes-the-lead-from-code-assistants-to-orchestrated-sdlc-agents/">Forrester: Agentic Software Development Takes the Lead</a></li>
+      <li><a href="https://github.com/github/spec-kit">GitHub Spec Kit (repo)</a> · <a href="https://github.com/github/spec-kit/releases">Releases</a></li>
+      <li><a href="https://jamesm.blog/ai/github-spec-kit-2026-update/">jamesm.blog: GitHub Spec Kit in 2026, SDD Goes Mainstream</a> · <a href="https://developer.microsoft.com/blog/spec-driven-development-spec-kit">Microsoft for Developers: Diving Into Spec-Driven Development with Spec Kit</a></li>
+      <li><a href="https://www.mindstudio.ai/blog/planner-generator-evaluator-pattern-gan-inspired-ai-coding">MindStudio: Planner-Generator-Evaluator pattern</a> · <a href="https://www.shiplight.ai/blog/planner-generator-evaluator-multi-agent-qa">Shiplight AI: Planner, Generator, Evaluator, a Multi-Agent QA Architecture</a></li>
+      <li><a href="https://appscale.blog/en/blog/agent-looping-prompt-engineering-loop-engineering-orchestrated-agents-2026">Appscale: Agent Looping 2026, Prompts to Loops to Orchestrated Teams</a></li>
+      <li><a href="https://galileo.ai/blog/best-ai-agent-evaluation-platforms">Galileo: Best AI Agent Evaluation Platforms in 2026</a></li>
+      <li><a href="https://www.aixploria.com/en/ai-radar/google-75-percent-code-ai-generated-cloud-next-2026/">AIxploria: 75% of Google's New Code Is Now AI-Generated</a> · <a href="https://devops.com/google-ceo-says-75-of-new-code-is-ai-generated/">DevOps.com: Google CEO Says 75% of New Code Is AI-Generated</a></li>
+      <li><a href="https://getdx.com/blog/ai-authored-code-has-nearly-doubled/">DX: AI-Authored Code Has Nearly Doubled, but So Has PR Size</a></li>
+      <li><a href="https://www.infoq.com/news/2026/03/stripe-autonomous-coding-agents/">InfoQ: Stripe Engineers Deploy "Minions"</a></li>
+      <li><a href="https://www.nxcode.io/resources/news/cursor-cloud-agents-virtual-machines-autonomous-coding-guide-2026">NxCode: Cursor Cloud Agents</a></li>
+      <li><a href="https://rywalker.com/research/strongdm-factory">Ry Walker Research: StrongDM Software Factory</a></li>
+      <li><a href="https://www.helpnetsecurity.com/2026/06/11/owasp-prompt-injection-ai-security-failures/">Help Net Security: Prompt injection still drives most agentic AI security failures</a> · <a href="https://www.techtimes.com/articles/318361/20260614/ai-agent-security-hits-its-reckoning-prompt-injection-may-permanent-flaw-not-patchable-bug.htm">TechTimes: Prompt Injection May Be a Permanent Flaw</a></li>
+      <li><a href="https://levelact.com/autonomous-ai-agent-security-crisis-2026/">LevelAct: The Autonomous AI Agent Security Crisis of 2026</a></li>
+      <li><a href="https://www.microsoft.com/en-us/security/blog/2026/05/07/prompts-become-shells-rce-vulnerabilities-ai-agent-frameworks/">Microsoft Security Blog: When prompts become shells, RCE in AI agent frameworks</a></li>
+      <li><a href="https://medium.com/@polyglot_factotum/slop-review-with-ai-the-dark-factory-ffca22406822">Medium: Dark Factory AI Review, Innovation or Slop?</a></li>
+    </ul>
+
+    <p><em>Vendor and executive figures cited here (Google's 75 percent, Stripe's 1,300 PRs per
+      week, Cursor's 30 percent, and the churn and PR-size telemetry) indicate direction and
+      momentum, not audited benchmarks. Treat them as signals, not ground truth.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

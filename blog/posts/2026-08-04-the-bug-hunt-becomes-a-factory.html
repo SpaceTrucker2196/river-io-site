@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Microsoft's first dedicated cybersecurity model drives a harness of more than 100 agents to 95.95% on CyberGym at half the cost, and the same machinery has already produced 16 real Windows CVEs. Autonomous vulnerability discovery is now a product." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing, Security, Metrics" />
+<title>The bug hunt becomes a factory — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 017</b><span>4 August 2026</span><span>6 min</span><span>Briefing</span></div>
+    <h1>The bug hunt becomes a factory</h1>
+    <p class="dek">Microsoft's first dedicated cybersecurity model drives a harness of more than
+      100 agents to 95.95% on CyberGym at half the cost, and the same machinery has already
+      produced 16 real Windows CVEs. Autonomous vulnerability discovery is now a product.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">In early August 2026, the most important development in autonomous software
+      was not a code-writing agent. It was a code-breaking one. Microsoft announced
+      MAI-Cyber-1-Flash, its first dedicated cybersecurity model, on July 27 and 28, and its
+      delivery vehicle, Project Perception, entered public preview on August 3. The numbers are
+      the story: an autonomous bug-hunting system that now finds vulnerabilities at
+      operating-system-kernel depth, at scale, and at half its previous cost. The evaluator side
+      of the automated software factory is industrializing.</p>
+
+    <h2>What Microsoft actually shipped</h2>
+
+    <p>MAI-Cyber-1-Flash is a cyber fine-tune of MAI-Code-1-Flash: a sparse mixture-of-experts
+      model with 137 billion total parameters, 5 billion active, and a 256k context window,
+      designed to find hard vulnerabilities in complex code. It slots into MDASH, Microsoft's
+      multi-agent vulnerability harness, which orchestrates more than 100 specialized agents
+      across multiple models.</p>
+
+    <p>With the new model inside, the system scored 95.95% on CyberGym, a benchmark of 1,507
+      real-world vulnerability-reproduction tasks drawn from 188 OSS-Fuzz projects, up from 88.45%
+      in May. Microsoft says the result tops Google's Gemini 3.5 Flash Cyber, OpenAI's GPT-5.6
+      Sol, and Anthropic's Mythos 5, and states the model was trained for defensive tasks
+      (patching), not offensive ones.</p>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>MDASH with MAI-Cyber-1-Flash</th><th class="num">Figure</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>CyberGym score (1,507 tasks, 188 OSS-Fuzz projects)</td><td class="num">95.95%</td></tr>
+        <tr><td>Previous best configuration (May 2026)</td><td class="num">88.45%</td></tr>
+        <tr><td>Specialized agents orchestrated</td><td class="num">100+</td></tr>
+        <tr><td>Tasks handled by the small model</td><td class="num">~90%</td></tr>
+        <tr><td>Cost saving versus previous configuration</td><td class="num">~50%</td></tr>
+        <tr><td>Windows CVEs produced by MDASH-assisted work (May)</td><td class="num">16</td></tr>
+        <tr><td>Of which critical remote code execution</td><td class="num">4</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2>The economics are the architecture</h2>
+
+    <p>The design decision worth studying is the routing. The small model is tuned to handle
+      roughly 90% of tasks, escalating the hardest 10% to GPT-5.4, which yields a 50% cost saving
+      versus Microsoft's previous best MDASH configuration. Tiered model routing (a cheap
+      specialist for volume, a frontier model for exceptions) is becoming the standard shape of
+      production agent fleets.</p>
+
+    <h2>Real-world output, not just benchmarks</h2>
+
+    <p>MDASH-assisted work generated 16 CVEs in the Windows networking and authentication stack in
+      May, including 4 critical remote code execution flaws. Run retrospectively, it recovered 96%
+      of 28 MSRC cases in clfs.sys and 100% of 7 in tcpip.sys over a five-year window. Autonomous
+      vulnerability discovery at OS-kernel depth is no longer speculative.</p>
+
+    <blockquote>
+      <p>Verification, not generation, is where multi-agent orchestration pays off.</p>
+    </blockquote>
+
+    <h2>A small tooling note with a large implication</h2>
+
+    <p>GitHub Copilot CLI v1.0.78, released August 3, ships a live timing display per tool call, a
+      small but real observability win for agent loops. It also enables automatic updates for
+      first-party plugins by default, and that deserves a raised eyebrow. The recent AgentBaiting
+      campaign put roughly 7,600 malicious repositories on GitHub, more than 800 of them posing as
+      AI skills or MCP servers. Against that backdrop, any auto-updating capability channel into
+      an agent runtime is a supply-chain surface, first-party or not.</p>
+
+    <div class="note">
+      <div class="k">SOURCING</div>
+      <p>The Copilot CLI release details come via a third-party changelog aggregator; treat them
+        as unofficial. Microsoft's CyberGym comparisons are company-reported.</p>
+    </div>
+
+    <h2>How we apply this at River.io</h2>
+
+    <p><strong>The adversarial reviewer is the next loop we build, and we build it on low-stakes
+      repos first.</strong> MDASH's lesson is that verification is where multi-agent orchestration
+      earns its keep. A scaled-down version fits our factory today: an autonomous find-bugs loop
+      that fuzzes, statically analyzes, and files GitHub issues with citations, pointed at sloth,
+      MeowPassword, or weathergalactic. Sloth is doubly interesting because it is itself a static
+      analyzer, so a loop that both runs it and stress-tests its detectors compounds. Our
+      regulated products, CareTime, TimeForCare, and MaterialsAndPractices, stay human-gated; but
+      reading an autonomous reviewer's findings is safe at any stakes level.</p>
+
+    <p><strong>Tiered model routing is a cost discipline, not just a hyperscaler trick.</strong>
+      Microsoft's 90/10 split maps directly onto a small shop: inexpensive, fast models for lint
+      triage, test scaffolding, and issue grooming; frontier models reserved for synthesis and
+      design. We route by task difficulty, not by habit.</p>
+
+    <p><strong>Zero third-party dependencies is a defensive posture in the machine-speed patching
+      era.</strong> If autonomous systems now find kernel-depth CVEs at scale, attackers will run
+      the same play against application stacks, and the fattest target is dependency sprawl.
+      Native, zero-dependency code does not eliminate bugs, but it shrinks the CVE surface you
+      must race machines to patch. For our work as a Medicaid EVV vendor, that is an argument
+      auditors understand immediately.</p>
+
+    <p><strong>We turn auto-update off in agent tooling.</strong> Auto-updating plugins are
+      convenient and exactly the wrong default for a regulated pipeline. We pin agent-runtime and
+      plugin versions like any other dependency, and upgrade deliberately, on our schedule, with a
+      diff review.</p>
+
+    <hr />
+
+    <h2>Sources</h2>
+    <ul>
+      <li><a href="https://www.securityweek.com/microsoft-unveils-mai-cyber-1-flash-its-first-cybersecurity-ai-model/">SecurityWeek: Microsoft unveils MAI-Cyber-1-Flash, its first cybersecurity AI model</a> · <a href="https://www.helpnetsecurity.com/2026/07/27/microsoft-mai-cyber-1-flash-ai-model/">Help Net Security: Microsoft MAI-Cyber-1-Flash, cybersecurity AI at half the cost</a> · <a href="https://www.marktechpost.com/2026/07/28/microsoft-ai-releases-mai-cyber-1-flash-a-5b-active-parameter-cyber-model-that-pushes-mdash-to-95-95-on-cybergym/">MarkTechPost: MAI-Cyber-1-Flash pushes MDASH to 95.95% on CyberGym</a> · <a href="https://microsoft.ai/news/introducing-mai-cyber-1-flash-inside-mdash/">Microsoft: Introducing MAI-Cyber-1-Flash, inside MDASH</a> · <a href="https://blogs.microsoft.com/blog/2026/07/27/rethinking-security-for-the-age-of-ai/">Microsoft: Rethinking security for the age of AI</a></li>
+      <li><a href="https://www.havoptic.com/tools/github-copilot">Havoptic: GitHub Copilot CLI v1.0.78 release summary</a> · <a href="https://github.blog/changelog/?label=copilot">GitHub Changelog: Copilot label</a></li>
+      <li>Context checked, no new developments: <a href="https://aiagentstore.ai/ai-agent-news/this-week">AI Agent Store: AI agents news, week of August 3</a> · <a href="https://github.com/github/spec-kit/blob/main/CHANGELOG.md">github/spec-kit CHANGELOG</a></li>
+    </ul>
+
+    <p><em>Vendor and blog figures indicate direction, not audited benchmarks. Microsoft's
+      CyberGym comparisons are company-reported, and the Copilot CLI release details come from a
+      third-party aggregator.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

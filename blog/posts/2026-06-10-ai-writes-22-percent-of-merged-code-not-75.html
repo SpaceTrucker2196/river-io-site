@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="DX's data across 135,000 developers finds AI-authored code holding at about 22 percent of merged code, an order of magnitude below the vendor headlines. Forrester names a new security operating model, Salesforce posts the strongest first-party numbers yet, and a cross-vendor prompt injection shows the pipeline itself is now the attack surface." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing, Metrics, Security, Autonomy" />
+<title>AI writes 22 percent of merged code, not 75 — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 004</b><span>10 June 2026</span><span>8 min</span><span>Briefing</span></div>
+    <h1>AI writes 22 percent of merged code, not 75</h1>
+    <p class="dek">DX's data across 135,000 developers punctures the vendor headlines, Forrester
+      names a new security operating model for agentic development, Salesforce posts the strongest
+      first-party numbers yet, and a cross-vendor prompt injection shows the pipeline itself is now
+      the attack surface.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">In June 2026 the conversation around autonomous software development moved
+      from "can agents write the code" to "who governs the pipeline." Forrester formally named the
+      phase with its report The State of Agentic Software Development, 2026, and paired it with a
+      new security operating model whose least mature capability is, tellingly, agent-aware quality
+      gates. Salesforce published the cleanest first-party proof of an organization-wide agentic
+      shift. And the most useful reality check of the season came from DX: across more than
+      135,000 developers, AI-authored code holds at about 22 percent of merged code, an order of
+      magnitude below the "75 percent" and "100 percent" headlines. The throughline for any
+      autonomous pipeline: the bottleneck is now the gate, not the generator.</p>
+
+    <h2>Forrester names the phase, and a paradox</h2>
+
+    <p>Forrester's framing is blunt: TuringBots are becoming agentic, not assistants embedded in
+      one tool. Agents now span analysis and planning, design, build, test, and delivery, and are
+      increasingly orchestrated together. You delegate intent ("build this feature") and agents
+      decompose, generate, test, and stage the release.</p>
+
+    <p>The sharpest finding is a productivity paradox. Coding alone may improve 30 to 40 percent,
+      but if planning, testing, and release stay manual, whole-team productivity often rises less
+      than 10 percent. The lights-out win is gated by the un-automated stages, not the coding
+      stage. Forrester's prescription: treat agents as first-class participants in a redesigned,
+      collapsed SDLC, with humans firmly in control.</p>
+
+    <h2>The gate becomes its own product category</h2>
+
+    <p>Forrester analyst Janet Worthington introduced <strong>Agentic Development Security
+      (ADS)</strong> after RSAC 2026 as "a new security paradigm protecting AI-powered software
+      development end to end," spanning prevention, detection, prioritization, and remediation, and
+      treating security as autonomous, policy-driven actions rather than alerts. Forrester
+      enumerates eight capability clusters; as of RSAC, no single vendor covers all eight. The two
+      least mature are supply-chain defense against AI-specific vectors (slopsquatting,
+      hallucinated dependencies) and agent-aware quality gates. AI-augmented code analysis is the
+      most mature. The read: the verification layer a dark factory most needs is the one the market
+      is worst at, so teams have to build it themselves.</p>
+
+    <p>The crystallizing consensus (Codacy, CodeScene, TFiR) names three properties a verification
+      layer must have: <strong>independence</strong> (a different system than the one that wrote
+      the code), <strong>deterministic pass/fail</strong> for security and policy, and
+      <strong>context awareness</strong> to verify intent. Multi-agent validation chains are now a
+      named pattern: one agent writes, a second critiques, a third tests, a fourth checks
+      compliance and architecture, each communicating through files. The spec-driven command
+      surface (constitution, specify, plan, tasks, analyze, implement, checklist) is stable across
+      GitHub Spec Kit and its clones; nothing structurally changed this cycle, which is itself a
+      signal that the front-end spec layer has settled.</p>
+
+    <h2>Evaluate trajectories, not just outputs</h2>
+
+    <p>The maturing guidance pushes evaluation upstream of the answer. Score tool-choice
+      correctness, argument validity, step count, time and cost, and policy compliance across the
+      whole run, not just whether the final diff passes tests. A loop that only checks the end
+      state cannot catch an agent that did the right thing the wrong, unsafe way. Policy-as-code,
+      approvals for irreversible actions, and prompt-injection defense are now cited together as
+      the irreducible guardrail set.</p>
+
+    <p>Notably, human approval checkpoints stay in the loop by design even at the aggressive end of
+      the market. Anthropic's Claude Code "auto mode," covered by InfoQ in May 2026, is explicitly
+      autonomous execution with layered gates: input filtering, action evaluation, two-stage
+      classification, and human approval for sensitive operations. Even the most aggressive vendor
+      autonomy ships with a human gate on destructive verbs. That is the reference design, not a
+      compromise.</p>
+
+    <h2>Proof points: the claims and the measurements</h2>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Source</th><th>Finding</th><th class="num">Number</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Salesforce (first-party)</td><td>Work items completed per developer, April 2026 vs April 2025</td><td class="num">+50.8%</td></tr>
+        <tr><td>Salesforce (first-party)</td><td>Pull requests merged per developer, year over year</td><td class="num">+79%</td></tr>
+        <tr><td>Salesforce (first-party)</td><td>"Effective Output" score (Salesforce-defined), year over year</td><td class="num">+151.3%</td></tr>
+        <tr><td>Salesforce (first-party)</td><td>231-person-day migration completed in 13 days</td><td class="num">~18x</td></tr>
+        <tr><td>DX (135k+ devs, 425 orgs)</td><td>AI-authored share of merged code, median</td><td class="num">~22%</td></tr>
+        <tr><td>DX</td><td>Time saved per developer per week</td><td class="num">~3.6 hrs</td></tr>
+        <tr><td>DX</td><td>Additional PRs merged by daily AI users</td><td class="num">~60%</td></tr>
+        <tr><td>Google (Pichai)</td><td>AI-generated (suggested, human-accepted) share of new code, April 2026</td><td class="num">75%</td></tr>
+        <tr><td>Google</td><td>Velocity uplift attributed to AI</td><td class="num">~10%</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p>Salesforce's "How Engineering Became Agentic" is the strongest named-company, first-party
+      dataset since Spotify's Honk: after an organization-wide pivot to Claude Code as the primary
+      agent with token limits removed, the numbers above arrived with fewer incidents, not more.
+      The Effective Output metric is Salesforce-defined, but the direction is unambiguous.</p>
+
+    <p>DX's Q4 Impact Report is the number to quote back at the "75 percent" and "100 percent
+      AI-written" claims. Across more than 135,000 developers at 425 organizations, the real merged
+      share is about a quarter (daily users about 24 percent, monthly about 20 percent), and the
+      productivity translation is modest unless usage is daily. Google's own trajectory (about 25
+      percent in October 2024, about 50 percent in October 2025, 75 percent in April 2026) is
+      consistently framed by Pichai as AI-suggested and human-accepted or edited, not autonomous
+      shipping. The gap between Google's "75 percent suggested" and DX's "22 percent merged" is the
+      delegation gap, quantified. Microsoft's baseline holds at about 30 percent, with 84 percent
+      of developers using or planning to use AI and 51 percent using it daily.</p>
+
+    <h2>The pipeline itself is the attack surface</h2>
+
+    <p><strong>"Comment and Control," a cross-vendor prompt injection disclosed in April 2026 and
+      escalating since.</strong> Researchers working with Johns Hopkins put a malicious instruction
+      in a GitHub pull request title and watched Anthropic's Claude Code Security Review action
+      post its own API key as a comment. The same injection worked against Google's Gemini CLI
+      Action and GitHub Copilot Agent, the first cross-vendor demonstration. The root cause is
+      structural: these actions run untrusted input, powerful tools (bash, git push, API calls),
+      and secrets in the same runtime. Anthropic's own system card had already conceded the action
+      is "not hardened against prompt injection."</p>
+
+    <p><strong>Microsoft Security followed up on June 5, 2026 with "Securing CI/CD in an agentic
+      world,"</strong> a Claude Code GitHub Action case study on isolating agent runtimes in CI/CD,
+      the direct successor to May's "When prompts become shells" disclosure (Semantic Kernel
+      CVE-2026-25592 and CVE-2026-26030). The lesson compounds: an agent in your pipeline that can
+      read PR text and hold deploy credentials is a confused deputy by construction.</p>
+
+    <p><strong>Supply chain is the bigger iceberg.</strong> Cisco AI Defense found 26 percent of
+      roughly 31,000 agent "skills" carried at least one vulnerability, and a one-click remote code
+      execution (CVE-2026-25253, CVSS 8.8) executed from a single malicious webpage in
+      milliseconds. Forrester's ADS data cites security-flaw rates from about 12 percent of
+      AI-attributed files to more than 40 percent of AI-generated tasks for specific vulnerability
+      classes. AI security in 2026 is a supply-chain problem first and a prompt-injection problem
+      second.</p>
+
+    <blockquote>
+      <p>If an agent can both read a pull request comment and push to production, you have already
+        built the vulnerability.</p>
+    </blockquote>
+
+    <p>The design implications are consistent: least-privilege tool scoping, deterministic guards
+      on irreversible verbs (delete, force-push, deploy, send), per-action audit logs, and runtime
+      isolation between untrusted input and secret-holding agents.</p>
+
+    <h2>How we apply this at River.io</h2>
+
+    <p>River.io builds native compiled software with zero third-party dependencies, test-driven
+      development, and a GitHub-issue-driven SDLC, with regulated products (CareTime and
+      TimeForCare on Medicaid electronic visit verification, MaterialsAndPractices on organic-farm
+      compliance) leading the portfolio.</p>
+
+    <p><strong>The less-than-10-percent paradox is our sequencing guide.</strong> Forrester's
+      finding says automating coding alone barely moves the needle. The highest-leverage automation
+      is not "let the agent write more code"; it is automating the issue, spec, test, and PR stages
+      around existing TDD so the whole loop closes. Our tests are already the deterministic gate
+      the rest of the industry is scrambling to build.</p>
+
+    <p><strong>We satisfy the ADS independence rule by construction.</strong> The hardest, least
+      mature ADS capability is an agent-aware quality gate that is independent of the builder. Our
+      native test suites plus a deterministic CI verifier are exactly that: a different system than
+      the generating model. We treat that as the moat rather than replacing it with a model-based
+      reviewer that shares the builder's blind spots.</p>
+
+    <p><strong>"Comment and Control" is the threat model for any issue-driven pipeline, including
+      ours.</strong> Our SDLC runs through GitHub issues and pull requests, which is exactly the
+      untrusted-input surface that leaked secrets across all three major vendors. Concretely: any
+      agent acting on issue or PR text in the regulated repositories runs with no deploy
+      credentials, no PHI-scoped tokens, and no generic shell in the same runtime. The agent that
+      reads issues is kept strictly separate from anything that can push, deploy, or touch a
+      database.</p>
+
+    <p><strong>Regulated repositories stay human-gated.</strong> Database migrations, PHI exports,
+      log purges, and production deploys on the EVV apps are typed, allow-listed, human-approved
+      tool calls, following the same pattern as Claude Code auto mode: autonomous execution, human
+      gate on destructive verbs.</p>
+
+    <p><strong>Autonomous loops run first on low-stakes repositories.</strong> On repositories with
+      no PHI and no regulatory surface (MeowPassword, weathergalactic, sloth) we run multi-agent
+      validation chains (writer, critic, test-runner, constitution-checker, all communicating
+      through version-controlled files), scoped to a single task type and measured at the
+      trajectory level, not just the final diff.</p>
+
+    <p><strong>We plan around 22 percent, not 75.</strong> Realistic merged AI-authored share at
+      well-run shops is about a quarter. We plan the factory's economics around steadily widening
+      that number on safe repositories, not around a lights-out fantasy the data does not yet
+      support.</p>
+
+    <hr />
+
+    <h2>Sources</h2>
+
+    <ul>
+      <li><a href="https://www.forrester.com/blogs/agentic-software-development-takes-the-lead-from-code-assistants-to-orchestrated-sdlc-agents/">The State Of Agentic Software Development, 2026 (Forrester)</a> · <a href="https://www.forrester.com/blogs/agentic-software-development-defining-the-next-phase-of-ai-driven-engineering-tools/">Agentic Software Development: Defining The Next Phase (Forrester)</a> · <a href="https://www.cio.com/article/4166035/agentic-ai-is-rewiring-the-sdlc.html">Agentic AI is rewiring the SDLC (CIO)</a> · <a href="https://www.business-standard.com/technology/tech-news/ai-is-rewiring-the-software-industry-by-collapsing-traditional-workflows-126060700668_1.html">AI is rewiring the software industry (Business Standard, June 7, 2026)</a></li>
+      <li><a href="https://www.augmentcode.com/guides/agentic-development-security">What Is Agentic Development Security (ADS)? (Augment Code)</a> · <a href="https://www.forrester.com/blogs/agentic-development-security-why-appsec-needs-a-new-operating-model/">Agentic Development Security: Why AppSec Needs A New Operating Model (Forrester)</a> · <a href="https://www.arnica.io/blog/arnica-included-in-the-forrester-agentic-development-security-tools-landscape-q2-2026">Arnica in The Forrester Agentic Development Security Tools Landscape, Q2 2026</a></li>
+      <li><a href="https://www.salesforce.com/news/stories/how-engineering-became-agentic/">How Salesforce Engineering Became Truly Agentic (Salesforce)</a> · <a href="https://the-decoder.com/salesforce-claims-ai-agents-cut-a-231-day-migration-to-13-days-with-fewer-incidents/">Salesforce claims AI agents cut a 231-day migration to 13 days (The Decoder)</a> · <a href="https://headsupai.io/updates/salesforce-compresses-231-day-migration-into-13-days-using-claude-code">Salesforce scales agentic engineering 18x (HeadsUp AI)</a></li>
+      <li><a href="https://getdx.com/blog/ai-generated-merged-code-holds-steady-at-30/">AI-generated merged code holds steady (DX)</a> · <a href="https://getdx.com/report/ai-assisted-engineering-q4-impact-report/">DX AI-assisted engineering Q4 impact report</a> · <a href="https://shiftmag.dev/this-cto-says-93-of-developers-use-ai-but-productivity-is-still-10-8013/">93% of Developers Use AI. Why Is Productivity Only 10%? (ShiftMag)</a></li>
+      <li><a href="https://novaknown.com/2026/04/24/ai-generated-code-google/">Google's 75% AI-Generated Code Claim Hides Shift (NovaKnown)</a> · <a href="https://www.metaintro.com/blog/google-75-percent-ai-generated-code-software-engineer-jobs-2026">Google's 75% AI Code Milestone (Metaintro)</a> · <a href="https://medium.com/@sohail_saifi/ai-writes-30-of-microsofts-code-and-25-of-google-s-6909f6e0b406">AI Writes 30% of Microsoft's Code, 25% of Google's (Medium)</a></li>
+      <li><a href="https://venturebeat.com/security/ai-agent-runtime-security-system-card-audit-comment-and-control-2026">Three AI coding agents leaked secrets through a single prompt injection (VentureBeat)</a> · <a href="https://oddguan.com/blog/comment-and-control-prompt-injection-credential-theft-claude-code-gemini-cli-github-copilot/">Comment and Control: Prompt Injection to Credential Theft (Aonan Guan)</a> · <a href="https://www.securityweek.com/claude-code-gemini-cli-github-copilot-agents-vulnerable-to-prompt-injection-via-comments/">Claude Code, Gemini CLI, Copilot Agents Vulnerable via Comments (SecurityWeek)</a></li>
+      <li><a href="https://www.microsoft.com/en-us/security/blog/2026/06/05/securing-ci-cd-in-agentic-world-claude-code-github-action-case/">Securing CI/CD in an agentic world: Claude Code GitHub Action case (Microsoft Security Blog, June 5, 2026)</a> · <a href="https://www.microsoft.com/en-us/security/blog/2026/05/07/prompts-become-shells-rce-vulnerabilities-ai-agent-frameworks/">When prompts become shells (Microsoft Security Blog, May 7, 2026)</a> · <a href="https://blog.cyberdesserts.com/ai-agent-security-risks/">AI Agent Security Risks 2026: MCP, OpenClaw and Supply Chain (CyberDesserts)</a> · <a href="https://cycode.com/blog/ai-security-vulnerabilities/">Top AI Security Vulnerabilities 2026 (Cycode)</a></li>
+      <li><a href="https://blog.codacy.com/why-coding-agents-need-independent-quality-gates">Why Coding Agents Need Independent Quality Gates (Codacy)</a> · <a href="https://tfir.io/ai-code-quality-2026-guardrails/">AI Code Quality in 2026: Guardrails (TFiR)</a> · <a href="https://codescene.com/use-cases/ai-code-quality">AI Code Guardrails (CodeScene)</a> · <a href="https://www.infoq.com/news/2026/05/anthropic-claude-code-auto-mode/">Inside Claude Code Auto Mode (InfoQ, May 2026)</a> · <a href="https://andriifurmanets.com/blogs/ai-agents-2026-practical-architecture-tools-memory-evals-guardrails">AI Agents in 2026: Tools, Memory, Evals, Guardrails (Furmanets)</a></li>
+      <li><a href="https://www.bcgplatinion.com/insights/the-dark-software-factory">The Dark Software Factory (BCG Platinion)</a> · <a href="https://www.mindstudio.ai/blog/what-is-a-dark-factory-codebase">What Is a Dark Factory Codebase? (MindStudio)</a> · <a href="https://hackernoon.com/the-dark-factory-pattern-moving-from-ai-assisted-to-fully-autonomous-coding">The Dark Factory Pattern (HackerNoon)</a> · <a href="https://github.com/github/spec-kit">GitHub Spec Kit</a> · <a href="https://developer.microsoft.com/blog/spec-driven-development-spec-kit">Diving Into Spec-Driven Development With GitHub Spec Kit (Microsoft for Developers)</a></li>
+    </ul>
+
+    <p><em>Vendor and blog figures cited here (pull request counts, productivity multipliers,
+      percentage of AI-authored code) indicate direction, not audited benchmarks; treat them as
+      fast-moving signals.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

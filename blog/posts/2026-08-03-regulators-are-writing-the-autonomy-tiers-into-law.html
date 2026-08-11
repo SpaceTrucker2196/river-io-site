@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="China now requires every AI agent's decision authority to be sorted into three tiers before deployment, and the EU AI Act's transparency and penalty regime went live on August 2. Stakes-matched autonomy is becoming a legal requirement, not an engineering preference." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing, Regulation, Autonomy" />
+<title>Regulators are writing the autonomy tiers into law — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 016</b><span>3 August 2026</span><span>6 min</span><span>Briefing</span></div>
+    <h1>Regulators are writing the autonomy tiers into law</h1>
+    <p class="dek">China now requires every AI agent's decision authority to be sorted into three
+      tiers before deployment, and the EU AI Act's transparency and penalty regime went live on
+      August 2. Stakes-matched autonomy is becoming a legal requirement, not an engineering
+      preference.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">In early August 2026, the most consequential news for anyone running
+      autonomous software pipelines came from regulators, not toolmakers. Within a few weeks of
+      each other, two of the world's three largest regulatory blocs put the same idea into force:
+      before an AI agent acts, someone must have decided, in writing, which decisions it is allowed
+      to make on its own. Teams that already run stakes-matched autonomy have been doing this as
+      engineering discipline. It is now becoming law.</p>
+
+    <h2>What actually changed in the EU on August 2</h2>
+
+    <p>August 2, 2026 was originally the binding start date for the EU AI Act's high-risk system
+      obligations: the provider duties in Articles 9 to 17 and the deployer duties in Article 26.
+      The Digital Omnibus on AI, a provisional agreement reached May 7, 2026, pushed the headline
+      deadlines back. Stand-alone high-risk systems under Annex III now come due December 2, 2027,
+      and AI embedded in Annex I regulated products comes due August 2, 2028.</p>
+
+    <p>But the Act still started to bite on August 2. The Article 50 transparency obligations,
+      enforcement powers over general-purpose AI, and the full penalty regime (fines up to
+      &euro;15M or 3% of global turnover) are now in force. And the deferral for machine-readable
+      marking of AI-generated content was cut to three months: it is due December 2, 2026.</p>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>EU AI Act obligation</th><th>Status as of August 2026</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Article 50 transparency duties</td><td>In force since August 2, 2026</td></tr>
+        <tr><td>General-purpose AI enforcement powers</td><td>In force since August 2, 2026</td></tr>
+        <tr><td>Penalty regime (up to &euro;15M or 3% of global turnover)</td><td>In force since August 2, 2026</td></tr>
+        <tr><td>Machine-readable marking of AI-generated content</td><td>Due December 2, 2026</td></tr>
+        <tr><td>Stand-alone high-risk systems (Annex III)</td><td>Deferred to December 2, 2027</td></tr>
+        <tr><td>AI embedded in regulated products (Annex I)</td><td>Deferred to August 2, 2028</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p>The practical read: if a pipeline ships AI-generated artifacts into the EU, the disclosure
+      clock is already running, even though the high-risk paperwork got a reprieve. Regulated
+      timelines slip; disclosure duties arrive early.</p>
+
+    <h2>China issues the first national framework dedicated to AI agents</h2>
+
+    <p>China's "Implementation Opinions on Intelligent Agents," jointly issued by the CAC, NDRC,
+      and MIIT on May 8 and effective July 15, 2026, is the first binding-track national framework
+      aimed squarely at AI agents. Its core mechanism is a pre-deployment, three-tier
+      decision-authorization sort. Before an agent ships, its decision authority must be classified
+      into one of three tiers: decisions only a human may make, decisions requiring user approval
+      first, and decisions the agent may take autonomously.</p>
+
+    <p>Sensitive sectors, including healthcare, transportation, media, and public safety, face
+      filing requirements, mandatory testing, recall obligations, and dual oversight by cyberspace
+      and sector regulators. Whatever one thinks of the source, it is the first jurisdiction to
+      make "decide in advance what the agent may decide" a legal requirement rather than an
+      engineering best practice.</p>
+
+    <div class="note">
+      <div class="k">FAST-MOVING</div>
+      <p>Analysts differ on how binding the Chinese instrument is: some read it as a policy
+        framework, others as enforceable law. The classification requirement itself is not in
+        dispute, but the enforcement picture is still settling.</p>
+    </div>
+
+    <h2>Industry follow-through and a quiet tooling shift</h2>
+
+    <p>Two industry responses to July's autonomous-agent incidents are worth logging, though both
+      are commentary rather than new fact. Hugging Face CEO Clem Delangue publicly called for
+      "radical transparency": aviation-style public incident disclosure for autonomous-AI
+      incidents, in the wake of the OpenAI sandbox-escape breach disclosed in late July. And Sam
+      Altman took the industry's pacing letter to Capitol Hill, meeting with Senator Cruz with a
+      White House meeting planned.</p>
+
+    <p>On tooling, GitHub is unifying the Copilot agent onto one engine. The July 30 releases put a
+      new Agent preview in Visual Studio built on the Copilot SDK, the same core that powers
+      Copilot CLI, while VS Code's July releases redesigned the Agents window around managing
+      multiple parallel sessions and added bring-your-own-key models inside the agent window.
+      Architecturally: one agent runtime, many surfaces, sessions as the unit of work. Housekeeping
+      note: Gemini 2.5 Pro and 3 Flash were deprecated across Copilot as of July 31.</p>
+
+    <blockquote>
+      <p>The first jurisdiction has made "decide in advance what the agent may decide" a legal
+        requirement rather than an engineering best practice.</p>
+    </blockquote>
+
+    <h2>How we apply this at River.io</h2>
+
+    <p><strong>We write the autonomy tiers down, the way a regulator would.</strong> China's
+      three-tier sort (human-only, approval-required, autonomous) is nearly verbatim the policy we
+      already run across our portfolio. Merges into our care-coordination products, CareTime and
+      TimeForCare, and into MaterialsAndPractices are human-only. Routine issue-to-PR work is
+      approval-required. Autonomous loops run only on repos where the stakes permit it:
+      MeowPassword, weathergalactic, and sloth. We codify that sort in-tree so that agents and
+      humans inherit the same rule, and so a customer or a state Medicaid agency can be shown
+      exactly how AI is governed in our pipeline.</p>
+
+    <p><strong>Our audit trail is already the compliance artifact.</strong> Every unit of work in
+      our shop is a GitHub issue; every shipped change traces back to one. That means we can show
+      which code was agent-authored and which gates it passed, before any AI-specific rule reaches
+      the regulated programs we serve. The trail is append-only, which is what makes it evidence
+      rather than narrative.</p>
+
+    <p><strong>We treat content marking as the sleeper obligation.</strong> The EU's December 2,
+      2026 deadline for marking AI-generated content is aimed at media, but the direction
+      (machine-readable provenance for machine-made artifacts) will reach code. Tagging
+      agent-authored commits distinctly, through committer identity and PR labels, costs nothing
+      today and is exactly the provenance a future rule would demand.</p>
+
+    <p><strong>We treat the agent runtime as a dependency, not an ambient service.</strong>
+      GitHub's SDK unification means a single hardening surface, which is good, and a single
+      compromise surface across CLI, Visual Studio, and VS Code, which is not. Our
+      zero-third-party-dependency posture applies to the pipeline as much as the product: the agent
+      runtime gets pinned and reviewed like anything else we build on.</p>
+
+    <hr />
+
+    <h2>Sources</h2>
+    <ul>
+      <li><a href="https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/">Gibson Dunn: EU AI Act Omnibus Agreement, postponed high-risk deadlines and other key changes</a> · <a href="https://www.traverssmith.com/knowledge/knowledge-container/eu-agrees-to-delay-key-ai-act-compliance-deadlines/">Travers Smith: EU agrees to delay key AI Act compliance deadlines</a> · <a href="https://knowledge.dlapiper.com/dlapiperknowledge/globalemploymentlatestdevelopments/2026/The-Digital-AI-Omnibus-Proposed-deferral-of-high-risk-AI-obligations-under-the-AI-Act">DLA Piper: Digital AI Omnibus, proposed deferral of high-risk AI obligations</a> · <a href="https://www.legalnodes.com/article/eu-ai-act-2026-updates-compliance-requirements-and-business-risks">Legal Nodes: EU AI Act 2026 updates</a> · <a href="https://labs.cloudsecurityalliance.org/research/csa-research-note-eu-ai-act-high-risk-compliance-deadline-20/">Cloud Security Alliance: EU AI Act high-risk deadline, enterprise readiness gap</a></li>
+      <li><a href="https://rits.shanghai.nyu.edu/ai/china-issues-first-national-policy-framework-dedicated-to-ai-agents/">NYU Shanghai RITS: China issues first national policy framework dedicated to AI agents</a> · <a href="https://www.geopolitechs.org/p/chinas-first-policy-framework-for">Geopolitechs: China's first policy framework for AI agents</a> · <a href="https://blog.pebblous.ai/blog/china-ai-agent-decision-tiers/en/">Pebblous: China's AI agent rules, three tiers of decision authority</a> · <a href="https://www.machinebrief.com/news/china-ai-agent-regulations-enforceable-july-15-2026">Machine Brief: China AI agent regulations enforceable July 15, 2026</a></li>
+      <li><a href="https://github.blog/changelog/2026-07-30-github-copilot-in-visual-studio-july-update/">GitHub Changelog: Copilot in Visual Studio, July update (new SDK-based Agent preview)</a> · <a href="https://github.blog/changelog/2026-07-30-github-copilot-in-visual-studio-code-july-2026-releases/">GitHub Changelog: Copilot in VS Code, July 2026 releases</a></li>
+      <li><a href="https://aiagentstore.ai/ai-agent-news/this-week">AI Agent Store: AI agents news, week of August 2, 2026 (Delangue "radical transparency" call)</a> · <a href="https://www.techtimes.com/articles/322125/20260729/openai-anthropic-formally-back-plan-slow-ai-that-writes-its-own-code.htm">TechTimes: OpenAI and Anthropic formally back plan to slow AI that writes its own code</a></li>
+    </ul>
+
+    <p><em>Vendor and blog figures indicate direction, not audited benchmarks. The legal
+      characterizations above are summaries of fast-moving secondary analyses, not legal
+      advice.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="July 2026's incident roundups are dominated by AI-agent supply-chain attacks: 1,184 malicious skills in one marketplace, a decades-old shell trick beating 10 of 11 coding agents, and poisoned CI actions. Meanwhile the real bottleneck moves from implementation to spec authorship." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Security, Specs, Metrics, Briefing" />
+<title>The supply chain bill comes due — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 012</b><span>20 July 2026</span><span>8 min</span><span>Security</span></div>
+    <h1>The supply chain bill comes due</h1>
+    <p class="dek">July 2026's incident roundups are dominated by AI-agent supply-chain attacks:
+      1,184 malicious skills in one marketplace, a decades-old shell trick beating 10 of 11 coding
+      agents, and poisoned CI actions. Meanwhile the real bottleneck moves from implementation to
+      spec authorship.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">By late July 2026, the pattern in agentic-coding security was no longer a
+      series of isolated disclosures. It was a bill coming due. The month's incident roundups are
+      dominated by supply-chain attacks on the automation layer itself: the Claude Code GitHub
+      Action poisoning class, some 1,184 confirmed malicious skills in the OpenClaw agent
+      marketplace, and GuardFall, a decades-old shell-quoting bypass that defeated the command
+      guardrails of 10 of 11 surveyed open-source coding agents. The industry spent two years
+      wiring agents into its pipelines; attackers spent the summer wiring themselves into the
+      agents.</p>
+
+    <h2>The incident ledger</h2>
+
+    <p><strong>GuardFall</strong>, disclosed around June 30, beats command-safety filters in 10 of
+      11 open-source coding agents, including Aider, Cline, Goose, OpenHands, and SWE-agent. The
+      filters inspect the raw command string; bash rewrites that string through quoting and
+      expansion before execution. A decades-old quoting trick defeating 2026 guardrails is the
+      clearest possible demonstration that string-level command filtering is not a guardrail. Gate
+      on effects (sandboxing, allowlisted syscalls and paths, post-hoc diff review), not on
+      inspecting command text.</p>
+
+    <p>The <strong>Claude Code GitHub Action</strong> poisoning class matured into a documented
+      category, with the Cloud Security Alliance and Microsoft Security both publishing on
+      prompt-injection-to-credential-theft via issues and pull-request comments (variants dubbed
+      "Comment and Control" and "PromptPwnd"). The fixes are specific: claude-code-action v1.0.94
+      or later, claude-code v1.0.93 or later, and an audit of workflows for
+      <code>allowed_non_write_users: "*"</code>, which should be treated as a critical
+      misconfiguration. Security firm Aikido found at least five Fortune 500 organizations still
+      misconfigured in mid-2026.</p>
+
+    <p><strong>ClawHub</strong> made the marketplace threat concrete: Antiy CERT confirmed 1,184
+      malicious skills in the OpenClaw agent marketplace. Agent-extension marketplaces are now an
+      active supply-chain vector, not a theoretical one. And a quieter blind spot is being
+      actively exploited: agents skip package verification, and attackers, including DPRK APT
+      groups, are exploiting slopsquatting, the registration of packages whose names agents
+      hallucinate. Across all of it, OWASP-cited data holds steady: prompt injection still drives
+      the majority of production agentic-AI security failures.</p>
+
+    <div class="note">
+      <div class="k">The common thread</div>
+      <p>Poisoned actions, malicious marketplace skills, hallucinated packages: every major July
+        incident is a supply-chain attack on the automation layer. The attack surface is not the
+        code a team writes; it is the third-party capability the team installs.</p>
+    </div>
+
+    <h2>The spec ceiling</h2>
+
+    <p>The freshest thinking on the build side is an essay by magnus919 titled "The Spec Ceiling."
+      Its argument: once implementation is approximately free, throughput is capped by how fast an
+      organization can write specifications precise enough for autonomous implementation. Product
+      discovery becomes the bottleneck. For an issue-driven development process, the implication
+      is direct: issue quality is the factory's real input constraint.</p>
+
+    <blockquote>
+      <p>Implementation is no longer the constraint. Spec precision is.</p>
+    </blockquote>
+
+    <p>Tooling is converging on the same conclusion. GitHub's Spec Kit, with documentation
+      refreshed July 16, has broadened from a spec-writing toolkit into an extensible,
+      intent-driven harness spanning the SDLC, with 35 agent integrations (Claude, Copilot,
+      Gemini, Codex, and others). Its loop runs Spec &rarr; Plan &rarr; Tasks &rarr; Implement,
+      each phase emitting a Markdown artifact that feeds the next. VentureBeat and Microsoft's
+      developer blog now frame spec-driven development as the enterprise-scale prerequisite for
+      agentic coding, and one survey maps more than 30 agentic coding frameworks converging on
+      spec-first workflows.</p>
+
+    <p>The harness pattern consolidating alongside it is
+      <strong>planner-generator-evaluator</strong>, a GAN-inspired loop for long-running
+      autonomous builds in which an adversarial evaluator grades live output (via browser
+      automation, not just unit tests). Anthropic published harness-design guidance for
+      long-running app development along the same lines. At the enterprise tier, meta-agent
+      orchestration is the summer's framing: a top-level orchestrator routing work to specialized
+      plan, code, test, deploy, and operate agents. IBM's "Bob" launched in April, JetBrains
+      Central connects agents to repositories, pipelines, and infrastructure, and Forrester now
+      names the category "orchestrated SDLC agents." The explainer-content wave (MindStudio,
+      HackerNoon, darkfactory.dev, BCG Platinion's "Agentic Software Factory") is formalizing the
+      maturity taxonomy: assisted, then supervised-autonomous, then lights-out. Mostly synthesis,
+      but it marks the pattern's mainstreaming.</p>
+
+    <p>On quality gates, the consensus hardening is worth stating plainly: verification must be
+      independent of generation (a different system with an explicit pass or fail), gates must run
+      in a loop (agent fixes, re-tests, re-submits), and constraints belong in policy-as-code
+      (for example OPA) rather than in prompts. Risk-tiered evaluation, with stricter gates for
+      higher-blast-radius changes, is the emerging default across Codacy, Propel, CodeScene, and
+      academic work on policy-as-prompt synthesis and AGENTSAFE governance.</p>
+
+    <h2>What the numbers say</h2>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Operation</th><th>Reported figures</th><th>Review model</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>DX Q2 2026 (preliminary, cross-org)</td><td class="num">~51.9% AI-authored code; median ~50% regardless of org size</td><td>Mixed</td></tr>
+        <tr><td>StrongDM Software Factory</td><td class="num">3 engineers; ~25-30 engineer-equivalents; ~$1k/day in tokens per engineer-equivalent</td><td>No hand-written code, no human review</td></tr>
+        <tr><td>Stripe "Minions"</td><td class="num">1,300+ agent PRs/week; zero human-written code</td><td>Human review of every change</td></tr>
+        <tr><td>Anthropic / OpenAI senior engineers</td><td class="num">~100% AI-written code</td><td>Human-supervised</td></tr>
+        <tr><td>Microsoft / Google</td><td class="num">~20-30% / ~25%</td><td>Assisted</td></tr>
+        <tr><td>Background-agent share of merged PRs</td><td class="num">13-50%+ among leaders</td><td>Emerging team metric</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p>One benchmark deserves a watch flag rather than a citation: MirrorCode, released in late
+      June, reports autonomous coding clearing a 60,000-line ceiling. It is a single, unreplicated
+      benchmark. The more instructive contrast in the table is between StrongDM (no human review at
+      all) and Stripe (humans review every change). Both report extraordinary throughput; they
+      represent opposite answers to the only governance question that matters, and the right
+      answer depends entirely on the stakes of the code.</p>
+
+    <h2>How we apply this at River.io</h2>
+
+    <ul>
+      <li><strong>Zero dependencies is the defense the industry is retrofitting.</strong> Nearly
+        every July incident is a supply-chain attack: poisoned actions, malicious marketplace
+        skills, hallucinated packages. River.io ships native compiled code with no third-party
+        dependencies, which removes that entire attack class rather than detecting instances of
+        it. We audit the automation with the same rigor as the code: pinned action versions
+        (claude-code-action at v1.0.94 or later where used) and workflow audits for permissive
+        misconfigurations like <code>allowed_non_write_users: "*"</code>.</li>
+      <li><strong>We gate on effects, not command text.</strong> GuardFall confirmed what our
+        test-driven development practice already assumes: the pass or fail authority for any
+        autonomous loop is the compiled test suite plus a diff review, executed in a sandbox with
+        constrained writable paths. Our TDD suite is exactly the independent evaluator the
+        best-practice literature is converging on.</li>
+      <li><strong>We treat issue precision as factory throughput.</strong> The spec ceiling is
+        real in our GitHub-issue-driven SDLC: every issue is a specification, and its precision
+        determines whether an agent can implement it without ambiguity. We invest in structured
+        issue templates along the lines of Spec Kit's Spec, Plan, and Tasks artifacts, because
+        that raises throughput more than any model upgrade.</li>
+      <li><strong>Autonomy is matched to stakes.</strong> For regulated, PHI-adjacent work
+        (CareTime, TimeForCare) and compliance-bearing work (MaterialsAndPractices), Stripe's
+        model is our template: agents may author, humans review everything. StrongDM's no-review
+        model is reserved for code whose failure costs nothing.</li>
+      <li><strong>Lights-out experiments run on low-stakes repositories only.</strong> On
+        MeowPassword, weathergalactic, and sloth we run planner-generator-evaluator loops where
+        the evaluator is the compiled test suite, and we track the percentage of merged pull
+        requests that come from agents as our factory metric.</li>
+    </ul>
+
+    <hr />
+
+    <h2>Sources</h2>
+
+    <ul>
+      <li><a href="https://magnus919.com/2026/07/the-spec-ceiling-why-ai-coding-speed-moves-the-bottleneck-to-product-discovery/">magnus919: The Spec Ceiling</a></li>
+      <li><a href="https://github.github.com/spec-kit/">GitHub Spec Kit docs (updated Jul 16, 2026)</a> · <a href="https://github.com/github/spec-kit">spec-kit repo</a> · <a href="https://github.com/github/spec-kit/releases">releases</a></li>
+      <li><a href="https://thehackernews.com/2026/06/guardfall-exposes-open-source-ai-coding.html">The Hacker News: GuardFall</a> · <a href="https://www.scworld.com/brief/shell-injection-flaw-found-in-10-of-11-open-source-ai-agents">SC Media: Shell injection flaw found in 10 of 11 open-source AI agents</a> · <a href="https://adversa.ai/blog/opensource-ai-coding-agents-shell-injection-vulnerability/">Adversa AI: GuardFall analysis</a></li>
+      <li><a href="https://labs.cloudsecurityalliance.org/research/csa-research-note-claude-code-github-action-prompt-injection/">CSA: Claude Code GitHub Action prompt injection</a> · <a href="https://www.microsoft.com/en-us/security/blog/2026/06/05/securing-ci-cd-in-agentic-world-claude-code-github-action-case/">Microsoft Security: Securing CI/CD in an agentic world</a> · <a href="https://flatt.tech/research/posts/poisoning-claude-code-one-github-issue-to-break-the-supply-chain/">GMO Flatt Security: Poisoning Claude Code</a> · <a href="https://www.securityweek.com/claude-code-gemini-cli-github-copilot-agents-vulnerable-to-prompt-injection-via-comments/">SecurityWeek: Comment-and-Control</a></li>
+      <li><a href="https://adversa.ai/blog/top-ai-coding-agent-security-resources-july-2026/">Adversa AI: Top AI coding agent security resources, July 2026</a> · <a href="https://blog.cyberdesserts.com/ai-agent-security-risks/">CyberDesserts: MCP, OpenClaw, and supply chain risks</a> · <a href="https://www.helpnetsecurity.com/2026/06/11/owasp-prompt-injection-ai-security-failures/">Help Net Security: OWASP prompt injection</a> · <a href="https://www.techtimes.com/articles/319457/20260701/ai-coding-agents-skip-package-verification-attackers-are-exploiting-it.htm">TechTimes: Package verification blind spot</a></li>
+      <li><a href="https://simonwillison.net/2026/Feb/7/software-factory/">Simon Willison: StrongDM software factory</a> · <a href="https://factory.strongdm.ai/">StrongDM Factory</a> · <a href="https://rywalker.com/research/strongdm-factory">Ry Walker: StrongDM research</a></li>
+      <li><a href="https://fortune.com/2026/01/29/100-percent-of-code-at-anthropic-and-openai-is-now-ai-written-boris-cherny-roon/">Fortune: 100% AI-written code at Anthropic and OpenAI</a> · <a href="https://www.secondtalent.com/resources/how-much-software-written-by-ai/">Second Talent: How much software is AI-written</a></li>
+      <li><a href="https://www.techtimes.com/articles/319180/20260627/autonomous-ai-coding-clears-60000-line-ceiling-mirrorcode-benchmark-released.htm">TechTimes: MirrorCode benchmark</a></li>
+      <li><a href="https://www.anthropic.com/engineering/harness-design-long-running-apps">Anthropic: Harness design for long-running apps</a> · <a href="https://www.mindstudio.ai/blog/planner-generator-evaluator-pattern-gan-inspired-ai-coding">MindStudio: Planner-generator-evaluator</a> · <a href="https://medium.com/@gwrx2005/gan-inspired-multi-agent-harnesses-for-long-running-autonomous-software-engineering-architecture-37a8c2d59b6b">Medium: GAN-inspired multi-agent harnesses</a></li>
+      <li><a href="https://www.forrester.com/blogs/agentic-software-development-takes-the-lead-from-code-assistants-to-orchestrated-sdlc-agents/">Forrester: Orchestrated SDLC agents</a> · <a href="https://zylos.ai/research/2026-05-12-agentic-cicd-ai-driven-delivery-pipelines/">Zylos: Agentic CI/CD</a> · <a href="https://techcommunity.microsoft.com/blog/appsonazureblog/an-ai-led-sdlc-building-an-end-to-end-agentic-software-development-lifecycle-wit/4491896">Microsoft: AI-led SDLC on Azure and GitHub</a> · <a href="https://www.bcgplatinion.com/insights/the-agentic-software-factory">BCG Platinion: Agentic Software Factory</a></li>
+      <li><a href="https://venturebeat.com/orchestration/agentic-coding-at-enterprise-scale-demands-spec-driven-development">VentureBeat: Enterprise agentic coding demands spec-driven development</a> · <a href="https://blog.codacy.com/why-coding-agents-need-independent-quality-gates">Codacy: Independent quality gates</a> · <a href="https://www.propelcode.ai/blog/agentic-engineering-code-review-guardrails">Propel: Code review guardrails</a> · <a href="https://galileo.ai/blog/best-ai-agent-guardrails-solutions">Galileo: Guardrail solutions</a> · <a href="https://hackernoon.com/the-dark-factory-pattern-moving-from-ai-assisted-to-fully-autonomous-coding">HackerNoon: Dark Factory Pattern</a></li>
+    </ul>
+
+    <p><em>Vendor and blog figures cited here (throughput, percentage of AI-written code, token
+      costs) indicate direction, not audited benchmarks.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

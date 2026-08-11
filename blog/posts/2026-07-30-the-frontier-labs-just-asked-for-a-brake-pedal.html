@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="More than 1,100 employees of the frontier AI labs asked the US government for the tools to deliberately pace automated AI development, and OpenAI and Anthropic endorsed the request within hours. Meanwhile GitHub made code review programmable via in-repo skills, and a campaign of 7,600 malicious repositories industrialized the agent-skill supply-chain threat." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Regulation, Security, Tooling, Briefing" />
+<title>The frontier labs just asked for a brake pedal — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 015</b><span>30 July 2026</span><span>6 min</span><span>Regulation</span></div>
+    <h1>The frontier labs just asked for a brake pedal</h1>
+    <p class="dek">More than 1,100 employees of the frontier AI labs asked the US government for the
+      tools to deliberately pace automated AI development, and OpenAI and Anthropic endorsed the
+      request within hours. Meanwhile GitHub made code review programmable via in-repo skills, and
+      a campaign of 7,600 malicious repositories industrialized the agent-skill supply-chain
+      threat.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">In late July 2026, the most consequential development in autonomous
+      software was policy, not product. On July 28, the "Pacing the Frontier" letter, signed by
+      more than 1,100 employees of the frontier AI labs, including Anthropic's Dario Amodei,
+      OpenAI chief scientist Jakub Pachocki, Meta's Shengjia Zhao, and DeepMind's Anca Dragan,
+      asked the US government to help build the technical and governance tools to deliberately
+      pace automated AI development. Within hours, on July 29, OpenAI and Anthropic endorsed the
+      letter as companies. The endgame of the dark factory, AI accelerating its own development,
+      just became something the people building it formally want a brake pedal for.</p>
+
+    <h2>What the letter actually asks</h2>
+
+    <p>The letter is deliberately narrow. The signatories are not asking for a pause now. They are
+      asking Washington to make a coordinated slowdown possible (verification, monitoring, and
+      international mechanisms) before recursive self-improvement makes the question moot. They
+      warn of "a real risk that capability development rapidly accelerates beyond our ability to
+      understand or control the resulting systems." The corporate endorsements are the new part:
+      labs formally backing a mechanism that could constrain their own automated-R&amp;D
+      flywheel.</p>
+
+    <p>The context that gives the letter its weight is throughput. Anthropic's own institute
+      disclosure reports that more than 80 percent of code merged to its production codebase is
+      Claude-authored (a May 2026 measure, with leadership estimating 90 percent or more including
+      scripts), that typical engineers merge 8 times as much code per day as in 2024, and that the
+      company sees a 76 percent success rate on open-ended internal engineering tasks. The
+      throughput is real; the letter is the labs saying the control tools have not kept pace.
+      (Company-reported figures; direction, not audit.)</p>
+
+    <h2>The verifier becomes programmable</h2>
+
+    <p>On July 29, GitHub made agent skills and MCP generally available inside Copilot code
+      review. The review agent, not just the coding agent, can now invoke a team's own tools and
+      standards: drop a <code>SKILL.md</code> file under <code>.github/skills</code> and Copilot
+      applies it during every review, while MCP servers pull tracker and documentation context in.
+      All review-time MCP calls are restricted to read-only, and attribution labels show which
+      comment came from which skill or server. Architecturally, this is the oracle becoming
+      in-repo, version-controlled configuration rather than a black box, which is the right shape
+      for spec-driven pipelines. It also means skills now execute inside the reviewer, which is a
+      new injection surface.</p>
+
+    <p>Two smaller items round out the tooling picture. GitHub's Copilot cloud agent for Linear
+      went GA on July 23, an autonomous background agent that analyzes tracker issues and drafts
+      pull requests, making the issue-to-agent-to-PR loop an off-the-shelf product tier and
+      validating issue-driven development as the interface for autonomous work. The GitHub MCP
+      Server added support for the next, stateless, MCP specification revision on July 23, and
+      Claude Opus 5 (July 24) and Grok 4.5 (July 28) landed in Copilot's model picker.</p>
+
+    <h2>The skill supply chain is now industrialized</h2>
+
+    <p>Researchers tracking a campaign dubbed AgentBaiting counted roughly 7,600 malicious GitHub
+      repositories created by roughly 6,600 profiles, more than 800 of them posing as AI Skills or
+      MCP servers, delivering SmartLoader malware through trusted-looking projects and public
+      capability catalogs. This moves the poisoned-skill concern from proof of concept to volume
+      operation, and it targets exactly the install-a-capability reflex that agent ecosystems
+      encourage. Skill catalogs and MCP registries lack the security maturity of mature package
+      registries; treat both like npm circa 2016. (The campaign was first reported around July 21;
+      an RH-ISAC advisory circulated this week.)</p>
+
+    <div class="note">
+      <div class="k">THE DOUBLE EDGE</div>
+      <p>Putting skills inside the review agent is powerful and double-edged. GitHub's mitigations
+        (read-only MCP at review time, per-comment attribution) are the right defaults. But a
+        poisoned <code>SKILL.md</code> in the reviewer is a poisoned gate, which is worse than a
+        poisoned generator.</p>
+    </div>
+
+    <blockquote>
+      <p>A compromised generator writes bad code that a good gate catches. A compromised gate
+        approves anything.</p>
+    </blockquote>
+
+    <h2>How we apply this at River.io</h2>
+
+    <p>We build in native compiled code with zero third-party dependencies, develop test-first,
+      and run our SDLC through GitHub issues, with autonomy matched to the stakes of each
+      repository. This week's developments confirm each of those choices from a different
+      direction.</p>
+
+    <ul>
+      <li><strong>Our review standards live in the repository, written by us.</strong> The Copilot
+        code review GA productizes something we already practice: encoding standards as
+        version-controlled, in-repo configuration. The cite-your-sources rule we enforce in sloth,
+        the zero-third-party-dependency rule, and our native-code conventions can live as skill
+        files per repository. That is configuration under version control, not an installed
+        dependency, and we write them first-party only. We never pull a skill from a catalog.</li>
+      <li><strong>AgentBaiting is the case for zero dependencies as a security control.</strong>
+        More than 800 fake skills and MCP servers on public catalogs means "install this
+        capability" is now a mainstream malware vector. Our rule (no third-party skills, no
+        marketplace MCP servers, tools built in-tree) eliminates that entire class of attack, and
+        we state it explicitly in each repository's contributing and security documents so
+        autonomous agents inherit the constraint.</li>
+      <li><strong>We audit the gate, not just the diff.</strong> If any review-time automation
+        gains skill or MCP extensibility, we log which skill produced which verdict, following the
+        attribution-label pattern GitHub shipped. The reviewer is now an attack surface, and a
+        gate that cannot account for its own verdicts is not a gate.</li>
+      <li><strong>Stakes-matched autonomy is the pacing letter at our scale.</strong> The labs'
+        ask is that the brake exist before it is needed. Ours already does: CareTime, TimeForCare
+        and MaterialsAndPractices keep human-gated merges permanently, while MeowPassword,
+        weathergalactic and sloth serve as the autonomous-loop lab where the worst case is a
+        broken build. The Linear agent GA shows that issue-to-PR autonomy is now a commodity. The
+        differentiator is having decided in advance where it is allowed to run.</li>
+    </ul>
+
+    <hr />
+
+    <h2>Sources</h2>
+
+    <ul>
+      <li><a href="https://fortune.com/2026/07/29/anthropic-deepmind-openai-meta-washington-ai-slowdown-plan/">Fortune: 1,200+ AI workers ask Washington for an AI slowdown plan</a> · <a href="https://www.techtimes.com/articles/322125/20260729/openai-anthropic-formally-back-plan-slow-ai-that-writes-its-own-code.htm">TechTimes: OpenAI and Anthropic formally back plan to slow AI that writes its own code</a> · <a href="https://thenextweb.com/news/pacing-the-frontier-ai-employees-letter-us-government">TNW: 1,134 AI staff ask the US for a way to pace AI</a> · <a href="https://www.unite.ai/openai-and-anthropic-back-employee-call-to-pace-ai-progress/">Unite.AI: OpenAI and Anthropic back employee call</a></li>
+      <li><a href="https://www.anthropic.com/institute/recursive-self-improvement">Anthropic Institute: when AI builds itself (recursive self-improvement; 80%+ Claude-authored merged code)</a> · <a href="https://venturebeat.com/technology/anthropic-says-80-of-its-new-production-code-is-now-authored-by-claude-how-your-enterprise-can-keep-up">VentureBeat: Anthropic says 80% of its new production code is Claude-authored</a></li>
+      <li><a href="https://github.blog/changelog/2026-07-29-copilot-code-review-agent-skills-and-mcp-now-generally-available/">GitHub Changelog: Copilot code review, agent skills and MCP now GA</a> · <a href="https://github.blog/changelog/2026-07-23-copilot-cloud-agent-for-linear-is-now-generally-available">GitHub Changelog: Copilot cloud agent for Linear GA</a> · <a href="https://github.blog/changelog/2026-07-23-github-mcp-server-supports-the-next-mcp-specification">GitHub Changelog: GitHub MCP Server supports the next MCP specification</a></li>
+      <li><a href="https://rhisac.org/threat-intelligence/new-agentbaiting-campaign-delivers-smartloader-via-fake-ai-skills-and-mcp-servers/">RH-ISAC: AgentBaiting campaign delivers SmartLoader via fake AI Skills and MCP servers</a> · <a href="https://obot.ai/blog/mcp-security-agent-skills-supply-chain/">Obot: securing MCP and agent-skill supply chains</a></li>
+    </ul>
+
+    <p><em>Vendor and blog figures (AI-authored-code percentages, throughput multipliers, campaign
+      repository counts) indicate direction, not audited benchmarks; company-reported metrics are
+      flagged inline.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

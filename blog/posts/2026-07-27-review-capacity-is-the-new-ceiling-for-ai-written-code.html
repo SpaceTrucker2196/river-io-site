@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Benchmark data from 8.1 million pull requests shows AI-assisted code merging at less than half the human rate and waiting 4.6 times longer for review: generation has become cheap, and verification has not kept up." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Metrics, Briefing, Security, Practice" />
+<title>Review capacity is the new ceiling for AI-written code — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 013</b><span>27 July 2026</span><span>8 min</span><span>Metrics</span></div>
+    <h1>Review capacity is the new ceiling for AI-written code</h1>
+    <p class="dek">Benchmark data from 8.1 million pull requests shows AI-assisted code merging at
+      less than half the human rate and waiting 4.6 times longer for review: generation has become
+      cheap, and verification has not kept up.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">In late July 2026, the strongest data yet on autonomous software delivery
+      points at an unglamorous constraint. It is not model capability, and it is not specification
+      quality. It is review capacity. LinearB's 2026 Benchmarks, drawn from 8.1 million pull
+      requests across 4,800 organizations, put the merge rate for AI-assisted pull requests at
+      32.7 percent, against 84.4 percent for human-authored code. AI-assisted PRs also wait 4.6
+      times longer for a first reviewer. The industry has industrialized generation. It has not
+      industrialized sign-off.</p>
+
+    <h2>The numbers</h2>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Metric</th><th class="num">AI-assisted</th><th class="num">Human</th><th>Source</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>PR acceptance rate</td><td class="num">32.7%</td><td class="num">84.4%</td><td>LinearB 2026 Benchmarks (8.1M PRs, 4,800 orgs)</td></tr>
+        <tr><td>PRs needed per merge</td><td class="num">3.06</td><td class="num">1.18</td><td>LinearB</td></tr>
+        <tr><td>Wait for first reviewer</td><td class="num">4.6x longer</td><td class="num">baseline</td><td>LinearB</td></tr>
+        <tr><td>PR size</td><td class="num">~2.6x larger</td><td class="num">baseline</td><td>LinearB and secondary coverage</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p>Two academic studies of agentic pull requests land in the same place. An analysis of the
+      AIDev dataset (arXiv 2606.13468) found that fixes proposed by agents across Copilot, Devin,
+      Cursor and Claude are rejected roughly 46.4 percent of the time. A separate empirical study
+      (arXiv 2605.22534) found that only 15.4 percent of merged agentic PRs involved explicit
+      reviewer participation, and that Copilot and Devin PRs are far more reviewer-mediated than
+      Codex and Cursor PRs, which tend to merge with minimal interaction. Read together: much agent
+      code merges unexamined, and the examined portion fails often.</p>
+
+    <p>The production side is no more comforting. Lightrun's 2026 survey reports that 43 percent
+      of AI-generated changes required manual debugging in production after passing QA and staging,
+      and that zero percent of surveyed engineering leaders said they were "very confident" AI code
+      would behave correctly once deployed. (This is a vendor survey; treat it as direction rather
+      than audit.) Meanwhile throughput keeps compounding: developers using AI merge roughly 98
+      percent more PRs while PR review time has risen 91 percent, about 18 percent of merged PRs
+      in surveyed enterprises now list a coding agent as primary author or pair-coder, and Google
+      reported in April 2026 that roughly 75 percent of its new code is AI-generated and
+      engineer-approved. Standing reference points remain in place: Stripe runs about 1,300 agent
+      PRs per week with human review of every change, StrongDM operates a three-engineer no-review
+      factory, and DX's preliminary Q2 figure puts AI-authored code at about 52 percent.</p>
+
+    <blockquote>
+      <p>Generation got cheaper. Verification did not. That gap is the whole story.</p>
+    </blockquote>
+
+    <h2>The state of play</h2>
+
+    <p>The July 16 model wave is now the baseline. OpenAI (GPT-5.5-pro and GPT-5.3-codex),
+      Anthropic (Claude Opus 4.7 and Claude Sonnet 4.6) and Google (Gemini 3.1 Pro preview) all
+      shipped coding-agent upgrades within the same window. Repository-wide context and multi-step
+      tool invocation are table stakes; the framing has shifted to persistent, long-horizon agents
+      orchestrated like junior engineers. GPT-5.5's lead on Terminal-Bench 2.0 is specifically
+      about running tests, reading failures and iterating unsupervised, which is the inner loop of
+      any autonomous factory. (These are vendor and aggregator comparisons; leaderboard claims are
+      directional.)</p>
+
+    <p>The first serious non-US factory stack has also arrived. On July 24, Huawei Cloud launched
+      the CodeArts Agent open beta in Thailand, built explicitly on Specification-Driven
+      Development, with an "Agent Team" mode that auto-forms a multi-agent development team
+      executing tasks concurrently. Spec-driven development is now shipping as a product primitive
+      rather than a methodology essay. The commercial framing has settled too: iTmethods now
+      markets a "Dark Factory" offering as a governed autonomous SDLC. Nobody is selling lights-out;
+      everybody is selling governed lights-out.</p>
+
+    <h2>Frameworks and specs</h2>
+
+    <ul>
+      <li><strong>Pipeline-native agents.</strong> Rather than bolting an agent onto CI as a
+        post-processing step, new frameworks embed agent reasoning inside pipeline stages. Cicaddy
+        (Red Hat, 2026) connects LLM reasoning and MCP tool access directly to CI stages, and
+        complementary arXiv work ("From Assistance to Agency: Rethinking Autonomy and Control in
+        CI/CD Pipelines") formalizes autonomy levels per pipeline stage rather than per agent.</li>
+      <li><strong>A full-autonomy reference design.</strong> Composio AO runs multiple agents in
+        isolated git worktrees where agents fix their own CI failures, respond to review comments,
+        and manage their own PR lifecycle without per-edit approval. The transferable part is the
+        isolation boundary: a worktree plus CI as the only authority.</li>
+      <li><strong>Testing the agents themselves</strong> is becoming a distinct layer. FastAgency's
+        Tester class defines simulated agent-interaction scenarios and runs them in CI to catch
+        agent regressions, not just code regressions.</li>
+      <li><strong>SDD consolidation continues.</strong> Every major vendor now ships a flavor:
+        Spec Kit, Kiro, OpenSpec, BMAD, Tessl, Antigravity, and now CodeArts. Early-adopter
+        reports of 3x to 10x higher first-pass success on non-trivial tasks are widely repeated
+        but remain vendor-sourced.</li>
+    </ul>
+
+    <h2>Where practice is converging</h2>
+
+    <p>The practical consensus forming this month is about review economics, not more guardrails.</p>
+
+    <ul>
+      <li><strong>The review sandwich.</strong> AI handles the surface pass (style, obvious
+        defects, test gaps); humans are reserved for architecture and business logic. GitHub
+        internal data is cited at a 30 to 50 percent reduction in human review time. If review is
+        the ceiling, this is the pattern to copy.</li>
+      <li><strong>Constrain PR size at the source.</strong> AI-assisted PRs run about 2.6 times
+        larger than human ones, and "changes larger than what was requested" is repeatedly named
+        as the top driver of rejection. A hard diff-size budget in the issue template is a cheaper
+        fix than a better reviewer.</li>
+      <li><strong>Per-stage autonomy, not per-agent autonomy.</strong> Even aggressive pipelines
+        keep explicit human gates at high-blast-radius transitions: merge to release branch,
+        production deploy, access-control changes.</li>
+      <li><strong>Verification independent of generation, gating on effects.</strong> A sandbox,
+        constrained writable paths, and a compiled test suite as the pass/fail authority. This
+        week's Cursor vulnerability makes the case again.</li>
+    </ul>
+
+    <h2>Risks and failure modes</h2>
+
+    <p><strong>CVE-2026-22708, a Cursor terminal allowlist bypass</strong>, is fixed in version
+      2.3, and any team using Cursor Auto-Run should update. Shell built-ins such as
+      <code>export</code>, <code>typeset</code> and <code>declare</code> executed without appearing
+      in the allowlist, letting an attacker poison environment variables so that already-approved
+      commands (<code>git branch</code>, <code>python3 script.py</code>) become arbitrary code
+      execution. The flaw is reachable via indirect prompt injection and exploitable even with an
+      empty allowlist. The allowlist actually made the attack easier: it auto-approved exactly the
+      commands the attacker needed.</p>
+
+    <p>The agent-skill supply chain produced two serious papers. <strong>PhantomSkill</strong>
+      (arXiv 2606.19191) describes the VulMask technique: instead of putting malicious instructions
+      in <code>SKILL.md</code>, the payload hides in auxiliary <code>scripts/</code> as
+      vulnerability-shaped code that activates only on an attacker-controlled trigger. Because it
+      reads as ordinary insecure code, reviewers and scanners downgrade it from "malware" to
+      "vulnerability." Snyk was the outlier defender, flagging 98.9 percent as malware, while Cisco
+      static and LLM analysis largely misclassified it. <strong>SkillCloak</strong> (arXiv
+      2607.02357) demonstrates payload-preserving evasion via structural obfuscation and
+      self-extracting skill packing, tested against 1,613 in-the-wild malicious skills. Some cloak
+      variants bypassed more than 90 percent of surveyed scanners, and cloaked skills ran under
+      Claude Code and Codex with no statistically detectable drop in task success. The proposed
+      defense, SkillDetonate, is a runtime behavioral auditor: detonate the skill in a sandbox and
+      watch its effects. Static inspection of text loses; observing effects wins.</p>
+
+    <div class="note">
+      <div class="k">SUPPLY CHAIN</div>
+      <p>The Trivy-Action to LiteLLM PyPI token compromise remains the cautionary case. LiteLLM is
+        the model gateway under CrewAI, DSPy, GraphRAG and many agent frameworks: one poisoned
+        dependency, dozens of downstream factories.</p>
+    </div>
+
+    <h2>How we apply this at River.io</h2>
+
+    <p>We run a software factory built on native compiled code, zero third-party dependencies,
+      test-driven development, and a GitHub-issue-driven SDLC. This week's findings map directly
+      onto that discipline.</p>
+
+    <ul>
+      <li><strong>The test suite is the reviewer.</strong> A factory that generates faster than it
+        can review just accumulates unmerged, unexamined work. Our compiled test suite is the merge
+        authority, and we track the percentage of agent PRs merged on first pass as the factory's
+        real health metric. If that number drifts toward LinearB's 32.7 percent, the issue
+        templates are the problem, not the model.</li>
+      <li><strong>Diff size is capped in the issue template.</strong> Oversized, scope-creeping PRs
+        are the top named rejection driver, so every production order carries a one-line
+        constraint: touch no more than the stated files, no changes outside the stated scope, no
+        new build steps.</li>
+      <li><strong>Zero third-party dependencies now extends to the agent layer.</strong>
+        PhantomSkill and SkillCloak are attacks on agent extensions, not on application code. We
+        apply the same posture one level up: agent skills, marketplace plugins, and GitHub Actions
+        are dependencies we do not take. Tooling is first-party; any action we do use is pinned and
+        reviewed.</li>
+      <li><strong>Allowlists are not a security boundary.</strong> The Cursor CVE generalizes: our
+        boundary is a sandbox with constrained writable paths plus a build that must go green.
+        Effects, not strings.</li>
+      <li><strong>Autonomy is written down per stage, matched to stakes.</strong> Generation and
+        test-fix loops run autonomously; merge to main, release, and anything touching schema or
+        protected health information is human-gated. CareTime and TimeForCare (Medicaid electronic
+        visit verification) and MaterialsAndPractices stay fully human-gated. When 43 percent of AI
+        changes need production debugging after passing QA, regulated work does not get the fast
+        lane.</li>
+      <li><strong>Lights-out gets proven on low-stakes repos first.</strong> On MeowPassword,
+        weathergalactic and sloth we run the Composio-style experiment: an isolated worktree per
+        agent, the agent owning its own CI-failure fixes, the native test suite as the only merge
+        authority. We measure first-pass merge rate and how often the suite caught something a
+        human would have. That answers "does lights-out work here" without risking a regulated
+        codebase. A sandboxed harness that records filesystem and syscall effects and diffs them
+        against an expected envelope, in the shape of SkillDetonate, is buildable in native code
+        with no dependencies, and it is the same primitive that makes autonomous merges safe.</li>
+    </ul>
+
+    <hr />
+
+    <h2>Sources</h2>
+
+    <ul>
+      <li><a href="https://linearb.io/dev-interrupted/podcast/linearb-2026-benchmarks-ai-pr-merge-rate">LinearB 2026 Benchmarks: why AI-assisted PRs merge at half the rate</a> · <a href="https://byteiota.com/ai-prs-wait-4-6x-longer-linearb-2026-benchmarks/">byteiota: AI PRs wait 4.6x longer</a> · <a href="https://byteiota.com/software-engineering-benchmarks-2026-ai-code-review-gap/">byteiota: the AI code review gap</a> · <a href="https://blog.exceeds.ai/linearb-code-review-metrics-2026/">Exceeds: LinearB code review metrics 2026</a></li>
+      <li><a href="https://dev.to/code-board/the-review-bottleneck-why-more-ai-code-means-slower-teams-in-2026-1e5n">The review bottleneck: why more AI code means slower teams</a> · <a href="https://rickpollick.com/blog/review-capacity-is-the-new-delivery-ceiling">Rick Pollick: review capacity is the new delivery ceiling</a> · <a href="https://blog.codacy.com/ai-breaking-code-review-how-engineering-teams-survive-pr-bottleneck">Codacy: AI is breaking code review</a> · <a href="https://www.metacto.com/blogs/code-review-bottleneck-ai-development">MetaCTO: code review is the new bottleneck</a> · <a href="https://www.deviqa.com/blog/state-of-ai-generated-code-2026-the-qa-and-testing-gap/">DeviQA: state of AI-generated code 2026, the QA gap</a></li>
+      <li><a href="https://arxiv.org/abs/2606.13468">arXiv 2606.13468: understanding the rejection of fixes generated by agentic PRs (AIDev)</a> · <a href="https://arxiv.org/html/2605.22534">arXiv 2605.22534: why are agentic pull requests merged or rejected?</a></li>
+      <li><a href="https://github.com/cursor/cursor/security/advisories/GHSA-82wg-qcm4-fp2w">CVE-2026-22708: Cursor terminal allowlist bypass (GitHub advisory)</a> · <a href="https://www.pillar.security/blog/the-agent-security-paradox-when-trusted-commands-in-cursor-become-attack-vectors">Pillar Security: the agent security paradox</a> · <a href="https://danusminimus.github.io/posts/The-Agent-Security-Paradox-When-Trusted-Commands-In-Cursor-Become-Attack-Vectors/">danusminimus technical writeup</a> · <a href="https://www.scworld.com/news/cursor-vulnerability-enables-stealthy-rce-via-indirect-prompt-injection">SC Media: stealthy RCE via indirect prompt injection</a> · <a href="https://www.sentinelone.com/vulnerability-database/cve-2026-22708/">SentinelOne CVE entry</a></li>
+      <li><a href="https://arxiv.org/abs/2606.19191">arXiv 2606.19191: PhantomSkill, malicious code injection in agent skill ecosystems (VulMask)</a> · <a href="https://arxiv.org/abs/2607.02357">arXiv 2607.02357: Cloak and Detonate, scanner evasion and dynamic detection of agent skill malware</a> · <a href="https://cybersecuritynews.com/agent-skill-malware-targets-claude-code-and-openai-codex/">CybersecurityNews: agent skill malware targets Claude Code and Codex</a> · <a href="https://gbhackers.com/malicious-agent-skills/">GBHackers: malicious agent skills</a> · <a href="https://github.com/LLMSecurity/awesome-agent-skills-security">awesome-agent-skills-security</a></li>
+      <li><a href="https://www.prnewswire.com/apac/news-releases/huawei-cloud-launches-agentic-infrastructure-and-codearts-agent-obt-in-thailand-accelerating-enterprise-ai-innovation-302833957.html">Huawei Cloud launches CodeArts Agent open beta (PR Newswire, Jul 24)</a> · <a href="https://technode.global/2026/07/24/chinas-huawei-cloud-launches-agentic-ai-infrastructure-coding-agent-beta-in-thailand/">TNGlobal coverage</a></li>
+      <li><a href="https://chatgptaihub.com/the-big-ai-coding-agents-story-what-july-16-s-news-means-for-developers/">ChatGPTAIHub: what July 16's AI coding agent news means for developers</a> · <a href="https://www.mindstudio.ai/blog/gpt-5-5-review-developers-builders">MindStudio: GPT-5.5 vs Opus 4.7 vs Gemini 3.1 Pro for builders</a> · <a href="https://aiagentstore.ai/ai-agent-news/this-week">AI Agents News, week of July 25, 2026</a></li>
+      <li><a href="https://arxiv.org/html/2605.07062v1">arXiv 2605.07062: from assistance to agency, rethinking autonomy and control in CI/CD pipelines</a> · <a href="https://zylos.ai/research/2026-05-12-agentic-cicd-ai-driven-delivery-pipelines/">Zylos: agentic CI/CD</a> · <a href="https://www.augmentcode.com/tools/open-source-agent-orchestrators">Augment Code: 9 open-source agent orchestrators</a></li>
+      <li><a href="https://itmethods.com/dark-factory">iTmethods: Dark Factory, governed autonomous SDLC</a> · <a href="https://www.bcgplatinion.com/insights/the-agentic-software-factory">BCG Platinion: the agentic software factory</a> · <a href="https://www.i-scoop.eu/dark-software-factories-and-the-future-of-autonomous-software-delivery/">i-scoop: dark software factories</a></li>
+      <li><a href="https://medium.com/@visrow/spec-driven-development-is-eating-software-engineering-a-map-of-30-agentic-coding-frameworks-6ac0b5e2b484">Spec-driven development is eating software engineering: a map of 30+ agentic coding frameworks</a> · <a href="https://github.com/github/spec-kit">GitHub Spec Kit</a> · <a href="https://thebcms.com/blog/spec-driven-development">BCMS: the definitive 2026 guide to SDD</a></li>
+      <li><a href="https://www.secondtalent.com/resources/how-much-software-written-by-ai/">Second Talent: how much software is AI-written in 2026</a> · <a href="https://www.digitalapplied.com/blog/ai-coding-adoption-statistics-2026-50-data-points">DigitalApplied: AI coding adoption 2026 statistics</a> · <a href="https://cursor.com/insights">Cursor insights</a></li>
+    </ul>
+
+    <p><em>Vendor and blog figures (merge rates, throughput, percentage of AI-written code,
+      first-pass-success multipliers) indicate direction, not audited benchmarks. Where a claim
+      comes from a single vendor survey or aggregator it is flagged inline.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

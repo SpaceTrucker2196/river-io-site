@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="In late June 2026, OWASP tied prompt injection to six of its ten agentic risk categories while an autonomous bot ran a live supply-chain attack, a hard argument for keeping regulated code human-gated." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing, Security, Specs, Practice" />
+<title>The security reckoning catches up with the autonomous software factory — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 007</b><span>29 June 2026</span><span>8 min</span><span>Briefing</span></div>
+    <h1>The security reckoning catches up with the autonomous software factory</h1>
+    <p class="dek">In late June 2026, OWASP tied prompt injection to six of its ten agentic risk
+      categories while an autonomous bot ran a live supply-chain attack, a hard argument for
+      keeping regulated code human-gated.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">In late June 2026, two threads dominated the news around autonomous
+      software production, and they pulled in opposite directions. The methodology stack kept
+      maturing: GitHub Spec Kit's quality gates and StrongDM-style satisfaction-threshold
+      validation are converging on a single idea, that the eval suite is the spec and the spec is
+      the gate. At the same time, the security reckoning caught up with the hype. OWASP's mid-June
+      reporting confirmed that prompt injection now maps to six of the ten categories in its Top 10
+      for Agentic Applications and is the throughline in most production agent failures, including
+      a supply-chain attack in which a backdoored PyPI package collected roughly 47,000 downloads
+      in a three-hour window. The tooling for autonomous loops is real and improving. The
+      headlines are a direct argument for keeping regulated repositories human-gated anyway.</p>
+
+    <h2>Where the field actually stands</h2>
+
+    <p>The framing has settled. A dark factory is the software analog of a lights-out
+      manufacturing plant: a coordinated set of agents that plan, code, test, review, and
+      sometimes ship from a specification with little or no human touching the pull request. The
+      most-cited real proof point remains StrongDM's internal Software Factory, running since
+      mid-2025, where a three-person team reports roughly 32,000 lines of production code shipped
+      without hand-writing or hand-reviewing any of it. StrongDM's CTO offers a memorable
+      factory-utilization yardstick: more than 1,000 dollars of model tokens per engineer per
+      day.</p>
+
+    <p>Analysts now treat agentic development as the default trajectory rather than an experiment.
+      Forrester frames 2026 as the move from code assistants to orchestrated SDLC agents. The
+      honest caveat comes from Anthropic's 2026 Agentic Coding Trends Report: developers use AI in
+      about 60 percent of their work but can fully delegate only 0 to 20 percent of tasks today.
+      The lights are dimming, not off.</p>
+
+    <h2>The spec is becoming the gate</h2>
+
+    <p>Spec-driven development is the center of gravity. GitHub Spec Kit has hardened into a real
+      pipeline: constitution, specify, clarify, plan, checklist, tasks, analyze, implement,
+      converge. The analyze step is a read-only consistency gate that catches ambiguities,
+      coverage gaps, and contradictions across the spec, plan, and tasks before any code is
+      written, and checks that work has not drifted from the project constitution. Notably for
+      regulated work, presets can restructure spec templates to require regulatory traceability
+      and add mandatory security-review gates, and community extensions such as CI Guard and
+      Architecture Guard add compliance governance.</p>
+
+    <p>On the research side, "The Kitchen Loop" (arXiv 2603.25697) is the cleanest articulation
+      yet of the spec-as-trust-model idea: a specification surface of what the product claims to
+      support; an LLM agent that exercises that surface as a synthetic power user at roughly
+      1,000 times human cadence; "Unbeatable Tests" for ground-truth verification; and drift
+      control with automated pause gates. StrongDM runs the same skeleton in production, replacing
+      boolean pass or fail with a probabilistic satisfaction score (the fraction of successful
+      user trajectories) and shipping only when the score clears a pre-set threshold, validated
+      against a "Digital Twin Universe" of cloned external services.</p>
+
+    <blockquote>
+      <p>A sufficiently detailed eval suite is the executable spec. The merge-reject loop driving
+        eval pass rates is what "spec is code" means in practice.</p>
+    </blockquote>
+
+    <h2>Practices worth adopting</h2>
+
+    <ul>
+      <li><strong>Context files are load-bearing.</strong> Anthropic reports that teams with
+        well-maintained agent context files see about 40 percent fewer errors and finish about 55
+        percent faster. It is the cheapest, most portable win available, and it costs zero
+        dependencies.</li>
+      <li><strong>Sentinel agents in CI.</strong> The durable pattern is a mandatory security
+        agent acting as a hard gate in the pipeline, plus a tight loop from agent output to CI
+        result to re-execution.</li>
+      <li><strong>Hierarchical orchestration over monolithic agents.</strong> An orchestrator
+        coordinating specialized agents in separate context windows, with humans inserted only at
+        strategic checkpoints, is the reference architecture as task horizons stretch from minutes
+        to days.</li>
+      <li><strong>Spec and eval are converging into one artifact.</strong> Write the ground-truth
+        tests first and let the loop converge against them.</li>
+    </ul>
+
+    <h2>The numbers in circulation</h2>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Organization</th><th>Reported figure</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Cursor</td><td>~35% of internally merged PRs created by agents in cloud VMs</td></tr>
+        <tr><td>StrongDM</td><td>~32,000 lines of production code, 3 people, no hand-written or hand-reviewed code</td></tr>
+        <tr><td>Microsoft</td><td>20&ndash;30% of code AI-authored</td></tr>
+        <tr><td>Google</td><td>~25% of code AI-authored</td></tr>
+        <tr><td>Airbnb</td><td>~60% (self-reported)</td></tr>
+        <tr><td>Snap</td><td>&gt;65% (self-reported)</td></tr>
+        <tr><td>Shopify, DoorDash</td><td>More than half (self-reported)</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p>Engineers at Anthropic and OpenAI claim near-100 percent AI authorship for their own
+      workflows, though independent analysis argues the organization-wide merged-line average is
+      closer to 50 percent. Treat the high numbers as directional cheerleading. The most concrete
+      capability data point of the cycle is a Rakuten case study: Claude Code completed an
+      activation-vector extraction task in a 12.5-million-line library in about 7 hours of
+      autonomous work at 99.9 percent numerical accuracy against the reference.</p>
+
+    <h2>The risk picture sharpened, and it is not reassuring</h2>
+
+    <p><strong>Prompt injection looks structural, not patchable.</strong> OWASP's June reporting
+      ties it to six of ten categories in the Top 10 for Agentic Applications and calls it the
+      fastest-growing attack class, cited at 340 percent growth year over year.</p>
+
+    <p><strong>Autonomous bots are already running real supply-chain attacks.</strong> A bot known
+      as "hackerbot-claw" exploited GitHub Actions misconfigurations and harvested a PyPI
+      publishing token, pushing backdoored packages; one sat live for about three hours and
+      collected roughly 47,000 downloads. Microsoft separately documented remote-code-execution
+      vulnerabilities in agent frameworks where prompts become shells.</p>
+
+    <p><strong>Multi-agent systems cascade.</strong> One injected instruction can drive thousands
+      of machine-speed actions. In agent swarms, a single compromised agent feeds false output to
+      downstream agents that trust it, crossing permission boundaries as it goes.</p>
+
+    <p><strong>The accountability question is open.</strong> Stanford Law's CodeX asks it
+      directly: built by agents, tested by agents, trusted by whom? For regulated software that is
+      the crux. Someone has to attest, to a named authority. An arXiv study of agentic pull
+      requests on GitHub (arXiv 2601.00477) is now measuring the security properties of
+      agent-authored PRs at scale, which should replace anecdote with evidence over time.</p>
+
+    <div class="note">
+      <div class="k">WHY THIS MATTERS TO BUYERS</div>
+      <p>Every incident above is an attack on dependency trees and third-party agent frameworks.
+        The blast radius of an autonomous pipeline is largely determined by what its stack trusts
+        by default. Ask any vendor running agents against your codebase what their dependency
+        surface looks like.</p>
+    </div>
+
+    <h2>How we apply this at River.io</h2>
+
+    <p>Our posture is native compiled code, zero third-party dependencies, test-driven
+      development, and a GitHub-issue-driven SDLC. This cycle's findings map onto it directly.</p>
+
+    <p><strong>The biggest risks are dependency-shaped, and we opted out by construction.</strong>
+      The backdoored-PyPI incident and the framework RCE disclosures are attacks on dependency
+      trees. A zero-dependency native codebase has a dramatically smaller blast radius, and we do
+      not let autonomous-loop experiments quietly introduce a package manager or a heavyweight
+      agent framework as a convenience.</p>
+
+    <p><strong>Spec-as-eval maps cleanly onto TDD.</strong> The Kitchen Loop, the Spec Kit analyze
+      gate, and StrongDM's satisfaction threshold are, stripped down, the same method: write the
+      ground-truth tests first and let the loop converge against them. That is test-driven
+      development with an agent in the inner loop. We adopt the method (constitution file, spec,
+      checklist gate, converge) without adopting anyone's framework. A spec document, a test
+      harness, and a GitHub Actions gate are enough.</p>
+
+    <p><strong>Regulated work stays human-gated.</strong> With prompt injection looking like a
+      permanent flaw and the attestation question unanswered, our CareTime and TimeForCare
+      Medicaid EVV applications and our MaterialsAndPractices organic-farm compliance application
+      stay at human-in-the-loop autonomy: agents draft, humans review and attest. Where we use
+      spec tooling on these repositories, we use configurations that require regulatory
+      traceability and a mandatory security-review gate.</p>
+
+    <p><strong>Autonomous-loop experiments run on low-stakes repositories.</strong> MeowPassword,
+      weathergalactic, and sloth are the sandboxes where we push toward a full
+      planner-generator-evaluator loop with a satisfaction-threshold merge gate. We instrument
+      them, capturing token cost, agent-authored-PR rate, and eval pass rate, so we report our own
+      numbers rather than vendor figures.</p>
+
+    <p><strong>We take the cheapest proven win now: context files.</strong> The reported 40
+      percent fewer errors and 55 percent faster completion from well-maintained agent context
+      files requires no tooling and no dependencies, just disciplined repository-level context
+      documents. That discipline is portable across every repository we run, regulated or not.</p>
+
+    <hr />
+
+    <h2>Sources</h2>
+
+    <ul>
+      <li><a href="https://www.mindstudio.ai/blog/what-is-dark-factory-autonomous-ai-codebase">MindStudio: What Is a Dark Factory? (autonomous AI codebase)</a> · <a href="https://www.mindstudio.ai/blog/what-is-a-dark-factory-ai-agent">Dark Factory AI Agent and autonomous pipelines</a></li>
+      <li><a href="https://simonwillison.net/2026/Feb/7/software-factory/">Simon Willison: How StrongDM's AI team builds software without looking at the code</a> · <a href="https://www.strongdm.com/blog/the-strongdm-software-factory-building-software-with-ai">StrongDM: The StrongDM Software Factory</a></li>
+      <li><a href="https://www.forrester.com/blogs/agentic-software-development-takes-the-lead-from-code-assistants-to-orchestrated-sdlc-agents/">Forrester: Agentic Software Development Takes the Lead</a></li>
+      <li><a href="https://resources.anthropic.com/2026-agentic-coding-trends-report">Anthropic: 2026 Agentic Coding Trends Report</a></li>
+      <li><a href="https://github.com/github/spec-kit">GitHub: Spec Kit</a> · <a href="https://developer.microsoft.com/blog/spec-driven-development-spec-kit">Microsoft for Developers: Diving into Spec-Driven Development with Spec Kit</a></li>
+      <li><a href="https://arxiv.org/pdf/2603.25697">arXiv 2603.25697: The Kitchen Loop, User-Spec-Driven Development for a Self-Evolving Codebase</a></li>
+      <li><a href="https://www.augmentcode.com/guides/agentic-sdlc">Augment Code: Agentic SDLC guide</a> · <a href="https://www.coderabbit.ai/guides/agentic-sdlc">CodeRabbit: Guide to the agentic SDLC</a></li>
+      <li><a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/microsofts-ceo-reveals-that-ai-writes-up-to-30-percent-of-its-code-some-projects-may-have-all-of-its-code-written-by-ai">Tom's Hardware: Microsoft CEO on AI-written code share</a></li>
+      <li><a href="https://fortune.com/2026/01/29/100-percent-of-code-at-anthropic-and-openai-is-now-ai-written-boris-cherny-roon/">Fortune: Anthropic and OpenAI engineers on 100% AI-written code</a> · <a href="https://www.lesswrong.com/posts/prSnGGAgfWtZexYLp/is-90-of-code-at-anthropic-being-written-by-ais">LessWrong: Is 90% of code at Anthropic written by AIs? (skeptical analysis)</a></li>
+      <li><a href="https://www.helpnetsecurity.com/2026/06/11/owasp-prompt-injection-ai-security-failures/">Help Net Security: Prompt injection drives most agentic AI security failures</a> · <a href="https://www.techtimes.com/articles/318361/20260614/ai-agent-security-hits-its-reckoning-prompt-injection-may-permanent-flaw-not-patchable-bug.htm">Tech Times: Prompt injection may be a permanent flaw</a></li>
+      <li><a href="https://www.microsoft.com/en-us/security/blog/2026/05/07/prompts-become-shells-rce-vulnerabilities-ai-agent-frameworks/">Microsoft Security Blog: When prompts become shells, RCE in agent frameworks</a></li>
+      <li><a href="https://beam.ai/agentic-insights/ai-agent-security-breaches-2026-lessons">beam.ai: 5 Real AI Agent Security Breaches in 2026</a></li>
+      <li><a href="https://law.stanford.edu/2026/02/08/built-by-agents-tested-by-agents-trusted-by-whom/">Stanford Law CodeX: Built by Agents, Tested by Agents, Trusted by Whom?</a></li>
+      <li><a href="https://arxiv.org/pdf/2601.00477">arXiv 2601.00477: Security study of agentic pull requests on GitHub</a></li>
+    </ul>
+
+    <p><em>Vendor and blog figures cited here indicate direction and momentum, not audited
+      benchmarks. Self-reported "percent of code written by AI" claims in particular are measured
+      inconsistently and should be read as directional.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

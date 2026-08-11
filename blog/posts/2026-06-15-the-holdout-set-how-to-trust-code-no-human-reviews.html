@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="StrongDM's dark factory keeps its standard of truth outside the codebase, hidden from the agents that build against it. LinearB measures the review bottleneck across 8.1 million pull requests, and OWASP reframes prompt injection as an architectural flaw that may never be patched." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing, Practice, Security, Metrics" />
+<title>The holdout set: how to trust code no human reviews — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 005</b><span>15 June 2026</span><span>8 min</span><span>Briefing</span></div>
+    <h1>The holdout set: how to trust code no human reviews</h1>
+    <p class="dek">StrongDM's dark factory keeps its standard of truth outside the codebase, hidden
+      from the agents that build against it. LinearB measures the review bottleneck across 8.1
+      million pull requests, and OWASP reframes prompt injection as an architectural flaw that may
+      never be patched.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">In mid-June 2026 the field of autonomous software development got its most
+      authoritative and its most sobering data points at the same time. Anthropic's 2026 Agentic
+      Coding Trends Report lays out eight predictions built around orchestrated agent teams and
+      long-running agents that work for days, while quietly confirming the ceiling: developers use
+      AI in about 60 percent of their work yet can fully delegate only 0 to 20 percent of tasks.
+      LinearB's analysis of 8.1 million pull requests found developers feel 20 percent faster but
+      are measurably 19 percent slower. And the most useful constructive idea of the quarter came
+      from StrongDM's dark factory: replace in-codebase tests, which agents can see and game, with
+      out-of-codebase scenarios held apart like a machine-learning holdout set.</p>
+
+    <h2>The vendors now admit the ceiling</h2>
+
+    <p>The headline event is that Anthropic released its own report rather than letting analysts
+      frame the narrative. The load-bearing predictions for an autonomous pipeline:</p>
+
+    <ul>
+      <li><strong>The SDLC compresses from weeks to hours</strong>, with agent-driven
+        implementation, automated testing, and inline documentation feeding a tight iteration
+        loop.</li>
+      <li><strong>Single agents become coordinated teams</strong>: hierarchical, orchestrator-led,
+        specialized sub-agents in parallel context windows. The multi-agent validation chain
+        pattern, now blessed by the model vendor.</li>
+      <li><strong>Long-running agents build whole systems</strong>, with task horizons stretching
+        from minutes to days or weeks, pausing only at strategic human checkpoints.</li>
+      <li><strong>Oversight scales by agents knowing when to ask</strong>, flagging uncertainty
+        rather than blindly attempting everything.</li>
+      <li><strong>New surfaces and users</strong>: growing support for legacy COBOL and Fortran,
+        plus non-developers in security, design, and operations adopting coding agents.</li>
+    </ul>
+
+    <p>The crucial admission sits in the capability section: AI is in about 60 percent of
+      development work, but only 0 to 20 percent is fully delegable. Anthropic's own framing of AI
+      as a "constant collaborator" that still requires setup, prompting, supervision, validation,
+      and human judgment is the most credible confirmation yet that fully dark operation is a
+      narrow-domain achievement, not a general default. The buyer side says the same: Belitsoft's
+      2026 enterprise survey finds the average company runs 12 agents (heading to 20 by 2027) but
+      about half operate alone, uncoordinated, and Futurum's first-half-2026 survey shows agentic
+      AI rising as a top priority from 13.0 to 17.1 percent year over year. Direction is up and to
+      the right; coordinated autonomy is still rare.</p>
+
+    <h2>Scenarios as a holdout set</h2>
+
+    <p>The cleanest new technique comes from StrongDM's Attractor dark factory: three engineers,
+      two non-negotiable rules (no human writes code, no human reviews code), and roughly 16,000
+      lines of Rust, 9,500 of Go, and 6,700 of TypeScript shipped since July 2025. Its design
+      answers the central dark-factory question: how do you trust output no human reviews?</p>
+
+    <ul>
+      <li><strong>Scenarios, not tests.</strong> Traditional tests live inside the codebase, where
+        the agent can see and game them, over-fitting to the test rather than the intent. StrongDM
+        moves the standard of truth outside the codebase: a scenario is an end-to-end user story in
+        natural language, stored apart, validated by an LLM, and hidden from the building agent
+        during development.</li>
+      <li><strong>Holdout-set correctness.</strong> Borrowing straight from machine learning,
+        correctness is inferred only from externally observable behavior on scenarios the builder
+        cannot access. Separate the generator from the standard of truth and over-fitting
+        collapses.</li>
+      <li><strong>Behavioral replicas of dependencies.</strong> The team built high-fidelity fakes
+        of Okta, Jira, Slack, and Google Docs, Drive, and Sheets so agents can test against
+        realistic edge cases at volume, without rate limits or production risk. A reusable pattern
+        for any factory whose product talks to third-party APIs.</li>
+    </ul>
+
+    <p>On the spec front, GitHub Spec Kit is now past 90,000 stars with more than 30 agent
+      integrations, and the spec-driven command surface (including a read-only consistency gate
+      that checks spec, plan, and tasks before any code) is stable. No structural change this
+      cycle, which itself signals the front-end spec layer has settled. The active frontier has
+      moved downstream to the verification and holdout layer, exactly where StrongDM is
+      pushing.</p>
+
+    <h2>The review bottleneck is now measurable</h2>
+
+    <p>The empirical case that review, not generation, is the constraint firmed up considerably:</p>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Source</th><th>Finding</th><th class="num">Number</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>LinearB (8.1M PRs, 4,800+ orgs)</td><td>How much faster developers feel with AI</td><td class="num">+20%</td></tr>
+        <tr><td>LinearB</td><td>Measured change in actual delivery speed</td><td class="num">-19%</td></tr>
+        <tr><td>LinearB</td><td>Tasks completed</td><td class="num">+21%</td></tr>
+        <tr><td>LinearB</td><td>Pull requests merged</td><td class="num">+98%</td></tr>
+        <tr><td>LinearB</td><td>PR review time</td><td class="num">+91%</td></tr>
+        <tr><td>Sonar</td><td>Developers who do not fully trust AI output is correct</td><td class="num">96%</td></tr>
+        <tr><td>Sonar</td><td>Developers who always check AI output before committing</td><td class="num">48%</td></tr>
+        <tr><td>CodeRabbit</td><td>More issues surfaced in AI-written code than human-written</td><td class="num">~1.7x</td></tr>
+        <tr><td>CodeRabbit</td><td>Developers who say reviewing AI code takes more effort than a colleague's</td><td class="num">38%</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p>The LinearB result is a 39-point gap between perception and measurement: more throughput
+      into the queue, slower flow out of it. Sonar's "verification gap" means the gate is both
+      distrusted and skipped. The operating lesson is now well evidenced: the loop is only as fast
+      as its automated, independent verification. Bolt generation onto a manual review gate and
+      you manufacture a slower team.</p>
+
+    <blockquote>
+      <p>Make the gate independent of the builder, deterministic for security and policy pass-fail,
+        and behavioral for intent. Score trajectories, not just the final diff.</p>
+    </blockquote>
+
+    <h2>Other proof points this cycle</h2>
+
+    <ul>
+      <li><strong>StrongDM Attractor</strong>: about 32,000 lines of production code in Rust, Go,
+        and TypeScript built and tested with no human authoring or review over roughly 11 months,
+        governed by markdown specs plus external scenarios. The strongest mechanism proof point of
+        the quarter, alongside Salesforce's velocity proof point.</li>
+      <li><strong>Google Antigravity</strong>: an autonomous platform deploying agents that plan,
+        execute, and verify across editor, terminal, and browser, consistent with Google's standing
+        75 percent AI-generated (suggested) code figure. The perennial gap remains between "75
+        percent suggested" and DX's roughly 22 percent merged: the delegation gap, quantified.</li>
+      <li><strong>Belitsoft and Futurum</strong>: 12 agents per company on average, about half
+        working alone, and agentic AI priority rising from 13.0 to 17.1 percent year over
+        year.</li>
+    </ul>
+
+    <h2>Prompt injection, reframed as permanent</h2>
+
+    <p>The security story hardened from incident to structural verdict. OWASP's GenAI Security
+      Project published its State of Agentic AI Security and Governance v2.01 on June 11, 2026,
+      arguing that prompt injection may not be a patchable bug at all: it is architectural, because
+      an LLM has no built-in way to separate trusted commands from untrusted data when both arrive
+      as the same token stream. Prompt injection maps to six of the ten categories in OWASP's Top
+      10 for Agentic Applications. The repositories with the most security advisories are telling
+      for anyone wiring agents into CI: n8n (57), Claude Code (22), AutoGPT (15), Dify (13), and
+      Roo-Code (11).</p>
+
+    <p>A Cloud Security Alliance research note on the Claude Code GitHub Action attack chain
+      underlines how little novelty an attacker needs: the disclosed attack composed an
+      authorization bypass, an indirect prompt injection, and environment-variable exfiltration,
+      starting from an opened public GitHub issue and ending with malicious code pushed to the
+      action's own repository.</p>
+
+    <div class="note">
+      <div class="k">IMPLICATION</div>
+      <p>If injection is a permanent property, the only durable defenses are containment, not cure:
+        least-privilege tokens, no secrets in agent-reachable environments, human approval on
+        irreversible verbs, and an independent gate the builder agent cannot influence. Plan for
+        the agent to be occasionally adversarial by accident.</p>
+    </div>
+
+    <h2>How we apply this at River.io</h2>
+
+    <p>River.io's posture (native compiled code, zero third-party dependencies, test-driven
+      development, GitHub-issue-driven SDLC) lines up unusually well with where the credible part
+      of the field, as opposed to the hype, is heading.</p>
+
+    <p><strong>The scenario holdout pattern is TDD with a firewall.</strong> StrongDM's move maps
+      directly onto our testing discipline: unit tests stay in-repo for the build loop, and an
+      out-of-repo scenario set (plain-language end-to-end behaviors, independently validated) is
+      kept where the building agent never sees it. It is the cleanest way to keep an autonomous
+      loop honest without a human reviewer, and it costs nothing in dependencies: scenarios are
+      markdown plus a small native validator. We are proving this out on low-stakes repositories
+      (MeowPassword, weathergalactic, sloth) by defining end-to-end behaviors as scenarios stored
+      outside the source tree, with a tiny native validator that runs them against a built binary
+      and reports pass or fail, no third-party test framework required.</p>
+
+    <p><strong>Zero third-party dependencies is a security asset, not an aesthetic.</strong> This
+      cycle's risk material, from OWASP's "permanent flaw" verdict to slopsquatting and
+      hallucinated-dependency vectors, all rides the dependency supply chain. A zero-dependency,
+      compiled codebase removes the single largest attack surface, and an autonomous loop can
+      preserve that by policy with a deterministic gate: the build fails if any import is outside
+      the standard library.</p>
+
+    <p><strong>The issue-ingestion path gets hardened before any autonomy.</strong> The Claude Code
+      GitHub Action attack chain begins with an opened public issue, and our SDLC is issue-driven.
+      We treat all issue, PR, and comment bodies as untrusted data, never as instructions, and any
+      agent that reads them runs with least-privilege tokens and no secrets in its environment.
+      That guardrail holds regardless of how far we push autonomy.</p>
+
+    <p><strong>Regulated work stays human-gated.</strong> CareTime and TimeForCare (Medicaid
+      electronic visit verification, protected health information) and MaterialsAndPractices
+      (organic-farm compliance) run at assisted autonomy with a human approval gate on every
+      irreversible action. Anthropic's own 0-to-20-percent-delegable finding and LinearB's
+      review-bottleneck data both say the same thing: full autonomy pays off only in narrow,
+      well-specified, low-blast-radius domains, and regulated work is the opposite of that.
+      Lights-out experiments are reserved for the repositories where the cost of failure is
+      throwaway.</p>
+
+    <hr />
+
+    <h2>Sources</h2>
+
+    <ul>
+      <li><a href="https://resources.anthropic.com/2026-agentic-coding-trends-report">Anthropic: 2026 Agentic Coding Trends Report (landing page)</a></li>
+      <li><a href="https://resources.anthropic.com/hubfs/2026%20Agentic%20Coding%20Trends%20Report.pdf">Anthropic: 2026 Agentic Coding Trends Report (PDF)</a></li>
+      <li><a href="https://rits.shanghai.nyu.edu/ai/anthropics-2026-agentic-coding-trends-report-from-assistants-to-agent-teams/">NYU Shanghai RITS: summary of Anthropic's 2026 report</a></li>
+      <li><a href="https://pathmode.io/blog/orchestration-era-needs-intent">Pathmode: the orchestration era needs intent</a></li>
+      <li><a href="https://hivetrail.com/blog/anthropic-2026-agentic-coding-report/">Hivetrail: what Anthropic's 2026 report means for engineering teams</a></li>
+      <li><a href="https://www.helpnetsecurity.com/2026/06/11/owasp-prompt-injection-ai-security-failures/">OWASP via Help Net Security: prompt injection still drives most agentic AI failures (June 11, 2026)</a></li>
+      <li><a href="https://www.techtimes.com/articles/318361/20260614/ai-agent-security-hits-its-reckoning-prompt-injection-may-permanent-flaw-not-patchable-bug.htm">TechTimes: prompt injection may be a permanent flaw, not a patchable bug (June 14, 2026)</a></li>
+      <li><a href="https://labs.cloudsecurityalliance.org/research/csa-research-note-claude-code-github-action-prompt-injection/">Cloud Security Alliance: Claude Code GitHub Action prompt-injection research note</a></li>
+      <li><a href="https://beam.ai/agentic-insights/ai-agent-security-breaches-2026-lessons">Beam: 5 real AI agent security breaches in 2026 and their lessons</a></li>
+      <li><a href="https://www.sonarsource.com/company/press-releases/sonar-data-reveals-critical-verification-gap-in-ai-coding/">Sonar: the verification gap, 96% do not fully trust AI output, only 48% verify</a></li>
+      <li><a href="https://dev.to/code-board/code-review-is-the-real-bottleneck-of-2026-and-most-teams-dont-see-it-5eed">DEV / Code-Board: code review is the real bottleneck of 2026</a></li>
+      <li><a href="https://www.aviator.co/blog/the-ai-code-verification-bottleneck-why-faster-code-generation-means-slower-reviews/">Aviator: the AI code verification bottleneck</a></li>
+      <li><a href="https://byteiota.com/ai-code-review-benchmark-2026-first-real-results/">byteiota: AI code review benchmark 2026, first real results</a></li>
+      <li><a href="https://law.stanford.edu/2026/02/08/built-by-agents-tested-by-agents-trusted-by-whom/">StrongDM dark factory: Built by Agents, Tested by Agents, Trusted by Whom? (Stanford CodeX)</a></li>
+      <li><a href="https://env.dev/guides/dark-factory-pattern">env.dev: AI Dark Factory Playbook, from autocomplete to autonomous</a></li>
+      <li><a href="https://aipatternbook.com/dark-factory">aipatternbook: Dark Factory (encyclopedia of agentic coding patterns)</a></li>
+      <li><a href="https://signals.aktagon.com/articles/2026/03/dark-factory-architecture-how-level-4-actually-works/">Signals/aktagon: Dark Factory architecture, how Level 4 actually works</a></li>
+      <li><a href="https://signals.aktagon.com/articles/2026/03/the-dark-factory-why-most-developers-are-getting-slower-while-ai-writes-90-of-code/">Signals/aktagon: why most developers are getting slower while AI writes 90% of code</a></li>
+      <li><a href="https://www.forrester.com/blogs/agentic-software-development-takes-the-lead-from-code-assistants-to-orchestrated-sdlc-agents/">Forrester: agentic software development takes the lead</a></li>
+      <li><a href="https://www.barchart.com/story/news/1163379/belitsoft-report-2026-ai-agent-trends-enterprises-run-12-ai-agents-on-average-but-half-work-alone">Belitsoft report via Barchart: enterprises run 12 AI agents on average, but half work alone</a></li>
+      <li><a href="https://github.com/github/spec-kit">GitHub: Spec Kit</a></li>
+      <li><a href="https://www.augmentcode.com/tools/best-spec-driven-development-tools">Augment Code: best spec-driven development tools (2026)</a></li>
+      <li><a href="https://devops.com/google-ceo-says-75-of-new-code-is-ai-generated/">DevOps.com: Google CEO says 75% of new code is AI-generated</a></li>
+      <li><a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/microsofts-ceo-reveals-that-ai-writes-up-to-30-percent-of-its-code-some-projects-may-have-all-of-its-code-written-by-ai">Tom's Hardware: Microsoft CEO says AI writes up to 30% of its code</a></li>
+      <li><a href="https://www.bcgplatinion.com/insights/the-dark-software-factory">BCG Platinion: The Dark Software Factory</a></li>
+    </ul>
+
+    <p><em>Vendor and blog figures in this briefing indicate direction, not audited benchmarks.
+      Where a number originates from a single vendor's or sample's own definition (Anthropic's
+      delegation percentages, LinearB, Sonar, and CodeRabbit metrics, StrongDM line counts, Google
+      and Microsoft AI-code shares), treat it as a signal of trajectory rather than an
+      independently verified measurement.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

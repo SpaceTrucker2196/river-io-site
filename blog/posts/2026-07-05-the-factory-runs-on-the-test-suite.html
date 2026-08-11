@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Spotify's Honk agent merges about 650 pull requests to production every month, and the detail that matters is that it took years of platform and test investment to make that possible." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing, Autonomy, Tooling, Security" />
+<title>The factory runs on the test suite, not the model — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 008</b><span>5 July 2026</span><span>8 min</span><span>Briefing</span></div>
+    <h1>The factory runs on the test suite, not the model</h1>
+    <p class="dek">Spotify's Honk agent merges about 650 pull requests to production every month,
+      and the detail that matters is that it took years of platform and test investment to make
+      that possible.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">In early July 2026, autonomous software production got its most concrete
+      large-scale case study yet. Spotify's "Honk" agent, powered by Claude Code, now merges
+      roughly 650 agent-generated pull requests to production per month, and a QCon London 2026
+      figure puts continuous codebase-wide migration work at roughly 1,000 merged PRs every 10
+      days across more than 20 million lines of code. The catch is buried in Spotify's own
+      telling: Honk only works because of years of prior infrastructure investment. Fleet
+      Management since 2022, Backstage, standardized builds, and comprehensive test suites came
+      first. The factory runs on the test suite, not the model, and that is the single most
+      transferable lesson of the cycle.</p>
+
+    <h2>What Spotify actually built</h2>
+
+    <p>Spotify has displaced StrongDM as the most-cited real-world autonomous factory at scale.
+      Its engineering organization reports large migrations run at roughly 90 percent time
+      savings, and co-CEO Gustav Söderström said on the Q4 2025 earnings call that some teams
+      "haven't written a line of code since December." That last line is an earnings-call claim
+      and should be read as directional.</p>
+
+    <p>The under-quoted part is the architecture: a developer issues a request in Slack, the Honk
+      agent picks it up, Fleet Management provides the standardized surface to operate on, a
+      verification loop built on MCP tools checks the work, and the output is an automated pull
+      request. The merge gate is an executable check, not a human glance. Spotify is explicit that
+      the whole pipeline rests on infrastructure built since 2022 plus deep test coverage.
+      Autonomy was earned through platform and test investment, not bought with a model
+      subscription.</p>
+
+    <blockquote>
+      <p>The dark factory is downstream of the test suite and the platform. It is not a model you
+        drop in.</p>
+    </blockquote>
+
+    <h2>Context files got their first honest evals</h2>
+
+    <p>The second thread of the cycle qualified a piece of consensus advice. AGENTS.md has become
+      a genuine cross-tool standard, recognized by Claude Code, GitHub Copilot's coding agent, and
+      OpenAI Codex. But the "just write good context files" guidance took a hit from new
+      evidence:</p>
+
+    <ul>
+      <li>An "Evaluating AGENTS.md" analysis found that context files can <strong>reduce</strong>
+        agent success compared with no context at all while adding more than 20 percent inference
+        cost. Unnecessary requirements make tasks harder.</li>
+      <li>Vercel's internal evals cut the other way: documentation embedded directly in AGENTS.md
+        hit 100 percent pass rates on build, lint, and test checks, because that content is always
+        in the system prompt rather than progressively disclosed.</li>
+      <li>Practitioner consensus now puts a hard cap at roughly 150 to 200 standing instructions
+        before reliability degrades. Keep the file lean, structured around what, why, and how, and
+        progressively disclosed beyond that.</li>
+    </ul>
+
+    <p>Reconciled: context files still help, but comprehensiveness is a failure mode. A tight,
+      load-bearing instruction file beats a kitchen-sink one, and by more than most teams
+      assumed.</p>
+
+    <h2>Tooling kept hardening</h2>
+
+    <p>GitHub Spec Kit passed 78,000 stars, with a core Spec, Plan, Tasks, Implement pipeline and
+      a read-only analyze gate that cross-validates the project constitution, spec, plan, and
+      tasks for ambiguities, coverage gaps, and contradictions before any code is written. An
+      ecosystem of more than 70 extensions (including CI Guard and Architecture Guard) adds
+      security, drift, and compliance gates. For regulated work, presets can restructure spec
+      templates to require regulatory traceability and enforce mandatory security-review and
+      test-first gates.</p>
+
+    <p>Agent identity is also becoming a control plane. NIST's COSAiS project is building control
+      overlays for single-agent and multi-agent use cases, with a February 2026 concept paper on
+      agent identity. Delegation, identity, and continuous monitoring are moving from nice-to-have
+      to operational requirement.</p>
+
+    <h2>The numbers in circulation</h2>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Organization</th><th>Reported figure</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Spotify</td><td>~650 agent PRs merged per month; ~90% time savings on migrations; ~1,000 merged PRs per 10 days for continuous migration; 20M+ lines under Claude Code</td></tr>
+        <tr><td>StrongDM</td><td>~32,000 lines of production code by 3 people, no hand-written or hand-reviewed code</td></tr>
+        <tr><td>Cursor</td><td>~35% of internally merged PRs agent-created; enterprise page claims 64% of the Fortune 500 use it and 100M+ lines per day written with it</td></tr>
+        <tr><td>Microsoft</td><td>20&ndash;30% AI-authored (traces to 2024 and early 2025 statements being re-quoted)</td></tr>
+        <tr><td>Google</td><td>~25&ndash;30% AI-authored (same caveat)</td></tr>
+        <tr><td>Broad tech sector</td><td>~25&ndash;30% of new production code AI-written (estimate)</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2>Security did not improve</h2>
+
+    <p>One item cuts straight at the autonomous-merge ambition: a single prompt injection
+      reportedly leaked secrets from Claude Code, Gemini CLI, and Copilot simultaneously. The
+      shared-tool, shared-pattern attack surface is real and crosses vendors.</p>
+
+    <p>Coding agents remain the primary target. OWASP's State of AI Surveyor finds 28 of 53
+      tracked agentic projects are coding agents, prompt injection is cited at 340 percent growth
+      year over year, and adaptive attacks succeed against state-of-the-art defenses more than 85
+      percent of the time. A new arXiv study (2601.17548) systematically maps prompt-injection
+      vulnerabilities across the skills, tools, and MCP protocol surfaces of agentic coding
+      assistants, which are exactly the surfaces an autonomous factory wires together.</p>
+
+    <p>The supply-chain precedent stays fresh: the March 2026 LiteLLM PyPI backdoor (a harvested
+      publishing token, roughly 47,000 downloads in a three-hour window, with LiteLLM sitting
+      under CrewAI, DSPy, GraphRAG, and other frameworks) remains the cautionary tale for
+      dependency-heavy agent stacks. And an arXiv paper this cycle (2605.07062) argues CI/CD needs
+      rethought control primitives as agents move from assistance to agency: approval,
+      reversibility, and blast-radius limits as design constraints, not afterthoughts.</p>
+
+    <div class="note">
+      <div class="k">THE TRANSFERABLE SKELETON</div>
+      <p>Strip the branding and Honk's shape is the same loop StrongDM and the research literature
+        describe: request, plan, generate, verification loop against real tests, pull request. Any
+        shop with a trustworthy test suite and a CI gate can run a scaled-down version. Any shop
+        without one cannot, at any price.</p>
+    </div>
+
+    <h2>How we apply this at River.io</h2>
+
+    <p>Our posture is native compiled code, zero third-party dependencies, test-driven
+      development, and a GitHub-issue-driven SDLC. This cycle's credible findings line up with it,
+      and this cycle's dangers mostly do not reach it.</p>
+
+    <p><strong>Spotify's real lesson is TDD, not "buy a model."</strong> Honk works because
+      comprehensive test suites and a standardized build platform came first. That is our existing
+      discipline. Our path to a working autonomous loop leans on test coverage as the merge gate:
+      the model converges against our tests, native and dependency-free. We do not need Backstage.
+      We need green tests and a CI gate, and we build both.</p>
+
+    <p><strong>We keep context files lean, because the evidence says bloat hurts.</strong> Past
+      roughly 150 to 200 instructions, or with irrelevant content, agent success drops and cost
+      rises more than 20 percent. We audit our repository context documents down to invariants and
+      validation steps, and standardizing on a lean AGENTS.md is attractive precisely because it
+      is cross-tool and adds zero dependencies.</p>
+
+    <p><strong>Regulated work stays human-gated.</strong> The one-injection-three-agents report
+      and the systematic vulnerability mapping reinforce the policy: our CareTime and TimeForCare
+      Medicaid EVV applications and our MaterialsAndPractices organic-farm compliance application
+      run human-in-the-loop. Agents draft; humans review and attest. Spec tooling on those
+      repositories requires regulatory traceability and a mandatory security-review gate.</p>
+
+    <p><strong>Loop experiments run on the low-stakes repositories, copying Honk's shape.</strong>
+      MeowPassword, weathergalactic, and sloth are the sandboxes where we replicate the
+      transferable skeleton (issue, plan, generate, verification loop against our tests, pull
+      request) with a test-pass threshold as the merge gate, native and dependency-free. We
+      instrument the loop, capturing token cost, agent-authored-PR rate, and test pass rate, so we
+      accumulate our own numbers instead of citing vendors.</p>
+
+    <p><strong>The supply-chain risks stay someone else's problem.</strong> The LiteLLM backdoor
+      and the framework RCE disclosures are attacks on dependency trees. Our zero-dependency
+      native stack has a fraction of that blast radius, and no autonomous-loop convenience is
+      allowed to quietly pull in a package manager or a heavyweight agent framework. CrewAI, DSPy,
+      and LangGraph all sit atop the very dependency chains that got backdoored.</p>
+
+    <hr />
+
+    <h2>Sources</h2>
+
+    <ul>
+      <li><a href="https://engineering.atspotify.com/2026/6/code-with-claude-coding-is-no-longer-the-constraint">Spotify Engineering: Coding Is No Longer the Constraint (June 2026)</a> · <a href="https://www.infoq.com/news/2026/03/spotify-honk-rewrite/">InfoQ: QCon London 2026, Rewriting All of Spotify's Code Base, All the Time</a> · <a href="https://www.theneuron.ai/newsletter/how-spotify-runs-claude-across-20m-lines-of-code/">The Neuron: How Spotify runs Claude across 20M+ lines of code</a></li>
+      <li><a href="https://dev.to/jcorral/how-spotify-automated-background-engineering-with-ai-5ep9">DEV: How Spotify Automated Background Engineering with AI</a> · <a href="https://www.everydev.ai/p/blog-spotify-built-an-ai-coding-agent-honk">EveryDev: Spotify Built an AI Coding Agent (Honk)</a> · <a href="https://medium.com/codetodeploy/how-spotify-built-an-ai-coding-agent-that-merged-1-500-prs-6e913b9b4ca5">Medium/CodeToDeploy: How Spotify Built an AI Coding Agent That Merged 1,500+ PRs</a></li>
+      <li><a href="https://www.mindstudio.ai/blog/what-is-dark-factory-autonomous-ai-codebase">MindStudio: What Is a Dark Factory?</a> · <a href="https://www.bcgplatinion.com/insights/the-dark-software-factory">BCG Platinion: The Dark Software Factory</a></li>
+      <li><a href="https://github.com/github/spec-kit">GitHub: Spec Kit repo</a> · <a href="https://developer.microsoft.com/blog/spec-driven-development-spec-kit">Microsoft for Developers: Spec-Driven Development with Spec Kit</a> · <a href="https://www.marktechpost.com/2026/05/08/meet-github-spec-kit-an-open-source-toolkit-for-spec-driven-development-with-ai-coding-agents/">MarkTechPost: Meet GitHub Spec-Kit</a></li>
+      <li><a href="https://developers.openai.com/codex/guides/agents-md">OpenAI Codex: Custom instructions with AGENTS.md</a> · <a href="https://www.augmentcode.com/blog/how-to-write-good-agents-dot-md-files">Augment Code: How to write good AGENTS.md files</a></li>
+      <li><a href="https://blakeniemyjski.com/blog/agentic-driven-development/">Blake Niemyjski: Agentic Driven Development, AGENTS.md, Skills, and the Full Workflow</a> · <a href="https://addyosmani.com/blog/good-spec/">Addy Osmani: How to write a good spec for AI agents</a></li>
+      <li><a href="https://www.dronahq.com/agentic-sdlc-guide/">DronaHQ: Agentic SDLC in 2026 (NIST COSAiS and agent identity)</a> · <a href="https://www.augmentcode.com/guides/agentic-sdlc">Augment Code: Agentic SDLC guide</a></li>
+      <li><a href="https://simonwillison.net/2026/Feb/7/software-factory/">Simon Willison: The Software Factory (StrongDM)</a></li>
+      <li><a href="https://www.getpanto.ai/blog/cursor-ai-statistics">getPanto: Cursor AI Statistics 2026</a> · <a href="https://www.secondtalent.com/resources/how-much-software-written-by-ai/">Second Talent: How Much Software Is Written by AI in 2026</a></li>
+      <li><a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/microsofts-ceo-reveals-that-ai-writes-up-to-30-percent-of-its-code-some-projects-may-have-all-of-its-code-written-by-ai">Tom's Hardware: Microsoft CEO on AI-written code</a> · <a href="https://idiallo.com/blog/is-30-percent-of-microsoft-code-ai-generated">iDiallo: Is 30% of Microsoft's Code Really AI-Generated?</a></li>
+      <li><a href="https://venturebeat.com/security/ai-agent-runtime-security-system-card-audit-comment-and-control-2026">VentureBeat: Three AI coding agents leaked secrets through a single prompt injection</a></li>
+      <li><a href="https://www.helpnetsecurity.com/2026/06/11/owasp-prompt-injection-ai-security-failures/">Help Net Security: Prompt injection still drives most agentic AI security failures</a> · <a href="https://www.techtimes.com/articles/318361/20260614/ai-agent-security-hits-its-reckoning-prompt-injection-may-permanent-flaw-not-patchable-bug.htm">Tech Times: Prompt Injection May Be a Permanent Flaw</a></li>
+      <li><a href="https://arxiv.org/html/2601.17548v1">arXiv 2601.17548: Prompt Injection Attacks on Agentic Coding Assistants</a></li>
+      <li><a href="https://beam.ai/agentic-insights/ai-agent-security-breaches-2026-lessons">beam.ai: 5 Real AI Agent Security Breaches in 2026 (LiteLLM/PyPI)</a></li>
+      <li><a href="https://arxiv.org/pdf/2605.07062">arXiv 2605.07062: From Assistance to Agency, Autonomy and Control in CI/CD Pipelines</a></li>
+    </ul>
+
+    <p><em>Vendor and blog figures cited here (Spotify PR counts, the "no code since December"
+      line, and the Cursor, Microsoft, and Google percentages) indicate direction, not audited
+      benchmarks. Where a statistic traces to an earnings call or a marketing page, it is flagged
+      in the text.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>
