@@ -397,3 +397,12 @@ figure.wiki-fig img, .schematic-grid img, .infobox img {
   object-fit: contain !important;
   background: var(--tile);
 }
+
+/* Dedicated text-free scene banners fill the viewport; archive plates above stay uncropped. */
+.page-hero .art.scene-banner {
+  min-height: clamp(240px, 31vw, 520px);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--tile);
+}
