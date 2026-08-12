@@ -116,3 +116,30 @@ blockquote.transmission cite { display: block; margin-top: 8px; color: var(--mut
 .schematic-grid figcaption { padding: 10px 14px 12px; font-size: .64rem; color: var(--muted); letter-spacing: .05em; line-height: 1.5; }
 .schematic-grid figcaption strong { color: var(--ink); font-weight: 600; }
 @media (max-width: 700px){ .schematic-grid { grid-template-columns: 1fr; } .schematic-grid img { height: 220px; } }
+
+/* Archive signage uses the same public-information language as the main site. */
+.wiki-nav .wiki-nav-title {
+  color: var(--bg);
+  background: var(--gold);
+  padding: 8px 14px 7px;
+  border-left: 7px solid var(--rust);
+  font-weight: 700;
+}
+.wiki-nav a.active {
+  color: var(--ink);
+  border-left: 7px solid var(--gold);
+  background: var(--oxblood);
+}
+.wiki-hero figcaption {
+  background: linear-gradient(90deg, var(--oxblood) 0 10px, rgba(30,24,21,.96) 10px 100%);
+  border-top: 1px solid var(--gold);
+  border-right: 1px solid var(--gold);
+}
+.infobox .infobox-title {
+  color: var(--ink);
+  background: var(--oxblood);
+  border-bottom-color: var(--gold);
+  text-align: left;
+  font-weight: 700;
+}
+.tag { border-radius: 0; padding: 4px 9px 3px; }
