@@ -136,10 +136,16 @@ footer { max-width: 1280px; margin: 0 auto; padding: 30px 32px 50px; display: fl
 nav a.active { color: var(--ink); }
 
 /* status ticker */
-.ticker { overflow: hidden; border-bottom: 1px solid var(--line); background: var(--oxblood); }
-.ticker-track { display: inline-flex; white-space: nowrap; padding: 9px 0; animation: ticker-scroll 80s linear infinite; will-change: transform; }
-.ticker-track span { display: inline-block; padding: 0 30px; font-size: .58rem; text-transform: uppercase; letter-spacing: .16em; color: var(--ink); }
-.ticker-track b { color: var(--gold); font-weight: 700; }
+.ticker { display:flex; overflow:hidden; border-bottom:1px solid var(--gold); background:var(--lacquer); color:var(--cream); }
+.ticker-label { position:relative; z-index:2; flex:0 0 auto; padding:10px 18px 9px; border-right:1px solid var(--gold); background:var(--oxblood); color:var(--cream); font:700 .58rem/1 "Arial Narrow", "Fira Code", monospace; letter-spacing:.15em; text-transform:uppercase; box-shadow:6px 0 0 rgba(0,0,0,.28); }
+.ticker-window { min-width:0; overflow:hidden; flex:1; }
+.ticker-track { display:inline-flex; white-space:nowrap; padding:9px 0; animation:ticker-scroll 80s linear infinite; will-change:transform; }
+.ticker-track span { display:inline-block; padding:0 26px; border-right:1px solid rgba(242,223,192,.18); font-size:.58rem; text-transform:uppercase; letter-spacing:.12em; color:var(--cream); }
+.ticker-track b { color:var(--gold); font-weight:700; }
+.ticker-track strong { margin-left:7px; color:var(--cream); font-weight:700; }
+.ticker-track .up strong::before { content:"▲ "; color:var(--spark); }
+.ticker-track .down strong::before { content:"▼ "; color:var(--brick); }
+.ticker-track .steady strong::before { content:"■ "; color:var(--gold); }
 @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* subpage hero */
