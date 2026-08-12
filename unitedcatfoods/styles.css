@@ -380,3 +380,20 @@ figcaption {
   .hero-copy::before, .page-hero .copy::before { line-height: 1.45; }
   .page-hero .art figcaption { padding-left: 20px; }
 }
+
+/* Preserve complete archive plates. Text-bearing art is matted, never cover-cropped. */
+.page-hero .art, .wiki-hero, figure.art.reveal[style*="background-image"] {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: var(--tile);
+}
+.card-image[style] {
+  background-size: contain !important;
+  background-repeat: no-repeat;
+  background-color: var(--tile);
+}
+.panel-grid img, figure.reveal > img, .wiki-card img, .gallery-grid img,
+figure.wiki-fig img, .schematic-grid img, .infobox img {
+  object-fit: contain !important;
+  background: var(--tile);
+}

@@ -19,3 +19,9 @@ tone guide. The former home-page café raster and its source contained baked
 signage and redrawn badges; the cyber-operative portrait pushed the world into
 neon/cyberpunk mascot territory. They remain available as design history but
 are no longer served or referenced by the public site.
+
+The `fragments/` directory contains retired exports that were clipped out of
+larger broadcast and engineering boards too tightly. Partial headings, chopped
+footer copy, or slivers of neighboring panels were already baked into those
+files. Public pages now use the intact master boards or complete standalone
+plates instead.
