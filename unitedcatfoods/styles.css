@@ -425,9 +425,14 @@ figure.wiki-fig img, .schematic-grid img, .infobox img {
 .process-steps span { display:block; color:var(--gold); font:700 .62rem/1 "Fira Code", monospace; letter-spacing:.12em; }
 .process-steps strong { display:block; margin:8px 0 5px; color:var(--ink); font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; }
 .process-steps small { display:block; color:var(--muted); font-size:.62rem; line-height:1.5; }
+.route-steps { grid-template-columns:repeat(3, minmax(0, 1fr)); }
+.data-table-wrap { overflow-x:auto; margin:18px 0; border:1px solid var(--line); box-shadow:var(--shadow); }
+.route-table { min-width:680px; margin:0; }
+.route-table td:first-child { color:var(--ink); font-weight:700; }
 @media (max-width: 720px) {
   .technology-scenes { grid-template-columns: 1fr; }
   .process-steps { grid-template-columns:1fr; }
   .process-steps li { border-right:0; border-bottom:1px solid var(--line); }
   .process-steps li:last-child { border-bottom:0; }
+  .route-steps { grid-template-columns:1fr; }
 }
