@@ -171,6 +171,7 @@
       <a href="#workflow">Workflow</a>
       <a href="#what">Capabilities</a>
       <a href="#rules">Rules</a>
+      <a href="#support">Support</a>
       <a href="../software/">Register</a>
       <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
     </nav>
@@ -314,6 +315,69 @@
   </div>
 </section>
 
+<!-- Support is the URL App Review checks. It never carries .reveal, so it is
+     readable with JavaScript disabled or an observer that never fires. -->
+<section id="support">
+  <div class="in">
+    <div class="eyebrow">05 · Support</div>
+    <h2>A person answers this mail.</h2>
+    <p class="sub">Questions, trouble, a soil number that looks wrong, or a purchase that did not land:
+      write to us and you will get a reply from a human, usually within two business days.
+      MaizeRunner has no account system, so there is nothing to verify and nothing to reset: just
+      describe what you saw.</p>
+
+    <div class="cta">
+      <a class="key" href="mailto:info@river.io?subject=MaizeRunner%20support">info@river.io</a>
+      <a href="../maizerunner-privacy.html">Privacy policy</a>
+    </div>
+
+    <p class="sub" style="margin:34px 0 26px">When something is broken, the fastest fix comes from
+      telling us your iOS version, your iPhone model, and what you tapped just before it went wrong.
+      Screenshots help. No farm data is ever attached to a support mail unless you choose to send it.</p>
+
+    <div class="table">
+      <div class="trow">
+        <div class="t">No soil data for my field</div>
+        <div class="d">Automatic soil detection needs a network connection the first time you draw a
+          field. USDA SSURGO covers the United States in high detail; everywhere else falls back to
+          ISRIC SoilGrids, which is coarser. If a field sits on water, pavement, or a surveyed gap,
+          neither source will return a profile. Enter your lab results by hand instead.</div>
+      </div>
+      <div class="trow">
+        <div class="t">I bought Pro and it is not showing</div>
+        <div class="d">Open Settings inside the app and tap <strong>Restore Purchase</strong>. Purchases are
+          tied to the Apple Account that bought them, so make sure you are signed in with the same one.
+          MaizeRunner Pro is a one-time purchase, not a subscription, and it restores on every device
+          on that Apple Account.</div>
+      </div>
+      <div class="trow">
+        <div class="t">Where is my data, and is it backed up?</div>
+        <div class="d">Everything lives in a database on your iPhone, and we hold no copy of it. That
+          is the whole point of the app. It is included in your encrypted iPhone or iCloud device
+          backup. Deleting the app deletes your fields, so take a backup before you do.</div>
+      </div>
+      <div class="trow">
+        <div class="t">How many fields can I map?</div>
+        <div class="d">Three on the free tier, and up to one hundred with MaizeRunner Pro. Every other
+          feature works identically whether or not you buy Pro: soil reports, the sampling
+          walkthrough, season tracking, and the ten-year planner.</div>
+      </div>
+      <div class="trow">
+        <div class="t">The app is not in my language</div>
+        <div class="d">MaizeRunner follows your iPhone's language setting across 33 languages. If yours
+          reads badly, tell us which language and which screen. The agronomy terms were translated by
+          hand, so corrections from a grower who works in that language are genuinely useful.</div>
+      </div>
+      <div class="trow">
+        <div class="t">A yield or soil projection looks wrong</div>
+        <div class="d">Send us the field's soil figures and what you expected. The projections come from
+          USDA, NRCS, and land-grant research, and the app is built never to show a single confident
+          number where the honest answer is a range. If it is doing that, it is a bug we want.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="in">
     <span>MaizeRunner · River.io LLC</span>
@@ -339,6 +403,39 @@
       es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
     },{threshold:.04});
     els.forEach(function(e){io.observe(e);});
+  })();
+  (function(){
+    /* A hash deep-link lands before the webfont finishes loading, and the reflow
+       that follows drops the browser back at the top. App Review opens
+       /maizerunner/#support directly, so re-apply the jump once layout settles,
+       unless the reader has already started scrolling on their own. */
+    if(!location.hash) return;
+    var moved=false;
+    ['wheel','touchstart','keydown'].forEach(function(evt){
+      addEventListener(evt,function(){moved=true;},{passive:true,once:true});
+    });
+    function jump(){
+      if(moved) return;
+      var el;
+      try{el=document.querySelector(location.hash);}catch(e){return;}
+      if(!el) return;
+      var bar=document.querySelector('.bar');
+      var offset=bar?bar.getBoundingClientRect().height:0;
+      var y=el.getBoundingClientRect().top+window.pageYOffset-offset;
+      /* scroll-behavior:smooth would animate this, and a scroll animation
+         started during load gets cancelled, so force an instant jump. */
+      var root=document.documentElement, prev=root.style.scrollBehavior;
+      root.style.scrollBehavior='auto';
+      window.scrollTo(0,y);
+      root.style.scrollBehavior=prev;
+    }
+    /* The webfont swap reflows the page and pushes the target down, so a single
+       jump lands short. Re-settle a few times until layout stops moving. */
+    function settle(){[0,150,400,800].forEach(function(ms){setTimeout(jump,ms);});}
+    addEventListener('load',settle);
+    if(document.fonts&&document.fonts.ready){
+      document.fonts.ready.then(function(){requestAnimationFrame(settle);});
+    }
   })();
 </script>
 </body>
