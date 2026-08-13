@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daily Market Summary | United Cat Foods</title>
+  <meta name="description" content="The U.C.F. Exchange daily market summary: provisions pricing, shortage watch, freight conditions, and the Dispatch wire, read live from the exchange at the current tick." />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <meta property="og:title" content="Daily Market Summary | United Cat Foods Exchange" />
+  <meta property="og:description" content="Finished goods short, raw materials long. The provisions market, read live from the exchange." />
+  <meta property="og:image" content="https://www.river.io/unitedcatfoods/hero-broadcast.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .wrap-narrow { max-width: 78ch; }
+    .market-status { display:flex; flex-wrap:wrap; gap:1.25rem; align-items:center;
+      font-size:0.85rem; letter-spacing:0.04em; text-transform:uppercase;
+      border-top:1px solid rgba(242,223,192,0.18); border-bottom:1px solid rgba(242,223,192,0.18);
+      padding:0.75rem 0; margin:1.5rem 0; }
+    .live-dot { display:inline-block; width:0.55rem; height:0.55rem; border-radius:50%;
+      background:#3fa9b0; margin-right:0.45rem; animation:pulse 2s infinite; }
+    .live-dot.stale { background:#b05030; animation:none; }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.35; } }
+    .takeaways { list-style:none; padding:0; margin:1.5rem 0; }
+    .takeaways li { padding:0.6rem 0 0.6rem 1.6rem; position:relative;
+      border-bottom:1px solid rgba(242,223,192,0.12); }
+    .takeaways li::before { content:"\25B8"; position:absolute; left:0; color:#f0a848; }
+    .byline { font-size:0.9rem; opacity:0.75; margin-top:-0.4rem; }
+    .up { color:#3fa9b0; } .down { color:#b05030; } .flat { opacity:0.6; }
+    .pinned { color:#f0a848; font-weight:600; }
+    .disclosure { font-size:0.82rem; opacity:0.62; line-height:1.65; }
+    .loading td { opacity:0.5; font-style:italic; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="United Cat Foods home">
+      <img class="brand-mark" src="logo.png" alt="United Cat Foods" />
+      <span><strong>United Cat Foods</strong></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="products.html">Cargo</a>
+      <a href="technology.html">Technology</a>
+      <a href="fleet.html">Fleet</a>
+      <a href="stations/index.html">Stations</a>
+      <a href="system-map.html">Live Map</a>
+      <a href="market.html" class="active" aria-current="page">Market</a>
+      <a href="about.html">Company</a>
+      <a href="careers.html">Fly for U.C.F.</a>
+      <a href="newsroom.html">Newsroom</a>
+      <a href="wiki/index.html">Wiki</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section" style="padding-top:2rem;">
+      <div class="wrap-narrow">
+        <p class="eyebrow">U.C.F. Exchange / Office of the Auditor</p>
+        <h1 style="margin-top:0.2rem;">Daily Market Summary</h1>
+        <p class="byline">Provisions &amp; Freight &middot; prepared for charter operators and station factors &middot; <span id="stamp">tick 4302</span></p>
+
+        <div class="market-status">
+          <span><span class="live-dot"></span><strong id="tickread">connecting</strong></span>
+          <span>goods priced: <strong id="goodcount">&ndash;</strong></span>
+          <span>stations reporting: <strong id="stncount">&ndash;</strong></span>
+          <span>hulls under way: <strong id="shipcount">&ndash;</strong></span>
+        </div>
+
+        <p class="lead">Provisions closed the session structurally imbalanced. Finished goods are
+        absent across most of the network while raw inputs accumulate at the frontier in quantities
+        the lanes are not clearing. The board is not volatile. It is stuck, and it is stuck in a
+        direction that pays anyone with a hold and the patience to cross the system.</p>
+
+        <p class="eyebrow" style="margin-top:2.5rem;">The session in brief</p>
+        <ul class="takeaways">
+          <li><strong>Kibble-loaf is bid at ceiling and offered nowhere.</strong> Eight of fourteen
+            reporting stations show zero stock, each pinned at 32&#8499;. P&acirc;t&eacute; tells the same story at
+            six stations, pinned at 54&#8499;.</li>
+          <li><strong>The constraint is biscuit-substrate, and it is misplaced rather than absent.</strong>
+            339 units sit at Tuna Prime and 300 at Tranquility. Cannery Row &mdash; the hub cannery that
+            converts it &mdash; holds none.</li>
+          <li><strong>Raw materials remain heavily oversupplied.</strong> Grain, ore, water-ice and
+            litter-clay are all sitting on four-figure inventories at origin with no bid pressure.</li>
+          <li><strong>Freight capacity is fully absorbed.</strong> The open load board is empty and
+            sixteen of seventeen registered hulls are under way.</li>
+          <li><strong>Charter rates on the Whisker Hollow grain lane continue to compress</strong> &mdash;
+            down roughly 17% across the last five postings.</li>
+        </ul>
+
+        <h2 style="margin-top:2.5rem;">Finished goods: a shortage the network cannot deliver out of</h2>
+        <p>The defining feature of this session is not price movement but price <em>pinning</em>.
+        When a station shows zero stock, the exchange holds its quote at the ceiling &mdash; 32&#8499; for
+        kibble-loaf, 54&#8499; for p&acirc;t&eacute; &mdash; and leaves it there. Eight stations are in that condition on
+        loaf, six on p&acirc;t&eacute;. Read plainly: the demand exists, the credits exist, and there is simply
+        nothing on the shelf to sell.</p>
+
+        <p>What makes this more than a curiosity is where the inventory that <em>does</em> exist is
+        sitting. Cannery Row holds 325 units of loaf at 22&#8499; and Ganymede Yards another 102 at 24&#8499;.
+        The spread from a stocked cannery to a pinned frontier station runs ten credits a unit on a
+        good that costs nothing to handle. That is not an exotic arbitrage. It is a delivery problem
+        wearing an arbitrage costume.</p>
+
+        <p>The upstream cause is legible. Biscuit-substrate &mdash; the input the canneries run on &mdash; is at
+        zero across eight stations including Cannery Row itself, while 339 units sit at Tuna Prime
+        and 300 at Tranquility, both comfortably inside Earth's neighbourhood. Substrate has pooled
+        where it is convenient to store rather than where it is consumed. Until that inventory moves
+        outward, finished-goods production stays capped and the pinned quotes stay pinned.</p>
+
+        <h2 style="margin-top:2.5rem;">Raw materials: long, and getting longer</h2>
+        <p>The opposite condition prevails at the bottom of the stack. Whisker Hollow is carrying
+        2,601 units of grain at 4&#8499; and Titan Larder 2,595 at 5&#8499;, against 10&#8499; bids at Cannery Row and
+        Tranquility. Io Slagworks and Clawson's Drift hold nearly 5,500 units of ore between them at
+        9&#8499;. Water-ice is effectively free at three frontier stations &mdash; 3&#8499;, on inventories above 2,500
+        apiece &mdash; against 6&#8499; at Paws Truck Stop.</p>
+
+        <p>These are wide percentage spreads on thin absolute margins, which is the honest way to
+        describe them. Grain doubles from Whisker Hollow to Cannery Row, but doubling four credits
+        earns six. Operators running economy hulls on short legs will find the volume worth having.
+        Operators with capacity to spare and a long crossing in front of them should be looking
+        further up the value stack.</p>
+
+        <h2 style="margin-top:2.5rem;">Where the money actually is</h2>
+        <p>By absolute margin the session's standout is salmon-mousse: 76&#8499; at Velvet Array against
+        181&#8499; at Titania Cold Store, a spread of 105 credits a unit. A full standard hold clears more
+        than most independent operators hold in cash. It is a frontier-to-frontier run with real
+        crossing time attached, and the inventory at the buy side is finite &mdash; 235 units &mdash; so it will
+        not survive many hulls taking it seriously.</p>
+
+        <p>Bluefin-reserve offers the same shape at lower altitude: 64&#8499; at Titania against 133&#8499; at
+        Enceladus Draw, on 499 units of supply. Catnip posts the widest percentage on the board &mdash;
+        11&#8499; at Triton Holdfast against 31&#8499; at Velvet Array, a 182% move &mdash; on 900 units, though at
+        twenty credits a unit it wants volume to matter.</p>
+
+        <h2 style="margin-top:2.5rem;">Freight conditions</h2>
+        <p>The open load board is empty. Every posted contract has been booked, is in transit, or has
+        delivered, and sixteen of seventeen registered hulls are under way &mdash; only <em>UCFS Slag Cat</em>
+        is berthed. Capacity, not cargo, is the binding constraint this session.</p>
+
+        <p>Rate discipline on the Whisker Hollow &rarr; Tranquility grain lane continues to erode. Sorted
+        by posting tick the last five contracts print 441, 447, 416, 434 and 370, with origin grain
+        slipping from 10&#8499; to 9&#8499;. The newest posting is the weakest by a distance. Operators holding
+        capacity against that lane should treat the trend as informative.</p>
+
+        <p>Competitive note: Amazonian Prime Freight is operating five of the seventeen hulls on the
+        registry &mdash; <em>Doorstep</em>, <em>Last Parsec</em>, <em>Next Tick</em>, <em>Same-Day</em> and
+        <em>Two-Day</em> &mdash; with two inbound to Cannery Row. Should those manifests contain substrate,
+        the shortage described above resolves without U.C.F. participation.</p>
+
+        <p class="eyebrow" style="margin-top:3rem;">Live board &middot; widest spreads</p>
+        <table class="data-table" id="spreads">
+          <tr><th>Good</th><th>Buy</th><th>Sell</th><th>&Delta; / unit</th><th>Spread</th></tr>
+          <tr class="loading"><td colspan="5">reading the exchange&hellip;</td></tr>
+        </table>
+
+        <p class="eyebrow" style="margin-top:2.5rem;">Live board &middot; shortage watch</p>
+        <table class="data-table" id="shortages">
+          <tr><th>Good</th><th>Stations at zero</th><th>Pinned at</th></tr>
+          <tr class="loading"><td colspan="3">reading the exchange&hellip;</td></tr>
+        </table>
+
+        <p class="eyebrow" style="margin-top:2.5rem;">Dispatch wire</p>
+        <table class="data-table" id="dispatch">
+          <tr><th>Item</th><th>Effective</th><th>Status</th></tr>
+          <tr class="loading"><td colspan="3">reading the exchange&hellip;</td></tr>
+        </table>
+
+        <p class="eyebrow" style="margin-top:2.5rem;">Fleet in motion</p>
+        <table class="data-table" id="fleet">
+          <tr><th>Vessel</th><th>Operator</th><th>Position</th></tr>
+          <tr class="loading"><td colspan="3">reading the exchange&hellip;</td></tr>
+        </table>
+
+        <p class="disclosure" style="margin-top:3rem;">
+          <strong>Disclosure.</strong> Quotes shown are mid prices. Execution walks the price curve:
+          a full-hold order fills materially worse per unit than the mid implies, and any operator
+          acting on this summary should price the actual order before committing to it. Orders queue
+          for the next tick boundary and do not fill on submission. Freight economics quoted on the
+          load board are computed relative to an individual ship's position and are not a general
+          truth about the market. Inventories are finite and the spreads described here close as
+          they are taken. The Office of the Auditor holds a read-only credential, places no orders,
+          and has no position in any good named above. Past crossings are not indicative of future
+          crossings. Provisions can go down as well as up, which the Board finds distasteful but
+          concedes is arithmetically possible.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p class="footer-note">The summary reads the public face of the U.C.F. exchange with a read-only credential. It can see everything and touch nothing, which is also the Auditor's job description.</p>
+    <p class="footer-note">United Cat Foods is a fictional future-company project. Spacecraft, orbital services, products, and station operations depicted here are fictional unless expressly identified otherwise. The Board is aware it is fictional and has voted to proceed regardless.</p>
+    <div class="foot-bottom">
+      <div class="brand small"><img class="brand-mark" src="logo.png" alt="United Cat Foods" /><span><strong>United Cat Foods</strong><small>Deep Space Logistic Services</small></span></div>
+      <span>&copy; 2196 United Cat Foods Corporation &middot; Cats make space comfortable.</span>
+    </div>
+  </footer>
+
+  <script>
+  // Daily Market Summary - live board.
+  // The written commentary above is authored against a stated tick; the tables below
+  // read the exchange directly and refresh, so the narrative and the numbers are
+  // deliberately separate. If they disagree, the tables are right and the commentary is stale.
+  (function () {
+    var EXCHANGE = "https://srv1328560.hstgr.cloud";
+    // Mint a dedicated read key for this surface and paste it below:
+    //   ucfmarketd keys create --label "web:market" --scopes read --data <dir>
+    // Kept separate from the system-map key so either surface can be revoked alone.
+    var KEY = "PASTE_WEB_MARKET_READ_KEY";
+
+    function fetchJSON(path) {
+      return fetch(EXCHANGE + path, { headers: { "Authorization": "Bearer " + KEY,
+                                                 "X-UCF-App": "web:market" } })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
+    }
+
+    function esc(s) { return String(s).replace(/[&<>]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }
+
+    function label(stations, id) {
+      for (var i = 0; i < stations.length; i++) if (stations[i].id === id) return stations[i].displayName;
+      return id;
+    }
+
+    function rows(table, html) {
+      var head = table.rows[0].outerHTML;
+      table.innerHTML = head + (html || '<tr class="loading"><td colspan="5">nothing to report</td></tr>');
+    }
+
+    function render(prices, stations, news, carriers, status) {
+      document.getElementById("tickread").textContent =
+        "tick " + status.tick + " · " + (status.worldName || "PROD");
+      document.querySelector(".live-dot").classList.remove("stale");
+
+      var goods = {}, stns = {};
+      prices.forEach(function (p) {
+        stns[p.station] = 1;
+        (goods[p.good] = goods[p.good] || []).push(p);
+      });
+      document.getElementById("goodcount").textContent = Object.keys(goods).length;
+      document.getElementById("stncount").textContent = Object.keys(stns).length;
+      document.getElementById("shipcount").textContent =
+        carriers.filter(function (c) { return /->/.test(c.location || ""); }).length;
+
+      var spreads = [];
+      Object.keys(goods).forEach(function (g) {
+        var withStock = goods[g].filter(function (p) { return p.stock > 0; });
+        if (!withStock.length) return;
+        var lo = withStock.reduce(function (a, b) { return b.mid < a.mid ? b : a; });
+        var hi = goods[g].reduce(function (a, b) { return b.mid > a.mid ? b : a; });
+        if (hi.mid <= lo.mid) return;
+        spreads.push({ good: g, lo: lo, hi: hi, d: hi.mid - lo.mid,
+                       pct: Math.round(((hi.mid - lo.mid) / lo.mid) * 100) });
+      });
+      spreads.sort(function (a, b) { return b.d - a.d; });
+      rows(document.getElementById("spreads"), spreads.slice(0, 10).map(function (s) {
+        return "<tr><td><code>" + esc(s.good) + "</code></td>" +
+          "<td>" + esc(label(stations, s.lo.station)) + " · " + s.lo.mid + "ℳ <span class='flat'>(" + s.lo.stock + ")</span></td>" +
+          "<td>" + esc(label(stations, s.hi.station)) + " · " + s.hi.mid + "ℳ</td>" +
+          "<td class='up'>+" + s.d + "ℳ</td><td class='up'>+" + s.pct + "%</td></tr>";
+      }).join(""));
+
+      var shorts = [];
+      Object.keys(goods).forEach(function (g) {
+        var out = goods[g].filter(function (p) { return p.stock === 0; });
+        if (!out.length) return;
+        shorts.push({ good: g, n: out.length, at: out[0].mid,
+                      names: out.map(function (p) { return label(stations, p.station); }) });
+      });
+      shorts.sort(function (a, b) { return b.n - a.n; });
+      rows(document.getElementById("shortages"), shorts.map(function (s) {
+        return "<tr><td><code>" + esc(s.good) + "</code></td>" +
+          "<td>" + s.n + " — <span class='flat'>" + esc(s.names.join(", ")) + "</span></td>" +
+          "<td class='pinned'>" + s.at + "ℳ</td></tr>";
+      }).join(""));
+
+      rows(document.getElementById("dispatch"), news.map(function (n) {
+        var cls = n.status === "in-effect" ? "up" : "flat";
+        return "<tr><td>" + esc(n.headline) + "</td>" +
+          "<td>tick " + n.effectiveAtTick + "–" + n.expiresAtTick + "</td>" +
+          "<td class='" + cls + "'>" + esc(n.status) + "</td></tr>";
+      }).join(""));
+
+      rows(document.getElementById("fleet"), carriers.map(function (c) {
+        var moving = /->/.test(c.location || "");
+        return "<tr><td>" + esc(c.displayName) + "</td>" +
+          "<td>" + esc(c.operatorName) + "</td>" +
+          "<td class='" + (moving ? "up" : "flat") + "'>" +
+          esc(moving ? c.location.replace("->", "inbound ") : "berthed " + c.location) +
+          (c.arriveTick ? " <span class='flat'>· eta " + c.arriveTick + "</span>" : "") +
+          "</td></tr>";
+      }).join(""));
+    }
+
+    function refresh() {
+      Promise.all([fetchJSON("/v1/galaxy/prices"), fetchJSON("/v1/stations"),
+                   fetchJSON("/v1/news"), fetchJSON("/v1/carriers"), fetchJSON("/v1/status")])
+        .then(function (r) { render(r[0], r[1], r[2], r[3], r[4]); })
+        .catch(function () {
+          document.getElementById("tickread").textContent = "exchange unreachable · commentary only";
+          document.querySelector(".live-dot").classList.add("stale");
+          ["spreads", "shortages", "dispatch", "fleet"].forEach(function (id) {
+            rows(document.getElementById(id),
+              '<tr class="loading"><td colspan="5">board unavailable — the written summary above still stands</td></tr>');
+          });
+        });
+    }
+
+    refresh();
+    setInterval(refresh, 60000);
+  })();
+  </script>
+  <script src="site.js"></script>
+</body>
+</html>
