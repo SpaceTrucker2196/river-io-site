@@ -30,6 +30,17 @@
     }
     .map-status .live-dot.stale { background: #b05030; animation: none; }
     @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+    body.station-header-embed { margin: 0; overflow: hidden; background: #070a11; }
+    body.station-header-embed .site-header,
+    body.station-header-embed main > .section > :not(.map-wrap),
+    body.station-header-embed .map-wrap > :not(.map-frame),
+    body.station-header-embed .map-status,
+    body.station-header-embed footer { display: none; }
+    body.station-header-embed main,
+    body.station-header-embed main > .section,
+    body.station-header-embed .map-wrap,
+    body.station-header-embed .map-frame { width: 100%; height: 100vh; max-width: none; margin: 0; padding: 0; border: 0; border-radius: 0; }
+    body.station-header-embed #syscanvas { width: 100%; height: 100%; }
   </style>
 </head>
 <body>
@@ -84,11 +95,14 @@
   // Same honest geometry as the app: log radius, real ephemeris angles,
   // courses that arc around Sol rather than through it.
   (function () {
+    var HEADER_EMBED = new URLSearchParams(window.location.search).get('embed') === 'station-header';
+    if (HEADER_EMBED) document.body.classList.add('station-header-embed');
     var EXCHANGE = "https://srv1328560.hstgr.cloud";
     var KEY = "ucfk_833bd5d9a72d7a17ab1f2e2d99d444b4"; // scope: read, label web:system-map
     var canvas = document.getElementById("syscanvas");
+    if (HEADER_EMBED) { canvas.width = 1500; canvas.height = 500; }
     var ctx = canvas.getContext("2d");
-    var reference = null, flights = [], status = null;
+    var reference = null, flights = [], status = null, headerPhase = -0.25;
 
     var CREAM = "#f2dfc0", GOLD = "#f0a848", SPARK = "#3fa9b0",
         BRICK = "#a84832", DIM = "rgba(242,223,192,0.55)";
@@ -120,7 +134,7 @@
       if (!reference) return;
       var w = canvas.width, h = canvas.height;
       var cx = w / 2, cy = h / 2;
-      var maxR = Math.min(w, h) / 2 - 56;
+      var maxR = HEADER_EMBED ? w * 0.44 : Math.min(w, h) / 2 - 56;
       ctx.clearRect(0, 0, w, h);
 
       var bodies = reference.bodies;
@@ -136,9 +150,9 @@
       }
       function angleOf(body) {
         if (body.angleDegrees !== undefined && body.angleDegrees !== null)
-          return body.angleDegrees * Math.PI / 180;
+          return body.angleDegrees * Math.PI / 180 + (HEADER_EMBED ? headerPhase : 0);
         var idx = planets.indexOf(body); if (idx < 0) idx = 0;
-        return idx * 2.399963; // the golden angle, so nothing false lines up
+        return idx * 2.399963 + (HEADER_EMBED ? headerPhase : 0); // the golden angle, so nothing false lines up
       }
       function hostPlanet(id) {
         var b = bodies.find(function (x) { return x.id === id; });
@@ -148,7 +162,7 @@
       }
       function pointOf(body) {
         var r = screenR(body.orbitRadiusKm), a = angleOf(body);
-        return { x: cx + Math.cos(a) * r, y: cy + Math.sin(a) * r };
+        return { x: cx + Math.cos(a) * r, y: cy + Math.sin(a) * r * (HEADER_EMBED ? 0.3 : 1) };
       }
       function stationPlanet(stationId) {
         var s = reference.stations.find(function (x) { return x.id === stationId; });
@@ -200,7 +214,10 @@
       planets.forEach(function (p) {
         ctx.strokeStyle = "rgba(242,223,192,0.14)";
         ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.arc(cx, cy, screenR(p.orbitRadiusKm), 0, Math.PI * 2); ctx.stroke();
+        ctx.beginPath();
+        if (HEADER_EMBED) ctx.ellipse(cx, cy, screenR(p.orbitRadiusKm), screenR(p.orbitRadiusKm) * 0.3, 0, 0, Math.PI * 2);
+        else ctx.arc(cx, cy, screenR(p.orbitRadiusKm), 0, Math.PI * 2);
+        ctx.stroke();
       });
 
       // The traffic: every hull rides its own course at the tower's progress.
@@ -260,6 +277,9 @@
 
     refresh();
     setInterval(refresh, 60000);
+    if (HEADER_EMBED && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setInterval(function () { headerPhase += 0.0022; draw(); }, 50);
+    }
     window.addEventListener("resize", draw);
   })();
   </script>
