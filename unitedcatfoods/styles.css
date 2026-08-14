@@ -489,3 +489,80 @@ figure.wiki-fig img, .schematic-grid img, .infobox img {
   .process-steps li:last-child { border-bottom:0; }
   .route-steps { grid-template-columns:1fr; }
 }
+
+/* UCF Engineering image inspection plate. */
+.ucf-detail-target { cursor: zoom-in; }
+.ucf-detail-target:focus-visible { outline: 3px solid var(--cyan); outline-offset: 4px; }
+body.ucf-viewer-open { overflow: hidden; }
+.ucf-image-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  place-items: center;
+  padding: clamp(12px, 3vw, 42px);
+  background: rgba(4, 7, 12, .94);
+  backdrop-filter: blur(8px);
+}
+.ucf-image-viewer.is-open { display: grid; }
+.ucf-blueprint-frame {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  width: min(1500px, 96vw);
+  height: min(900px, 92vh);
+  border: 1px solid rgba(63,169,176,.72);
+  outline: 8px solid rgba(8,20,27,.96);
+  box-shadow: 0 0 0 9px rgba(240,168,72,.38), 0 30px 90px #000;
+  background: #081017;
+}
+.ucf-blueprint-frame::before,
+.ucf-blueprint-frame::after {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(242,223,192,.16);
+  background-image: linear-gradient(rgba(63,169,176,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(63,169,176,.055) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.ucf-blueprint-frame::after {
+  inset: -7px;
+  border: 0;
+  background: linear-gradient(var(--gold),var(--gold)) left top/44px 3px no-repeat, linear-gradient(var(--gold),var(--gold)) left top/3px 44px no-repeat, linear-gradient(var(--gold),var(--gold)) right top/44px 3px no-repeat, linear-gradient(var(--gold),var(--gold)) right top/3px 44px no-repeat, linear-gradient(var(--gold),var(--gold)) left bottom/44px 3px no-repeat, linear-gradient(var(--gold),var(--gold)) left bottom/3px 44px no-repeat, linear-gradient(var(--gold),var(--gold)) right bottom/44px 3px no-repeat, linear-gradient(var(--gold),var(--gold)) right bottom/3px 44px no-repeat;
+}
+.ucf-viewer-rail,
+.ucf-viewer-data {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 18px;
+  color: var(--cream);
+  background: rgba(8,20,27,.94);
+  font: 600 .62rem/1.3 "Fira Code", monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.ucf-viewer-rail { grid-template-columns: auto minmax(0,1fr) auto; border-bottom: 1px solid rgba(63,169,176,.5); }
+.ucf-viewer-rail > span { color: var(--cyan); }
+.ucf-viewer-rail strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .68rem; }
+.ucf-viewer-close { padding: 8px 10px; border: 1px solid var(--gold); color: var(--cream); background: transparent; font: inherit; letter-spacing: .1em; cursor: pointer; }
+.ucf-viewer-close:hover,
+.ucf-viewer-close:focus-visible { color: #090a0b; background: var(--gold); outline: none; }
+.ucf-viewer-stage { position: relative; z-index: 1; min-height: 0; display: grid; place-items: center; padding: clamp(16px, 3vw, 42px); overflow: hidden; }
+.ucf-viewer-stage img { display: block; max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(0 15px 30px rgba(0,0,0,.65)); }
+.ucf-viewer-data { grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(63,169,176,.5); color: var(--muted); }
+.ucf-viewer-data span:nth-child(2) { text-align: center; color: var(--cyan); }
+.ucf-viewer-data span:last-child { text-align: right; }
+@media (max-width: 680px) {
+  .ucf-image-viewer { padding: 8px; }
+  .ucf-blueprint-frame { width: 96vw; height: 88vh; }
+  .ucf-viewer-rail { grid-template-columns: 1fr auto; }
+  .ucf-viewer-rail > span { display: none; }
+  .ucf-viewer-data { grid-template-columns: 1fr; gap: 4px; }
+  .ucf-viewer-data span,
+  .ucf-viewer-data span:nth-child(2),
+  .ucf-viewer-data span:last-child { text-align: left; }
+}

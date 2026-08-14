@@ -30,6 +30,87 @@
     ticker.innerHTML = '<span class="ticker-label">Tuna Prime Trading // TPX</span><div class="ticker-window" aria-hidden="true"><div class="ticker-track">' + quoteMarkup + quoteMarkup + '</div></div>';
   }
 
+  // UCF Engineering image inspection plate.
+  var imageTargets = document.querySelectorAll('main img:not(.brand-mark), main .card-image, main .page-hero figure.art:not(.station-map-header)');
+  if (imageTargets.length) {
+    var viewer = document.createElement('div');
+    viewer.className = 'ucf-image-viewer';
+    viewer.setAttribute('role', 'dialog');
+    viewer.setAttribute('aria-modal', 'true');
+    viewer.setAttribute('aria-hidden', 'true');
+    viewer.setAttribute('aria-labelledby', 'ucf-viewer-title');
+    viewer.innerHTML =
+      '<div class="ucf-blueprint-frame">' +
+        '<header class="ucf-viewer-rail"><span>UCF ENGINEERING // VISUAL ARCHIVE</span><strong id="ucf-viewer-title">REFERENCE PLATE</strong><button type="button" class="ucf-viewer-close" aria-label="Close image detail">CLOSE ×</button></header>' +
+        '<div class="ucf-viewer-stage"><img alt="" /></div>' +
+        '<footer class="ucf-viewer-data"><span>DOC · UCF-ENG-VIS</span><span id="ucf-viewer-size">SOURCE PLATE</span><span>STATUS · RELEASED</span></footer>' +
+      '</div>';
+    document.body.appendChild(viewer);
+
+    var viewerImage = viewer.querySelector('.ucf-viewer-stage img');
+    var viewerTitle = viewer.querySelector('#ucf-viewer-title');
+    var viewerSize = viewer.querySelector('#ucf-viewer-size');
+    var closeButton = viewer.querySelector('.ucf-viewer-close');
+    var previousFocus = null;
+
+    function backgroundSource(el) {
+      var match = window.getComputedStyle(el).backgroundImage.match(/url\(["']?(.*?)["']?\)/);
+      return match ? match[1] : '';
+    }
+    function labelFor(el) {
+      var figure = el.closest('figure');
+      var caption = figure && figure.querySelector('figcaption');
+      return (caption && caption.textContent.trim()) || el.getAttribute('alt') || 'UCF reference plate';
+    }
+    function openViewer(el) {
+      var source = el.tagName === 'IMG' ? (el.currentSrc || el.src) : backgroundSource(el);
+      if (!source) return;
+      previousFocus = document.activeElement;
+      viewerImage.src = source;
+      viewerImage.alt = labelFor(el);
+      viewerTitle.textContent = labelFor(el).toUpperCase();
+      viewerSize.textContent = 'SOURCE · LOADING';
+      viewerImage.onload = function () {
+        viewerSize.textContent = 'SOURCE · ' + viewerImage.naturalWidth + ' × ' + viewerImage.naturalHeight;
+      };
+      viewer.classList.add('is-open');
+      viewer.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('ucf-viewer-open');
+      closeButton.focus();
+    }
+    function closeViewer() {
+      viewer.classList.remove('is-open');
+      viewer.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('ucf-viewer-open');
+      viewerImage.removeAttribute('src');
+      if (previousFocus && previousFocus.focus) previousFocus.focus();
+    }
+
+    imageTargets.forEach(function (el) {
+      if (el.closest('a')) return;
+      var source = el.tagName === 'IMG' ? (el.currentSrc || el.src) : backgroundSource(el);
+      if (!source) return;
+      el.classList.add('ucf-detail-target');
+      el.setAttribute('tabindex', '0');
+      el.setAttribute('role', 'button');
+      el.setAttribute('aria-label', 'Open image detail: ' + labelFor(el));
+      el.addEventListener('click', function () { openViewer(el); });
+      el.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openViewer(el);
+        }
+      });
+    });
+    closeButton.addEventListener('click', closeViewer);
+    viewer.addEventListener('click', function (event) {
+      if (event.target === viewer) closeViewer();
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && viewer.classList.contains('is-open')) closeViewer();
+    });
+  }
+
   var els = document.querySelectorAll('.reveal');
   if (!els.length) return;
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
