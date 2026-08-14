@@ -425,9 +425,12 @@ figure.wiki-fig img, .schematic-grid img, .infobox img {
 }
 .station-card-image {
   aspect-ratio: 3 / 1;
+  height: auto;
   min-height: 0 !important;
-  background-size: cover !important;
+  background-size: 100% 100% !important;
+  background-position: center;
   background-repeat: no-repeat;
+  border-radius: 0;
 }
 .page-hero .art.station-map-header {
   position: relative;
