@@ -109,7 +109,13 @@ p { color: var(--muted); line-height: 1.65; font-size: .82rem; }
 .facility-list.three { grid-template-columns: repeat(3, 1fr); }
 .facility-list article { padding: 24px; display: grid; gap: 8px; }
 .facility-list span { color: var(--muted); line-height: 1.6; }
-.facility-list article.habitat-product-card { align-content: start; overflow: hidden; }
+.facility-list article.habitat-product-card {
+  align-content: start;
+  justify-self: center;
+  width: 100%;
+  max-width: 400px;
+  overflow: hidden;
+}
 .habitat-product-image {
   display: block;
   width: calc(100% + 48px);
