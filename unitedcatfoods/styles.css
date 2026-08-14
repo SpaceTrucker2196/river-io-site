@@ -96,6 +96,7 @@ p { color: var(--muted); line-height: 1.65; font-size: .82rem; }
 .section-heading { display: flex; justify-content: space-between; gap: 24px; align-items: end; margin-bottom: 28px; }
 .section-heading a { color: var(--muted); font-size: .68rem; text-transform: uppercase; letter-spacing: .14em; }
 .cards.three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.cards.station-registry { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 .card { overflow: hidden; }
 .card h3, .card p { padding-left: 22px; padding-right: 22px; }
 .card p { padding-bottom: 22px; }
@@ -122,6 +123,7 @@ footer { max-width: 1280px; margin: 0 auto; padding: 30px 32px 50px; display: fl
   .vault-link { border-left: 0; padding-left: 0; }
   .hero-art { height: clamp(220px, 56vw, 360px); }
   .mission-grid, .cards.three, .split, .crew-grid, .facility-list.three { grid-template-columns: 1fr; }
+  .cards.station-registry { grid-template-columns: 1fr; }
   .status-panel { margin: 0 18px 24px; }
   footer, .section-heading, .contact { flex-direction: column; align-items: flex-start; }
 }
