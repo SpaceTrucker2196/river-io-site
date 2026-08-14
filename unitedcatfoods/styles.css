@@ -109,6 +109,17 @@ p { color: var(--muted); line-height: 1.65; font-size: .82rem; }
 .facility-list.three { grid-template-columns: repeat(3, 1fr); }
 .facility-list article { padding: 24px; display: grid; gap: 8px; }
 .facility-list span { color: var(--muted); line-height: 1.6; }
+.facility-list article.habitat-product-card { align-content: start; overflow: hidden; }
+.habitat-product-image {
+  display: block;
+  width: calc(100% + 48px);
+  max-width: none;
+  aspect-ratio: 3 / 1;
+  margin: -24px -24px 12px;
+  object-fit: cover !important;
+  border-bottom: 1px solid var(--line);
+  background: #080b10;
+}
 .crew-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
 .crew-grid article { padding: 22px; min-height: 240px; }
 .cat { width: 74px; height: 74px; display: block; margin-bottom: 18px; position: relative; background: #999; clip-path: polygon(12% 24%, 4% 0, 31% 14%, 50% 9%, 69% 14%, 96% 0, 88% 24%, 96% 46%, 88% 77%, 66% 96%, 34% 96%, 12% 77%, 4% 46%); opacity:.85; }
