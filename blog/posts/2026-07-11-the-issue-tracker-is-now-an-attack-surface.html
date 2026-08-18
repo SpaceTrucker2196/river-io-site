@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Three July 2026 disclosures (GitLost, GuardFall, and a poisoned CI action) showed that a coding agent's input channels are the new security perimeter, just as AI-authored code crossed half of all output." />
+<meta name="description" content="Three July 2026 disclosures showed that a coding agent's input channels are the new security perimeter. They are GitLost, GuardFall, and a poisoned CI action. At the same time, AI-authored code crossed half of all output." />
 <meta name="color-scheme" content="light dark" />
 <meta name="tags" content="Security, Briefing, Autonomy, Metrics" />
 <title>The issue tracker is now an attack surface — The Dark Factory · river.io</title>
@@ -31,9 +31,9 @@
   <div class="in">
     <div class="meta"><b>Order 010</b><span>11 July 2026</span><span>8 min</span><span>Security</span></div>
     <h1>The issue tracker is now an attack surface</h1>
-    <p class="dek">Three July 2026 disclosures (GitLost, GuardFall, and a poisoned CI action) showed
-      that a coding agent's input channels are the new security perimeter, just as AI-authored code
-      crossed half of all output.</p>
+    <p class="dek">Three July 2026 disclosures showed that a coding agent's input channels are the
+      new security perimeter. They are GitLost, GuardFall, and a poisoned CI action. At the same
+      time, AI-authored code crossed half of all output.</p>
     <div class="rule"></div>
   </div>
 </div>
@@ -41,82 +41,83 @@
 <article class="post">
   <div class="in">
 
-    <p class="lede-cap">In mid-July 2026, the most important security finding in software
-      development did not involve a single line of malicious code. On July 7, researchers at Noma
-      Security disclosed <strong>GitLost</strong>: an unauthenticated attacker can post a crafted
-      public GitHub Issue, and GitHub's own Agentic Workflows will follow the hidden instructions
-      in the issue body and leak private-repository data from the same organization. No
-      credentials, no exploit binary, just plain-English commands, and a one-word prefix
-      ("Additionally") was enough to slip past the guardrail. For any team running an
-      issue-driven, agent-assisted development process, the lesson is blunt: issues are now
-      untrusted input to any agent that reads them.</p>
+    <p class="lede-cap">In mid-July 2026 the most important security finding in software
+      development used no malicious code. On July 7 researchers at Noma Security disclosed
+      <strong>GitLost</strong>. An unauthenticated attacker can post a crafted public GitHub Issue.
+      GitHub's own Agentic Workflows then follow the hidden instructions in the issue body. The
+      workflow leaks private-repository data from the same organization. The attack needs no
+      credentials and no exploit binary, only plain-English commands.</p>
+
+    <p>A one-word prefix, "Additionally", was enough to slip past the guardrail. The lesson is
+      blunt for any team that runs an issue-driven, agent-assisted development process. Issues are
+      now untrusted input to any agent that reads them.</p>
 
     <h2>GitLost: the front door is the spec channel</h2>
 
-    <p>What makes GitLost different from earlier prompt-injection demonstrations is scope of
-      control. An agent cannot reliably distinguish its owner's instructions from instructions
-      embedded in content it reads, so anyone who can open an issue can, in effect, task the
-      agent.</p>
+    <p>GitLost differs from earlier prompt-injection demonstrations in one way: scope of control.
+      An agent cannot reliably tell its owner's instructions from instructions inside the content
+      it reads. Anyone who can open an issue can therefore give the agent a task.</p>
 
     <blockquote>
-      <p>What sets GitLost apart is what the attacker gets to control: what an agent does with its
+      <p>GitLost is different because of what the attacker controls: what an agent does with its
         permissions.</p>
     </blockquote>
 
-    <p>The researchers frame the flaw as structural rather than patchable: wherever standing
-      credentials meet attacker-reachable text, exposure follows. Coverage across SecurityWeek,
-      Dark Reading, The Register, and InfoWorld converged on the same practical controls:
-      least-privilege tokens scoped per workflow, no agent with cross-repository read access
-      triggered by public content, and egress restrictions on the machines agents run on.</p>
+    <p>The researchers call the flaw structural, not patchable. Exposure follows wherever standing
+      credentials meet attacker-reachable text. SecurityWeek, Dark Reading, The Register, and
+      InfoWorld all named the same practical controls. Scope tokens to least privilege, per
+      workflow. Give no agent cross-repository read access when public content triggers it.
+      Restrict egress on the machines that run agents.</p>
 
     <h2>GuardFall: command allowlists do not hold</h2>
 
-    <p>The second disclosure of the week, <strong>GuardFall</strong>, is a shell-interpretation
-      bypass affecting 10 of 11 surveyed open-source coding agents, covering more than 500,000
-      deployments. The affected list reads like a census of the ecosystem: Hermes, opencode,
-      Goose, Cline, Roo-Code, Aider, Plandex, Open Interpreter, OpenHands, and SWE-agent. Only
-      Continue substantially mitigated the technique.</p>
+    <p>The second disclosure of the week is <strong>GuardFall</strong>. It is a
+      shell-interpretation bypass. It affects 10 of 11 surveyed open-source coding agents, across
+      more than 500,000 deployments. The affected list reads like a census of the ecosystem:
+      Hermes, opencode, Goose, Cline, Roo-Code, Aider, Plandex, Open Interpreter, OpenHands, and
+      SWE-agent. Only Continue substantially mitigated the technique.</p>
 
     <p>The mechanism is a check-then-execute gap. The agent validates the raw command text against
-      an allowlist; bash then rewrites that text through expansion, substitution, and re-quoting
-      before executing it. The string the guardrail approved is not the command that runs. The
-      sound gate is sandboxed execution plus verification of outputs, not string matching on
+      an allowlist. Bash then rewrites that text through expansion, substitution, and re-quoting.
+      Bash runs the rewritten text. The string the guardrail approved is not the command that runs.
+      A sound gate uses sandboxed execution and output verification, not string matching on
       commands.</p>
 
     <div class="note">
       <div class="k">Why this matters to buyers</div>
-      <p>Most agent frameworks sell command allowlisting as their primary safety control. GuardFall
-        demonstrates that this control, as commonly implemented, fails in ten of eleven tools. When
-        evaluating any vendor's "guardrails," ask whether the gate inspects text or verifies
-        behavior.</p>
+      <p>Most agent frameworks sell command allowlisting as their main safety control. GuardFall
+        shows that this control fails in ten of eleven tools as commonly built. When you evaluate
+        any vendor's guardrails, ask whether the gate inspects text or verifies behavior.</p>
     </div>
 
     <h2>The supply chain attacks itself</h2>
 
     <p>The third case closed the loop: the <strong>Claude Code GitHub Action poisoning</strong>
-      chain, fixed in v1.0.94. Research from Flatt Security, with follow-up analysis from Microsoft
-      Security and the Cloud Security Alliance, showed that one malicious issue disguised as an
-      error message could achieve command execution, and because the action's own repository used
-      the vulnerable workflow, a single compromise could have propagated downstream to every
-      consumer. This is a supply-chain attack routed through the agent tooling itself, not through
-      the product code. The countermeasures are familiar from dependency hygiene: pin action SHAs,
-      and treat agent workflow definitions as part of the trusted computing base.</p>
+      chain, fixed in v1.0.94. Flatt Security did the research. Microsoft Security and the Cloud
+      Security Alliance published follow-up analysis. One malicious issue, disguised as an error
+      message, could achieve command execution. The action's own repository used the vulnerable
+      workflow, so one compromise could have spread downstream to every consumer.</p>
 
-    <p>The same week, Zscaler documented SEO poisoning and hidden web prompts steering AI agents
-      toward fraudulent crypto platforms and payments: the irreversible-action failure mode,
-      observed in the wild. The background rate is not improving either. Prompt injection still
-      drives most production agentic-AI security failures, with roughly 340% year-over-year growth
-      per OWASP-cited data.</p>
+    <p>This is a supply-chain attack routed through the agent tooling, not through the product
+      code. The countermeasures come from dependency hygiene. Pin action SHAs. Treat agent workflow
+      definitions as part of the trusted computing base.</p>
+
+    <p>In the same week Zscaler documented SEO poisoning and hidden web prompts. Those prompts
+      steered AI agents toward fraudulent crypto platforms and payments. This is the
+      irreversible-action failure mode, seen in the wild. The background rate is not improving.
+      Prompt injection still drives most production agentic-AI security failures. OWASP-cited data
+      puts the growth at roughly 340% year over year.</p>
 
     <h2>Meanwhile, adoption crossed a threshold</h2>
 
-    <p>Against that backdrop, the adoption numbers kept climbing. DX's preliminary Q2 2026 data,
-      drawn from more than 400 companies, puts AI-authored code at 51.9% of output, up from 27.4%
-      in Q1. Over the same twelve months, median pull-request size nearly doubled, from 44 to 72
-      lines. More code, bigger diffs, heavier review load. DX itself cautions that the figure
-      measures perceived delegated workload more than literal output, and Meta's stated target of
-      more than 75% AI-generated committed code for select engineering teams by mid-2026 is a
-      mandate, not a measurement.</p>
+    <p>The adoption numbers kept climbing. DX's preliminary Q2 2026 data covers more than 400
+      companies. It puts AI-authored code at 51.9% of output, up from 27.4% in Q1. Over the same
+      twelve months, median pull-request size nearly doubled, from 44 to 72 lines. That means more
+      code, bigger diffs, and a heavier review load.</p>
+
+    <p>DX cautions that the figure measures perceived delegated workload more than literal output.
+      Meta states a target of more than 75% AI-generated committed code for select engineering
+      teams by mid-2026. That target is a mandate, not a measurement.</p>
 
     <div class="table-wrap">
     <table>
@@ -124,69 +125,74 @@
         <tr><th>Signal</th><th>Figure</th><th>Source and caveat</th></tr>
       </thead>
       <tbody>
-        <tr><td>AI-authored code, Q2 2026</td><td class="num">51.9%</td><td>DX preliminary, 400+ companies; up from 27.4% in Q1</td></tr>
-        <tr><td>Median PR size over twelve months</td><td class="num">44 &rarr; 72 lines</td><td>DX; bigger diffs mean weaker review</td></tr>
+        <tr><td>AI-authored code, Q2 2026</td><td class="num">51.9%</td><td>DX preliminary, 400+ companies. Up from 27.4% in Q1</td></tr>
+        <tr><td>Median PR size over twelve months</td><td class="num">44 &rarr; 72 lines</td><td>DX. Bigger diffs mean weaker review</td></tr>
         <tr><td>Meta AI-code target, mid-2026</td><td class="num">&gt;75%</td><td>Mandate for select teams, not a measurement</td></tr>
-        <tr><td>Developer adoption vs. measured gains</td><td class="num">~93% / single digits</td><td>Adoption near-universal; org-level productivity gains still single-digit in some analyses</td></tr>
-        <tr><td>Multi-turn task pass rate, top models</td><td class="num">~63%</td><td>Early SWE-Together-style evals; vendor-adjacent, directional</td></tr>
+        <tr><td>Developer adoption vs. measured gains</td><td class="num">~93% / single digits</td><td>Adoption near-universal. Org-level productivity gains still single-digit in some analyses</td></tr>
+        <tr><td>Multi-turn task pass rate, top models</td><td class="num">~63%</td><td>Early SWE-Together-style evals. Vendor-adjacent, directional</td></tr>
       </tbody>
     </table>
     </div>
 
-    <p>The most useful new measurement tool is Meta's <strong>SWE-Together</strong> benchmark
-      (arXiv 2606.29957): 109 tasks reconstructed from 11,260 real user-agent sessions, replayed
-      through an LLM user-simulator. It scores agents on final correctness and on the number of
-      corrective feedback turns a human had to supply. That second axis is the honest proxy for
-      how close an agent is to unattended operation, and it is more decision-relevant than any
-      single-shot pass rate. A related benchmark wave (SWE-Chain for chained release-level package
-      upgrades, EvoCode-Bench for multi-turn iterative work) points the same direction.</p>
+    <p>The most useful new measurement tool is Meta's <strong>SWE-Together</strong> benchmark,
+      arXiv 2606.29957. It holds 109 tasks rebuilt from 11,260 real user-agent sessions. It replays
+      them through an LLM user-simulator. It scores agents on final correctness and on the number
+      of corrective feedback turns a human had to supply. That second axis is the honest proxy for
+      how close an agent is to unattended operation. It matters more to a decision than any
+      single-shot pass rate.</p>
 
-    <p>The institutional context matured as well. ICML 2026 opened July 6 in Seoul with agentic AI
-      appearing in roughly 60 of 247 workshop proposals, tilted toward safety, uncertainty, and
-      governance. A new arXiv paper, "From Assistance to Agency: Rethinking Autonomy and Control
-      in CI/CD Pipelines," formalizes what practitioners and firms like PwC have described
-      informally: agents operating inside human-governed approval structures, not independent
-      control. GitHub's Spec Kit advanced to v0.12.10 with its Spec, Plan, Tasks, Implement loop
-      and 30-plus agent integrations unchanged. And the practical consensus on autonomy held
-      steady: start low-stakes (repository maintenance, dependency bumps, test generation, docs),
-      earn autonomy progressively, and invest in automated gates.</p>
+    <p>A related benchmark wave points the same way. SWE-Chain covers chained release-level package
+      upgrades. EvoCode-Bench covers multi-turn iterative work.</p>
+
+    <p>The institutional context matured as well. ICML 2026 opened on July 6 in Seoul. Agentic AI
+      appeared in roughly 60 of 247 workshop proposals, most of them about safety, uncertainty, and
+      governance. A new arXiv paper, "From Assistance to Agency: Rethinking Autonomy and Control in
+      CI/CD Pipelines," formalizes what practitioners and firms like PwC describe informally.
+      Agents operate inside human-governed approval structures. They do not hold independent
+      control.</p>
+
+    <p>GitHub's Spec Kit advanced to v0.12.10. Its Spec, Plan, Tasks, Implement loop and its
+      30-plus agent integrations did not change. The practical consensus on autonomy held steady.
+      Start with low-stakes work: repository maintenance, dependency bumps, test generation, and
+      docs. Earn autonomy step by step. Invest in automated gates.</p>
 
     <h2>How we apply this at River.io</h2>
 
-    <p>River.io runs a GitHub-issue-driven SDLC: issues are the specification channel that agents
-      consume. GitLost describes our exact architecture, so we treat this week's research as an
-      operating requirement, not commentary.</p>
+    <p>River.io runs a GitHub-issue-driven SDLC. Issues are the specification channel that agents
+      read. GitLost describes our exact architecture. We treat this week's research as an operating
+      requirement, not as commentary.</p>
 
     <ul>
-      <li><strong>Label-gated intake.</strong> Agents act only on issues carrying a
-        maintainer-applied approval label, never on raw public issues. Anyone can open an issue;
-        only a human can promote one to a work order.</li>
+      <li><strong>Label-gated intake.</strong> Agents act only on issues that carry a
+        maintainer-applied approval label. They never act on raw public issues. Anyone can open an
+        issue. Only a human can promote one to a work order.</li>
       <li><strong>Least privilege by repository.</strong> Each agent workflow gets a per-repo
-        token, so an agent working on sloth
-        can never read CareTime. Agent runners get no network egress beyond the target
-        repository.</li>
-      <li><strong>Zero third-party dependencies, including in CI.</strong> The discipline that
-        keeps third-party libraries out of our compiled binaries extends to the automation layer:
-        pinned action SHAs, minimal third-party actions, and agent execution inside a sandbox
-        whose only write path is a pull-request branch. GuardFall broke exactly the control
-        (string-based command gating) that most frameworks rely on; our gate is behavioral. We
-        compile the code and run the full test suite, because running the thing beats filtering
+        token. An agent working on sloth can never read CareTime. Agent runners get no network
+        egress beyond the target repository.</li>
+      <li><strong>Zero third-party dependencies, including in CI.</strong> We keep third-party
+        libraries out of our compiled binaries, and the same discipline covers the automation
+        layer. We pin action SHAs and use as few third-party actions as we can. Agents execute
+        inside a sandbox whose only write path is a pull-request branch. GuardFall broke
+        string-based command gating, the control most frameworks rely on. Our gate is behavioral.
+        We compile the code and run the full test suite, because running the code beats filtering
         strings.</li>
-      <li><strong>Regulated work stays human-gated.</strong> For CareTime and TimeForCare
-        (Medicaid EVV, PHI-adjacent) and MaterialsAndPractices (organic compliance), GitLost adds
-        a new reason to an old rule: agent read access is itself a risk, not just merge rights.
-        Agents are kept off these repositories or restricted to draft-only roles with no standing
-        credentials. Humans author the compliance-defining assertions and approve every merge.</li>
-      <li><strong>Autonomy is earned with evidence.</strong> On low-stakes repositories
-        (MeowPassword, weathergalactic, sloth) we red-team the intake gate directly: post a public
-        issue containing a GitLost-style hidden instruction and confirm the agent ignores it. We
-        also log corrective interventions per agent task, the SWE-Together metric. When
-        interventions trend toward zero and the injection test passes, that is an evidence-based
-        case for loosening a gate, repository by repository, never globally.</li>
-      <li><strong>Small PRs by construction.</strong> DX's finding that PR size ballooned as AI
-        share doubled is a review-quality time bomb. We keep issues small and single-purpose so
-        agent PRs stay reviewable, and a lines-changed cap in CI rejects oversized ones
-        mechanically.</li>
+      <li><strong>Regulated work stays human-gated.</strong> CareTime and TimeForCare cover
+        Medicaid EVV and sit next to protected health information. EVV is electronic visit
+        verification. MaterialsAndPractices covers organic compliance. GitLost adds a new reason to
+        an old rule: agent read access is itself a risk, not just merge rights. We keep agents off
+        these repositories, or we restrict them to draft-only roles with no standing credentials.
+        Humans write the compliance-defining assertions and approve every merge.</li>
+      <li><strong>Autonomy is earned with evidence.</strong> On low-stakes repositories we red-team
+        the intake gate directly. Those repositories are MeowPassword, weathergalactic, and sloth.
+        We post a public issue with a GitLost-style hidden instruction and confirm the agent
+        ignores it. We also log corrective interventions per agent task, the SWE-Together metric.
+        When interventions trend toward zero and the injection test passes, we have an
+        evidence-based case to loosen a gate. We loosen it repository by repository, never
+        globally.</li>
+      <li><strong>Small PRs by construction.</strong> DX found that PR size grew as the AI share
+        doubled. That is a review-quality time bomb. We keep issues small and single-purpose, so
+        agent PRs stay reviewable. A lines-changed cap in CI rejects oversized PRs
+        automatically.</li>
     </ul>
 
     <hr />
@@ -216,7 +222,7 @@
       <li><a href="https://www.mindstudio.ai/blog/what-is-a-dark-factory-ai-agent">MindStudio: Dark factory AI agent</a> · <a href="https://www.bcgplatinion.com/insights/the-dark-software-factory">BCG Platinion: The dark software factory</a> · <a href="https://hackernoon.com/the-dark-factory-pattern-moving-from-ai-assisted-to-fully-autonomous-coding">HackerNoon: The dark factory pattern</a> · <a href="https://itmethods.com/dark-factory">iTmethods: Dark factory</a> · <a href="https://darkfactory.dev/blog/what-is-dark-factory-software-development">darkfactory.dev: What is dark factory software development</a> · <a href="https://github.com/topics/dark-factory">GitHub dark-factory topic</a></li>
     </ul>
 
-    <p><em>Vendor and blog figures cited here indicate direction, not audited benchmarks.</em></p>
+    <p><em>Vendor and blog figures here show direction, not audited benchmarks.</em></p>
 
   </div>
 </article>

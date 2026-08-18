@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Sixty-four percent of enterprise output tokens at OpenAI now come from Codex rather than ChatGPT. The delegation thesis stopped being a forecast this week and became a measurement. This edition also covers per-step model routing, a control-theory result on why evaluator agents cave, and the revert asymmetry that should set your autonomy levels." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing, Metrics, Practice" />
+<title>The week the measurement caught up — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 021</b><span>14 August 2026</span><span>9 min</span><span>Briefing</span></div>
+    <h1>The week the measurement caught up</h1>
+    <p class="dek">Sixty-four percent of enterprise output tokens at OpenAI now come from Codex
+      rather than ChatGPT. The delegation thesis stopped being a forecast and became a number. This
+      window also brought per-step model routing, a control-theory result on why evaluator agents
+      cave, and the asymmetry that should set your autonomy levels in place of confidence.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">An incident has driven every edition of this briefing for the last five
+      months. A model paused at a cyber red line. Agents built a covert coordination channel inside
+      an artifact registry. An agent cancelled a stranger's gym booking, because the cancellation
+      endpoint never checked who owned it.</p>
+
+    <p>Incidents are useful. They are also cheap. One dramatic anecdote can carry a thesis a long
+      way past the point where the evidence stops. This window was different. The most important
+      thing that happened between the twelfth and the fourteenth of August was a table of
+      numbers.</p>
+
+    <h2>The delegation number</h2>
+
+    <p>OpenAI published two studies on the twelfth under the title <em>From assistance to
+      execution</em>. The framing is OpenAI's own and it is self-serving. But the figures are the
+      first broad measurement anyone has published of what this blog has described since spring:
+      the difference between using a model as an assistant and using it as an executor.</p>
+
+    <p>The headline figure is this. As of June, <strong>Codex accounted for 64% of combined Codex
+      and ChatGPT output tokens among OpenAI's enterprise customers</strong>. Most enterprise token
+      volume at the largest commercial deployment of this technology is no longer conversational.
+      It is delegated agent work. It runs against a codebase and produces artifacts.</p>
+
+    <p>The second figure describes the spread. OpenAI segments the top decile of usage as
+      <em>frontier firms</em>. Those firms now generate <strong>8.3&times; as many output tokens
+      per active user</strong> as typical firms, up from <strong>2.6&times; in January</strong>.
+      The gap roughly tripled in six months. Something separates a firm that has restructured work
+      around delegation from one that has not. That something compounds, and it compounds fast.</p>
+
+    <p>The third figure names the separating variable, and it is the one worth sitting with. At
+      frontier firms, <strong>21% of active users use plugins weekly, against 9%
+      elsewhere</strong>. The variable is not prompt skill. It is not model choice. It is tool
+      access. It is whether the agent connects to the systems where the work lives. OpenAI's own
+      summary of the practical agenda reads like a factory floor, not a chat product. Connect
+      agents to the context and tools they need to complete valuable work. Establish clear
+      permissions, review and governance. Help people turn individual workflows into shared
+      ones.</p>
+
+    <blockquote>
+      <p>These are OpenAI's numbers. They come from OpenAI's telemetry, about OpenAI's customers.
+        OpenAI published them to argue that enterprises should buy more OpenAI. Nobody audited
+        them independently. Treat the direction as real and the magnitudes as
+        marketing-adjacent.</p>
+    </blockquote>
+
+    <h2>The loop stops being one model</h2>
+
+    <p>Nvidia shipped two things on the thirteenth. The model is Nemotron 3.5 Lightning. It is a
+      30-billion-parameter mixture-of-experts with only about 3 billion parameters active at a
+      time, on a hybrid Mamba-Transformer design. Nvidia aimed it at high-volume specialized agent
+      steps. Nvidia reports up to 4&times; faster output token generation and around 30% faster
+      agentic task completion on the PinchBench agent benchmark, at matched accuracy for coding,
+      research and file-management work. That is a vendor benchmark on a vendor-friendly harness,
+      so read it as direction.</p>
+
+    <p>The other release is the interesting one. <strong>NeMo Switchyard</strong> is an open-source
+      routing library. It selects a different model <em>at each step of an agent workflow</em>. It
+      chooses among open, proprietary and Nvidia models to optimize for quality, latency or cost.
+      The product will do what products do. The architectural claim underneath it is correct, and
+      it outlives the vendor.</p>
+
+    <p>An agent loop is not one homogeneous thing. It is a sequence of structurally different
+      steps: plan, generate, evaluate, format, verify, commit. A planner benefits from the largest
+      model available, because a bad planning decision propagates furthest. A formatter does not
+      benefit. Neither does a lint-fixer, a commit-message writer, or a step that converts one
+      structured representation into another.</p>
+
+    <p>Running every step on the frontier model is like staffing every station on a line with the
+      most expensive machinist in the building. The one-model-per-loop assumption was never a
+      design decision. Nobody had bothered to route yet.</p>
+
+    <h2>Why your evaluator agrees with you</h2>
+
+    <p>The paper of the window is <a href="https://arxiv.org/abs/2608.11207">arXiv 2608.11207</a>,
+      posted on the thirteenth. Its title is <em>Dynamic Governance of Multi-LLM Agent Systems for
+      Collaborative Conversational Outcomes</em>. The finding is short and unwelcome.</p>
+
+    <p>Take two LLM agents with structurally opposed objectives. Let them interact across many
+      turns with no shared goal function between them. The result is not productive tension. It is
+      capitulation and conversation collapse. One side caves. The authors propose an
+      &ldquo;Experience Orchestrator.&rdquo; It is a control-theoretic governance layer that
+      replaces the missing shared objective and stabilizes the interaction.</p>
+
+    <p>This is the failure mode of the planner-generator-evaluator pattern. It is the first formal
+      write-up we have seen. Everyone who builds agent loops reaches for an adversarial evaluator,
+      on the intuition that a critic agent will catch what the generator missed. The paper says
+      that intuition is conditional. Without a shared objective external to both agents, the critic
+      drifts toward agreement.</p>
+
+    <p>You cannot see that drift from outside the loop, because
+      <strong>collapse-by-agreement produces green output</strong>. A generator and evaluator that
+      converged on mutual approval look exactly like a generator and evaluator that converged on
+      correctness. The transcript does not show the difference. Only an oracle that neither agent
+      wrote can show it.</p>
+
+    <p>The caveat is real. This is a preprint, demonstrated on two-agent simulations, and the
+      authors do not show that it generalizes to larger fleets. But the mechanism is intuitive
+      enough, and the mitigation is cheap enough, that waiting for replication is the wrong
+      call.</p>
+
+    <h2>The revert asymmetry</h2>
+
+    <p>The fourth thing that happened was an essay, not a release. Florian Herrengt wrote a piece
+      on AI removing the middle class of software engineering. It went to the top of Hacker News on
+      the twelfth and collected 314 points and 364 comments. That kind of response indicates a
+      nerve, not a novelty. Simon Willison quoted it the same day.</p>
+
+    <p>The argument that matters here is not the one about careers. It is an asymmetry claim. It is
+      the most useful risk model to come out of this window, because you can measure it. Herrengt
+      argues that AI coding tools remove the <em>speed limit</em> on software changes. The danger is
+      not bad code. The danger is large plausible code: giant pull requests that look functional and
+      quietly destroy maintainability. His example is a database change. Reverting one takes far
+      longer than the ten minutes the agent needed to make it. You have to plan a migration, avoid
+      disrupting a live system, and deal with orphaned data.</p>
+
+    <blockquote>
+      <p>Generation cost and reversal cost have decoupled. For twenty years they stayed roughly
+        proportional, because the same person paid both, in the same units, at roughly the same
+        rate. Most engineering intuition about risk is calibrated against that proportionality. It
+        is gone.</p>
+    </blockquote>
+
+    <h2>Two governance items, filed</h2>
+
+    <p>Anthropic announced on the eleventh that Claude models released on or after 2 August 2026
+      will embed invisible machine-readable watermarks in generated text. The watermarks are
+      designed to survive copy and paste. Generated files also carry C2PA digitally signed
+      provenance metadata. This applies across the API, Claude Code and cloud partners. Older
+      models get a grace period to December 2026. EU AI Act compliance drives the change.</p>
+
+    <p>The White House also opened a voluntary framework, reported on the twelfth. It directs
+      frontier developers to submit models for cybersecurity capability evaluation before
+      deployment. <strong>The evaluation standards themselves are classified.</strong> Researchers
+      flagged the transparency problem at once, and it is the obvious one. Nobody outside can
+      assess whether the tests are rigorous, or whether they match real threat models. Until an
+      unclassified companion exists, no buyer can verify the claim &ldquo;passed the federal cyber
+      evaluation.&rdquo; That makes it worthless as a procurement signal, however good the
+      program's intent.</p>
+
+    <h2>How we apply this at River.io</h2>
+
+    <p><strong>The 64% figure argues for finishing the pipeline, not for loosening it.</strong>
+      Enterprise token volume has already tipped to delegation. The variable that separates the
+      firms pulling ahead is tool access and governance, not model access. That describes the
+      GitHub-issue-driven SDLC we already run. The gap to close is coverage, not ambition. Every
+      repository needs a machine-readable definition of done in the issue, not only the active
+      ones. An agent connected to a repository with no acceptance criteria is a faster way to
+      produce work nobody asked for.</p>
+
+    <p><strong>We are replacing confidence with reversal cost as the autonomy rule.</strong> Nobody
+      can answer the question &ldquo;how confident is the agent,&rdquo; so we should stop asking it.
+      A human can answer &ldquo;how expensive is the reversal&rdquo; in advance, per class of
+      change, once. Under that rule the buckets fall out cleanly.</p>
+
+    <p>Pure functions and test additions in sloth, MeowPassword and weathergalactic are cheap to
+      revert, so they belong at full autonomy. Anything that touches a schema, a stored record, or
+      an EVV submission in CareTime or TimeForCare is expensive to reverse or irreversible. That
+      work stays human-gated, however clean the diff looks. MaterialsAndPractices splits down the
+      middle. Certification-record writes are expensive. Reporting and UI are not. Each repository's
+      autonomy contract carries this as a table with the reversal cost stated per change class. That
+      makes it a checkable artifact, not a disposition.</p>
+
+    <p><strong>Per-step model routing is a table, not a dependency.</strong> Switchyard is the wrong
+      shape for this shop, because it is a library on a vendor stack. The idea underneath it is
+      right, and it is on the order of 150 lines of native code. Build a step table that maps each
+      loop stage to a model endpoint. Put the planner on the large model. Put the formatter,
+      lint-fixer and commit-message writer on a small local one. Combined with Muse Glimmer from
+      the previous edition, most steps of a bounded loop on a low-stakes repository can run
+      on-device, and only the planning step reaches out. That is a cost lever and a confidentiality
+      lever in one change. It is also hand-rollable with zero third-party code, which is the only
+      version of it we would ship.</p>
+
+    <p><strong>If you build a generator and an evaluator, their shared objective must be a
+      file.</strong> The arXiv result says an evaluator without a shared goal function caves. Our
+      shared goal function already exists and is compiled. It is the test suite, plus the acceptance
+      criteria in the issue. The paper adds one thing: you must enforce the asymmetry
+      <em>structurally</em>, not request it in a prompt. The evaluator agent must not have
+      permission to modify tests. Any run where the tests changed in the same commit as the
+      implementation goes to automatic human review. That is a branch protection rule and a CI
+      check. A prompt instruction not to cheat is a suggestion made to the party with the incentive
+      to ignore it.</p>
+
+    <p><strong>Watermarking is an audit gift for the regulated repositories.</strong> For CareTime
+      and TimeForCare, we can now show which artifacts a model generated, with signed provenance
+      attached. That is directly useful under a Medicaid EVV audit, or under a state review that
+      asks how we produced software changes. One issue covers the work. Verify that C2PA metadata
+      and watermarked text survive our build and documentation pipelines instead of being stripped
+      silently. Record the answer either way. This makes the record better. It does not make the
+      gate looser, and the PHI-touching autonomy posture does not change.</p>
+
+    <p><strong>No always-on agents hold credentials to anything in the portfolio.</strong> The
+      pattern arriving this window is a public beta from SpaceXAI. It offers persistent agents that
+      sign into applications and websites, including ones with no API and no MCP endpoint. The
+      agents continue jobs after the user disconnects, and they share context with peer agents. The
+      product may have merits. The shape of the exposure is still clear. An agent holds a
+      long-lived credential to a system that cannot tell an agent session from a human one. A
+      username and password carries no per-agent identity. Where an agent needs access here, it
+      gets a scoped, separately issued credential with its own identity and its own log. For
+      anything that touches PHI, it gets no credential at all.</p>
+
+    <hr />
+
+    <h2>Sources and bibliography</h2>
+
+    <h3>Primary</h3>
+    <ul>
+      <li><a href="https://openai.com/index/how-enterprises-put-ai-to-work/">OpenAI, <em>From assistance to execution: How enterprises put AI to work</em></a> (12 August 2026). Source of the 64% Codex share, the 8.3&times; / 2.6&times; frontier-firm token ratio, and the 21% / 9% weekly plugin usage figures. Self-reported telemetry. Not independently audited.</li>
+      <li><a href="https://arxiv.org/abs/2608.11207">arXiv:2608.11207, <em>Dynamic Governance of Multi-LLM Agent Systems for Collaborative Conversational Outcomes</em></a> (13 August 2026). Preprint. It demonstrates conversational collapse in opposed-objective two-agent systems that lack a shared goal function. It proposes the control-theoretic Experience Orchestrator layer. Two-agent simulations only.</li>
+      <li><a href="https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html">Florian Herrengt, <em>AI is removing the middle class of software engineering</em></a>. Source of the speed-limit framing and the generation-versus-reversal cost asymmetry.</li>
+    </ul>
+
+    <h3>Reporting</h3>
+    <ul>
+      <li><a href="https://techcrunch.com/2026/08/11/anthropic-says-it-will-watermark-text-generated-by-its-ai-models/">TechCrunch, <em>Anthropic says it will watermark text generated by its AI models</em></a> (11 August 2026). Watermarking scope, C2PA provenance, the 2 August 2026 model cutoff and the December 2026 grace period.</li>
+      <li><a href="https://campustechnology.com/articles/2026/08/12/white-house-intros-classified-cybersecurity-review-for-frontier-ai-models.aspx">Campus Technology, <em>White House intros classified cybersecurity review for frontier AI models</em></a> (12 August 2026).</li>
+      <li><a href="https://aiagentstore.ai/ai-agent-news/this-week">AI Agent Store, <em>AI Agents News, week of 13 August 2026</em></a>. Nemotron 3.5 Lightning and NeMo Switchyard specifications and PinchBench figures. Grok Bot public beta. DeepSeek V4 Pro API release.</li>
+      <li><a href="https://simonwillison.net/2026/Aug/12/florian-herrengt/">Simon Willison, quoting Florian Herrengt</a> (12 August 2026) &middot; <a href="https://daily.dev/posts/ai-is-removing-the-middle-class-of-software-engineering-lhvamvof9">daily.dev discussion thread</a>, source of the Hacker News engagement figures.</li>
+      <li><a href="https://buttondown.com/pollak/archive/ai-intelligence-briefing-august-13-2026/">Brett Pollak, <em>AI Intelligence Briefing</em></a> (13 August 2026). Aggregator; used to locate several of the primary sources above.</li>
+    </ul>
+
+    <h3>Prior editions referenced</h3>
+    <ul>
+      <li><a href="2026-08-12-the-agent-that-hacked-a-gym.html">The agent that hacked a gym</a> (12 August 2026). The missing-authorization incident and the Muse Glimmer local-model release.</li>
+      <li><a href="2026-08-10-human-approval-is-a-detector-not-a-control.html">Human approval is a detector, not a control</a> (10 August 2026). Why an approval click does not constrain capability.</li>
+    </ul>
+
+    <p><em>Vendor and blog figures indicate direction, not audited benchmarks. The OpenAI adoption
+      figures are self-reported from OpenAI's own telemetry about its own customers. The Nemotron
+      speed figures are Nvidia's own, on a vendor-selected benchmark. The arXiv paper is a preprint
+      demonstrated on two-agent simulations and has not been shown to generalize to larger agent
+      fleets.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

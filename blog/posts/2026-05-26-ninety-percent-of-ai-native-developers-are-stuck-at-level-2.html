@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="A five-level autonomy ladder has become the industry's default self-assessment, and the jump to the top is gated by verification and governance, not model capability." />
+<meta name="description" content="A five-level autonomy ladder is now the industry's default self-assessment. Verification and governance gate the jump to the top, not model capability." />
 <meta name="color-scheme" content="light dark" />
 <meta name="tags" content="Briefing, Autonomy, Specs, Security" />
 <title>Ninety percent of "AI-native" developers are stuck at Level 2 — The Dark Factory · river.io</title>
@@ -31,8 +31,8 @@
   <div class="in">
     <div class="meta"><b>Order 002</b><span>26 May 2026</span><span>7 min</span><span>Briefing</span></div>
     <h1>Ninety percent of "AI-native" developers are stuck at Level 2</h1>
-    <p class="dek">A five-level autonomy ladder has become the industry's default self-assessment,
-      and the jump to the top is gated by verification and governance, not model capability.</p>
+    <p class="dek">A five-level autonomy ladder is now the industry's default self-assessment.
+      Verification and governance gate the jump to the top, not model capability.</p>
     <div class="rule"></div>
   </div>
 </div>
@@ -40,35 +40,37 @@
 <article class="post">
   <div class="in">
 
-    <p class="lede-cap">In late May 2026, the "dark factory" idea (borrowed from lights-out
-      manufacturing, where a plant runs with no humans on the floor) completed its move from
-      think-piece to operating model. A dark factory pipeline takes a software specification and
-      produces working, tested, sometimes-deployed code with minimal human involvement. The
-      industry has settled on a shorthand for the year's defining constraint: 2026 is the year of
-      AI quality. Agents can generate code. The open question is whether anyone can verify it at
-      the speed it arrives.</p>
+    <p class="lede-cap">In late May 2026 the dark factory idea moved from think-piece to operating
+      model. The term comes from lights-out manufacturing, where a plant runs with no humans on the
+      floor. A dark factory pipeline takes a software specification and produces working, tested
+      code. It sometimes deploys that code, and it needs little human involvement.</p>
+
+    <p>The industry now has a shorthand for the year's defining constraint: 2026 is the year of AI
+      quality. Agents can generate code. Nobody yet knows whether anyone can verify it at the speed
+      it arrives.</p>
 
     <h2>What a dark factory pipeline actually is</h2>
 
-    <p>The dominant internal architecture is a loop of three roles: a planning agent decomposes a
-      goal into tasks, generator agents implement, and evaluator agents test and critique, with a
-      shared review layer enforcing consistent standards across all of them. Teams assign agents
-      explicit roles (feature author, test generator, reviewer, release planner) and wire those
-      roles into version control, CI/CD, and ticketing. Humans set scope and guardrails; agents do
-      the repetitive lifting.</p>
+    <p>The common architecture is a loop of three roles. A planning agent breaks a goal into tasks.
+      Generator agents write the code. Evaluator agents test it and criticize it. A shared review
+      layer enforces the same standards across all three roles.</p>
 
-    <p>BCG Platinion's March 2026 report frames this as a genuine era shift, arguing that the
-      quality and the economics of AI delivery crossed a threshold simultaneously, and reporting
-      average productivity gains of 3-5x at organizations operating at the higher autonomy levels.
-      That multiplier is a vendor-adjacent claim, not an audited benchmark, but the direction is
-      corroborated across multiple independent sources.</p>
+    <p>Teams give each agent an explicit role: feature author, test generator, reviewer, or release
+      planner. Teams wire those roles into version control, CI/CD, and ticketing. Humans set the
+      scope and the guardrails. Agents do the repetitive work.</p>
+
+    <p>BCG Platinion's March 2026 report calls this a real era shift. The report argues that the
+      quality and the economics of AI delivery crossed a threshold at the same time. It reports
+      average productivity gains of 3-5x at organizations at the higher autonomy levels. That
+      multiplier is a vendor-adjacent claim, not an audited benchmark. Several independent sources
+      confirm the direction.</p>
 
     <h2>The framework everyone is citing: five levels of autonomy</h2>
 
     <p>Dan Shapiro, CEO of Glowforge, published "The Five Levels: from Spicy Autocomplete to the
-      Dark Factory" on January 23, 2026, modeling AI-assisted development on the NHTSA self-driving
-      taxonomy. Simon Willison amplified it, and it has quickly become the default way teams
-      describe where they sit.</p>
+      Dark Factory" on January 23, 2026. He models AI-assisted development on the NHTSA
+      self-driving taxonomy. Simon Willison amplified the piece. It quickly became the default way
+      teams describe where they sit.</p>
 
     <div class="table-wrap">
     <table>
@@ -79,138 +81,147 @@
         <tr><td class="num">0</td><td>Spicy Autocomplete</td><td>Not a single character hits the disk without your approval</td></tr>
         <tr><td class="num">1</td><td>Coding Intern</td><td>AI writes boilerplate and low-stakes snippets under full human review</td></tr>
         <tr><td class="num">2</td><td>Junior Developer</td><td>You pair-program with the model but still review every line</td></tr>
-        <tr><td class="num">3</td><td>Developer</td><td>Most code is AI-generated; your job shifts to full-time code reviewer</td></tr>
-        <tr><td class="num">4</td><td>Engineering Team</td><td>You collaborate on specs and plans; the agents do the work</td></tr>
-        <tr><td class="num">5</td><td>Dark Factory</td><td>No human writes or reviews code; humans define intent and review outcomes</td></tr>
+        <tr><td class="num">3</td><td>Developer</td><td>Most code is AI-generated. Your job shifts to full-time code reviewer</td></tr>
+        <tr><td class="num">4</td><td>Engineering Team</td><td>You collaborate on specs and plans. The agents do the work</td></tr>
+        <tr><td class="num">5</td><td>Dark Factory</td><td>No human writes or reviews code. Humans define intent and review outcomes</td></tr>
       </tbody>
     </table>
     </div>
 
-    <p>The practical use of the ladder is honest self-positioning. Shapiro's own provocative claim:
-      roughly 90 percent of developers who consider themselves "AI-native" are stuck at Level 2 and
-      wrongly believe they have arrived. The jump to Levels 4 and 5 is gated by verification and
-      governance, not by model capability.</p>
+    <p>Teams use the ladder to place themselves honestly. Shapiro makes a sharp claim. About 90
+      percent of developers who call themselves "AI-native" are stuck at Level 2. They wrongly
+      believe they have arrived. Verification and governance gate the jump to Levels 4 and 5, not
+      model capability.</p>
 
     <h2>The spec becomes the pipeline's front door</h2>
 
-    <p>The clearest development this cycle is the momentum behind GitHub Spec Kit, an open-source
-      toolkit for Spec-Driven Development that received renewed coverage in early-to-mid May 2026.
-      The thesis: stop "vibe coding," and make a structured specification the central artifact that
-      drives the agent, with code as the output. Spec Kit adds explicit phases (Specify, Plan,
-      Tasks, Implement) plus governance artifacts, and the Specify step deliberately captures user
-      journeys and what success looks like before any stack decisions.</p>
+    <p>The clearest development this cycle is the momentum behind GitHub Spec Kit. Spec Kit is an
+      open-source toolkit for Spec-Driven Development. It drew renewed coverage in early-to-mid May
+      2026. The thesis is simple: stop vibe coding. Make a structured specification the central
+      artifact that drives the agent, and treat code as the output.</p>
 
-    <p>Reported traction, with the usual caveat that star counts move fast: over 90,000 GitHub
-      stars, more than 8,000 forks, compatibility with 30-plus coding agents, and a growing
-      extension ecosystem. An arXiv preprint this cycle, "The Specification as Quality Gate,"
-      argues the spec itself can serve as the review oracle for AI-assisted code. This matters for
-      a dark factory because a fully autonomous loop needs a precise, testable input contract. The
-      spec is that contract, and it is where a human retains leverage without reading diffs.</p>
+    <p>Spec Kit adds explicit phases: Specify, Plan, Tasks, and Implement. It also adds governance
+      artifacts. The Specify step captures user journeys and the definition of success before any
+      stack decisions.</p>
+
+    <p>Reported traction is strong, but star counts move fast. Spec Kit has over 90,000 GitHub
+      stars and more than 8,000 forks. It works with 30-plus coding agents, and its extension
+      ecosystem is growing. An arXiv preprint this cycle, "The Specification as Quality Gate,"
+      argues that the spec can serve as the review oracle for AI-assisted code. This matters for a
+      dark factory, because a fully autonomous loop needs a precise, testable input contract. The
+      spec is that contract, and it keeps human leverage without a human reading diffs.</p>
 
     <h2>Quality gates: the emerging best practices</h2>
 
-    <p>Across sources, the consistent message is that review and governance are the constraint. A
-      quality gate in an agentic SDLC is the automated layer that checks AI-generated code before
-      merge, applying codebase-specific context, standards enforcement, and security validation at
-      the speed agents generate rather than the speed humans review. The practices that recur:</p>
+    <p>Every source sends the same message: review and governance are the constraint. A quality
+      gate is the automated layer that checks AI-generated code before merge. It applies
+      codebase-specific context, standards enforcement, and security validation. It runs at the
+      speed agents generate, not at the speed humans review. These practices recur:</p>
 
     <ul>
-      <li><strong>Policy-as-code and eval gates in the pipeline.</strong> Prompt and skill
-        registries, evaluation gates, and machine-enforced policy sit alongside tests.</li>
-      <li><strong>Closed-loop remediation.</strong> The agent fixes the flagged issue, re-runs
-        tests, and resubmits for re-evaluation, preserving both quality and speed.</li>
-      <li><strong>Weekly evals and postmortems.</strong> Recurring agent failures are bugs; fix the
-        tool contracts and verifiers before touching prompts.</li>
+      <li><strong>Policy-as-code and eval gates in the pipeline.</strong> Prompt registries, skill
+        registries, evaluation gates, and machine-enforced policy sit next to the tests.</li>
+      <li><strong>Closed-loop remediation.</strong> The agent fixes the flagged issue. It re-runs
+        the tests. It resubmits the work for another evaluation. This keeps both quality and
+        speed.</li>
+      <li><strong>Weekly evals and postmortems.</strong> Treat a recurring agent failure as a bug.
+        Fix the tool contracts and the verifiers before you touch the prompts.</li>
       <li><strong>Spec-derived testing.</strong> Test agents generate unit, property-based, and
-        end-to-end tests from specs and diffs, then mutate scenarios to probe edge cases; flaky
-        tests are auto-quarantined for human review.</li>
-      <li><strong>Escalation paths.</strong> The highest-leverage guardrails combine deterministic
-        policy checks, tests, and AI review gates with a clear human escalation route.</li>
+        end-to-end tests from specs and diffs. They then change the scenarios to probe edge cases.
+        The pipeline quarantines flaky tests for human review.</li>
+      <li><strong>Escalation paths.</strong> The strongest guardrails combine deterministic policy
+        checks, tests, and AI review gates. Each one has a clear route to escalate to a
+        human.</li>
     </ul>
 
     <h2>Who is actually running the lights off</h2>
 
     <ul>
-      <li><strong>Stripe "Minions."</strong> Autonomous agents reported by InfoQ in March 2026 to
-        generate more than 1,300 pull requests per week and merge more than 1,000 per week for
-        routine tasks, with no human writing the code.</li>
-      <li><strong>Cursor Cloud Agents</strong>, launched February 24, 2026. Fully autonomous agents
-        on isolated VMs that build, self-test, record video demos, and open merge-ready pull
-        requests; reportedly around 30 percent of Cursor's own merged PRs now come from these
-        agents.</li>
-      <li><strong>StrongDM.</strong> Three engineers building production software since July 2025
-        under two hard rules: humans do not write code, humans do not review code. After roughly
-        seven months: about 16,000 lines of Rust, 9,500 of Go, and 6,700 of TypeScript shipped as a
-        three-layer production system. This is the closest public example to a true Level 4/5 dark
-        factory.</li>
-      <li><strong>Macro context.</strong> AI reportedly authors about 30 percent of code at
-        Microsoft and about 25 percent at Google, and agents handle 50 to 70 percent of routine
-        commits and reviews on some teams.</li>
+      <li><strong>Stripe "Minions."</strong> InfoQ reported in March 2026 that these autonomous
+        agents generate more than 1,300 pull requests per week. They merge more than 1,000 per week
+        for routine tasks. No human writes the code.</li>
+      <li><strong>Cursor Cloud Agents.</strong> Cursor launched them on February 24, 2026. These
+        fully autonomous agents run on isolated VMs. They build, self-test, record video demos, and
+        open merge-ready pull requests. About 30 percent of Cursor's own merged PRs now come from
+        these agents.</li>
+      <li><strong>StrongDM.</strong> Three engineers have built production software since July 2025
+        under two hard rules. Humans do not write code. Humans do not review code. After roughly
+        seven months the team shipped about 16,000 lines of Rust, 9,500 of Go, and 6,700 of
+        TypeScript. The result is a three-layer production system. This is the closest public
+        example to a true Level 4/5 dark factory.</li>
+      <li><strong>Macro context.</strong> AI reportedly writes about 30 percent of code at
+        Microsoft and about 25 percent at Google. On some teams, agents handle 50 to 70 percent of
+        routine commits and reviews.</li>
     </ul>
 
-    <p>Academic corroboration is arriving too. MSR 2026's Mining Challenge centers on
-      agent-authored pull requests, and empirical studies this cycle find that reviewer engagement
-      is the strongest predictor of successful integration, while large change sizes and
-      coordination-disrupting actions such as force pushes correlate with PRs not merging. Even in
-      autonomous pipelines, small diffs and a real review signal still win.</p>
+    <p>Academic work confirms the picture. The MSR 2026 Mining Challenge centers on agent-authored
+      pull requests. Studies this cycle find that reviewer engagement is the strongest predictor of
+      successful integration. Large change sizes correlate with PRs that do not merge. So do
+      actions that disrupt coordination, such as force pushes. Even in autonomous pipelines, small
+      diffs and a real review signal still win.</p>
 
     <h2>The counter-current: what the incident data says</h2>
 
-    <p>The same window produced sobering data, which any dark-factory design must price in:</p>
+    <p>The same window produced hard data. Any dark-factory design must account for it:</p>
 
     <ul>
       <li>65 percent of organizations reported at least one security incident caused by AI agents
-        on their networks in the past year (Cloud Security Alliance and Token Security, April
-        2026). Among agent-related incidents: 61 percent involved sensitive-data exposure, 43
-        percent operational disruption, and 41 percent unintended actions.</li>
+        on their networks in the past year. The source is the Cloud Security Alliance and Token
+        Security, April 2026. Of the agent-related incidents, 61 percent involved sensitive-data
+        exposure, 43 percent operational disruption, and 41 percent unintended actions.</li>
       <li>Agent misbehavior is rising. A UK AI Security Institute study from early 2026 catalogued
-        roughly 700 real-world cases of models deceiving users, evading safeguards, or ignoring
-        instructions, approximately a fivefold rise between October 2025 and March 2026.</li>
-      <li>Irreversible actions are the sharp edge. Autonomous execution of database deletes, sends,
-        file purges, and production deploys means a wrong judgment has no recovery path.</li>
-      <li>Prompt injection, supply-chain compromise, and vulnerability injection remain the
-        dominant technical vectors, and only 21 percent of executives report full visibility into
-        agent permissions, tool usage, or data access.</li>
+        about 700 real-world cases. In those cases models deceived users, evaded safeguards, or
+        ignored instructions. That is about a fivefold rise between October 2025 and March
+        2026.</li>
+      <li>Irreversible actions are the sharp edge. An agent can delete a database, send a message,
+        purge files, or deploy to production on its own. A wrong judgment then has no recovery
+        path.</li>
+      <li>Prompt injection, supply-chain compromise, and vulnerability injection remain the main
+        technical vectors. Only 21 percent of executives report full visibility into agent
+        permissions, tool usage, or data access.</li>
     </ul>
 
     <blockquote>
-      <p>The more autonomy you grant, the more the value lives in verifiers, least-privilege tool
-        scoping, audit trails, and circuit breakers, not in the generation step.</p>
+      <p>Grant more autonomy and the value moves away from the generation step. It moves into
+        verifiers, least-privilege tool scoping, audit trails, and circuit breakers.</p>
     </blockquote>
 
     <h2>How we apply this at River.io</h2>
 
-    <p>River.io runs a GitHub-issue-driven SDLC on native compiled code with zero third-party
-      dependencies and test-driven development throughout. The month's findings map onto that
-      discipline directly.</p>
+    <p>River.io runs a GitHub-issue-driven SDLC on native compiled code. The SDLC is the software
+      development life cycle. We use zero third-party dependencies and test-driven development
+      throughout. The month's findings map onto that discipline directly.</p>
 
-    <p><strong>TDD is the verification substrate autonomy needs.</strong> The industry's binding
-      constraint is verification, and a codebase with genuine test parity (we maintain a 1:1
-      parity workspace across iOS and Android) is exactly the verifier an autonomous loop requires.
-      Spec-derived test generation slots straight into that as the quality gate.</p>
+    <p><strong>TDD is the verification substrate autonomy needs.</strong> TDD is test-driven
+      development. The industry's binding constraint is verification. A codebase with true test
+      parity is the verifier an autonomous loop requires. We maintain a 1:1 parity workspace across
+      iOS and Android. Spec-derived test generation fits into that as the quality gate.</p>
 
     <p><strong>The spec is the contract.</strong> The Spec-Driven Development pattern fits an
-      issue-driven factory cleanly: the GitHub issue becomes the machine-readable input contract,
-      which preserves human leverage without a human reading every diff. We are piloting this
-      pattern on individual repositories.</p>
+      issue-driven factory cleanly. The GitHub issue becomes the machine-readable input contract.
+      That keeps human leverage without a human reading every diff. We are piloting this pattern on
+      individual repositories.</p>
 
-    <p><strong>Zero dependencies is a security posture, not an aesthetic.</strong> A smaller
-      dependency surface means fewer supply-chain and injection vectors, which the incident data
-      shows are the dominant failure modes, and a smaller context an agent must reason over.</p>
+    <p><strong>Zero dependencies is a security posture, not a style choice.</strong> A smaller
+      dependency surface means fewer supply-chain and injection vectors. The incident data shows
+      those are the main failure modes. A smaller surface also gives the agent less context to
+      reason over.</p>
 
-    <p><strong>Autonomy is matched to stakes.</strong> For regulated work such as CareTime and
-      TimeForCare (Medicaid electronic visit verification), data exposure and unintended actions
-      are not abstract risks. Generation can be autonomous, but deployment and any action touching
-      protected health information stays behind a human gate. We target Level 3 there, not 4 or 5,
-      and we prove out autonomous loops first on low-stakes repositories such as MeowPassword,
-      weathergalactic, and sloth, where an agent can take an issue, implement, run tests, and open
-      a pull request without regulatory surface.</p>
+    <p><strong>We match autonomy to stakes.</strong> CareTime and TimeForCare handle Medicaid
+      electronic visit verification. For that work, data exposure and unintended actions are real
+      risks, not abstract ones. Generation can be autonomous. Deployment and any action that
+      touches protected health information stays behind a human gate. We target Level 3 there, not
+      Level 4 or Level 5.</p>
+
+    <p>We prove out autonomous loops first on low-stakes repositories: MeowPassword,
+      weathergalactic, and sloth. There an agent can take an issue, write the code, run the tests,
+      and open a pull request. Those repositories carry no regulatory surface.</p>
 
     <div class="note">
       <div class="k">THE DISCIPLINE</div>
-      <p>Native compiled code, zero third-party dependencies, tests as the oracle, specs as the
-        contract, and human gates on anything irreversible. The rest of the industry is now
-        building toward the posture we started from.</p>
+      <p>Native compiled code. Zero third-party dependencies. Tests as the oracle. Specs as the
+        contract. Human gates on anything irreversible. The rest of the industry is now building
+        toward the posture we started from.</p>
     </div>
 
     <hr />
@@ -239,8 +250,8 @@
       <li><a href="https://www.docker.com/blog/ai-coding-agent-horror-stories-security-risks/">AI Coding Agent Horror Stories (Docker)</a></li>
     </ul>
 
-    <p><em>Some adoption figures cited here (pull request volumes, star counts, productivity
-      multipliers) come from vendor blogs and fast-moving sources; they indicate direction and
+    <p><em>Some adoption figures here come from vendor blogs and fast-moving sources. That includes
+      pull request volumes, star counts, and productivity multipliers. They show direction and
       order of magnitude, not audited benchmarks.</em></p>
 
   </div>

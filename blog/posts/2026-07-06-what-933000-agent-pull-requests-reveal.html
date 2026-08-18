@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="The first large-scale empirical studies of agent-authored pull requests put real numbers on autonomous coding, including a rejection rate roughly four times the human baseline and tests that pass without proving anything." />
+<meta name="description" content="The first large-scale studies of agent-authored pull requests give real numbers on autonomous coding. Agents get rejected at roughly four times the human baseline. Their tests often pass without proving anything." />
 <meta name="color-scheme" content="light dark" />
 <meta name="tags" content="Briefing, Metrics, Security, Practice" />
 <title>What 933,000 agent pull requests reveal about autonomous coding — The Dark Factory · river.io</title>
@@ -31,9 +31,9 @@
   <div class="in">
     <div class="meta"><b>Order 009</b><span>6 July 2026</span><span>8 min</span><span>Briefing</span></div>
     <h1>What 933,000 agent pull requests reveal about autonomous coding</h1>
-    <p class="dek">The first large-scale empirical studies of agent-authored pull requests put real
-      numbers on autonomous coding, including a rejection rate roughly four times the human
-      baseline and tests that pass without proving anything.</p>
+    <p class="dek">The first large-scale studies of agent-authored pull requests give real numbers
+      on autonomous coding. Agents get rejected at roughly four times the human baseline. Their
+      tests often pass without proving anything.</p>
     <div class="rule"></div>
   </div>
 </div>
@@ -42,33 +42,42 @@
   <div class="in">
 
     <p class="lede-cap">In early July 2026, the honest empirical evidence on autonomous coding
-      finally showed up, and it complicates the hype. A cluster of new arXiv studies mining the
-      AIDev dataset, roughly 933,000 agentic pull requests from Codex, Copilot, Devin, Cursor, and
-      Claude Code across 61,000 repositories, put real numbers on agent behavior for the first
-      time. The picture is sobering. Agent PRs get rejected far more often than human PRs (one
-      benchmark set cites about 67 percent rejection for AI-generated PRs against about 16 percent
-      for manual work), agent-authored tests are frequently present but of questionable quality,
-      and test-containing PRs are bigger and slower without clearly higher merge rates. The method
-      is real and improving, but the newest primary-source evidence says agent output still needs
-      a hard, executable gate.</p>
+      finally arrived. It complicates the hype. A cluster of new arXiv studies mines the AIDev
+      dataset. That dataset holds roughly 933,000 agentic pull requests from Codex, Copilot, Devin,
+      Cursor, and Claude Code across 61,000 repositories. The studies put real numbers on agent
+      behavior for the first time.</p>
+
+    <p>The picture is sobering. Agent pull requests get rejected far more often than human pull
+      requests. One benchmark set cites about 67 percent rejection for AI-generated pull requests,
+      against about 16 percent for manual work. Agent-authored tests are frequently present but of
+      questionable quality. Pull requests that contain tests are bigger and slower, without clearly
+      higher merge rates.</p>
+
+    <p>The method is real, and it is improving. The newest primary-source evidence still says agent
+      output needs a hard, executable gate.</p>
 
     <h2>Researchers are now supplying the evidence, not vendors</h2>
 
-    <p>The vocabulary around autonomous software production is consolidating. The "Agentic SDLC"
-      and "AI Software Factory" are now pitched as industrialization: standardized processes, an
-      orchestrator agent, and "bolts" (compressed delivery units where weeks become days)
-      replacing two-week sprints. Treat the industrial-scale language as aspiration; the sources
-      pitching it are consulting and marketing pages. The phrase that keeps recurring in more
-      careful work, including PwC's 2026 analysis, is <strong>bounded autonomy</strong>: agents
-      operating inside human-governed approval structures rather than exercising independent
-      control. That is the honest description of what is actually shipping.</p>
+    <p>The vocabulary around autonomous software production is consolidating. Vendors now pitch the
+      "Agentic SDLC" and the "AI Software Factory" as industrialization. That means standardized
+      processes, an orchestrator agent, and "bolts" in place of two-week sprints. A bolt is a
+      compressed delivery unit where weeks become days. Treat the industrial-scale language as
+      aspiration, because the sources that pitch it are consulting and marketing pages.</p>
 
-    <p>The substantive shift is who holds the data. The AIDev corpus is being mined in parallel by
-      several research groups, and the descriptive findings are the most trustworthy signal the
-      field has had. The AIDev-pop subset (33,596 PRs from repositories with more than 100 stars)
-      is the cleaner sample: test-containing PRs are more common over time but larger and slower
-      to land, with broadly similar merge rates. Companion studies analyze why agentic PRs merge
-      or get rejected, and the security properties of agentic PRs at scale.</p>
+    <p>A more careful phrase keeps recurring, including in PwC's 2026 analysis:
+      <strong>bounded autonomy</strong>. Agents operate inside human-governed approval structures.
+      They do not exercise independent control. That is the honest description of what is actually
+      shipping.</p>
+
+    <p>The substantive shift is who holds the data. Several research groups mine the AIDev corpus
+      in parallel. Their descriptive findings are the most trustworthy signal the field has had.
+      The AIDev-pop subset is the cleaner sample, with 33,596 pull requests from repositories with
+      more than 100 stars.</p>
+
+    <p>In that subset, pull requests that contain tests are more common over time. They are also
+      larger and slower to land, and their merge rates are broadly similar. Companion studies
+      analyze why agentic pull requests merge or get rejected. Other companion studies analyze the
+      security properties of agentic pull requests at scale.</p>
 
     <h2>The numbers, honestly labeled</h2>
 
@@ -89,111 +98,117 @@
     </table>
     </div>
 
-    <p>Two anecdotes deserve their flags. Rakuten, via Anthropic's report, had Claude Code
-      complete an activation-vector extraction task inside vLLM, a roughly 12.5-million-line
-      library, in about 7 hours of autonomous work at roughly 99.9 percent numerical accuracy
-      against the reference: impressive, and a single vendor-cited case. Claude Code's own lead
-      reports 100 percent of his personal code is AI-written: a workflow claim, not a measured
-      repository-wide figure. Devin is cited in production at Goldman Sachs, Santander, and
-      Nubank.</p>
+    <p>Two anecdotes deserve their flags. Anthropic's report describes Rakuten running Claude Code
+      inside vLLM, a library of roughly 12.5 million lines. Claude Code completed an
+      activation-vector extraction task in about 7 hours of autonomous work. It reached roughly
+      99.9 percent numerical accuracy against the reference. The result is impressive, and it is a
+      single vendor-cited case.</p>
+
+    <p>Claude Code's own lead reports that 100 percent of his personal code is AI-written. That is
+      a workflow claim, not a measured repository-wide figure. Devin is cited in production at
+      Goldman Sachs, Santander, and Nubank.</p>
 
     <h2>Smoke without alarms</h2>
 
-    <p>The most important new finding of the cycle is the "All Smoke, No Alarm" study on oracle
-      signals in agent-authored test code (arXiv 2606.18168): agents often produce tests that run
-      but assert little of substance. Weak or missing oracles mean an autonomous loop that
-      generates its own tests can manufacture green checks with no real verification behind them.
-      That is the failure mode a dark factory is most exposed to, because the test suite is the
-      gate.</p>
+    <p>The most important new finding of the cycle is the "All Smoke, No Alarm" study (arXiv
+      2606.18168). It examines oracle signals in agent-authored test code. Agents often produce
+      tests that run but assert little of substance. Weak or missing oracles let an autonomous loop
+      manufacture green checks with no real verification behind them. A dark factory is most
+      exposed to that failure mode, because the test suite is the gate.</p>
 
     <blockquote>
-      <p>An agent writing both the code and its own toothless test is a closed loop with no
+      <p>An agent that writes both the code and its own toothless test is a closed loop with no
         oracle.</p>
     </blockquote>
 
-    <p>The mitigation is test-driven development done properly: the human or the specification
-      writes the failing assertion that defines correct, and the agent codes to it. Anthropic's
-      2026 Agentic Coding Trends Report frames the same constraint from the other side. Its
-      "delegation gap" finding (developers use AI in about 60 percent of work but can fully
-      delegate only 0 to 20 percent of tasks) comes with a one-line thesis: the bottleneck is no
-      longer writing code, it is clarity about what to build. The report also finds teams with
-      well-maintained context files see 40 percent fewer errors and 55 percent faster completion,
-      which reconciles with earlier evidence that bloated context files hurt: lean and
-      load-bearing, not comprehensive.</p>
+    <p>The mitigation is test-driven development done properly. The human or the specification
+      writes the failing assertion that defines correct behavior. The agent then codes to that
+      assertion. Anthropic's 2026 Agentic Coding Trends Report frames the same constraint from the
+      other side. Its "delegation gap" finding says developers use AI in about 60 percent of work.
+      They can fully delegate only 0 to 20 percent of tasks.</p>
+
+    <p>The report gives a one-line thesis: the bottleneck is no longer writing code, it is clarity
+      about what to build. The report also finds that teams with well-maintained context files see
+      40 percent fewer errors and 55 percent faster completion. That reconciles with earlier
+      evidence that bloated context files hurt. Keep context files lean and load-bearing, not
+      comprehensive.</p>
 
     <h2>Tooling: Spec Kit v0.12.3</h2>
 
-    <p>GitHub Spec Kit shipped v0.12.3 on 1 July 2026, adding a label-driven bug-test workflow and
-      a warning ahead of its skills default rollout. The core loop is unchanged: Spec, Plan,
-      Tasks, Implement, with a read-only analyze gate that cross-checks the constitution, spec,
-      plan, and tasks for ambiguities, coverage gaps, and contradictions before any code is
-      written. The new label-driven feature matters for issue-driven shops: it ties a reproduction
-      test to a labeled issue, turning a bug report into a failing test first. The community
-      ecosystem of more than 70 extensions (Jira, Azure DevOps, GitHub Issues integrations, plus
-      security, testing, and drift gates) continues to grow, and spec templates can still be
-      restructured to require regulatory traceability with non-optional test-first and
+    <p>GitHub Spec Kit shipped v0.12.3 on 1 July 2026. The release adds a label-driven bug-test
+      workflow. It also adds a warning ahead of the skills default rollout. The core loop is
+      unchanged: Spec, Plan, Tasks, Implement. A read-only analyze gate cross-checks the
+      constitution, spec, plan, and tasks before any code is written. It looks for ambiguities,
+      coverage gaps, and contradictions.</p>
+
+    <p>The new label-driven feature matters for issue-driven shops. It ties a reproduction test to
+      a labeled issue, which turns a bug report into a failing test first. The community ecosystem
+      of more than 70 extensions continues to grow. It includes Jira, Azure DevOps, and GitHub
+      Issues integrations, plus security, testing, and drift gates. Teams can still restructure
+      spec templates to require regulatory traceability with non-optional test-first and
       security-review gates.</p>
 
     <h2>The live risks</h2>
 
     <p><strong>The dependency supply chain is the open wound.</strong> The LiteLLM PyPI backdoor
-      sat live for about three hours in March 2026 and collected roughly 47,000 downloads, and
-      LiteLLM is the LLM gateway under CrewAI, DSPy, Microsoft GraphRAG, and dozens of agent
-      frameworks. A single compromised transitive dependency in an agent stack is a supply-chain
-      event with blast radius across every downstream framework.</p>
+      sat live for about three hours in March 2026. It collected roughly 47,000 downloads. LiteLLM
+      is the LLM gateway under CrewAI, DSPy, Microsoft GraphRAG, and dozens of agent frameworks.
+      One compromised transitive dependency in an agent stack is a supply-chain event. Its blast
+      radius covers every downstream framework.</p>
 
-    <p><strong>Prompt injection remains unsolved and is accelerating.</strong> OWASP data puts
-      growth at roughly 340 percent year over year, and it maps to six of the ten categories in
-      OWASP's Top 10 for Agentic Applications. An OWASP researcher flatly calls it unsolved.</p>
+    <p><strong>Prompt injection remains unsolved, and it is accelerating.</strong> OWASP data puts
+      growth at roughly 340 percent year over year. It maps to six of the ten categories in
+      OWASP's Top 10 for Agentic Applications. An OWASP researcher calls it unsolved.</p>
 
     <p><strong>Agent frameworks are turning prompts into shells.</strong> Microsoft disclosed
-      prompt-injection-to-RCE paths in agent frameworks, where a single prompt launches a process
-      on the host. CVE-2026-22708 against Cursor lets an attacker poison the agent's execution
-      environment so that allowlisted commands as innocuous as <code>git branch</code> deliver
-      arbitrary payloads. Allowlists are not a safe boundary if the environment can be
+      prompt-injection-to-RCE paths in agent frameworks. In these paths, a single prompt launches a
+      process on the host. CVE-2026-22708 against Cursor lets an attacker poison the agent's
+      execution environment. Allowlisted commands as innocuous as <code>git branch</code> then
+      deliver arbitrary payloads. Allowlists are not a safe boundary if the environment can be
       poisoned.</p>
 
     <div class="note">
       <div class="k">THE OPERATIONAL READING</div>
-      <p>With AI pull requests rejected at multiples of the human rate, the review gate is the
-        product. Throughput claims mean nothing without the merge-quality denominator, and a green
-        check means nothing without a real oracle behind it.</p>
+      <p>AI pull requests are rejected at multiples of the human rate. The review gate is
+        therefore the product. Throughput claims mean nothing without the merge-quality
+        denominator. A green check means nothing without a real oracle behind it.</p>
     </div>
 
     <h2>How we apply this at River.io</h2>
 
     <p>Our posture is native compiled code, zero third-party dependencies, test-driven
-      development, and a GitHub-issue-driven SDLC. This cycle's evidence, as opposed to its
-      marketing, points the same way.</p>
+      development, and a GitHub-issue-driven SDLC. This cycle's evidence points the same way. Its
+      marketing does not.</p>
 
     <p><strong>The LiteLLM backdoor is the case for zero dependencies.</strong> It is a concrete,
-      recent example of exactly the risk the rule eliminates: a transitive dependency compromise
-      cascading through every framework that trusted it. Agentic development does not change that
-      calculus; it sharpens it. We keep the rule, and we keep the agent toolchain itself lean.</p>
+      recent example of the risk the rule eliminates. A transitive dependency compromise cascaded
+      through every framework that trusted it. Agentic development does not change that calculus.
+      It sharpens it. We keep the rule, and we keep the agent toolchain itself lean.</p>
 
     <p><strong>TDD is the antidote to smoke-without-alarm tests.</strong> The research says
-      agent-written tests often lack real oracles. Our discipline of a human-defined or
-      spec-defined failing assertion first is precisely the control that closes the gap. On any
-      repository where an agent may open pull requests, the agent is not permitted to author both
-      the assertion and the implementation for the same behavior. The oracle originates from the
-      issue or the spec, never from the coder.</p>
+      agent-written tests often lack real oracles. Our discipline is a human-defined or
+      spec-defined failing assertion first. That control closes the gap. On any repository where an
+      agent may open pull requests, the agent may not author both the assertion and the
+      implementation for the same behavior. The oracle comes from the issue or the spec, never from
+      the coder.</p>
 
-    <p><strong>The label-driven bug-test workflow maps onto our issue-driven SDLC.</strong> A
-      labeled bug issue, a generated reproduction test, a failing test, then a fix is a clean,
-      low-risk pattern. It keeps the human at the point that matters (defining the failing test)
-      while the agent does the mechanical work.</p>
+    <p><strong>The label-driven bug-test workflow maps onto our issue-driven SDLC.</strong> The
+      pattern is clean and low-risk: a labeled bug issue, a generated reproduction test, a failing
+      test, then a fix. It keeps the human at the point that matters, which is defining the failing
+      test. The agent does the mechanical work.</p>
 
     <p><strong>Regulated work stays human-gated.</strong> Our CareTime and TimeForCare Medicaid
-      EVV applications and our MaterialsAndPractices organic-farm compliance application run at
-      human-gated autonomy: agents may draft, a human approves every merge, and no agent authors
+      EVV applications run at human-gated autonomy. So does our MaterialsAndPractices organic-farm
+      compliance application. Agents may draft, and a human approves every merge. No agent authors
       the compliance-defining assertions. This cycle's rejection-rate and prompt-injection data
       reinforce that regulated code is not the place to test lights-out operation.</p>
 
     <p><strong>Experiments run on the low-stakes repositories, with our own measurements.</strong>
       MeowPassword, weathergalactic, and sloth remain the sandboxes for a
-      planner-generator-evaluator loop with an executable merge gate. The current experiment:
-      measure how many agent PRs pass a human-authored test oracle versus an agent-authored one,
-      giving us a local version of the AIDev merge-quality numbers rather than a citation.</p>
+      planner-generator-evaluator loop with an executable merge gate. The current experiment
+      measures how many agent pull requests pass a human-authored test oracle against an
+      agent-authored one. That gives us a local version of the AIDev merge-quality numbers rather
+      than a citation.</p>
 
     <hr />
 
@@ -216,11 +231,11 @@
       <li><a href="https://blog.cyberdesserts.com/ai-agent-security-risks/">cyberdesserts: AI Agent Security Risks 2026 (LiteLLM, MCP, supply chain)</a></li>
     </ul>
 
-    <p><em>Vendor and blog figures cited here (adoption percentages, AI-written-code shares,
-      efficiency multiples, single-company anecdotes) indicate direction, not audited benchmarks.
-      The arXiv AIDev studies are the most trustworthy items but are descriptive, not causal, and
-      fast-moving self-reported numbers such as Google's roughly 75 percent should be read as
-      directional.</em></p>
+    <p><em>Vendor and blog figures cited here show direction, not audited benchmarks. This
+      includes adoption percentages, AI-written-code shares, efficiency multiples, and
+      single-company anecdotes. The arXiv AIDev studies are the most trustworthy items, but they
+      are descriptive, not causal. Read fast-moving self-reported numbers, such as Google's roughly
+      75 percent, as directional.</em></p>
 
   </div>
 </article>

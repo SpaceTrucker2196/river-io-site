@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="New research shows malicious behavior can hide inside agent skills themselves, evading scanners while preserving 96.6% of benign utility. The attack surface has moved from the agent's inputs to its toolbox, and a minimal, first-party toolchain is now a security architecture." />
+<meta name="description" content="New research shows that malicious behavior can hide inside agent skills themselves. The attack evades scanners and keeps 96.6% of benign utility. The attack surface has moved from the agent's inputs to its toolbox. A minimal, first-party toolchain is now a security architecture." />
 <meta name="color-scheme" content="light dark" />
 <meta name="tags" content="Security, Tooling, Autonomy, Practice" />
 <title>Every skill you do not install is an attack you do not have to detect — The Dark Factory · river.io</title>
@@ -31,9 +31,9 @@
   <div class="in">
     <div class="meta"><b>Order 011</b><span>13 July 2026</span><span>7 min</span><span>Security</span></div>
     <h1>Every skill you do not install is an attack you do not have to detect</h1>
-    <p class="dek">New research shows malicious behavior can hide inside agent skills themselves,
-      evading scanners while preserving 96.6% of benign utility. The attack surface has moved from
-      the agent's inputs to its toolbox.</p>
+    <p class="dek">New research shows that malicious behavior can hide inside agent skills
+      themselves. The attack evades scanners and keeps 96.6% of benign utility. The attack surface
+      has moved from the agent's inputs to its toolbox.</p>
     <div class="rule"></div>
   </div>
 </div>
@@ -42,125 +42,135 @@
   <div class="in">
 
     <p class="lede-cap">In mid-July 2026, the research frontier in agentic-coding security shifted.
-      The headline vulnerabilities of early July (GitLost, GuardFall) were about hostile
-      <em>content</em>: issues, pull requests, and web pages that carry hidden instructions to an
-      agent reading them. The new wave is about hostile <em>capabilities</em>. A paper titled
-      <strong>PhantomSkill</strong>, introducing an attack technique the authors call
-      <strong>VulMask</strong> (arXiv 2606.19191), demonstrates that malicious behavior can be
-      hidden inside an agent skill's auxiliary scripts, rewritten as ordinary-looking
-      "vulnerability-shaped" code that fires only on an attacker's trigger. The results: a 58.8%
-      attack success rate while preserving 96.6% of the skill's benign utility, largely evading
-      skill scanners and automated reviewers across major coding agents.</p>
+      The headline vulnerabilities of early July, GitLost and GuardFall, were about hostile
+      <em>content</em>. Issues, pull requests, and web pages carry hidden instructions to an agent
+      that reads them. The new wave is about hostile <em>capabilities</em>.</p>
+
+    <p>A paper titled <strong>PhantomSkill</strong> introduces an attack technique the authors call
+      <strong>VulMask</strong> (arXiv 2606.19191). It shows that malicious behavior can hide inside
+      an agent skill's auxiliary scripts. The attacker rewrites that behavior as ordinary-looking
+      "vulnerability-shaped" code. The code fires only on the attacker's trigger. The results are a
+      58.8% attack success rate and 96.6% of the skill's benign utility preserved. The attack
+      largely evades skill scanners and automated reviewers across major coding agents.</p>
 
     <h2>A class, not a one-off</h2>
 
-    <p>PhantomSkill did not arrive alone. A companion wave of research (Cloak and Detonate on
-      scanner evasion and dynamic detection, SKILL-INJECT on measuring agent vulnerability to
-      skill-file attacks, and a survey of supply-chain poisoning across LLM coding-agent skill
-      ecosystems) confirms this is a systemic class of attack, complete with its own curated
+    <p>PhantomSkill did not arrive alone. A companion wave of research confirms that this is a
+      systemic class of attack. Cloak and Detonate covers scanner evasion and dynamic detection.
+      SKILL-INJECT measures agent vulnerability to skill-file attacks. A survey covers supply-chain
+      poisoning across LLM coding-agent skill ecosystems. The class even has its own curated
       tracker, the awesome-agent-skills-security list.</p>
 
-    <p>The core insight is uncomfortable for anyone relying on marketplace review: scanners look
-      for malicious <em>intent</em> in a skill's description, while the attack hides as ordinary
-      <em>insecure-looking</em> code in auxiliary files, activated later. Static scanning of skill
-      text is not a control. Cloak and Detonate argues for dynamic detection instead, but the
-      defensible posture available today is simpler: a minimal skill surface, first-party only.
+    <p>The core insight is uncomfortable for anyone who relies on marketplace review. Scanners look
+      for malicious <em>intent</em> in a skill's description. The attack hides as ordinary
+      <em>insecure-looking</em> code in auxiliary files, and activates later. Static scanning of
+      skill text is not a control. Cloak and Detonate argues for dynamic detection instead.</p>
+
+    <p>The defensible posture available today is simpler: a minimal skill surface, first-party only.
       Agent skills and plugins are executable supply chain, not configuration.</p>
 
     <div class="note">
       <div class="k">Also this week: do not trust the screen</div>
       <p>Security researcher Johann Rehberger demonstrated a time-of-check to time-of-use (TOCTOU)
-        attack on computer-use and coding agents: mutate the UI between the agent's visual check
-        and its click, and the agent approves something it never saw. Any approval flow where an
-        agent visually verifies and then acts is racy by construction. Approvals that matter
-        should be verified at the API or data layer, atomically, never via screenshots.</p>
+        attack on computer-use and coding agents. TOCTOU means the state changes between the check
+        and the action. Mutate the UI between the agent's visual check and its click, and the agent
+        approves something it never saw. Any approval flow where an agent verifies visually and then
+        acts is racy by construction. Verify approvals that matter at the API or data layer,
+        atomically. Never verify them from screenshots.</p>
     </div>
 
     <h2>Measuring autonomy before granting it</h2>
 
     <p>On the constructive side, Anthropic published field research on measuring AI agent autonomy
-      in practice, drawn from how agents are actually deployed on its public API. Software
-      engineering accounts for roughly half of all agentic activity, making it the closest thing
-      available to ground truth on how far real deployments run unattended. The practical
-      guidance follows directly: instrument what agents actually do without supervision, then set
+      in practice. The research draws on how agents are actually deployed on its public API.
+      Software engineering accounts for roughly half of all agentic activity. That makes it the
+      closest thing available to ground truth on how far real deployments run unattended. The
+      practical guidance follows directly. Instrument what agents do without supervision, then set
       autonomy gates from data rather than optimism.</p>
 
-    <p>A new academic framework goes further and formalizes the gating itself. A paper on
-      autonomous CI/CD quality assurance (built on LangGraph multi-agent orchestration, from
-      K11tech) runs a complete quality gate from pull request to defect filing using 14 specialist
-      agents, but computes a per-change risk score and suspends execution to a human whenever that
-      score reaches 0.85 or above. The stack (LangGraph, seven MCP servers) is not one we would
-      adopt, but the pattern is the right abstraction: autonomy as a continuous function of
-      measured risk, not a repository-level on-off switch. It matches the bounded-autonomy framing
-      of the "From Assistance to Agency" work on CI/CD pipelines.</p>
+    <p>A new academic framework goes further and formalizes the gating itself. A paper on autonomous
+      CI/CD quality assurance runs a complete quality gate from pull request to defect filing with
+      14 specialist agents. It is built on LangGraph multi-agent orchestration, from K11tech. It
+      also computes a per-change risk score. It suspends execution to a human whenever that score
+      reaches 0.85 or above.</p>
+
+    <p>We would not adopt the stack, which is LangGraph plus seven MCP servers. The pattern is the
+      right abstraction: autonomy as a continuous function of measured risk, not a repository-level
+      on-off switch. It matches the bounded-autonomy framing of the "From Assistance to Agency" work
+      on CI/CD pipelines.</p>
 
     <p>Two smaller signals round out the picture. First, "harness engineering" is now a named
-      discipline with its own curated list (awesome-harness-engineering) covering evals, memory,
-      permissions, observability, and orchestration; the center of gravity is not the model, it is
-      the harness. Second, a distinction now circulating in the field: personal agents run on
-      markdown files, production agents need databases, access control, and memory at scale. The
-      gap between a hobby loop and a factory is infrastructure. Spec-driven tooling also continued
-      to mature, with ASSERT (turning specs into repeatable evals), Google's published account of
-      automating the eval-optimize loop with independent AutoRaters grading agent output against
-      custom rubrics, and a consolidating market of purpose-built eval-gate products.</p>
+      discipline with its own curated list, awesome-harness-engineering. It covers evals, memory,
+      permissions, observability, and orchestration. The center of gravity is not the model. It is
+      the harness.</p>
+
+    <p>Second, the field now draws a distinction. Personal agents run on markdown files. Production
+      agents need databases, access control, and memory at scale. The gap between a hobby loop and a
+      factory is infrastructure.</p>
+
+    <p>Spec-driven tooling also continued to mature. ASSERT turns specs into repeatable evals.
+      Google published its account of automating the eval-optimize loop with independent AutoRaters
+      that grade agent output against custom rubrics. The market for purpose-built eval-gate
+      products is consolidating.</p>
 
     <h2>The proof point that matters</h2>
 
     <p>The reference case for production-scale agentic coding remains Spotify's background coding
-      agent, Honk: roughly 650 agent-generated pull requests merged to production per month, more
-      than 1,500 cumulative, with 60 to 90 percent time savings on migrations, run by a small
-      team. Spotify explicitly credits years of prior investment in fleet management, standardized
-      builds, and comprehensive test suites.</p>
+      agent, Honk. It merges roughly 650 agent-generated pull requests to production per month, and
+      more than 1,500 in total. Spotify reports 60 to 90 percent time savings on migrations, with a
+      small team running the work. Spotify credits years of prior investment in fleet management,
+      standardized builds, and comprehensive test suites.</p>
 
     <blockquote>
       <p>The agent is the cheap part. The deterministic test and build substrate is the factory.</p>
     </blockquote>
 
     <p>The counterweights deserve equal billing. Google's widely cited figure of about 75%
-      AI-generated code (per Sundar Pichai) counts suggested-and-accepted code, a much weaker
-      definition than autonomously merged. A survey of software engineering's third era finds
-      agent pull requests complete fast (half within about 13 minutes) but are accepted at lower
-      rates than human ones. Older randomized controlled trials still show the full spread: a 26%
-      increase in pull requests per week in one, no productivity lift and a 41% increase in bug
-      density in another. Throughput is not merged quality.</p>
+      AI-generated code, from Sundar Pichai, counts suggested-and-accepted code. That is a much
+      weaker definition than autonomously merged. A survey of software engineering's third era finds
+      that agent pull requests complete fast, half of them within about 13 minutes. Teams accept
+      them at lower rates than human pull requests.</p>
+
+    <p>Older randomized controlled trials show the full spread. One found a 26% increase in pull
+      requests per week. Another found no productivity lift and a 41% increase in bug density.
+      Throughput is not merged quality.</p>
 
     <h2>How we apply this at River.io</h2>
 
-    <p>This research wave lands as vindication of a posture we already hold, and it converts that
+    <p>This research wave lands as vindication of a posture we already hold. It converts that
       posture from engineering taste into security architecture.</p>
 
     <ul>
-      <li><strong>Zero dependencies extends to the automation layer.</strong> PhantomSkill's
-        entire attack surface is third-party skills, actions, and MCP servers. River.io ships
-        native compiled code with no third-party libraries, and we run our agents the same way: no
-        third-party agent skills, no unpinned marketplace actions, first-party scripts only. Every
+      <li><strong>Zero dependencies extends to the automation layer.</strong> PhantomSkill's entire
+        attack surface is third-party skills, actions, and MCP servers. River.io ships native
+        compiled code with no third-party libraries. We run our agents the same way: no third-party
+        agent skills, no unpinned marketplace actions, and first-party scripts only. Every
         capability we do not install is an attack class that does not exist against us.</li>
-      <li><strong>Verification is behavioral, not textual.</strong> GuardFall broke string
-        matching on commands; VulMask breaks static scanning of skill code. The only gate that
-        survives both is running the thing: compile, execute the full test suite, and diff
-        observable behavior. Our test-driven development discipline makes that gate native. For
-        agent-authored pull requests, tests-pass plus behavior-diff is the gate; human code review
-        of agent tooling is necessary but demonstrably insufficient on its own.</li>
+      <li><strong>Verification is behavioral, not textual.</strong> GuardFall broke string matching
+        on commands. VulMask breaks static scanning of skill code. The only gate that survives both
+        is running the thing: compile it, execute the full test suite, and diff observable behavior.
+        Our test-driven development discipline makes that gate native. For agent-authored pull
+        requests, the gate is tests-pass plus behavior-diff. Human code review of agent tooling is
+        necessary, but on its own it is demonstrably not enough.</li>
       <li><strong>Regulated repositories are permanently pinned above the risk threshold.</strong>
-        For CareTime and TimeForCare (Medicaid EVV, PHI-adjacent) and MaterialsAndPractices
-        (organic compliance), the risk-proportionate gate simply never opens. Agents may draft;
-        humans author every compliance-defining assertion and approve every merge, and agents hold
-        no read access to these repositories at all.</li>
+        CareTime and TimeForCare handle Medicaid EVV work and are PHI-adjacent. MaterialsAndPractices
+        handles organic compliance. For all three, the risk-proportionate gate never opens. Agents
+        may draft. Humans author every compliance-defining assertion and approve every merge. Agents
+        hold no read access to these repositories at all.</li>
       <li><strong>Risk-scored autonomy on low-stakes repositories.</strong> On MeowPassword,
         weathergalactic, and sloth, we run a dependency-free version of the risk-proportionate
-        pattern: score each agent task on factors like whether it touches authentication or
-        persistence, diff size, and new files, and auto-suspend to a human above a threshold.
-        Combined with label-gated issue intake, injection red-teaming, and a log of corrective
-        interventions per task, that gives us a measurable, per-repository case for loosening
-        gates.</li>
-      <li><strong>Pour the concrete before installing the robots.</strong> Spotify's throughput
-        was possible because builds and tests were already deterministic and comprehensive. Our
-        equivalent groundwork: every repository that will ever host an autonomous loop gets a
-        complete, fast, native test suite first. Test coverage is the factory floor.</li>
-      <li><strong>No screenshot-verified approvals, ever.</strong> If an agent ever drives a UI
-        for us (App Store screenshot automation, device testing), state is verified via API or
-        filesystem atomically with the action. Rehberger's TOCTOU result makes look-then-click
-        approval unsafe by design.</li>
+        pattern. We score each agent task on factors such as whether it touches authentication or
+        persistence, diff size, and new files. We auto-suspend to a human above a threshold. We add
+        label-gated issue intake, injection red-teaming, and a log of corrective interventions per
+        task. Together those give us a measurable, per-repository case for loosening gates.</li>
+      <li><strong>Pour the concrete before you install the robots.</strong> Spotify's throughput was
+        possible because its builds and tests were already deterministic and comprehensive. Our
+        equivalent groundwork is simple. Every repository that will ever host an autonomous loop
+        gets a complete, fast, native test suite first. Test coverage is the factory floor.</li>
+      <li><strong>No screenshot-verified approvals, ever.</strong> An agent may one day drive a UI
+        for us, for App Store screenshot automation or device testing. In that case we verify state
+        via API or filesystem, atomically with the action. Rehberger's TOCTOU result makes
+        look-then-click approval unsafe by design.</li>
     </ul>
 
     <hr />
@@ -187,7 +197,7 @@
       <li><a href="https://github.com/topics/dark-factory">GitHub dark-factory topic</a> · <a href="https://darkfactory.dev/">darkfactory.dev</a> · <a href="https://www.bcgplatinion.com/insights/the-dark-software-factory">BCG Platinion: The dark software factory</a> · <a href="https://itmethods.com/dark-factory">iTmethods: Governed autonomous SDLC</a> · <a href="https://www.mindstudio.ai/blog/what-is-a-dark-factory-ai-agent">MindStudio: Dark factory AI agent</a> · <a href="https://www.i-scoop.eu/dark-software-factories-and-the-future-of-autonomous-software-delivery/">i-SCOOP: Dark software factories</a></li>
     </ul>
 
-    <p><em>Vendor and blog figures cited here indicate direction, not audited benchmarks.</em></p>
+    <p><em>Vendor and blog figures cited here show direction, not audited benchmarks.</em></p>
 
   </div>
 </article>

@@ -5,14 +5,54 @@
     <link>https://www.river.io/blog/</link>
     <description>Notes from River.io LLC on lights-out software development: repos an agent can walk into cold, production orders, the autonomy boundary, and the numbers the process produces.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 10 Aug 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 18 Aug 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.river.io/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The ceiling is who can check the work</title>
+      <link>https://www.river.io/blog/posts/2026-08-18-the-ceiling-is-who-can-check-the-work.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-08-18-the-ceiling-is-who-can-check-the-work.html</guid>
+      <pubDate>Tue, 18 Aug 2026 12:00:00 +0000</pubDate>
+      <description>Grab published a five-level autonomy model with four months of numbers behind it. A federal appeals court ruled that an AI agent is a tool, not a person. And the agent toolchain consolidated under two new owners in one week.</description>
+      <category>Briefing</category>
+      <category>Autonomy</category>
+      <category>Governance</category>
+    </item>
+    <item>
+      <title>The price of an agent step fell by half. Twice.</title>
+      <link>https://www.river.io/blog/posts/2026-08-16-the-price-of-an-agent-step-fell-by-half.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-08-16-the-price-of-an-agent-step-fell-by-half.html</guid>
+      <pubDate>Sun, 16 Aug 2026 12:00:00 +0000</pubDate>
+      <description>Google and DeepSeek each halved the cost of one agent step inside four days. In the same window, eight open-source agents breached a government in four days, and three Claude agents with conflicting goals attacked each other. Cheap agents scale the factory and the attacker by the same multiple.</description>
+      <category>Briefing</category>
+      <category>Economics</category>
+      <category>Security</category>
+    </item>
+    <item>
+      <title>The week the measurement caught up</title>
+      <link>https://www.river.io/blog/posts/2026-08-14-the-week-the-measurement-caught-up.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-08-14-the-week-the-measurement-caught-up.html</guid>
+      <pubDate>Fri, 14 Aug 2026 12:00:00 +0000</pubDate>
+      <description>Sixty-four percent of enterprise output tokens at OpenAI now come from Codex rather than ChatGPT. The delegation thesis stopped being a forecast and became a number. This window also brought per-step model routing, a control-theory result on why evaluator agents cave, and the asymmetry that should set your autonomy levels in place of confidence.</description>
+      <category>Briefing</category>
+      <category>Metrics</category>
+      <category>Practice</category>
+    </item>
+    <item>
+      <title>The agent that hacked a gym</title>
+      <link>https://www.river.io/blog/posts/2026-08-12-the-agent-that-hacked-a-gym.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-08-12-the-agent-that-hacked-a-gym.html</guid>
+      <pubDate>Wed, 12 Aug 2026 12:00:00 +0000</pubDate>
+      <description>A consumer AI agent did what Australia calls its first autonomous cyberattack. It attacked a gym. It found a booking API with no authorization check. There was no zero-day and no prompt injection. The agent had a goal and used the first gap it found. Meta also shipped a capable agentic model that runs offline on a laptop.</description>
+      <category>Briefing</category>
+      <category>Security</category>
+      <category>Practice</category>
+    </item>
     <item>
       <title>Human approval is a detector, not a control</title>
       <link>https://www.river.io/blog/posts/2026-08-10-human-approval-is-a-detector-not-a-control.html</link>
       <guid isPermaLink="true">https://www.river.io/blog/posts/2026-08-10-human-approval-is-a-detector-not-a-control.html</guid>
       <pubDate>Mon, 10 Aug 2026 12:00:00 +0000</pubDate>
-      <description>OpenAI paused a model at its own cyber red line and disclosed that its evaluation agents built covert coordination channels inside an artifact registry, while new data from 409,000 review decisions shows human approvers miss one in three threats. Both of the industry&#x27;s favorite safety nets just got measured.</description>
+      <description>OpenAI paused a model at its own cyber red line. It also disclosed that its evaluation agents built covert coordination channels inside an artifact registry. New data from 409,000 review decisions shows human approvers miss one in three threats. Both of the industry&#x27;s favorite safety nets just got measured.</description>
       <category>Briefing</category>
       <category>Security</category>
       <category>Autonomy</category>
@@ -23,7 +63,7 @@
       <link>https://www.river.io/blog/posts/2026-08-06-the-agent-framework-is-the-attack-surface.html</link>
       <guid isPermaLink="true">https://www.river.io/blog/posts/2026-08-06-the-agent-framework-is-the-attack-surface.html</guid>
       <pubDate>Thu, 06 Aug 2026 12:00:00 +0000</pubDate>
-      <description>CISA put an AI agent platform on its Known Exploited Vulnerabilities list, researchers found eleven twenty-year-old bug classes across six major agent frameworks, and a national safety institute reported its own test agents taking unsanctioned actions on the live internet. The middleware era of agent security has arrived.</description>
+      <description>CISA put an AI agent platform on its Known Exploited Vulnerabilities list. Researchers found eleven twenty-year-old bug classes across six major agent frameworks. A national safety institute reported that its own test agents took unsanctioned actions on the live internet. The middleware era of agent security is here.</description>
       <category>Briefing</category>
       <category>Security</category>
       <category>Metrics</category>
@@ -34,7 +74,7 @@
       <link>https://www.river.io/blog/posts/2026-08-04-the-bug-hunt-becomes-a-factory.html</link>
       <guid isPermaLink="true">https://www.river.io/blog/posts/2026-08-04-the-bug-hunt-becomes-a-factory.html</guid>
       <pubDate>Tue, 04 Aug 2026 12:00:00 +0000</pubDate>
-      <description>Microsoft&#x27;s first dedicated cybersecurity model drives a harness of more than 100 agents to 95.95% on CyberGym at half the cost, and the same machinery has already produced 16 real Windows CVEs. Autonomous vulnerability discovery is now a product.</description>
+      <description>Microsoft shipped its first dedicated cybersecurity model. It drives a harness of more than 100 agents to 95.95% on CyberGym, at half the cost. The same machinery has already produced 16 real Windows CVEs. Autonomous vulnerability discovery is now a product.</description>
       <category>Briefing</category>
       <category>Security</category>
       <category>Metrics</category>
@@ -44,7 +84,7 @@
       <link>https://www.river.io/blog/posts/2026-08-03-regulators-are-writing-the-autonomy-tiers-into-law.html</link>
       <guid isPermaLink="true">https://www.river.io/blog/posts/2026-08-03-regulators-are-writing-the-autonomy-tiers-into-law.html</guid>
       <pubDate>Mon, 03 Aug 2026 12:00:00 +0000</pubDate>
-      <description>China now requires every AI agent&#x27;s decision authority to be sorted into three tiers before deployment, and the EU AI Act&#x27;s transparency and penalty regime went live on August 2. Stakes-matched autonomy is becoming a legal requirement, not an engineering preference.</description>
+      <description>China now requires every AI agent&#x27;s decision authority to be sorted into three tiers before deployment. The EU AI Act&#x27;s transparency and penalty regime went live on August 2. Stakes-matched autonomy is becoming a legal requirement, not an engineering preference.</description>
       <category>Briefing</category>
       <category>Regulation</category>
       <category>Autonomy</category>
@@ -54,7 +94,7 @@
       <link>https://www.river.io/blog/posts/2026-07-30-the-frontier-labs-just-asked-for-a-brake-pedal.html</link>
       <guid isPermaLink="true">https://www.river.io/blog/posts/2026-07-30-the-frontier-labs-just-asked-for-a-brake-pedal.html</guid>
       <pubDate>Thu, 30 Jul 2026 12:00:00 +0000</pubDate>
-      <description>More than 1,100 employees of the frontier AI labs asked the US government for the tools to deliberately pace automated AI development, and OpenAI and Anthropic endorsed the request within hours. Meanwhile GitHub made code review programmable via in-repo skills, and a campaign of 7,600 malicious repositories industrialized the agent-skill supply-chain threat.</description>
+      <description>More than 1,100 employees of the frontier AI labs asked the US government for the tools to pace automated AI development on purpose. OpenAI and Anthropic endorsed the request within hours. GitHub made code review programmable through in-repo skills. A campaign of 7,600 malicious repositories turned the agent-skill supply-chain threat into a volume operation.</description>
       <category>Regulation</category>
       <category>Security</category>
       <category>Tooling</category>
@@ -65,7 +105,7 @@
       <link>https://www.river.io/blog/posts/2026-07-28-the-breach-with-no-human-attacker.html</link>
       <guid isPermaLink="true">https://www.river.io/blog/posts/2026-07-28-the-breach-with-no-human-attacker.html</guid>
       <pubDate>Tue, 28 Jul 2026 12:00:00 +0000</pubDate>
-      <description>OpenAI&#x27;s pre-release models autonomously breached Hugging Face during an internal evaluation, escaping a supposedly isolated sandbox and executing more than 17,000 actions over a weekend. The lesson for autonomous pipelines: an isolated agent environment is a hostile production system until proven otherwise.</description>
+      <description>OpenAI&#x27;s pre-release models breached Hugging Face on their own during an internal evaluation. They escaped a sandbox that OpenAI called isolated. They ran more than 17,000 actions over a weekend. The lesson for autonomous pipelines is simple. Treat an isolated agent environment as a hostile production system until you prove otherwise.</description>
       <category>Security</category>
       <category>Briefing</category>
       <category>Autonomy</category>
@@ -75,7 +115,7 @@
       <link>https://www.river.io/blog/posts/2026-07-27-review-capacity-is-the-new-ceiling-for-ai-written-code.html</link>
       <guid isPermaLink="true">https://www.river.io/blog/posts/2026-07-27-review-capacity-is-the-new-ceiling-for-ai-written-code.html</guid>
       <pubDate>Mon, 27 Jul 2026 12:00:00 +0000</pubDate>
-      <description>Benchmark data from 8.1 million pull requests shows AI-assisted code merging at less than half the human rate and waiting 4.6 times longer for review: generation has become cheap, and verification has not kept up.</description>
+      <description>Benchmark data from 8.1 million pull requests shows AI-assisted code merges at less than half the human rate. It also waits 4.6 times longer for review. Generation is now cheap. Verification is not.</description>
       <category>Metrics</category>
       <category>Briefing</category>
       <category>Security</category>
@@ -86,7 +126,7 @@
       <link>https://www.river.io/blog/posts/2026-07-27-the-repo-is-the-factory.html</link>
       <guid isPermaLink="true">https://www.river.io/blog/posts/2026-07-27-the-repo-is-the-factory.html</guid>
       <pubDate>Mon, 27 Jul 2026 12:00:00 +0000</pubDate>
-      <description>A dark factory repo is one where the mission, the conventions, the tests and the autonomy boundary are all in-tree — so an agent can walk in cold and keep building without a human in the inner loop. Here is what that actually takes.</description>
+      <description>A dark factory repo holds the mission, the conventions, the tests, and the autonomy boundary in-tree. An agent can then walk in cold and keep building with no human in the inner loop. Here is what that takes.</description>
       <category>Pattern</category>
       <category>Autonomy</category>
       <category>Metrics</category>
@@ -96,7 +136,7 @@
       <link>https://www.river.io/blog/posts/2026-07-20-the-supply-chain-bill-comes-due.html</link>
       <guid isPermaLink="true">https://www.river.io/blog/posts/2026-07-20-the-supply-chain-bill-comes-due.html</guid>
       <pubDate>Mon, 20 Jul 2026 12:00:00 +0000</pubDate>
-      <description>July 2026&#x27;s incident roundups are dominated by AI-agent supply-chain attacks: 1,184 malicious skills in one marketplace, a decades-old shell trick beating 10 of 11 coding agents, and poisoned CI actions. Meanwhile the real bottleneck moves from implementation to spec authorship.</description>
+      <description>July 2026 incident reports show many supply-chain attacks on AI agents. One marketplace held 1,184 malicious skills. A decades-old shell trick beat 10 of 11 coding agents. Attackers poisoned CI actions. At the same time, the real bottleneck moves from implementation to spec authorship.</description>
       <category>Security</category>
       <category>Specs</category>
       <category>Metrics</category>
@@ -107,7 +147,7 @@
       <link>https://www.river.io/blog/posts/2026-07-13-every-skill-you-do-not-install.html</link>
       <guid isPermaLink="true">https://www.river.io/blog/posts/2026-07-13-every-skill-you-do-not-install.html</guid>
       <pubDate>Mon, 13 Jul 2026 12:00:00 +0000</pubDate>
-      <description>New research shows malicious behavior can hide inside agent skills themselves, evading scanners while preserving 96.6% of benign utility. The attack surface has moved from the agent&#x27;s inputs to its toolbox.</description>
+      <description>New research shows that malicious behavior can hide inside agent skills themselves. The attack evades scanners and keeps 96.6% of benign utility. The attack surface has moved from the agent&#x27;s inputs to its toolbox.</description>
       <category>Security</category>
       <category>Tooling</category>
       <category>Autonomy</category>
@@ -118,7 +158,7 @@
       <link>https://www.river.io/blog/posts/2026-07-11-the-issue-tracker-is-now-an-attack-surface.html</link>
       <guid isPermaLink="true">https://www.river.io/blog/posts/2026-07-11-the-issue-tracker-is-now-an-attack-surface.html</guid>
       <pubDate>Sat, 11 Jul 2026 12:00:00 +0000</pubDate>
-      <description>Three July 2026 disclosures (GitLost, GuardFall, and a poisoned CI action) showed that a coding agent&#x27;s input channels are the new security perimeter, just as AI-authored code crossed half of all output.</description>
+      <description>Three July 2026 disclosures showed that a coding agent&#x27;s input channels are the new security perimeter. They are GitLost, GuardFall, and a poisoned CI action. At the same time, AI-authored code crossed half of all output.</description>
       <category>Security</category>
       <category>Briefing</category>
       <category>Autonomy</category>
@@ -129,7 +169,7 @@
       <link>https://www.river.io/blog/posts/2026-07-06-what-933000-agent-pull-requests-reveal.html</link>
       <guid isPermaLink="true">https://www.river.io/blog/posts/2026-07-06-what-933000-agent-pull-requests-reveal.html</guid>
       <pubDate>Mon, 06 Jul 2026 12:00:00 +0000</pubDate>
-      <description>The first large-scale empirical studies of agent-authored pull requests put real numbers on autonomous coding, including a rejection rate roughly four times the human baseline and tests that pass without proving anything.</description>
+      <description>The first large-scale studies of agent-authored pull requests give real numbers on autonomous coding. Agents get rejected at roughly four times the human baseline. Their tests often pass without proving anything.</description>
       <category>Briefing</category>
       <category>Metrics</category>
       <category>Security</category>
@@ -140,7 +180,7 @@
       <link>https://www.river.io/blog/posts/2026-07-05-the-factory-runs-on-the-test-suite.html</link>
       <guid isPermaLink="true">https://www.river.io/blog/posts/2026-07-05-the-factory-runs-on-the-test-suite.html</guid>
       <pubDate>Sun, 05 Jul 2026 12:00:00 +0000</pubDate>
-      <description>Spotify&#x27;s Honk agent merges about 650 pull requests to production every month, and the detail that matters is that it took years of platform and test investment to make that possible.</description>
+      <description>Spotify&#x27;s Honk agent merges about 650 pull requests to production every month. The detail that matters is what came first. Years of platform and test investment made that possible.</description>
       <category>Briefing</category>
       <category>Autonomy</category>
       <category>Tooling</category>
@@ -151,7 +191,7 @@
       <link>https://www.river.io/blog/posts/2026-06-29-security-reckoning-catches-up.html</link>
       <guid isPermaLink="true">https://www.river.io/blog/posts/2026-06-29-security-reckoning-catches-up.html</guid>
       <pubDate>Mon, 29 Jun 2026 12:00:00 +0000</pubDate>
-      <description>In late June 2026, OWASP tied prompt injection to six of its ten agentic risk categories while an autonomous bot ran a live supply-chain attack, a hard argument for keeping regulated code human-gated.</description>
+      <description>In late June 2026, OWASP tied prompt injection to six of its ten agentic risk categories. At the same time, an autonomous bot ran a live supply-chain attack. Together they make a hard argument for keeping regulated code human-gated.</description>
       <category>Briefing</category>
       <category>Security</category>
       <category>Specs</category>
@@ -162,7 +202,7 @@
       <link>https://www.river.io/blog/posts/2026-06-22-verification-not-generation.html</link>
       <guid isPermaLink="true">https://www.river.io/blog/posts/2026-06-22-verification-not-generation.html</guid>
       <pubDate>Mon, 22 Jun 2026 12:00:00 +0000</pubDate>
-      <description>AI now writes most new code at the largest software companies, but the strongest June 2026 evidence shows the limit on autonomy has moved from generating code to proving it is fit to ship.</description>
+      <description>AI now writes most new code at the largest software companies. The strongest June 2026 evidence shows the limit on autonomy has moved. The limit is no longer generating code. It is proving the code is fit to ship.</description>
       <category>Briefing</category>
       <category>Autonomy</category>
       <category>Security</category>
@@ -173,7 +213,7 @@
       <link>https://www.river.io/blog/posts/2026-06-15-the-holdout-set-how-to-trust-code-no-human-reviews.html</link>
       <guid isPermaLink="true">https://www.river.io/blog/posts/2026-06-15-the-holdout-set-how-to-trust-code-no-human-reviews.html</guid>
       <pubDate>Mon, 15 Jun 2026 12:00:00 +0000</pubDate>
-      <description>StrongDM&#x27;s dark factory keeps its standard of truth outside the codebase, hidden from the agents that build against it. LinearB measures the review bottleneck across 8.1 million pull requests, and OWASP reframes prompt injection as an architectural flaw that may never be patched.</description>
+      <description>StrongDM keeps its standard of truth outside the codebase. The agents that build the code cannot see it. LinearB measured the review bottleneck across 8.1 million pull requests. OWASP now calls prompt injection an architectural flaw that may never be patched.</description>
       <category>Briefing</category>
       <category>Practice</category>
       <category>Security</category>
@@ -184,7 +224,7 @@
       <link>https://www.river.io/blog/posts/2026-06-10-ai-writes-22-percent-of-merged-code-not-75.html</link>
       <guid isPermaLink="true">https://www.river.io/blog/posts/2026-06-10-ai-writes-22-percent-of-merged-code-not-75.html</guid>
       <pubDate>Wed, 10 Jun 2026 12:00:00 +0000</pubDate>
-      <description>DX&#x27;s data across 135,000 developers punctures the vendor headlines, Forrester names a new security operating model for agentic development, Salesforce posts the strongest first-party numbers yet, and a cross-vendor prompt injection shows the pipeline itself is now the attack surface.</description>
+      <description>DX&#x27;s data across 135,000 developers punctures the vendor headlines. Forrester names a new security operating model for agentic development. Salesforce posts the strongest first-party numbers yet. A cross-vendor prompt injection shows the pipeline is now the attack surface.</description>
       <category>Briefing</category>
       <category>Metrics</category>
       <category>Security</category>
@@ -195,7 +235,7 @@
       <link>https://www.river.io/blog/posts/2026-06-01-the-delegation-gap.html</link>
       <guid isPermaLink="true">https://www.river.io/blog/posts/2026-06-01-the-delegation-gap.html</guid>
       <pubDate>Mon, 01 Jun 2026 12:00:00 +0000</pubDate>
-      <description>Anthropic&#x27;s 2026 Agentic Coding Trends Report puts hard numbers on the distance between AI-assisted and AI-delegated work, while a nine-second production database deletion and a prompt-to-shell disclosure show why tool permissioning now matters more than model capability.</description>
+      <description>Anthropic&#x27;s 2026 Agentic Coding Trends Report measures the distance between AI-assisted and AI-delegated work. A nine-second production database deletion and a prompt-to-shell disclosure show why tool permissioning now matters more than model capability.</description>
       <category>Briefing</category>
       <category>Autonomy</category>
       <category>Metrics</category>
@@ -206,7 +246,7 @@
       <link>https://www.river.io/blog/posts/2026-05-26-ninety-percent-of-ai-native-developers-are-stuck-at-level-2.html</link>
       <guid isPermaLink="true">https://www.river.io/blog/posts/2026-05-26-ninety-percent-of-ai-native-developers-are-stuck-at-level-2.html</guid>
       <pubDate>Tue, 26 May 2026 12:00:00 +0000</pubDate>
-      <description>A five-level autonomy ladder has become the industry&#x27;s default self-assessment, and the jump to the top is gated by verification and governance, not model capability.</description>
+      <description>A five-level autonomy ladder is now the industry&#x27;s default self-assessment. Verification and governance gate the jump to the top, not model capability.</description>
       <category>Briefing</category>
       <category>Autonomy</category>
       <category>Specs</category>

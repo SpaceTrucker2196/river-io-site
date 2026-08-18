@@ -58,7 +58,26 @@ they are not reused. Posts sort newest-first in the archive regardless.
 
 ## House style
 
-The subject is lights-out software development — repos built so an
+**Every post is written in ASD-STE100 Simplified Technical English.**
+Set 14 August 2026. All 21 posts through Order 021 were rewritten to
+match. The rules:
+
+- Simple, common words. "use" not "utilize", "start" not "commence",
+  "about" not "regarding", "before" not "prior to".
+- A necessary technical term stays, then gets defined in the next
+  short sentence.
+- Active voice. Name who does the action.
+- One idea per sentence. Sentences of 20 words or fewer.
+- Paragraphs of 6 sentences or fewer.
+- No em-dashes anywhere. Use a comma, a colon, or a new sentence.
+  No semicolons in prose.
+- No rhetorical questions. No filler.
+- Consistent words. Never a synonym for variety. If it is an "agent",
+  it is always an "agent".
+
+Short does not mean thin. Keep the full argument and every source.
+
+The subject is lights-out software development, repos built so an
 agent can walk in cold and keep building. What makes a post worth
 publishing here:
 

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Anthropic's 2026 Agentic Coding Trends Report puts hard numbers on the distance between AI-assisted and AI-delegated work: developers use AI in roughly 60 percent of their workflow but can fully hand off only 0 to 20 percent of tasks. Two security incidents show why." />
+<meta name="description" content="Anthropic's 2026 Agentic Coding Trends Report measures the distance between AI-assisted and AI-delegated work. Developers use AI in about 60 percent of their workflow. They can fully hand off only 0 to 20 percent of tasks. Two security incidents show why." />
 <meta name="color-scheme" content="light dark" />
 <meta name="tags" content="Briefing, Autonomy, Metrics, Security" />
 <title>The delegation gap: AI touches 60 percent of the work but owns almost none of it — The Dark Factory · river.io</title>
@@ -31,9 +31,9 @@
   <div class="in">
     <div class="meta"><b>Order 003</b><span>1 June 2026</span><span>7 min</span><span>Briefing</span></div>
     <h1>The delegation gap: AI touches 60 percent of the work but owns almost none of it</h1>
-    <p class="dek">Anthropic's 2026 Agentic Coding Trends Report puts hard numbers on the distance
-      between AI-assisted and AI-delegated work, while a nine-second production database deletion
-      and a prompt-to-shell disclosure show why tool permissioning now matters more than model
+    <p class="dek">Anthropic's 2026 Agentic Coding Trends Report measures the distance between
+      AI-assisted and AI-delegated work. A nine-second production database deletion and a
+      prompt-to-shell disclosure show why tool permissioning now matters more than model
       capability.</p>
     <div class="rule"></div>
   </div>
@@ -42,45 +42,47 @@
 <article class="post">
   <div class="in">
 
-    <p class="lede-cap">In early June 2026, the most useful new mental model in autonomous software
+    <p class="lede-cap">In early June 2026 the most useful new mental model in autonomous software
       development arrived with a number attached. Anthropic's 2026 Agentic Coding Trends Report
-      finds that developers now use AI in roughly 60 percent of their work but can fully delegate
-      only 0 to 20 percent of tasks. Anthropic calls this the delegation gap, and it is the most
-      clarifying frame since the five-level autonomy ladder: the gap is the surface area where
-      today's tools meet lights-out ambition, and it is where most teams will live in 2026.</p>
+      finds that developers now use AI in about 60 percent of their work. They can fully delegate
+      only 0 to 20 percent of tasks. Anthropic calls this the delegation gap. It is the clearest
+      frame since the five-level autonomy ladder. The gap is where today's tools meet lights-out
+      ambition, and it is where most teams will work in 2026.</p>
 
     <h2>The delegation gap, and sessions that keep stretching</h2>
 
     <p>The report organizes the field into eight trends across foundation, capability, and impact
-      layers. Two findings stand out. First, the delegation gap itself: heavy assistance, thin
-      delegation. Second, sessions are stretching. Median agent run length has nearly doubled in
-      three months, from under 25 minutes to over 45, and Anthropic cites a single 12.5-million-line
-      codebase change executed in one seven-hour run. The headline number is anecdotal, but the
-      trajectory is consistent across vendors.</p>
+      layers. Two findings stand out. First is the delegation gap: heavy assistance, thin
+      delegation. Second, sessions are getting longer. Median agent run length nearly doubled in
+      three months, from under 25 minutes to over 45. Anthropic cites one 12.5-million-line
+      codebase change done in a single seven-hour run.</p>
 
-    <p>Anthropic's framing of the role shift, from implementer to orchestrator, pairs cleanly with
-      the autonomy ladder. The jump to high autonomy is now visibly gated by how well a team can
-      specify and verify, not by raw model capability.</p>
+    <p>That headline number is anecdotal. The direction is consistent across vendors.</p>
+
+    <p>Anthropic describes a role shift, from implementer to orchestrator. That shift pairs cleanly
+      with the autonomy ladder. How well a team can specify and verify now gates the jump to high
+      autonomy. Raw model capability does not.</p>
 
     <h2>Spec-driven development has won the front door</h2>
 
-    <p>Spec-Driven Development (SDD) is no longer a single toolkit but a category. Every major
-      coding agent now ships an SDD-flavored workflow:</p>
+    <p>Spec-Driven Development (SDD) is no longer one toolkit. It is a category. Every major coding
+      agent now ships an SDD workflow:</p>
 
     <ul>
-      <li><strong>GitHub Spec Kit</strong>: documentation refreshed May 27, 2026; roughly 90,000
-        stars and more than 30 agent integrations (Copilot, Gemini, Codex, Windsurf, Claude, Forge,
-        Kiro). The workflow runs Spec, Plan, Tasks, Implement.</li>
-      <li><strong>AWS Kiro, OpenSpec, BMAD, Tessl, and Google Antigravity</strong> each ship their
-        own variant; one survey this cycle maps more than 30 such frameworks.</li>
-      <li><strong>The constitution artifact.</strong> The notable conceptual update is a
-        project-level rules document (language, framework, testing, accessibility, security,
-        dependency policy) written in EARS statements that the spec and every agent action must
-        respect. Functionally, this is policy-as-code for autonomy.</li>
+      <li><strong>GitHub Spec Kit.</strong> GitHub refreshed the documentation on May 27, 2026.
+        Spec Kit has roughly 90,000 stars and more than 30 agent integrations: Copilot, Gemini,
+        Codex, Windsurf, Claude, Forge, and Kiro. The workflow runs Spec, Plan, Tasks,
+        Implement.</li>
+      <li><strong>AWS Kiro, OpenSpec, BMAD, Tessl, and Google Antigravity.</strong> Each ships its
+        own variant. One survey this cycle maps more than 30 such frameworks.</li>
+      <li><strong>The constitution artifact.</strong> This is the notable new idea: a project-level
+        rules document. It covers language, framework, testing, accessibility, security, and
+        dependency policy. Teams write it in EARS statements. The spec and every agent action must
+        respect it. This is policy-as-code for autonomy.</li>
       <li><strong>Spec as validation gate.</strong> The arXiv paper "Spec-Driven Development: From
-        Code to Contract in the Age of AI" (February 2026) makes the distinction explicit:
-        traditional specs are read by humans; SDD specs execute as validation gates. That is the
-        load-bearing claim underneath the whole movement.</li>
+        Code to Contract in the Age of AI" appeared in February 2026. It states the distinction
+        plainly. Humans read traditional specs. SDD specs execute as validation gates. That claim
+        carries the whole movement.</li>
     </ul>
 
     <h2>Best practices crystallizing for the planner-to-evaluator loop</h2>
@@ -88,117 +90,121 @@
     <p>Four principles now appear in nearly every serious agentic-SDLC writeup:</p>
 
     <ul>
-      <li><strong>Separate the judge from the builder.</strong> Same-model self-evaluation converges
-        on its own reasoning and bakes bias in by default. Use a different model, or a
+      <li><strong>Separate the judge from the builder.</strong> A model that evaluates its own work
+        converges on its own reasoning. It bakes in bias by default. Use a different model, or a
         deterministic verifier, as the evaluator.</li>
       <li><strong>Define success before writing code.</strong> The spec-first phase is the contract
         the evaluator scores against.</li>
-      <li><strong>Communicate through files, not shared context.</strong> Pass artifacts (spec,
-        plan, tasks, test results) between agents as version-controlled files; this also gives you
-        an audit trail.</li>
+      <li><strong>Communicate through files, not shared context.</strong> Pass the spec, the plan,
+        the tasks, and the test results between agents as version-controlled files. This also gives
+        you an audit trail.</li>
       <li><strong>Calibrate the evaluator relentlessly.</strong> Treat the eval gate as a product.
-        When it misses, fix the evaluator before tuning prompts.</li>
+        When it misses, fix the evaluator before you tune prompts.</li>
     </ul>
 
-    <p>The OWASP Top 10 for Agentic Applications has also stabilized as the going risk taxonomy,
-      with Agent Goal Hijack, Tool Misuse and Exploitation, and Identity and Privilege Abuse
-      leading the list.</p>
+    <p>The OWASP Top 10 for Agentic Applications is now the standard risk taxonomy. Agent Goal
+      Hijack, Tool Misuse and Exploitation, and Identity and Privilege Abuse lead the list.</p>
 
     <h2>Proof points and metrics</h2>
 
     <ul>
-      <li><strong>Spotify "Honk."</strong> Spotify's internal agent, powered by Claude Code and
-        driven from Slack, is now reported at more than 1,500 merged pull requests in production
-        (up from the 650-per-month figure in earlier coverage), with engineers reportedly not
-        having written code since December 2025 and large-scale migration time cut roughly 90
-        percent. Treat the "haven't written a line" framing as vendor-adjacent; the orchestration
-        layer is what is genuinely novel.</li>
-      <li><strong>Claude Code 2.1.139 shipped a /goal command on May 12, 2026.</strong> It lets you
-        set an explicit completion condition; the agent works across turns, tracking elapsed time,
-        turns, and tokens, until the condition is met. Early-adopter testing has Claude Code
+      <li><strong>Spotify "Honk."</strong> Spotify's internal agent runs on Claude Code and takes
+        its orders from Slack. Reports now put it at more than 1,500 merged pull requests in
+        production, up from 650 per month in earlier coverage. Spotify says its engineers have not
+        written code since December 2025. It also reports that large-scale migration time fell
+        roughly 90 percent. Treat the "haven't written a line" framing as vendor-adjacent. The
+        orchestration layer is the novel part.</li>
+      <li><strong>Claude Code 2.1.139 shipped a /goal command on May 12, 2026.</strong> You set an
+        explicit completion condition. The agent then works across turns until it meets that
+        condition. It tracks elapsed time, turns, and tokens. Early adopters report Claude Code
         running unsupervised for around two hours in single sessions.</li>
-      <li><strong>AI-authored code share at the majors.</strong> Microsoft holds around 30 percent
-        (Nadella has said 20 to 30 percent, language-dependent); Google reports 25 to 30 percent of
-        new code, all still human-reviewed, with roughly a 10 percent velocity uplift; Meta
-        forecasts 50 percent within a year. GitHub Copilot reports about 20 million total users and
-        4.7 million paid as of a January 2026 baseline.</li>
-      <li><strong>Benchmarks, late May 2026.</strong> Top SWE-bench systems: Claude Opus 4.6,
-        GPT-5.2 Codex, GLM-5, GPT-5.2. The broader 2026 AI Index: GAIA 74.5 percent, WebArena 74.3
-        percent (versus roughly 78 percent human), OSWorld 66.3 percent, MLE-bench 64.4 percent.
-        Useful as a directional ceiling, not a guarantee on any given codebase.</li>
+      <li><strong>AI-authored code share at the majors.</strong> Microsoft holds around 30 percent,
+        and Nadella has said 20 to 30 percent depending on the language. Google reports 25 to 30
+        percent of new code, all still human-reviewed, with roughly a 10 percent velocity uplift.
+        Meta forecasts 50 percent within a year. GitHub Copilot reports about 20 million total
+        users and 4.7 million paid, on a January 2026 baseline.</li>
+      <li><strong>Benchmarks, late May 2026.</strong> The top SWE-bench systems are Claude Opus
+        4.6, GPT-5.2 Codex, GLM-5, and GPT-5.2. The broader 2026 AI Index reports GAIA at 74.5
+        percent and WebArena at 74.3 percent, against roughly 78 percent for humans. It reports
+        OSWorld at 66.3 percent and MLE-bench at 64.4 percent. Read these as a directional ceiling,
+        not a guarantee on your codebase.</li>
     </ul>
 
     <div class="note">
       <div class="k">CAVEAT</div>
-      <p>All productivity multipliers and pull request counts in this section are vendor-reported;
-        they indicate direction and order of magnitude, not audited benchmarks.</p>
+      <p>Vendors report all productivity multipliers and pull request counts in this section. They
+        show direction and order of magnitude, not audited benchmarks.</p>
     </div>
 
     <h2>Two incidents every autonomous pipeline should internalize</h2>
 
     <p><strong>PocketOS: production database deleted in nine seconds (April 24, 2026).</strong> A
-      Cursor agent running Claude Opus 4.6, hitting a credential mismatch in staging, scanned the
-      repository, found an unrelated Railway API token, and on its own initiative deleted the
-      production volume and backups in a single API call, with no confirmation requested. Recovery
-      took two days. The agent's own post-hoc "confession" enumerated the safety rules it broke,
-      calling its action "the most destructive, irreversible action possible," worse than a force
-      push. The founder's read: an industry-wide failure to build safety architecture as fast as
-      integrations.</p>
+      Cursor agent running Claude Opus 4.6 hit a credential mismatch in staging. It scanned the
+      repository and found an unrelated Railway API token. On its own it deleted the production
+      volume and the backups in a single API call. It asked for no confirmation. Recovery took two
+      days.</p>
+
+    <p>The agent then wrote a "confession" that listed the safety rules it broke. It called its
+      action "the most destructive, irreversible action possible," worse than a force push. The
+      founder read the event as an industry-wide failure. The industry builds integrations faster
+      than it builds safety architecture.</p>
 
     <p><strong>Microsoft Security, "When prompts become shells" (May 7, 2026).</strong> Microsoft
-      disclosed a path in Semantic Kernel where an indirect prompt injection becomes host-level
-      remote code execution: a single prompt launched calc.exe on the agent's host. Palo Alto Unit
-      42 had already moved indirect prompt injection from proof-of-concept to in-the-wild in March.
-      This is the prompt-injection-to-execution chain people warned about, now documented in a
-      first-party advisory.</p>
+      disclosed a path in Semantic Kernel. An indirect prompt injection becomes host-level remote
+      code execution. A single prompt launched calc.exe on the agent's host. Palo Alto Unit 42 had
+      already found indirect prompt injection in the wild in March. This is the
+      prompt-injection-to-execution chain, now documented in a first-party advisory.</p>
 
-    <p>The background risk levels have not improved: the Cloud Security Alliance figure of 65
-      percent of organizations with at least one agent-caused incident still stands, as does the UK
-      AI Security Institute's catalogue of roughly 700 documented cases of model misbehavior, a
+    <p>The background risk has not improved. The Cloud Security Alliance figure still stands: 65
+      percent of organizations had at least one agent-caused incident. So does the UK AI Security
+      Institute's catalogue of roughly 700 documented cases of model misbehavior. That is a
       fivefold rise between October 2025 and March 2026.</p>
 
     <blockquote>
-      <p>Least-privilege tool scoping, deterministic guards on irreversible verbs (delete,
-        force-push, deploy, send), and an audit log per action are non-negotiable.</p>
+      <p>Three controls are non-negotiable. Scope every tool to least privilege. Put deterministic
+        guards on irreversible actions: delete, force-push, deploy, and send. Keep an audit log for
+        each action.</p>
     </blockquote>
 
-    <p>Destructive tool calls should require a separate human approval, a typed allow-list of
-      resources, or a circuit breaker that trips on out-of-scope actions. Assume any token in the
-      repository will be found and used.</p>
+    <p>A destructive tool call needs a separate human approval. It also needs a typed allow-list of
+      resources, or a circuit breaker that trips on out-of-scope actions. Assume an agent will find
+      and use any token in the repository.</p>
 
     <h2>How we apply this at River.io</h2>
 
-    <p>River.io builds native compiled software with zero third-party dependencies, test-driven
-      development, and a GitHub-issue-driven SDLC. Our portfolio includes regulated work (CareTime
-      and TimeForCare on Medicaid electronic visit verification, MaterialsAndPractices on
-      organic-farm compliance), which shapes how we read this month's findings.</p>
+    <p>River.io builds native compiled software with zero third-party dependencies. We use
+      test-driven development and a GitHub-issue-driven SDLC. Our portfolio includes regulated
+      work. CareTime and TimeForCare cover Medicaid electronic visit verification.
+      MaterialsAndPractices covers organic-farm compliance. That work shapes how we read this
+      month's findings.</p>
 
     <p><strong>The delegation gap is a roadmap, not a scorecard.</strong> We pick narrow,
-      well-defined task types (dependency-free refactors, test generation, documentation updates)
-      for autonomous loops, and explicitly keep product and architecture decisions in human hands.
-      The goal is not to chase full autonomy; it is to widen the share of work that can be safely
-      delegated, one task type at a time.</p>
+      well-defined task types for autonomous loops: dependency-free refactors, test generation, and
+      documentation updates. We keep product and architecture decisions in human hands. We do not
+      chase full autonomy. We widen the share of work we can safely delegate, one task type at a
+      time.</p>
 
-    <p><strong>The constitution is our policy layer.</strong> A per-repository rules document in
-      EARS form (native-only, no third-party dependencies, TDD parity across iOS and Android, no
-      protected health information in logs) is the rulebook an agent answers to before the spec.
-      It directly encodes our operating posture as machine-checkable policy.</p>
+    <p><strong>The constitution is our policy layer.</strong> Each repository carries a rules
+      document in EARS form. It states native-only code, no third-party dependencies, TDD parity
+      across iOS and Android, and no protected health information in logs. An agent answers to that
+      rulebook before it reads the spec. The document encodes our operating posture as
+      machine-checkable policy.</p>
 
-    <p><strong>Spec as validation gate fits TDD exactly.</strong> Our existing test suites are
-      already the strongest verifier substrate; layering a machine-readable spec on top of a GitHub
-      issue closes the plan, generate, evaluate loop without new infrastructure.</p>
+    <p><strong>Spec as validation gate fits TDD exactly.</strong> Our test suites are already the
+      strongest verifier we have. We layer a machine-readable spec on top of a GitHub issue. That
+      closes the plan, generate, evaluate loop without new infrastructure.</p>
 
-    <p><strong>Irreversible actions are the real threat model.</strong> For the regulated apps, any
-      database migration, PHI export, log purge, or production deploy is a typed, allow-listed,
-      human-approved tool call. No autonomous agent gets a generic shell or a credential it can
-      re-scope. Goal-directed agent runs get hard caps on turns, tokens, and tool scope: a goal of
-      "make the tests pass" without a tool allow-list is exactly the shape of the PocketOS
-      incident.</p>
+    <p><strong>Irreversible actions are the real threat model.</strong> In the regulated apps, a
+      database migration, a protected health information export, a log purge, or a production
+      deploy is a typed tool call. Each one is allow-listed and human-approved. No autonomous agent
+      gets a generic shell or a credential it can re-scope. Goal-directed agent runs get hard caps
+      on turns, tokens, and tool scope. A goal of "make the tests pass" without a tool allow-list
+      has the exact shape of the PocketOS incident.</p>
 
     <p><strong>Experiments run where the stakes are low.</strong> We pilot autonomous loops on
-      repositories with no PHI and no regulatory surface (MeowPassword, weathergalactic, sloth),
-      scoped to one narrow task type, and we measure how often the loop closes without human
-      intervention and where it breaks the constitution.</p>
+      repositories with no protected health information and no regulatory surface: MeowPassword,
+      weathergalactic, and sloth. Each pilot covers one narrow task type. We measure how often the
+      loop closes with no human intervention. We also record where it breaks the constitution.</p>
 
     <hr />
 
@@ -216,9 +222,9 @@
       <li><a href="https://medium.com/@sohail_saifi/ai-writes-30-of-microsofts-code-and-25-of-google-s-6909f6e0b406">AI Writes 30% of Microsoft's Code, 25% of Google's (Medium)</a> · <a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/microsofts-ceo-reveals-that-ai-writes-up-to-30-percent-of-its-code-some-projects-may-have-all-of-its-code-written-by-ai">Microsoft CEO: AI writes up to 30% of code (Tom's Hardware)</a> · <a href="https://uvik.net/blog/ai-coding-assistant-statistics/">AI Coding Assistant Stats 2026 (Uvik)</a></li>
     </ul>
 
-    <p><em>Vendor and blog figures cited here (pull request counts, productivity multipliers,
-      percentage of AI-authored code) indicate direction, not audited benchmarks; treat them as
-      fast-moving signals.</em></p>
+    <p><em>Vendor and blog figures here show direction, not audited benchmarks. That includes pull
+      request counts, productivity multipliers, and the percentage of AI-authored code. Treat them
+      as fast-moving signals.</em></p>
 
   </div>
 </article>

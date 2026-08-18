@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="In late June 2026, OWASP tied prompt injection to six of its ten agentic risk categories while an autonomous bot ran a live supply-chain attack, a hard argument for keeping regulated code human-gated." />
+<meta name="description" content="In late June 2026, OWASP tied prompt injection to six of its ten agentic risk categories. At the same time, an autonomous bot ran a live supply-chain attack. Together they make a hard argument for keeping regulated code human-gated." />
 <meta name="color-scheme" content="light dark" />
 <meta name="tags" content="Briefing, Security, Specs, Practice" />
 <title>The security reckoning catches up with the autonomous software factory — The Dark Factory · river.io</title>
@@ -32,8 +32,8 @@
     <div class="meta"><b>Order 007</b><span>29 June 2026</span><span>8 min</span><span>Briefing</span></div>
     <h1>The security reckoning catches up with the autonomous software factory</h1>
     <p class="dek">In late June 2026, OWASP tied prompt injection to six of its ten agentic risk
-      categories while an autonomous bot ran a live supply-chain attack, a hard argument for
-      keeping regulated code human-gated.</p>
+      categories. At the same time, an autonomous bot ran a live supply-chain attack. Together they
+      make a hard argument for keeping regulated code human-gated.</p>
     <div class="rule"></div>
   </div>
 </div>
@@ -41,75 +41,82 @@
 <article class="post">
   <div class="in">
 
-    <p class="lede-cap">In late June 2026, two threads dominated the news around autonomous
-      software production, and they pulled in opposite directions. The methodology stack kept
-      maturing: GitHub Spec Kit's quality gates and StrongDM-style satisfaction-threshold
-      validation are converging on a single idea, that the eval suite is the spec and the spec is
-      the gate. At the same time, the security reckoning caught up with the hype. OWASP's mid-June
-      reporting confirmed that prompt injection now maps to six of the ten categories in its Top 10
-      for Agentic Applications and is the throughline in most production agent failures, including
-      a supply-chain attack in which a backdoored PyPI package collected roughly 47,000 downloads
-      in a three-hour window. The tooling for autonomous loops is real and improving. The
-      headlines are a direct argument for keeping regulated repositories human-gated anyway.</p>
+    <p class="lede-cap">In late June 2026, two threads dominated the news about autonomous software
+      production. They pulled in opposite directions. The methodology stack kept maturing. GitHub
+      Spec Kit's quality gates and StrongDM-style satisfaction-threshold validation converge on one
+      idea. The eval suite is the spec, and the spec is the gate.</p>
 
-    <h2>Where the field actually stands</h2>
+    <p>At the same time, the security reckoning caught up with the hype. OWASP's mid-June reporting
+      confirmed that prompt injection now maps to six of the ten categories in its Top 10 for
+      Agentic Applications. It is the throughline in most production agent failures. One example is
+      a supply-chain attack. A backdoored PyPI package collected roughly 47,000 downloads in a
+      three-hour window.</p>
 
-    <p>The framing has settled. A dark factory is the software analog of a lights-out
-      manufacturing plant: a coordinated set of agents that plan, code, test, review, and
-      sometimes ship from a specification with little or no human touching the pull request. The
-      most-cited real proof point remains StrongDM's internal Software Factory, running since
-      mid-2025, where a three-person team reports roughly 32,000 lines of production code shipped
-      without hand-writing or hand-reviewing any of it. StrongDM's CTO offers a memorable
+    <p>The tooling for autonomous loops is real, and it is improving. The headlines are a direct
+      argument for keeping regulated repositories human-gated anyway.</p>
+
+    <h2>Where the field stands</h2>
+
+    <p>The framing has settled. A dark factory is the software analog of a lights-out manufacturing
+      plant. It is a coordinated set of agents that plan, code, test, review, and sometimes ship
+      from a specification. Little or no human touches the pull request.</p>
+
+    <p>The most-cited real proof point remains StrongDM's internal Software Factory. It has run
+      since mid-2025. A three-person team reports roughly 32,000 lines of production code shipped.
+      Nobody hand-wrote or hand-reviewed any of it. StrongDM's CTO offers a memorable
       factory-utilization yardstick: more than 1,000 dollars of model tokens per engineer per
       day.</p>
 
-    <p>Analysts now treat agentic development as the default trajectory rather than an experiment.
-      Forrester frames 2026 as the move from code assistants to orchestrated SDLC agents. The
-      honest caveat comes from Anthropic's 2026 Agentic Coding Trends Report: developers use AI in
-      about 60 percent of their work but can fully delegate only 0 to 20 percent of tasks today.
-      The lights are dimming, not off.</p>
+    <p>Analysts now treat agentic development as the default path, not an experiment. Forrester
+      frames 2026 as the move from code assistants to orchestrated SDLC agents. Anthropic's 2026
+      Agentic Coding Trends Report gives the honest caveat. Developers use AI in about 60 percent of
+      their work. They can fully delegate only 0 to 20 percent of tasks today. The lights are
+      dimming, not off.</p>
 
     <h2>The spec is becoming the gate</h2>
 
     <p>Spec-driven development is the center of gravity. GitHub Spec Kit has hardened into a real
       pipeline: constitution, specify, clarify, plan, checklist, tasks, analyze, implement,
-      converge. The analyze step is a read-only consistency gate that catches ambiguities,
-      coverage gaps, and contradictions across the spec, plan, and tasks before any code is
-      written, and checks that work has not drifted from the project constitution. Notably for
-      regulated work, presets can restructure spec templates to require regulatory traceability
-      and add mandatory security-review gates, and community extensions such as CI Guard and
-      Architecture Guard add compliance governance.</p>
+      converge. The analyze step is a read-only consistency gate. It catches ambiguities, coverage
+      gaps, and contradictions across the spec, plan, and tasks before anyone writes code. It also
+      checks that the work has not drifted from the project constitution.</p>
 
-    <p>On the research side, "The Kitchen Loop" (arXiv 2603.25697) is the cleanest articulation
-      yet of the spec-as-trust-model idea: a specification surface of what the product claims to
-      support; an LLM agent that exercises that surface as a synthetic power user at roughly
-      1,000 times human cadence; "Unbeatable Tests" for ground-truth verification; and drift
-      control with automated pause gates. StrongDM runs the same skeleton in production, replacing
-      boolean pass or fail with a probabilistic satisfaction score (the fraction of successful
-      user trajectories) and shipping only when the score clears a pre-set threshold, validated
-      against a "Digital Twin Universe" of cloned external services.</p>
+    <p>One point matters for regulated work. Presets can restructure spec templates to require
+      regulatory traceability and to add mandatory security-review gates. Community extensions such
+      as CI Guard and Architecture Guard add compliance governance.</p>
+
+    <p>On the research side, "The Kitchen Loop" (arXiv 2603.25697) states the spec-as-trust-model
+      idea most clearly. It has four parts. The first is a specification surface of what the product
+      claims to support. The second is an LLM agent that exercises that surface as a synthetic power
+      user, at roughly 1,000 times human cadence. The third is "Unbeatable Tests" for ground-truth
+      verification. The fourth is drift control with automated pause gates.</p>
+
+    <p>StrongDM runs the same skeleton in production. It replaces boolean pass or fail with a
+      probabilistic satisfaction score, the fraction of successful user trajectories. It ships only
+      when the score clears a pre-set threshold. It validates against a "Digital Twin Universe" of
+      cloned external services.</p>
 
     <blockquote>
-      <p>A sufficiently detailed eval suite is the executable spec. The merge-reject loop driving
-        eval pass rates is what "spec is code" means in practice.</p>
+      <p>A sufficiently detailed eval suite is the executable spec. The merge-reject loop that
+        drives eval pass rates is what "spec is code" means in practice.</p>
     </blockquote>
 
     <h2>Practices worth adopting</h2>
 
     <ul>
       <li><strong>Context files are load-bearing.</strong> Anthropic reports that teams with
-        well-maintained agent context files see about 40 percent fewer errors and finish about 55
-        percent faster. It is the cheapest, most portable win available, and it costs zero
-        dependencies.</li>
-      <li><strong>Sentinel agents in CI.</strong> The durable pattern is a mandatory security
-        agent acting as a hard gate in the pipeline, plus a tight loop from agent output to CI
-        result to re-execution.</li>
-      <li><strong>Hierarchical orchestration over monolithic agents.</strong> An orchestrator
-        coordinating specialized agents in separate context windows, with humans inserted only at
-        strategic checkpoints, is the reference architecture as task horizons stretch from minutes
-        to days.</li>
+        well-maintained agent context files see about 40 percent fewer errors. Those teams also
+        finish about 55 percent faster. It is the cheapest, most portable win available, and it
+        costs zero dependencies.</li>
+      <li><strong>Sentinel agents in CI.</strong> The durable pattern is a mandatory security agent
+        that acts as a hard gate in the pipeline. Add a tight loop from agent output to CI result to
+        re-execution.</li>
+      <li><strong>Hierarchical orchestration over monolithic agents.</strong> One orchestrator
+        coordinates specialized agents in separate context windows. Humans enter only at strategic
+        checkpoints. That is the reference architecture as task horizons stretch from minutes to
+        days.</li>
       <li><strong>Spec and eval are converging into one artifact.</strong> Write the ground-truth
-        tests first and let the loop converge against them.</li>
+        tests first. Then let the loop converge against them.</li>
     </ul>
 
     <h2>The numbers in circulation</h2>
@@ -132,77 +139,78 @@
     </div>
 
     <p>Engineers at Anthropic and OpenAI claim near-100 percent AI authorship for their own
-      workflows, though independent analysis argues the organization-wide merged-line average is
-      closer to 50 percent. Treat the high numbers as directional cheerleading. The most concrete
-      capability data point of the cycle is a Rakuten case study: Claude Code completed an
-      activation-vector extraction task in a 12.5-million-line library in about 7 hours of
-      autonomous work at 99.9 percent numerical accuracy against the reference.</p>
+      workflows. Independent analysis argues the organization-wide merged-line average is closer to
+      50 percent. Treat the high numbers as directional cheerleading. The most concrete capability
+      data point of the cycle is a Rakuten case study. Claude Code completed an activation-vector
+      extraction task in a 12.5-million-line library. It took about 7 hours of autonomous work at
+      99.9 percent numerical accuracy against the reference.</p>
 
     <h2>The risk picture sharpened, and it is not reassuring</h2>
 
     <p><strong>Prompt injection looks structural, not patchable.</strong> OWASP's June reporting
-      ties it to six of ten categories in the Top 10 for Agentic Applications and calls it the
-      fastest-growing attack class, cited at 340 percent growth year over year.</p>
+      ties it to six of ten categories in the Top 10 for Agentic Applications. OWASP calls it the
+      fastest-growing attack class and cites 340 percent growth year over year.</p>
 
     <p><strong>Autonomous bots are already running real supply-chain attacks.</strong> A bot known
-      as "hackerbot-claw" exploited GitHub Actions misconfigurations and harvested a PyPI
-      publishing token, pushing backdoored packages; one sat live for about three hours and
-      collected roughly 47,000 downloads. Microsoft separately documented remote-code-execution
-      vulnerabilities in agent frameworks where prompts become shells.</p>
+      as "hackerbot-claw" exploited GitHub Actions misconfigurations. It harvested a PyPI publishing
+      token and pushed backdoored packages. One package sat live for about three hours and collected
+      roughly 47,000 downloads. Microsoft separately documented remote-code-execution
+      vulnerabilities in agent frameworks, where prompts become shells.</p>
 
-    <p><strong>Multi-agent systems cascade.</strong> One injected instruction can drive thousands
-      of machine-speed actions. In agent swarms, a single compromised agent feeds false output to
-      downstream agents that trust it, crossing permission boundaries as it goes.</p>
+    <p><strong>Multi-agent systems cascade.</strong> One injected instruction can drive thousands of
+      machine-speed actions. In agent swarms, one compromised agent feeds false output to downstream
+      agents that trust it. It crosses permission boundaries as it goes.</p>
 
-    <p><strong>The accountability question is open.</strong> Stanford Law's CodeX asks it
-      directly: built by agents, tested by agents, trusted by whom? For regulated software that is
-      the crux. Someone has to attest, to a named authority. An arXiv study of agentic pull
-      requests on GitHub (arXiv 2601.00477) is now measuring the security properties of
-      agent-authored PRs at scale, which should replace anecdote with evidence over time.</p>
+    <p><strong>The accountability question is open.</strong> Stanford Law's CodeX asks it directly:
+      built by agents, tested by agents, trusted by whom? For regulated software that is the crux.
+      Someone has to attest, to a named authority. An arXiv study of agentic pull requests on GitHub
+      (arXiv 2601.00477) now measures the security properties of agent-authored PRs at scale. It
+      should replace anecdote with evidence over time.</p>
 
     <div class="note">
       <div class="k">WHY THIS MATTERS TO BUYERS</div>
       <p>Every incident above is an attack on dependency trees and third-party agent frameworks.
-        The blast radius of an autonomous pipeline is largely determined by what its stack trusts
-        by default. Ask any vendor running agents against your codebase what their dependency
+        What a stack trusts by default largely determines the blast radius of an autonomous
+        pipeline. Ask any vendor that runs agents against your codebase what their dependency
         surface looks like.</p>
     </div>
 
     <h2>How we apply this at River.io</h2>
 
-    <p>Our posture is native compiled code, zero third-party dependencies, test-driven
-      development, and a GitHub-issue-driven SDLC. This cycle's findings map onto it directly.</p>
+    <p>Our posture is native compiled code, zero third-party dependencies, test-driven development,
+      and a GitHub-issue-driven SDLC. This cycle's findings map onto it directly.</p>
 
     <p><strong>The biggest risks are dependency-shaped, and we opted out by construction.</strong>
       The backdoored-PyPI incident and the framework RCE disclosures are attacks on dependency
-      trees. A zero-dependency native codebase has a dramatically smaller blast radius, and we do
-      not let autonomous-loop experiments quietly introduce a package manager or a heavyweight
-      agent framework as a convenience.</p>
+      trees. A zero-dependency native codebase has a much smaller blast radius. We also do not let
+      autonomous-loop experiments quietly add a package manager or a heavyweight agent framework as
+      a convenience.</p>
 
     <p><strong>Spec-as-eval maps cleanly onto TDD.</strong> The Kitchen Loop, the Spec Kit analyze
-      gate, and StrongDM's satisfaction threshold are, stripped down, the same method: write the
-      ground-truth tests first and let the loop converge against them. That is test-driven
-      development with an agent in the inner loop. We adopt the method (constitution file, spec,
-      checklist gate, converge) without adopting anyone's framework. A spec document, a test
-      harness, and a GitHub Actions gate are enough.</p>
+      gate, and StrongDM's satisfaction threshold are the same method. Write the ground-truth tests
+      first. Let the loop converge against them. That is test-driven development with an agent in
+      the inner loop. We adopt the method, which is a constitution file, a spec, a checklist gate,
+      and a converge step. We do not adopt anyone's framework. A spec document, a test harness, and
+      a GitHub Actions gate are enough.</p>
 
-    <p><strong>Regulated work stays human-gated.</strong> With prompt injection looking like a
-      permanent flaw and the attestation question unanswered, our CareTime and TimeForCare
-      Medicaid EVV applications and our MaterialsAndPractices organic-farm compliance application
-      stay at human-in-the-loop autonomy: agents draft, humans review and attest. Where we use
-      spec tooling on these repositories, we use configurations that require regulatory
-      traceability and a mandatory security-review gate.</p>
+    <p><strong>Regulated work stays human-gated.</strong> Prompt injection looks like a permanent
+      flaw, and the attestation question has no answer yet. So our CareTime and TimeForCare Medicaid
+      EVV applications stay at human-in-the-loop autonomy. Our MaterialsAndPractices organic-farm
+      compliance application does the same. Agents draft. Humans review and attest.</p>
+
+    <p>We use spec tooling on these repositories. There we use configurations that require
+      regulatory traceability and a mandatory security-review gate.</p>
 
     <p><strong>Autonomous-loop experiments run on low-stakes repositories.</strong> MeowPassword,
-      weathergalactic, and sloth are the sandboxes where we push toward a full
-      planner-generator-evaluator loop with a satisfaction-threshold merge gate. We instrument
-      them, capturing token cost, agent-authored-PR rate, and eval pass rate, so we report our own
-      numbers rather than vendor figures.</p>
+      weathergalactic, and sloth are the sandboxes. There we push toward a full
+      planner-generator-evaluator loop with a satisfaction-threshold merge gate. We instrument them
+      and capture token cost, agent-authored-PR rate, and eval pass rate. That way we report our own
+      numbers instead of vendor figures.</p>
 
-    <p><strong>We take the cheapest proven win now: context files.</strong> The reported 40
-      percent fewer errors and 55 percent faster completion from well-maintained agent context
-      files requires no tooling and no dependencies, just disciplined repository-level context
-      documents. That discipline is portable across every repository we run, regulated or not.</p>
+    <p><strong>We take the cheapest proven win now: context files.</strong> The reported 40 percent
+      fewer errors and 55 percent faster completion need no tooling and no dependencies. They need
+      disciplined repository-level context documents. That discipline is portable across every
+      repository we run, regulated or not.</p>
 
     <hr />
 
@@ -225,9 +233,9 @@
       <li><a href="https://arxiv.org/pdf/2601.00477">arXiv 2601.00477: Security study of agentic pull requests on GitHub</a></li>
     </ul>
 
-    <p><em>Vendor and blog figures cited here indicate direction and momentum, not audited
-      benchmarks. Self-reported "percent of code written by AI" claims in particular are measured
-      inconsistently and should be read as directional.</em></p>
+    <p><em>Vendor and blog figures cited here show direction and momentum, not audited benchmarks.
+      Teams measure self-reported "percent of code written by AI" claims inconsistently. Read those
+      claims as directional.</em></p>
 
   </div>
 </article>
