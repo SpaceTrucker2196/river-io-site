@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Martin — support · river.io</title>
+  <meta name="description" content="Support for Martin and Martin Home, the self-hosted property management apps from River.io LLC. How to get in, how your data works, and how to reach us." />
+  <link rel="icon" href="assets/martin/martin-icon-1254.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #f4efe4; --ink: #2c2620; --ink-soft: #5c5347; --ink-faint: #8d816f;
+      --mustard: #c99a2e; --terracotta: #b05c38; --olive: #6b7442;
+      --teak: #8a5a33; --plum: #5c4358; --brass: #a98d4b;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--paper); color: var(--ink);
+      font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+      font-size: 16.5px; line-height: 1.65;
+    }
+    .sheet { max-width: 720px; margin: 0 auto; padding: 0 22px 64px; }
+    .dateline {
+      display: flex; justify-content: space-between;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.22em;
+      color: var(--ink-soft); text-transform: uppercase;
+      padding: 14px 2px 10px; border-bottom: 1px solid var(--brass);
+    }
+    .dateline a { color: inherit; text-decoration: none; }
+    header.masthead { text-align: center; padding: 30px 0 6px; }
+    header.masthead img {
+      max-width: 100%; height: auto; border-radius: 2px;
+      border: 1px solid var(--brass);
+    }
+    header.masthead h1 {
+      font-family: "DM Serif Display", Georgia, serif; font-weight: 400;
+      font-size: clamp(32px, 6.5vw, 48px); line-height: 1.05; margin-top: 20px;
+    }
+    header.masthead .tagline {
+      font-style: italic; font-family: "DM Serif Display", Georgia, serif;
+      color: var(--ink-soft); margin-top: 8px; font-size: 17px;
+    }
+    section { padding: 30px 0 0; }
+    .kicker {
+      font-size: 10.5px; font-weight: 800; letter-spacing: 0.24em;
+      text-transform: uppercase; color: var(--terracotta);
+      display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+    }
+    .kicker::after { content: ""; flex: 1; height: 1px; background: var(--brass); }
+    h2 {
+      font-family: "DM Serif Display", Georgia, serif; font-weight: 400;
+      font-size: 24px; margin-bottom: 8px;
+    }
+    p { color: var(--ink-soft); }
+    p + p { margin-top: 10px; }
+    p strong { color: var(--ink); }
+    a { color: var(--terracotta); }
+    ul { margin: 10px 0 0 20px; color: var(--ink-soft); }
+    li + li { margin-top: 6px; }
+    .card {
+      border: 1px solid var(--brass); border-radius: 2px;
+      padding: 18px 20px; margin-top: 14px; background: rgba(255,255,255,0.35);
+    }
+    .card .label {
+      font-size: 10px; font-weight: 800; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--olive); margin-bottom: 6px;
+    }
+    .contact-line {
+      font-family: "DM Serif Display", Georgia, serif; font-size: 20px;
+    }
+    footer {
+      margin-top: 48px; padding-top: 14px; border-top: 1px solid var(--brass);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--ink-faint);
+    }
+    footer a { color: inherit; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="dateline">
+      <a href="https://www.river.io">river.io</a>
+      <span>Support</span>
+    </div>
+
+    <header class="masthead">
+      <img src="assets/martin/martin-header.png" alt="Martin — property management" />
+      <h1>Martin support</h1>
+      <p class="tagline">For Martin and Martin Home, on iPhone and Android.</p>
+    </header>
+
+    <section>
+      <div class="kicker">What Martin is</div>
+      <p><strong>Martin</strong> is property management for people who own the
+      buildings and often hold the wrench too: time on the clock, repairs and
+      their paper trail, photos, materials, expenses, and every lease filed
+      with the home it covers. <strong>Martin Home</strong> is the resident's
+      side: report a problem with photos, follow what happens, and talk to the
+      people fixing it.</p>
+      <p>Both apps talk to a <strong>Martin server that your operator
+      hosts</strong>. There is no Martin cloud, no account with us, and
+      nothing phones home.</p>
+    </section>
+
+    <section>
+      <div class="kicker">Getting in</div>
+      <p>Martin has no sign-up page by design. Every account starts from a
+      <strong>single-use invite</strong> issued by the person who runs your
+      buildings, on their server. To get in you need two things from them:</p>
+      <ul>
+        <li>The server address.</li>
+        <li>An invite code, or an invite link that fills in both at once.</li>
+      </ul>
+      <p>If you don't have an invite, ask your property manager or operator —
+      we cannot create accounts on a server we don't run.</p>
+    </section>
+
+    <section>
+      <div class="kicker">Your data</div>
+      <p>Your records live on your operator's server and on your phone. The
+      apps collect nothing for us and share nothing with third parties. Each
+      Martin server publishes its own privacy policy at
+      <strong>/privacy</strong> on its own address, so the policy that binds
+      you is the one your server serves. Account deletion and data questions
+      go to your operator, who holds the data.</p>
+    </section>
+
+    <section>
+      <div class="kicker">Common questions</div>
+      <p><strong>Does it work offline?</strong> Yes. A basement or a dead zone
+      changes nothing: work is recorded on the phone the moment it happens and
+      reaches the server whenever the phone next can.</p>
+      <p><strong>I forgot my password.</strong> Use the reset link on the
+      sign-in screen; the email comes from your operator's server. If it never
+      arrives, your operator can reissue an invite.</p>
+      <p><strong>The app says it cannot reach the server.</strong> Check the
+      server address with your operator, and that you typed any port exactly.
+      Work you record while unreachable is kept and sent later.</p>
+    </section>
+
+    <section>
+      <div class="kicker">Reach us</div>
+      <div class="card">
+        <div class="label">Email</div>
+        <p class="contact-line"><a href="mailto:rentalops@river.io">rentalops@river.io</a></p>
+        <p style="margin-top:8px">We read everything and usually answer within
+        two business days. Include the app (Martin or Martin Home), your
+        platform, and what you saw.</p>
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2026 River.io LLC</span>
+      <a href="https://www.river.io">river.io</a>
+    </footer>
+  </div>
+</body>
+</html>
