@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MaizeRunner — support · river.io</title>
+  <meta name="description" content="Support for MaizeRunner. Email a person, read answers to common questions about soil data, MaizeRunner Pro, purchases and your farm data." />
+  <link rel="icon" href="assets/maizerunner/icon-512.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ultra&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #f2e9d3; --ink: #2b2116; --ink-soft: #5a4c38; --ink-faint: #8a7a60;
+      --barn: #a4441f; --field: #55743a; --rule: rgba(43, 33, 22, 0.85);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--paper); color: var(--ink);
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 17px; line-height: 1.65;
+      background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(255, 250, 235, 0.7), rgba(0,0,0,0) 60%),
+        repeating-linear-gradient(0deg, rgba(90, 70, 40, 0.028) 0 1px, rgba(0,0,0,0) 1px 28px);
+    }
+    .sheet { max-width: 700px; margin: 0 auto; padding: 0 22px 60px; }
+    .dateline {
+      display: flex; justify-content: space-between;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.22em;
+      color: var(--ink-soft); text-transform: uppercase;
+      padding: 14px 2px 10px; border-bottom: 1.5px solid var(--rule);
+    }
+    .dateline a { color: inherit; text-decoration: none; }
+    header { text-align: center; padding: 34px 0 4px; }
+    header h1 {
+      font-family: "Ultra", Georgia, serif; font-weight: 400;
+      font-size: clamp(30px, 6.5vw, 46px); line-height: 1.05;
+    }
+    header .tagline { font-style: italic; color: var(--ink-soft); margin-top: 8px; font-size: 15px; }
+    .double-rule { border: 0; border-top: 2.5px solid var(--rule); margin: 18px 0 0; }
+    .double-rule::after { content: ""; display: block; border-top: 1px solid var(--rule); margin-top: 2px; }
+    section { padding: 26px 0 0; }
+    .kicker {
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 10.5px; font-weight: 800; letter-spacing: 0.24em;
+      text-transform: uppercase; color: var(--barn);
+      display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+    }
+    .kicker::before { content: ""; width: 26px; height: 2px; background: var(--barn); }
+    p + p { margin-top: 10px; }
+    p { color: var(--ink-soft); }
+    p strong { color: var(--ink); }
+    a { color: var(--barn); }
+    .contact {
+      border: 1.5px solid var(--rule); margin-top: 16px;
+      padding: 20px 22px; background: rgba(255, 252, 242, 0.55);
+    }
+    .contact .addr {
+      font-family: "Ultra", Georgia, serif;
+      font-size: clamp(20px, 4.5vw, 28px); word-break: break-word;
+    }
+    .contact .addr a { text-decoration: none; }
+    .qa { margin-top: 18px; }
+    .qa dt {
+      font-weight: 600; color: var(--ink); margin-top: 18px;
+      padding-top: 12px; border-top: 1px solid rgba(43, 33, 22, 0.25);
+    }
+    .qa dd { color: var(--ink-soft); margin-top: 6px; }
+    .fleuron { text-align: center; color: var(--ink-faint); letter-spacing: 0.6em; padding: 26px 0 0; }
+    .motto {
+      text-align: center; font-style: italic; letter-spacing: 0.14em;
+      color: var(--ink-soft); font-size: 14px; padding: 34px 0 8px;
+    }
+    footer {
+      border-top: 1.5px solid var(--rule); margin-top: 20px; padding: 16px 2px 0;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 10.5px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--ink-faint);
+    }
+    footer a { color: var(--ink-soft); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="dateline">
+      <span><a href="maizerunner/">← MaizeRunner</a></span>
+      <span><a href="index.html">river.io</a></span>
+      <span>Support</span>
+    </div>
+
+    <header>
+      <h1>SUPPORT</h1>
+      <p class="tagline">MaizeRunner · published by river.io LLC</p>
+      <hr class="double-rule" />
+    </header>
+
+    <section>
+      <div class="kicker">Write to us</div>
+      <p>A person reads this mail and answers it, usually within two business
+      days. MaizeRunner has no account system, so there is nothing to verify
+      and nothing to reset — just describe what you saw.</p>
+
+      <div class="contact">
+        <p class="addr"><a href="mailto:info@river.io?subject=MaizeRunner%20support">info@river.io</a></p>
+        <p style="margin-top:10px">When something is broken, the fastest fix
+        comes from telling us your iOS version, your iPhone or iPad model, and
+        what you tapped just before it went wrong. Screenshots help. No farm
+        data is ever attached to a support mail unless you choose to send it.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="kicker">Common questions</div>
+      <dl class="qa">
+        <dt>I bought Pro and it is not showing</dt>
+        <dd>Open Settings inside the app and tap <strong>Restore Purchase</strong>.
+        Purchases are tied to the Apple Account that bought them, so make sure
+        you are signed in with the same one. MaizeRunner Pro is a one-time
+        purchase, not a subscription, and it restores on every device on that
+        Apple Account. If it still does not appear, write to us with the date of
+        purchase and we will sort it out.</dd>
+
+        <dt>What does MaizeRunner Pro change?</dt>
+        <dd>The field limit, and nothing else. Three fields on the free tier, up
+        to one hundred with Pro. Soil reports, the sampling walkthrough, season
+        tracking and the ten-year planner all work identically whether or not
+        you buy it.</dd>
+
+        <dt>No soil data for my field</dt>
+        <dd>Automatic soil detection needs a network connection the first time
+        you draw a field. USDA SSURGO covers the United States in high detail;
+        everywhere else falls back to ISRIC SoilGrids, which is coarser. If a
+        field sits on water, pavement or a surveyed gap, neither source returns
+        a profile — enter your lab results by hand instead.</dd>
+
+        <dt>Where is my data, and is it backed up?</dt>
+        <dd>Everything lives in a database on your device, and we hold no copy
+        of it. That is the whole point of the app. It is included in your
+        encrypted device or iCloud backup. Deleting the app deletes your fields,
+        so take a backup first.</dd>
+
+        <dt>How do I delete my data?</dt>
+        <dd>Delete a field inside the app, or delete the app to remove
+        everything at once. There is no account to close and no copy on our
+        side to request the deletion of.</dd>
+
+        <dt>The app is not in my language</dt>
+        <dd>MaizeRunner follows your device language across 33 languages. If
+        yours reads badly, tell us which language and which screen. The agronomy
+        terms were translated by hand, so corrections from a grower who works in
+        that language are genuinely useful.</dd>
+      </dl>
+    </section>
+
+    <section>
+      <div class="kicker">Privacy</div>
+      <p>MaizeRunner collects no personal data, no analytics and no identifiers,
+      and river.io never receives your farm data. The full statement is the
+      <a href="maizerunner-privacy.html">privacy policy</a>.</p>
+    </section>
+
+    <div class="fleuron">❦</div>
+    <p class="motto">· KNOW YOUR GROUND · IT STAYS ON YOUR DEVICE ·</p>
+
+    <footer>
+      <span>© river.io LLC</span>
+      <span><a href="maizerunner/">MaizeRunner</a> · <a href="index.html">river.io</a></span>
+    </footer>
+  </div>
+</body>
+</html>
