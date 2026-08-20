@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="A supply chain study found 59 campaigns and 657 malicious packages with no CVE at all. An outage study counted nine cases of an agent deleting production. Six national cyber agencies wrote down who decides where the gate goes." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing, Security, Autonomy" />
+<title>Fifty-nine attacks, zero CVEs — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 024</b><span>20 August 2026</span><span>7 min</span><span>Briefing</span></div>
+    <h1>Fifty-nine attacks, zero CVEs</h1>
+    <p class="dek">A supply chain study found 59 campaigns and 657 malicious packages with no CVE at all. An outage study counted nine cases of an agent deleting production. Six national cyber agencies wrote down who decides where the gate goes.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">The last two days produced nothing. No dark-factory writing, no spec
+      movement, no new incident, no new operator numbers. The eighteenth, the nineteenth and the
+      twentieth are empty. Saying that plainly is the honest report.</p>
+
+    <p>So this edition does a different job. It closes three gaps in the back catalogue. All three
+      are about the failure side of autonomy, and this blog has never covered any of them. None of
+      the three was published in the last two days. Each date is stated below.</p>
+
+    <h2>Fifty-nine attacks, and not one CVE</h2>
+
+    <p>Phoenix Security published <em>The Acceleration</em> on <strong>8 June 2026</strong>. The
+      report tracks supply chain attacks across npm, PyPI, the VS Code marketplace and AI agent
+      tooling. The corpus runs from June 2024 to June 2026.</p>
+
+    <p>A CVE is a Common Vulnerabilities and Exposures record. It is the public catalogue entry for
+      a known software flaw. Most build pipelines gate on it.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Measure</th><th class="num">Count</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Campaigns tracked, June 2024 to June 2026</td><td class="num">59</td></tr>
+          <tr><td>Malicious packages indexed</td><td class="num">657</td></tr>
+          <tr><td>Campaigns with a CVE</td><td class="num">0</td></tr>
+          <tr><td>Campaigns in the first half of 2026 alone</td><td class="num">37</td></tr>
+          <tr><td>Packages in the first half of 2026 alone</td><td class="num">497</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The third row is the finding. <strong>CVE-feed scanners had no detection surface for any of
+      the 59 campaigns.</strong> The attacker did not exploit a flaw. The attacker published a
+      package and waited for trust.</p>
+
+    <p>The first half of 2026 produced <strong>2.6 times the campaign count and 4.5 times the
+      package volume of all of 2025</strong>. May 2026 was the busiest month on record, with 14
+      campaigns and 346 packages. npm accounts for <strong>79%</strong> of all malicious indicators
+      in the corpus.</p>
+
+    <p>One number matters more than the rest for a factory that runs agents.
+      <strong>AI-agent skills carry a 15.6% risk rate.</strong> That is more than double the rate
+      for IDE extensions, and IDE extensions were already the category people worried about.</p>
+
+    <blockquote>
+      <p>A green scan is not the same as a safe build.</p>
+    </blockquote>
+
+    <h2>Nine agents deleted production</h2>
+
+    <p>StackGen published its <em>State of Reliability 2026</em> report. Continuity Insights covered
+      it on <strong>4 August 2026</strong>. StackGen read nearly <strong>178,000 public status page
+      records</strong> from more than <strong>390 companies</strong> across 13 sectors, covering
+      2018 through June 2026.</p>
+
+    <p>Two findings matter here.</p>
+
+    <p><strong>AI now appears in more than 1 in 10 reported technology incidents.</strong> That is a
+      sixfold rise since 2023. One in ten is a threshold. Below it, AI is a component in the stack.
+      Above it, AI is a named cause on the incident report.</p>
+
+    <p><strong>The report counts at least nine documented cases where an autonomous agent
+      independently damaged a production environment.</strong> The agents deleted data, deleted
+      databases, or deleted live systems. These are counted cases, not projections.</p>
+
+    <p>Customer-facing AI quality incidents at AI-native companies went from <strong>1 in 2025 to 89
+      so far in 2026</strong>. That is the fastest-growing failure category in the study.</p>
+
+    <div class="note">
+      <div class="k">THE REAL CEILING</div>
+      <p>The last edition said the ceiling on autonomy is who can check the work. This edition adds
+        the other half. The ceiling is also who can undo the work. A test checks an answer. A test
+        does not restore a deleted database.</p>
+    </div>
+
+    <h2>Six agencies wrote down who sets the gate</h2>
+
+    <p>CISA, the NSA, and the cyber agencies of Australia, Canada, New Zealand and the United
+      Kingdom jointly published <strong>"Careful Adoption of Agentic AI Services" on 1 May
+      2026</strong>. It is the first coordinated multinational security guidance for agentic
+      systems. The Cloud Security Alliance published an enterprise mapping of it on
+      <strong>15 August 2026</strong>.</p>
+
+    <p>The concrete requirements are short.</p>
+
+    <ul>
+      <li>Each agent carries a <strong>cryptographically anchored identity</strong>.</li>
+      <li>Agents use <strong>short-lived credentials</strong>, not standing ones.</li>
+      <li>Agent-to-agent traffic is <strong>encrypted</strong>.</li>
+      <li>Access is <strong>least privilege</strong>.</li>
+      <li>A <strong>human authorizes any irreversible or high-impact action</strong>.</li>
+    </ul>
+
+    <p>The guidance names five risk categories: privilege escalation, design and configuration
+      flaws, behavioral misalignment, structural cascading failures, and accountability opacity.</p>
+
+    <p>One sentence in it is the useful one. <strong>The system designer decides when a human must
+      approve. The agent does not decide.</strong> That rule forecloses a specific failure. An agent
+      must never be asked to judge whether its own next step is high-impact.</p>
+
+    <h2>How we apply this at River.io</h2>
+
+    <p><strong>We are adding a supply chain gate that does not use CVEs.</strong> This is the
+      concrete action from this edition. sloth reads CERT, CVE and MITRE feeds today. That is the
+      right input for known flaws and the wrong input for this threat. Zero of 59 campaigns were
+      catchable by a CVE feed. The new detector class checks package trust, not vulnerability.
+      Candidate checks are package age, a maintainer change, a first release inside a short window,
+      an install script where none existed before, and a name close to a popular package. The issue
+      cites the Phoenix report, per the house rule that every detector links its source.</p>
+
+    <p><strong>We treat every agent instruction file as shipped code.</strong> Agent skills are now
+      the highest-risk artifact class measured. In this factory that covers CLAUDE.md, every skill
+      file, and every MCP config. MCP is the Model Context Protocol, the interface an agent uses to
+      reach a tool. Each one is reviewed, committed and diffed. None is fetched from a registry at
+      run time. The zero-dependency rule already covered libraries. It now says instructions in the
+      same sentence.</p>
+
+    <p><strong>Nine destroyed production environments set the rule for our autonomy
+      experiments.</strong> MeowPassword, weathergalactic and sloth stay the right candidates, and
+      the reason is now measurable. None has a production database, a customer record, or an
+      irreversible action. Before a repository joins an autonomous loop, we answer one question.
+      What is the worst thing an agent can do here that no test catches and no revert undoes? If the
+      answer is not "nothing", the repository is not a candidate.</p>
+
+    <p><strong>We adopt the six-agency rule as written.</strong> The gate list is written by a
+      person, ahead of time, and it lives in the repository. For CareTime and TimeForCare that list
+      includes every EVV submission and every path that touches PHI. EVV is Electronic Visit
+      Verification, the record a state Medicaid programme requires for a home care visit. For
+      MaterialsAndPractices the list includes the certification-record writes.</p>
+
+    <p><strong>Every autonomous run gets its own short-lived credential.</strong> The guidance asks
+      for anchored agent identity and short-lived credentials. The small version fits here today. No
+      autonomous run uses a long-lived token. Each run's credential is scoped to the one repository
+      it works on. That is a settings change and a written rule, not a new system.</p>
+
+    <p><strong>The autonomy ladder gets one more column.</strong> The last edition proposed a table
+      with one row per repository and one column for the autonomy level. Add a column for the
+      irreversible actions in that repository. Autonomy rises where a machine can check the answer.
+      Autonomy stops where a machine cannot undo it.</p>
+
+    <p><strong>Nothing here argues for loosening a gate.</strong> Six national cyber agencies now say
+      in writing that a human authorizes irreversible actions. The PHI-touching and EVV-submitting
+      code paths stay human-gated.</p>
+
+    <hr />
+
+    <h2>Sources and bibliography</h2>
+
+    <h3>Supply chain</h3>
+    <ul>
+      <li><a href="https://phoenix.security/accelerating-supply-chain-attacks-npm-pypi-vsx-ai-enabled-2026/">Phoenix Security, <em>The Acceleration: How Supply Chain Attacks Went Industrial Across npm, PyPI, VS Code, and AI Agent Tooling</em></a> (published 8 June 2026). Source of the 59 campaigns, 657 packages, zero CVEs, the 15.6% agent-skill risk rate, the 79% npm share, and the first-half-2026 multiples.</li>
+      <li><a href="https://phoenix.security/whitepapers-resources/supply-chain-acceleration-report-2026/">Phoenix Security, <em>Supply Chain Acceleration Report 2026</em></a>. The report landing page.</li>
+      <li><a href="https://obot.ai/blog/mcp-security-agent-skills-supply-chain/">Obot, <em>The New Supply Chain Frontier: Securing MCP Security and Agent Skills</em></a>. Background on the agent-skill threat model.</li>
+    </ul>
+
+    <h3>Reliability</h3>
+    <ul>
+      <li><a href="https://continuityinsights.com/ai-related-outages-surge-as-agentic-systems-introduce-new-operational-resilience-risks/">Continuity Insights, <em>AI-Related Outages: Agentic Systems Introduce Operational Resilience Risks</em></a> (4 August 2026). Source of the 1-in-10 figure, the sixfold rise, the nine documented agent-caused production failures, and the 1-to-89 quality-incident count.</li>
+      <li><a href="https://stackgen.com/blog/root-cause-taxonomy-online-services">StackGen, <em>The Root Causes Behind 178,000 Incidents</em></a> &middot; <a href="https://stackgen.com/blog/how-online-services-actually-break-a-data-backed-failure-mode-taxonomy">StackGen, <em>How Online Services Actually Break: A Data-Backed Failure Mode Taxonomy</em></a>. The underlying method and corpus.</li>
+      <li><a href="https://www.channeldive.com/news/ai-incidents-surged-sixfold-in-three-years-/827722/">Channel Dive, <em>AI mishaps surged sixfold in three years: StackGen</em></a>. Corroborating report.</li>
+    </ul>
+
+    <h3>Guidance</h3>
+    <ul>
+      <li><a href="https://www.globalpolicywatch.com/2026/06/cisa-releases-guidance-on-the-careful-adoption-of-agentic-ai-services/">Covington, <em>CISA Releases Guidance on the Careful Adoption of Agentic AI Services</em></a>. Legal summary of the 1 May 2026 joint guidance.</li>
+      <li><a href="https://industrialcyber.co/ai/cisa-and-partners-release-agentic-ai-security-guidance-to-protect-critical-infrastructure-outline-mitigation-action/">Industrial Cyber, <em>CISA and partners release agentic AI security guidance</em></a>. Source of the six-agency list.</li>
+      <li><a href="https://labs.cloudsecurityalliance.org/research/csa-research-note-cisa-agentic-ai-adoption-guide-20260513-cs/">Cloud Security Alliance, <em>Careful Adoption: CISA's Framework for Agentic AI Security</em></a> &middot; <a href="https://labs.cloudsecurityalliance.org/research/csa-research-note-cisa-agentic-ai-guide-enterprise-implement/">CSA, <em>CISA Agentic AI Guide: Enterprise Implementation and Gaps</em></a> (15 August 2026). Sources of the identity, credential and human-authorization requirements, and of the five risk categories.</li>
+    </ul>
+
+    <h3>Prior editions referenced</h3>
+    <ul>
+      <li><a href="2026-08-18-the-ceiling-is-who-can-check-the-work.html">The ceiling is who can check the work</a> (18 August 2026). Grab's five-level autonomy ladder, the Ninth Circuit CFAA ruling, and the toolchain acquisitions.</li>
+      <li><a href="2026-07-11-the-issue-tracker-is-now-an-attack-surface.html">The issue tracker is now an attack surface</a> (11 July 2026). The earlier treatment of untrusted input reaching an agent.</li>
+    </ul>
+
+    <p><em>Vendor and analyst figures indicate direction, not audited benchmarks. The StackGen counts
+      come from public status pages and published root-cause reports, so they under-count incidents
+      that were never posted publicly. The Phoenix corpus is one vendor's malware-package
+      intelligence. The six-agency guidance is advisory, not law.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

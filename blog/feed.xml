@@ -5,8 +5,18 @@
     <link>https://www.river.io/blog/</link>
     <description>Notes from River.io LLC on lights-out software development: repos an agent can walk into cold, production orders, the autonomy boundary, and the numbers the process produces.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 18 Aug 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Aug 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.river.io/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fifty-nine attacks, zero CVEs</title>
+      <link>https://www.river.io/blog/posts/2026-08-20-fifty-nine-attacks-zero-cves.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-08-20-fifty-nine-attacks-zero-cves.html</guid>
+      <pubDate>Thu, 20 Aug 2026 12:00:00 +0000</pubDate>
+      <description>A supply chain study found 59 campaigns and 657 malicious packages with no CVE at all. An outage study counted nine cases of an agent deleting production. Six national cyber agencies wrote down who decides where the gate goes.</description>
+      <category>Briefing</category>
+      <category>Security</category>
+      <category>Autonomy</category>
+    </item>
     <item>
       <title>The ceiling is who can check the work</title>
       <link>https://www.river.io/blog/posts/2026-08-18-the-ceiling-is-who-can-check-the-work.html</link>
