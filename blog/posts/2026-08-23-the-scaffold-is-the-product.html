@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="OpenAI open-sourced the engine under Codex, and the numbers say the scaffold beat the model. In the same week an AI security scan passed a live injection flaw that an AI attacker found in five days." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing, Loop Design, Security" />
+<title>The scaffold is the product — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 026</b><span>23 August 2026</span><span>9 min</span><span>Briefing</span></div>
+    <h1>The scaffold is the product</h1>
+    <p class="dek">OpenAI open-sourced the engine under Codex, and the numbers say the scaffold beat the model. In the same week an AI security scan passed a live injection flaw that an AI attacker found in five days.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">The last two editions reported quiet windows. This one does not. Four items
+      landed, and this blog has covered none of them. One falls inside the two-day window. The other
+      three are older, and each date is stated.</p>
+
+    <p>The four items split cleanly. Two say the scaffold around the model is now the lever. Two say
+      nobody has a working review layer for what that scaffold produces.</p>
+
+    <h2>OpenAI open-sourced the engine under Codex</h2>
+
+    <p>On <strong>20 August 2026</strong> OpenAI released <strong>Harness</strong> under the
+      <strong>Apache-2.0</strong> licence. Harness is the execution engine behind Codex, OpenAI's
+      coding agent. A harness is the scaffold that surrounds a model: it holds memory, calls tools,
+      streams events, and routes approval requests to a human.</p>
+
+    <p>The release includes three parts: <code>codex exec</code>, a command-line tool; the Codex SDK;
+      and <code>app-server</code>, the engine that runs the loop. Apache-2.0 means anyone can read
+      it, change it, and ship it.</p>
+
+    <p>One number is the reason to care.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>GPT-5.6 Sol on ARC-AGI-3, harness optimisation only</th><th class="num">Value</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Score before</td><td class="num">13.3%</td></tr>
+          <tr><td>Score after</td><td class="num">38.3%</td></tr>
+          <tr><td>Output token volume after</td><td class="num">1/6</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>The model did not change.</strong> OpenAI reports that tuning the harness alone
+      produced this. The named techniques are retained reasoning and context compression. Both are
+      choices about how the loop assembles and carries context between steps.</p>
+
+    <p>This is a vendor figure on a benchmark the vendor picked. Treat the size of the gain as
+      direction. The structural claim survives that caution. A fixed model with a better scaffold
+      scored higher and cost less.</p>
+
+    <blockquote>
+      <p>The loop is your code. The model is a supplier.</p>
+    </blockquote>
+
+    <p>There is a second reason to read the release. <code>app-server</code> is the part that routes
+      human-in-the-loop approval requests. This factory's autonomy ladder is a design written from
+      first principles. A production implementation of the same idea is now readable source. That is
+      a study task, not an adoption task. The zero-dependency rule stands: read the design, do not
+      link the code.</p>
+
+    <h2>An AI attacker beat an AI reviewer in five days</h2>
+
+    <p>Wiz Research published the write-up on <strong>17 August 2026</strong>. The events ran from
+      <strong>18 June to 23 June 2026</strong>.</p>
+
+    <p>A merged pull request in Snowflake's public <code>snowflake-connector-net</code> repository
+      changed one workflow file. The change removed a safe pattern and replaced it with an unsafe
+      one.</p>
+
+    <pre><code>- env:
+-   ISSUE_TITLE: ${{ github.event.issue.title }}
+- run: jq -n --arg title "$ISSUE_TITLE" ...
+
++ run: TITLE=$(echo '${{ github.event.issue.title }}' | sed ...)</code></pre>
+
+    <p>The first form puts the issue title in an environment variable, then passes it to a program as
+      data. The second form pastes the title straight into a shell command. The <code>sed</code>
+      escaping runs too late to help. GitHub expands the template first. A single quote in the title
+      then closes the string and the rest runs as commands.</p>
+
+    <p>The workflow fired on <code>issues: opened</code>. Any GitHub user could trigger it by opening
+      an issue.</p>
+
+    <p><strong>GitHub Advanced Security scanned that exact file and did not flag the injection.</strong></p>
+
+    <p>Five days after the flaw went live, Wiz's <strong>Red Agent</strong> found it. Red Agent is an
+      autonomous security research tool. It scanned Snowflake's GitHub organisation, flagged the
+      workflow, and wrote an exploit. Its first payload broke the shell syntax and returned an error.
+      The agent read the error, rewrote the payload, and succeeded on the second attempt. No human
+      helped.</p>
+
+    <p>The exploit sent a Jira token to an external listener. The token read Snowflake's internal
+      engineering, security compliance, and bug bounty projects. Wiz reported it through HackerOne on
+      23 June. <strong>Snowflake patched it the same day</strong>, rotated the token, and confirmed
+      from audit logs that Wiz was the only actor in the window.</p>
+
+    <div class="note">
+      <div class="k">WHAT WIZ CORRECTED</div>
+      <p>Wiz updated the post on 17 August. GitHub Copilot was a co-author that reviewed the merged
+        pull request and marked it clear. Copilot Autofix's documented contribution in that pull
+        request was a separate fix to a different file. <strong>Wiz states plainly that it is unclear
+        whether the vulnerable change itself was AI-assisted.</strong> The finding that survives is
+        the one about review: an automated security review read the flaw and passed it.</p>
+    </div>
+
+    <h2>The guard that could never fail</h2>
+
+    <p>The workflow carried a condition that looked protective.</p>
+
+    <pre><code>if: (github.event_name == 'issues' &amp;&amp;
+     github.event.pull_request.user.login != 'whitesource-for-github-com[bot]')</code></pre>
+
+    <p>On an <code>issues</code> event, <code>github.event.pull_request</code> is always null. So the
+      second half reduces to <code>null != 'whitesource-for-github-com[bot]'</code>, which is always
+      true. Every user passed.</p>
+
+    <p>This is the cheapest lesson in the edition. <strong>A guard with no failing test is
+      decoration.</strong> Nobody had ever watched that condition block anything, so nobody knew it
+      could not.</p>
+
+    <h2>Agent code degrades the next agent</h2>
+
+    <p>A preprint posted on <strong>19 June 2026</strong> put a number on something this blog has
+      only argued. The paper is <em>Is Agent Code Less Maintainable Than Human Code?</em></p>
+
+    <p>The authors built <strong>CodeThread</strong>, a framework that constructs two-step pull
+      request chains from existing coding benchmarks. Step one produces code. Step two asks an agent
+      to build on it. The authorship of step one is the variable.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>CodeThread: 4 frontier agents, 4 benchmarks</th><th class="num">Result</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Task resolve rate drop, agent code versus human code</td><td class="num">up to 13.1%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Agents resolve tasks less often when they build on agent code. The authors then looked for the
+      cause and did not find it where they expected. <strong>Traditional maintainability metrics do
+      not explain the gap.</strong> Structural complexity and verbosity are not the signal.</p>
+
+    <p>The signal is behavioural. The clearest differences are in <strong>input validation and error
+      handling</strong>.</p>
+
+    <p>That is the same class of defect as the Snowflake regression. A pattern that validated input
+      got replaced by one that did not. Nothing looked more complex. Nothing looked longer. The
+      handling of untrusted input got quietly worse.</p>
+
+    <p>The paper is a preprint and has not been peer reviewed. The finding still changes how a loop
+      should run. An unattended loop is, by construction, an agent building on agent code over and
+      over. The cost compounds.</p>
+
+    <h2>The bottleneck moved, and a survey named it</h2>
+
+    <p>GitKraken announced its <em>2026 State of AI in Engineering</em> report on
+      <strong>14 August 2026</strong>. It surveys <strong>554 developers and engineering
+      leaders</strong>.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Measure</th><th class="num">Value</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Organisations using AI coding tools</td><td class="num">96.4%</td></tr>
+          <tr><td>Agent delegation as primary way of working, September 2025</td><td class="num">7.6%</td></tr>
+          <tr><td>Agent delegation as primary way of working, June 2026</td><td class="num">28%</td></tr>
+          <tr><td>Developers reporting higher productivity</td><td class="num">84%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Rows two and three are the finding. <strong>Agent delegation nearly quadrupled in nine
+      months.</strong> Row four is perception, not measurement, which is the report's own stated
+      point.</p>
+
+    <p>GitKraken's conclusion matches the one this blog reached on 27 July. Code generation
+      accelerated. Shipping did not. The constraint is understanding, reviewing and merging.</p>
+
+    <h2>What changes here</h2>
+
+    <ol>
+      <li><strong>Read the Harness approval-gate code.</strong> <code>app-server</code> is Apache-2.0
+        and routes human-in-the-loop approvals. It is the highest-value reading of the month. Read
+        the design. Do not link the code.</li>
+      <li><strong>Copy context compression into the converge loop.</strong> The loop is native
+        compiled code with no third-party dependencies, so its context assembly is our own code.
+        Retained reasoning and context compression cost nothing in dependencies and attack the token
+        bill directly.</li>
+      <li><strong>Test for the pattern, not just the behaviour.</strong> The Snowflake bug removed a
+        safe pattern and behaved the same. A behaviour test passes that swap. For any workflow that
+        reads untrusted input, add a test that fails when untrusted input reaches a shell command
+        directly.</li>
+      <li><strong>Prove every guard can fail.</strong> Write the negative test for each gate in the
+        autonomy ladder. A gate nobody has watched block something is not a gate.</li>
+      <li><strong>Cap how long a loop builds on its own output.</strong> After a set number of
+        agent-authored pull requests in one area, require a human read before the loop continues.
+        Read the input validation and the error handling first. That is where the paper says the
+        damage lives.</li>
+      <li><strong>Spend the next increment on cheaper review.</strong> Three sources now name review
+        as the constraint. Smaller diffs, pattern-level tests, better failure messages. Not higher
+        throughput.</li>
+      <li><strong>Regulated repos do not move.</strong> CareTime, TimeForCare and MaterialsAndPractices
+        stay human-gated. The argument is one line: an automated security scan read the vulnerable
+        file and passed it.</li>
+    </ol>
+
+    <p>The Snowflake pattern is also a detector, and a cheap one. Untrusted input interpolated into a
+      <code>run:</code> block, plus a condition that references a field absent on the triggering
+      event. Both are checkable without running anything. That is worth one issue, with the Wiz
+      write-up cited in it, per the house rule that every detector links its source.</p>
+
+    <h2>Sources</h2>
+
+    <h3>Codex Harness</h3>
+    <ul>
+      <li><a href="https://www.opensourceforu.com/2026/08/openai-open-sources-codex-harness/">Open Source For You, <em>OpenAI Open Sources Codex Harness Framework</em></a> (published 21 August 2026, describing the 20 August release). Source of the Apache-2.0 licence, the three components, the ARC-AGI-3 move from 13.3% to 38.3%, and the sixfold token reduction.</li>
+      <li><a href="https://finance.biggo.com/news/7ca9b7b6-430a-4561-975c-ef920e39f73a">BigGo Finance, <em>OpenAI open-sources Codex core framework</em></a>. Background on the components.</li>
+      <li><a href="https://www.sitepoint.com/codex-cli-openai-agent-harness-installation-commands/">SitePoint, <em>Codex CLI: OpenAI's Open Agent Harness</em></a>. Background on the command-line tool.</li>
+    </ul>
+
+    <h3>The Snowflake incident</h3>
+    <ul>
+      <li><a href="https://www.wiz.io/blog/red-agent-snowflake-copilot-cicd-bug">Wiz, <em>Wiz Red Agent Finds Its Way Into Snowflake's Internal Jira Through a Flaw in a GitHub Copilot-Assisted PR</em></a> (17 August 2026). Primary source. The timeline, the code change, the always-true condition, the scan that passed, and the exfiltrated token. Also the 17 August correction about Copilot's role.</li>
+      <li><a href="https://www.forbes.com/sites/timkeary/2026/08/17/github-copilot-missed-a-vulnerability-that-wizs-ai-agent-found/">Forbes, <em>Wiz's AI Agent Finds A Vulnerability In Snowflake's Internal Systems</em></a> (17 August 2026).</li>
+      <li><a href="https://www.scworld.com/news/wiz-agent-finds-snowflake-repo-flaw-in-code-co-authored-by-github-copilot-autofix">SC Media, <em>Wiz agent finds Snowflake repo flaw</em></a>.</li>
+      <li><a href="https://thehackernews.com/2026/08/snowflake-github-actions-flaw-lets_0330881554.html">The Hacker News, <em>Snowflake GitHub Actions Flaw Lets Crafted Issues Trigger Command Injection</em></a>.</li>
+    </ul>
+
+    <h3>Agent code maintainability</h3>
+    <ul>
+      <li><a href="https://arxiv.org/html/2606.21804v1">arXiv:2606.21804, <em>Is Agent Code Less Maintainable Than Human Code?</em></a> (19 June 2026). Primary source. The CodeThread framework, four frontier agents, four benchmarks, and the resolve-rate drop of up to 13.1%. Preprint, not peer reviewed.</li>
+      <li><a href="https://arxiv.org/abs/2605.06464">arXiv:2605.06464, <em>To What Extent Does Agent-generated Code Require Maintenance?</em></a> (May 2026). Related. Human developers perform about 83% of the maintenance on AI-generated files.</li>
+    </ul>
+
+    <h3>Adoption and the bottleneck</h3>
+    <ul>
+      <li><a href="https://gitkraken.com/blog/everyone-feels-faster-almost-nobody-can-prove-it">GitKraken, <em>State of AI in Engineering 2026: The Proof Gap</em></a>. Source of the 96.4% adoption figure, the 7.6% to 28% delegation shift, and the productivity self-reports.</li>
+      <li><a href="https://www.prnewswire.com/news-releases/gitkraken-introduces-gitlens-19-bringing-human-and-ai-workflows-together-in-one-workbench-302851472.html">PR Newswire, <em>GitKraken Introduces GitLens 19</em></a> (14 August 2026). Source of the survey size of 554 and the announcement date.</li>
+    </ul>
+
+    <h3>Prior editions referenced</h3>
+    <ul>
+      <li><a href="2026-08-21-the-build-got-better-at-saying-yes.html">The build got better at saying yes</a> (21 August 2026). Why a green build is weak evidence, and why agent diffs run larger.</li>
+      <li><a href="2026-07-27-review-capacity-is-the-new-ceiling-for-ai-written-code.html">Review capacity is the new ceiling for AI-written code</a> (27 July 2026). Why diff size, not model quality, sets the throughput limit.</li>
+    </ul>
+
+    <p><em>Vendor and analyst figures indicate direction, not audited benchmarks. The ARC-AGI-3 and
+      token figures are OpenAI's own, on a benchmark OpenAI selected. The GitKraken numbers come from
+      554 respondents who self-selected into a vendor survey, and the productivity figures are
+      perception rather than measurement. The arXiv paper is a preprint. The Wiz write-up is the
+      primary account of an incident Wiz itself conducted, and Wiz amended it on 17 August to soften
+      the claim about Copilot's role. Of the four items, only the Codex Harness release falls inside
+      the two-day window.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

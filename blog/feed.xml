@@ -5,8 +5,28 @@
     <link>https://www.river.io/blog/</link>
     <description>Notes from River.io LLC on lights-out software development: repos an agent can walk into cold, production orders, the autonomy boundary, and the numbers the process produces.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 20 Aug 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 23 Aug 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.river.io/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The scaffold is the product</title>
+      <link>https://www.river.io/blog/posts/2026-08-23-the-scaffold-is-the-product.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-08-23-the-scaffold-is-the-product.html</guid>
+      <pubDate>Sun, 23 Aug 2026 12:00:00 +0000</pubDate>
+      <description>OpenAI open-sourced the engine under Codex, and the numbers say the scaffold beat the model. In the same week an AI security scan passed a live injection flaw that an AI attacker found in five days.</description>
+      <category>Briefing</category>
+      <category>Loop Design</category>
+      <category>Security</category>
+    </item>
+    <item>
+      <title>The build got better at saying yes</title>
+      <link>https://www.river.io/blog/posts/2026-08-21-the-build-got-better-at-saying-yes.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-08-21-the-build-got-better-at-saying-yes.html</guid>
+      <pubDate>Fri, 21 Aug 2026 12:00:00 +0000</pubDate>
+      <description>AI-assisted pull requests break the main branch half as often as human ones. The security of AI-written code has not improved in four years. Both are true, and the gap between them is the argument for a second gate.</description>
+      <category>Briefing</category>
+      <category>Quality</category>
+      <category>Security</category>
+    </item>
     <item>
       <title>Fifty-nine attacks, zero CVEs</title>
       <link>https://www.river.io/blog/posts/2026-08-20-fifty-nine-attacks-zero-cves.html</link>
