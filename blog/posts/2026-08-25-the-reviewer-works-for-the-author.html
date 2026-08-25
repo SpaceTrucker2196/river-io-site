@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Five in six AI code reviews are the vendor checking its own work. A second study found an LLM made specification reviewers less accurate and no faster. A third product shipped scheduled agents with the approval prompts turned off." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing, Review, Autonomy" />
+<title>The reviewer works for the author — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 027</b><span>25 August 2026</span><span>8 min</span><span>Briefing</span></div>
+    <h1>The reviewer works for the author</h1>
+    <p class="dek">Five in six AI code reviews are the vendor checking its own work. A second study found an LLM made specification reviewers less accurate and no faster. A third product shipped scheduled agents with the approval prompts turned off.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">Three items landed on 21 August 2026. They come from three different fields.
+      They say one thing. The gate you think you have is probably not a gate.</p>
+
+    <p>The last edition of this blog said the review layer is the bottleneck. This edition says
+      something harder. In three separate measurements, the review layer is also not a control.</p>
+
+    <h2>Five in six AI reviews are the same vendor twice</h2>
+
+    <p>Researchers posted a paper to arXiv on <strong>21 August 2026</strong>. The title is
+      <em>AI-to-AI Code Reviews of GitHub Pull Requests</em>. The authors are Niruthiha Selvanayagam
+      and Taher A. Ghaleb. The paper is accepted at ESEM 2026 in the Emerging Results track.</p>
+
+    <p>The authors linked agent-written pull requests to AI review events. They used CodAGE, a public
+      dataset of coding-agent activity on GitHub. The window runs from 1 January 2024 to 15 April
+      2026.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Agent-authored pull requests with at least one AI review</th><th class="num">Count</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Total</td><td class="num">248,641</td></tr>
+          <tr><td>Reviewed by the same product that wrote them</td><td class="num">208,145</td></tr>
+          <tr><td>Reviewed by a different product</td><td class="num">45,269</td></tr>
+          <tr><td>Reviewed by both</td><td class="num">4,773</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Nobody chose this. It comes from the app install. The per-product numbers make that plain.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Authoring product</th><th class="num">Reviewed by the same product</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>GitHub Copilot</td><td class="num">95.7%</td></tr>
+          <tr><td>Amazon Q</td><td class="num">91.8%</td></tr>
+          <tr><td>Claude Code</td><td class="num">0.5%</td></tr>
+          <tr><td>Cursor</td><td class="num">0%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Copilot reviews Copilot code because both arrive in one installation. Cursor does not, because
+      Cursor does not ship a review bot into the same repository. The authors say the pattern may
+      reflect product design. It does not reflect anyone's judgement about who should review what.</p>
+
+    <p>Read the limits carefully. The paper measured <strong>who reviewed whom, not whether the
+      reviews were good</strong>. It did not test for leniency. Attribution depends on signatures such
+      as a bot login, so every count is a lower bound. The pipeline quarantined 1,733,535 of 4,563,819
+      candidate pull requests, or 38.0%, for weak evidence.</p>
+
+    <p>The growth is not in doubt. Closed-loop review went from 57 cross-product and 40 same-product
+      pull requests in 2025-Q1 to 25,492 and 57,080 in 2025-Q3.</p>
+
+    <h2>Why independence matters even without bias</h2>
+
+    <p>The tempting argument is the weak one. Self-preference says a model goes easy on its own
+      output. Nobody has shown that for code review at scale, and this paper did not try.</p>
+
+    <p>The strong argument needs no bias at all. It needs correlated failure. Two instances of one
+      model family share training data. They share blind spots. A reviewer that misses what the author
+      missed is not a control.</p>
+
+    <blockquote>
+      <p>A reviewer that shares the author's blind spots is a copy, not a control.</p>
+    </blockquote>
+
+    <p>This is the same failure the last edition reported. An automated security scan read a
+      vulnerable file and passed it. The tool was not broken. It was the wrong second opinion.</p>
+
+    <h2>Two documentation facts worth more than the study</h2>
+
+    <p>Both are checkable in your own repositories today.</p>
+
+    <p><strong>GitHub Copilot code review cannot block a merge.</strong> GitHub's own documentation
+      states that Copilot always leaves a "Comment" review, never "Approve" or "Request changes". Its
+      reviews do not count toward required approvals and will not block merging. Any team that thinks
+      otherwise is wrong in the safe direction.</p>
+
+    <p><strong>CodeRabbit can approve, but only if one key is set.</strong> The
+      <code>@coderabbitai approve</code> command submits a real approval only when
+      <code>reviews.request_changes_workflow</code> is <code>true</code> in
+      <code>.coderabbit.yaml</code>. That key defaults to <code>false</code>. One line in one file
+      decides whether the bot comments or satisfies a required-approval rule.</p>
+
+    <h2>The assistant made spec reviewers worse</h2>
+
+    <p>A second paper went to arXiv on <strong>21 August 2026</strong>. The authors are Giovanna
+      Broccia, Julian Frattini, Chetan Arora, Maurice ter Beek, Alessandro Fantechi, Andreas Vogelsang
+      and Alessio Ferrari.</p>
+
+    <p>They ran a controlled crossover experiment with <strong>34 inspectors</strong>. Each person
+      read two comparable specifications with seeded defects. One had 40 requirements and 21 defects.
+      The other had 39 and 19. Half the group worked unaided first, then with ChatGPT. The other half
+      worked in the reverse order, with a week between sessions.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Measure</th><th class="num">Result</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Defect detection F1, unassisted versus assisted</td><td class="num">about 8% higher</td></tr>
+          <tr><td>Task duration difference</td><td class="num">none significant</td></tr>
+          <tr><td>Classification accuracy difference</td><td class="num">none significant</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The trade everyone assumes they are making was not on offer. The assistant did not buy speed.
+      It cost accuracy. There is no measurement in this experiment on which it won.</p>
+
+    <p>Hold the number loosely. The authors report that the 95% credibility intervals still overlap.
+      Eight percent is the observed gap in a 34-person student sample, not a bounded effect. The
+      direction is the authors' stated conclusion. The size is not something to plan around.</p>
+
+    <p>The second result is the expensive one.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Improvement between the two sessions</th><th class="num">Detection F1</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Group that learned unaided first</td><td class="num">about 12%</td></tr>
+          <tr><td>Group that started with the tool</td><td class="num">about 7%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Both groups improved. They did not improve equally. The authors read this as a carryover
+      effect, which is the standing hazard of a crossover design. Their conclusion is that early
+      reliance on the model may short-circuit the reflective reading through which a novice builds
+      inspection skill.</p>
+
+    <p>The fix is in the paper, and it is one sentence. Restrict the model to phases after first-pass
+      detection. Read the specification yourself. Write the defect list. Then let the model check the
+      list.</p>
+
+    <div class="note">
+      <div class="k">PLACEMENT, NOT PROCUREMENT</div>
+      <p>The same model, at the wrong stage of the workflow, turns a reviewer into an approver. The
+        order is the control. The tool is not the problem.</p>
+    </div>
+
+    <h2>Scheduled agents shipped with the prompts turned off</h2>
+
+    <p>Snowflake moved CoCo automations to preview on <strong>21 August 2026</strong>. An automation
+      turns a prompt into a recurring, unattended run. It runs in a Snowflake-managed sandbox. The
+      minimum schedule is once per hour. It runs when the browser and the terminal are closed.</p>
+
+    <p>Interactive CoCo has a careful permission model. Snowflake documents three tiers.
+      <code>ls</code>, <code>cat</code> and <code>grep</code> are safe and run without asking. File
+      edits prompt. <code>rm</code>, <code>curl</code> and <code>sudo</code> always prompt.
+      <code>INSERT</code>, <code>UPDATE</code> and <code>DELETE</code> prompt. Switching roles
+      prompts.</p>
+
+    <p>Then the automations page states the rule for scheduled runs. Because the runs are unattended,
+      the interactive tool permission prompts are disabled. Tools available to the run execute without
+      waiting for approval.</p>
+
+    <p>Every tier collapses at once. The classification survives. The enforcement does not, because
+      there is nobody to ask.</p>
+
+    <p>Two more details compound it. Snowflake documents that each run uses the creating user's
+      <strong>default role plus every default secondary role</strong>, not the role that was active
+      when the automation was made. Since behaviour change bundle 2024_08, that secondary-role
+      property defaults to <code>ALL</code>. Snowflake also documents that the privilege which permits
+      all of this, <code>EXECUTE AGENT TASK</code>, is granted to the <code>PUBLIC</code> role by
+      default.</p>
+
+    <p>The third detail is the one to write on the wall. Snowflake documents that <strong>a failing
+      hook does not fail the run</strong>. Task history reports the run as succeeded either way. An
+      audit trail can read SUCCESS while the guard never ran.</p>
+
+    <h2>What changes here</h2>
+
+    <ol>
+      <li><strong>Write the reviewer-independence rule now.</strong> One sentence: an approving review
+        from the same product family as the authoring agent does not satisfy the independent-review
+        requirement. It costs nothing today. It costs a lot to retrofit.</li>
+      <li><strong>Audit which bots can approve.</strong> For every repository, list the bots with
+        write access that can submit an approving review. Check whether
+        <code>reviews.request_changes_workflow</code> is set anywhere. This is a query, not a
+        project.</li>
+      <li><strong>Read the specification before the model does.</strong> Write your own defect list
+        first. Give the model the list second. The current habit of asking the model first is the
+        condition that lost accuracy in the experiment.</li>
+      <li><strong>Turn every approval gate into a deny rule.</strong> A gate that works by pausing and
+        asking a human is not a control once the loop runs overnight. Rewrite each one so it fails
+        closed: a branch protection rule, a required status check, a test that exits non-zero.</li>
+      <li><strong>Test that a failing guard fails the run.</strong> Break one pre-run check on purpose
+        and confirm the run reports failure. A broken guard that reports success is worse than no
+        guard, because it is trusted.</li>
+      <li><strong>Give any scheduled loop a narrow identity and its own cost line.</strong> A timed
+        experiment on MeowPassword, weathergalactic or sloth gets a credential scoped to that one
+        repository. Not a personal one.</li>
+      <li><strong>Regulated repos do not move.</strong> CareTime, TimeForCare and MaterialsAndPractices
+        stay human-gated. The argument is one line: in five of six cases the AI reviewer works for the
+        AI author, and nobody has measured whether that catches anything.</li>
+    </ol>
+
+    <p>Two detectors fall out of this edition, and both are static. First, flag a workflow where a bot
+      account can satisfy a required approval. Second, flag a hook whose non-zero exit does not fail
+      the job. That is worth one issue, with the sources cited in it, per the house rule that every
+      detector links its source.</p>
+
+    <h2>Sources</h2>
+
+    <h3>AI-to-AI code review</h3>
+    <ul>
+      <li><a href="https://arxiv.org/abs/2608.21311">arXiv:2608.21311, <em>AI-to-AI Code Reviews of GitHub Pull Requests</em></a> (21 August 2026). Primary source. The 248,641 pull requests, the 208,145 same-product split, the per-product shares, the filtering pipeline, and the quarterly growth. Accepted at ESEM 2026, Emerging Results track. Preprint.</li>
+      <li><a href="https://arxiv.org/html/2608.21311v1">Full text of arXiv:2608.21311</a>.</li>
+      <li><a href="https://docs.github.com/en/copilot/how-tos/copilot-on-github/use-copilot-agents/copilot-code-review">GitHub Docs, <em>Copilot code review</em></a>. Source of the statement that Copilot reviews are always "Comment" and never count toward required approvals.</li>
+      <li><a href="https://docs.coderabbit.ai/guides/commands">CodeRabbit Docs, <em>Commands</em></a> and <a href="https://docs.coderabbit.ai/reference/yaml-template">YAML reference</a>. Source of the <code>reviews.request_changes_workflow</code> behaviour and its <code>false</code> default.</li>
+      <li><a href="https://arxiv.org/abs/2607.03316">arXiv:2607.03316</a>. Developers accepted 36.4% of AI review suggestions, rejected 56.3% and discussed 7.3%, across 31,073 pairs in 239 repositories.</li>
+      <li><a href="https://www.beri.net/article/ai-to-ai-code-review-same-vendor-reviewer-independence-gap">THE DAILY BRIEF, <em>Same Vendor Wrote and Reviewed 208,145 PRs</em></a> (23 August 2026). Analysis.</li>
+    </ul>
+
+    <h3>LLM support in specification inspection</h3>
+    <ul>
+      <li><a href="https://arxiv.org/abs/2608.21298">arXiv:2608.21298</a> (submitted 21 August 2026). Primary source. 34 inspectors, the crossover design, the 8% detection gap, the absence of a duration effect, and the 12% against 7% learning gap. Preprint with overlapping credibility intervals.</li>
+      <li><a href="https://arxiv.org/html/2608.21298v1">Full text of arXiv:2608.21298</a>.</li>
+      <li><a href="https://www.beri.net/article/llm-requirements-inspection-f1-drop-novice-inspector-skill-acquisition">THE DAILY BRIEF, <em>ChatGPT Made Spec Reviewers Worse</em></a> (24 August 2026). Analysis.</li>
+    </ul>
+
+    <h3>Unattended scheduled agents</h3>
+    <ul>
+      <li><a href="https://docs.snowflake.com/en/release-notes/2026/other/2026-08-21-cortex-code-automations">Snowflake release notes, <em>Aug 21, 2026: CoCo automations in CLI and Snowsight (Preview)</em></a>. Primary source for the preview date.</li>
+      <li><a href="https://docs.snowflake.com/en/user-guide/cortex-code/cortex-code-automations">Snowflake, <em>CoCo automations</em></a>. Source of the disabled approval prompts, the run identity, the <code>EXECUTE AGENT TASK</code> grant to <code>PUBLIC</code>, the hourly minimum, and the hook-failure behaviour.</li>
+      <li><a href="https://docs.snowflake.com/en/user-guide/cortex-code/security">Snowflake, <em>CoCo CLI security</em></a>. Source of the three-tier approval model.</li>
+      <li><a href="https://docs.snowflake.com/en/release-notes/bcr-bundles/2024_08/bcr-1692">Snowflake behaviour change bundle 2024_08</a>. Source of the <code>DEFAULT_SECONDARY_ROLES</code> default of <code>ALL</code>.</li>
+      <li><a href="https://www.beri.net/article/snowflake-coco-automations-default-role-agent-task-public-grant">THE DAILY BRIEF, <em>Snowflake Agents Run as All Your Roles</em></a> (22 August 2026). Analysis.</li>
+    </ul>
+
+    <h3>Prior editions referenced</h3>
+    <ul>
+      <li><a href="2026-08-23-the-scaffold-is-the-product.html">The scaffold is the product</a> (23 August 2026). The Codex Harness release, and the security scan that passed a live injection flaw.</li>
+      <li><a href="2026-08-18-the-ceiling-is-who-can-check-the-work.html">The ceiling is who can check the work</a> (18 August 2026). Why review capacity sets the throughput limit.</li>
+    </ul>
+
+    <p><em>Vendor and analyst figures indicate direction, not audited benchmarks. Both arXiv items
+      here are preprints, one accepted to a conference track and one under submission. The
+      specification result comes from 34 students using a raw chat interface with May 2025 models, and
+      its authors report overlapping credibility intervals, so the direction is the claim and the size
+      is not. The Snowflake statements are quoted from Snowflake's own documentation, which describes
+      intended behaviour rather than an independent test. All three items were published on or after
+      21 August 2026.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

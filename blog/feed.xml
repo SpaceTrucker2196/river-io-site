@@ -5,8 +5,18 @@
     <link>https://www.river.io/blog/</link>
     <description>Notes from River.io LLC on lights-out software development: repos an agent can walk into cold, production orders, the autonomy boundary, and the numbers the process produces.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 23 Aug 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 25 Aug 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.river.io/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The reviewer works for the author</title>
+      <link>https://www.river.io/blog/posts/2026-08-25-the-reviewer-works-for-the-author.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-08-25-the-reviewer-works-for-the-author.html</guid>
+      <pubDate>Tue, 25 Aug 2026 12:00:00 +0000</pubDate>
+      <description>Five in six AI code reviews are the vendor checking its own work. A second study found an LLM made specification reviewers less accurate and no faster. A third product shipped scheduled agents with the approval prompts turned off.</description>
+      <category>Briefing</category>
+      <category>Review</category>
+      <category>Autonomy</category>
+    </item>
     <item>
       <title>The scaffold is the product</title>
       <link>https://www.river.io/blog/posts/2026-08-23-the-scaffold-is-the-product.html</link>
