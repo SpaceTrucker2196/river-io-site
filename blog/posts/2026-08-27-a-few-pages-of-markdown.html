@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Coding agents raised commit volume by the same amount everywhere. Quality did not follow. Repositories with a committed rules file took half the complexity damage. Then 73.8% of those files were never touched again." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing, Specs, Practice" />
+<title>A few pages of Markdown — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 028</b><span>27 August 2026</span><span>8 min</span><span>Briefing</span></div>
+    <h1>A few pages of Markdown</h1>
+    <p class="dek">Coding agents raised commit volume by the same amount everywhere. Quality did not follow. Repositories with a committed rules file took half the complexity damage. Then 73.8% of those files were never touched again.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">Four papers landed on 25 and 26 August 2026. The last edition of this blog
+      said the review gate is not a control. This edition says the thing that is measurably doing
+      work is not a gate at all. It is a file somebody wrote down.</p>
+
+    <h2>The same speed, different damage</h2>
+
+    <p>A team posted a paper to arXiv on <strong>26 August 2026</strong>. The title is
+      <em>A Few Pages of Markdown: Committed AI Configuration and Lower Quality Cost after
+      Coding-Agent Adoption</em>. The authors are Yegor Denisov-Blanch, Shyam Agarwal, Pavel
+      Azaletskiy, Hao He, Rylan Schaeffer, Brando Miranda, Bogdan Vasilescu and Sanmi Koyejo.</p>
+
+    <p>They built RAMP, which stands for Repository AI Maturity Profile. RAMP is a four-level
+      maturity model. A maturity model is a scale that says how far a team has taken a practice.
+      RAMP scores each level from files the team commits to the repository to configure its AI
+      tools.</p>
+
+    <p>The levels run from behavioral rules and coding standards, through named agent definitions,
+      to multi-agent orchestration. Observed practice sits in the first three levels. Almost nobody
+      reaches the fourth.</p>
+
+    <p>The team scored 441 repositories. The levels behaved as a cumulative scale, which means a
+      team at level three also holds the level-one files. Independent human annotators reproduced
+      the tool's repository labels on 97% of a held-out sample. That agreement rate is what makes
+      RAMP usable by other people.</p>
+
+    <p>Then they re-estimated an existing agent-adoption panel inside each level. The result splits
+      cleanly in two.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Effect of coding-agent adoption</th><th class="num">Result</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Extra commits, at every maturity level</td><td class="num">28% to 38%</td></tr>
+          <tr><td>Cognitive complexity, agent-first repos with committed AI configuration</td><td class="num">+27%</td></tr>
+          <tr><td>Cognitive complexity, agent-first repos without it</td><td class="num">+53%</td></tr>
+          <tr><td>Static-analysis warnings, without against with</td><td class="num">1.7 times</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Speed did not care about maturity. The commit lift was the same at every level. Quality
+      diverged. The repositories with no committed configuration gained roughly twice the cognitive
+      complexity, and 1.7 times the static-analysis warnings.</p>
+
+    <blockquote>
+      <p>Throughput reports the same number for a healthy repository and a sick one.</p>
+    </blockquote>
+
+    <p>Hold the causal claim loosely. The authors do. They state that maturity is observational,
+      that correlated engineering discipline or model capability may explain part of the gap, and
+      that they present the findings as hypothesis-generating. Teams that bother to commit a rules
+      file are probably careful teams already. Writing the file may not import the care.</p>
+
+    <p>What the study does establish is that the two groups exist, that they diverge, and that the
+      artifact costs about an hour.</p>
+
+    <h2>The catch is in the commit history</h2>
+
+    <p>The same paper reports the adoption pattern. It is cumulative, forward-only and
+      set-and-forget. The number that matters is this one.</p>
+
+    <div class="note">
+      <div class="k">SET AND FORGET</div>
+      <p>73.8% of committed AI configuration artifacts were committed once and never modified
+        again.</p>
+    </div>
+
+    <p>Teams write the rules, then stop reading them. A rule file that no longer matches the code is
+      a specification that lies. An agent reads it and complies with the wrong thing, confidently.
+      The commit history cannot tell you which case you are in. A file untouched for a year is
+      either exactly right or completely ignored, and both look identical from outside.</p>
+
+    <h2>Spec-driven development gets a census</h2>
+
+    <p>A second paper went to arXiv on <strong>25 August 2026</strong>. It is SPECMINE, by Shyam
+      Agarwal and Bogdan Vasilescu. Spec-driven development is a practice where a structured
+      natural-language specification drives a coding agent's implementation. Tools have shipped for
+      it since 2025. Nobody had measured the artifacts at scale.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>SPECMINE coverage</th><th class="num">Count</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Spec files, broad census</td><td class="num">470,795</td></tr>
+          <tr><td>Repositories in the broad census</td><td class="num">73,030</td></tr>
+          <tr><td>Named tools attributed</td><td class="num">17</td></tr>
+          <tr><td>Files in the AWS Kiro census</td><td class="num">98,574</td></tr>
+          <tr><td>Repositories in the Kiro census</td><td class="num">12,910</td></tr>
+          <tr><td>Spec-touching pull requests captured, 11 tools</td><td class="num">5,992</td></tr>
+          <tr><td>Typed references indexed</td><td class="num">2,421,323</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The 5,992 pull requests come from 581 repositories with at least ten stars, captured with
+      their changesets. That makes the simplest workflow directly observable: spec and
+      implementation changing together in one pull request.</p>
+
+    <p>Read the limit of that. A spec that changes in the same pull request as the code proves
+      nothing about order. An agent that writes the code first, then rewrites the spec to match,
+      produces the same diff as a disciplined spec-first change. The artifact exists. The evidence
+      of intent does not. This is the traceability trap.</p>
+
+    <h2>Settled and uncertain</h2>
+
+    <p>A third paper went to arXiv on <strong>25 August 2026</strong>. It is
+      <em>Model-Based Agentic Software Engineering</em>, or MAGE, by James C. Davis, Kelechi Kalu,
+      Huiyun Peng and Parth V. Patil. The authors built it from one longitudinal case and refined it
+      against six independently reported industrial accounts.</p>
+
+    <p>MAGE names two problems. The representation problem asks what the smallest written record is
+      that answers an engineering question. The authority problem asks which obligations get to stop
+      the work.</p>
+
+    <p>Its prescription is one distinction worth stealing whole. Obligations are either
+      <strong>settled</strong> or <strong>uncertain</strong>. A settled obligation is one the team
+      has already decided. It gets proportionate authority through a constraint, a sensor, a
+      validator or a gate. An uncertain intent stays open and stays with the human.</p>
+
+    <p>The failure this names is gating something nobody has decided yet. That produces a rule that
+      gets waived. A rule that is routinely waived teaches everyone that rules get waived. MAGE is a
+      theory paper. It reports no effect sizes and proposes tests rather than passing them. The
+      vocabulary is the useful part.</p>
+
+    <h2>Breaking the guard on purpose</h2>
+
+    <p>A fourth paper went to arXiv on <strong>25 August 2026</strong>, from TU Delft. The authors
+      are Zahra Seyedghorban, Egor Klimov, Arie van Deursen, Annibale Panichella and Burcu
+      Kulahcioglu Ozkan. The tool is called llmmas-otel and it carries an IEEE ICST 2026 DOI.</p>
+
+    <p>It combines OpenTelemetry distributed tracing with targeted fault injection. Fault injection
+      means you break a chosen part of the system on purpose. The tool instruments workflow phases,
+      agent steps, communication between agents, tool calls and model invocations. Then it lets an
+      operator compare a clean run against a deliberately broken run and diff the aligned traces.</p>
+
+    <p>This is the practical answer to a question this blog has now raised three editions running.
+      The last edition reported that a failing hook can report success. Fault injection is how you
+      find that out on purpose, before it happens by accident. The hosted tool is not the point. The
+      technique transfers to any pipeline, including one built from compiled native code with no
+      third-party dependencies.</p>
+
+    <h2>What changes here</h2>
+
+    <ol>
+      <li><strong>Commit the rules file.</strong> The zero-dependency rule, the native-compiled rule
+        and the test-driven rule are exactly the level-one RAMP artifacts. If they live only in a
+        person's head, the agent cannot read them. This is an hour of work with the best evidence
+        behind it this week.</li>
+      <li><strong>Put a review date at the top of that file.</strong> One line: last reviewed, with
+        the date. The 73.8% number is the specific trap for a small shop, because nobody else will
+        notice the file went stale.</li>
+      <li><strong>Record the complexity baseline before the loop runs, not after.</strong> The RAMP
+        result is only visible because someone held before-and-after measurements. Capture the
+        current cognitive-complexity and static-warning counts and commit that number.</li>
+      <li><strong>Sort obligations into settled and uncertain.</strong> Settled things get a
+        validator or a failing test. Everything else stays a human decision and gets no gate. This
+        says what each gate is for, which a per-repository autonomy level does not.</li>
+      <li><strong>Break one guard on purpose.</strong> Take one converge loop, disable one check,
+        and confirm the run fails and the failure is visible. Do it in a low-stakes repository
+        first.</li>
+      <li><strong>Do not confuse a spec-touching commit with spec-driven work.</strong> In an
+        issue-driven pipeline the issue is the spec. What matters is that the issue text is settled
+        before the implementation commit, not merely present in the same pull request.</li>
+      <li><strong>Regulated repos do not move.</strong> CareTime, TimeForCare and
+        MaterialsAndPractices stay human-gated. Agent adoption raised commit volume everywhere and
+        raised complexity everywhere. The only measured mitigation is an observational correlate.
+        That is not a strong enough control for PHI paths or EVV submissions.</li>
+    </ol>
+
+    <p>Two detectors fall out of this edition, and both are static. First, flag a repository that
+      shows coding-agent activity but holds no committed AI configuration file. Second, flag a
+      committed AI configuration file whose last modification is far older than the repository's
+      most recent significant change. That is the set-and-forget signal. Both are worth one issue,
+      with the sources cited in it, per the house rule that every detector links its source.</p>
+
+    <h2>Sources</h2>
+
+    <h3>Committed AI configuration and code quality</h3>
+    <ul>
+      <li><a href="https://arxiv.org/abs/2608.25241">arXiv:2608.25241, <em>A Few Pages of Markdown: Committed AI Configuration and Lower Quality Cost after Coding-Agent Adoption</em></a> (submitted 26 August 2026). Primary source. The RAMP four-level model, 441 repositories, the 97% human label agreement, the 73.8% never-modified figure, the 28% to 38% commit lift, the +53% against +27% cognitive complexity split, and the 1.7 times warning ratio. Preprint. The authors state the finding is observational and hypothesis-generating.</li>
+      <li><a href="https://arxiv.org/html/2608.25241v1">Full text of arXiv:2608.25241</a>.</li>
+    </ul>
+
+    <h3>Spec-driven development at scale</h3>
+    <ul>
+      <li><a href="https://arxiv.org/abs/2608.25202">arXiv:2608.25202, <em>SPECMINE: A Large-Scale Corpus of Spec-Driven Development Artifacts</em></a> (submitted 25 August 2026). Primary source. The 470,795 spec files across 73,030 repositories, the 17 named tools, the Kiro census of 98,574 files across 12,910 repositories, the 5,992 spec-touching pull requests across 581 repositories, and the 2,421,323 typed references. Dataset paper. Preprint.</li>
+      <li><a href="https://arxiv.org/html/2608.25202v1">Full text of arXiv:2608.25202</a>.</li>
+    </ul>
+
+    <h3>Framework and vocabulary</h3>
+    <ul>
+      <li><a href="https://arxiv.org/abs/2608.25174">arXiv:2608.25174, <em>Model-Based Agentic Software Engineering</em></a> (submitted 25 August 2026). Primary source. The representation problem and the authority problem, the constraints, sensors, validators and gates, the settled against uncertain distinction, and the one longitudinal case plus six industrial accounts. Theory paper. Reports no effect sizes.</li>
+      <li><a href="https://arxiv.org/html/2608.25174v1">Full text of arXiv:2608.25174</a>.</li>
+    </ul>
+
+    <h3>Observability and fault injection</h3>
+    <ul>
+      <li><a href="https://arxiv.org/abs/2608.24271">arXiv:2608.24271, <em>Observability and Fault Injection for LLM-Based Multi-Agent Systems in Software Engineering</em></a> (submitted 25 August 2026). Primary source for llmmas-otel, the OpenTelemetry tracing, the targeted fault injection, and the baseline against faulty run comparison.</li>
+      <li><a href="https://doi.org/10.1109/ICST69053.2026.00037">IEEE ICST 2026 DOI 10.1109/ICST69053.2026.00037</a> for the same paper.</li>
+      <li><a href="https://arxiv.org/abs/2608.25322">arXiv:2608.25322, <em>Metis: Typed Runtime Mediation for Tool-Using Software Agents</em></a> (25 August 2026). Noted, not featured. The authors state the supporting artifact is still being curated.</li>
+      <li><a href="https://arxiv.org/abs/2608.25474">arXiv:2608.25474, <em>Separating Disclosure from Authorization: Field-Tier Minimization for Agent Action Mediation</em></a> (25 August 2026). Noted, not featured. Describes an implemented system in private pilot.</li>
+    </ul>
+
+    <h3>Prior editions referenced</h3>
+    <ul>
+      <li><a href="2026-08-25-the-reviewer-works-for-the-author.html">The reviewer works for the author</a> (25 August 2026). Reviewer independence, and the failing hook that reports success.</li>
+      <li><a href="2026-08-23-the-scaffold-is-the-product.html">The scaffold is the product</a> (23 August 2026). The security scan that passed a live injection flaw.</li>
+    </ul>
+
+    <p><em>Vendor and analyst figures indicate direction, not audited benchmarks. Every item featured
+      here is an arXiv preprint posted on 25 or 26 August 2026, and none has completed peer review,
+      though the TU Delft tool paper carries an IEEE ICST 2026 DOI. The quality gap in the RAMP
+      paper is an observational correlation which its own authors decline to treat as causal.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

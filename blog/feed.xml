@@ -5,8 +5,18 @@
     <link>https://www.river.io/blog/</link>
     <description>Notes from River.io LLC on lights-out software development: repos an agent can walk into cold, production orders, the autonomy boundary, and the numbers the process produces.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 25 Aug 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 27 Aug 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.river.io/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A few pages of Markdown</title>
+      <link>https://www.river.io/blog/posts/2026-08-27-a-few-pages-of-markdown.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-08-27-a-few-pages-of-markdown.html</guid>
+      <pubDate>Thu, 27 Aug 2026 12:00:00 +0000</pubDate>
+      <description>Coding agents raised commit volume by the same amount everywhere. Quality did not follow. Repositories with a committed rules file took half the complexity damage. Then 73.8% of those files were never touched again.</description>
+      <category>Briefing</category>
+      <category>Specs</category>
+      <category>Practice</category>
+    </item>
     <item>
       <title>The reviewer works for the author</title>
       <link>https://www.river.io/blog/posts/2026-08-25-the-reviewer-works-for-the-author.html</link>
