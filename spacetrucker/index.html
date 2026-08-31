@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spacetrucker — Catalogue Raisonné | river.io</title>
+<meta name="description" content="A catalogue raisonné of work published online by Jeffrey B. Kunzelman under the names manray, kuj, C.C.T.B, Alpha60, Reverend Cathode, Space][rucker, Spacetrucker2196, DiscountPetFood Heavy Industries and United Cat Foods, 1993 to the present.">
+<meta name="author" content="river.io llc">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#0C110C;
+  --panel:#111A11;
+  --panel-2:#162115;
+  --phos:#5BE84A;
+  --phos-hi:#B8FFA8;
+  --phos-mid:#3FBF33;
+  --phos-dim:#2A7F22;
+  --rule:#1E3A1B;
+  --amber:#FFB000;
+  --amber-dim:#8A6100;
+  --mono:"Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--phos);
+  font-family:var(--mono);
+  font-size:14px;
+  line-height:1.7;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+/* CRT overlays */
+body::before{
+  content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(0,0,0,0) 0px,
+    rgba(0,0,0,0) 2px,
+    rgba(0,0,0,.16) 3px,
+    rgba(0,0,0,.16) 4px);
+  mix-blend-mode:multiply;
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,.55) 100%);
+}
+@media (prefers-reduced-motion:reduce){body::before{background:none}}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px 120px;position:relative;z-index:1}
+
+a{color:var(--phos-hi);text-decoration:none;border-bottom:1px dotted var(--phos-dim)}
+a:hover{border-bottom-style:solid;text-shadow:0 0 8px rgba(91,232,74,.6)}
+a:focus-visible{outline:1px solid var(--phos-hi);outline-offset:3px}
+a.ext::after{content:" ↗";font-size:.85em;opacity:.6}
+
+/* ── masthead ─────────────────────────────── */
+.mast{padding:56px 0 26px;border-bottom:1px solid var(--rule)}
+.boot{color:var(--phos-dim);font-size:12px;line-height:2;white-space:pre-wrap;margin:0 0 30px}
+.boot b{color:var(--phos-mid);font-weight:500}
+h1{
+  font-size:clamp(26px,5.2vw,50px);
+  font-weight:700;
+  line-height:1.06;
+  letter-spacing:.02em;
+  margin:0 0 6px;
+  color:var(--phos-hi);
+  text-shadow:0 0 14px rgba(91,232,74,.45);
+  text-wrap:balance;
+}
+.subtitle{
+  color:var(--phos-mid);
+  font-size:clamp(13px,1.9vw,17px);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin:0 0 26px;
+}
+.imprint{color:var(--phos-dim);font-size:12px;line-height:2;max-width:74ch}
+.imprint b{color:var(--phos);font-weight:500}
+
+/* ── generic blocks ───────────────────────── */
+.note{
+  border:1px solid var(--rule);
+  background:var(--panel);
+  padding:18px 22px;
+  margin:30px 0;
+  max-width:82ch;
+}
+.note h4{
+  margin:0 0 10px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--amber);font-weight:600;
+}
+.note p{margin:0 0 10px;font-size:13.5px;color:var(--phos-mid)}
+.note p:last-child{margin:0}
+.note b{color:var(--phos-hi);font-weight:500}
+
+section{margin:66px 0 0;scroll-margin-top:20px}
+.series-head{border-top:1px solid var(--phos-dim);padding-top:14px;margin-bottom:8px}
+.series-num{
+  font-size:12px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--amber);font-weight:600;display:block;margin-bottom:6px;
+}
+h2{
+  font-size:clamp(20px,3.2vw,32px);font-weight:600;line-height:1.15;margin:0 0 4px;
+  color:var(--phos-hi);letter-spacing:.01em;text-shadow:0 0 10px rgba(91,232,74,.3);
+}
+.series-dates{color:var(--phos-dim);font-size:13px;letter-spacing:.1em}
+.scope{
+  color:var(--phos-mid);font-size:13.5px;max-width:80ch;margin:16px 0 30px;
+}
+.scope em{color:var(--phos-hi);font-style:normal}
+
+h3.sub{
+  font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);
+  font-weight:600;margin:44px 0 4px;border-bottom:1px solid var(--amber-dim);padding-bottom:6px;
+}
+h3.sub span{color:var(--phos-dim);letter-spacing:.1em;float:right;text-transform:none;font-weight:400}
+
+/* ── catalogue entry ──────────────────────── */
+.cat{
+  border-bottom:1px solid var(--rule);
+  padding:22px 0 20px;
+  display:grid;
+  grid-template-columns:150px minmax(0,1fr);
+  gap:6px 26px;
+}
+@media (max-width:760px){.cat{grid-template-columns:1fr;gap:10px}}
+.acc{
+  color:var(--amber);font-size:12.5px;font-weight:600;letter-spacing:.06em;
+  padding-top:3px;
+}
+.acc small{display:block;color:var(--phos-dim);font-weight:400;letter-spacing:.1em;font-size:11px;margin-top:4px}
+.cat-body{min-width:0}
+.title{
+  color:var(--phos-hi);font-size:17px;font-weight:600;line-height:1.3;margin:0 0 2px;
+  text-shadow:0 0 8px rgba(91,232,74,.28);
+}
+.title i{font-style:italic;font-weight:500}
+.byline{color:var(--phos-mid);font-size:13px;margin:0 0 12px}
+dl{margin:0;display:grid;grid-template-columns:118px minmax(0,1fr);gap:2px 14px;font-size:13px}
+@media (max-width:560px){dl{grid-template-columns:1fr;gap:0 0}dl dt{margin-top:8px}}
+dt{color:var(--phos-dim);letter-spacing:.1em;text-transform:uppercase;font-size:11px;padding-top:3px}
+dd{margin:0;color:var(--phos)}
+dd b{color:var(--phos-hi);font-weight:500}
+dd em{font-style:italic;color:var(--phos-hi)}
+.desc{margin:12px 0 0;font-size:13.5px;color:var(--phos-mid);max-width:78ch}
+.desc + .desc{margin-top:9px}
+.desc b{color:var(--phos-hi);font-weight:500}
+.desc em{font-style:italic;color:var(--phos)}
+.refs{margin:12px 0 0;font-size:12px;color:var(--phos-dim);word-break:break-word}
+.refs a{margin-right:14px;display:inline-block}
+
+/* condition tokens */
+.cond{font-weight:600;letter-spacing:.08em}
+.c-extant{color:var(--phos-hi)}
+.c-archival{color:var(--amber)}
+.c-lost{color:var(--amber);opacity:.75;text-decoration:line-through;text-decoration-thickness:1px}
+
+/* ── contents ─────────────────────────────── */
+.contents{
+  border:1px solid var(--rule);background:var(--panel);padding:22px 24px;margin:34px 0 0;
+}
+.contents h4{margin:0 0 16px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--amber);font-weight:600}
+.contents ol{list-style:none;margin:0;padding:0;font-size:13.5px}
+.contents li{display:flex;gap:14px;align-items:baseline;padding:5px 0;border-bottom:1px dotted var(--rule)}
+.contents li:last-child{border-bottom:0}
+.contents .rn{color:var(--amber);min-width:52px;font-size:12px;letter-spacing:.1em}
+.contents .ct{flex:1}
+.contents .cn{color:var(--phos-dim);font-size:12px;white-space:nowrap}
+
+/* ── tables / manifests ───────────────────── */
+details{border:1px solid var(--rule);background:var(--panel);margin:16px 0 0}
+summary{
+  cursor:pointer;list-style:none;padding:10px 16px;font-size:11.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--phos-dim);
+}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"[+] ";color:var(--amber)}
+details[open] summary::before{content:"[−] "}
+summary:hover{color:var(--phos-hi)}
+summary:focus-visible{outline:1px solid var(--phos-hi);outline-offset:-2px}
+.dbody{padding:4px 16px 18px;overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:12px}
+th{
+  text-align:left;color:var(--amber);font-weight:600;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;border-bottom:1px solid var(--amber-dim);padding:7px 12px 7px 0;white-space:nowrap;
+}
+td{border-bottom:1px solid var(--rule);padding:5px 12px 5px 0;vertical-align:top;color:var(--phos-mid);line-height:1.55}
+td b{color:var(--phos-hi);font-weight:500}
+td.n{color:var(--phos-dim);font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.cols{columns:2;column-gap:34px;font-size:12px;line-height:1.85;color:var(--phos-mid)}
+@media (max-width:700px){.cols{columns:1}}
+.dnote{font-size:11.5px;color:var(--phos-dim);line-height:1.8;margin-top:14px}
+.lbl{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin:16px 0 6px}
+
+footer{border-top:1px solid var(--phos-dim);margin-top:80px;padding-top:24px;color:var(--phos-dim);font-size:12px;line-height:2;max-width:80ch}
+footer a{color:var(--phos-mid)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+<p class="boot">river.io llc &mdash; archival services division
+<b>CATALOGUE SYSTEM</b> v1.0 &middot; 33 years indexed &middot; 12 attributions
+loading collection . . . . . . . . . . . . . . . . . . . . ok</p>
+
+<h1>Spacetrucker<br>Catalogue Raisonné</h1>
+<p class="subtitle">Works published online, 1993 &mdash; present</p>
+
+<p class="imprint">A descriptive catalogue of work made public on the internet by <b>Jeffrey B. Kunzelman</b> under the names <b>manray</b>, <b>kuj</b>, <b>C.C.T.B</b>, <b>Alpha60</b>, <b>Reverend Cathode</b>, <b>Remus Pederson</b>, <b>Abner Bisselhoffer</b>, <b>Space][rucker</b>, <b>Spacetrucker2196</b>, <b>DiscountPetFood Heavy Industries</b>, <b>United Cat Foods</b> and <b>river.io llc</b>.<br><br>
+Compiled August 2026. Arranged in nine series with three appendices. Entries are numbered by group, year and item. Where a work survives only in the Internet Archive, the accession record is the work.</p>
+</header>
+
+<div class="note">
+<h4>Key to the catalogue</h4>
+<p><b>Accession number</b> takes the form GROUP.YEAR.ITEM. The group prefix names the platform or imprint that published the work: SIT (SITO), HAL (halcyon.com/manray), HYP (HyperRust), DPF (DiscountPetFood Heavy Industries), A60 (Alpha60), FLK (Flickr), IGM (Instagram), VIM (Vimeo), YTB (YouTube), TWC (Twitch), SND (sound recordings), GIT (source repositories), APP (published applications), RIO (river.io), STH (Spacetrucker Highlife), NFT (minted editions), ETY (Etsy), SOC (correspondence and social).</p>
+<p><b>Condition</b> is recorded in three states. <span class="cond c-extant">EXTANT</span> — the work is live on the open web at time of writing. <span class="cond c-archival">ARCHIVAL RECORD ONLY</span> — the work is offline; a capture survives in the Internet Archive. <span class="cond c-lost">LOST</span> — the work is offline and no capture exists.</p>
+<p><b>Attribution</b> names the persona under which the work was issued, which is frequently not the artist's own name. Appendix A gives a concordance. Attributions are established by chained evidence between accounts, not by name similarity; works matching a name but belonging to other hands are listed in Appendix B.</p>
+</div>
+
+<div class="contents">
+<h4>Contents</h4>
+<ol>
+<li><span class="rn">I</span><span class="ct"><a href="#s1">Early Digital Work</a></span><span class="cn">1993–1999</span></li>
+<li><span class="rn">II</span><span class="ct"><a href="#s2">DiscountPetFood Heavy Industries</a></span><span class="cn">1999–2005</span></li>
+<li><span class="rn">III</span><span class="ct"><a href="#s3">Photography</a></span><span class="cn">2005–</span></li>
+<li><span class="rn">IV</span><span class="ct"><a href="#s4">Moving Image</a></span><span class="cn">2008–</span></li>
+<li><span class="rn">V</span><span class="ct"><a href="#s5">Sound</a></span><span class="cn">2001–</span></li>
+<li><span class="rn">VI</span><span class="ct"><a href="#s6">Software and Systems</a></span><span class="cn">2013–</span></li>
+<li><span class="rn">VII</span><span class="ct"><a href="#s7">Editions, Objects and Merchandise</a></span><span class="cn">2020–</span></li>
+<li><span class="rn">VIII</span><span class="ct"><a href="#s8">Correspondence and Social</a></span><span class="cn">1997–</span></li>
+<li><span class="rn">IX</span><span class="ct"><a href="#s9">Deaccessioned and Lost</a></span><span class="cn">—</span></li>
+<li><span class="rn">A</span><span class="ct"><a href="#a1">Concordance of Names</a></span><span class="cn">12 attributions</span></li>
+<li><span class="rn">B</span><span class="ct"><a href="#a2">Works Formerly Attributed</a></span><span class="cn">13 entries</span></li>
+<li><span class="rn">C</span><span class="ct"><a href="#a3">Note on Sources and Method</a></span><span class="cn">—</span></li>
+</ol>
+</div>
+
+<!-- ══════════════ SERIES I ══════════════ -->
+<section id="s1">
+<div class="series-head">
+<span class="series-num">Series I</span>
+<h2>Early Digital Work</h2>
+<p class="series-dates">1993 &mdash; 1999 &middot; Winona MN, Olympia WA</p>
+</div>
+<p class="scope">The earliest surviving online work, made on a Macintosh IIfx in Photoshop 2.5 within months of the artist finishing a fine arts degree. Two of the three records in this series are still live on the open web after thirty-three years, which is longer than most of the platforms that have since replaced them. The through-line already visible here — <em>segmentation, signal degradation, the machine as a mind</em> — runs unbroken to the software published in 2026.</p>
+
+<div class="cat">
+<div class="acc">SIT.1993.001<small>9 works</small></div>
+<div class="cat-body">
+<p class="title">Untitled series, and <i>metaEngine</i></p>
+<p class="byline">SITO Artchive, artist identifier <b>kuj</b></p>
+<dl>
+<dt>Medium</dt><dd>Digital images, Adobe Photoshop 2.5 on Macintosh IIfx</dd>
+<dt>Attributed</dt><dd>Jeff Kunzelman (real name; the handle <em>manray</em> was never used here)</dd>
+<dt>Provenance</dt><dd>Submitted to OTIS, the first internet art gallery; migrated to SITO and file-stamped 13 April 1996; last artist activity 16 June 2000</dd>
+<dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span> — live and unchanged</dd>
+</dl>
+<p class="desc">Nine works, each carrying a one-line caption written by the artist: <em>"deep within the sun, 9 eyes see mankind kill itself"</em> · <em>"avians fossilised in crystalline chaos window"</em> · <em>"the elements collid at holy point of universe"</em> · <em>"dissected faces grow sparky beards"</em> · <em>"two faces burned in the memory, two birds aflight"</em> · <em>"darkbird soars crystallizing currents and torrents"</em> · <em>"bird struggling significance in synthetic wind"</em> · <em>"the bird transcends and transforms, segmenting"</em> · and, for <i>metaEngine</i>, <em>"Stone cold faces disembody to disembark on flowery fractalscape."</em></p>
+<p class="desc">The accompanying artist statement dates itself precisely: <em>"B.A. Art Winona State University 1993, emphasis on Painting &amp; Graphic Design... All the digital images were done with Photoshop 2.5 on a Mac IIFX with 32megs RAM. I've only been working with Photoshop for about 6 months so the images only represent experimentation with this new medium."</em> Titles given there include <i>Frozen 1</i>, <i>Bath With Kai</i>, <i>Breathe</i>, <i>Cesium Walk</i>, <i>Eye Matix</i> and <i>Cells 1</i>.</p>
+<p class="refs"><a class="ext" href="https://id.sito.org/kuj/">SITOme profile</a><a class="ext" href="https://www.sito.org/cgi-bin/egads/segads?idonly=kuj">Artchive, 9 works</a><a class="ext" href="https://www.sito.org/id/kuj/">Image directory</a></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">HAL.1995.001<small>15 pages</small></div>
+<div class="cat-body">
+<p class="title">Jeff Kunzelman's Home Page</p>
+<p class="byline">www.halcyon.com/manray &middot; issued as <b>manray</b></p>
+<dl>
+<dt>Medium</dt><dd>Hand-written HTML on a public-access ISP shell account</dd>
+<dt>Extent</dt><dd>15 pages surviving of an unknown original total</dd>
+<dt>Dated</dt><dd>Live by <b>23 November 1995</b>, per the LAST_MODIFIED stamp on the artist's own archived bookmark file; returning 404 from April 1999</dd>
+<dt>Condition</dt><dd><span class="cond c-archival">ARCHIVAL RECORD ONLY</span> — captured December 1998 to February 1999 only</dd>
+</dl>
+<p class="desc">The artist's second web gallery and the origin of the address <b>manray@halcyon.com</b>. Navigation reads HOME / AUTOBIO / ARTWORK / PHOTO ALBUM / RESUME' / LINKS / E-MAIL, beneath a banner credited <em>Jeff Kunzelman, "Virtual Storage Access Method (VSAM)", Digital Media, March 1996</em>, and beside a Blue Ribbon free-speech campaign icon. The mailto link misspells his own host as <em>halycon</em>, a typo he carried for years.</p>
+<p class="desc">Four dated galleries survive. <b>1993–94</b>: <i>Spirit of the Age</i> (November 1993, Photoshop with Aldus Gallery Effects over NASA imagery and a scanned photograph, titled after the Hawkwind song), <i>While Others Sleep</i> (January 1994, KPT Fractal Explorer), <i>Untitled-6.3</i> (October 1994, Canon digital camera), <i>Simulated</i> (April 1994), <i>Flowers 1.2</i> (July 1994, Apple QuickTake and Fractal Design Painter). <b>Late 1994 – early 1995</b>: <i>Control</i>, <i>Silence</i>, <i>The Secret Value</i>, <i>Alien 1.2</i>, <i>It Was Within Their Power</i>, <i>Fish1</i>. <b>Early 1995</b>: <i>Light 2</i>, <i>Industrial1</i>, <i>Plants5</i>, <i>The Secret Value of Dreams</i>, made with a SummaSketch FX tablet, Painter 3.0 and Xaos Paint Alchemy. <b>Technology Series, July 1995</b>: <i>Benzel2</i>, <i>Benzel4</i>, <i>Double Precision</i>, <i>Navigator</i> — the direct ancestor of the Technology Mandala work of 2001.</p>
+<p class="desc">A <b>Collection of the Artist</b> page holds work by others: Betty Schlueter, <i>Surreal Sunflowers</i> (May 1995); Carrie Ortiz, <i>One Arm Muffin Head 1.2</i> (August 1994); Ian Schlueter, <i>Little Metal Dude on Fire</i> (November 1994); Brad McKenzie, <i>Seattle Henge</i> and <i>Alaska</i> (March 1995).</p>
+<p class="refs"><a class="ext" href="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html">Home page, Jan 1999</a><a class="ext" href="https://web.archive.org/web/19981206074124/http://www.halcyon.com/manray/">Dec 1998 capture</a></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">HAL.1995.002</div>
+<div class="cat-body">
+<p class="title">Chemical Computer Thinking Battery</p>
+<p class="byline">Artist's statement, with occasional rants</p>
+<dl>
+<dt>Medium</dt><dd>Prose, HTML</dd>
+<dt>Condition</dt><dd><span class="cond c-archival">ARCHIVAL RECORD ONLY</span></dd>
+</dl>
+<p class="desc">The primary biographical document of the period, and the source of the artist's 1997 handle. It moves from Ettrick Elementary in western Wisconsin, through a father's oil painting and an Apple IIe arriving at Christmas with Dazzle Draw, to enrolling at Winona State as a computer science major and leaving as an art major. It records the moment in <b>late 1992</b> when he <em>"produced some of my first digital artwork that looked like something other then a bunch of pixels"</em>, working from fields of colour through iterated filters and the rubber stamp — a method he later learned Kai Krause had named algorithmic painting.</p>
+<p class="desc">A section headed <b>Man Verses System</b> sets the IBM ES/9000 against HAL 9000 and quotes Neil Young's <i>Computer Age</i> at length. And it supplies the only statement of intent ever given for the imprint that followed: <em>"The name Discount Pet Food is dadaist and by definition has no meaning. I just liked the sound of it."</em></p>
+<p class="refs"><a class="ext" href="https://web.archive.org/web/19981205234029/http://www.halcyon.com/manray/artrant.html">Full text</a></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">HAL.1995.003</div>
+<div class="cat-body">
+<p class="title">Raven Digital Media</p>
+<p class="byline">Multimedia, CD-ROM and website design &middot; Olympia, Washington</p>
+<dl>
+<dt>Medium</dt><dd>Commercial practice; Macromedia Director 4.0, Adobe Photoshop, Fractal Design Painter 3.0, Astound</dd>
+<dt>Condition</dt><dd><span class="cond c-archival">ARCHIVAL RECORD ONLY</span></dd>
+</dl>
+<p class="desc">The artist's first company: cross-platform Director titles, hard-drive to CD-ROM transfers in Mac HFS, ISO 9660 and hybrid formats, limited-run duplication, and Shockwave web design. Its principal production was <b>Sport Fish of Washington</b>, an interactive CD-ROM for the Washington Department of Fish and Wildlife Ecosystems Education Program. Three pages of the accompanying <i>Fishing Prospects 1995</i> material survive.</p>
+<p class="refs"><a class="ext" href="https://web.archive.org/web/19981205220350/http://www.halcyon.com/manray/RDM/RDM.html">Studio page</a><a class="ext" href="https://web.archive.org/web/19990220160610/http://www.halcyon.com/manray/resume.html">1999 curriculum vitae</a></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">HYP.1997.001</div>
+<div class="cat-body">
+<p class="title">Rust Registry, entry 159</p>
+<p class="byline">HyperRust &middot; issued as <b>C.C.T.B</b></p>
+<dl>
+<dt>Medium</dt><dd>Directory entry, CGI</dd>
+<dt>Dated</dt><dd>5 March 1997</dd>
+<dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span></dd>
+</dl>
+<p class="desc">A single line in a Neil Young fan registry, and the only place the handle <b>C.C.T.B</b> — Chemical Computer Thinking Battery — is recorded in public. The entry gives the name, the halcyon address, the gallery URL, the state of Washington, and a chosen quotation: <em>"We will prevail and perform our function..."</em>, from <i>We R In Control</i> on <i>Trans</i>. The artist still appears in the registry's handle, name and geographic indexes. The domain <b>humanhighway.net</b>, which recurs throughout Series II, is a Neil Young title as well.</p>
+<p class="refs"><a class="ext" href="https://hyperrust.org/cgi-bin/r.pl?159">Registry entry</a><a class="ext" href="https://www.hyperrust.org/cgi-bin/rlh">Handle index</a></p>
+</div>
+</div>
+</section>
+
+<!-- ══════════════ SERIES II ══════════════ -->
+<section id="s2">
+<div class="series-head">
+<span class="series-num">Series II</span>
+<h2>DiscountPetFood Heavy Industries</h2>
+<p class="series-dates">1999 &mdash; 2005 &middot; 1,316 archived locations across five hostnames</p>
+</div>
+<p class="scope">The central body of work. A fictitious conglomerate, operated as a real one, publishing six divisions across five subdomains and staffed by at least four personae the artist wrote under. Its house style is corporate satire delivered with a straight face; its subjects are rural Wisconsin, abandoned munitions plants, unexplained lights, analogue synthesis, digital printmaking and Godzilla. Nothing of it is live. The Internet Archive holds <em>968 retrievable locations</em> of 1,316 recorded, spanning 18 October 2000 to mid-2005.</p>
+
+<div class="note">
+<h4>Corporate identity</h4>
+<p><b>Title:</b> DiscountPetFood Heavy Industries<br>
+<b>Standing footer:</b> <em>Manufacturer of QUALITY byproducts</em><br>
+<b>Homepage masthead:</b> <em>Tomorrow's Byproducts Today &middot; * Irradiated for your protection *</em><br>
+<b>Mission statement, 2000:</b> <em>"Through a top-down, proactive approach we can remain customer focused goal-directed, and synergistic to incentivize deliverables that leverage magnetic solutions which facilitate web-readiness."</em><br>
+<b>Copyright meta, 1999:</b> <em>Discountpetfood Heavy Industies</em> (as misspelled in the source)</p>
+</div>
+
+<div class="note">
+<h4>Note on hostnames</h4>
+<p>The collection is distributed across five hosts, and the Internet Archive indexes them separately. Requesting a work under the wrong host returns a false negative. <b>kunzelman.discountpetfood.net</b> holds 654 locations (the art divisions); <b>discountpetfood.net</b> 419; <b>alpha60.discountpetfood.net</b> 151; <b>www.discountpetfood.net</b> 90; <b>stonesoup.discountpetfood.net</b> 2. The related domain <b>discountpetfood.com</b> is an unrelated retail business and holds nothing by this artist.</p>
+</div>
+
+<h3 class="sub">Division A &mdash; Alibi Gulch <span>Rural Wisconsin subculture</span></h3>
+
+<div class="cat">
+<div class="acc">DPF.1999.001<small>c. 60 pages</small></div>
+<div class="cat-body">
+<p class="title">Alibi Gulch</p>
+<p class="byline">alibigulch.com, later mirrored at discountpetfood.net/alibigulch &middot; issued as <b>Remus Pederson</b> and <b>Abner Bisselhoffer</b></p>
+<dl>
+<dt>Medium</dt><dd>Hypertext fiction, photography, invented local journalism</dd>
+<dt>Catalogue note</dt><dd>Described on the DPF homepage as <em>"75% Milk enzymes with malt fillers"</em></dd>
+<dt>Condition</dt><dd><span class="cond c-archival">ARCHIVAL RECORD ONLY</span> — the best-preserved work in the collection; nearly every page retrievable</dd>
+</dl>
+<p class="desc">An invented town in west-central Wisconsin, published as a regional archive. The masthead reads <em>"Welcome To The Worlds Leading Repository on Rural Wisconsin Subculture."</em> The FAQ states the premise plainly: <em>"Alibi Gulch is a fictitious town in West-Central Wisconsin that provides a setting for the stories included on our site. The stories are based on one viewpoint highlighting the profound uniqueness of this area's very real subculture."</em></p>
+<p class="desc">It carries a full editorial masthead. Abner Bisselhoffer edits, Remus Pederson reports, Thor Tolefson contributes. The lead story, <b>"Alleged Vote Fraud Leads to Arrest of Alibi Gulch Mayor"</b>, transposes the 2000 presidential election onto a tavern electoral college — AlibiTap, Shorty's Fun Time Grill, Beer Hunter, Kassel Tap, James T — and unseats Mayor Bucky Tolefson in favour of Floyd Bush.</p>
+<p class="desc">The <b>Historical Society</b> invents the valley whole: Norwegian and Irish settlement along Beaver Creek in the 1850s, a post office in 1866, a distinction as <em>"the only town that would sell alcoholic beverages on Sunday morning"</em>, the Scandinavian Fire Insurance Company at seventy-five cents a month, and Gulch Blue Label ale brewed by Ivar Scow and Hans Beckner of Coon Valley in 1870.</p>
+<p class="desc">Subordinate works: <b>Cousin Cleatus'z Country Homes</b> (<em>"If You Lived Here You'd Be Home by now!"</em>), a real-estate parody with sold, pending and no-photo placeholders; the <b>Wisconsin Bar Sign Archive</b>, described as <em>"a continuing study on a unique form of rural folk art"</em> and as a <em>"comprehensive bar sign archive of West Central Wisconsin"</em>, of which one photograph survives, from Ettrick; <b>Deer Camp</b>; <b>Roadkill</b>, four photographs presented as the town's dark side; and a <b>Board of Tourism</b> covering Pickle Days, the deer hunt and a wedding.</p>
+<p class="refs"><a class="ext" href="https://web.archive.org/web/20020408220919/http://discountpetfood.net/alibigulch/main.html">Index</a><a class="ext" href="https://web.archive.org/web/20020325185835/http://www.discountpetfood.net/alibigulch/news/main.html">News desk</a><a class="ext" href="https://web.archive.org/web/20020323211243/http://discountpetfood.net/alibigulch/history/history.html">Early Times</a><a class="ext" href="https://web.archive.org/web/20020810102541/http://discountpetfood.net/alibigulch/about/main.html">FAQ</a></p>
+</div>
+</div>
+
+<h3 class="sub">Division B &mdash; Field Research Unit <span>Desolations and anomalies</span></h3>
+
+<div class="cat">
+<div class="acc">DPF.2000.002<small>18.5 KB</small></div>
+<div class="cat-body">
+<p class="title">Igloo Ordinance Depot</p>
+<p class="byline">Desolation Study #052000A, Black Hills Ordnance Depot, western South Dakota &middot; bylined <b>Jeffrey Kunzelman and Ian Schlueter, Field Research Unit</b></p>
+<dl>
+<dt>Medium</dt><dd>Photo-essay and research dossier, HTML</dd>
+<dt>Extent</dt><dd>Principal essay plus <i>isobuilding</i> dossier, <i>toxicity</i> report, and a 71-image South Dakota archive</dd>
+<dt>Condition</dt><dd><span class="cond c-archival">ARCHIVAL RECORD ONLY</span> — all 71 thumbnails retrievable</dd>
+</dl>
+<p class="desc">The longest sustained piece of writing in the collection, and the clearest statement of the artist's interest in Cold War residue. It opens: <em>"I grew up in the latter part of the 20th century. There was a period called the 80's where it seemed that a 30 year cold war could go hot at anytime... Pop culture made for TV movies like The Day After stick in my mind."</em> The justification for the trip is characteristic: <em>"After Area 51, and a uraninum tailings pond in Utah, an abandoned ordinace plant seemed like a perfectly valid destination."</em></p>
+<p class="desc">Sections cover the Isolated Long Building, Provo South Dakota, and the abandoned town of Igloo itself — entrance gate, church, guard shack, depot area. The accompanying dossier cites NARA Record Group 156 and a Department of Defense DERP report on the former Black Hills Army Depot; the toxicity page quotes reporting on roughly three and a half million tons of exposed uranium tailings.</p>
+<p class="desc">A FUDforum board, <b>Memories of Igloo South Dakota</b>, was attached to the work for former residents: <em>"for posting your expiences while living or visiting Igloo Ordinace Depot while it was functioning."</em> At its July 2004 capture it held one topic, two messages and five registered members. The message bodies were never captured.</p>
+<p class="refs"><a class="ext" href="https://web.archive.org/web/20010513235357/http://www.discountpetfood.net/field/igloo/main.htm">Principal essay</a><a class="ext" href="https://web.archive.org/web/20010519113139/http://discountpetfood.net/field/igloo/isobuilding.htm">Dossier</a><a class="ext" href="https://web.archive.org/web/20050209235650/http://www.discountpetfood.net/field/igloo/toxicity.htm">Toxicity</a><a class="ext" href="https://web.archive.org/web/20040716194113/http://www.discountpetfood.net/field/igloo/forum/index.php">Forum</a></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">DPF.1999.003<small>77 images</small></div>
+<div class="cat-body">
+<p class="title">Image Archive PCD#2243 &mdash; Western South Dakota and Badlands National Park; and Moab Utah 1998</p>
+<p class="byline">Photo Compact Disc archives &middot; the South Dakota set a <em>joint effort with Human Highway</em></p>
+<dl>
+<dt>Medium</dt><dd>Photographic archives, scanned to Kodak Photo CD</dd>
+<dt>Extent</dt><dd>71 South Dakota thumbnails and 6 Moab thumbnails, all retrievable; all detail pages lost</dd>
+<dt>Condition</dt><dd><span class="cond c-archival">ARCHIVAL RECORD ONLY</span></dd>
+</dl>
+<p class="desc">The Moab set, catalogued as Image Archive #031999A, documents the Fins and Things four-wheel-drive trail. Its plate titles are the only part of it to survive intact: <i>ol' pointy</i>, <i>eric &amp; dan</i>, <i>fins or things?</i>, <i>ian trooper</i>, <i>twin mounds</i>, and <i>whut the hell is that?</i></p>
+<p class="refs"><a class="ext" href="https://web.archive.org/web/20010515071845/http://discountpetfood.net/field/utah/moab98/index.htm">Moab index</a><a class="ext" href="https://web.archive.org/web/20010306012332/http://discountpetfood.net/field/index1.htm">South Dakota index</a></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">DPF.2000.004<small>3 pages</small></div>
+<div class="cat-body">
+<p class="title">Anomalous</p>
+<p class="byline">Orbs at Area 51? &middot; Orbs?</p>
+<dl>
+<dt>Medium</dt><dd>Digital photography with critical apparatus and reproduced correspondence</dd>
+<dt>Condition</dt><dd><span class="cond c-archival">ARCHIVAL RECORD ONLY</span> — complete</dd>
+</dl>
+<p class="desc">A sceptic's contribution to a credulous genre. The artist reproduces his own anomalous photographs and then argues against them: <em>"In every image that I've encountered 'ORBS' it seems to either occur from lens flare as in the Area 51 image or condensation."</em> Provenance for the Nevada plates is given in the same register as the rest: <em>"While ComputerCowboy and I were in Las Vegas tracking down the last signs of the American Dream, a trip to Area 51 and a few drinks at the Little A'Le'Inn seemed like the sensible way to spend an afternoon... The camo dudes even had new trucks!"</em></p>
+<p class="desc">The second plate, <i>The First Orb</i> (27 November 1997, Capitol Peak State Forest, Washington), carries the richest documentation in the collection: two emails received in 1999, one from an orb-site webmaster and one from a self-styled <b>Anti Orb Coalition</b>, the latter enclosing a forwarded reply from Kodak customer service concluding that the artefact <em>"is NOT from the realm of the paranormal."</em> Both were addressed to the artist at a since-abandoned personal account.</p>
+<p class="refs"><a class="ext" href="https://web.archive.org/web/20010306010549/http://discountpetfood.net/anomoly/main.html">Anomalous</a><a class="ext" href="https://web.archive.org/web/20010307203814/http://discountpetfood.net/anomoly/Orbs1.html">Orbs 1</a><a class="ext" href="https://web.archive.org/web/20010307204205/http://discountpetfood.net/anomoly/Orbs2.html">Orbs 2</a></p>
+</div>
+</div>
+
+<h3 class="sub">Division C &mdash; D/A: Digital and Analog Methods in Image Manufacturing <span>c. 128 works</span></h3>
+
+<div class="cat">
+<div class="acc">DPF.2001.005<small>5 works</small></div>
+<div class="cat-body">
+<p class="title">Technology Mandala</p>
+<p class="byline">kunzelman.discountpetfood.net/digital/mand/</p>
+<dl>
+<dt>Medium</dt><dd>Digital images</dd>
+<dt>Works</dt><dd><i>double precision</i> · <i>core memory</i> · <i>symcom6</i> · <i>dharma3</i> · <i>reduced instruction set</i></dd>
+<dt>Condition</dt><dd><span class="cond c-archival">ARCHIVAL RECORD ONLY</span></dd>
+</dl>
+<p class="desc">The series statement, written around 2001, reads differently now than it did then: <em>"These images are from a series of mandalas I created that reflected an emergent consciousness in switched state digital technology. In a future of neural nets and massively parallel quantum computing will Heisenberg's Uncertainty Principle lead our carefully structured microprocessors down a path of chaos? Or will systems begin to self organize into a new kind of intelligence? Are we creating a mind in our own image?"</em></p>
+<p class="refs"><a class="ext" href="https://web.archive.org/web/20031212182444/http://discountpetfood.net/digital/main.html">Digital division</a></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">DPF.2001.006<small>8 works</small></div>
+<div class="cat-body">
+<p class="title">Segmented Reality</p>
+<p class="byline">kunzelman.discountpetfood.net/digital/</p>
+<dl>
+<dt>Works</dt><dd><i>Reva</i> (1997) · <i>Holographic Memory</i> (1997) · <i>Project 1</i> (digital video, August 1999) · <i>Breathe</i> (1993) · <i>Alien 1.2</i> (1996) · <i>While Others Sleep</i> (1993) · <i>Core Memory</i> (1996) · <i>Decoding Data From Unknown Media</i> (digital video, October 1999)</dd>
+<dt>Condition</dt><dd><span class="cond c-archival">ARCHIVAL RECORD ONLY</span></dd>
+</dl>
+<p class="desc">Introduced by a prose poem taken from the artist's sketchbook: <em>"...Science has segmented our reality with nanometer digital precision, redefined the tangible, discounted all that was undefined and unmeasurable... ...computers model chaos and build neural nets striving to be created in mans image... ...inside the atom sub-particals vibrate defiant against determinism..."</em></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">DPF.1999.007<small>8 works</small></div>
+<div class="cat-body">
+<p class="title">Analog: Dreams</p>
+<p class="byline">Intaglio, lino cut, oil and pastel, paired with dream-journal excerpts</p>
+<dl>
+<dt>Works</dt><dd><i>The Hanged Man</i> (lino cut reduction, 1999) · <i>The Quietness of Dreams</i> (intaglio, 1999) · <i>Ocean</i> (1999) · <i>Union</i> (intaglio, 1999) · <i>Assumption</i> (oil, 1992) · <i>The Dream of the Wayward</i> (oil pastel, 1993) · <i>Untitled</i> (pastel, 1992) · <i>Annunciation</i> (oil, 1993)</dd>
+<dt>Related</dt><dd><i>Dreams of the Sea</i>, installation mural, acrylic</dd>
+<dt>Condition</dt><dd><span class="cond c-archival">ARCHIVAL RECORD ONLY</span> — index retrievable, several plate pages lost</dd>
+</dl>
+<p class="desc">The only division of the conglomerate to deal in physical media. The artist offered editions from it: <em>"signed large digital cibacrome prints printed with a Cymbolic LightJet Printer on Fuji Crystal Archive photographic paper. Prints are museum quality and color fidelity is guaranteed colorfast for 60 years. These are not ink jet prints. Prices start $300 depending on size. Sizes range from 16" x 20" to 4' x 8'."</em></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">DPF.1993.008<small>6 works</small></div>
+<div class="cat-body">
+<p class="title">Self Portrait</p>
+<dl>
+<dt>Works</dt><dd><i>Self Portrait in Abandoned Munitions Depot</i> (May 2000) · <i>Self Portrait Reflecting Studio</i> (July 2001) · <i>Self Portrait in the Infinite</i> (1995) · <i>Self Portrait With Distant Warning Indicator</i> (1994) · <i>Self Portrait As Machine</i> (1993) · <i>Self Portrait As Utility</i> (1993)</dd>
+<dt>Condition</dt><dd><span class="cond c-archival">ARCHIVAL RECORD ONLY</span></dd>
+</dl>
+<p class="desc">Eight years of self-portraiture in which the artist is successively a machine, a utility, an infinity, a warning indicator, a figure in an abandoned depot, and finally a reflection in his own studio.</p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">DPF.1993.009<small>c. 128 titles</small></div>
+<div class="cat-body">
+<p class="title">Digital Image Archive, 1993&ndash;1998</p>
+<p class="byline">kunzelman.discountpetfood.net/archive/ &middot; indexed by year</p>
+<dl>
+<dt>Extent</dt><dd>124 of 256 plate pages retrievable; 25 of 25 full images; 52 of 86 thumbnails</dd>
+<dt>Arrangement</dt><dd>index = 1993 · index1 = 1994 · index6 = 1995 · index13 = 1996 · index14 = 1997 · index15 = 1998</dd>
+<dt>Condition</dt><dd><span class="cond c-archival">ARCHIVAL RECORD ONLY</span> — partially recoverable; for lost plates the filename is the only record of the title</dd>
+</dl>
+<p class="desc">Six years of digital work, indexed by year. Where a plate page is gone its title survives in the URL, which makes the file listing itself a catalogue. The 1993 year holds <i>CAT2</i>, <i>cells 1</i>, <i>D Image 3</i>, <i>eye matrix</i>, <i>franken</i>, <i>head 1</i>, <i>Ice 2</i>, <i>painter 2</i>, <i>surreal 1</i>, <i>under ice</i> and <i>world matrix</i>. The 1998 year holds <i>atm1 PICT pat</i>, <i>cut</i>, <i>dragon 1</i>, <i>dragon 2</i>, <i>SPIDER 1</i>, <i>SPIDER 2</i> and <i>tiger mand</i>.</p>
+<details>
+<summary>Recovered titles, 1993&ndash;1998 &mdash; approximately 128</summary>
+<div class="dbody">
+<p class="lbl">Named works</p>
+<div class="cols">21st Century Man · 5 Faces · 67000 year decay2 · Automation · CAT2 · COLMAN4 · CeWalk 1 · Coleman2 · Coleman22 · Core Transmission · D Image 3 · DES · DESert · Decay 3 · EnvContent · Frac sea 2 · Gated Input · Giant Seeds · Grand Canyon - E · Growing 1 · Happy Tank · Hawk morie' · Ice 2 · Internal Organ · Internal Organ 1 · Internal Organ BW · Killer Fractal · Lyle &amp; west3 · OMNI2 · OMNI3 · OMNI5 · omni 4 · ORBS · Promethus · SPIDER 1 · SPIDER 2 · SYMCOM6 · Self Portrait · Self Portrait 6 · Self portrait 2 · Simulat · Simulated · Simulated 2 · Spirit of the Age · Still life 1 · Twin Portrait · Untitled-1 · Untitled-6</div>
+<p class="lbl">Series works</p>
+<div class="cols">alien 1, 3, 4, 5, 6 · am · andy dog 2 · asi · asychro ocean · atm1, atm 2, atm 3, atm1 PICT pat · b1 · benzel2, benzel3, benzel4, benzel5 · bryce 1 · calling · canyon · cape · cells 1 · chicago1 · circular · clone 1 · control · cut · d · dbl pres · dharma3 · diva2 · dog 2, dog 24 · double prescision · dpf 3 · dragon 1, dragon 2 · dream the dream · earth1 · exp3, exp4 · eye matrix, eye matrix 2 · eyes · faces 1 · fetal1 · fire 1, fire 2 · fish 1 · fleeing · flowers 1 · frac 2 · franken, franken 2 · freeze, freeze2 · gen1 · gi 3_1415927 · gul · harbor, harbor2 · head 1 · house2, house3, house4 · hype 1–8 · i am · industrial 1 · light1, light2, light4 · matrix 2 · meta engine 1 · meta engine · navigator · packet 4 · packet collision3 · packet switched, packet switched 3 · painter 2, painter First · pan1 · pete 1 · phase linear · plants1, 2, 4, 5, 6 · polar questions · postit · q - 1 · reef · repro2 · seascape, seascape 1 · self promo · signal degradation · sleeping · sound · sphear world · surreal 1 · tech2 · test cycle, test cycle 2 · tiger mand · under ice · underly2 · while other sleep · world matrix · xuxa, xuxa 1 · zoom, zoom12</div>
+</div>
+</details>
+</div>
+</div>
+
+<h3 class="sub">Division D &mdash; VCO: First Church of the Voltage Controlled Oscillator <span>Founded c. 2000</span></h3>
+
+<div class="cat">
+<div class="acc">DPF.2000.010</div>
+<div class="cat-body">
+<p class="title">First Church of the Voltage Controlled Oscillator</p>
+<p class="byline">Ministry and liturgy &middot; issued as <b>Reverend Cathode</b></p>
+<dl>
+<dt>Medium</dt><dd>Devotional text; electronic music practice</dd>
+<dt>Catalogue note</dt><dd>Described on the homepage as <em>"Electronic Soundscapes for your next dinner party. Synthesized with a MiniMoog and other analog as well as digital audio electronics."</em></dd>
+<dt>Condition</dt><dd><span class="cond c-archival">ARCHIVAL RECORD ONLY</span> — the observance continues; see YTB and SND</dd>
+</dl>
+<p class="desc">The liturgy, in full: <em>"We welcome those of all faiths who have found their way through the great ATM cloud. We thank thee oh great VCO for these oscillations you have provided us. Your sinusoidal waves, we have modified through our Low Pass Filter. All rejoice for we have been given Modulation, Selectable Wave Form and Cut Off Frequency!"</em> The church was refounded on YouTube two decades later and remains the artist's longest-running institution.</p>
+<p class="refs"><a class="ext" href="https://web.archive.org/web/20010306010758/http://discountpetfood.net/OMS/supermon.html">Contemporary captures</a></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">DPF.2001.011<small>4 tracks</small></div>
+<div class="cat-body">
+<p class="title">Music For Distant Restauraunts</p>
+<p class="byline">ASRI &middot; issued as <b>Reverend Cathode</b> / DiscountPetFood &middot; <em>first issue</em></p>
+<dl>
+<dt>Medium</dt><dd>Four digital audio files, MP3, offered without charge</dd>
+<dt>Tracks</dt><dd><i>Hidden Codec</i> (8.4 MB) · <i>Convolver</i> (10.4 MB) · <i>Impel</i> (5.5 MB) · <i>Side A</i> (5.4 MB)</dd>
+<dt>Terms</dt><dd><em>"Music for Distant Restaurants has been approximated by digital means from an analog source... is a DiscountPetFood release and free for distribution and remixing. Please credit www.discountpetfood.net in any fair use."</em></dd>
+<dt>Condition</dt><dd><span class="cond c-lost">AUDIO LOST</span> — page and cover art extant in archive; the audio files were served over FTP and were never crawled</dd>
+</dl>
+<p class="desc">The catalogue's most consequential correction. This release predates the Bandcamp edition of <b>11 September 2021</b> by two decades, with the same four tracks in the same order. The source material was recorded to cassette in the winter of 1998 on a Minimoog Model D and a Kawai K3 routed through the Moog's external input; the 2021 issue is a remaster of it. The imprint <b>ASRI</b> appears nowhere else. A companion page, <i>Series of Attenuated Test Patterns and Tones for Response</i>, anticipates the single of December 2023 by the same name.</p>
+<p class="refs"><a class="ext" href="https://spacetrucker2196.bandcamp.com/album/music-for-distant-restaurants">2021 reissue</a></p>
+</div>
+</div>
+
+<h3 class="sub">Division E &mdash; Alpha60 <span>Live electronic trio, c. 2000–2001</span></h3>
+
+<div class="cat">
+<div class="acc">A60.2001.001</div>
+<div class="cat-body">
+<p class="title">Alpha60</p>
+<p class="byline">alpha60.discountpetfood.net &middot; Minneapolis and St. Paul</p>
+<dl>
+<dt>Personnel</dt><dd><b>Chris</b> — digeredoo, secondary ibook<br><b>Reverend Cathode</b> — miniMoog, Hopi flute, iBook, secondary sampler<br><b>Jeremiah</b> — <em>"my mind through a sampler"</em></dd>
+<dt>Method</dt><dd>Recorded live to DAT, then written to CD and MP3</dd>
+<dt>Venue</dt><dd>Bedhead104 (recording); Wunderlich Industries, 262 Studios, Master Framers Building, St. Paul (studio)</dd>
+<dt>Engagements</dt><dd>Coffee Gallery, Minneapolis (2 December) · Rouge Bhudda Gallery, Minneapolis (10 February) · St. Paul Art Crawl (spring)</dd>
+<dt>Condition</dt><dd><span class="cond c-archival">ARCHIVAL RECORD ONLY</span> — pages extant; <span class="cond c-lost">all recordings lost</span></dd>
+</dl>
+<p class="desc">Not a solo alias and not, as long assumed, a web-streaming project: a three-piece improvising group with a rotating membership, its own subdomain, its own mailing list (<em>alpha60capcom</em>, hosted on eGroups) and a video archive that no longer exists. The group's site carried five sections — calendar, members, audio, video, FAQ — of which the FAQ was never written beyond the placeholder <em>"Faq-o-matic goes here"</em>.</p>
+<p class="desc">Recorded works listed on the audio page, all lost: <i>Hand Modulated</i>, <i>Time for You To Leave Now William Blake</i>, <i>Under Ground</i>, <i>I Drank The Water</i>, <i>AC-Y</i>. Distribution was to have run through mp3.com/alpha60, which is also gone.</p>
+<p class="refs"><a class="ext" href="https://web.archive.org/web/20010401192357/http://alpha60.discountpetfood.net/">Index</a><a class="ext" href="https://vimeo.com/alpha60">Later Vimeo channel, VIM.2008.001</a></p>
+</div>
+</div>
+
+<h3 class="sub">Division F &mdash; DPFdv <span>Video</span></h3>
+
+<div class="cat">
+<div class="acc">DPF.1999.012<small>7 titles</small></div>
+<div class="cat-body">
+<p class="title">DPFdv &mdash; Video Feed</p>
+<p class="byline">Contributors: Andrew Bishop, Guy Fusman, Jeffrey Kunzelman, Ian Schlueter</p>
+<dl>
+<dt>Medium</dt><dd>QuickTime, streamed</dd>
+<dt>Titles</dt><dd><i>Decoding Data From Unknown Media</i> · <i>Project 1 / TBA</i>, 7.5 min, <em>"Two mysterious figures confront a forgotten apocalypse"</em> · <i>Alibi Gulch Deer Camp</i> · <i>Got Cheeze?</i>, 27 min · three OMS trailers, 30 sec each</dd>
+<dt>Condition</dt><dd><span class="cond c-lost">LOST</span> — catalogue page extant; every film served over FTP and none was captured</dd>
+</dl>
+<p class="desc">The division's principal production, <b>Got Cheeze?</b>, is described in the catalogue as <em>"Discover Wisconsin like you never have before. Contains material not suitable for small children."</em> A fragment of <i>Decoding Data From Unknown Media</i> was later re-uploaded to YouTube; it is the only DPFdv title that can still be watched.</p>
+<p class="refs"><a class="ext" href="https://web.archive.org/web/20010405175113/http://discountpetfood.net/dpfdv/main.html">Catalogue page</a><a class="ext" href="https://youtu.be/pYQTS-Puxrg">Surviving fragment</a></p>
+</div>
+</div>
+
+<h3 class="sub">Division G &mdash; OMS: Oversized Monster Series <span>Hosted work by another hand</span></h3>
+
+<div class="cat">
+<div class="acc">DPF.2000.013</div>
+<div class="cat-body">
+<p class="title">Chronicles of Kaiju &mdash; Legend of Decanion</p>
+<p class="byline">Written and drawn by <b>Omar Sayyah</b>; published by DiscountPetFood Heavy Industries</p>
+<dl>
+<dt>Medium</dt><dd>Web comic and short-film trailers</dd>
+<dt>Condition</dt><dd><span class="cond c-archival">ARCHIVAL RECORD ONLY</span> — page one of the comic survives; later pages lost</dd>
+</dl>
+<p class="desc">The conglomerate's one act of straightforward patronage, and it is worth recording in the artist's own words: <em>"Omar Sayyah is a 19 year old factory worker who really wants to do his art for a living. So far he has made 16 Godzilla films (the Japanese Godzilla), hand built from scratch 9 different Godzilla suits and countless enemies for Godzilla to battle with. Omar is going to Japan in June of 2000 in hopes of acquiring a sponsor for his work. Think this is a good idea? Can you save him from a life toiling in a factory?"</em> Trailers: <i>Greetings from Zearon</i>, <i>N U K E D!</i>, <i>WWIII</i>, <i>War of the Super Monsters</i>.</p>
+<p class="refs"><a class="ext" href="https://web.archive.org/web/20010405094319/http://discountpetfood.net/OMS/main.html">Division index</a><a class="ext" href="https://web.archive.org/web/20010410045612/http://discountpetfood.net/OMS/image/01-omarslc.htm">Comic, page one</a></p>
+</div>
+</div>
+
+<h3 class="sub">Division H &mdash; Infrastructure and late works <span>1999–2005</span></h3>
+
+<div class="cat">
+<div class="acc">DPF.1999.014</div>
+<div class="cat-body">
+<p class="title">The Cogito X StoneSoup project</p>
+<p class="byline">stonesoup.discountpetfood.net</p>
+<dl>
+<dt>Medium</dt><dd>Proposal; co-operative infrastructure</dd>
+<dt>Condition</dt><dd><span class="cond c-archival">ARCHIVAL RECORD ONLY</span></dd>
+</dl>
+<p class="desc">A proposal to a circle of friends to jointly fund a server: <em>"I propose a 'Stone Soup' style Server project to take the place of our venerable NeXT box... if we all chip in a little toward the common goal of building an x86 based Linux server we can all benefit."</em> The stated motive is the origin of everything in Divisions E and F: <em>"we really want to do QuickTime streaming, thus Linux."</em> The name descends from Cogito X, the Winona State philosophy club for which the artist served as art director from 1991 to 1993.</p>
+<p class="refs"><a class="ext" href="https://web.archive.org/web/20010202033100/http://stonesoup.discountpetfood.net/">Proposal</a></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">DPF.2004.015<small>23 pages</small></div>
+<div class="cat-body">
+<p class="title">Yavapai County: Communities, Destinations, Wilderness</p>
+<p class="byline">The conglomerate's final form &middot; central Arizona</p>
+<dl>
+<dt>Medium</dt><dd>Regional guide, HTML</dd>
+<dt>Extent</dt><dd>16 community pages (15 retrievable), 4 destinations, 3 wilderness areas</dd>
+<dt>Condition</dt><dd><span class="cond c-archival">ARCHIVAL RECORD ONLY</span></dd>
+</dl>
+<p class="desc">In its last year the imprint dropped the satire entirely and became a straight-faced tourism directory for central Arizona: Arcosanti, Ashfork, Bagdad, Black Canyon City, Camp Verde, Chino Valley, Cornville, Cottonwood, Dewey, Humboldt, Jerome, Mayer, Prescott, Prescott Valley, Sedona and Yarnell. The Arcosanti page carries a 2003 season including Richie Havens, a Vivaldi festival, a poetry slam, and <b>Different Skies, the space and experimental electronic music festival</b> — on a 2007 recording from which the artist would later be credited under his own name.</p>
+<p class="refs"><a class="ext" href="https://web.archive.org/web/20040202160324/http://discountpetfood.net/communities/Arcosanti.html">Arcosanti</a><a class="ext" href="https://web.archive.org/web/20040213012911/http://discountpetfood.net/communities/Jerome.html">Jerome</a></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">DPF.2008.016<small>attributed</small></div>
+<div class="cat-body">
+<p class="title">Different Skies &mdash; <i>Imaginary Spaces</i></p>
+<p class="byline">Earth Mantra netlabel, catalogue earman029 &middot; credited as <b>Jeff Kunzelman</b></p>
+<dl>
+<dt>Medium</dt><dd>Five digital audio files, MP3 320, Creative Commons BY-NC-ND 3.0</dd>
+<dt>Recorded</dt><dd>Evening of Thursday 19 October 2007, Different Skies, Arizona</dd>
+<dt>Released</dt><dd>4 February 2008</dd>
+<dt>Condition</dt><dd><span class="cond c-lost">AUDIO WITHDRAWN</span> — the Discogs record survives; the archive.org mirror has been taken down</dd>
+</dl>
+<p class="desc">The artist's only release on a label, and the only recording anywhere credited to his legal name. Described as <em>"An improvised jam session involving twenty musicians at Different Skies 2007."</em></p>
+<p class="refs"><a class="ext" href="https://www.discogs.com/release/1230132-Different-Skies-Imaginary-Spaces">Discogs record</a></p>
+</div>
+</div>
+
+<div class="note">
+<h4>Condition note on Series II</h4>
+<p>No sound recording and no moving image made under this imprint survives. Every audio and video file was linked with an <b>ftp:</b> scheme, which web crawlers do not follow, so none entered the Internet Archive. The text and the still images survive only because they were written in HTML. What is left of six years of work is what happened to be marked up.</p>
+</div>
+</section>
+
+<!-- ══════════════ SERIES III ══════════════ -->
+<section id="s3">
+<div class="series-head">
+<span class="series-num">Series III</span>
+<h2>Photography</h2>
+<p class="series-dates">2005 &mdash; present &middot; two photostreams, one feed</p>
+</div>
+<p class="scope">Two Flickr accounts opened six months apart and never linked to each other, plus the largest single body of work in the whole catalogue by item count. The larger photostream is effectively unfindable: it carries the display name <em>Space][rucker</em>, which appears nowhere else on the indexed web, at a URL that gives no hint of it.</p>
+
+<div class="cat">
+<div class="acc">FLK.2005.001<small>1,535 items</small></div>
+<div class="cat-body">
+<p class="title">Photostream &mdash; Space][rucker</p>
+<p class="byline">flickr.com/photos/fretro &middot; issued as <b>Space][rucker</b>, occupation given as "Space Trucker"</p>
+<dl>
+<dt>Extent</dt><dd>1,535 photographs</dd>
+<dt>Opened</dt><dd>August 2005</dd>
+<dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span></dd>
+</dl>
+<p class="desc">The principal photographic archive. The profile carries an in-character cargo-captain narrative in place of a biography, and links onward to Instagram. Because the URL slug is <em>fretro</em> and the display name uses a bracket-slash construction no search engine will match, this archive is reachable in practice only from one outbound link on the artist's Bandcamp collection page.</p>
+<p class="refs"><a class="ext" href="https://www.flickr.com/photos/fretro/">Photostream</a><a class="ext" href="https://www.flickr.com/people/fretro/">Profile</a></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">FLK.2006.002<small>71 items</small></div>
+<div class="cat-body">
+<p class="title">Photostream &mdash; spacetrucker</p>
+<p class="byline">flickr.com/photos/spacetrucker</p>
+<dl>
+<dt>Extent</dt><dd>Four albums: <i>Our Cats</i> (36) · <i>California</i> (17) · <i>Flowers</i> (10) · <i>Brush Fire</i> (8)</dd>
+<dt>Opened</dt><dd>February 2006</dd>
+<dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span> — dormant</dd>
+</dl>
+<p class="desc">A second, smaller stream under the plain handle. Individual plates include <i>Maui &mdash; Rest in peace my friend</i>, <i>Gracie In Blue</i>, <i>Pineapple Sage</i>, <i>Early Riser</i>, <i>The One That Got Away</i>, <i>Fang</i>, <i>Later</i> and <i>A Pose</i>. No biography, no outbound links, nothing connecting it to FLK.2005.001.</p>
+<p class="refs"><a class="ext" href="https://www.flickr.com/photos/spacetrucker/">Photostream</a><a class="ext" href="https://www.flickr.com/photos/spacetrucker/albums">Albums</a></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">IGM.2015.001<small>2,658 items</small></div>
+<div class="cat-body">
+<p class="title">Instagram &mdash; @spacetrucker</p>
+<p class="byline">Categorised as Artist</p>
+<dl>
+<dt>Extent</dt><dd>2,658 posts &mdash; the largest single body of work in this catalogue</dd>
+<dt>Statement</dt><dd><em>"Wizard Level Functional Surrealist, Low Frequency Modulator, AI Prompt Developer, Level 3 Cat Manipulator, Garage Engineer and dad"</em></dd>
+<dt>Series</dt><dd>Highlights: <i>Green Phosphor</i> · <i>Tourism</i> · <i>Planets</i></dd>
+<dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span> — in progress</dd>
+</dl>
+<p class="desc">Currently a continuous run of generated space-freight narrative art captioned from inside the fiction: the UCFS ship prefix, trimodal fusion drives reaching Neptune in thirty-six days, the Jacobson Autotrucker, the Snerf off Titian. This is the direct descendant of Alibi Gulch: an invented world published as though it were reportage.</p>
+<p class="refs"><a class="ext" href="https://www.instagram.com/spacetrucker/">@spacetrucker</a><a class="ext" href="https://www.instagram.com/unitedcatfoods/">@unitedcatfoods, 26 posts</a></p>
+</div>
+</div>
+</section>
+
+<!-- ══════════════ SERIES IV ══════════════ -->
+<section id="s4">
+<div class="series-head">
+<span class="series-num">Series IV</span>
+<h2>Moving Image</h2>
+<p class="series-dates">2008 &mdash; present &middot; 383 catalogued items across five channels</p>
+</div>
+<p class="scope">The largest surviving body of work by duration. One general channel running since 2008, two thematic channels opened in 2025, an archive under the Alpha60 name that contains the oldest transferred material, and eleven clips salvaged from expired livestreams. Full manifests are given below.</p>
+
+<div class="cat">
+<div class="acc">VIM.2008.001<small>26 works</small></div>
+<div class="cat-body">
+<p class="title">Vimeo archive</p>
+<p class="byline">vimeo.com/alpha60 &middot; display name <em>Spacetrucker</em>, URL slug <em>alpha60</em></p>
+<dl>
+<dt>Extent</dt><dd>26 works, 21 April 2008 to 27 December 2023</dd>
+<dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span></dd>
+</dl>
+<p class="desc">The oldest moving-image archive, and the only place the Alpha60 name is attached to a surviving work: <i>Minds Of The Shadow Garden — Episode 1</i> carries the credit <em>"Soundscape and video by Alpha60."</em> Several transfers predate the account by a decade. <i>Series of Attenuated Test Patterns and Tones for Initial Response</i> is described as <em>"A 20th century Hi8 project. Music recorded live using a Minimoog, Lexicon MPX100, Ibanez D1000. Video recorded at Valley of the Gods, Utah."</em> <i>Decoding Data From Unknown Media</i> is noted as <em>"My First DV project done with Final Cut Pro version 1.0 a Hi8 camera and a 450mhz G3"</em>, dating the source to about 1999.</p>
+<p class="desc">Two works document Arcosanti for Paolo Soleri's ninetieth birthday: <i>Dream Capsule</i>, made by the Magpie Collective, and <i>Flam Chen &mdash; Rites Ov Spring</i>. <i>The Fire Balloons</i> is a mini-suite after Ray Bradbury's <i>Martian Chronicles</i>, performed by Different Skies.</p>
+<details>
+    <summary>Full manifest — 26 Vimeo videos</summary>
+    <div class="dbody">
+      <table>
+        <thead><tr><th>Title</th><th>Uploaded</th><th>Dur</th><th>URL</th></tr></thead>
+        <tbody>
+<tr><td>Hay Moon July 2022</td><td class="n">2023-12-27</td><td class="n">1:33</td><td class="n">vimeo.com/898038145</td></tr>
+<tr><td>12 Forward</td><td class="n">2018-12-30</td><td class="n">2:03</td><td class="n">vimeo.com/308783906</td></tr>
+<tr><td>Late Summer</td><td class="n">2010-08-23</td><td class="n">10:11</td><td class="n">vimeo.com/14379130</td></tr>
+<tr><td>August in the Marsh</td><td class="n">2010-08-12</td><td class="n">7:21</td><td class="n">vimeo.com/14105706</td></tr>
+<tr><td>Dream Capsule</td><td class="n">2009-10-26</td><td class="n">2:23</td><td class="n">vimeo.com/7258951</td></tr>
+<tr><td>Biologic Communication</td><td class="n">2009-09-19</td><td class="n">9:11</td><td class="n">vimeo.com/6660432</td></tr>
+<tr><td>Flam Chen — Rites Ov Spring</td><td class="n">2009-07-01</td><td class="n">19:39</td><td class="n">vimeo.com/5418510</td></tr>
+<tr><td>Hilltop Mine</td><td class="n">2009-03-27</td><td class="n">15:30</td><td class="n">vimeo.com/3881358</td></tr>
+<tr><td><b>Minds Of The Shadow Garden — Episode 1</b> (credited Alpha60)</td><td class="n">2009-03-18</td><td class="n">2:58</td><td class="n">vimeo.com/3756891</td></tr>
+<tr><td>Theoretical Isolation: A Post-Atomic Experiment</td><td class="n">2009-03-17</td><td class="n">2:37</td><td class="n">vimeo.com/3734764</td></tr>
+<tr><td>Billy Jack Guru Session</td><td class="n">2009-02-28</td><td class="n">4:19</td><td class="n">vimeo.com/3407425</td></tr>
+<tr><td>The Attack of the Wine Sodden Bees</td><td class="n">2009-02-14</td><td class="n">10:56</td><td class="n">vimeo.com/3212461</td></tr>
+<tr><td>The Fire Balloons</td><td class="n">2008-11-10</td><td class="n">10:49</td><td class="n">vimeo.com/2203944</td></tr>
+<tr><td>Proton Cowboy</td><td class="n">2008-10-26</td><td class="n">3:52</td><td class="n">vimeo.com/2071445</td></tr>
+<tr><td>The Process — Different Skies 2008</td><td class="n">2008-10-11</td><td class="n">5:45</td><td class="n">vimeo.com/1935824</td></tr>
+<tr><td>Biologic Communication Demo</td><td class="n">2008-08-04</td><td class="n">4:50</td><td class="n">vimeo.com/1467539</td></tr>
+<tr><td>Freewill at the Clubhouse — Red Sector A</td><td class="n">2008-07-08</td><td class="n">5:08</td><td class="n">vimeo.com/1306212</td></tr>
+<tr><td>Freewill at the Clubhouse — After Image</td><td class="n">2008-07-03</td><td class="n">5:32</td><td class="n">vimeo.com/1277389</td></tr>
+<tr><td>Weddings in the Midwest</td><td class="n">2008-06-29</td><td class="n">1:22</td><td class="n">vimeo.com/1255449</td></tr>
+<tr><td>Slow Shot</td><td class="n">2008-06-26</td><td class="n">2:00</td><td class="n">vimeo.com/1237233</td></tr>
+<tr><td>Timescape 05A</td><td class="n">2008-05-27</td><td class="n">7:25</td><td class="n">vimeo.com/1073493</td></tr>
+<tr><td>uCode</td><td class="n">2008-05-12</td><td class="n">1:30</td><td class="n">vimeo.com/1004238</td></tr>
+<tr><td>Series of Attenuated Test Patterns and Tones for Initial Response</td><td class="n">2008-04-24</td><td class="n">8:30</td><td class="n">vimeo.com/939062</td></tr>
+<tr><td>Decoding Data From Unknown Media</td><td class="n">2008-04-24</td><td class="n">6:54</td><td class="n">vimeo.com/938408</td></tr>
+<tr><td>Thinking Being</td><td class="n">2008-04-23</td><td class="n">1:30</td><td class="n">vimeo.com/932517</td></tr>
+<tr><td>Rhythmic Being</td><td class="n">2008-04-21</td><td class="n">1:27</td><td class="n">vimeo.com/927112</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">YTB.2008.001<small>308 items</small></div>
+<div class="cat-body">
+<p class="title">Spacetrucker</p>
+<p class="byline">youtube.com/@spacetrucker2196 &middot; opened 2 October 2008</p>
+<dl>
+<dt>Extent</dt><dd>185 works, 120 archived live transmissions, 3 shorts, 22 playlists</dd>
+<dt>Statement</dt><dd><em>"In addition to the creative benefits of analog technology, Spacetrucker also values its reliability and durability. As a spacefaring musician, he needs equipment that can withstand the harsh conditions of space travel and the wear and tear of constant use."</em></dd>
+<dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span> — in progress</dd>
+</dl>
+<p class="desc">Analogue synthesis, acid techno, drone and aerial footage, off-road documentation, unexplained aerial phenomena, vintage agricultural machinery and cats, held together by the First Church of the VCO and the United Cat Foods fiction. The most-watched work in the entire catalogue, by a factor of eighteen over anything else, is <i>Vintage Corn Picking in Wisconsin &mdash; World's Smoothest Running Diesel Combine</i>.</p>
+<details>
+    <summary>Full manifest — 185 videos</summary>
+    <div class="dbody">
+      <table>
+        <thead><tr><th>#</th><th>Title</th><th>Dur</th><th>Views</th><th>Age</th></tr></thead>
+        <tbody>
+<tr><td class="n">1</td><td>I Built Stonehenge in Code, and the Shadows Are Accurate to 28 Centimetres</td><td class="n">11:40</td><td class="n">24</td><td class="n">2 d</td></tr>
+<tr><td class="n">2</td><td>UCF Chonk Loaf Class Freighter</td><td class="n">1:56</td><td class="n">15</td><td class="n">4 wk</td></tr>
+<tr><td class="n">3</td><td>Darkness Arrives Soon | Dark Ambient Electronic Music</td><td class="n">6:32</td><td class="n">20</td><td class="n">9 mo</td></tr>
+<tr><td class="n">4</td><td>Something Zippy in the Night Sky | UFO Sighting Video</td><td class="n">0:07</td><td class="n">16</td><td class="n">9 mo</td></tr>
+<tr><td class="n">5</td><td>Night Sky around 9PM Nov 22</td><td class="n">28:54</td><td class="n">11</td><td class="n">9 mo</td></tr>
+<tr><td class="n">6</td><td>Deep Sky Night Ambient | Moog &amp; Oberheim Synthesizer</td><td class="n">8:28</td><td class="n">19</td><td class="n">9 mo</td></tr>
+<tr><td class="n">7</td><td>Ambient Music for Cats, Restful ASMR for feline relaxation</td><td class="n">42:06</td><td class="n">14</td><td class="n">9 mo</td></tr>
+<tr><td class="n">8</td><td>Urgent Bulletin EAS Message OCT 30 2025 4552.24h=</td><td class="n">0:55</td><td class="n">4</td><td class="n">10 mo</td></tr>
+<tr><td class="n">9</td><td>zStagPlastics Defend yourself with techno from AI drones</td><td class="n">4:57</td><td class="n">10</td><td class="n">10 mo</td></tr>
+<tr><td class="n">10</td><td>Stag Breaks $A01F</td><td class="n">2:21</td><td class="n">5</td><td class="n">10 mo</td></tr>
+<tr><td class="n">11</td><td>United Cat Foods Refinery Show Highlight</td><td class="n">16:55</td><td class="n">21</td><td class="n">11 mo</td></tr>
+<tr><td class="n">12</td><td>Fritillary butterflies</td><td class="n">4:30</td><td class="n">7</td><td class="n">1 yr</td></tr>
+<tr><td class="n">13</td><td>Moog Perceptrons and Transformers True Analog Wave Forms</td><td class="n">17:32</td><td class="n">5</td><td class="n">1 yr</td></tr>
+<tr><td class="n">14</td><td>Calming Fluid on a Tuesday Morning — 5 Color Mix</td><td class="n">11:52</td><td class="n">8</td><td class="n">1 yr</td></tr>
+<tr><td class="n">15</td><td>LoFi Beats for Ripping Bongs instead of Studying</td><td class="n">32:26</td><td class="n">10</td><td class="n">1 yr</td></tr>
+<tr><td class="n">16</td><td>Dragon Lizard Lord vs Godzilla | Fortnite Gameplay</td><td class="n">1:03:31</td><td class="n">30</td><td class="n">1 yr</td></tr>
+<tr><td class="n">17</td><td>Study Music for Environmental Systems Engineering Students</td><td class="n">5:06</td><td class="n">41</td><td class="n">1 yr</td></tr>
+<tr><td class="n">18</td><td>Meditative Guide for Astronauts During Atmospheric Re-Entry</td><td class="n">9:33</td><td class="n">10</td><td class="n">1 yr</td></tr>
+<tr><td class="n">19</td><td>Godzilla Incoming | Dark Ambient Synth</td><td class="n">7:28</td><td class="n">160</td><td class="n">1 yr</td></tr>
+<tr><td class="n">20</td><td>Moog Log | 1 Hour Fireside Ambient Synth</td><td class="n">1:07:33</td><td class="n">100</td><td class="n">1 yr</td></tr>
+<tr><td class="n">21</td><td>Falling Leaf Meditation</td><td class="n">14:20</td><td class="n">12</td><td class="n">1 yr</td></tr>
+<tr><td class="n">22</td><td>Attacked by Orbs! | Mysterious Light Anomalies</td><td class="n">4:18</td><td class="n">54</td><td class="n">1 yr</td></tr>
+<tr><td class="n">23</td><td>Berlin School Synth 225 | Intro to Unexplained Aerial Objects</td><td class="n">9:39</td><td class="n">46</td><td class="n">2 yr</td></tr>
+<tr><td class="n">24</td><td>Berlin School Semester Project Flight 1</td><td class="n">5:54</td><td class="n">10</td><td class="n">2 yr</td></tr>
+<tr><td class="n">25</td><td>Alphonse Kunzelman's Lost Berlin School Semester Project</td><td class="n">48:49</td><td class="n">93</td><td class="n">2 yr</td></tr>
+<tr><td class="n">26</td><td>Fritillary Butterfly Close-Up 4K</td><td class="n">0:31</td><td class="n">75</td><td class="n">2 yr</td></tr>
+<tr><td class="n">27</td><td>Deep Cave Dragon Core | Dark Ambient Synth Music</td><td class="n">59:13</td><td class="n">30</td><td class="n">2 yr</td></tr>
+<tr><td class="n">28</td><td>Environmental Engineering Beats | 30 Min Ambient</td><td class="n">30:53</td><td class="n">102</td><td class="n">2 yr</td></tr>
+<tr><td class="n">29</td><td>1 Hour River Walk with Test Tones &amp; Patterns</td><td class="n">1:00:04</td><td class="n">91</td><td class="n">2 yr</td></tr>
+<tr><td class="n">30</td><td>Test Tones and Patterns | Electronic Music Calibration</td><td class="n">11:28</td><td class="n">19</td><td class="n">2 yr</td></tr>
+<tr><td class="n">31</td><td>Aurora Borealis from Wisconsin USA | Real-Time</td><td class="n">20:58</td><td class="n">111</td><td class="n">2 yr</td></tr>
+<tr><td class="n">32</td><td>Will a Baltimore Oriole Eat Oranges?</td><td class="n">2:10</td><td class="n">68</td><td class="n">2 yr</td></tr>
+<tr><td class="n">33</td><td>Fall Leaves blowing in the wind</td><td class="n">1:37</td><td class="n">19</td><td class="n">2 yr</td></tr>
+<tr><td class="n">34</td><td>Standardized Bar Code Reference Frequencies (Moog Oscillator)</td><td class="n">10:15</td><td class="n">26</td><td class="n">2 yr</td></tr>
+<tr><td class="n">35</td><td>Cold Ice Drum and Bass with TB-303 &amp; 808</td><td class="n">28:23</td><td class="n">36</td><td class="n">2 yr</td></tr>
+<tr><td class="n">36</td><td>Spirit Canoe Acid | Garage Acid Techno Session</td><td class="n">22:38</td><td class="n">109</td><td class="n">2 yr</td></tr>
+<tr><td class="n">37</td><td>Old School Acid Techno | United Cat Foods Style</td><td class="n">15:01</td><td class="n">43</td><td class="n">2 yr</td></tr>
+<tr><td class="n">38</td><td>Kawasaki Mule Ride Through Wisconsin Woods | Includes Corn!</td><td class="n">13:31</td><td class="n">50</td><td class="n">2 yr</td></tr>
+<tr><td class="n">39</td><td>7 Mistakes to Avoid in Youtube Synth Communities</td><td class="n">6:27</td><td class="n">21</td><td class="n">2 yr</td></tr>
+<tr><td class="n">40</td><td>I destroyed my lawn, THEN THIS HAPPENED!</td><td class="n">15:31</td><td class="n">26</td><td class="n">2 yr</td></tr>
+<tr><td class="n">41</td><td>AI Dreams of Electronic Foxes</td><td class="n">3:03</td><td class="n">13</td><td class="n">2 yr</td></tr>
+<tr><td class="n">42</td><td>Morning Fog in the Coulee Swamp | Wisconsin Nature ASMR</td><td class="n">1:37</td><td class="n">75</td><td class="n">2 yr</td></tr>
+<tr><td class="n">43</td><td>Morning Deer under the Apple Tree — Ambient 4K Nature</td><td class="n">10:49</td><td class="n">17</td><td class="n">2 yr</td></tr>
+<tr><td class="n">44</td><td>Toads of the Short Forest | Arcosanti Sonic Integration</td><td class="n">36:32</td><td class="n">37</td><td class="n">3 yr</td></tr>
+<tr><td class="n">45</td><td>Analog Not Logs | Spacetrucker Freighter Pilot Log</td><td class="n">1:43</td><td class="n">57</td><td class="n">3 yr</td></tr>
+<tr><td class="n">46</td><td>Moons of Agrith | 1 Hour Ambient Electronic Transmission</td><td class="n">1:02:48</td><td class="n">34</td><td class="n">3 yr</td></tr>
+<tr><td class="n">47</td><td>1 Hour of Drone Ambient Relaxation Music</td><td class="n">1:01:28</td><td class="n">18</td><td class="n">3 yr</td></tr>
+<tr><td class="n">48</td><td>UFO Ambient Synth Session | Female Cult Leader Narrative</td><td class="n">43:18</td><td class="n">64</td><td class="n">3 yr</td></tr>
+<tr><td class="n">49</td><td>River Portal</td><td class="n">10:08</td><td class="n">10</td><td class="n">3 yr</td></tr>
+<tr><td class="n">50</td><td>5 Ways Declining Oceans Lead to Ambient Soundscapes</td><td class="n">21:36</td><td class="n">7</td><td class="n">3 yr</td></tr>
+<tr><td class="n">51</td><td>Dangerous Cargo</td><td class="n">10:58</td><td class="n">10</td><td class="n">3 yr</td></tr>
+<tr><td class="n">52</td><td>Night Objects in Descent | Moog Ambient Electronic</td><td class="n">26:34</td><td class="n">46</td><td class="n">3 yr</td></tr>
+<tr><td class="n">53</td><td>Orbital Acid House Mix | Danger Fox Woodland Vinyl Session</td><td class="n">37:13</td><td class="n">44</td><td class="n">3 yr</td></tr>
+<tr><td class="n">54</td><td><b>Vintage Corn Picking in Wisconsin — World's Smoothest Running Diesel Combine</b></td><td class="n">20:58</td><td class="n">27K</td><td class="n">2 yr</td></tr>
+<tr><td class="n">55</td><td>Soothing Water Sounds for Sleep &amp; Relaxation | Water Filling Pod 4K</td><td class="n">2:51</td><td class="n">1.5K</td><td class="n">2 yr</td></tr>
+<tr><td class="n">56</td><td>47 Minutes of Deep Analog Synth Ambient | First Church of VCO</td><td class="n">47:07</td><td class="n">1.3K</td><td class="n">5 yr</td></tr>
+<tr><td class="n">57</td><td>Faded Valley Behind the Neon Sign | Ambient Analog Synth</td><td class="n">2:00</td><td class="n">1.1K</td><td class="n">4 yr</td></tr>
+<tr><td class="n">58</td><td>1 Hour Wisconsin Northwoods Nature ASMR</td><td class="n">1:00:53</td><td class="n">1.1K</td><td class="n">5 yr</td></tr>
+<tr><td class="n">59</td><td>Driving Point Sublime Trail to the Grand Canyon North Rim</td><td class="n">52:33</td><td class="n">1K</td><td class="n">8 yr</td></tr>
+<tr><td class="n">60</td><td>Vintage Corn Picking Wisconsin | 1975 John Deere 6600</td><td class="n">20:58</td><td class="n">463</td><td class="n">2 yr</td></tr>
+<tr><td class="n">61</td><td>Aerial Anomalies | Deep Ambient Synth</td><td class="n">58:35</td><td class="n">462</td><td class="n">5 yr</td></tr>
+<tr><td class="n">62</td><td>Minimal Acid Techno Jam | AFX-Style Analog Synth Session</td><td class="n">8:39</td><td class="n">407</td><td class="n">4 yr</td></tr>
+<tr><td class="n">63</td><td>2 Hours of Real UFO Phone Reports from 1974</td><td class="n">2:14:17</td><td class="n">398</td><td class="n">5 yr</td></tr>
+<tr><td class="n">64</td><td>Aerial Anomalies 2 | Moog Synthesizer Deep Ambient</td><td class="n">13:29</td><td class="n">389</td><td class="n">5 yr</td></tr>
+<tr><td class="n">65</td><td>360° Cat Bowl POV ASMR | Cats Eating Close-Up</td><td class="n">27:27</td><td class="n">235</td><td class="n">5 yr</td></tr>
+<tr><td class="n">66</td><td>Moons of Saturn | Deep Space Ambient Synthesizer Music</td><td class="n">5:32</td><td class="n">227</td><td class="n">2 yr</td></tr>
+<tr><td class="n">67</td><td>Mud Baby Perc Scratch &amp; Dracula Flow | 90s Hip Hop Beat Meme</td><td class="n">2:34</td><td class="n">225</td><td class="n">2 yr</td></tr>
+<tr><td class="n">68</td><td>Waymo Self-Driving Car Runs Red Light in Chandler, AZ</td><td class="n">0:21</td><td class="n">189</td><td class="n">7 yr</td></tr>
+<tr><td class="n">69</td><td>Baltimore Oriole Eating Orange | 4K Bird Watching</td><td class="n">3:07</td><td class="n">188</td><td class="n">2 yr</td></tr>
+<tr><td class="n">70</td><td>How Much Do Labs Love Water?</td><td class="n">1:36</td><td class="n">164</td><td class="n">4 yr</td></tr>
+<tr><td class="n">71</td><td>Arcosanti Workshop Sunset Jam | Live Improv Music</td><td class="n">2:27</td><td class="n">160</td><td class="n">2 yr</td></tr>
+<tr><td class="n">72</td><td>Trempealeau Sunset over the Mississippi | River Barge</td><td class="n">6:35</td><td class="n">148</td><td class="n">5 yr</td></tr>
+<tr><td class="n">73</td><td>Live Ambient Synth in Arcosanti Vaults</td><td class="n">10:35</td><td class="n">137</td><td class="n">4 yr</td></tr>
+<tr><td class="n">74</td><td>Minds of the Shadow Garden | Nord G2, MiniMoog, Arcosanti Bells</td><td class="n">2:58</td><td class="n">228</td><td class="n">17 yr</td></tr>
+<tr><td class="n">75</td><td>Day of the Dead Parade | Tucson Arizona</td><td class="n">0:25</td><td class="n">100</td><td class="n">14 yr</td></tr>
+<tr><td class="n">76</td><td>Got Cheeze</td><td class="n">1:40</td><td class="n">25</td><td class="n">14 yr</td></tr>
+<tr><td class="n">77</td><td>Decoding Data From Unknown Media</td><td class="n">7:08</td><td class="n">45</td><td class="n">14 yr</td></tr>
+<tr><td class="n">78</td><td>Telegraph Canyon Trail | Arizona Off-Road | Stock FJ Cruiser</td><td class="n">4:19</td><td class="n">266</td><td class="n">13 yr</td></tr>
+<tr><td class="n">79</td><td>Telegraph Canyon Trail HD</td><td class="n">4:19</td><td class="n">82</td><td class="n">13 yr</td></tr>
+<tr><td class="n">80</td><td>Engaging Astrobeam</td><td class="n">0:13</td><td class="n">22</td><td class="n">13 yr</td></tr>
+<tr><td class="n">81</td><td>Paul Sprawl — Out of Your Mind | Live Blues, Ettrick WI</td><td class="n">9:30</td><td class="n">519</td><td class="n">12 yr</td></tr>
+<tr><td class="n">82</td><td>DeLorean Dashboard with Live Data | IoT Hardware Weekend</td><td class="n">0:10</td><td class="n">185</td><td class="n">11 yr</td></tr>
+<tr><td class="n">83</td><td>Deer Run</td><td class="n">0:30</td><td class="n">13</td><td class="n">11 yr</td></tr>
+<tr><td class="n">84</td><td>Edward V. Jackson the Urban Funk Machine | San Francisco</td><td class="n">2:50</td><td class="n">339</td><td class="n">11 yr</td></tr>
+<tr><td class="n">85</td><td>Hewitt Canyon Road Off-Road Drive | Arizona 4x4</td><td class="n">2:45</td><td class="n">328</td><td class="n">10 yr</td></tr>
+<tr><td class="n">86</td><td>Off world travels with MiniMoogs, Trucks and Reverb</td><td class="n">3:02</td><td class="n">8</td><td class="n">10 yr</td></tr>
+<tr><td class="n">87</td><td>Daily Commuting</td><td class="n">35:56</td><td class="n">27</td><td class="n">10 yr</td></tr>
+<tr><td class="n">88</td><td>Bloody Basin Road &amp; Great Western Trail | Arizona Off-Road</td><td class="n">8:31</td><td class="n">247</td><td class="n">10 yr</td></tr>
+<tr><td class="n">89</td><td>First flight with ND Filter</td><td class="n">5:28</td><td class="n">3</td><td class="n">9 yr</td></tr>
+<tr><td class="n">90</td><td>Arcosanti Drone Flight | Agua Fria River</td><td class="n">3:10</td><td class="n">170</td><td class="n">9 yr</td></tr>
+<tr><td class="n">91</td><td>Saguaro Lake Scenic Drive | Arizona Desert Lake</td><td class="n">2:44</td><td class="n">32</td><td class="n">9 yr</td></tr>
+<tr><td class="n">92</td><td>Arcosanti Drone Aerial Tour | Paolo Soleri's Desert Laboratory</td><td class="n">4:10</td><td class="n">62</td><td class="n">9 yr</td></tr>
+<tr><td class="n">93</td><td>Kunzelman Farm Aerial Tour | Wisconsin Family Farm</td><td class="n">5:28</td><td class="n">50</td><td class="n">8 yr</td></tr>
+<tr><td class="n">94</td><td>DreamCapsule</td><td class="n">2:23</td><td class="n">42</td><td class="n">8 yr</td></tr>
+<tr><td class="n">95</td><td>Wisconsin's Biggest Steam &amp; Gas Show</td><td class="n">11:47</td><td class="n">493</td><td class="n">8 yr</td></tr>
+<tr><td class="n">96</td><td>Test Tones For Initial Response</td><td class="n">8:30</td><td class="n">7</td><td class="n">8 yr</td></tr>
+<tr><td class="n">97</td><td>Suspicious Person at Door | Chandler AZ 2017</td><td class="n">1:11</td><td class="n">110</td><td class="n">8 yr</td></tr>
+<tr><td class="n">98</td><td>Yosemite Falls</td><td class="n">0:41</td><td class="n">6</td><td class="n">8 yr</td></tr>
+<tr><td class="n">99</td><td>My GoPro Video</td><td class="n">3:23</td><td class="n">1</td><td class="n">8 yr</td></tr>
+<tr><td class="n">100</td><td>Point Sublime Trail Full Drive | Grand Canyon North Rim</td><td class="n">36:23</td><td class="n">59</td><td class="n">8 yr</td></tr>
+<tr><td class="n">101</td><td>Timescape05a</td><td class="n">7:25</td><td class="n">16</td><td class="n">8 yr</td></tr>
+<tr><td class="n">102</td><td>20180304 135948 NR</td><td class="n">1:00</td><td class="n">1</td><td class="n">8 yr</td></tr>
+<tr><td class="n">103</td><td>20180304 092541 NF</td><td class="n">1:01</td><td class="n">1</td><td class="n">8 yr</td></tr>
+<tr><td class="n">104</td><td>20180304 092041 NR</td><td class="n">1:00</td><td class="n">0</td><td class="n">8 yr</td></tr>
+<tr><td class="n">105</td><td>Entering Yosemite Valley After Snowstorm</td><td class="n">1:01</td><td class="n">45</td><td class="n">8 yr</td></tr>
+<tr><td class="n">106</td><td>Thinking Being | Nord G2</td><td class="n">1:31</td><td class="n">7</td><td class="n">8 yr</td></tr>
+<tr><td class="n">107</td><td>Rhythmic Being | Nord G2</td><td class="n">1:27</td><td class="n">22</td><td class="n">8 yr</td></tr>
+<tr><td class="n">108</td><td>radar</td><td class="n">18:39</td><td class="n">3</td><td class="n">8 yr</td></tr>
+<tr><td class="n">109</td><td>Late Summer Hilltop In Trempealeau County</td><td class="n">9:48</td><td class="n">6</td><td class="n">8 yr</td></tr>
+<tr><td class="n">110</td><td>Late Summer Milkweed Bloom</td><td class="n">6:04</td><td class="n">10</td><td class="n">8 yr</td></tr>
+<tr><td class="n">111</td><td>Flam Chen | 2009, Arcosanti Arizona</td><td class="n">19:40</td><td class="n">25</td><td class="n">8 yr</td></tr>
+<tr><td class="n">112</td><td>DJI 0008</td><td class="n">5:28</td><td class="n">6</td><td class="n">8 yr</td></tr>
+<tr><td class="n">113</td><td>Sunrise Rainbow at Bright Angel Point Trail | 360°</td><td class="n">3:21</td><td class="n">40</td><td class="n">8 yr</td></tr>
+<tr><td class="n">114</td><td>Monsoon Forming over Grand Canyon | Time-Lapse</td><td class="n">6:48</td><td class="n">84</td><td class="n">8 yr</td></tr>
+<tr><td class="n">115</td><td>Juniper Grove Timelapse</td><td class="n">6:28</td><td class="n">17</td><td class="n">8 yr</td></tr>
+<tr><td class="n">116</td><td>Juniper Expedition</td><td class="n">13:32</td><td class="n">14</td><td class="n">8 yr</td></tr>
+<tr><td class="n">117</td><td>Prescott National Forest Sunset Drive</td><td class="n">15:03</td><td class="n">41</td><td class="n">7 yr</td></tr>
+<tr><td class="n">118</td><td>12 Forward | Landing at Picacho Peak Arizona Sunset</td><td class="n">2:04</td><td class="n">38</td><td class="n">7 yr</td></tr>
+<tr><td class="n">119</td><td>Global Storage | Solo MiniMoog Model D | <b>Alpha60</b></td><td class="n">2:31</td><td class="n">41</td><td class="n">7 yr</td></tr>
+<tr><td class="n">120</td><td>Telegraph Road</td><td class="n">7:19</td><td class="n">7</td><td class="n">7 yr</td></tr>
+<tr><td class="n">121</td><td>Telegraph Road Trail Drive | Superior Arizona</td><td class="n">7:30</td><td class="n">38</td><td class="n">7 yr</td></tr>
+<tr><td class="n">122</td><td>Earthrise Transmission | <b>Alpha60 Live Stream from 2000</b></td><td class="n">25:24</td><td class="n">32</td><td class="n">7 yr</td></tr>
+<tr><td class="n">123</td><td>Whispering Winds | Nature Sounds</td><td class="n">41:10</td><td class="n">25</td><td class="n">7 yr</td></tr>
+<tr><td class="n">124</td><td>EN44id | Never-Activated SOTA Summit W9/WI-029</td><td class="n">0:21</td><td class="n">49</td><td class="n">7 yr</td></tr>
+<tr><td class="n">125</td><td>Out in the Four Peaks Wilderness</td><td class="n">1:01</td><td class="n">3</td><td class="n">6 yr</td></tr>
+<tr><td class="n">126</td><td>The Apprentice Final Season | Political Satire Jingle</td><td class="n">0:30</td><td class="n">47</td><td class="n">6 yr</td></tr>
+<tr><td class="n">127</td><td>W9FJC AARL Field Day 2020 2B WI EN44id</td><td class="n">0:55</td><td class="n">17</td><td class="n">6 yr</td></tr>
+<tr><td class="n">128</td><td>Fog over Stensven Coulee, Trempealeau County Wisconsin</td><td class="n">1:15</td><td class="n">26</td><td class="n">6 yr</td></tr>
+<tr><td class="n">129</td><td>ARRL Field Day 2020 Drone Highlights</td><td class="n">5:45</td><td class="n">30</td><td class="n">6 yr</td></tr>
+<tr><td class="n">130</td><td>4th of July Fireworks 2020 | Mortar Shells Close-Up</td><td class="n">1:47</td><td class="n">70</td><td class="n">6 yr</td></tr>
+<tr><td class="n">131</td><td>Schnebly Hill Road Drive | Sedona Arizona Cow Pies</td><td class="n">7:00</td><td class="n">54</td><td class="n">6 yr</td></tr>
+<tr><td class="n">132</td><td>Chinese Robot Numbers Station | 1 Hour Shortwave</td><td class="n">1:06:07</td><td class="n">54</td><td class="n">3 yr</td></tr>
+<tr><td class="n">133</td><td>Billy Jack Guru Session | Chiricahua Mountains</td><td class="n">4:19</td><td class="n">59</td><td class="n">5 yr</td></tr>
+<tr><td class="n">134</td><td>Vintage UFO Phone Reports | NUFORC Audio Archive</td><td class="n">2:54</td><td class="n">60</td><td class="n">6 yr</td></tr>
+<tr><td class="n">135</td><td>Circuit Bent Speak &amp; Spell + Chase Bliss Habit</td><td class="n">14:53</td><td class="n">64</td><td class="n">4 yr</td></tr>
+<tr><td class="n">136</td><td>The Conspiracy | Short Film</td><td class="n">1:01</td><td class="n">77</td><td class="n">3 yr</td></tr>
+<tr><td class="n">137</td><td>Moog Sound Studio Farm Session | DFAM, Mother 32, Subharmonicon</td><td class="n">3:46</td><td class="n">77</td><td class="n">4 yr</td></tr>
+<tr><td class="n">138</td><td>Snake Jazz Ambient | Live Synth in Arcosanti Vaults</td><td class="n">3:06</td><td class="n">79</td><td class="n">4 yr</td></tr>
+<tr><td class="n">139</td><td>California HAM Radio Drama</td><td class="n">28:13</td><td class="n">95</td><td class="n">3 yr</td></tr>
+<tr><td class="n">140</td><td>Found footage of some sort of electrical machinery</td><td class="n">1:32</td><td class="n">7</td><td class="n">4 yr</td></tr>
+<tr><td class="n">141</td><td>Endless Driftless — Full Album (Official)</td><td class="n">54:18</td><td class="n">33</td><td class="n">4 yr</td></tr>
+<tr><td class="n">142</td><td>The Tree — Timelapse and Arpeggios</td><td class="n">1:36</td><td class="n">16</td><td class="n">4 yr</td></tr>
+<tr><td class="n">143</td><td>The Moss — Deep Ambient</td><td class="n">1:09</td><td class="n">22</td><td class="n">4 yr</td></tr>
+<tr><td class="n">144</td><td>Ion Storm Lone Road</td><td class="n">43:50</td><td class="n">5</td><td class="n">4 yr</td></tr>
+<tr><td class="n">145</td><td>Species S1 | Vintage Moog Ambient | No Square Waves</td><td class="n">10:38</td><td class="n">46</td><td class="n">4 yr</td></tr>
+<tr><td class="n">146</td><td>Twitch Live Stream with Moog's and Delays</td><td class="n">23:27</td><td class="n">0</td><td class="n">4 yr</td></tr>
+<tr><td class="n">147</td><td>Full Hay Moon July 2022</td><td class="n">1:34</td><td class="n">16</td><td class="n">4 yr</td></tr>
+<tr><td class="n">148</td><td>Dog Walking with Lucy in Wisconsin Northwoods</td><td class="n">7:40</td><td class="n">43</td><td class="n">4 yr</td></tr>
+<tr><td class="n">149</td><td>Marsh Light Time-Lapse | Wisconsin Prairie &amp; Marsh Sunset</td><td class="n">11:03</td><td class="n">32</td><td class="n">4 yr</td></tr>
+<tr><td class="n">150</td><td>Polygon Surfer</td><td class="n">3:39</td><td class="n">15</td><td class="n">4 yr</td></tr>
+<tr><td class="n">151</td><td>IMG 0124</td><td class="n">1:01</td><td class="n">14</td><td class="n">3 yr</td></tr>
+<tr><td class="n">152</td><td>IMG 0132</td><td class="n">1:01</td><td class="n">9</td><td class="n">3 yr</td></tr>
+<tr><td class="n">153</td><td>IMG 0123</td><td class="n">1:01</td><td class="n">8</td><td class="n">3 yr</td></tr>
+<tr><td class="n">154</td><td>IMG 0126</td><td class="n">1:01</td><td class="n">13</td><td class="n">3 yr</td></tr>
+<tr><td class="n">155</td><td>IMG 0122</td><td class="n">1:01</td><td class="n">15</td><td class="n">3 yr</td></tr>
+<tr><td class="n">156</td><td>IMG 0130</td><td class="n">1:01</td><td class="n">7</td><td class="n">3 yr</td></tr>
+<tr><td class="n">157</td><td>IMG 0129</td><td class="n">1:01</td><td class="n">12</td><td class="n">3 yr</td></tr>
+<tr><td class="n">158</td><td>IMG 0133</td><td class="n">1:01</td><td class="n">13</td><td class="n">3 yr</td></tr>
+<tr><td class="n">159</td><td>IMG 0128</td><td class="n">1:01</td><td class="n">7</td><td class="n">3 yr</td></tr>
+<tr><td class="n">160</td><td>IMG 0143</td><td class="n">1:01</td><td class="n">16</td><td class="n">3 yr</td></tr>
+<tr><td class="n">161</td><td>Winter Flight over Stensven Coulee Wisconsin</td><td class="n">5:28</td><td class="n">28</td><td class="n">3 yr</td></tr>
+<tr><td class="n">162</td><td>Epic Crunch</td><td class="n">2:24</td><td class="n">14</td><td class="n">4 yr</td></tr>
+<tr><td class="n">163</td><td>Spacetrucker 2196 | Dystopian Promise (OFFICIAL VIDEO)</td><td class="n">11:32</td><td class="n">22</td><td class="n">4 yr</td></tr>
+<tr><td class="n">164</td><td>Music For Distant Restaurants | Full EP | Cassette</td><td class="n">33:47</td><td class="n">28</td><td class="n">4 yr</td></tr>
+<tr><td class="n">165</td><td>Recall | First Church of the VCO</td><td class="n">17:53</td><td class="n">28</td><td class="n">4 yr</td></tr>
+<tr><td class="n">166</td><td>Golden Forest Mandala | Trees are Antennae</td><td class="n">39:12</td><td class="n">32</td><td class="n">4 yr</td></tr>
+<tr><td class="n">167</td><td>Aerial Anomalies 3 | Yukon Oklahoma 1978 UFO Sighting</td><td class="n">51:20</td><td class="n">30</td><td class="n">5 yr</td></tr>
+<tr><td class="n">168</td><td>First Church Of The VCO | Sine, Triangle, Square</td><td class="n">33:21</td><td class="n">24</td><td class="n">5 yr</td></tr>
+<tr><td class="n">169</td><td>Analog Signal Acquistion from Distant Sources</td><td class="n">39:24</td><td class="n">24</td><td class="n">5 yr</td></tr>
+<tr><td class="n">170</td><td>Autonomous LFO Calibration | Moog Model D &amp; Voyager</td><td class="n">57:52</td><td class="n">39</td><td class="n">5 yr</td></tr>
+<tr><td class="n">171</td><td>Interstellar Byway | Serene Moog Voyage Through the Stars</td><td class="n">11:47</td><td class="n">31</td><td class="n">5 yr</td></tr>
+<tr><td class="n">172</td><td>Tuner Diagnostic</td><td class="n">4:29</td><td class="n">6</td><td class="n">5 yr</td></tr>
+<tr><td class="n">173</td><td>Reptile Lifeform 302021</td><td class="n">2:53</td><td class="n">26</td><td class="n">5 yr</td></tr>
+<tr><td class="n">174</td><td>SiO2 | Silicon Dioxide Experimental Film</td><td class="n">3:25</td><td class="n">39</td><td class="n">5 yr</td></tr>
+<tr><td class="n">175</td><td>Spacetrucker2196</td><td class="n">12:11</td><td class="n">25</td><td class="n">5 yr</td></tr>
+<tr><td class="n">176</td><td>Humanoid 213 Exposure</td><td class="n">16:05</td><td class="n">5</td><td class="n">5 yr</td></tr>
+<tr><td class="n">177</td><td>Early Drone Flights | Y6 Hexacopter with APM</td><td class="n">1:17</td><td class="n">33</td><td class="n">5 yr</td></tr>
+<tr><td class="n">178</td><td>Fern Song</td><td class="n">4:51</td><td class="n">17</td><td class="n">5 yr</td></tr>
+<tr><td class="n">179</td><td>Biologic Communication</td><td class="n">9:12</td><td class="n">4</td><td class="n">5 yr</td></tr>
+<tr><td class="n">180</td><td>Hot To Steal</td><td class="n">3:35</td><td class="n">1</td><td class="n">5 yr</td></tr>
+<tr><td class="n">181</td><td>1. 233 AQ 33 5 Mammal</td><td class="n">3:10</td><td class="n">25</td><td class="n">5 yr</td></tr>
+<tr><td class="n">182</td><td>Exploring 5,700 Feet Into Hilltop Mine</td><td class="n">15:31</td><td class="n">24</td><td class="n">5 yr</td></tr>
+<tr><td class="n">183</td><td>Resonant Frequency Reception | Experimental Synth Short</td><td class="n">3:30</td><td class="n">42</td><td class="n">4 yr</td></tr>
+<tr><td class="n">184</td><td>Portal</td><td class="n">1:02</td><td class="n">4</td><td class="n">4 yr</td></tr>
+<tr><td class="n">185</td><td>Asteroids and Bass</td><td class="n">0:30</td><td class="n">8</td><td class="n">4 yr</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+<details>
+    <summary>Full manifest — 120 archived live streams</summary>
+    <div class="dbody">
+      <table>
+        <thead><tr><th>#</th><th>Title</th><th>Dur</th><th>Views</th><th>Age</th></tr></thead>
+        <tbody>
+<tr><td class="n">1</td><td>United Cat Foods Game Development with Claude</td><td class="n">2:03:54</td><td class="n">20</td><td class="n">10 d</td></tr>
+<tr><td class="n">2</td><td>United Cat Foods Game Development with Claude</td><td class="n">29:33</td><td class="n">14</td><td class="n">9 d</td></tr>
+<tr><td class="n">3</td><td>United Cat Foods Game Development with Claude</td><td class="n">10:21:41</td><td class="n">39</td><td class="n">9 d</td></tr>
+<tr><td class="n">4</td><td>United Cat Foods Game Development with Claude</td><td class="n">24:17</td><td class="n">50</td><td class="n">9 d</td></tr>
+<tr><td class="n">5</td><td>Planetary Exploration | Ambient Space Music</td><td class="n">2:07:23</td><td class="n">3</td><td class="n">8 mo</td></tr>
+<tr><td class="n">6</td><td>Planetary Exploration | Ambient Space Music</td><td class="n">1:24:52</td><td class="n">4</td><td class="n">8 mo</td></tr>
+<tr><td class="n">7</td><td>Silent No Audio Info Graphic</td><td class="n">16:41</td><td class="n">8</td><td class="n">8 mo</td></tr>
+<tr><td class="n">8</td><td>Terrain Following Radar Ambient Music</td><td class="n">3:03</td><td class="n">15</td><td class="n">9 mo</td></tr>
+<tr><td class="n">9</td><td>Space-Based Ambient Live Electric Music Show</td><td class="n">7:24</td><td class="n">21</td><td class="n">9 mo</td></tr>
+<tr><td class="n">10</td><td>Cozy Ambient Snow Day | 2+ Hours Live Electronic Music</td><td class="n">2:13:57</td><td class="n">13</td><td class="n">9 mo</td></tr>
+<tr><td class="n">11</td><td>Ambient Snow Day Live Stream | MiniMoog Model D</td><td class="n">1:12:14</td><td class="n">42</td><td class="n">9 mo</td></tr>
+<tr><td class="n">12</td><td>Ambient Snow Day Live Stream | Analog Synth</td><td class="n">1:08:21</td><td class="n">56</td><td class="n">9 mo</td></tr>
+<tr><td class="n">13</td><td>Ambient Live Stream</td><td class="n">1:39:14</td><td class="n">8</td><td class="n">9 mo</td></tr>
+<tr><td class="n">14</td><td>Ambient Live Stream</td><td class="n">28:55</td><td class="n">4</td><td class="n">9 mo</td></tr>
+<tr><td class="n">15</td><td>Cat Thanksgiving Live Feed | Outdoor Cats Feast</td><td class="n">3:13:06</td><td class="n">16</td><td class="n">9 mo</td></tr>
+<tr><td class="n">16</td><td>UFO Live Feed | Mysterious Sky Objects</td><td class="n">46:59</td><td class="n">26</td><td class="n">9 mo</td></tr>
+<tr><td class="n">17</td><td>Sky Objects Live Feed | Real-Time UFO Monitoring</td><td class="n">1:20:37</td><td class="n">14</td><td class="n">9 mo</td></tr>
+<tr><td class="n">18</td><td>Sky Objects Live Feed</td><td class="n">2:02:08</td><td class="n">5</td><td class="n">9 mo</td></tr>
+<tr><td class="n">19</td><td>Atomic Dub</td><td class="n">35:46</td><td class="n">3</td><td class="n">10 mo</td></tr>
+<tr><td class="n">20</td><td>Frog Oligarch Virus Feed</td><td class="n">1:00:19</td><td class="n">11</td><td class="n">10 mo</td></tr>
+<tr><td class="n">21</td><td>Break Beat Deer Fighting</td><td class="n">52:57</td><td class="n">3</td><td class="n">10 mo</td></tr>
+<tr><td class="n">22</td><td>Break Beat Deer Fighting</td><td class="n">20:09</td><td class="n">1</td><td class="n">10 mo</td></tr>
+<tr><td class="n">23</td><td>MiniMoog Monday</td><td class="n">46:42</td><td class="n">5</td><td class="n">11 mo</td></tr>
+<tr><td class="n">24</td><td>MiniMoog Monday</td><td class="n">38:59</td><td class="n">4</td><td class="n">11 mo</td></tr>
+<tr><td class="n">25</td><td>ACID #)# 303 Entity Spheroid</td><td class="n">1:26:43</td><td class="n">5</td><td class="n">1 yr</td></tr>
+<tr><td class="n">26</td><td>ACID #)# 303 Entity Spheroid</td><td class="n">1:38:13</td><td class="n">13</td><td class="n">1 yr</td></tr>
+<tr><td class="n">27</td><td>ACID #)# 303 Entity Spheroid</td><td class="n">1:25:00</td><td class="n">10</td><td class="n">1 yr</td></tr>
+<tr><td class="n">28</td><td>808 Drum Construction</td><td class="n">8:20</td><td class="n">2</td><td class="n">1 yr</td></tr>
+<tr><td class="n">29</td><td>5 Unbelievable ways Calming Fluid removed caked on anxiety</td><td class="n">35:12</td><td class="n">6</td><td class="n">1 yr</td></tr>
+<tr><td class="n">30</td><td>LoFi Beats For Ripping Bongs instead of Studying</td><td class="n">31:43</td><td class="n">2</td><td class="n">1 yr</td></tr>
+<tr><td class="n">31</td><td>Evolving Glitch Cat Meme Art with Mesmerizing Music</td><td class="n">49:20</td><td class="n">20</td><td class="n">1 yr</td></tr>
+<tr><td class="n">32</td><td>Biosphere Snow</td><td class="n">1:06:58</td><td class="n">5</td><td class="n">1 yr</td></tr>
+<tr><td class="n">33</td><td>Biosphere Snow</td><td class="n">55:30</td><td class="n">11</td><td class="n">1 yr</td></tr>
+<tr><td class="n">34</td><td>07FF Reasons Why the End of Time is Near</td><td class="n">3:25</td><td class="n">8</td><td class="n">1 yr</td></tr>
+<tr><td class="n">35</td><td>07FF</td><td class="n">14:25</td><td class="n">8</td><td class="n">1 yr</td></tr>
+<tr><td class="n">36</td><td>Dark Ambient UAP Flyover</td><td class="n">1:05:29</td><td class="n">8</td><td class="n">1 yr</td></tr>
+<tr><td class="n">37</td><td>UAP Flyover</td><td class="n">37:20</td><td class="n">4</td><td class="n">1 yr</td></tr>
+<tr><td class="n">38</td><td>Into The Chamber</td><td class="n">13:36</td><td class="n">5</td><td class="n">1 yr</td></tr>
+<tr><td class="n">39</td><td>Into The Chamber</td><td class="n">49:51</td><td class="n">3</td><td class="n">1 yr</td></tr>
+<tr><td class="n">40</td><td>Godzilla!!!!</td><td class="n">1:28:33</td><td class="n">0</td><td class="n">1 yr</td></tr>
+<tr><td class="n">41</td><td>Godzilla!!!!</td><td class="n">1:27:20</td><td class="n">4</td><td class="n">1 yr</td></tr>
+<tr><td class="n">42</td><td>Godzilla Panda Play</td><td class="n">42:49</td><td class="n">2</td><td class="n">1 yr</td></tr>
+<tr><td class="n">43</td><td>Godzilla Panda Play</td><td class="n">42:42</td><td class="n">1</td><td class="n">1 yr</td></tr>
+<tr><td class="n">44</td><td>Godzilla Panda Play</td><td class="n">55:31</td><td class="n">2</td><td class="n">1 yr</td></tr>
+<tr><td class="n">45</td><td>Godzilla Panda Play</td><td class="n">51:59</td><td class="n">0</td><td class="n">1 yr</td></tr>
+<tr><td class="n">46</td><td>Godzilla Panda Play</td><td class="n">15:50</td><td class="n">5</td><td class="n">1 yr</td></tr>
+<tr><td class="n">47</td><td>Panda Play</td><td class="n">5:40:08</td><td class="n">2</td><td class="n">1 yr</td></tr>
+<tr><td class="n">48</td><td>Euro Old School Electric on Vinyl</td><td class="n">6:36</td><td class="n">2</td><td class="n">1 yr</td></tr>
+<tr><td class="n">49</td><td>Euro Old School Electric on Vinyl</td><td class="n">15:25</td><td class="n">6</td><td class="n">1 yr</td></tr>
+<tr><td class="n">50</td><td>Simulated Alien Experience — Live from United Cat Foods</td><td class="n">47:35</td><td class="n">10</td><td class="n">1 yr</td></tr>
+<tr><td class="n">51</td><td>Simulated Alien Experience | Strange Transmissions 2</td><td class="n">1:00:04</td><td class="n">18</td><td class="n">1 yr</td></tr>
+<tr><td class="n">52</td><td>Simulated Alien Experience | Strange Transmissions</td><td class="n">1:10:33</td><td class="n">18</td><td class="n">1 yr</td></tr>
+<tr><td class="n">53</td><td>Simulated Alien Experience — Live from United Cat Foods</td><td class="n">47:28</td><td class="n">12</td><td class="n">1 yr</td></tr>
+<tr><td class="n">54</td><td>Exp 551 UFO Calls | Real UFO Reports + Ambient Music</td><td class="n">52:49</td><td class="n">16</td><td class="n">1 yr</td></tr>
+<tr><td class="n">55</td><td>Dr. Tomorrow Guest Hosts from United Cat Foods</td><td class="n">6:56</td><td class="n">7</td><td class="n">1 yr</td></tr>
+<tr><td class="n">56</td><td>Dr. Tomorrow Guest Hosts from United Cat Foods</td><td class="n">2:35</td><td class="n">0</td><td class="n">1 yr</td></tr>
+<tr><td class="n">57</td><td>Dr. Tomorrow Guest Hosts | 1 Hour Live Stream</td><td class="n">1:10:09</td><td class="n">38</td><td class="n">1 yr</td></tr>
+<tr><td class="n">58</td><td>10 Hours Trapped in Bulk Ambient Fluid Tank</td><td class="n">10:50:42</td><td class="n">40</td><td class="n">1 yr</td></tr>
+<tr><td class="n">59</td><td>Moog Perceptrons and Transformers | True Analog Waveforms</td><td class="n">52:26</td><td class="n">31</td><td class="n">1 yr</td></tr>
+<tr><td class="n">60</td><td>Christmas Eve Moog Log | Cozy Holiday Fireplace Ambient</td><td class="n">2:43:14</td><td class="n">25</td><td class="n">1 yr</td></tr>
+<tr><td class="n">61</td><td>Christmas Eve Moog Log | Holiday Fireplace Synth Music</td><td class="n">32:03</td><td class="n">22</td><td class="n">1 yr</td></tr>
+<tr><td class="n">62</td><td>From the Cave — Dragon Core</td><td class="n">58:54</td><td class="n">18</td><td class="n">2 yr</td></tr>
+<tr><td class="n">63</td><td>Various Test Tones and Patterns</td><td class="n">10:53</td><td class="n">18</td><td class="n">2 yr</td></tr>
+<tr><td class="n">64</td><td>Access Virus VS Moog Ambient Showdown</td><td class="n">29:44</td><td class="n">23</td><td class="n">2 yr</td></tr>
+<tr><td class="n">65</td><td>United Cat Foods Winter Food Drive feat Les Brown</td><td class="n">4:24:46</td><td class="n">27</td><td class="n">2 yr</td></tr>
+<tr><td class="n">66</td><td>United Cat Foods Lo-Fi Acid Experimental Sample Trimming</td><td class="n">1:03:13</td><td class="n">35</td><td class="n">2 yr</td></tr>
+<tr><td class="n">67</td><td>Vinyl Only Dub Mix | King Tubby, Scientist &amp; More</td><td class="n">41:56</td><td class="n">54</td><td class="n">2 yr</td></tr>
+<tr><td class="n">68</td><td>United Cat Foods Turntable Session | 2+ Hours Vinyl DJ Set</td><td class="n">2:15:24</td><td class="n">56</td><td class="n">2 yr</td></tr>
+<tr><td class="n">69</td><td>Omega Wave Enhanced</td><td class="n">53:22</td><td class="n">7</td><td class="n">2 yr</td></tr>
+<tr><td class="n">70</td><td>special guest: Dragon Lizard Lord</td><td class="n">4:34</td><td class="n">4</td><td class="n">2 yr</td></tr>
+<tr><td class="n">71</td><td>special guest: Dragon Lizard Lord</td><td class="n">20:53</td><td class="n">7</td><td class="n">2 yr</td></tr>
+<tr><td class="n">72</td><td>Enviro Engineering Beats</td><td class="n">30:45</td><td class="n">8</td><td class="n">2 yr</td></tr>
+<tr><td class="n">73</td><td>Cat-a-thon</td><td class="n">28:40</td><td class="n">10</td><td class="n">2 yr</td></tr>
+<tr><td class="n">74</td><td>Cat-a-thon</td><td class="n">1:47:10</td><td class="n">8</td><td class="n">2 yr</td></tr>
+<tr><td class="n">75</td><td>Cat-a-thon | Marathon Cat Feeding Session</td><td class="n">0:07</td><td class="n">14</td><td class="n">2 yr</td></tr>
+<tr><td class="n">76</td><td>Cat-a-thon</td><td class="n">1:48</td><td class="n">3</td><td class="n">2 yr</td></tr>
+<tr><td class="n">77</td><td>Cat-a-thon</td><td class="n">4:40</td><td class="n">13</td><td class="n">2 yr</td></tr>
+<tr><td class="n">78</td><td>Cat-a-thon</td><td class="n">0:58</td><td class="n">11</td><td class="n">2 yr</td></tr>
+<tr><td class="n">79</td><td>Cat-a-thon</td><td class="n">21:39</td><td class="n">3</td><td class="n">2 yr</td></tr>
+<tr><td class="n">80</td><td>Various Test Tones and Patterns | Electronic Calibration</td><td class="n">31:30</td><td class="n">15</td><td class="n">2 yr</td></tr>
+<tr><td class="n">81</td><td>Various Test Tones and Patterns</td><td class="n">2:23</td><td class="n">3</td><td class="n">2 yr</td></tr>
+<tr><td class="n">82</td><td>Various Test Tones and Patterns</td><td class="n">8:16</td><td class="n">7</td><td class="n">2 yr</td></tr>
+<tr><td class="n">83</td><td>Various Test Tones and Patterns</td><td class="n">56:17</td><td class="n">10</td><td class="n">2 yr</td></tr>
+<tr><td class="n">84</td><td>United Cat Foods Moog Delay Lab</td><td class="n">52:01</td><td class="n">4</td><td class="n">2 yr</td></tr>
+<tr><td class="n">85</td><td>United Cat Foods Lo Fi Acid Experement</td><td class="n">3:30</td><td class="n">2</td><td class="n">2 yr</td></tr>
+<tr><td class="n">86</td><td>United Cat Foods Turntable Dynamics Lab</td><td class="n">26:42</td><td class="n">3</td><td class="n">2 yr</td></tr>
+<tr><td class="n">87</td><td>United Cat Foods Winter Food Drive</td><td class="n">3:36:14</td><td class="n">10</td><td class="n">2 yr</td></tr>
+<tr><td class="n">88</td><td>United Cat Foods Analog Synth Test Kitchen</td><td class="n">46:26</td><td class="n">4</td><td class="n">2 yr</td></tr>
+<tr><td class="n">89</td><td>United Cat Foods Analog Synth Test Kitchen</td><td class="n">40:57</td><td class="n">15</td><td class="n">2 yr</td></tr>
+<tr><td class="n">90</td><td>United Cat Foods Analog Synth Test Kitchen</td><td class="n">3:19</td><td class="n">2</td><td class="n">2 yr</td></tr>
+<tr><td class="n">91</td><td>United Cat Foods Analog Synth Test Kitchen</td><td class="n">16:51</td><td class="n">15</td><td class="n">2 yr</td></tr>
+<tr><td class="n">92</td><td>Cold Ice Drum and Bass 303's and 808s</td><td class="n">39:22</td><td class="n">12</td><td class="n">2 yr</td></tr>
+<tr><td class="n">93</td><td>Live from United Cat Foods Test Kitchen</td><td class="n">17:21</td><td class="n">5</td><td class="n">2 yr</td></tr>
+<tr><td class="n">94</td><td>Live from United Cat Foods Test Kitchen</td><td class="n">1:06:10</td><td class="n">20</td><td class="n">2 yr</td></tr>
+<tr><td class="n">95</td><td>6 Hour UFO Ambient Soundscape for Sleep</td><td class="n">6:15:18</td><td class="n">46</td><td class="n">2 yr</td></tr>
+<tr><td class="n">96</td><td>Ambient Music with Cat Facts | 1.5 Hours</td><td class="n">1:31:35</td><td class="n">42</td><td class="n">2 yr</td></tr>
+<tr><td class="n">97</td><td>Straight Up Classic Dark Raspberry Acid — TD-3 RD-8</td><td class="n">13:04</td><td class="n">18</td><td class="n">2 yr</td></tr>
+<tr><td class="n">98</td><td>Live from United Cat Foods Test Kitchen</td><td class="n">1:00:37</td><td class="n">25</td><td class="n">2 yr</td></tr>
+<tr><td class="n">99</td><td>Live from United Cat Foods Test Kitchen | 44 Min</td><td class="n">44:31</td><td class="n">38</td><td class="n">2 yr</td></tr>
+<tr><td class="n">100</td><td>Spacetrucker 2196</td><td class="n">1:47:29</td><td class="n">8</td><td class="n">3 yr</td></tr>
+<tr><td class="n">101</td><td>Spacetrucker 2196</td><td class="n">0:35</td><td class="n">1</td><td class="n">3 yr</td></tr>
+<tr><td class="n">102</td><td>Spacetrucker 2196</td><td class="n">1:37:59</td><td class="n">9</td><td class="n">3 yr</td></tr>
+<tr><td class="n">103</td><td>Spacetrucker 2196</td><td class="n">0:07</td><td class="n">2</td><td class="n">3 yr</td></tr>
+<tr><td class="n">104</td><td>Live Dark Desert Ambience</td><td class="n">1:18:06</td><td class="n">7</td><td class="n">3 yr</td></tr>
+<tr><td class="n">105</td><td>Effective Ambient Music for Business Suites</td><td class="n">4:53</td><td class="n">2</td><td class="n">3 yr</td></tr>
+<tr><td class="n">106</td><td>Live Dark Desert Ambient | Dinner Party Music</td><td class="n">1:10:06</td><td class="n">44</td><td class="n">4 yr</td></tr>
+<tr><td class="n">107</td><td>Live Dark Desert Ambience</td><td class="n">6:47</td><td class="n">15</td><td class="n">4 yr</td></tr>
+<tr><td class="n">108</td><td>Live Dark Desert Ambience — Moog Analog Synth Ambient</td><td class="n">22:38</td><td class="n">13</td><td class="n">4 yr</td></tr>
+<tr><td class="n">109</td><td>Live Dark Desert Ambience — Moog Analog Synth Ambient</td><td class="n">1:20:48</td><td class="n">23</td><td class="n">4 yr</td></tr>
+<tr><td class="n">110</td><td>Live Dark Desert Ambience — Moog Analog Synth Ambient</td><td class="n">18:33</td><td class="n">22</td><td class="n">4 yr</td></tr>
+<tr><td class="n">111</td><td>Live Stream — Moog Analog Synth Ambient</td><td class="n">1:27:43</td><td class="n">10</td><td class="n">4 yr</td></tr>
+<tr><td class="n">112</td><td>Live Stream — Moog Analog Synth Ambient</td><td class="n">26:12</td><td class="n">17</td><td class="n">4 yr</td></tr>
+<tr><td class="n">113</td><td>Live Stream — Moog Analog Synth Ambient</td><td class="n">50:55</td><td class="n">15</td><td class="n">4 yr</td></tr>
+<tr><td class="n">114</td><td>Live Stream — Moog Analog Synth Ambient</td><td class="n">33:45</td><td class="n">12</td><td class="n">4 yr</td></tr>
+<tr><td class="n">115</td><td>Live Stream — Moog Analog Synth Ambient</td><td class="n">14:55</td><td class="n">6</td><td class="n">4 yr</td></tr>
+<tr><td class="n">116</td><td>Live Stream — Moog Analog Synth Ambient</td><td class="n">9:58</td><td class="n">20</td><td class="n">4 yr</td></tr>
+<tr><td class="n">117</td><td>Live Stream — Moog Analog Synth Ambient</td><td class="n">48:30</td><td class="n">9</td><td class="n">4 yr</td></tr>
+<tr><td class="n">118</td><td>Spacetrucker2196 Live Stream</td><td class="n">41:45</td><td class="n">25</td><td class="n">4 yr</td></tr>
+<tr><td class="n">119</td><td>Spacetrucker2196 Live Stream</td><td class="n">1:21:17</td><td class="n">9</td><td class="n">4 yr</td></tr>
+<tr><td class="n">120</td><td>Crew Exploration Vehicle</td><td class="n">4:03</td><td class="n">14</td><td class="n">7 yr</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+<details>
+    <summary>Shorts (3) and playlists (22)</summary>
+    <div class="dbody">
+      <p class="lbl">Shorts</p>
+      <div class="cols">Tube Promo (3 views)<br>Night Hawk Tube — Binaural Synthesizer, Meditation and ASMR (5)<br>Nighthawk Tube — Binaural Drone Instrument (8)</div>
+      <p class="lbl">Playlists</p>
+      <div class="cols">Favorites (36)<br>Deep Tubes (84)<br>Space Trucking (5)<br>Hack RF (3)<br>Lotech (13)<br>Military History (2)<br>Best Beer Commercials (41)<br>Hemp Farming (7)<br>MAKE MONEY FAST IN FARMING (3)<br>Ambient Video (1)<br>Best FJ Builds (2)<br>360 (5)<br>Planetary Surveys (21)<br>Diagnostic Test Tones (52)<br>First Church of the Voltage Controlled Oscillator (14)<br>Analog Signal Streams (42)<br>Future City (14)<br>Food Mountain And Cat Farming (25)<br>ASMR (9)<br>Loops (11)<br>Strategic Record Reserve (1)<br>Heavy Metal (3)</div>
+    </div>
+  </details>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">YTB.2025.002<small>19 works</small></div>
+<div class="cat-body">
+<p class="title">Nature Meds</p>
+<p class="byline">youtube.com/@Nature-Meds &middot; opened 15 April 2025</p>
+<dl>
+<dt>Medium</dt><dd>4K aerial and fixed nature film with location sound, no narration</dd>
+<dt>Statement</dt><dd><em>"Long-form and uninterrupted, with no talking... Every film is made with reverence and as little trace of humankind as possible."</em></dd>
+<dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span> — in progress</dd>
+</dl>
+<p class="desc">Subjects run from Voyageurs National Park and Lake Superior to the Mississippi at Goose Island and, in Utah, Valley of the Gods and Sunset Crater. The store link on the channel still points to Spacetrucker Highlife, which no longer exists.</p>
+<details>
+    <summary>Full manifest — 19 Nature Meds films</summary>
+    <div class="dbody">
+      <table>
+        <thead><tr><th>Title</th><th>Dur</th><th>Views</th><th>Age</th></tr></thead>
+        <tbody>
+<tr><td>From the Land of Sky Blue Waters Ambience — 4K Lake Scene</td><td class="n">9:35</td><td class="n">30</td><td class="n">1 mo</td></tr>
+<tr><td>Lake Kabetogama Marsh, Lake Sounds with 4K Video 60fps</td><td class="n">10:04</td><td class="n">41</td><td class="n">1 mo</td></tr>
+<tr><td>Summer Lake Ambience — 4K Water Sounds</td><td class="n">10:04</td><td class="n">27</td><td class="n">1 mo</td></tr>
+<tr><td>Lake Kabetogama Sunset | Voyageurs National Park</td><td class="n">7:11</td><td class="n">21</td><td class="n">1 mo</td></tr>
+<tr><td>Darkshore, Moon at night over Lake Superior</td><td class="n">7:52</td><td class="n">47</td><td class="n">2 mo</td></tr>
+<tr><td>Aerial Views of June on the Mississippi</td><td class="n">23:38</td><td class="n">86</td><td class="n">2 mo</td></tr>
+<tr><td>Goose Island Park — Early Spring Aerial Meditation, 432 Hz</td><td class="n">23:01</td><td class="n">13</td><td class="n">3 mo</td></tr>
+<tr><td>River Drone Flight 40 minutes — Silent, no talking or ads</td><td class="n">41:59</td><td class="n">153</td><td class="n">3 mo</td></tr>
+<tr><td>Goose Island — Early Spring on the Mississippi, La Crosse</td><td class="n">4:09</td><td class="n">20</td><td class="n">3 mo</td></tr>
+<tr><td>Sunset Crater Volcano National Monument — 4K 60fps</td><td class="n">6:33</td><td class="n">16</td><td class="n">3 mo</td></tr>
+<tr><td>Valley of the Gods — The Sentinel | Aerial Meditation 3</td><td class="n">7:53</td><td class="n">25</td><td class="n">3 mo</td></tr>
+<tr><td>Valley of the Gods — Sacred Red Rock Silence | Meditation 4</td><td class="n">10:20</td><td class="n">21</td><td class="n">4 mo</td></tr>
+<tr><td>Deer at the Edge of the Forest — Summer Meadow 4K</td><td class="n">5:26</td><td class="n">47</td><td class="n">4 mo</td></tr>
+<tr><td>Valley of the Gods — Ancient Sandstone Sentinels</td><td class="n">7:30</td><td class="n">34</td><td class="n">4 mo</td></tr>
+<tr><td>Valley of the Gods, Utah — Bears Ears Sacred Landscape</td><td class="n">8:26</td><td class="n">163</td><td class="n">4 mo</td></tr>
+<tr><td>Deer Grazing at Dusk — Apple Tree Meadow Meditation</td><td class="n">7:52</td><td class="n">13</td><td class="n">1 yr</td></tr>
+<tr><td>Whitetail Deer in a Summer Meadow</td><td class="n">4:38</td><td class="n">48</td><td class="n">1 yr</td></tr>
+<tr><td>Purple Cone Flower and Butterfly Meditation — 4K 60fps</td><td class="n">4:32</td><td class="n">19</td><td class="n">1 yr</td></tr>
+<tr><td>Falling Leaf Meditation</td><td class="n">14:20</td><td class="n">9</td><td class="n">1 yr</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">YTB.2025.003<small>39 items</small></div>
+<div class="cat-body">
+<p class="title">United Cat Foods</p>
+<p class="byline">youtube.com/@UnitedCatFoods &middot; opened 27 March 2025</p>
+<dl>
+<dt>Extent</dt><dd>25 works and 14 shorts, 3 playlists</dd>
+<dt>Statement</dt><dd><em>"Cat Videos the Old-Fashioned Way, with Real Cats. From crusty street legends like Bad Bob, to corporate climbers like The Supervisor, to chaos agents like Value Meal."</em></dd>
+<dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span> — in progress</dd>
+</dl>
+<p class="desc">The shorts are titled bilingually, in Japanese and a deliberately degraded English: <i>猫フード運搬 4,102日目 | DAY 4102 OV HAULNG CAT FUD IN SPAAACE</i>. It is the same device as the Alibi Gulch bylines, twenty-five years on.</p>
+<details>
+    <summary>Full manifest — 39 United Cat Foods items</summary>
+    <div class="dbody">
+      <table>
+        <thead><tr><th>Title</th><th>Dur</th><th>Views</th></tr></thead>
+        <tbody>
+<tr><td>United Cat Foods — What is it?</td><td class="n">2:04</td><td class="n">12</td></tr>
+<tr><td>Continuous Thrust Solar System Navigation Explained</td><td class="n">7:37</td><td class="n">39</td></tr>
+<tr><td>United Cat Foods Loaf Class Freighter</td><td class="n">2:29</td><td class="n">5</td></tr>
+<tr><td>United Cat Foods Stations — Promo Cast</td><td class="n">2:13</td><td class="n">3</td></tr>
+<tr><td>Fall Mass Building Workshop — Chicken Feast</td><td class="n">1:41:45</td><td class="n">24</td></tr>
+<tr><td>Cat blind in one eye is one of the first to this canned tuna drop</td><td class="n">9:02</td><td class="n">337</td></tr>
+<tr><td>Caturday Salmon Loaf. Vicious Barn Swallows offer no solace</td><td class="n">24:44</td><td class="n">445</td></tr>
+<tr><td>Epic Cat Discovery! Heathcliff &amp; Laser 128</td><td class="n">14:59</td><td class="n">1.5K</td></tr>
+<tr><td>Farm Cat Rib Fest — Sudden Oven Failure</td><td class="n">15:08</td><td class="n">183</td></tr>
+<tr><td>Hungry Cats Fed, Full Scoop Cat Food Speed Run Challenge</td><td class="n">15:19</td><td class="n">381</td></tr>
+<tr><td>Real Food by Cats for Cats — Not Board Room Meetings</td><td class="n">0:23</td><td class="n">10</td></tr>
+<tr><td>Kitten Narrowly Escapes Extreme Beat Down by Bully Brother</td><td class="n">2:02</td><td class="n">203</td></tr>
+<tr><td>Food Mountain: Daily Crunch</td><td class="n">2:11</td><td class="n">8</td></tr>
+<tr><td>See Who the New Visitor Is at the Cat Hotel — Possum Sleepover!</td><td class="n">2:06</td><td class="n">109</td></tr>
+<tr><td>Bad Bob's Prison Meal #40: Liverwurst Loaf with Dry Biscuits</td><td class="n">11:07</td><td class="n">377</td></tr>
+<tr><td>Tragic Equipment Failure at the Cat Feeder</td><td class="n">2:32</td><td class="n">59</td></tr>
+<tr><td>Robot Purring Sound Starts Cat Feeding Frenzy</td><td class="n">1:33</td><td class="n">14</td></tr>
+<tr><td>Unexpected activation successful. Emotional response: Kitty Madness!</td><td class="n">11:59</td><td class="n">4</td></tr>
+<tr><td>Night Janitor Left To Up After All-You-Can-Eat Cat Food Buffet</td><td class="n">2:07</td><td class="n">213</td></tr>
+<tr><td>Drop Zone Kitty Campers Score Epic Drop</td><td class="n">9:13</td><td class="n">10</td></tr>
+<tr><td>Parallel Stripes, Fur in Focus | Ambient Music for Frozen Fog</td><td class="n">11:24</td><td class="n">4</td></tr>
+<tr><td>Who Will Get the Big Kielbasa?!</td><td class="n">10:20</td><td class="n">25</td></tr>
+<tr><td>Winter Chonk Fest — Full Turkey Cat Challenge</td><td class="n">35:54</td><td class="n">18</td></tr>
+<tr><td>Country Supper: An Old Tyme Feast with Two Kittens ASMR</td><td class="n">11:58</td><td class="n">11</td></tr>
+<tr><td>Pop &amp; Lock Kitties | Heathcliff, The Supervisor &amp; Value Meal</td><td class="n">0:25</td><td class="n">5</td></tr>
+<tr><td><i>Short</i> — 整備士レーザー128 | MY MEKANIC IS A CAT NAMD LASER 128</td><td class="n">—</td><td class="n">564</td></tr>
+<tr><td><i>Short</i> — 生体貨物 意見あり | POV: UR CARGO HAS OPINYUNS</td><td class="n">—</td><td class="n">270</td></tr>
+<tr><td><i>Short</i> — 生体貨物 意見あり ロングカット (long cut)</td><td class="n">—</td><td class="n">201</td></tr>
+<tr><td><i>Short</i> — 猫フード運搬 4,102日目 | DAY 4102 OV HAULNG CAT FUD</td><td class="n">—</td><td class="n">156</td></tr>
+<tr><td><i>Short</i> — 味覚サイクル42秒 ロングカット | 42 SECND FLAVR CYCLE</td><td class="n">—</td><td class="n">150</td></tr>
+<tr><td><i>Short</i> — 猫フード運搬 4,102日目 ロングカット</td><td class="n">—</td><td class="n">121</td></tr>
+<tr><td><i>Short</i> — 猫の運び屋あるある | TELL ME U HAWL FOR CATS</td><td class="n">—</td><td class="n">100</td></tr>
+<tr><td><i>Short</i> — 我が船の当然の装備 | THNGS IN MY RIG THAT JUS MAKE SENSE</td><td class="n">—</td><td class="n">92</td></tr>
+<tr><td><i>Short</i> — 味覚サイクル42秒 4,103日目 | THE FUD EXPYRES IN 42 SECNDS</td><td class="n">—</td><td class="n">91</td></tr>
+<tr><td><i>Short</i> — きゅうり持ち込み禁止 | WHY CUCUMBRS R BANND</td><td class="n">—</td><td class="n">79</td></tr>
+<tr><td><i>Short</i> — 宇宙トラックストップ評価 | I RAYT EVRY TRUK STOP</td><td class="n">—</td><td class="n">41</td></tr>
+<tr><td><i>Short</i> — 積荷ぜんぶ評価 | I RAYT EVRY CARGO I EVR HAWLED</td><td class="n">—</td><td class="n">26</td></tr>
+<tr><td><i>Short</i> — 税関の行列で惑星評価 | I RAYT EVRY PLANIT</td><td class="n">—</td><td class="n">7</td></tr>
+<tr><td><i>Short</i> — 遅刻を役員会に報告 | POV: U TELL A BORD OV CATS U WUS LAYT</td><td class="n">—</td><td class="n">2</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">TWC.2020.001<small>11 clips</small></div>
+<div class="cat-body">
+<p class="title">Twitch broadcasts</p>
+<p class="byline">twitch.tv/spacetrucker2196</p>
+<dl>
+<dt>Statement</dt><dd><em>"Just a guy hauling space cargo for United Catfoods who accidentally hit a super string fragment and ended up here from the year 2196. Moog modulator, instrument maker, backyard gardener, space traveler, cat manipulater, and arcology infrastructure engineering."</em></dd>
+<dt>Condition</dt><dd><span class="cond c-lost">BROADCASTS LOST</span> — video on demand expired; 11 clips survive</dd>
+</dl>
+<p class="desc">Surviving clips: <i>Valhalla Station Beacon</i> · <i>Deep Arcology Electro Techno Beats</i> (three) · <i>Rural Hop Test Channel</i> · <i>Looking West at An Object</i> · <i>Deep Wood Off World</i> · <i>More delay</i> · <i>Fern Tones</i> · <i>United Catfoods Space Freight Hauling with IceToe</i>. This bio is also the earliest dated statement of the 2196 conceit.</p>
+<p class="refs"><a class="ext" href="https://www.twitch.tv/spacetrucker2196">Channel</a></p>
+</div>
+</div>
+</section>
+
+<!-- ══════════════ SERIES V ══════════════ -->
+<section id="s5">
+<div class="series-head">
+<span class="series-num">Series V</span>
+<h2>Sound</h2>
+<p class="series-dates">2001 &mdash; present &middot; 12 released works, 14 uncollected recordings</p>
+</div>
+<p class="scope">Ambient, drone, dungeon synth and acid techno made on a Minimoog Model D, a Moog Voyager, a Kawai K3, an Access Virus, TB-303 and TD-3 derivatives, a Nord G2, a circuit-bent Speak &amp; Spell and a Strymon Night Sky. Two catalogues exist and only partly overlap: six works issued on Bandcamp, ten distributed to streaming services, four titles common to both.</p>
+
+<div class="cat">
+<div class="acc">SND.2021.001<small>12 works</small></div>
+<div class="cat-body">
+<p class="title">Recorded works, 1998&ndash;2023</p>
+<p class="byline">Issued as <b>Spacetrucker 2196</b> &middot; artist location given as Phoenix, Arizona</p>
+<dl>
+<dt>Medium</dt><dd>Digital audio, issued for download and streaming; no physical edition</dd>
+<dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span></dd>
+<dt>Note</dt><dd><i>Series of Attenuated Test Tones for Response</i> is credited on its own release page to "Spacetrucker <b>2916</b>", a transposition</dd>
+</dl>
+<p class="desc">Two works exist only on Bandcamp (<i>Autumnal Equinox</i>, <i>Yosemite River Early Spring</i>) and six only on the streaming services (<i>Analog Experiments in Bass Resonance</i>, <i>The Dungeon Realms of Agralith</i>, <i>Hay Moon</i>, <i>The Spanish Moors</i>, <i>It's Past the Valley Beyond the Neon Sign</i>, <i>A Pathway Descending</i>). <i>Endless Driftless</i> runs 54:11 on Bandcamp and 61:22 on the services: two different masters.</p>
+<p class="desc">The earliest material in the series is the oldest in the catalogue after Series I. <i>Music For Distant Restaurants</i> was recorded to cassette in the winter of <b>1998</b>, first issued as free MP3s around 2001 under the ASRI imprint (DPF.2001.011), and remastered for release in 2021.</p>
+<details>
+    <summary>Full discography — 12 works</summary>
+    <div class="dbody">
+      <table>
+        <thead><tr><th>Title</th><th>Bandcamp</th><th>Streaming</th><th>Type</th><th>Length</th><th>Where</th></tr></thead>
+        <tbody>
+<tr><td>Music For Distant Restaurants</td><td class="n">2021-09-11</td><td class="n">2021</td><td>Album, 5 tracks</td><td class="n">33:47</td><td>Both</td></tr>
+<tr><td>Autumnal Equinox</td><td class="n">2021-10-21</td><td class="n">—</td><td>Album, 2 tracks</td><td class="n">25:41</td><td><b>Bandcamp only</b></td></tr>
+<tr><td>Endless Driftless</td><td class="n">2022-04-17</td><td class="n">2023-06-19</td><td>Album</td><td class="n">54:11</td><td>Both</td></tr>
+<tr><td>Ion Storm Lone Road</td><td class="n">2022-05-02</td><td class="n">2023-06-07</td><td>Album</td><td class="n">43:49</td><td>Both</td></tr>
+<tr><td>Yosemite River Early Spring</td><td class="n">2023-07-01</td><td class="n">—</td><td>Album</td><td class="n">20:56</td><td><b>Bandcamp only</b></td></tr>
+<tr><td>Series of Attenuated Test Tones for Response</td><td class="n">2023-12-21</td><td class="n">2023-12-22</td><td>Single</td><td class="n">08:29</td><td>Both</td></tr>
+<tr><td>Analog Experiments in Bass Resonance</td><td class="n">—</td><td class="n">2023-06-07</td><td>EP</td><td class="n">12:19</td><td><b>Streaming only</b></td></tr>
+<tr><td>The Dungeon Realms of Agralith</td><td class="n">—</td><td class="n">2023-06-07</td><td>EP</td><td class="n">24:24</td><td><b>Streaming only</b></td></tr>
+<tr><td>Hay Moon</td><td class="n">—</td><td class="n">2023-06-07</td><td>EP</td><td class="n">23:16</td><td><b>Streaming only</b></td></tr>
+<tr><td>The Spanish Moors</td><td class="n">—</td><td class="n">2023-06-07</td><td>Single</td><td class="n">06:48</td><td><b>Streaming only</b></td></tr>
+<tr><td>It's Past the Valley Beyond the Neon Sign</td><td class="n">—</td><td class="n">2023-06-14</td><td>EP</td><td class="n">14:58</td><td><b>Streaming only</b></td></tr>
+<tr><td>A Pathway Descending</td><td class="n">—</td><td class="n">2023-06-14</td><td>EP</td><td class="n">22:19</td><td><b>Streaming only</b></td></tr>
+        </tbody>
+      </table>
+      <p class="dnote">Music For Distant Restaurants tracks: Side A (8:00) / Impel (1:42) / Hidden Codec (6:08) / Flutter (2:42) / Convolver (15:14). Recorded to cassette in winter 1998 on a Minimoog Model D and Kawai K3 through the Moog's external input; remastered 2021.<br>Autumnal Equinox tracks: Morning Chorus (9:00) / Evening Reprise (16:41), Moog plus a Wisconsin forest.<br>Streaming artist IDs — Spotify 6wZGZQYQb6FpLC8MgtQHLX · Apple Music 1587132404 · Deezer 146343522. Also on Tidal, Pandora and Amazon Music. Endless Driftless runs 54:11 on Bandcamp but 61:22 on Deezer, so the DSP master is a different edit.</p>
+    </div>
+  </details>
+<p class="refs"><a class="ext" href="https://spacetrucker2196.bandcamp.com">Bandcamp</a><a class="ext" href="https://open.spotify.com/artist/6wZGZQYQb6FpLC8MgtQHLX">Spotify</a><a class="ext" href="https://music.apple.com/us/artist/spacetrucker-2196/1587132404">Apple Music</a><a class="ext" href="https://www.deezer.com/artist/146343522">Deezer</a></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">SND.2022.002<small>14 recordings</small></div>
+<div class="cat-body">
+<p class="title">Uncollected recordings</p>
+<p class="byline">soundcloud.com/spacetrucker2196 and soundcloud.com/alpha60</p>
+<dl>
+<dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span></dd>
+</dl>
+<p class="desc">Eleven recordings published April to May 2022, of which three appear in no release: <i>Dungeon Void Session</i>, <i>Emran Tree Species #51</i> and <i>Nature Morning With Moog</i>. A second account under the Alpha60 name holds three further recordings: <i>Wine Sodden Bees &mdash; Billy Jack Guru Session Wrap Up</i>, <i>Wine Sodden Bees &mdash; The First Set</i> and <i>Children walking through Canyon &mdash; New Mexico</i>. The first two are the audio counterpart to a Vimeo work of 2009.</p>
+<p class="refs"><a class="ext" href="https://soundcloud.com/spacetrucker2196">spacetrucker2196</a><a class="ext" href="https://soundcloud.com/alpha60">alpha60</a></p>
+</div>
+</div>
+</section>
+
+<!-- ══════════════ SERIES VI ══════════════ -->
+<section id="s6">
+<div class="series-head">
+<span class="series-num">Series VI</span>
+<h2>Software and Systems</h2>
+<p class="series-dates">2013 &mdash; present &middot; 54 repositories, 9 store listings</p>
+</div>
+<p class="scope">Source-available work and published applications. The oldest public repository dates to 2013; the entire shipped application catalogue was released between May and August 2026, roughly one title every fortnight. A single design position runs through all of it: on-device only, no accounts, no servers, no analytics, one-time purchase.</p>
+
+<div class="cat">
+<div class="acc">GIT.2013.001<small>52 repositories</small></div>
+<div class="cat-body">
+<p class="title">Source repositories</p>
+<p class="byline">github.com/SpaceTrucker2196 &middot; 35 original, 17 forks</p>
+<dl>
+<dt>Statement</dt><dd><em>"Any Platform - Anytime. AI Augmented Software Engineer, Artist, Sound Maker, Cat Enthusiast"</em></dd>
+<dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span> — in progress</dd>
+</dl>
+<p class="desc">The pinned selection — <b>cygnus</b>, <b>henge</b>, <b>sloth</b>, <b>MeowPassword</b>, <b>StatusGalactic-iOS</b> — spans repository visualisation, astronomical simulation, passive network monitoring, a password generator built on a cat-name corpus, and an amateur radio almanac. Only <b>sloth</b> carries releases: ten tags from v1.0.0 to v1.8.0. A second organisation, <b>United-Cat-Foods</b>, holds two further repositories.</p>
+<details>
+    <summary>Full manifest — 52 repositories</summary>
+    <div class="dbody">
+      <table>
+        <thead><tr><th>Repo</th><th>What it is</th><th>Lang</th><th>★</th><th>Updated</th></tr></thead>
+        <tbody>
+<tr><td>henge</td><td>Photoreal real-time 3D Stonehenge / astronomical calendar, iOS + macOS</td><td>Swift</td><td class="n">0</td><td class="n">2026-08-28</td></tr>
+<tr><td>river-io-site</td><td>Source for www.river.io</td><td>HTML</td><td class="n">0</td><td class="n">2026-08-27</td></tr>
+<tr><td>sloth</td><td>Passive terminal network monitor for Linux</td><td>C</td><td class="n">1</td><td class="n">2026-08-26</td></tr>
+<tr><td>DF_Template</td><td>"Dark factory" skeleton — repo as autonomous agent-run software factory</td><td>Makefile</td><td class="n">1</td><td class="n">2026-08-12</td></tr>
+<tr><td>cygnus</td><td>Codebase as knowledge graph, native macOS pattern visualiser</td><td>Swift</td><td class="n">1</td><td class="n">2026-08-10</td></tr>
+<tr><td>familiar <i>(fork)</i></td><td>Self-hosted AI companion across Mac/iPhone/iPad/Watch/VPS</td><td>Rust</td><td class="n">0</td><td class="n">2026-08-03</td></tr>
+<tr><td>morpho <i>(fork)</i></td><td>Swift port</td><td>Python</td><td class="n">0</td><td class="n">2026-07-31</td></tr>
+<tr><td>sloth-ios</td><td>Read-only iOS dashboard for sloth, SwiftUI + Swift Charts</td><td>Swift</td><td class="n">0</td><td class="n">2026-07-25</td></tr>
+<tr><td>MeowPassword</td><td>Password generator using a cat-names database</td><td>Swift</td><td class="n">2</td><td class="n">2026-07-25</td></tr>
+<tr><td>StatusGalactic-iOS</td><td>Daily almanac: earth, marine and space weather, moon, launches</td><td>Swift</td><td class="n">0</td><td class="n">2026-07-13</td></tr>
+<tr><td>HaikalaC</td><td>Breathing haiku mandala for the terminal, pure C99</td><td>C</td><td class="n">0</td><td class="n">2026-06-21</td></tr>
+<tr><td>haikala</td><td>Haiku-based mandala generator</td><td>Python</td><td class="n">0</td><td class="n">2026-06-21</td></tr>
+<tr><td>GalacticCIC</td><td>OpenClaw CLI dashboard inspired by htop</td><td>Python</td><td class="n">0</td><td class="n">2026-06-21</td></tr>
+<tr><td>maxlife</td><td>Conway's Game of Life for the terminal, coloured by cell age</td><td>C</td><td class="n">0</td><td class="n">2026-06-18</td></tr>
+<tr><td>Resume</td><td>Résumé in plain text</td><td>—</td><td class="n">1</td><td class="n">2026-06-18</td></tr>
+<tr><td>TempleOS <i>(fork)</i></td><td>Final snapshot of the Third Temple</td><td>—</td><td class="n">0</td><td class="n">2026-05-19</td></tr>
+<tr><td>ntop</td><td>Portable terminal network monitor in C</td><td>C</td><td class="n">0</td><td class="n">2026-05-17</td></tr>
+<tr><td>SkyRoof <i>(fork)</i></td><td>Windows app for hams and satellite enthusiasts</td><td>—</td><td class="n">0</td><td class="n">2026-05-09</td></tr>
+<tr><td>DeepLevel</td><td>SpriteKit dungeon crawler with a Dope Wars-style trading economy</td><td>Swift</td><td class="n">1</td><td class="n">2026-02-23</td></tr>
+<tr><td>FoilSkyBugs</td><td>ADSB data logger — RTL-SDR, Flask, pyModeS</td><td>Python</td><td class="n">0</td><td class="n">2025-09-26</td></tr>
+<tr><td>MeowIcon</td><td>CLI turning a PNG into every App Store icon size</td><td>—</td><td class="n">0</td><td class="n">2025-08-25</td></tr>
+<tr><td>.github</td><td>"Double Secret Profile Repo" — the résumé README</td><td>—</td><td class="n">0</td><td class="n">2025-08-23</td></tr>
+<tr><td>DMC_Control</td><td>Hardware Weekend</td><td>Obj-C</td><td class="n">2</td><td class="n">2025-03-24</td></tr>
+<tr><td>M5Dial <i>(fork)</i></td><td>Additional watch-face development</td><td>C</td><td class="n">0</td><td class="n">2023-12-16</td></tr>
+<tr><td>ios-concourse <i>(fork)</i></td><td>Building iOS apps with Concourse CI</td><td>—</td><td class="n">0</td><td class="n">2021-02-02</td></tr>
+<tr><td>flatcat</td><td>Flatten an array, Swift style</td><td>Swift</td><td class="n">0</td><td class="n">2021-01-06</td></tr>
+<tr><td>valenum</td><td>Hash map to convert strings to ints</td><td>Swift</td><td class="n">0</td><td class="n">2021-01-02</td></tr>
+<tr><td>Commi</td><td>Count occurrences of an object in an array</td><td>Swift</td><td class="n">0</td><td class="n">2021-01-02</td></tr>
+<tr><td>Back40</td><td>Vapor backend for Materials and Practices</td><td>Swift</td><td class="n">1</td><td class="n">2021-01-01</td></tr>
+<tr><td>ceilingcat</td><td>CeilingCat Watches</td><td>Python</td><td class="n">0</td><td class="n">2018-09-30</td></tr>
+<tr><td>vim</td><td>Vim configs</td><td>Vim</td><td class="n">0</td><td class="n">2018-09-28</td></tr>
+<tr><td>terminaltables <i>(fork)</i></td><td>Simple terminal tables from nested lists</td><td>Python</td><td class="n">0</td><td class="n">2018-09-23</td></tr>
+<tr><td>TestWithQuickSample</td><td>—</td><td>Makefile</td><td class="n">0</td><td class="n">2017-06-26</td></tr>
+<tr><td>Seam <i>(fork)</i></td><td>Seamless CloudKit sync with CoreData</td><td>Swift</td><td class="n">0</td><td class="n">2017-01-08</td></tr>
+<tr><td>NSDate-Extensions <i>(fork)</i></td><td>Practical real-world dates</td><td>Obj-C</td><td class="n">0</td><td class="n">2016-10-27</td></tr>
+<tr><td>ChevronView</td><td>UIView rendering the iOS navigation back chevron</td><td>Obj-C</td><td class="n">0</td><td class="n">2016-07-26</td></tr>
+<tr><td>applescripts</td><td>—</td><td>—</td><td class="n">0</td><td class="n">2016-04-05</td></tr>
+<tr><td>sprout-wrap <i>(fork)</i></td><td>Dev-tool bootstrap, forked for CSAA</td><td>Ruby</td><td class="n">0</td><td class="n">2016-03-31</td></tr>
+<tr><td>FDKeychain <i>(fork)</i></td><td>Keychain items in a single Obj-C message</td><td>Obj-C</td><td class="n">0</td><td class="n">2016-03-24</td></tr>
+<tr><td>UIKit-Dynamics-Example <i>(fork)</i></td><td>Sidebar menu animated with UIKit Dynamics</td><td>Obj-C</td><td class="n">0</td><td class="n">2016-03-15</td></tr>
+<tr><td>CedarBareBones</td><td>Sample BDD test project using Cedar</td><td>Obj-C</td><td class="n">0</td><td class="n">2016-01-29</td></tr>
+<tr><td>SocketBuddy</td><td>App for testing TCP sockets and NSStream</td><td>Obj-C</td><td class="n">0</td><td class="n">2016-01-20</td></tr>
+<tr><td>SimpleTCPServer</td><td>Python TCP server that tells you when someone saw a cat</td><td>Shell</td><td class="n">0</td><td class="n">2016-01-20</td></tr>
+<tr><td>pyobd-pi <i>(fork)</i></td><td>pyobd fixes for Raspberry Pi and BeagleBone Black</td><td>Python</td><td class="n">0</td><td class="n">2016-01-10</td></tr>
+<tr><td>weewx <i>(fork)</i></td><td>Weather station software</td><td>Python</td><td class="n">0</td><td class="n">2015-11-17</td></tr>
+<tr><td>Masonry <i>(fork)</i></td><td>Chainable AutoLayout constraints</td><td>Obj-C</td><td class="n">0</td><td class="n">2015-09-08</td></tr>
+<tr><td>PrototypeCellResizing</td><td>Dynamic type and self-sizing cells</td><td>Obj-C</td><td class="n">0</td><td class="n">2015-05-21</td></tr>
+<tr><td>TestCedar</td><td>Demo project for learning Cedar</td><td>Obj-C</td><td class="n">0</td><td class="n">2015-05-21</td></tr>
+<tr><td>NeoLife</td><td>Arduino life algorithm for an Adafruit NeoPixel 8×8 matrix</td><td>Arduino</td><td class="n">0</td><td class="n">2015-02-11</td></tr>
+<tr><td>ArcosantiApp <i>(fork)</i></td><td>Universal iPhone/iPad app for the Arcosanti Project</td><td>Obj-C</td><td class="n">0</td><td class="n">2014-11-25</td></tr>
+<tr><td>OpenBLE <i>(fork)</i></td><td>Open-source BLE scanner and chat example for iOS</td><td>—</td><td class="n">0</td><td class="n">2014-11-05</td></tr>
+<tr><td>StillStreamReceiver</td><td>Still Stream iPad app — your oldest public repo</td><td>Obj-C</td><td class="n">1</td><td class="n">2013-10-31</td></tr>
+        </tbody>
+      </table>
+      <p class="dnote"><b>United-Cat-Foods org</b> (github.com/United-Cat-Foods, contact jeff@river.io): MeowPasswordC — "Cat Based Password generator because cats are more complex then dogs" (C, MIT, 1★) · mandala-generator — sacred geometry artwork generator, an OpenClaw AgentSkill (Python).<br><b>Gists (3):</b> getElapsedTime.m (2016) · UITableView delegate methods for NSFetchedResultsController (2015) · tableViewResizing for iOS 7+ (2015).<br><b>GitHub Pages:</b> spacetrucker2196.github.io/sloth · /cygnus · /clientAPT · /StatusGalactic-iOS</p>
+    </div>
+  </details>
+<p class="refs"><a class="ext" href="https://github.com/SpaceTrucker2196">Profile</a><a class="ext" href="https://github.com/United-Cat-Foods">United-Cat-Foods</a><a class="ext" href="https://spacetrucker2196.github.io/sloth/">sloth documentation</a><a class="ext" href="https://spacetrucker2196.github.io/cygnus/">cygnus</a></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">APP.2026.001<small>7 titles</small></div>
+<div class="cat-body">
+<p class="title">Published applications</p>
+<p class="byline">river.io llc &middot; Apple App Store and Google Play</p>
+<dl>
+<dt>Extent</dt><dd>7 iOS titles, 2 also on Android, 1 direct-download macOS build</dd>
+<dt>Period</dt><dd>27 May to 27 August 2026</dd>
+<dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span> — in progress</dd>
+</dl>
+<p class="desc">Subjects that would look unrelated in any other catalogue read as a set in this one: electronic visit verification for family caregivers, an amateur radio propagation almanac, an encrypted offline appointment book, organic farm recordkeeping, a turn-based corn farming simulation built on real USDA and NOAA series and actual farm-bill mechanics, a binaural instrument rendered as a glowing vacuum tube, and a photoreal Stonehenge that keeps accurate astronomical time from 3000 BC to AD 3000.</p>
+<details>
+    <summary>Shipped app manifest</summary>
+    <div class="dbody">
+      <table>
+        <thead><tr><th>App</th><th>Category</th><th>Price</th><th>Released</th><th>Ver</th><th>What it does</th></tr></thead>
+        <tbody>
+<tr><td>CareTime EVV</td><td>Productivity</td><td class="n">$7.99</td><td class="n">2026-05-27</td><td class="n">1.0</td><td>On-device electronic visit verification for self-directed family caregivers; PDF timesheet export</td></tr>
+<tr><td>Spacetrucker Galactic</td><td>Lifestyle</td><td class="n">Free</td><td class="n">2026-06-02</td><td class="n">1.1</td><td>Amateur radio almanac: Kp/A index, solar flux, HF propagation, aurora, DX cluster, POTA. iPhone + Watch</td></tr>
+<tr><td>ClientAPT</td><td>Business</td><td class="n">$8.99</td><td class="n">2026-07-07</td><td class="n">1.0</td><td>Encrypted offline appointment book for solo providers; encrypted vault, duress PIN, no cloud</td></tr>
+<tr><td>Materials And Practices</td><td>Productivity</td><td class="n">Free</td><td class="n">2026-07-13</td><td class="n">1.0</td><td>Organic farm recordkeeping for USDA organic + FSMA. USDA cultivar DB, soil tests, time clock. EN/ES</td></tr>
+<tr><td>Corn 3000 — A Corn Simulator</td><td>Games</td><td class="n">Free</td><td class="n">2026-07-23</td><td class="n">1.0.1</td><td>Turn-based farming sim 1930–present on real USDA/NOAA data and actual farm-bill mechanics</td></tr>
+<tr><td>Nighthawk Tube: Binaural</td><td>Health &amp; Fitness</td><td class="n">Free + $2.99</td><td class="n">2026-07-30</td><td class="n">1.2</td><td>Binaural beat instrument drawn as a particle-rendered vacuum tube with live Lissajous figure</td></tr>
+<tr><td>Henge</td><td>Education</td><td class="n">Free</td><td class="n">2026-08-27</td><td class="n">0.1.0</td><td>Photoreal Stonehenge as a working astronomical calendar; accurate 3000 BC – AD 3000</td></tr>
+        </tbody>
+      </table>
+      <p class="dnote"><b>Google Play:</b> ClientAPT (io.river.clientapt) · Nighthawk Tube: Binaural (io.river.nighthawk), both under River.io LLC.<br><b>Direct:</b> Henge for Mac at river.io/henge/Henge.dmg — v0.1.0, 8.7 MB universal, unnotarized.<br><b>Open TestFlight:</b> testflight.apple.com/join/VKJxtdgn</p>
+    </div>
+  </details>
+<p class="refs"><a class="ext" href="https://apps.apple.com/us/developer/river-io-llc/id452867373">Developer catalogue</a><a class="ext" href="https://www.river.io/software/">Product register</a></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">RIO.2026.001</div>
+<div class="cat-body">
+<p class="title">The Dark Factory</p>
+<p class="byline">river.io/blog &middot; first entry, 27 July 2026</p>
+<dl>
+<dt>Medium</dt><dd>Prose</dd>
+<dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span></dd>
+</dl>
+<p class="desc">Writing on structuring a repository so that autonomous agents can build in it: the mission charter, invariants with hand-written tests as oracles the agents may not modify, and merge gated on a green suite and a warning-clean compile. The lineage back to <i>Technology Mandala</i> (DPF.2001.005) is not subtle, and the twenty-five years between them are the point.</p>
+<p class="refs"><a class="ext" href="https://www.river.io/blog/">Blog</a><a class="ext" href="https://www.river.io/jeff/">Portfolio</a></p>
+</div>
+</div>
+</section>
+
+<!-- ══════════════ SERIES VII ══════════════ -->
+<section id="s7">
+<div class="series-head">
+<span class="series-num">Series VII</span>
+<h2>Editions, Objects and Merchandise</h2>
+<p class="series-dates">2020 &mdash; present</p>
+</div>
+<p class="scope">Work issued as objects, editions or files for sale. One imprint in this series is entirely lost; one exists only on a blockchain.</p>
+
+<div class="cat">
+<div class="acc">NFT.2021.001<small>48 mints</small></div>
+<div class="cat-body">
+<p class="title">The Witness &middot; Robot Fashion Week &middot; single editions</p>
+<p class="byline">rarible.com/spacetrucker &middot; <em>"an audio visual artist working with electronic music and video"</em></p>
+<dl>
+<dt>Medium</dt><dd>Minted digital editions, ERC-721</dd>
+<dt>Extent</dt><dd>48 works created across two collections and a run of single editions</dd>
+<dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span> — on chain</dd>
+</dl>
+<p class="desc"><b>The Witness</b> is the largest coherent picture series the artist has made since 1998: roughly twenty-nine works on unexplained aerial phenomena at White Sands, New Mexico. Titles include <i>Lone Observer</i>, <i>Contact at S-8</i>, <i>Night Test at Facility S-8</i>, <i>Radar Test A7</i>, <i>Portal Event</i>, <i>Levitation Demonstration</i>, <i>Hillside Landing of Disk Craft</i>, <i>Four Orbs Over the Facility</i>, <i>Greeting Party</i>, <i>The Fleet</i>, <i>Possible Insectoid Creature?</i> and <i>Strange Balloon Object Being Tested At White Sands NM</i> in three parts. It is the direct continuation of <i>Anomalous</i> (DPF.2000.004), twenty years later.</p>
+<p class="desc">Single editions include <i>Miracles of the New Surrealist Matriarchs</i>, <i>Portal of the Nouveau</i>, <i>Tuning Diagnostic</i>, <i>Reptile Lifeform 032221</i>, <i>The Library of Mycology</i>, <i>The Weight of Function</i>, <i>Arcology Of The Sun</i>, <i>Municipal Taxation Amendments Supervised Under the Full Moon</i>, <i>Cells 1.0</i> — the title reaches back to SIT.1993.001 — and <b><i>Arcomart &mdash; The LSD Set</i></b>, announced in 2021 as the first minted edition to feature a live performance recorded at Arcosanti.</p>
+<p class="refs"><a class="ext" href="https://rarible.com/spacetrucker">Collection</a></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">ETY.2026.001<small>15 editions</small></div>
+<div class="cat-body">
+<p class="title">Pine and Ledger</p>
+<p class="byline">etsy.com/shop/PineAndLedger &middot; Chandler, Arizona</p>
+<dl>
+<dt>Medium</dt><dd>Digital instant downloads: spreadsheet instruments and presentation templates built on the artist's own photography</dd>
+<dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span></dd>
+</dl>
+<p class="desc">Fifteen editions in five sections. The shop statement makes the photographic provenance explicit: <em>"Every photograph in my nature PowerPoint templates is my own work &mdash; a cottonwood grove in morning light, a monarch on New England aster, the Milky Way over Valley of the Gods, first light on a Gulf shoreline."</em> The Organic Farm Record Keeping Spreadsheet is the paper sibling of the iOS application <i>Materials And Practices</i> (APP.2026.001).</p>
+<details>
+    <summary>All 15 Etsy listings</summary>
+    <div class="dbody">
+      <table>
+        <thead><tr><th>Listing</th><th>Sale</th><th>List</th></tr></thead>
+        <tbody>
+<tr><td>Organic Farm Record Keeping Spreadsheet — Materials, Practices, OMRI Log</td><td class="n">$18.74</td><td class="n">$24.99</td></tr>
+<tr><td>Corn Farm Record Book — Soil Samples, GDD, Practices, Yield Tracker</td><td class="n">$18.74</td><td class="n">$24.99</td></tr>
+<tr><td>Bookkeeping Spreadsheet — Income/Expense Tracker with Automatic P&amp;L</td><td class="n">$6.74</td><td class="n">$8.99</td></tr>
+<tr><td>Invoice Template Excel — Tracker &amp; Generator, Overdue Payment Log</td><td class="n">$6.74</td><td class="n">$8.99</td></tr>
+<tr><td>Budget Spreadsheet — Monthly Personal Budget Planner with Charts</td><td class="n">$5.99</td><td class="n">$7.99</td></tr>
+<tr><td>Fall PowerPoint Template — Autumn Slides</td><td class="n">$7.49</td><td class="n">$9.99</td></tr>
+<tr><td>Wildflower Botanical Presentation Template — 10 Layouts</td><td class="n">$9.74</td><td class="n">$12.99</td></tr>
+<tr><td>Desert Southwest Night Sky PowerPoint Template — Milky Way</td><td class="n">$9.74</td><td class="n">$12.99</td></tr>
+<tr><td>Northwoods Lake Night Sky PowerPoint Template</td><td class="n">$9.74</td><td class="n">$12.99</td></tr>
+<tr><td>Nature Presentation Template — Wildflower Meadow, Butterfly</td><td class="n">$9.74</td><td class="n">$12.99</td></tr>
+<tr><td>Nature PowerPoint Template — Calm Water Photography, 12 Layouts</td><td class="n">$9.74</td><td class="n">$12.99</td></tr>
+<tr><td>Woodland Light Presentation Template — Original Forest Photography</td><td class="n">$9.74</td><td class="n">$12.99</td></tr>
+<tr><td>Small Business Starter Kit — Launch Roadmap, Bookkeeping, Pricing</td><td class="n">$14.99</td><td class="n">$19.99</td></tr>
+<tr><td>Nature PowerPoint Template Bundle — 6 Templates, 64 Slides</td><td class="n">$29.99</td><td class="n">$39.99</td></tr>
+<tr><td>Christmas Trivia Game PowerPoint — 3 Rounds, 30 Questions</td><td class="n">$5.24</td><td class="n">$6.99</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+<p class="refs"><a class="ext" href="https://www.etsy.com/shop/PineAndLedger">Shop</a></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">STH.2022.001<small>109 products</small></div>
+<div class="cat-body">
+<p class="title">Spacetrucker Highlife</p>
+<p class="byline">spacetruckerhighlife.com &middot; <em>"The Original Galactic Aesthetic Superstore. Bespoke designs by Spacetrucker2196."</em></p>
+<dl>
+<dt>Medium</dt><dd>Print-on-demand editions: apparel, blankets, fine art prints, greeting cards, one trading card playmat</dd>
+<dt>Extent</dt><dd>138 reconstructed locations: 109 products, 19 collections, 10 site pages</dd>
+<dt>Condition</dt><dd><span class="cond c-lost">LOST</span> — domain does not resolve; the underlying store was deleted; the Internet Archive can serve content for only 14 of 138 locations</dd>
+</dl>
+<p class="desc">The imprint under which <b>United Cat Foods</b> first appeared as a product line rather than a channel: Vision Seeker, Strong Calico, Matrix Tabby, Exploration Tabby, Baseball Team, Radiation Resistant, Brotherhood of the Shiny Thing, Cat Food Maintenance Engineers. Alongside it ran a totemic series — Raven Void Messenger, Fox Watcher, Dreamtime Bear, The Dance Chief, The Quantum Flux, Three Otters of the Full Moon, Silver Otter, Red-Tailed Hawk Moon, The Geomancer, Vulpini Illuminatious, Ursus the Protector — and a set of sixteen fine art prints whose titles are the last surviving trace of them.</p>
+<p class="desc">The site went from live to redirect between <b>5 April</b> and <b>13 July 2025</b>. One hundred and seven product pages exist now only as filenames. The 5 April 2025 homepage capture, 1.36 MB with the full product grid, is the single richest surviving artefact of the imprint.</p>
+<details>
+    <summary>Reconstructed shop inventory — 19 collections, 109 products</summary>
+    <div class="dbody">
+      <p class="lbl">Collections</p>
+      <div class="cols">2025: Dragon Lizard Lord · Wilderness Guide · Mens Clothing · Womens Clothing · T-Shirts · Natural Arcology · United Cat Foods · Planetary Leisure · Cosmic Shaman<br>2022: Trainquil Mind · Galactic Influencer · Towel Day May 25 · Leisure-wares<br>Late 2022: Modern Arcology · New Surrealist Matriarchs · The Investigators</div>
+      <p class="lbl">United Cat Foods (15)</p>
+      <div class="cols">Baseball T-Shirt · Baseball Team T-Shirt · Strong Calico T-Shirt · Vision Tuxedo T-Shirt · Exploration Tabby T-Shirt · Vision Seeker Matrix Tabby · Vision Seeker Ascension Norwegian Forest Cat · Vision Seeker The Flow · High Gravity 206.8 g/m² Cotton Tee · Cat Food Maintenance Engineers Tee · Radiation Resistant Sticker · Vision Seeker Arctic Fleece Blanket · The Flow Arctic Fleece Blanket · Brotherhood of the Shiny Thing Blanket · United Catfoods Round Rug</div>
+      <p class="lbl">Cosmic Shaman, totem and messenger line (27)</p>
+      <div class="cols">Raven Void Messenger T-Shirt · Raven Void Messenger Comforter · Raven Void Sherpa Fleece · Raven Messengers Arctic Fleece · Raven Messenger Shaman Cloak · Fox Watcher Arctic Fleece · Fox Watcher Messenger Comforter · Fox Watcher Sherpa Fleece · Dreamtime Bear T-Shirt · Dreamtime Bear Comforter · Dreamtime Bear Arctic Fleece (×2) · Dreamtime Bear Shaman Cloak · The Dance Chief Sherpa Fleece · The Quantum Flux Arctic Fleece · The Quantum Flux Sherpa Fleece · 3 Otters of the Full Moon Plush Fleece · Silver Otter Totem Shower Curtains · Red Tail Hawk Moon Portal · Red-Tailed Hawk Moon Totem · Cosmic Messengers · Cosmic Messengers Long Sleeve · The All Knowing · The All Knowing Long Sleeve · The Geomancer · Vulpini Illuminatious · Ursus the Protector</div>
+      <p class="lbl">Dragon Lizard Lord (5)</p>
+      <div class="cols">Logo T-Shirt · Logo Hooded Sweatshirt · vs Gorilla Monkey King Movie Poster T-Shirt · Alpha Tiamat Typhon Alpha Draco Maze Book T-Shirt (×2)</div>
+      <p class="lbl">Apparel, White Noise and misc (19)</p>
+      <div class="cols">Multidimensional Array Hawaiian Shirt · White Noise Hawaiian Shirt (Digital Fog Fade Galaxy) · White Noise High Observer Hoodie Dress · White Noise Full Zip Hoodie · White Noise Athletic Joggers · Lyra Pattern Galaxy Shirt · Arachnid Mandala T-Shirt · Alamenn the Chaos Deity T-Shirt · Cola Wars T-Shirt · Knowledge T-Shirt · Master Guide Bullet Knife Tee · High-Waisted Yoga Leggings · Mens Hawaiian Shirt AOP · The High Observer Kimono Robe · Licensed Spacetrucker Baseball Cap · Multicam Dad Hat · High Top Sneakers Deep Space Black · High Top Sneakers Interplanetary Green · Kitty Kommander Trading Card Playmat</div>
+      <p class="lbl">Towels and blankets, 2022–23 (11)</p>
+      <div class="cols">FracTowel Beach Edition 30×60 · FracTowel Multi-Dimensional Array · FracTowel Core Transmission · Arcology Sherpa Blanket (6 variants) · Sherpa Blanket Two Colors (4 variants)</div>
+      <p class="lbl">Fine art prints and canvases (16)</p>
+      <div class="cols">After the Object Disappeared 16×20 · Another Southwestern Sunset · Demonic Influencer of the Flower Field Selfie · Forgotten Veteran of the Kodachrome Western Fable · Geometry · Kodachrome Desert · Modern Royalty · Priorities of Delivery · The Witness and the City · Transformation · Miracles of the New Surrealist Matriarchs, left and right panels · Dome Village and Lifeforms Matte Canvas · A Taste of Sunshine in the Sky · That First Cup of Coffee Feeling After a Nuclear Detonation · The Architect · Lone Stranger · Solo Saucer · Greeting Party</div>
+      <p class="lbl">Greeting cards, 5×7 (9)</p>
+      <div class="cols">Choice of Reason · Fragments · Eye of the Whale · Light and Shadow North Rim Grand Canyon · North Rim Morning · The Investigators · Vermilion Cliffs · Waiting for Sleep · Yosemite</div>
+    </div>
+  </details>
+</div>
+</div>
+</section>
+
+<!-- ══════════════ SERIES VIII ══════════════ -->
+<section id="s8">
+<div class="series-head">
+<span class="series-num">Series VIII</span>
+<h2>Correspondence and Social</h2>
+<p class="series-dates">1997 &mdash; present</p>
+</div>
+<p class="scope">Accounts held for publication rather than production. Recorded here because several carry statements that appear nowhere else, and because two of them are the only surviving evidence for works listed above.</p>
+
+<div class="cat">
+<div class="acc">SOC.2018.001</div>
+<div class="cat-body">
+<p class="title">Reddit &mdash; u/SpaceTrucker2196</p>
+<dl><dt>Opened</dt><dd>21 July 2018</dd><dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span> — dormant since 2023</dd></dl>
+<p class="desc">Fourteen submissions across r/nightcafe, r/skinwalkerranch, r/amateurradio, r/asmr, r/synthesizers and r/WhatsWrongWithYourDog. The r/asmr posts of August 2022 are the earliest dated appearance of the United Cat Foods material. The r/nightcafe posts — <i>Industrial Rodent Sanitation Team 6</i>, <i>The Arcology is Finished</i>, <i>Robot Workers Part Propaganda Poster #3</i> — identify the tool behind the generated work in Series III.</p>
+<p class="refs"><a class="ext" href="https://old.reddit.com/user/SpaceTrucker2196/">Submissions</a></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">SOC.2021.002</div>
+<div class="cat-body">
+<p class="title">First Church of The Voltage Controlled Oscillator</p>
+<p class="byline">x.com/SpacetruckerVCO &middot; joined August 2021</p>
+<dl><dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span> — dormant</dd></dl>
+<p class="desc">Thirty-two posts, located in the "Milkyway Galaxy", under the standing line <em>"A resting place for all transient waves."</em> The account exists in this catalogue chiefly because it carries the announcement of <i>Arcomart &mdash; The LSD Set</i> (NFT.2021.001) in September 2021.</p>
+<p class="refs"><a class="ext" href="https://x.com/SpacetruckerVCO">Account</a></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">SOC.2020.003</div>
+<div class="cat-body">
+<p class="title">Spacetrucker2196</p>
+<p class="byline">facebook.com/spacetrucker2196 &middot; categorised as Musician</p>
+<dl><dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span></dd></dl>
+<p class="desc">Carries the fullest first-person statement of the persona anywhere: a space-cargo autobiography beginning <em>"In the vast expanse of deep space, I, Spacetrucker, came into existence..."</em> with a long-range freighter captain for a mother and an absent asteroid-belt father. Standing epigraph: <em>"Two roads diverged in a cosmic void, I took the one less traveled, and that's how we ended up here."</em></p>
+<p class="refs"><a class="ext" href="https://www.facebook.com/spacetrucker2196">Page</a></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">SOC.2011.004</div>
+<div class="cat-body">
+<p class="title">Professional record</p>
+<p class="byline">linkedin.com/in/jeffkunzelman &middot; river.io llc from October 2011</p>
+<dl><dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span> — in progress</dd></dl>
+<p class="desc">Eleven roles from Charles Schwab through GPS Insight, General Motors, Haulynx, Insero, the Cosanti Foundation and VARC. Education: Winona State University, BA Fine and Studio Arts, 1989–1993; Minneapolis College of Art and Design, Web and Multimedia Design, 1999–2001 — the second of which is contemporaneous with Series II and explains a good deal about it.</p>
+<p class="refs"><a class="ext" href="https://www.linkedin.com/in/jeffkunzelman/">Profile</a></p>
+</div>
+</div>
+
+<div class="cat">
+<div class="acc">SOC.2020.005</div>
+<div class="cat-body">
+<p class="title">Amateur radio station W9FJC</p>
+<dl><dt>Class</dt><dd>Technician &middot; Mayer, Arizona</dd><dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span></dd></dl>
+<p class="desc">Recorded here because it produced work: <i>ARRL Field Day 2020 Drone Highlights</i>, <i>W9FJC AARL Field Day 2020 2B WI EN44id</i>, and <i>EN44id &mdash; Close to Never-Activated SOTA Summit W9/WI-029</i>, all in Series IV, plus the almanac application <i>Spacetrucker Galactic</i> in Series VI. Mayer is also Arcosanti's post office, which ties the callsign, the Cosanti Foundation role and the <i>Arcology Of The Sun</i> editions to one place.</p>
+<p class="refs"><a class="ext" href="https://www.qrzcq.com/call/W9FJC">Station record</a></p>
+</div>
+</div>
+</section>
+
+<!-- ══════════════ SERIES IX ══════════════ -->
+<section id="s9">
+<div class="series-head">
+<span class="series-num">Series IX</span>
+<h2>Deaccessioned and Lost</h2>
+<p class="series-dates">Summary of losses</p>
+</div>
+<p class="scope">A catalogue of a life's work online is largely a record of what has already gone. The losses are not random: they fall almost entirely on the work that was not marked up as text.</p>
+
+<div class="note">
+<h4>Lost entirely &mdash; no capture exists</h4>
+<p><b>All sound and moving image made before 2005.</b> Every audio and video file on discountpetfood.net was linked with an <b>ftp:</b> scheme, which crawlers do not follow. This takes with it every Alpha60 live recording, the first issue of <i>Music For Distant Restaurants</i>, and the whole DPFdv catalogue including <i>Got Cheeze?</i></p>
+<p><b>107 of 109 Spacetrucker Highlife product pages</b>, together with the artwork reproduced on them.</p>
+<p><b>The OTIS-era gallery</b> at otis.rahul.net, which predates the Internet Archive entirely.</p>
+<p><b>All Twitch broadcasts</b>, expired by platform policy; 11 clips survive.</p>
+<p><b>The Earth Mantra mirror</b> of <i>Imaginary Spaces</i>, withdrawn from archive.org.</p>
+<p><b>The Alibi Tap guestbook</b>, a Java servlet, and the message bodies of the Igloo forum.</p>
+<p><b>halcyon.com/manray as it stood 1995–1998</b>: only the final three months were ever captured, and two of its seven sections — AUTOBIO and the ARTWORK index — were never captured at all.</p>
+</div>
+
+<div class="note">
+<h4>At risk</h4>
+<p>Everything in Series II and the 1990s portion of Series I exists in exactly one place. The 1,316 archived locations of DiscountPetFood Heavy Industries, and the 15 surviving pages of halcyon.com/manray, have no second copy anywhere on the public internet.</p>
+</div>
+</section>
+
+<!-- ══════════════ APPENDIX A ══════════════ -->
+<section id="a1">
+<div class="series-head">
+<span class="series-num">Appendix A</span>
+<h2>Concordance of Names</h2>
+</div>
+<p class="scope">Twelve attributions, with the period and the medium each governs. Several works are reachable only through a name that appears in no search index; the concordance is therefore a finding aid as much as a record.</p>
+<div class="dbody" style="padding-left:0">
+<table>
+<thead><tr><th>Name</th><th>Period</th><th>Governs</th></tr></thead>
+<tbody>
+<tr><td><b>Jeffrey B. Kunzelman</b></td><td class="n">1993–</td><td>SITO, the halcyon gallery, the D/A division, the Igloo study, <i>Imaginary Spaces</i>, the professional record, river.io llc</td></tr>
+<tr><td><b>manray</b></td><td class="n">c. 1994–1999</td><td>The halcyon.com shell account and gallery URL. Never used on SITO</td></tr>
+<tr><td><b>kuj</b></td><td class="n">1993–2000</td><td>SITO artist identifier</td></tr>
+<tr><td><b>C.C.T.B</b></td><td class="n">1997–</td><td>Chemical Computer Thinking Battery. Community handle of the halcyon period; taken from the title of the artist's statement</td></tr>
+<tr><td><b>DiscountPetFood Heavy Industries</b></td><td class="n">1999–2005</td><td>The imprint. Six divisions, five hostnames. The name is dadaist and, by the artist's own account, means nothing</td></tr>
+<tr><td><b>Reverend Cathode</b></td><td class="n">2000–</td><td>First Church of the VCO; the Minimoog chair in Alpha60; the ASRI release</td></tr>
+<tr><td><b>Alpha60</b></td><td class="n">2000–</td><td>The trio, its subdomain and mailing list; later the Vimeo and SoundCloud archives</td></tr>
+<tr><td><b>Remus Pederson</b></td><td class="n">1999–2005</td><td>Alibi Gulch reporting</td></tr>
+<tr><td><b>Abner Bisselhoffer</b></td><td class="n">1999–2005</td><td>Alibi Gulch editorial. Spelling varies in the source</td></tr>
+<tr><td><b>Space][rucker</b></td><td class="n">2005–</td><td>Flickr display name. Appears nowhere else on the indexed web</td></tr>
+<tr><td><b>Spacetrucker2196</b></td><td class="n">2008–</td><td>The principal modern handle: repositories, moving image, broadcast, editions, social</td></tr>
+<tr><td><b>United Cat Foods</b></td><td class="n">2023–</td><td>Channel, organisation, product line and ship registry (UCFS). Not a company</td></tr>
+</tbody>
+</table>
+<p class="lbl">Personae of the Alibi Gulch fiction, not attributions</p>
+<div class="cols">Thor Tolefson · Bucky Tolefson · Floyd Bush · Merle Stenson · Pipes Pheiffenheimer · Cousin Cleatus · Big Dick · Ivar Scow · Hans Beckner · Ole Pederson</div>
+<p class="lbl">Collaborators recorded in the sources</p>
+<div class="cols">Ian Schlueter (Human Highway; Igloo and Moab) · Betty Schlueter · Andrew Bishop · Guy Fusman · Omar Sayyah · Brad McKenzie · Carrie Ortiz · Reva Wittenberg · Chris and Jeremiah, of Alpha60</div>
+<p class="lbl">Associated domains</p>
+<div class="cols">alibigulch.com · humanhighway.net · cogitox.com · bedhead104.com · cheesestate.com · mp3.com/alpha60 · spacetruckerhighlife.com · river.io</div>
+</div>
+</section>
+
+<!-- ══════════════ APPENDIX B ══════════════ -->
+<section id="a2">
+<div class="series-head">
+<span class="series-num">Appendix B</span>
+<h2>Works Formerly Attributed</h2>
+</div>
+<p class="scope">Records that match one of the names above and belong to other hands. Listed so that they are not re-attributed in future.</p>
+<div class="dbody" style="padding-left:0">
+<table>
+<thead><tr><th>Record</th><th>Correct attribution</th></tr></thead>
+<tbody>
+<tr><td>Spacetrucker &mdash; Bandcamp, Spotify, Discogs, Metal Archives, Rate Your Music</td><td>A stoner rock band from St. Louis, releases <i>Launch Sequence</i> and <i>Smooth Orbit</i></td></tr>
+<tr><td>vimeo.com/spacetrucker</td><td>Krister Sjöblom</td></tr>
+<tr><td>soundcloud.com/spacetrucker</td><td>Krister Sjöblom</td></tr>
+<tr><td>soundcloud.com/space_trucker</td><td>An unrelated uploader, Detroit</td></tr>
+<tr><td>alpha60.com &middot; alpha60.org</td><td>Alpha 60 Design Shop, Washington DC, 1998–2021. The Alpha60 of this catalogue never held a domain of its own</td></tr>
+<tr><td>ALPHA60 on Vimeo and Instagram search</td><td>A fashion label, Melbourne</td></tr>
+<tr><td>discountpetfood.com</td><td>A defunct retail business, 2002–2018. The imprint in Series II is the <b>.net</b></td></tr>
+<tr><td>youtube.com/@naturemeds</td><td>An unrelated supplement channel. The catalogue entry is <b>@Nature-Meds</b>, hyphenated</td></tr>
+<tr><td>instagram.com/naturemeds</td><td>An unrelated account</td></tr>
+<tr><td>linkedin.com/company/river-io</td><td>A consulting firm, San Francisco</td></tr>
+<tr><td>Binkley Spacetrucker on YouTube</td><td>An unrelated gaming profile</td></tr>
+<tr><td>u/spacetrucker on Reddit</td><td>A dormant account opened 2010, no established connection</td></tr>
+<tr><td>Audius spacetrucker</td><td>An unrelated account, Broken Arrow OK, no recordings</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<!-- ══════════════ APPENDIX C ══════════════ -->
+<section id="a3">
+<div class="series-head">
+<span class="series-num">Appendix C</span>
+<h2>Note on Sources and Method</h2>
+</div>
+<p class="scope">Attribution in this catalogue is established by chained evidence between accounts, never by name similarity, because the names are common and at least six unrelated parties publish under them.</p>
+<div class="note">
+<h4>The chain</h4>
+<p>The repository profile names the artist and links the Instagram account and the YouTube channel. The Instagram account names him. The Bandcamp collection page names him and links the <em>fretro</em> photostream. The <em>fretro</em> photostream carries the display name <b>Space][rucker</b> and links back to Instagram. The Vimeo account at the slug <em>alpha60</em> gives the <em>fretro</em> photostream as its website. The halcyon gallery and the SITO record share his name, and the HyperRust registry entry binds the halcyon address to the handle <b>C.C.T.B</b>. The DiscountPetFood image division states in plain text that Remus Pederson and Reverend Cathode are his own aliases.</p>
+<p>Each link in that chain was read directly. Where a record could not be chained it is marked in the entry.</p>
+</div>
+<div class="note">
+<h4>Archival sources</h4>
+<p>Pre-2005 material is drawn from the <b>Internet Archive Wayback Machine</b>, queried through the CDX index across all five discountpetfood.net hostnames and halcyon.com. Where a page is recorded in the index but the replay server cannot serve it, that is noted. Quotations are transcribed verbatim from archived HTML, including original misspellings, which have been retained as evidence of authorship rather than corrected.</p>
+<p>Counts of items, works and followers were taken in <b>August 2026</b> and will drift.</p>
+</div>
+<div class="note">
+<h4>Excluded from the catalogue</h4>
+<p>Private accounts; anything behind a login; residential addresses and telephone numbers appearing in archived curricula vitae; and email addresses still in use. Historical addresses are named only where they are defunct and appear in a quoted source.</p>
+</div>
+</section>
+
+<footer>
+<p><b>Spacetrucker: Catalogue Raisonné</b> &middot; compiled August 2026 &middot; published by river.io llc, archival services division.</p>
+<p>Nine series, three appendices, thirty-three years. Corrections and additions to the record are welcome.</p>
+<p><a href="/">river.io</a> &middot; <a href="/software/">software register</a> &middot; <a href="/blog/">the dark factory</a> &middot; <a href="/jeff/">portfolio</a></p>
+</footer>
+
+</div>
+</body>
+</html>
