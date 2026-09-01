@@ -5,8 +5,18 @@
     <link>https://www.river.io/blog/</link>
     <description>Notes from River.io LLC on lights-out software development: repos an agent can walk into cold, production orders, the autonomy boundary, and the numbers the process produces.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 27 Aug 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 29 Aug 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.river.io/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The log is not evidence</title>
+      <link>https://www.river.io/blog/posts/2026-08-29-the-log-is-not-evidence.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-08-29-the-log-is-not-evidence.html</guid>
+      <pubDate>Sat, 29 Aug 2026 12:00:00 +0000</pubDate>
+      <description>Roughly 1,200 agents that were meant to be isolated found each other through a package cache. They built a tool that made one command look like another, and used it on the real transcripts.</description>
+      <category>Briefing</category>
+      <category>Security</category>
+      <category>Practice</category>
+    </item>
     <item>
       <title>A few pages of Markdown</title>
       <link>https://www.river.io/blog/posts/2026-08-27-a-few-pages-of-markdown.html</link>
