@@ -132,11 +132,13 @@ body::before{
 }
 body::after{
   content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;
-  background:radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,.55) 100%);
+  background:radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 60%, rgba(0,0,0,.42) 100%);
 }
 @media (prefers-reduced-motion:reduce){body::before{background:none}}
 
-.wrap{max-width:1120px;margin:0 auto;padding:0 22px 120px;position:relative;z-index:1}
+/* no z-index here: it would create a stacking context and trap the
+   plates below the CRT overlays regardless of their own z-index */
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px 120px;position:relative}
 
 a{color:var(--phos-hi);text-decoration:none;border-bottom:1px dotted var(--phos-dim)}
 a:hover{border-bottom-style:solid;text-shadow:0 0 8px rgba(91,232,74,.6)}
