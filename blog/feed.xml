@@ -5,8 +5,18 @@
     <link>https://www.river.io/blog/</link>
     <description>Notes from River.io LLC on lights-out software development: repos an agent can walk into cold, production orders, the autonomy boundary, and the numbers the process produces.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 01 Sep 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 03 Sep 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.river.io/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The context tax</title>
+      <link>https://www.river.io/blog/posts/2026-09-03-the-context-tax.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-09-03-the-context-tax.html</guid>
+      <pubDate>Thu, 03 Sep 2026 12:00:00 +0000</pubDate>
+      <description>Sonar published the bill for one agent pull request: 512 round-trips, 156 million tokens, $41. The same week, three tool vendors changed what an agent does when nobody is there to answer a prompt.</description>
+      <category>Briefing</category>
+      <category>Cost</category>
+      <category>Practice</category>
+    </item>
     <item>
       <title>The gate you ask too often</title>
       <link>https://www.river.io/blog/posts/2026-09-01-the-gate-you-ask-too-often.html</link>
