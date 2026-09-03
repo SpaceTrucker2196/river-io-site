@@ -170,24 +170,26 @@ h1{
 /* ── plates ───────────────────────────────── */
 .plates{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
-  gap:16px;
-  margin:20px 0 4px;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:20px;
+  margin:22px 0 4px;
 }
-.plates.pair{grid-template-columns:repeat(auto-fit,minmax(180px,240px));gap:22px}
-figure{margin:0}
+.plates.pair{grid-template-columns:repeat(auto-fit,minmax(230px,290px));gap:26px}
+/* plates sit ABOVE the CRT scanline and vignette layers so the artwork
+   reads true; the overlays stay on the type, which is the point of them */
+figure{margin:0;position:relative;z-index:10000}
 figure a{border:0;display:block}
 figure img{
   display:block;width:100%;height:auto;
   border:1px solid var(--rule);
   background:#000;
-  filter:saturate(.92);
-  transition:border-color .18s ease, filter .18s ease;
+  transition:border-color .18s ease, transform .18s ease;
 }
 figure a:hover img,figure a:focus-visible img{
   border-color:var(--phos);
-  filter:saturate(1.05) brightness(1.06);
+  transform:scale(1.02);
 }
+@media (prefers-reduced-motion:reduce){figure img{transition:none}figure a:hover img{transform:none}}
 figure a:focus-visible img{outline:1px solid var(--phos-hi);outline-offset:2px}
 figcaption{
   font-size:10.5px;line-height:1.55;color:var(--phos-dim);
@@ -199,7 +201,7 @@ figcaption i{font-style:italic}
   font-size:11px;color:var(--phos-dim);letter-spacing:.1em;
   text-transform:uppercase;margin:22px 0 0;
 }
-.banner{margin:22px 0 6px}
+.banner{margin:22px 0 6px;position:relative;z-index:10000}
 .banner img{display:block;width:100%;max-width:760px;height:auto;border:1px solid var(--rule);background:#000}
 
 /* ── generic blocks ───────────────────────── */
