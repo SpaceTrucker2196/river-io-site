@@ -94,14 +94,14 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap">
 <style>
 :root{
-  --bg:#0C110C;
-  --panel:#111A11;
-  --panel-2:#162115;
-  --phos:#5BE84A;
-  --phos-hi:#B8FFA8;
-  --phos-mid:#3FBF33;
-  --phos-dim:#2A7F22;
-  --rule:#1E3A1B;
+  --bg:#0A0F0E;
+  --panel:#101A17;
+  --panel-2:#15211D;
+  --phos:#45E5A8;
+  --phos-hi:#B4FFDC;
+  --phos-mid:#2FBE8C;
+  --phos-dim:#2A9C74;
+  --rule:#17392E;
   --amber:#FFB000;
   --amber-dim:#8A6100;
   --mono:"Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
@@ -141,7 +141,7 @@ body::after{
 .wrap{max-width:1120px;margin:0 auto;padding:0 22px 120px;position:relative}
 
 a{color:var(--phos-hi);text-decoration:none;border-bottom:1px dotted var(--phos-dim)}
-a:hover{border-bottom-style:solid;text-shadow:0 0 8px rgba(91,232,74,.6)}
+a:hover{border-bottom-style:solid;text-shadow:0 0 8px rgba(69,229,168,.6)}
 a:focus-visible{outline:1px solid var(--phos-hi);outline-offset:3px}
 a.ext::after{content:" ↗";font-size:.85em;opacity:.6}
 
@@ -156,7 +156,7 @@ h1{
   letter-spacing:.02em;
   margin:0 0 6px;
   color:var(--phos-hi);
-  text-shadow:0 0 14px rgba(91,232,74,.45);
+  text-shadow:0 0 14px rgba(69,229,168,.45);
   text-wrap:balance;
 }
 .subtitle{
@@ -198,6 +198,11 @@ figcaption{
   margin-top:7px;letter-spacing:.02em;
 }
 figcaption b{display:block;color:var(--phos);font-weight:500;font-style:normal}
+.fsrc{display:block;margin-top:3px}
+.fsrc a{color:var(--phos-dim);border-bottom:1px dotted var(--rule);text-decoration:none;font-size:9.5px;letter-spacing:.04em}
+.fsrc a:hover{color:var(--phos);border-bottom-color:var(--phos-mid)}
+.plates.one{grid-template-columns:minmax(0,340px)}
+.plates.strip{grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:14px}
 figcaption i{font-style:italic}
 .plate-note{
   font-size:11px;color:var(--phos-dim);letter-spacing:.1em;
@@ -230,7 +235,7 @@ section{margin:66px 0 0;scroll-margin-top:20px}
 }
 h2{
   font-size:clamp(20px,3.2vw,32px);font-weight:600;line-height:1.15;margin:0 0 4px;
-  color:var(--phos-hi);letter-spacing:.01em;text-shadow:0 0 10px rgba(91,232,74,.3);
+  color:var(--phos-hi);letter-spacing:.01em;text-shadow:0 0 10px rgba(69,229,168,.3);
 }
 .series-dates{color:var(--phos-dim);font-size:13px;letter-spacing:.1em}
 .scope{
@@ -261,7 +266,7 @@ h3.sub span{color:var(--phos-dim);letter-spacing:.1em;float:right;text-transform
 .cat-body{min-width:0}
 .title{
   color:var(--phos-hi);font-size:17px;font-weight:600;line-height:1.3;margin:0 0 2px;
-  text-shadow:0 0 8px rgba(91,232,74,.28);
+  text-shadow:0 0 8px rgba(69,229,168,.28);
 }
 .title i{font-style:italic;font-weight:500}
 .byline{color:var(--phos-mid);font-size:13px;margin:0 0 12px}
@@ -322,6 +327,69 @@ tr:last-child td{border-bottom:0}
 .dnote{font-size:11.5px;color:var(--phos-dim);line-height:1.8;margin-top:14px}
 .lbl{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin:16px 0 6px}
 
+/* ── plate detail: instrument view ────────── */
+.lb{
+  position:fixed;inset:0;z-index:20000;
+  background:rgba(6,10,9,.96);
+  display:grid;grid-template-columns:minmax(0,1fr) 340px;
+  gap:0;overflow:auto;
+}
+.lb[hidden]{display:none}
+@media (max-width:900px){.lb{grid-template-columns:1fr;grid-template-rows:auto auto}}
+.lb-stage{
+  display:flex;align-items:center;justify-content:center;
+  padding:56px 32px;min-height:100%;
+}
+.lb-stage img{
+  max-width:100%;max-height:calc(100vh - 112px);
+  width:auto;height:auto;display:block;
+  border:1px solid var(--rule);background:#000;
+}
+.lb-side{
+  border-left:1px solid var(--rule);
+  background:var(--panel);
+  padding:28px 24px 60px;
+  font-size:11.5px;line-height:1.65;color:var(--phos-dim);
+}
+@media (max-width:900px){.lb-side{border-left:0;border-top:1px solid var(--rule)}}
+.lb-unit{
+  font-size:11px;letter-spacing:.2em;color:var(--amber);font-weight:600;margin:0 0 2px;
+}
+.lb-name{
+  font-size:17px;line-height:1.25;color:var(--phos-hi);font-weight:600;margin:0 0 3px;
+}
+.lb-sub{margin:0 0 22px;color:var(--phos-mid);font-size:11.5px}
+.lb-sec{
+  font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--amber);font-weight:600;
+  border-bottom:1px solid var(--rule);padding-bottom:5px;margin:24px 0 10px;
+  display:flex;justify-content:space-between;align-items:baseline;
+}
+.lb-sec span{color:var(--phos-dim);letter-spacing:.1em;font-weight:400;text-transform:none;font-size:9.5px}
+.lb dl.rd{display:grid;grid-template-columns:82px minmax(0,1fr);gap:3px 12px;margin:0}
+.lb dl.rd dt{color:var(--phos-dim);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;padding-top:2px}
+.lb dl.rd dd{margin:0;color:var(--phos);font-variant-numeric:tabular-nums;min-width:0;overflow-wrap:anywhere;word-break:break-word}
+.rd dd a{color:var(--phos);text-decoration:none;border-bottom:1px dotted var(--phos-dim)}
+.rd dd a:hover{border-bottom-color:var(--phos)}
+.lb dl.rd dd.q{color:var(--phos-mid)}
+#lb-hist{display:block;width:100%;height:110px;border:1px solid var(--rule);background:#070C0A}
+.lb-ramp{height:9px;margin-top:6px;border:1px solid var(--rule);
+  background:linear-gradient(to right,#000,#fff)}
+.lb-rampl{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.12em;color:var(--phos-dim);margin-top:3px}
+.lb-x,.lb-nav{
+  position:fixed;z-index:20001;background:transparent;color:var(--phos-dim);
+  border:1px solid var(--rule);font-family:var(--mono);font-size:10px;
+  letter-spacing:.16em;padding:6px 10px;cursor:pointer;
+}
+.lb-x:hover,.lb-nav:hover{color:var(--phos-hi);border-color:var(--phos)}
+.lb-x:focus-visible,.lb-nav:focus-visible{outline:1px solid var(--phos-hi);outline-offset:2px}
+.lb-x{top:18px;right:364px}
+@media (max-width:900px){.lb-x{right:18px}}
+.lb-nav.prev{left:18px;top:50%}
+.lb-nav.next{left:64px;top:50%}
+.lb-note{margin-top:10px;font-size:10px;color:var(--phos-dim);line-height:1.6}
+body.lb-open{overflow:hidden}
+
 footer{border-top:1px solid var(--phos-dim);margin-top:80px;padding-top:24px;color:var(--phos-dim);font-size:12px;line-height:2;max-width:80ch}
 footer a{color:var(--phos-mid)}
 </style>
@@ -335,17 +403,17 @@ footer a{color:var(--phos-mid)}
 loading collection . . . . . . . . . . . . . . . . . . . . ok</p>
 
 <h1>Spacetrucker<br>Catalogue Raisonné</h1>
-<p class="subtitle">Works published online, 1993 &mdash; present</p>
+<p class="subtitle">Published output, 1993 &mdash; present &middot; 44 records, 9 series</p>
 
 <p class="imprint">A descriptive catalogue of work made public on the internet by <b>Jeffrey B. Kunzelman</b> under the names <b>manray</b>, <b>kuj</b>, <b>C.C.T.B</b>, <b>Alpha60</b>, <b>Reverend Cathode</b>, <b>Remus Pederson</b>, <b>Abner Bisselhoffer</b>, <b>Space][rucker</b>, <b>Spacetrucker2196</b>, <b>DiscountPetFood Heavy Industries</b>, <b>United Cat Foods</b> and <b>river.io llc</b>.<br><br>
-Compiled August 2026. Arranged in nine series with three appendices. Entries are numbered by group, year and item. Where a work survives only in the Internet Archive, the accession record is the work.</p>
+Compiled August 2026. Nine series, three appendices, 44 accession records, numbered GROUP.YEAR.ITEM. Every entry was checked against a retrievable source; where the source is gone, the record says so and says how far it got. Where a work survives only in the Internet Archive, the accession record <em>is</em> the work.</p>
 </header>
 
 <div class="note">
-<h4>Key to the catalogue</h4>
-<p><b>Accession number</b> takes the form GROUP.YEAR.ITEM. The group prefix names the platform or imprint that published the work: SIT (SITO), HAL (halcyon.com/manray), HYP (HyperRust), DPF (DiscountPetFood Heavy Industries), A60 (Alpha60), FLK (Flickr), IGM (Instagram), FOT (Foto), VIM (Vimeo), YTB (YouTube), TWC (Twitch), FLM (film), SND (sound recordings), GIT (source repositories), APP (published applications), RIO (river.io), STH (Spacetrucker Highlife), NFT (minted editions), ETY (Etsy), SOC (correspondence and social).</p>
-<p><b>Condition</b> is recorded in three states. <span class="cond c-extant">EXTANT</span> — the work is live on the open web at time of writing. <span class="cond c-archival">ARCHIVAL RECORD ONLY</span> — the work is offline; a capture survives in the Internet Archive. <span class="cond c-lost">LOST</span> — the work is offline and no capture exists.</p>
-<p><b>Attribution</b> names the persona under which the work was issued, which is frequently not the artist's own name. Appendix A gives a concordance. Attributions are established by chained evidence between accounts, not by name similarity; works matching a name but belonging to other hands are listed in Appendix B.</p>
+<h4>How to read a record</h4>
+<p><b>Accession number</b> is GROUP.YEAR.ITEM. The prefix identifies the platform or imprint that published it: SIT (SITO), HAL (halcyon.com/manray), HYP (HyperRust), DPF (DiscountPetFood Heavy Industries), A60 (Alpha60), FLK (Flickr), IGM (Instagram), FOT (Foto), VIM (Vimeo), YTB (YouTube), TWC (Twitch), FLM (film), SND (sound recordings), GIT (source repositories), APP (published applications), RIO (river.io), STH (Spacetrucker Highlife), NFT (minted editions), ETY (Etsy), SOC (correspondence and social).</p>
+<p><b>Condition</b> is one of three states. <span class="cond c-extant">EXTANT</span> — resolves on the open web at time of writing. <span class="cond c-archival">ARCHIVAL RECORD ONLY</span> — does not resolve; a capture survives in the Internet Archive. <span class="cond c-lost">LOST</span> — does not resolve and no capture exists.</p>
+<p><b>Attribution</b> names the persona the work shipped under, which is usually not the artist's own name. Appendix A is the concordance. Attributions are established by a chain of links between accounts, not by name similarity; records matching a name but belonging to other hands are quarantined in Appendix B.</p>
 </div>
 
 <div class="contents">
@@ -373,7 +441,7 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <h2>Early Digital Work</h2>
 <p class="series-dates">1993 &mdash; 1999 &middot; Winona MN, Olympia WA</p>
 </div>
-<p class="scope">The earliest surviving online work, made on a Macintosh IIfx in Photoshop 2.5 within months of the artist finishing a fine arts degree. Two of the three records in this series are still live on the open web after thirty-three years, which is longer than most of the platforms that have since replaced them. The through-line already visible here — <em>segmentation, signal degradation, the machine as a mind</em> — runs unbroken to the software published in 2026.</p>
+<p class="scope">Built on a Macintosh IIfx with 32 MB of RAM, in Photoshop 2.5, within months of a fine arts degree. Two of the three records still resolve on the open web thirty-three years on, which is better uptime than most of the platforms that replaced them. The operating theme is already fixed here — <em>segmentation, signal degradation, the machine as a mind</em> — and it runs unbroken to the software shipped in 2026.</p>
 
 <div class="cat">
 <div class="acc">SIT.1993.001<small>9 works</small></div>
@@ -390,17 +458,17 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <p class="desc">The accompanying artist statement dates itself precisely: <em>"B.A. Art Winona State University 1993, emphasis on Painting &amp; Graphic Design... All the digital images were done with Photoshop 2.5 on a Mac IIFX with 32megs RAM. I've only been working with Photoshop for about 6 months so the images only represent experimentation with this new medium."</em> Titles given there include <i>Frozen 1</i>, <i>Bath With Kai</i>, <i>Breathe</i>, <i>Cesium Walk</i>, <i>Eye Matix</i> and <i>Cells 1</i>.</p>
 
 <div class="plates">
-<figure><a href="/spacetrucker/plates/cells-1.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/cells-1.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Cells 1"></a><figcaption><b>Cells 1</b>1993</figcaption></figure>
-<figure><a href="/spacetrucker/plates/eye-matrix.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/eye-matrix.jpg" width="1100" height="880" loading="lazy" decoding="async" alt="Eye Matix"></a><figcaption><b>Eye Matix</b>1993</figcaption></figure>
-<figure><a href="/spacetrucker/plates/meta-engine.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/meta-engine.jpg" width="1100" height="880" loading="lazy" decoding="async" alt="metaEngine"></a><figcaption><b>metaEngine</b>1994</figcaption></figure>
-<figure><a href="/spacetrucker/plates/head-1.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/head-1.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Head 1"></a><figcaption><b>Head 1</b>1993</figcaption></figure>
-<figure><a href="/spacetrucker/plates/surreal-1.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/surreal-1.jpg" width="1100" height="880" loading="lazy" decoding="async" alt="Surreal 1"></a><figcaption><b>Surreal 1</b>1993</figcaption></figure>
-<figure><a href="/spacetrucker/plates/under-ice.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/under-ice.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Under Ice"></a><figcaption><b>Under Ice</b>1993</figcaption></figure>
-<figure><a href="/spacetrucker/plates/world-matrix.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/world-matrix.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="World Matrix"></a><figcaption><b>World Matrix</b>1993</figcaption></figure>
-<figure><a href="/spacetrucker/plates/franken-2.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/franken-2.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Franken 2"></a><figcaption><b>Franken 2</b>1993</figcaption></figure>
-<figure><a href="/spacetrucker/plates/cat2.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/cat2.jpg" width="1100" height="1037" loading="lazy" decoding="async" alt="CAT2"></a><figcaption><b>CAT2</b>1993, found image</figcaption></figure>
-<figure><a href="/spacetrucker/plates/d-image-3.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/d-image-3.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="D Image 3"></a><figcaption><b>D Image 3</b>1993</figcaption></figure>
-<figure><a href="/spacetrucker/plates/ice-2.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/ice-2.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Ice 2"></a><figcaption><b>Ice 2</b>1993</figcaption></figure>
+<figure data-acc="SIT.1993.001" data-date="1993" data-medium="Digital image, Adobe Photoshop 2.5" data-prov="SITO Artchive, as kuj" data-bytes="346071" data-src="https://id.sito.org/kuj/" data-srclabel="id.sito.org/kuj"><a href="/spacetrucker/plates/cells-1.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/cells-1.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Cells 1"></a><figcaption><b>Cells 1</b>1993<span class="fsrc"><a href="https://id.sito.org/kuj/" target="_blank" rel="noopener">id.sito.org/kuj ↗</a></span></figcaption></figure>
+<figure data-acc="SIT.1993.001" data-date="1993" data-medium="Digital image, Adobe Photoshop 2.5" data-prov="SITO Artchive, as kuj" data-bytes="183603" data-src="https://id.sito.org/kuj/" data-srclabel="id.sito.org/kuj"><a href="/spacetrucker/plates/eye-matrix.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/eye-matrix.jpg" width="1100" height="880" loading="lazy" decoding="async" alt="Eye Matix"></a><figcaption><b>Eye Matix</b>1993<span class="fsrc"><a href="https://id.sito.org/kuj/" target="_blank" rel="noopener">id.sito.org/kuj ↗</a></span></figcaption></figure>
+<figure data-acc="SIT.1993.001" data-date="1994" data-medium="Digital image" data-prov="SITO Artchive, as kuj" data-bytes="371071" data-src="https://id.sito.org/kuj/" data-srclabel="id.sito.org/kuj"><a href="/spacetrucker/plates/meta-engine.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/meta-engine.jpg" width="1100" height="880" loading="lazy" decoding="async" alt="metaEngine"></a><figcaption><b>metaEngine</b>1994<span class="fsrc"><a href="https://id.sito.org/kuj/" target="_blank" rel="noopener">id.sito.org/kuj ↗</a></span></figcaption></figure>
+<figure data-acc="DPF.1993.009" data-date="1993" data-medium="Digital image" data-prov="Digital Image Archive, year index 1993" data-bytes="268908" data-src="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" data-srclabel="wayback · kunzelman…/archive"><a href="/spacetrucker/plates/head-1.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/head-1.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Head 1"></a><figcaption><b>Head 1</b>1993<span class="fsrc"><a href="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" target="_blank" rel="noopener">wayback · kunzelman…/archive ↗</a></span></figcaption></figure>
+<figure data-acc="DPF.1993.009" data-date="1993" data-medium="Digital image" data-prov="Digital Image Archive, year index 1993" data-bytes="435957" data-src="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" data-srclabel="wayback · kunzelman…/archive"><a href="/spacetrucker/plates/surreal-1.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/surreal-1.jpg" width="1100" height="880" loading="lazy" decoding="async" alt="Surreal 1"></a><figcaption><b>Surreal 1</b>1993<span class="fsrc"><a href="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" target="_blank" rel="noopener">wayback · kunzelman…/archive ↗</a></span></figcaption></figure>
+<figure data-acc="DPF.1993.009" data-date="1993" data-medium="Digital image" data-prov="Digital Image Archive, year index 1993" data-bytes="547948" data-src="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" data-srclabel="wayback · kunzelman…/archive"><a href="/spacetrucker/plates/under-ice.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/under-ice.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Under Ice"></a><figcaption><b>Under Ice</b>1993<span class="fsrc"><a href="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" target="_blank" rel="noopener">wayback · kunzelman…/archive ↗</a></span></figcaption></figure>
+<figure data-acc="DPF.1993.009" data-date="1993" data-medium="Digital image" data-prov="Digital Image Archive, year index 1993" data-bytes="248193" data-src="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" data-srclabel="wayback · kunzelman…/archive"><a href="/spacetrucker/plates/world-matrix.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/world-matrix.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="World Matrix"></a><figcaption><b>World Matrix</b>1993<span class="fsrc"><a href="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" target="_blank" rel="noopener">wayback · kunzelman…/archive ↗</a></span></figcaption></figure>
+<figure data-acc="DPF.1993.009" data-date="1993" data-medium="Digital image" data-prov="Digital Image Archive, year index 1993" data-bytes="263481" data-src="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" data-srclabel="wayback · kunzelman…/archive"><a href="/spacetrucker/plates/franken-2.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/franken-2.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Franken 2"></a><figcaption><b>Franken 2</b>1993<span class="fsrc"><a href="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" target="_blank" rel="noopener">wayback · kunzelman…/archive ↗</a></span></figcaption></figure>
+<figure data-acc="DPF.1993.009" data-date="1993" data-medium="Digital image from found printed source" data-prov="Digital Image Archive, year index 1993" data-bytes="289607" data-src="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" data-srclabel="wayback · kunzelman…/archive"><a href="/spacetrucker/plates/cat2.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/cat2.jpg" width="1100" height="1037" loading="lazy" decoding="async" alt="CAT2"></a><figcaption><b>CAT2</b>1993, found image<span class="fsrc"><a href="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" target="_blank" rel="noopener">wayback · kunzelman…/archive ↗</a></span></figcaption></figure>
+<figure data-acc="DPF.1993.009" data-date="1993" data-medium="Digital image" data-prov="Digital Image Archive, year index 1993" data-bytes="322976" data-src="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" data-srclabel="wayback · kunzelman…/archive"><a href="/spacetrucker/plates/d-image-3.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/d-image-3.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="D Image 3"></a><figcaption><b>D Image 3</b>1993<span class="fsrc"><a href="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" target="_blank" rel="noopener">wayback · kunzelman…/archive ↗</a></span></figcaption></figure>
+<figure data-acc="DPF.1993.009" data-date="1993" data-medium="Digital image" data-prov="Digital Image Archive, year index 1993" data-bytes="144867" data-src="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" data-srclabel="wayback · kunzelman…/archive"><a href="/spacetrucker/plates/ice-2.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/ice-2.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Ice 2"></a><figcaption><b>Ice 2</b>1993<span class="fsrc"><a href="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" target="_blank" rel="noopener">wayback · kunzelman…/archive ↗</a></span></figcaption></figure>
 </div>
 <p class="refs"><a class="ext" href="https://id.sito.org/kuj/">SITOme profile</a><a class="ext" href="https://www.sito.org/cgi-bin/egads/segads?idonly=kuj">Artchive, 9 works</a><a class="ext" href="https://www.sito.org/id/kuj/">Image directory</a></p>
 </div>
@@ -422,21 +490,21 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <p class="desc">A <b>Collection of the Artist</b> page holds work by others: Betty Schlueter, <i>Surreal Sunflowers</i> (May 1995); Carrie Ortiz, <i>One Arm Muffin Head 1.2</i> (August 1994); Ian Schlueter, <i>Little Metal Dude on Fire</i> (November 1994); Brad McKenzie, <i>Seattle Henge</i> and <i>Alaska</i> (March 1995).</p>
 
 <div class="plates">
-<figure><a href="/spacetrucker/plates/spirit-of-the-age.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/spirit-of-the-age.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Spirit of the Age"></a><figcaption><b>Spirit of the Age</b>Nov 1993 &middot; after the Hawkwind song</figcaption></figure>
-<figure><a href="/spacetrucker/plates/while-others-sleep.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/while-others-sleep.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="While Others Sleep"></a><figcaption><b>While Others Sleep</b>Jan 1994 &middot; KPT Fractal Explorer</figcaption></figure>
-<figure><a href="/spacetrucker/plates/simulated.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/simulated.jpg" width="825" height="1100" loading="lazy" decoding="async" alt="Simulated"></a><figcaption><b>Simulated</b>Apr 1994</figcaption></figure>
-<figure><a href="/spacetrucker/plates/untitled-6.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/untitled-6.jpg" width="935" height="1100" loading="lazy" decoding="async" alt="Untitled-6.3"></a><figcaption><b>Untitled-6.3</b>Oct 1994 &middot; Canon digital camera</figcaption></figure>
-<figure><a href="/spacetrucker/plates/flowers-1.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/flowers-1.jpg" width="825" height="1100" loading="lazy" decoding="async" alt="Flowers 1.2"></a><figcaption><b>Flowers 1.2</b>Jul 1994 &middot; QuickTake + Painter</figcaption></figure>
-<figure><a href="/spacetrucker/plates/control.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/control.jpg" width="900" height="1100" loading="lazy" decoding="async" alt="Control"></a><figcaption><b>Control</b>Mar 1995</figcaption></figure>
-<figure><a href="/spacetrucker/plates/secret-value-of-dreams.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/secret-value-of-dreams.jpg" width="799" height="1100" loading="lazy" decoding="async" alt="The Secret Value of Dreams"></a><figcaption><b>The Secret Value of Dreams</b>1995</figcaption></figure>
-<figure><a href="/spacetrucker/plates/alien-1.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/alien-1.jpg" width="929" height="1100" loading="lazy" decoding="async" alt="Alien 1.2"></a><figcaption><b>Alien 1.2</b>Oct 1994</figcaption></figure>
-<figure><a href="/spacetrucker/plates/fish-1.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/fish-1.jpg" width="1100" height="969" loading="lazy" decoding="async" alt="Fish 1"></a><figcaption><b>Fish 1</b>Dec 1994</figcaption></figure>
-<figure><a href="/spacetrucker/plates/industrial-1.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/industrial-1.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Industrial 1"></a><figcaption><b>Industrial 1</b>1995</figcaption></figure>
-<figure><a href="/spacetrucker/plates/plants5.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/plants5.jpg" width="1100" height="880" loading="lazy" decoding="async" alt="Plants 5"></a><figcaption><b>Plants 5</b>1995</figcaption></figure>
-<figure><a href="/spacetrucker/plates/benzel2.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/benzel2.jpg" width="1035" height="1100" loading="lazy" decoding="async" alt="Benzel2"></a><figcaption><b>Benzel2</b>Technology Series, Jul 1995</figcaption></figure>
-<figure><a href="/spacetrucker/plates/benzel4.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/benzel4.jpg" width="1035" height="1100" loading="lazy" decoding="async" alt="Benzel4"></a><figcaption><b>Benzel4</b>Technology Series, Jul 1995</figcaption></figure>
-<figure><a href="/spacetrucker/plates/double-precision.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/double-precision.jpg" width="982" height="1100" loading="lazy" decoding="async" alt="Double Precision"></a><figcaption><b>Double Precision</b>Technology Series, Jul 1995</figcaption></figure>
-<figure><a href="/spacetrucker/plates/navigator.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/navigator.jpg" width="838" height="1100" loading="lazy" decoding="async" alt="Navigator"></a><figcaption><b>Navigator</b>Technology Series, Jul 1995</figcaption></figure>
+<figure data-acc="HAL.1995.001" data-date="November 1993" data-medium="Digital image; Photoshop with Aldus Gallery Effects, NASA imagery over a scanned photograph" data-prov="halcyon.com/manray gallery, 1993–94. Titled after the Hawkwind song" data-bytes="348568" data-src="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" data-srclabel="wayback · halcyon.com/manray"><a href="/spacetrucker/plates/spirit-of-the-age.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/spirit-of-the-age.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Spirit of the Age"></a><figcaption><b>Spirit of the Age</b>Nov 1993 &middot; after the Hawkwind song<span class="fsrc"><a href="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" target="_blank" rel="noopener">wayback · halcyon.com/manray ↗</a></span></figcaption></figure>
+<figure data-acc="HAL.1995.001" data-date="January 1994" data-medium="Digital image, KPT Fractal Explorer" data-prov="halcyon.com/manray gallery, 1993–94" data-bytes="284044" data-src="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" data-srclabel="wayback · halcyon.com/manray"><a href="/spacetrucker/plates/while-others-sleep.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/while-others-sleep.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="While Others Sleep"></a><figcaption><b>While Others Sleep</b>Jan 1994 &middot; KPT Fractal Explorer<span class="fsrc"><a href="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" target="_blank" rel="noopener">wayback · halcyon.com/manray ↗</a></span></figcaption></figure>
+<figure data-acc="HAL.1995.001" data-date="April 1994" data-medium="Digital image" data-prov="halcyon.com/manray gallery, 1993–94" data-bytes="15445" data-src="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" data-srclabel="wayback · halcyon.com/manray"><a href="/spacetrucker/plates/simulated.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/simulated.jpg" width="825" height="1100" loading="lazy" decoding="async" alt="Simulated"></a><figcaption><b>Simulated</b>Apr 1994<span class="fsrc"><a href="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" target="_blank" rel="noopener">wayback · halcyon.com/manray ↗</a></span></figcaption></figure>
+<figure data-acc="HAL.1995.001" data-date="October 1994" data-medium="Digital image, Canon digital camera" data-prov="halcyon.com/manray gallery, 1993–94" data-bytes="344354" data-src="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" data-srclabel="wayback · halcyon.com/manray"><a href="/spacetrucker/plates/untitled-6.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/untitled-6.jpg" width="935" height="1100" loading="lazy" decoding="async" alt="Untitled-6.3"></a><figcaption><b>Untitled-6.3</b>Oct 1994 &middot; Canon digital camera<span class="fsrc"><a href="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" target="_blank" rel="noopener">wayback · halcyon.com/manray ↗</a></span></figcaption></figure>
+<figure data-acc="HAL.1995.001" data-date="July 1994" data-medium="Digital image, Apple QuickTake and Fractal Design Painter" data-prov="halcyon.com/manray gallery, 1993–94" data-bytes="278191" data-src="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" data-srclabel="wayback · halcyon.com/manray"><a href="/spacetrucker/plates/flowers-1.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/flowers-1.jpg" width="825" height="1100" loading="lazy" decoding="async" alt="Flowers 1.2"></a><figcaption><b>Flowers 1.2</b>Jul 1994 &middot; QuickTake + Painter<span class="fsrc"><a href="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" target="_blank" rel="noopener">wayback · halcyon.com/manray ↗</a></span></figcaption></figure>
+<figure data-acc="HAL.1995.001" data-date="March 1995" data-medium="Digital image" data-prov="halcyon.com/manray gallery, late 94 – early 95" data-bytes="382907" data-src="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" data-srclabel="wayback · halcyon.com/manray"><a href="/spacetrucker/plates/control.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/control.jpg" width="900" height="1100" loading="lazy" decoding="async" alt="Control"></a><figcaption><b>Control</b>Mar 1995<span class="fsrc"><a href="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" target="_blank" rel="noopener">wayback · halcyon.com/manray ↗</a></span></figcaption></figure>
+<figure data-acc="HAL.1995.001" data-date="1995" data-medium="Digital image; SummaSketch FX tablet, Painter 3.0, Xaos Paint Alchemy" data-prov="halcyon.com/manray gallery, early 1995" data-bytes="352722" data-src="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" data-srclabel="wayback · halcyon.com/manray"><a href="/spacetrucker/plates/secret-value-of-dreams.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/secret-value-of-dreams.jpg" width="799" height="1100" loading="lazy" decoding="async" alt="The Secret Value of Dreams"></a><figcaption><b>The Secret Value of Dreams</b>1995<span class="fsrc"><a href="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" target="_blank" rel="noopener">wayback · halcyon.com/manray ↗</a></span></figcaption></figure>
+<figure data-acc="HAL.1995.001" data-date="October 1994" data-medium="Digital image" data-prov="halcyon.com/manray gallery, late 94 – early 95" data-bytes="386854" data-src="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" data-srclabel="wayback · halcyon.com/manray"><a href="/spacetrucker/plates/alien-1.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/alien-1.jpg" width="929" height="1100" loading="lazy" decoding="async" alt="Alien 1.2"></a><figcaption><b>Alien 1.2</b>Oct 1994<span class="fsrc"><a href="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" target="_blank" rel="noopener">wayback · halcyon.com/manray ↗</a></span></figcaption></figure>
+<figure data-acc="HAL.1995.001" data-date="December 1994" data-medium="Digital image" data-prov="halcyon.com/manray gallery, late 94 – early 95" data-bytes="480261" data-src="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" data-srclabel="wayback · halcyon.com/manray"><a href="/spacetrucker/plates/fish-1.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/fish-1.jpg" width="1100" height="969" loading="lazy" decoding="async" alt="Fish 1"></a><figcaption><b>Fish 1</b>Dec 1994<span class="fsrc"><a href="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" target="_blank" rel="noopener">wayback · halcyon.com/manray ↗</a></span></figcaption></figure>
+<figure data-acc="HAL.1995.001" data-date="1995" data-medium="Digital image" data-prov="halcyon.com/manray gallery, early 1995" data-bytes="16273" data-src="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" data-srclabel="wayback · halcyon.com/manray"><a href="/spacetrucker/plates/industrial-1.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/industrial-1.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Industrial 1"></a><figcaption><b>Industrial 1</b>1995<span class="fsrc"><a href="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" target="_blank" rel="noopener">wayback · halcyon.com/manray ↗</a></span></figcaption></figure>
+<figure data-acc="HAL.1995.001" data-date="1995" data-medium="Digital image" data-prov="halcyon.com/manray gallery, early 1995" data-bytes="364230" data-src="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" data-srclabel="wayback · halcyon.com/manray"><a href="/spacetrucker/plates/plants5.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/plants5.jpg" width="1100" height="880" loading="lazy" decoding="async" alt="Plants 5"></a><figcaption><b>Plants 5</b>1995<span class="fsrc"><a href="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" target="_blank" rel="noopener">wayback · halcyon.com/manray ↗</a></span></figcaption></figure>
+<figure data-acc="HAL.1995.001" data-date="July 1995" data-medium="Digital image" data-prov="Technology Series, halcyon.com/manray" data-bytes="291042" data-src="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" data-srclabel="wayback · halcyon.com/manray"><a href="/spacetrucker/plates/benzel2.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/benzel2.jpg" width="1035" height="1100" loading="lazy" decoding="async" alt="Benzel2"></a><figcaption><b>Benzel2</b>Technology Series, Jul 1995<span class="fsrc"><a href="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" target="_blank" rel="noopener">wayback · halcyon.com/manray ↗</a></span></figcaption></figure>
+<figure data-acc="HAL.1995.001" data-date="July 1995" data-medium="Digital image" data-prov="Technology Series, halcyon.com/manray" data-bytes="318882" data-src="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" data-srclabel="wayback · halcyon.com/manray"><a href="/spacetrucker/plates/benzel4.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/benzel4.jpg" width="1035" height="1100" loading="lazy" decoding="async" alt="Benzel4"></a><figcaption><b>Benzel4</b>Technology Series, Jul 1995<span class="fsrc"><a href="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" target="_blank" rel="noopener">wayback · halcyon.com/manray ↗</a></span></figcaption></figure>
+<figure data-acc="HAL.1995.001" data-date="July 1995" data-medium="Digital image" data-prov="Technology Series; ancestor of the Technology Mandala" data-bytes="311808" data-src="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" data-srclabel="wayback · halcyon.com/manray"><a href="/spacetrucker/plates/double-precision.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/double-precision.jpg" width="982" height="1100" loading="lazy" decoding="async" alt="Double Precision"></a><figcaption><b>Double Precision</b>Technology Series, Jul 1995<span class="fsrc"><a href="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" target="_blank" rel="noopener">wayback · halcyon.com/manray ↗</a></span></figcaption></figure>
+<figure data-acc="HAL.1995.001" data-date="July 1995" data-medium="Digital image" data-prov="Technology Series, halcyon.com/manray" data-bytes="410888" data-src="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" data-srclabel="wayback · halcyon.com/manray"><a href="/spacetrucker/plates/navigator.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/navigator.jpg" width="838" height="1100" loading="lazy" decoding="async" alt="Navigator"></a><figcaption><b>Navigator</b>Technology Series, Jul 1995<span class="fsrc"><a href="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html" target="_blank" rel="noopener">wayback · halcyon.com/manray ↗</a></span></figcaption></figure>
 </div>
 <p class="refs"><a class="ext" href="https://web.archive.org/web/19990117022316/http://www.halcyon.com/manray/welcome.html">Home page, Jan 1999</a><a class="ext" href="https://web.archive.org/web/19981206074124/http://www.halcyon.com/manray/">Dec 1998 capture</a></p>
 </div>
@@ -454,6 +522,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <p class="desc">The primary biographical document of the period, and the source of the artist's 1997 handle. It moves from Ettrick Elementary in western Wisconsin, through a father's oil painting and an Apple IIe arriving at Christmas with Dazzle Draw, to enrolling at Winona State as a computer science major and leaving as an art major. It records the moment in <b>late 1992</b> when he <em>"produced some of my first digital artwork that looked like something other then a bunch of pixels"</em>, working from fields of colour through iterated filters and the rubber stamp — a method he later learned Kai Krause had named algorithmic painting.</p>
 <p class="desc">A section headed <b>Man Verses System</b> sets the IBM ES/9000 against HAL 9000 and quotes Neil Young's <i>Computer Age</i> at length. And it supplies the only statement of intent ever given for the imprint that followed: <em>"The name Discount Pet Food is dadaist and by definition has no meaning. I just liked the sound of it."</em></p>
 <p class="refs"><a class="ext" href="https://web.archive.org/web/19981205234029/http://www.halcyon.com/manray/artrant.html">Full text</a></p>
+
+<div class="plates one">
+<figure data-acc="HAL.1995.002" data-date="1998" data-medium="Screen capture of archived page, 1280 px" data-prov="Internet Archive, capture 5 December 1998" data-bytes="156264" data-src="https://web.archive.org/web/19981205234029/http://www.halcyon.com/manray/artrant.html" data-srclabel="wayback · halcyon.com/manray/artrant.html"><a href="/spacetrucker/plates/hal-002.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/hal-002.jpg" width="900" height="675" loading="lazy" decoding="async" alt="Artist’s Statements with Occasional Rants"></a><figcaption><b>Artist’s Statements with Occasional Rants</b>capture 5 Dec 1998<span class="fsrc"><a href="https://web.archive.org/web/19981205234029/http://www.halcyon.com/manray/artrant.html" target="_blank" rel="noopener">wayback · halcyon.com/manray/artrant.html ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -468,6 +540,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 </dl>
 <p class="desc">The artist's first company: cross-platform Director titles, hard-drive to CD-ROM transfers in Mac HFS, ISO 9660 and hybrid formats, limited-run duplication, and Shockwave web design. Its principal production was <b>Sport Fish of Washington</b>, an interactive CD-ROM for the Washington Department of Fish and Wildlife Ecosystems Education Program. Three pages of the accompanying <i>Fishing Prospects 1995</i> material survive.</p>
 <p class="refs"><a class="ext" href="https://web.archive.org/web/19981205220350/http://www.halcyon.com/manray/RDM/RDM.html">Studio page</a><a class="ext" href="https://web.archive.org/web/19990220160610/http://www.halcyon.com/manray/resume.html">1999 curriculum vitae</a></p>
+
+<div class="plates one">
+<figure data-acc="HAL.1995.003" data-date="1998" data-medium="Screen capture of archived page, 1280 px" data-prov="Internet Archive, capture 5 December 1998" data-bytes="55142" data-src="https://web.archive.org/web/19981205220350/http://www.halcyon.com/manray/RDM/RDM.html" data-srclabel="wayback · halcyon.com/manray/RDM"><a href="/spacetrucker/plates/hal-003.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/hal-003.jpg" width="900" height="675" loading="lazy" decoding="async" alt="Rocky Dog Media"></a><figcaption><b>Rocky Dog Media</b>capture 5 Dec 1998<span class="fsrc"><a href="https://web.archive.org/web/19981205220350/http://www.halcyon.com/manray/RDM/RDM.html" target="_blank" rel="noopener">wayback · halcyon.com/manray/RDM ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -483,6 +559,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 </dl>
 <p class="desc">A single line in a Neil Young fan registry, and the only place the handle <b>C.C.T.B</b> — Chemical Computer Thinking Battery — is recorded in public. The entry gives the name, the halcyon address, the gallery URL, the state of Washington, and a chosen quotation: <em>"We will prevail and perform our function..."</em>, from <i>We R In Control</i> on <i>Trans</i>. The artist still appears in the registry's handle, name and geographic indexes. The domain <b>humanhighway.net</b>, which recurs throughout Series II, is a Neil Young title as well.</p>
 <p class="refs"><a class="ext" href="https://hyperrust.org/cgi-bin/r.pl?159">Registry entry</a><a class="ext" href="https://www.hyperrust.org/cgi-bin/rlh">Handle index</a></p>
+
+<div class="plates one">
+<figure data-acc="HYP.1997.001" data-date="1997–" data-medium="Screen capture of live page, 1280 px" data-prov="hyperrust.org, retrieved 3 September 2026" data-bytes="37996" data-src="https://hyperrust.org/cgi-bin/r.pl?159" data-srclabel="hyperrust.org/cgi-bin/r.pl?159"><a href="/spacetrucker/plates/hyperrust.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/hyperrust.jpg" width="900" height="675" loading="lazy" decoding="async" alt="Rust List Handbook — entry 159"></a><figcaption><b>Rust List Handbook — entry 159</b>C.C.T.B · manray@halcyon.com<span class="fsrc"><a href="https://hyperrust.org/cgi-bin/r.pl?159" target="_blank" rel="noopener">hyperrust.org/cgi-bin/r.pl?159 ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 </section>
@@ -494,7 +574,7 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <h2>DiscountPetFood Heavy Industries</h2>
 <p class="series-dates">1999 &mdash; 2005 &middot; 1,316 archived locations across five hostnames</p>
 </div>
-<p class="scope">The central body of work. A fictitious conglomerate, operated as a real one, publishing six divisions across five subdomains and staffed by at least four personae the artist wrote under. Its house style is corporate satire delivered with a straight face; its subjects are rural Wisconsin, abandoned munitions plants, unexplained lights, analogue synthesis, digital printmaking and Godzilla. Nothing of it is live. The Internet Archive holds <em>968 retrievable locations</em> of 1,316 recorded, spanning 18 October 2000 to mid-2005.</p>
+<p class="scope">The main body of work. A fictitious conglomerate run like a real one: six divisions, five hostnames, at least four personae on the masthead. House style is corporate satire delivered deadpan; the subject matter is rural Wisconsin, abandoned munitions plants, unexplained lights, analogue synthesis, digital printmaking and Godzilla. Nothing is live. Of 1,316 locations indexed, <em>968 still return content</em> &mdash; a 74% recovery rate against captures dated 18 October 2000 to mid-2005.</p>
 
 <div class="note">
 <h4>Corporate identity</h4>
@@ -530,6 +610,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <p class="desc">The <b>Historical Society</b> invents the valley whole: Norwegian and Irish settlement along Beaver Creek in the 1850s, a post office in 1866, a distinction as <em>"the only town that would sell alcoholic beverages on Sunday morning"</em>, the Scandinavian Fire Insurance Company at seventy-five cents a month, and Gulch Blue Label ale brewed by Ivar Scow and Hans Beckner of Coon Valley in 1870.</p>
 <p class="desc">Subordinate works: <b>Cousin Cleatus'z Country Homes</b> (<em>"If You Lived Here You'd Be Home by now!"</em>), a real-estate parody with sold, pending and no-photo placeholders; the <b>Wisconsin Bar Sign Archive</b>, described as <em>"a continuing study on a unique form of rural folk art"</em> and as a <em>"comprehensive bar sign archive of West Central Wisconsin"</em>, of which one photograph survives, from Ettrick; <b>Deer Camp</b>; <b>Roadkill</b>, four photographs presented as the town's dark side; and a <b>Board of Tourism</b> covering Pickle Days, the deer hunt and a wedding.</p>
 <p class="refs"><a class="ext" href="https://web.archive.org/web/20020408220919/http://discountpetfood.net/alibigulch/main.html">Index</a><a class="ext" href="https://web.archive.org/web/20020325185835/http://www.discountpetfood.net/alibigulch/news/main.html">News desk</a><a class="ext" href="https://web.archive.org/web/20020323211243/http://discountpetfood.net/alibigulch/history/history.html">Early Times</a><a class="ext" href="https://web.archive.org/web/20020810102541/http://discountpetfood.net/alibigulch/about/main.html">FAQ</a></p>
+
+<div class="plates one">
+<figure data-acc="DPF.1999.001" data-date="2002" data-medium="Screen capture of archived page, 1280 px" data-prov="Internet Archive, capture 8 April 2002" data-bytes="85438" data-src="https://web.archive.org/web/20020408220919/http://discountpetfood.net/alibigulch/main.html" data-srclabel="wayback · discountpetfood.net/alibigulch"><a href="/spacetrucker/plates/dpf-alibigulch.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/dpf-alibigulch.jpg" width="900" height="675" loading="lazy" decoding="async" alt="Alibi Gulch — front page"></a><figcaption><b>Alibi Gulch — front page</b>capture 8 Apr 2002<span class="fsrc"><a href="https://web.archive.org/web/20020408220919/http://discountpetfood.net/alibigulch/main.html" target="_blank" rel="noopener">wayback · discountpetfood.net/alibigulch ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -549,6 +633,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <p class="desc">Sections cover the Isolated Long Building, Provo South Dakota, and the abandoned town of Igloo itself — entrance gate, church, guard shack, depot area. The accompanying dossier cites NARA Record Group 156 and a Department of Defense DERP report on the former Black Hills Army Depot; the toxicity page quotes reporting on roughly three and a half million tons of exposed uranium tailings.</p>
 <p class="desc">A FUDforum board, <b>Memories of Igloo South Dakota</b>, was attached to the work for former residents: <em>"for posting your expiences while living or visiting Igloo Ordinace Depot while it was functioning."</em> At its July 2004 capture it held one topic, two messages and five registered members. The message bodies were never captured.</p>
 <p class="refs"><a class="ext" href="https://web.archive.org/web/20010513235357/http://www.discountpetfood.net/field/igloo/main.htm">Principal essay</a><a class="ext" href="https://web.archive.org/web/20010519113139/http://discountpetfood.net/field/igloo/isobuilding.htm">Dossier</a><a class="ext" href="https://web.archive.org/web/20050209235650/http://www.discountpetfood.net/field/igloo/toxicity.htm">Toxicity</a><a class="ext" href="https://web.archive.org/web/20040716194113/http://www.discountpetfood.net/field/igloo/forum/index.php">Forum</a></p>
+
+<div class="plates one">
+<figure data-acc="DPF.2000.002" data-date="2001" data-medium="Screen capture of archived page, 1280 px" data-prov="Internet Archive, capture 13 May 2001" data-bytes="97607" data-src="https://web.archive.org/web/20010513235357/http://www.discountpetfood.net/field/igloo/main.htm" data-srclabel="wayback · discountpetfood.net/field/igloo"><a href="/spacetrucker/plates/dpf-igloo.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/dpf-igloo.jpg" width="900" height="675" loading="lazy" decoding="async" alt="Igloo — Field Research Unit"></a><figcaption><b>Igloo — Field Research Unit</b>capture 13 May 2001<span class="fsrc"><a href="https://web.archive.org/web/20010513235357/http://www.discountpetfood.net/field/igloo/main.htm" target="_blank" rel="noopener">wayback · discountpetfood.net/field/igloo ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -564,6 +652,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 </dl>
 <p class="desc">The Moab set, catalogued as Image Archive #031999A, documents the Fins and Things four-wheel-drive trail. Its plate titles are the only part of it to survive intact: <i>ol' pointy</i>, <i>eric &amp; dan</i>, <i>fins or things?</i>, <i>ian trooper</i>, <i>twin mounds</i>, and <i>whut the hell is that?</i></p>
 <p class="refs"><a class="ext" href="https://web.archive.org/web/20010515071845/http://discountpetfood.net/field/utah/moab98/index.htm">Moab index</a><a class="ext" href="https://web.archive.org/web/20010306012332/http://discountpetfood.net/field/index1.htm">South Dakota index</a></p>
+
+<div class="plates one">
+<figure data-acc="DPF.1999.003" data-date="2001" data-medium="Screen capture of archived page, 1280 px" data-prov="Internet Archive, capture 15 May 2001" data-bytes="44179" data-src="https://web.archive.org/web/20010515071845/http://discountpetfood.net/field/utah/moab98/index.htm" data-srclabel="wayback · discountpetfood.net/field/utah"><a href="/spacetrucker/plates/dpf-moab.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/dpf-moab.jpg" width="900" height="675" loading="lazy" decoding="async" alt="Moab 98 — image archive"></a><figcaption><b>Moab 98 — image archive</b>capture 15 May 2001<span class="fsrc"><a href="https://web.archive.org/web/20010515071845/http://discountpetfood.net/field/utah/moab98/index.htm" target="_blank" rel="noopener">wayback · discountpetfood.net/field/utah ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -579,6 +671,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <p class="desc">A sceptic's contribution to a credulous genre. The artist reproduces his own anomalous photographs and then argues against them: <em>"In every image that I've encountered 'ORBS' it seems to either occur from lens flare as in the Area 51 image or condensation."</em> Provenance for the Nevada plates is given in the same register as the rest: <em>"While ComputerCowboy and I were in Las Vegas tracking down the last signs of the American Dream, a trip to Area 51 and a few drinks at the Little A'Le'Inn seemed like the sensible way to spend an afternoon... The camo dudes even had new trucks!"</em></p>
 <p class="desc">The second plate, <i>The First Orb</i> (27 November 1997, Capitol Peak State Forest, Washington), carries the richest documentation in the collection: two emails received in 1999, one from an orb-site webmaster and one from a self-styled <b>Anti Orb Coalition</b>, the latter enclosing a forwarded reply from Kodak customer service concluding that the artefact <em>"is NOT from the realm of the paranormal."</em> Both were addressed to the artist at a since-abandoned personal account.</p>
 <p class="refs"><a class="ext" href="https://web.archive.org/web/20010306010549/http://discountpetfood.net/anomoly/main.html">Anomalous</a><a class="ext" href="https://web.archive.org/web/20010307203814/http://discountpetfood.net/anomoly/Orbs1.html">Orbs 1</a><a class="ext" href="https://web.archive.org/web/20010307204205/http://discountpetfood.net/anomoly/Orbs2.html">Orbs 2</a></p>
+
+<div class="plates one">
+<figure data-acc="DPF.2000.004" data-date="2001" data-medium="Screen capture of archived page, 1280 px" data-prov="Internet Archive, capture 6 March 2001" data-bytes="91903" data-src="https://web.archive.org/web/20010306010549/http://discountpetfood.net/anomoly/main.html" data-srclabel="wayback · discountpetfood.net/anomoly"><a href="/spacetrucker/plates/dpf-anomoly.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/dpf-anomoly.jpg" width="900" height="633" loading="lazy" decoding="async" alt="Anomaly — front page"></a><figcaption><b>Anomaly — front page</b>capture 6 Mar 2001<span class="fsrc"><a href="https://web.archive.org/web/20010306010549/http://discountpetfood.net/anomoly/main.html" target="_blank" rel="noopener">wayback · discountpetfood.net/anomoly ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -597,10 +693,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <p class="desc">The series statement, written around 2001, reads differently now than it did then: <em>"These images are from a series of mandalas I created that reflected an emergent consciousness in switched state digital technology. In a future of neural nets and massively parallel quantum computing will Heisenberg's Uncertainty Principle lead our carefully structured microprocessors down a path of chaos? Or will systems begin to self organize into a new kind of intelligence? Are we creating a mind in our own image?"</em></p>
 
 <div class="plates">
-<figure><a href="/spacetrucker/plates/symcom6.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/symcom6.jpg" width="1051" height="1100" loading="lazy" decoding="async" alt="symcom6"></a><figcaption><b>symcom6</b>1996</figcaption></figure>
-<figure><a href="/spacetrucker/plates/core-transmission.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/core-transmission.jpg" width="1095" height="1100" loading="lazy" decoding="async" alt="Core Transmission"></a><figcaption><b>Core Transmission</b>1996</figcaption></figure>
-<figure><a href="/spacetrucker/plates/matrix-2.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/matrix-2.jpg" width="977" height="1100" loading="lazy" decoding="async" alt="matrix 2"></a><figcaption><b>matrix 2</b>1997</figcaption></figure>
-<figure><a href="/spacetrucker/plates/i-am.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/i-am.jpg" width="1100" height="1100" loading="lazy" decoding="async" alt="i am"></a><figcaption><b>i am</b>1997</figcaption></figure>
+<figure data-acc="DPF.2001.005" data-date="1996" data-medium="Digital image" data-prov="Technology Mandala series" data-bytes="452006" data-src="https://web.archive.org/web/20031212182444/http://discountpetfood.net/digital/main.html" data-srclabel="wayback · discountpetfood.net/digital"><a href="/spacetrucker/plates/symcom6.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/symcom6.jpg" width="1051" height="1100" loading="lazy" decoding="async" alt="symcom6"></a><figcaption><b>symcom6</b>1996<span class="fsrc"><a href="https://web.archive.org/web/20031212182444/http://discountpetfood.net/digital/main.html" target="_blank" rel="noopener">wayback · discountpetfood.net/digital ↗</a></span></figcaption></figure>
+<figure data-acc="DPF.2001.005" data-date="1996" data-medium="Digital image" data-prov="Technology Mandala series; reissued as a minted edition, 2021" data-bytes="238405" data-src="https://web.archive.org/web/20031212182444/http://discountpetfood.net/digital/main.html" data-srclabel="wayback · discountpetfood.net/digital"><a href="/spacetrucker/plates/core-transmission.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/core-transmission.jpg" width="1095" height="1100" loading="lazy" decoding="async" alt="Core Transmission"></a><figcaption><b>Core Transmission</b>1996<span class="fsrc"><a href="https://web.archive.org/web/20031212182444/http://discountpetfood.net/digital/main.html" target="_blank" rel="noopener">wayback · discountpetfood.net/digital ↗</a></span></figcaption></figure>
+<figure data-acc="DPF.2001.005" data-date="1997" data-medium="Digital image" data-prov="Technology Mandala series" data-bytes="228948" data-src="https://web.archive.org/web/20031212182444/http://discountpetfood.net/digital/main.html" data-srclabel="wayback · discountpetfood.net/digital"><a href="/spacetrucker/plates/matrix-2.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/matrix-2.jpg" width="977" height="1100" loading="lazy" decoding="async" alt="matrix 2"></a><figcaption><b>matrix 2</b>1997<span class="fsrc"><a href="https://web.archive.org/web/20031212182444/http://discountpetfood.net/digital/main.html" target="_blank" rel="noopener">wayback · discountpetfood.net/digital ↗</a></span></figcaption></figure>
+<figure data-acc="DPF.2001.005" data-date="1997" data-medium="Digital image" data-prov="Technology Mandala series" data-bytes="515683" data-src="https://web.archive.org/web/20031212182444/http://discountpetfood.net/digital/main.html" data-srclabel="wayback · discountpetfood.net/digital"><a href="/spacetrucker/plates/i-am.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/i-am.jpg" width="1100" height="1100" loading="lazy" decoding="async" alt="i am"></a><figcaption><b>i am</b>1997<span class="fsrc"><a href="https://web.archive.org/web/20031212182444/http://discountpetfood.net/digital/main.html" target="_blank" rel="noopener">wayback · discountpetfood.net/digital ↗</a></span></figcaption></figure>
 </div>
 <p class="refs"><a class="ext" href="https://web.archive.org/web/20031212182444/http://discountpetfood.net/digital/main.html">Digital division</a></p>
 </div>
@@ -616,6 +712,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <dt>Condition</dt><dd><span class="cond c-archival">ARCHIVAL RECORD ONLY</span></dd>
 </dl>
 <p class="desc">Introduced by a prose poem taken from the artist's sketchbook: <em>"...Science has segmented our reality with nanometer digital precision, redefined the tangible, discounted all that was undefined and unmeasurable... ...computers model chaos and build neural nets striving to be created in mans image... ...inside the atom sub-particals vibrate defiant against determinism..."</em></p>
+
+<div class="plates one">
+<figure data-acc="DPF.2001.006" data-date="2001" data-medium="Screen capture of archived page, 1280 px" data-prov="Internet Archive, capture 2 August 2001" data-bytes="73975" data-src="https://web.archive.org/web/20010802202631/http://kunzelman.discountpetfood.net/digital/main.html" data-srclabel="wayback · kunzelman…/digital"><a href="/spacetrucker/plates/dpf-segmented.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/dpf-segmented.jpg" width="900" height="633" loading="lazy" decoding="async" alt="Segmented Reality — index"></a><figcaption><b>Segmented Reality — index</b>capture 2 Aug 2001<span class="fsrc"><a href="https://web.archive.org/web/20010802202631/http://kunzelman.discountpetfood.net/digital/main.html" target="_blank" rel="noopener">wayback · kunzelman…/digital ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -630,6 +730,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <dt>Condition</dt><dd><span class="cond c-archival">ARCHIVAL RECORD ONLY</span> — index retrievable, several plate pages lost</dd>
 </dl>
 <p class="desc">The only division of the conglomerate to deal in physical media. The artist offered editions from it: <em>"signed large digital cibacrome prints printed with a Cymbolic LightJet Printer on Fuji Crystal Archive photographic paper. Prints are museum quality and color fidelity is guaranteed colorfast for 60 years. These are not ink jet prints. Prices start $300 depending on size. Sizes range from 16" x 20" to 4' x 8'."</em></p>
+
+<div class="plates one">
+<figure data-acc="DPF.1999.007" data-date="2001" data-medium="Screen capture of archived page, 1280 px" data-prov="Internet Archive, capture 2 August 2001" data-bytes="55774" data-src="https://web.archive.org/web/20010802201042/http://kunzelman.discountpetfood.net/analog/main.html" data-srclabel="wayback · kunzelman…/analog"><a href="/spacetrucker/plates/dpf-analog.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/dpf-analog.jpg" width="900" height="633" loading="lazy" decoding="async" alt="Analog: Dreams — index"></a><figcaption><b>Analog: Dreams — index</b>capture 2 Aug 2001<span class="fsrc"><a href="https://web.archive.org/web/20010802201042/http://kunzelman.discountpetfood.net/analog/main.html" target="_blank" rel="noopener">wayback · kunzelman…/analog ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -643,9 +747,9 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 </dl>
 
 <div class="plates">
-<figure><a href="/spacetrucker/plates/self-portrait.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/self-portrait.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Self Portrait"></a><figcaption><b>Self Portrait</b>1994</figcaption></figure>
-<figure><a href="/spacetrucker/plates/self-portrait-2.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/self-portrait-2.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Self portrait 2"></a><figcaption><b>Self portrait 2</b>1994</figcaption></figure>
-<figure><a href="/spacetrucker/plates/self-portrait-6.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/self-portrait-6.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Self Portrait 6"></a><figcaption><b>Self Portrait 6</b>1995</figcaption></figure>
+<figure data-acc="DPF.1993.008" data-date="1994" data-medium="Digital image" data-prov="Self Portrait series" data-bytes="466147" data-src="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" data-srclabel="wayback · kunzelman…/archive"><a href="/spacetrucker/plates/self-portrait.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/self-portrait.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Self Portrait"></a><figcaption><b>Self Portrait</b>1994<span class="fsrc"><a href="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" target="_blank" rel="noopener">wayback · kunzelman…/archive ↗</a></span></figcaption></figure>
+<figure data-acc="DPF.1993.008" data-date="1994" data-medium="Digital image" data-prov="Self Portrait series" data-bytes="500670" data-src="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" data-srclabel="wayback · kunzelman…/archive"><a href="/spacetrucker/plates/self-portrait-2.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/self-portrait-2.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Self portrait 2"></a><figcaption><b>Self portrait 2</b>1994<span class="fsrc"><a href="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" target="_blank" rel="noopener">wayback · kunzelman…/archive ↗</a></span></figcaption></figure>
+<figure data-acc="DPF.1993.008" data-date="1995" data-medium="Digital image" data-prov="Self Portrait series" data-bytes="195363" data-src="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" data-srclabel="wayback · kunzelman…/archive"><a href="/spacetrucker/plates/self-portrait-6.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/self-portrait-6.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Self Portrait 6"></a><figcaption><b>Self Portrait 6</b>1995<span class="fsrc"><a href="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" target="_blank" rel="noopener">wayback · kunzelman…/archive ↗</a></span></figcaption></figure>
 </div>
 <p class="desc">Eight years of self-portraiture in which the artist is successively a machine, a utility, an infinity, a warning indicator, a figure in an abandoned depot, and finally a reflection in his own studio.</p>
 </div>
@@ -664,11 +768,11 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <p class="desc">Six years of digital work, indexed by year. Where a plate page is gone its title survives in the URL, which makes the file listing itself a catalogue. The 1993 year holds <i>CAT2</i>, <i>cells 1</i>, <i>D Image 3</i>, <i>eye matrix</i>, <i>franken</i>, <i>head 1</i>, <i>Ice 2</i>, <i>painter 2</i>, <i>surreal 1</i>, <i>under ice</i> and <i>world matrix</i>. The 1998 year holds <i>atm1 PICT pat</i>, <i>cut</i>, <i>dragon 1</i>, <i>dragon 2</i>, <i>SPIDER 1</i>, <i>SPIDER 2</i> and <i>tiger mand</i>.</p>
 
 <div class="plates">
-<figure><a href="/spacetrucker/plates/spider-1.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/spider-1.jpg" width="1100" height="992" loading="lazy" decoding="async" alt="SPIDER 1"></a><figcaption><b>SPIDER 1</b>1998</figcaption></figure>
-<figure><a href="/spacetrucker/plates/dragon-1.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/dragon-1.jpg" width="1008" height="1100" loading="lazy" decoding="async" alt="dragon 1"></a><figcaption><b>dragon 1</b>1998</figcaption></figure>
-<figure><a href="/spacetrucker/plates/tiger-mand.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/tiger-mand.jpg" width="1100" height="1100" loading="lazy" decoding="async" alt="tiger mand"></a><figcaption><b>tiger mand</b>1998</figcaption></figure>
-<figure><a href="/spacetrucker/plates/cut.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/cut.jpg" width="1100" height="818" loading="lazy" decoding="async" alt="cut"></a><figcaption><b>cut</b>1998</figcaption></figure>
-<figure><a href="/spacetrucker/plates/orbs.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/orbs.jpg" width="1100" height="770" loading="lazy" decoding="async" alt="ORBS"></a><figcaption><b>ORBS</b>1995</figcaption></figure>
+<figure data-acc="DPF.1993.009" data-date="1998" data-medium="Digital image" data-prov="Digital Image Archive, year index 1998" data-bytes="538858" data-src="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" data-srclabel="wayback · kunzelman…/archive"><a href="/spacetrucker/plates/spider-1.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/spider-1.jpg" width="1100" height="992" loading="lazy" decoding="async" alt="SPIDER 1"></a><figcaption><b>SPIDER 1</b>1998<span class="fsrc"><a href="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" target="_blank" rel="noopener">wayback · kunzelman…/archive ↗</a></span></figcaption></figure>
+<figure data-acc="DPF.1993.009" data-date="1998" data-medium="Digital image" data-prov="Digital Image Archive, year index 1998" data-bytes="507895" data-src="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" data-srclabel="wayback · kunzelman…/archive"><a href="/spacetrucker/plates/dragon-1.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/dragon-1.jpg" width="1008" height="1100" loading="lazy" decoding="async" alt="dragon 1"></a><figcaption><b>dragon 1</b>1998<span class="fsrc"><a href="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" target="_blank" rel="noopener">wayback · kunzelman…/archive ↗</a></span></figcaption></figure>
+<figure data-acc="DPF.1993.009" data-date="1998" data-medium="Digital image" data-prov="Digital Image Archive, year index 1998" data-bytes="493784" data-src="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" data-srclabel="wayback · kunzelman…/archive"><a href="/spacetrucker/plates/tiger-mand.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/tiger-mand.jpg" width="1100" height="1100" loading="lazy" decoding="async" alt="tiger mand"></a><figcaption><b>tiger mand</b>1998<span class="fsrc"><a href="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" target="_blank" rel="noopener">wayback · kunzelman…/archive ↗</a></span></figcaption></figure>
+<figure data-acc="DPF.1993.009" data-date="1998" data-medium="Digital image" data-prov="Digital Image Archive, year index 1998" data-bytes="342680" data-src="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" data-srclabel="wayback · kunzelman…/archive"><a href="/spacetrucker/plates/cut.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/cut.jpg" width="1100" height="818" loading="lazy" decoding="async" alt="cut"></a><figcaption><b>cut</b>1998<span class="fsrc"><a href="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" target="_blank" rel="noopener">wayback · kunzelman…/archive ↗</a></span></figcaption></figure>
+<figure data-acc="DPF.1993.009" data-date="1995" data-medium="Digital image" data-prov="Digital Image Archive, year index 1995" data-bytes="137241" data-src="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" data-srclabel="wayback · kunzelman…/archive"><a href="/spacetrucker/plates/orbs.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/orbs.jpg" width="1100" height="770" loading="lazy" decoding="async" alt="ORBS"></a><figcaption><b>ORBS</b>1995<span class="fsrc"><a href="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" target="_blank" rel="noopener">wayback · kunzelman…/archive ↗</a></span></figcaption></figure>
 </div>
 <details>
 <summary>Recovered titles, 1993&ndash;1998 &mdash; approximately 128</summary>
@@ -696,6 +800,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 </dl>
 <p class="desc">The liturgy, in full: <em>"We welcome those of all faiths who have found their way through the great ATM cloud. We thank thee oh great VCO for these oscillations you have provided us. Your sinusoidal waves, we have modified through our Low Pass Filter. All rejoice for we have been given Modulation, Selectable Wave Form and Cut Off Frequency!"</em> The church was refounded on YouTube two decades later and remains the artist's longest-running institution.</p>
 <p class="refs"><a class="ext" href="https://web.archive.org/web/20010306010758/http://discountpetfood.net/OMS/supermon.html">Contemporary captures</a></p>
+
+<div class="plates one">
+<figure data-acc="DPF.2000.010" data-date="2001" data-medium="Screen capture of archived page, 1280 px" data-prov="Internet Archive, capture 6 March 2001" data-bytes="19648" data-src="https://web.archive.org/web/20010306010758/http://discountpetfood.net/OMS/supermon.html" data-srclabel="wayback · discountpetfood.net/OMS"><a href="/spacetrucker/plates/dpf-supermon.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/dpf-supermon.jpg" width="900" height="633" loading="lazy" decoding="async" alt="Super Monster"></a><figcaption><b>Super Monster</b>capture 6 Mar 2001<span class="fsrc"><a href="https://web.archive.org/web/20010306010758/http://discountpetfood.net/OMS/supermon.html" target="_blank" rel="noopener">wayback · discountpetfood.net/OMS ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -712,6 +820,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 </dl>
 <p class="desc">The catalogue's most consequential correction. This release predates the Bandcamp edition of <b>11 September 2021</b> by two decades, with the same four tracks in the same order. The source material was recorded to cassette in the winter of 1998 on a Minimoog Model D and a Kawai K3 routed through the Moog's external input; the 2021 issue is a remaster of it. The imprint <b>ASRI</b> appears nowhere else. A companion page, <i>Series of Attenuated Test Patterns and Tones for Response</i>, anticipates the single of December 2023 by the same name.</p>
 <p class="refs"><a class="ext" href="https://spacetrucker2196.bandcamp.com/album/music-for-distant-restaurants">2021 reissue</a></p>
+
+<div class="plates one">
+<figure data-acc="DPF.2001.011" data-date="c. 2001" data-medium="Cover art, 1200 px" data-prov="Bandcamp, served artwork" data-bytes="172403" data-src="https://spacetrucker2196.bandcamp.com/album/music-for-distant-restaurants" data-srclabel="bandcamp · music-for-distant-restaurants"><a href="/spacetrucker/plates/bc-restaurants.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/bc-restaurants.jpg" width="1200" height="1200" loading="lazy" decoding="async" alt="Music For Distant Restaurants"></a><figcaption><b>Music For Distant Restaurants</b>sleeve · reissue of the 1998 cassette<span class="fsrc"><a href="https://spacetrucker2196.bandcamp.com/album/music-for-distant-restaurants" target="_blank" rel="noopener">bandcamp · music-for-distant-restaurants ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -733,9 +845,9 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <p class="desc">Recorded works listed on the audio page, all lost: <i>Hand Modulated</i>, <i>Time for You To Leave Now William Blake</i>, <i>Under Ground</i>, <i>I Drank The Water</i>, <i>AC-Y</i>. Distribution was to have run through mp3.com/alpha60, which is also gone.</p>
 
 <div class="plates">
-<figure><a href="/spacetrucker/plates/alpha60.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/alpha60.jpg" width="1100" height="733" loading="lazy" decoding="async" alt="Alpha60"></a><figcaption><b>Alpha60</b>c. 2000 &middot; group image</figcaption></figure>
-<figure><a href="/spacetrucker/plates/alpha60-cover.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/alpha60-cover.jpg" width="1100" height="1092" loading="lazy" decoding="async" alt="Alpha60 cover"></a><figcaption><b>Alpha60 cover</b>c. 2000</figcaption></figure>
-<figure><a href="/spacetrucker/plates/alpha60-layout.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/alpha60-layout.jpg" width="1100" height="825" loading="lazy" decoding="async" alt="Alpha60 layout"></a><figcaption><b>Alpha60 layout</b>c. 2000</figcaption></figure>
+<figure data-acc="A60.2001.001" data-date="c. 2000" data-medium="Group image" data-prov="Alpha60" data-bytes="14327" data-src="https://web.archive.org/web/20010401192357/http://alpha60.discountpetfood.net/" data-srclabel="wayback · alpha60.discountpetfood.net"><a href="/spacetrucker/plates/alpha60.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/alpha60.jpg" width="1100" height="733" loading="lazy" decoding="async" alt="Alpha60"></a><figcaption><b>Alpha60</b>c. 2000 &middot; group image<span class="fsrc"><a href="https://web.archive.org/web/20010401192357/http://alpha60.discountpetfood.net/" target="_blank" rel="noopener">wayback · alpha60.discountpetfood.net ↗</a></span></figcaption></figure>
+<figure data-acc="A60.2001.001" data-date="c. 2000" data-medium="Cover artwork" data-prov="Alpha60" data-bytes="183897" data-src="https://web.archive.org/web/20010401192357/http://alpha60.discountpetfood.net/" data-srclabel="wayback · alpha60.discountpetfood.net"><a href="/spacetrucker/plates/alpha60-cover.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/alpha60-cover.jpg" width="1100" height="1092" loading="lazy" decoding="async" alt="Alpha60 cover"></a><figcaption><b>Alpha60 cover</b>c. 2000<span class="fsrc"><a href="https://web.archive.org/web/20010401192357/http://alpha60.discountpetfood.net/" target="_blank" rel="noopener">wayback · alpha60.discountpetfood.net ↗</a></span></figcaption></figure>
+<figure data-acc="A60.2001.001" data-date="c. 2000" data-medium="Layout artwork" data-prov="Alpha60" data-bytes="40886" data-src="https://web.archive.org/web/20010401192357/http://alpha60.discountpetfood.net/" data-srclabel="wayback · alpha60.discountpetfood.net"><a href="/spacetrucker/plates/alpha60-layout.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/alpha60-layout.jpg" width="1100" height="825" loading="lazy" decoding="async" alt="Alpha60 layout"></a><figcaption><b>Alpha60 layout</b>c. 2000<span class="fsrc"><a href="https://web.archive.org/web/20010401192357/http://alpha60.discountpetfood.net/" target="_blank" rel="noopener">wayback · alpha60.discountpetfood.net ↗</a></span></figcaption></figure>
 </div>
 <p class="refs"><a class="ext" href="https://web.archive.org/web/20010401192357/http://alpha60.discountpetfood.net/">Index</a><a class="ext" href="https://vimeo.com/alpha60">Later Vimeo channel, VIM.2008.001</a></p>
 </div>
@@ -755,6 +867,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 </dl>
 <p class="desc">The division's principal production, <b>Got Cheeze?</b>, is described in the catalogue as <em>"Discover Wisconsin like you never have before. Contains material not suitable for small children."</em> A fragment of <i>Decoding Data From Unknown Media</i> was later re-uploaded to YouTube; it is the only DPFdv title that can still be watched.</p>
 <p class="refs"><a class="ext" href="https://web.archive.org/web/20010405175113/http://discountpetfood.net/dpfdv/main.html">Catalogue page</a><a class="ext" href="https://youtu.be/pYQTS-Puxrg">Surviving fragment</a></p>
+
+<div class="plates one">
+<figure data-acc="DPF.1999.012" data-date="2001" data-medium="Screen capture of archived page, 1280 px" data-prov="Internet Archive, capture 5 April 2001" data-bytes="57505" data-src="https://web.archive.org/web/20010405175113/http://discountpetfood.net/dpfdv/main.html" data-srclabel="wayback · discountpetfood.net/dpfdv"><a href="/spacetrucker/plates/dpf-dpfdv.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/dpf-dpfdv.jpg" width="900" height="675" loading="lazy" decoding="async" alt="DPFdv — video index"></a><figcaption><b>DPFdv — video index</b>capture 5 Apr 2001<span class="fsrc"><a href="https://web.archive.org/web/20010405175113/http://discountpetfood.net/dpfdv/main.html" target="_blank" rel="noopener">wayback · discountpetfood.net/dpfdv ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -771,6 +887,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 </dl>
 <p class="desc">The conglomerate's one act of straightforward patronage, and it is worth recording in the artist's own words: <em>"Omar Sayyah is a 19 year old factory worker who really wants to do his art for a living. So far he has made 16 Godzilla films (the Japanese Godzilla), hand built from scratch 9 different Godzilla suits and countless enemies for Godzilla to battle with. Omar is going to Japan in June of 2000 in hopes of acquiring a sponsor for his work. Think this is a good idea? Can you save him from a life toiling in a factory?"</em> Trailers: <i>Greetings from Zearon</i>, <i>N U K E D!</i>, <i>WWIII</i>, <i>War of the Super Monsters</i>.</p>
 <p class="refs"><a class="ext" href="https://web.archive.org/web/20010405094319/http://discountpetfood.net/OMS/main.html">Division index</a><a class="ext" href="https://web.archive.org/web/20010410045612/http://discountpetfood.net/OMS/image/01-omarslc.htm">Comic, page one</a></p>
+
+<div class="plates one">
+<figure data-acc="DPF.2000.013" data-date="2001" data-medium="Screen capture of archived page, 1280 px" data-prov="Internet Archive, capture 5 April 2001" data-bytes="58954" data-src="https://web.archive.org/web/20010405094319/http://discountpetfood.net/OMS/main.html" data-srclabel="wayback · discountpetfood.net/OMS"><a href="/spacetrucker/plates/dpf-oms.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/dpf-oms.jpg" width="900" height="675" loading="lazy" decoding="async" alt="Oversized Monster Series — index"></a><figcaption><b>Oversized Monster Series — index</b>capture 5 Apr 2001<span class="fsrc"><a href="https://web.archive.org/web/20010405094319/http://discountpetfood.net/OMS/main.html" target="_blank" rel="noopener">wayback · discountpetfood.net/OMS ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -787,6 +907,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 </dl>
 <p class="desc">A proposal to a circle of friends to jointly fund a server: <em>"I propose a 'Stone Soup' style Server project to take the place of our venerable NeXT box... if we all chip in a little toward the common goal of building an x86 based Linux server we can all benefit."</em> The stated motive is the origin of everything in Divisions E and F: <em>"we really want to do QuickTime streaming, thus Linux."</em> The name descends from Cogito X, the Winona State philosophy club for which the artist served as art director from 1991 to 1993.</p>
 <p class="refs"><a class="ext" href="https://web.archive.org/web/20010202033100/http://stonesoup.discountpetfood.net/">Proposal</a></p>
+
+<div class="plates one">
+<figure data-acc="DPF.1999.014" data-date="2001" data-medium="Screen capture of archived page, 1280 px" data-prov="Internet Archive, capture 2 February 2001" data-bytes="130041" data-src="https://web.archive.org/web/20010202033100/http://stonesoup.discountpetfood.net/" data-srclabel="wayback · stonesoup.discountpetfood.net"><a href="/spacetrucker/plates/dpf-stonesoup.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/dpf-stonesoup.jpg" width="900" height="633" loading="lazy" decoding="async" alt="Stone Soup"></a><figcaption><b>Stone Soup</b>capture 2 Feb 2001<span class="fsrc"><a href="https://web.archive.org/web/20010202033100/http://stonesoup.discountpetfood.net/" target="_blank" rel="noopener">wayback · stonesoup.discountpetfood.net ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -802,6 +926,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 </dl>
 <p class="desc">In its last year the imprint dropped the satire entirely and became a straight-faced tourism directory for central Arizona: Arcosanti, Ashfork, Bagdad, Black Canyon City, Camp Verde, Chino Valley, Cornville, Cottonwood, Dewey, Humboldt, Jerome, Mayer, Prescott, Prescott Valley, Sedona and Yarnell. The Arcosanti page carries a 2003 season including Richie Havens, a Vivaldi festival, a poetry slam, and <b>Different Skies, the space and experimental electronic music festival</b> — on a 2007 recording from which the artist would later be credited under his own name.</p>
 <p class="refs"><a class="ext" href="https://web.archive.org/web/20040202160324/http://discountpetfood.net/communities/Arcosanti.html">Arcosanti</a><a class="ext" href="https://web.archive.org/web/20040213012911/http://discountpetfood.net/communities/Jerome.html">Jerome</a></p>
+
+<div class="plates one">
+<figure data-acc="DPF.2004.015" data-date="2004" data-medium="Screen capture of archived page, 1280 px" data-prov="Internet Archive, capture 2 February 2004" data-bytes="75544" data-src="https://web.archive.org/web/20040202160324/http://discountpetfood.net/communities/Arcosanti.html" data-srclabel="wayback · discountpetfood.net/communities"><a href="/spacetrucker/plates/dpf-communities.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/dpf-communities.jpg" width="900" height="633" loading="lazy" decoding="async" alt="Communities — Arcosanti"></a><figcaption><b>Communities — Arcosanti</b>capture 2 Feb 2004<span class="fsrc"><a href="https://web.archive.org/web/20040202160324/http://discountpetfood.net/communities/Arcosanti.html" target="_blank" rel="noopener">wayback · discountpetfood.net/communities ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -819,6 +947,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <p class="desc">The artist's only release on a label, and the only recording anywhere credited to his legal name. Described as <em>"An improvised jam session involving twenty musicians at Different Skies 2007."</em></p>
 <p class="refs"><a class="ext" href="https://www.discogs.com/release/1230132-Different-Skies-Imaginary-Spaces">Discogs record</a></p>
 </div>
+
+<div class="plates one">
+<figure data-acc="DPF.2008.016" data-date="2008" data-medium="Cover art, 597 px" data-prov="Discogs release 1230132, served artwork" data-bytes="95607" data-src="https://www.discogs.com/release/1230132-Different-Skies-Imaginary-Spaces" data-srclabel="discogs.com/release/1230132"><a href="/spacetrucker/plates/discogs-imaginary-spaces.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/discogs-imaginary-spaces.jpg" width="597" height="600" loading="lazy" decoding="async" alt="Imaginary Spaces"></a><figcaption><b>Imaginary Spaces</b>Different Skies &middot; sleeve<span class="fsrc"><a href="https://www.discogs.com/release/1230132-Different-Skies-Imaginary-Spaces" target="_blank" rel="noopener">discogs.com/release/1230132 ↗</a></span></figcaption></figure>
+</div>
 </div>
 
 <div class="note">
@@ -834,7 +966,7 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <h2>Photography</h2>
 <p class="series-dates">2005 &mdash; present &middot; one photostream, one feed, two portfolios</p>
 </div>
-<p class="scope">One Flickr archive, and the largest single body of work in the whole catalogue by item count. The photostream is effectively unfindable: it carries the display name <em>Space][rucker</em>, which appears nowhere else on the indexed web, at a URL that gives no hint of it. An account at the plain handle <em>flickr.com/photos/spacetrucker</em> is <b>not</b> his and is listed in Appendix B.</p>
+<p class="scope">One Flickr archive, and by item count the largest single body of work in the catalogue. The photostream is effectively unroutable: the display name <em>Space][rucker</em> appears nowhere else on the indexed web, and the URL gives no hint of it. An account at the plain handle <em>flickr.com/photos/spacetrucker</em> is <b>not</b> his and is listed in Appendix B.</p>
 
 <div class="cat">
 <div class="acc">FLK.2005.001<small>1,535 items</small></div>
@@ -848,6 +980,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 </dl>
 <p class="desc">The principal photographic archive. The profile carries an in-character cargo-captain narrative in place of a biography, and links onward to Instagram. Because the URL slug is <em>fretro</em> and the display name uses a bracket-slash construction no search engine will match, this archive is reachable in practice only from one outbound link on the artist's Bandcamp collection page.</p>
 <p class="refs"><a class="ext" href="https://www.flickr.com/photos/fretro/">Photostream</a><a class="ext" href="https://www.flickr.com/people/fretro/">Profile</a></p>
+
+<div class="plates one">
+<figure data-acc="FLK.2005.001" data-date="2005–" data-medium="Screen capture of live page, 1280 px" data-prov="Flickr, retrieved 3 September 2026" data-bytes="121582" data-src="https://www.flickr.com/photos/fretro/" data-srclabel="flickr.com/photos/fretro"><a href="/spacetrucker/plates/flickr.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/flickr.jpg" width="900" height="675" loading="lazy" decoding="async" alt="Photostream — Space][rucker"></a><figcaption><b>Photostream — Space][rucker</b>flickr.com/photos/fretro<span class="fsrc"><a href="https://www.flickr.com/photos/fretro/" target="_blank" rel="noopener">flickr.com/photos/fretro ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -892,7 +1028,7 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <h2>Moving Image</h2>
 <p class="series-dates">2008 &mdash; present &middot; 383 catalogued items, five channels, three films</p>
 </div>
-<p class="scope">The largest surviving body of work by duration. One general channel running since 2008, two thematic channels opened in 2025, an archive under the Alpha60 name that contains the oldest transferred material, and eleven clips salvaged from expired livestreams. Full manifests are given below.</p>
+<p class="scope">The largest surviving body of work by runtime. One general channel live since 2008, two thematic channels opened in 2025, an archive under the Alpha60 name holding the oldest transfers, and eleven clips salvaged off expired livestreams before they aged out. Full manifests follow.</p>
 
 <div class="cat">
 <div class="acc">VIM.2008.001<small>26 works</small></div>
@@ -941,6 +1077,14 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
       </table>
     </div>
   </details>
+
+<div class="plates strip">
+<figure data-acc="VIM.2008.001" data-date="2010" data-medium="Video poster frame, 1280 px" data-prov="Vimeo, served frame" data-bytes="123456" data-src="https://vimeo.com/14105706" data-srclabel="vimeo.com/14105706"><a href="/spacetrucker/plates/vimeo-august-marsh.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/vimeo-august-marsh.jpg" width="1280" height="714" loading="lazy" decoding="async" alt="August in the Marsh"></a><figcaption><b>August in the Marsh</b>poster frame<span class="fsrc"><a href="https://vimeo.com/14105706" target="_blank" rel="noopener">vimeo.com/14105706 ↗</a></span></figcaption></figure>
+<figure data-acc="VIM.2008.001" data-date="2010" data-medium="Video poster frame, 1280 px" data-prov="Vimeo, served frame" data-bytes="88009" data-src="https://vimeo.com/14379130" data-srclabel="vimeo.com/14379130"><a href="/spacetrucker/plates/vimeo-late-summer.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/vimeo-late-summer.jpg" width="1280" height="720" loading="lazy" decoding="async" alt="Late Summer"></a><figcaption><b>Late Summer</b>poster frame<span class="fsrc"><a href="https://vimeo.com/14379130" target="_blank" rel="noopener">vimeo.com/14379130 ↗</a></span></figcaption></figure>
+<figure data-acc="VIM.2008.001" data-date="2023" data-medium="Video poster frame, 1280 px" data-prov="Vimeo, served frame" data-bytes="42287" data-src="https://vimeo.com/898038145" data-srclabel="vimeo.com/898038145"><a href="/spacetrucker/plates/vimeo-hay-moon.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/vimeo-hay-moon.jpg" width="1280" height="720" loading="lazy" decoding="async" alt="Hay Moon July 2022"></a><figcaption><b>Hay Moon July 2022</b>poster frame<span class="fsrc"><a href="https://vimeo.com/898038145" target="_blank" rel="noopener">vimeo.com/898038145 ↗</a></span></figcaption></figure>
+<figure data-acc="VIM.2008.001" data-date="2018" data-medium="Video poster frame, 1280 px" data-prov="Vimeo, served frame" data-bytes="50739" data-src="https://vimeo.com/308783906" data-srclabel="vimeo.com/308783906"><a href="/spacetrucker/plates/vimeo-12-forward.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/vimeo-12-forward.jpg" width="1280" height="720" loading="lazy" decoding="async" alt="12 Forward"></a><figcaption><b>12 Forward</b>poster frame<span class="fsrc"><a href="https://vimeo.com/308783906" target="_blank" rel="noopener">vimeo.com/308783906 ↗</a></span></figcaption></figure>
+<figure data-acc="VIM.2008.001" data-date="2008–" data-medium="Screen capture of live page, 1280 px" data-prov="Vimeo, retrieved 3 September 2026" data-bytes="120185" data-src="https://vimeo.com/alpha60" data-srclabel="vimeo.com/alpha60"><a href="/spacetrucker/plates/vimeo.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/vimeo.jpg" width="900" height="675" loading="lazy" decoding="async" alt="Channel index — 26 works"></a><figcaption><b>Channel index — 26 works</b>vimeo.com/alpha60<span class="fsrc"><a href="https://vimeo.com/alpha60" target="_blank" rel="noopener">vimeo.com/alpha60 ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -1289,6 +1433,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
       <div class="cols">Favorites (36)<br>Deep Tubes (84)<br>Space Trucking (5)<br>Hack RF (3)<br>Lotech (13)<br>Military History (2)<br>Best Beer Commercials (41)<br>Hemp Farming (7)<br>MAKE MONEY FAST IN FARMING (3)<br>Ambient Video (1)<br>Best FJ Builds (2)<br>360 (5)<br>Planetary Surveys (21)<br>Diagnostic Test Tones (52)<br>First Church of the Voltage Controlled Oscillator (14)<br>Analog Signal Streams (42)<br>Future City (14)<br>Food Mountain And Cat Farming (25)<br>ASMR (9)<br>Loops (11)<br>Strategic Record Reserve (1)<br>Heavy Metal (3)</div>
     </div>
   </details>
+
+<div class="plates one">
+<figure data-acc="YTB.2008.001" data-date="2008–" data-medium="Screen capture of live page, 1280 px" data-prov="YouTube, retrieved 3 September 2026" data-bytes="100547" data-src="https://www.youtube.com/@spacetrucker2196" data-srclabel="youtube.com/@spacetrucker2196"><a href="/spacetrucker/plates/ytb-spacetrucker.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/ytb-spacetrucker.jpg" width="900" height="675" loading="lazy" decoding="async" alt="Spacetrucker — channel index"></a><figcaption><b>Spacetrucker — channel index</b>308 items<span class="fsrc"><a href="https://www.youtube.com/@spacetrucker2196" target="_blank" rel="noopener">youtube.com/@spacetrucker2196 ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -1332,6 +1480,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
       </table>
     </div>
   </details>
+
+<div class="plates one">
+<figure data-acc="YTB.2025.002" data-date="2025–" data-medium="Screen capture of live page, 1280 px" data-prov="YouTube, retrieved 3 September 2026" data-bytes="118080" data-src="https://www.youtube.com/@Nature-Meds" data-srclabel="youtube.com/@Nature-Meds"><a href="/spacetrucker/plates/ytb-naturemeds.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/ytb-naturemeds.jpg" width="900" height="675" loading="lazy" decoding="async" alt="Nature Meds — channel index"></a><figcaption><b>Nature Meds — channel index</b>19 works<span class="fsrc"><a href="https://www.youtube.com/@Nature-Meds" target="_blank" rel="noopener">youtube.com/@Nature-Meds ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -1395,6 +1547,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
       </table>
     </div>
   </details>
+
+<div class="plates one">
+<figure data-acc="YTB.2025.003" data-date="2025–" data-medium="Screen capture of live page, 1280 px" data-prov="YouTube, retrieved 3 September 2026" data-bytes="136961" data-src="https://www.youtube.com/@UnitedCatFoods" data-srclabel="youtube.com/@UnitedCatFoods"><a href="/spacetrucker/plates/ytb-unitedcatfoods.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/ytb-unitedcatfoods.jpg" width="900" height="675" loading="lazy" decoding="async" alt="United Cat Foods — channel index"></a><figcaption><b>United Cat Foods — channel index</b>39 items<span class="fsrc"><a href="https://www.youtube.com/@UnitedCatFoods" target="_blank" rel="noopener">youtube.com/@UnitedCatFoods ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -1409,6 +1565,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 </dl>
 <p class="desc">Surviving clips: <i>Valhalla Station Beacon</i> · <i>Deep Arcology Electro Techno Beats</i> (three) · <i>Rural Hop Test Channel</i> · <i>Looking West at An Object</i> · <i>Deep Wood Off World</i> · <i>More delay</i> · <i>Fern Tones</i> · <i>United Catfoods Space Freight Hauling with IceToe</i>. This bio is also the earliest dated statement of the 2196 conceit.</p>
 <p class="refs"><a class="ext" href="https://www.twitch.tv/spacetrucker2196">Channel</a></p>
+
+<div class="plates one">
+<figure data-acc="TWC.2020.001" data-date="2020–" data-medium="Screen capture of live page, 1280 px" data-prov="Twitch, retrieved 3 September 2026" data-bytes="128518" data-src="https://www.twitch.tv/spacetrucker2196" data-srclabel="twitch.tv/spacetrucker2196"><a href="/spacetrucker/plates/twitch.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/twitch.jpg" width="900" height="675" loading="lazy" decoding="async" alt="Twitch channel"></a><figcaption><b>Twitch channel</b>twitch.tv/spacetrucker2196<span class="fsrc"><a href="https://www.twitch.tv/spacetrucker2196" target="_blank" rel="noopener">twitch.tv/spacetrucker2196 ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -1447,7 +1607,7 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <h2>Sound</h2>
 <p class="series-dates">2001 &mdash; present &middot; 12 released works, 14 uncollected recordings</p>
 </div>
-<p class="scope">Ambient, drone, dungeon synth and acid techno made on a Minimoog Model D, a Moog Voyager, a Kawai K3, an Access Virus, TB-303 and TD-3 derivatives, a Nord G2, a circuit-bent Speak &amp; Spell and a Strymon Night Sky. Two catalogues exist and only partly overlap: six works issued on Bandcamp, ten distributed to streaming services, four titles common to both.</p>
+<p class="scope">Ambient, drone, dungeon synth and acid techno. Signal chain across the series: Minimoog Model D, Moog Voyager, Kawai K3, Access Virus, TB-303 and TD-3 derivatives, Nord G2, a circuit-bent Speak &amp; Spell, Strymon Night Sky. Two catalogues exist and only partly overlap &mdash; six works on Bandcamp, ten on streaming services, four titles common to both.</p>
 
 <div class="cat">
 <div class="acc">SND.2021.001<small>12 works</small></div>
@@ -1485,6 +1645,14 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
     </div>
   </details>
 <p class="refs"><a class="ext" href="https://spacetrucker2196.bandcamp.com">Bandcamp</a><a class="ext" href="https://open.spotify.com/artist/6wZGZQYQb6FpLC8MgtQHLX">Spotify</a><a class="ext" href="https://music.apple.com/us/artist/spacetrucker-2196/1587132404">Apple Music</a><a class="ext" href="https://www.deezer.com/artist/146343522">Deezer</a></p>
+
+<div class="plates strip">
+<figure data-acc="SND.2021.001" data-date="2021" data-medium="Cover art, 1200 px" data-prov="Bandcamp, served artwork" data-bytes="186409" data-src="https://spacetrucker2196.bandcamp.com/album/series-of-attenuated-test-tones-for-response" data-srclabel="bandcamp · series-of-attenuated-test-tones"><a href="/spacetrucker/plates/bc-attenuated.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/bc-attenuated.jpg" width="1200" height="1200" loading="lazy" decoding="async" alt="Series of Attenuated Test Tones for Response"></a><figcaption><b>Series of Attenuated Test Tones for Response</b>sleeve<span class="fsrc"><a href="https://spacetrucker2196.bandcamp.com/album/series-of-attenuated-test-tones-for-response" target="_blank" rel="noopener">bandcamp · series-of-attenuated-test-tones ↗</a></span></figcaption></figure>
+<figure data-acc="SND.2021.001" data-date="2022" data-medium="Cover art, 1200 px" data-prov="Bandcamp, served artwork" data-bytes="354042" data-src="https://spacetrucker2196.bandcamp.com/album/yosemite-river-early-spring" data-srclabel="bandcamp · yosemite-river-early-spring"><a href="/spacetrucker/plates/bc-yosemite.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/bc-yosemite.jpg" width="1200" height="1200" loading="lazy" decoding="async" alt="Yosemite River Early Spring"></a><figcaption><b>Yosemite River Early Spring</b>sleeve<span class="fsrc"><a href="https://spacetrucker2196.bandcamp.com/album/yosemite-river-early-spring" target="_blank" rel="noopener">bandcamp · yosemite-river-early-spring ↗</a></span></figcaption></figure>
+<figure data-acc="SND.2021.001" data-date="2022" data-medium="Cover art, 1200 px" data-prov="Bandcamp, served artwork" data-bytes="174209" data-src="https://spacetrucker2196.bandcamp.com/album/ion-storm-lone-road" data-srclabel="bandcamp · ion-storm-lone-road"><a href="/spacetrucker/plates/bc-ion-storm.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/bc-ion-storm.jpg" width="1200" height="1200" loading="lazy" decoding="async" alt="Ion Storm Lone Road"></a><figcaption><b>Ion Storm Lone Road</b>sleeve<span class="fsrc"><a href="https://spacetrucker2196.bandcamp.com/album/ion-storm-lone-road" target="_blank" rel="noopener">bandcamp · ion-storm-lone-road ↗</a></span></figcaption></figure>
+<figure data-acc="SND.2021.001" data-date="2023" data-medium="Cover art, 1200 px" data-prov="Bandcamp, served artwork" data-bytes="414446" data-src="https://spacetrucker2196.bandcamp.com/album/endless-driftless" data-srclabel="bandcamp · endless-driftless"><a href="/spacetrucker/plates/bc-driftless.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/bc-driftless.jpg" width="1200" height="1200" loading="lazy" decoding="async" alt="Endless Driftless"></a><figcaption><b>Endless Driftless</b>sleeve<span class="fsrc"><a href="https://spacetrucker2196.bandcamp.com/album/endless-driftless" target="_blank" rel="noopener">bandcamp · endless-driftless ↗</a></span></figcaption></figure>
+<figure data-acc="SND.2021.001" data-date="2023" data-medium="Cover art, 1200 px" data-prov="Bandcamp, served artwork" data-bytes="250183" data-src="https://spacetrucker2196.bandcamp.com/album/autumnal-equinox" data-srclabel="bandcamp · autumnal-equinox"><a href="/spacetrucker/plates/bc-equinox.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/bc-equinox.jpg" width="1200" height="1200" loading="lazy" decoding="async" alt="Autumnal Equinox"></a><figcaption><b>Autumnal Equinox</b>sleeve<span class="fsrc"><a href="https://spacetrucker2196.bandcamp.com/album/autumnal-equinox" target="_blank" rel="noopener">bandcamp · autumnal-equinox ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -1498,6 +1666,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 </dl>
 <p class="desc">Eleven recordings published April to May 2022, of which three appear in no release: <i>Dungeon Void Session</i>, <i>Emran Tree Species #51</i> and <i>Nature Morning With Moog</i>. A second account under the Alpha60 name holds three further recordings: <i>Wine Sodden Bees &mdash; Billy Jack Guru Session Wrap Up</i>, <i>Wine Sodden Bees &mdash; The First Set</i> and <i>Children walking through Canyon &mdash; New Mexico</i>. The first two are the audio counterpart to a Vimeo work of 2009.</p>
 <p class="refs"><a class="ext" href="https://soundcloud.com/spacetrucker2196">spacetrucker2196</a><a class="ext" href="https://soundcloud.com/alpha60">alpha60</a></p>
+
+<div class="plates one">
+<figure data-acc="SND.2022.002" data-date="2022–" data-medium="Screen capture of live page, 1280 px" data-prov="SoundCloud, retrieved 3 September 2026" data-bytes="111866" data-src="https://soundcloud.com/spacetrucker2196" data-srclabel="soundcloud.com/spacetrucker2196"><a href="/spacetrucker/plates/soundcloud.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/soundcloud.jpg" width="900" height="633" loading="lazy" decoding="async" alt="SoundCloud — uncollected recordings"></a><figcaption><b>SoundCloud — uncollected recordings</b>soundcloud.com/spacetrucker2196<span class="fsrc"><a href="https://soundcloud.com/spacetrucker2196" target="_blank" rel="noopener">soundcloud.com/spacetrucker2196 ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 </section>
@@ -1509,7 +1681,7 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <h2>Software and Systems</h2>
 <p class="series-dates">2013 &mdash; present &middot; 54 repositories, 9 store listings</p>
 </div>
-<p class="scope">Source-available work and published applications. The oldest public repository dates to 2013; the entire shipped application catalogue was released between May and August 2026, roughly one title every fortnight. A single design position runs through all of it: on-device only, no accounts, no servers, no analytics, one-time purchase.</p>
+<p class="scope">Source-available work and shipped applications. Oldest public repository 2013; the entire application catalogue shipped between May and August 2026, roughly one title a fortnight. One design constraint holds across all of it: on-device only, no accounts, no servers, no analytics, one-time purchase.</p>
 
 <div class="cat">
 <div class="acc">GIT.2013.001<small>52 repositories</small></div>
@@ -1585,6 +1757,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
     </div>
   </details>
 <p class="refs"><a class="ext" href="https://github.com/SpaceTrucker2196">Profile</a><a class="ext" href="https://github.com/United-Cat-Foods">United-Cat-Foods</a><a class="ext" href="https://spacetrucker2196.github.io/sloth/">sloth documentation</a><a class="ext" href="https://spacetrucker2196.github.io/cygnus/">cygnus</a></p>
+
+<div class="plates one">
+<figure data-acc="GIT.2013.001" data-date="2013–" data-medium="Screen capture of live page, 1280 px" data-prov="GitHub, retrieved 3 September 2026" data-bytes="112167" data-src="https://github.com/SpaceTrucker2196" data-srclabel="github.com/SpaceTrucker2196"><a href="/spacetrucker/plates/github.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/github.jpg" width="900" height="675" loading="lazy" decoding="async" alt="GitHub profile — SpaceTrucker2196"></a><figcaption><b>GitHub profile — SpaceTrucker2196</b>54 repositories<span class="fsrc"><a href="https://github.com/SpaceTrucker2196" target="_blank" rel="noopener">github.com/SpaceTrucker2196 ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -1618,6 +1794,15 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
     </div>
   </details>
 <p class="refs"><a class="ext" href="https://apps.apple.com/us/developer/river-io-llc/id452867373">Developer catalogue</a><a class="ext" href="https://www.river.io/software/">Product register</a></p>
+
+<div class="plates strip">
+<figure data-acc="APP.2026.001" data-date="2026" data-medium="App icon, 600 px" data-prov="Apple App Store, served artwork" data-bytes="51461" data-src="https://apps.apple.com/us/app/spacetrucker-galactic/id6772206132" data-srclabel="App Store · id6772206132"><a href="/spacetrucker/plates/app-spacetrucker-galactic.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/app-spacetrucker-galactic.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Spacetrucker Galactic"></a><figcaption><b>Spacetrucker Galactic</b>app icon<span class="fsrc"><a href="https://apps.apple.com/us/app/spacetrucker-galactic/id6772206132" target="_blank" rel="noopener">App Store · id6772206132 ↗</a></span></figcaption></figure>
+<figure data-acc="APP.2026.001" data-date="2026" data-medium="App icon, 600 px" data-prov="Apple App Store, served artwork" data-bytes="46545" data-src="https://apps.apple.com/us/app/nighthawk-tube-binaural/id6792941006" data-srclabel="App Store · id6792941006"><a href="/spacetrucker/plates/app-nighthawk-tube.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/app-nighthawk-tube.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Nighthawk Tube: Binaural"></a><figcaption><b>Nighthawk Tube: Binaural</b>app icon<span class="fsrc"><a href="https://apps.apple.com/us/app/nighthawk-tube-binaural/id6792941006" target="_blank" rel="noopener">App Store · id6792941006 ↗</a></span></figcaption></figure>
+<figure data-acc="APP.2026.001" data-date="2026" data-medium="App icon, 600 px" data-prov="Apple App Store, served artwork" data-bytes="189404" data-src="https://apps.apple.com/us/app/corn-3000-a-corn-simulator/id6791683816" data-srclabel="App Store · id6791683816"><a href="/spacetrucker/plates/app-corn-3000.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/app-corn-3000.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Corn 3000"></a><figcaption><b>Corn 3000</b>app icon<span class="fsrc"><a href="https://apps.apple.com/us/app/corn-3000-a-corn-simulator/id6791683816" target="_blank" rel="noopener">App Store · id6791683816 ↗</a></span></figcaption></figure>
+<figure data-acc="APP.2026.001" data-date="2026" data-medium="App icon, 600 px" data-prov="Apple App Store, served artwork" data-bytes="44936" data-src="https://apps.apple.com/us/app/materials-and-practices/id6752317282" data-srclabel="App Store · id6752317282"><a href="/spacetrucker/plates/app-materials-and-practices.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/app-materials-and-practices.jpg" width="600" height="600" loading="lazy" decoding="async" alt="Materials And Practices"></a><figcaption><b>Materials And Practices</b>app icon<span class="fsrc"><a href="https://apps.apple.com/us/app/materials-and-practices/id6752317282" target="_blank" rel="noopener">App Store · id6752317282 ↗</a></span></figcaption></figure>
+<figure data-acc="APP.2026.001" data-date="2026" data-medium="App icon, 600 px" data-prov="Apple App Store, served artwork" data-bytes="80324" data-src="https://apps.apple.com/us/app/clientapt/id6779647015" data-srclabel="App Store · id6779647015"><a href="/spacetrucker/plates/app-clientapt.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/app-clientapt.jpg" width="600" height="600" loading="lazy" decoding="async" alt="ClientAPT"></a><figcaption><b>ClientAPT</b>app icon<span class="fsrc"><a href="https://apps.apple.com/us/app/clientapt/id6779647015" target="_blank" rel="noopener">App Store · id6779647015 ↗</a></span></figcaption></figure>
+<figure data-acc="APP.2026.001" data-date="2026" data-medium="App icon, 600 px" data-prov="Apple App Store, served artwork" data-bytes="20812" data-src="https://apps.apple.com/us/app/caretime-evv/id6772758106" data-srclabel="App Store · id6772758106"><a href="/spacetrucker/plates/app-caretime-evv.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/app-caretime-evv.jpg" width="600" height="600" loading="lazy" decoding="async" alt="CareTime EVV"></a><figcaption><b>CareTime EVV</b>app icon<span class="fsrc"><a href="https://apps.apple.com/us/app/caretime-evv/id6772758106" target="_blank" rel="noopener">App Store · id6772758106 ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 
@@ -1632,6 +1817,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 </dl>
 <p class="desc">Writing on structuring a repository so that autonomous agents can build in it: the mission charter, invariants with hand-written tests as oracles the agents may not modify, and merge gated on a green suite and a warning-clean compile. The lineage back to <i>Technology Mandala</i> (DPF.2001.005) is not subtle, and the twenty-five years between them are the point.</p>
 <p class="refs"><a class="ext" href="https://www.river.io/blog/">Blog</a><a class="ext" href="https://www.river.io/jeff/">Portfolio</a></p>
+
+<div class="plates one">
+<figure data-acc="RIO.2026.001" data-date="2026–" data-medium="Screen capture of live page, 1280 px" data-prov="river.io, retrieved 3 September 2026" data-bytes="42021" data-src="https://www.river.io/" data-srclabel="www.river.io"><a href="/spacetrucker/plates/riverio.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/riverio.jpg" width="900" height="675" loading="lazy" decoding="async" alt="river.io — front page"></a><figcaption><b>river.io — front page</b>www.river.io<span class="fsrc"><a href="https://www.river.io/" target="_blank" rel="noopener">www.river.io ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 </section>
@@ -1643,7 +1832,7 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <h2>Editions, Objects and Merchandise</h2>
 <p class="series-dates">2020 &mdash; present</p>
 </div>
-<p class="scope">Work issued as objects, editions or files for sale. One imprint in this series is entirely lost; one exists only on a blockchain.</p>
+<p class="scope">Work issued as objects, editions or files for sale. One imprint in this series is gone entirely; one survives only as ledger entries.</p>
 
 <div class="cat">
 <div class="acc">NFT.2021.001<small>48 mints</small></div>
@@ -1661,10 +1850,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <p class="plate-note">Pendants &mdash; twenty-eight years apart</p>
 
 <div class="plates pair">
-<figure><a href="/spacetrucker/plates/cells-1.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/cells-1.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Cells 1"></a><figcaption><b>Cells 1</b>1993 &middot; Photoshop 2.5, Macintosh IIfx</figcaption></figure>
-<figure><a href="/spacetrucker/plates/cells-1-nft.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/cells-1-nft.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Cells 1.0"></a><figcaption><b>Cells 1.0</b>2021 &middot; minted edition, Rarible</figcaption></figure>
-<figure><a href="/spacetrucker/plates/franken-2.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/franken-2.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Franken 2"></a><figcaption><b>Franken 2</b>1993</figcaption></figure>
-<figure><a href="/spacetrucker/plates/franken-nft.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/franken-nft.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Franken"></a><figcaption><b>Franken</b>2021 &middot; minted edition</figcaption></figure>
+<figure data-acc="SIT.1993.001" data-date="1993" data-medium="Digital image, Adobe Photoshop 2.5" data-prov="SITO Artchive, as kuj" data-bytes="346071" data-src="https://id.sito.org/kuj/" data-srclabel="id.sito.org/kuj"><a href="/spacetrucker/plates/cells-1.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/cells-1.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Cells 1"></a><figcaption><b>Cells 1</b>1993 &middot; Photoshop 2.5, Macintosh IIfx<span class="fsrc"><a href="https://id.sito.org/kuj/" target="_blank" rel="noopener">id.sito.org/kuj ↗</a></span></figcaption></figure>
+<figure data-acc="NFT.2021.001" data-date="2021" data-medium="Minted digital edition, ERC-721" data-prov="Rarible; after the 1993 original" data-bytes="266141" data-src="https://rarible.com/spacetrucker" data-srclabel="rarible.com/spacetrucker"><a href="/spacetrucker/plates/cells-1-nft.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/cells-1-nft.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Cells 1.0"></a><figcaption><b>Cells 1.0</b>2021 &middot; minted edition, Rarible<span class="fsrc"><a href="https://rarible.com/spacetrucker" target="_blank" rel="noopener">rarible.com/spacetrucker ↗</a></span></figcaption></figure>
+<figure data-acc="DPF.1993.009" data-date="1993" data-medium="Digital image" data-prov="Digital Image Archive, year index 1993" data-bytes="263481" data-src="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" data-srclabel="wayback · kunzelman…/archive"><a href="/spacetrucker/plates/franken-2.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/franken-2.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Franken 2"></a><figcaption><b>Franken 2</b>1993<span class="fsrc"><a href="https://web.archive.org/web/20010412091200/http://kunzelman.discountpetfood.net/archive/index.htm" target="_blank" rel="noopener">wayback · kunzelman…/archive ↗</a></span></figcaption></figure>
+<figure data-acc="NFT.2021.001" data-date="2021" data-medium="Minted digital edition, ERC-721" data-prov="Rarible; after the 1993 original" data-bytes="529282" data-src="https://rarible.com/spacetrucker" data-srclabel="rarible.com/spacetrucker"><a href="/spacetrucker/plates/franken-nft.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/franken-nft.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Franken"></a><figcaption><b>Franken</b>2021 &middot; minted edition<span class="fsrc"><a href="https://rarible.com/spacetrucker" target="_blank" rel="noopener">rarible.com/spacetrucker ↗</a></span></figcaption></figure>
 </div>
 <p class="refs"><a class="ext" href="https://rarible.com/spacetrucker">Collection</a></p>
 </div>
@@ -1753,7 +1942,7 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <h2>Correspondence and Social</h2>
 <p class="series-dates">1997 &mdash; present</p>
 </div>
-<p class="scope">Accounts held for publication rather than production. Recorded here because several carry statements that appear nowhere else, and because two of them are the only surviving evidence for works listed above.</p>
+<p class="scope">Accounts held for distribution rather than production. Logged here because several carry statements that appear nowhere else, and because two are the only surviving evidence for works listed above.</p>
 
 <div class="cat">
 <div class="acc">SOC.2018.001</div>
@@ -1805,6 +1994,10 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <dl><dt>Class</dt><dd>Technician &middot; Mayer, Arizona</dd><dt>Condition</dt><dd><span class="cond c-extant">EXTANT</span></dd></dl>
 <p class="desc">Recorded here because it produced work: <i>ARRL Field Day 2020 Drone Highlights</i>, <i>W9FJC AARL Field Day 2020 2B WI EN44id</i>, and <i>EN44id &mdash; Close to Never-Activated SOTA Summit W9/WI-029</i>, all in Series IV, plus the almanac application <i>Spacetrucker Galactic</i> in Series VI. Mayer is also Arcosanti's post office, which ties the callsign, the Cosanti Foundation role and the <i>Arcology Of The Sun</i> editions to one place.</p>
 <p class="refs"><a class="ext" href="https://www.qrzcq.com/call/W9FJC">Station record</a></p>
+
+<div class="plates one">
+<figure data-acc="SOC.2020.005" data-date="2020–" data-medium="Screen capture of live page, 1280 px" data-prov="QRZCQ, retrieved 3 September 2026" data-bytes="99770" data-src="https://www.qrzcq.com/call/W9FJC" data-srclabel="qrzcq.com/call/W9FJC"><a href="/spacetrucker/plates/qrz.jpg" target="_blank" rel="noopener"><img src="/spacetrucker/plates/qrz.jpg" width="900" height="675" loading="lazy" decoding="async" alt="QRZCQ — W9FJC"></a><figcaption><b>QRZCQ — W9FJC</b>amateur radio licence record<span class="fsrc"><a href="https://www.qrzcq.com/call/W9FJC" target="_blank" rel="noopener">qrzcq.com/call/W9FJC ↗</a></span></figcaption></figure>
+</div>
 </div>
 </div>
 </section>
@@ -1816,7 +2009,7 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <h2>Deaccessioned and Lost</h2>
 <p class="series-dates">Summary of losses</p>
 </div>
-<p class="scope">A catalogue of a life's work online is largely a record of what has already gone. The losses are not random: they fall almost entirely on the work that was not marked up as text.</p>
+<p class="scope">A catalogue of thirty years online is mostly a failure report. The losses are not random. They fall almost entirely on work that was never marked up as text: the plain HTML survived, the images, the video and the storefronts did not.</p>
 
 <div class="note">
 <h4>Lost entirely &mdash; no capture exists</h4>
@@ -1841,7 +2034,7 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <span class="series-num">Appendix A</span>
 <h2>Concordance of Names</h2>
 </div>
-<p class="scope">Twelve attributions, with the period and the medium each governs. Several works are reachable only through a name that appears in no search index; the concordance is therefore a finding aid as much as a record.</p>
+<p class="scope">Twelve attributions, with the period and the medium each governs. Several works are reachable only through a name that appears in no search index, which makes this table a routing table as much as a record.</p>
 <div class="dbody" style="padding-left:0">
 <table>
 <thead><tr><th>Name</th><th>Period</th><th>Governs</th></tr></thead>
@@ -1875,7 +2068,7 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <span class="series-num">Appendix B</span>
 <h2>Not by This Artist</h2>
 </div>
-<p class="scope">These records are <em>not</em> part of the collection. Each one matches a name used by this artist and belongs to somebody else entirely. They are listed here for one reason: so that no future compiler, search engine or reader mistakes them for his. Nothing on this page attributes any of them to him.</p>
+<p class="scope">These records are <em>not</em> part of the collection. Each matches a name used by this artist and belongs to somebody else. They are listed for one reason: so that no future compiler, crawler or reader mis-assigns them. Nothing on this page attributes any of them to him.</p>
 <div class="dbody" style="padding-left:0">
 <table>
 <thead><tr><th>Record &mdash; NOT in this collection</th><th>Actually belongs to</th></tr></thead>
@@ -1905,7 +2098,7 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 <span class="series-num">Appendix C</span>
 <h2>Note on Sources and Method</h2>
 </div>
-<p class="scope">Attribution in this catalogue is established by chained evidence between accounts, never by name similarity, because the names are common and at least six unrelated parties publish under them.</p>
+<p class="scope">Attribution here is established by a chain of links between accounts, never by name similarity &mdash; the names are common and at least six unrelated parties publish under them.</p>
 <div class="note">
 <h4>The chain</h4>
 <p>The repository profile names the artist and links the Instagram account and the YouTube channel. The Instagram account names him. The Bandcamp collection page names him and links the <em>fretro</em> photostream. The <em>fretro</em> photostream carries the display name <b>Space][rucker</b> and links back to Instagram. The Vimeo account at the slug <em>alpha60</em> gives the <em>fretro</em> photostream as its website. The halcyon gallery and the SITO record share his name, and the HyperRust registry entry binds the halcyon address to the handle <b>C.C.T.B</b>. The DiscountPetFood image division states in plain text that Remus Pederson and Reverend Cathode are his own aliases.</p>
@@ -1929,5 +2122,164 @@ Compiled August 2026. Arranged in nine series with three appendices. Entries are
 </footer>
 
 </div>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Plate detail">
+  <button class="lb-x" id="lb-x" type="button">ESC &middot; CLOSE</button>
+  <button class="lb-nav prev" id="lb-prev" type="button" aria-label="Previous plate">&#9666;</button>
+  <button class="lb-nav next" id="lb-next" type="button" aria-label="Next plate">&#9656;</button>
+  <div class="lb-stage"><img id="lb-img" alt=""></div>
+  <aside class="lb-side">
+    <p class="lb-unit" id="lb-unit"></p>
+    <p class="lb-name" id="lb-name"></p>
+    <p class="lb-sub" id="lb-sub"></p>
+
+    <p class="lb-sec">Record</p>
+    <dl class="rd" id="lb-rec"></dl>
+
+    <p class="lb-sec">Raster</p>
+    <dl class="rd" id="lb-ras"></dl>
+
+    <p class="lb-sec">Tone response <span id="lb-hstat">sampling</span></p>
+    <canvas id="lb-hist" width="640" height="220"></canvas>
+    <div class="lb-ramp"></div>
+    <div class="lb-rampl"><span>0</span><span>128</span><span>255</span></div>
+
+    <p class="lb-sec">Signal</p>
+    <dl class="rd" id="lb-sig"></dl>
+    <p class="lb-note" id="lb-note"></p>
+  </aside>
+</div>
+<script>
+(function(){
+ var figs=[].slice.call(document.querySelectorAll('figure[data-acc]'));
+ if(!figs.length)return;
+ var lb=document.getElementById('lb'),img=document.getElementById('lb-img'),i=0,last=null;
+ var $=function(id){return document.getElementById(id)};
+ function kb(o){var r='';for(var k in o){r+='<dt>'+k+'</dt><dd'+(o[k].q?' class="q"':'')+'>'+(o[k].v!==undefined?o[k].v:o[k])+'</dd>'}return r}
+ function bytes(n){return n>=1048576?(n/1048576).toFixed(2)+' MB':(n/1024).toFixed(0)+' KB'}
+ function gcd(a,b){return b?gcd(b,a%b):a}
+
+ function draw(im){
+  var c=$('lb-hist'),g=c.getContext('2d'),W=c.width,H=c.height;
+  g.clearRect(0,0,W,H);
+  // graticule, like a scope face
+  g.strokeStyle='rgba(69,229,168,.10)';g.lineWidth=1;
+  for(var d=1;d<8;d++){g.beginPath();g.moveTo(W/8*d,0);g.lineTo(W/8*d,H);g.stroke()}
+  for(var e=1;e<4;e++){g.beginPath();g.moveTo(0,H/4*e);g.lineTo(W,H/4*e);g.stroke()}
+  var oc=document.createElement('canvas'),sw=360,
+      sh=Math.max(1,Math.round(sw*im.naturalHeight/im.naturalWidth));
+  oc.width=sw;oc.height=sh;
+  var og=oc.getContext('2d',{willReadFrequently:true});
+  og.drawImage(im,0,0,sw,sh);
+  var px;
+  try{px=og.getImageData(0,0,sw,sh).data}
+  catch(err){$('lb-hstat').textContent='unavailable';
+    $('lb-sig').innerHTML='<dt>state</dt><dd class="q">cross-origin, cannot sample</dd>';return}
+  var R=new Uint32Array(256),G=new Uint32Array(256),B=new Uint32Array(256),L=new Uint32Array(256);
+  var n=0,sum=0,satsum=0;
+  for(var k=0;k<px.length;k+=4){
+    var r=px[k],gg=px[k+1],b=px[k+2];
+    R[r]++;G[gg]++;B[b]++;
+    var l=(0.2126*r+0.7152*gg+0.0722*b)|0;L[l]++;sum+=l;n++;
+    var mx=Math.max(r,gg,b),mn=Math.min(r,gg,b);satsum+=mx?(mx-mn)/mx:0;
+  }
+  // scale off the 99th-percentile bin, not the tallest: a clipped black or white
+  // point is one spike that would otherwise squash the whole trace flat
+  function ceiling(){
+    var all=[],j;
+    for(j=1;j<255;j++){all.push(L[j]);all.push(R[j]);all.push(G[j]);all.push(B[j])}
+    all.sort(function(a,b){return a-b});
+    return Math.max(1,all[Math.floor(all.length*0.99)]);
+  }
+  var peak=ceiling(), pk2=peak;
+  function trace(A,mx,stroke,fill){
+    g.beginPath();g.moveTo(0,H);
+    for(var x=0;x<256;x++){var y=H-Math.pow(Math.min(1,A[x]/mx),.55)*(H-4);g.lineTo(x/255*W,y)}
+    g.lineTo(W,H);
+    if(fill){g.fillStyle=fill;g.fill()}
+    g.strokeStyle=stroke;g.lineWidth=1;g.stroke();
+  }
+  trace(L,peak,'rgba(69,229,168,.55)','rgba(69,229,168,.14)');
+  trace(R,pk2,'rgba(196,124,116,.30)',null);
+  trace(G,pk2,'rgba(124,190,150,.30)',null);
+  trace(B,pk2,'rgba(116,150,200,.30)',null);
+  $('lb-hstat').textContent=sw+'\u00d7'+sh+' sample';
+  // signal figures
+  var cum=0,med=0,tot=n,lo=0,hi=255,acc=0;
+  for(var q=0;q<256;q++){acc+=L[q];if(acc>=tot*0.005){lo=q;break}}
+  acc=0;for(var q2=255;q2>=0;q2--){acc+=L[q2];if(acc>=tot*0.005){hi=q2;break}}
+  cum=0;for(var q3=0;q3<256;q3++){cum+=L[q3];if(cum>=tot/2){med=q3;break}}
+  var used=0;for(var q4=0;q4<256;q4++)if(L[q4])used++;
+  var mean=sum/n, sat=satsum/n;
+  var ev=Math.log2(Math.max(1,hi)/Math.max(1,lo||1));
+  $('lb-sig').innerHTML=kb({
+    'black pt':{v:lo},'white pt':{v:hi},
+    'mean':{v:mean.toFixed(1)},'median':{v:med},
+    'range':{v:(hi-lo)+' lv &middot; '+ev.toFixed(1)+' stops'},
+    'levels':{v:used+' of 256 occupied'},
+    'chroma':{v:(sat*100).toFixed(1)+'% mean saturation'}
+  });
+  $('lb-note').textContent='Tone figures are measured from the served file at load, not stored with the record.';
+ }
+
+ function show(k){
+  i=(k+figs.length)%figs.length;
+  var f=figs[i],src=f.querySelector('img').getAttribute('src');
+  var cap=f.querySelector('figcaption');
+  var title=cap.querySelector('b')?cap.querySelector('b').textContent:'';
+  var line='';
+  for(var c=cap.firstChild;c;c=c.nextSibling){
+    if(c.nodeType===3)line+=c.nodeValue;
+    else if(c.nodeType===1&&c.className!=='fsrc'&&c.tagName!=='B')line+=c.textContent;
+  }
+  line=line.trim();
+  $('lb-unit').textContent=f.dataset.acc+'  /  PLATE '+String(i+1).padStart(2,'0')+' OF '+figs.length;
+  $('lb-name').textContent=title;
+  $('lb-sub').textContent=line;
+  var su=f.dataset.src||'', sl=f.dataset.srclabel||su.replace(/^https?:\/\//,'').slice(0,46);
+  var online=su?'<a href="'+su+'" target="_blank" rel="noopener">'+sl+' \u2197</a>'
+               :'not published online \u2014 artist\u2019s archive only';
+  $('lb-rec').innerHTML=kb({
+    'dated':{v:f.dataset.date},
+    'medium':{v:f.dataset.medium,q:1},
+    'provenance':{v:f.dataset.prov,q:1},
+    'online':{v:online,q:su?0:1},
+    'holding':{v:/Internet Archive|retrieved|served/.test(f.dataset.prov||'')
+        ?'Reference capture &mdash; not a collection object'
+        :'Collection of the artist &middot; river.io llc', q:1}
+  });
+  img.src=src;img.alt=title;
+  img.onload=function(){
+    var w=img.naturalWidth,h=img.naturalHeight,d=gcd(w,h);
+    $('lb-ras').innerHTML=kb({
+      'raster':{v:w+' &times; '+h+' px'},
+      'ratio':{v:(w/d)+':'+(h/d)+'  ('+(w/h).toFixed(3)+')'},
+      'pixels':{v:(w*h/1e6).toFixed(2)+' MP'},
+      'payload':{v:bytes(+f.dataset.bytes)},
+      'density':{v:(f.dataset.bytes*8/(w*h)).toFixed(2)+' bits/px'},
+      'encoding':{v:'JPEG, 8-bit sRGB'}
+    });
+    draw(img);
+  };
+  lb.hidden=false;document.body.classList.add('lb-open');
+  $('lb-x').focus();
+ }
+ figs.forEach(function(f,k){
+   var a=f.querySelector('a');
+   a.addEventListener('click',function(ev){ev.preventDefault();last=a;show(k)});
+ });
+ function close(){lb.hidden=true;document.body.classList.remove('lb-open');if(last)last.focus()}
+ $('lb-x').onclick=close;
+ $('lb-prev').onclick=function(){show(i-1)};
+ $('lb-next').onclick=function(){show(i+1)};
+ lb.addEventListener('click',function(e){if(e.target===lb||e.target.classList.contains('lb-stage'))close()});
+ document.addEventListener('keydown',function(e){
+   if(lb.hidden)return;
+   if(e.key==='Escape')close();
+   else if(e.key==='ArrowLeft')show(i-1);
+   else if(e.key==='ArrowRight')show(i+1);
+ });
+})();
+</script>
+
 </body>
 </html>
