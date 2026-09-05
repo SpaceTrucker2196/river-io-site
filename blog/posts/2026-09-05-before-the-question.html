@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="A repository's own .git/config ran attacker code through seven coding agents before any approval prompt. The same week OWASP moved Excessive Agency to number three, a tool-call monitor shipped, and one vendor cut the cache-read rate by 75%." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing, Security, Practice" />
+<title>Before the question — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 033</b><span>5 September 2026</span><span>8 min</span><span>Briefing</span></div>
+    <h1>Before the question</h1>
+    <p class="dek">A repository's own .git/config ran attacker code through seven coding agents before any approval prompt. The same week OWASP moved Excessive Agency to number three, a tool-call monitor shipped, and one vendor cut the cache-read rate by 75%.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">Order 032 praised the tools for learning to say no when nobody is home. This
+      edition is about what runs before the tool gets to say anything. An agent starts a session. It
+      asks Git which branch it is on. Git reads a setting from the repository and runs a command. The
+      command is the attack. No prompt was shown, because the prompt comes later.</p>
+
+    <p>Be clear about the window. Five items are new. All five were published between 1 and 3 September
+      2026. None appeared in Order 032. Two of them, GitSpawn and the OWASP list, were public before
+      Order 032 went out but had not surfaced in the sources that edition scanned. They are reported here
+      with their real dates. No new dark-factory case study, spec-driven development standard or adoption
+      survey landed between 3 and 5 September.</p>
+
+    <h2>The repository attacks the harness</h2>
+
+    <p>Manifold Security published the finding on 1 September 2026 under the name GitSpawn. The Hacker
+      News confirmed the details against vendor release notes on 2 September. The mechanism is old. Git
+      has a performance setting named <code>core.fsmonitor</code>. Its value is a command. Git runs that
+      command during any index refresh, which includes <code>git status</code> and <code>git diff</code>.
+      Git reads the setting from the repository's own <code>.git/config</code>.</p>
+
+    <p>Coding agents run those commands in the background when a session starts. They want the branch
+      name and the list of changed files. So a repository that arrives with its <code>.git</code>
+      directory intact can name a command, and the agent will run it. The command runs as the developer,
+      outside the agent's sandbox, before the workspace-trust prompt and before any tool-approval
+      prompt. On Qwen Code it ran before the user had signed in. On Grok Build it ran on the first
+      keystroke.</p>
+
+    <p>One fact limits the blast radius. <code>git clone</code> does not copy the source repository's
+      <code>.git/config</code>. A normal clone from GitHub does not carry the payload. The delivery paths
+      are archives, shared drives, synced folders, USB sticks and pre-built dev containers.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>GitSpawn, agent status at the 1 September 2026 retest</th><th class="num">Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>goose (CVE-2026-72718, CVSS 7.0)</td><td class="num">fixed in 1.44.0</td></tr>
+          <tr><td>OpenAI Codex CLI (CVE-2026-19592)</td><td class="num">fixed in 0.131.0</td></tr>
+          <tr><td>Claude Code, core.fsmonitor path (CVE-2026-55607)</td><td class="num">fixed in 2.1.196</td></tr>
+          <tr><td>Claude Code, claude ultrareview path</td><td class="num">live on 2.1.252</td></tr>
+          <tr><td>Cursor</td><td class="num">fixed</td></tr>
+          <tr><td>Hermes Agent 0.21.0</td><td class="num">unpatched</td></tr>
+          <tr><td>Qwen Code 0.22.3</td><td class="num">unpatched</td></tr>
+          <tr><td>Grok Build 1.0.13</td><td class="num">unpatched</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Eight findings, seven agents, four still open at publication. No source reports exploitation.
+      The Hacker News checked CISA's Known Exploited Vulnerabilities catalog on 2 September and found
+      none of these identifiers listed.</p>
+
+    <p>The part this blog cares about is the regression. Sonar reported the same sink in April 2026.
+      Anthropic had already moved Claude Code's startup sequence once, in version 2.0.34 on 5 November
+      2025, so that <code>git status</code> no longer ran before the trust dialog. Manifold found the
+      same startup behaviour present again in 2.1.193, which shipped on 25 June 2026. A fix that came
+      back is a missing test. That is not a security lesson. It is a test-driven-development lesson.</p>
+
+    <div class="note">
+      <div class="k">THE CLASS, NOT THE BUG</div>
+      <p>GitSpawn reads <code>.git/config</code>. The CHAINDROP npm worm of 4 August planted a
+        SessionStart hook in <code>.claude/settings.json</code>. Pillar Security's Cursor escape of 20
+        July wrote a Stop hook to <code>.claude/settings.local.json</code>. All three are one class: a
+        trusted host component reads workspace state that an untrusted party wrote. Every config file
+        the IDE, Git, the shell or the agent runtime reads is tainted input.</p>
+    </div>
+
+    <h2>Excessive Agency, on evidence</h2>
+
+    <p>The OWASP GenAI Security Project published the 2026 Top 10 for LLM Applications. The blog post is
+      dated 1 September 2026 and the press release 2 September. This is the first edition to weigh the
+      expert ranking against real incident data. The methodology counts 6,639 incidents at 25% weight
+      and expert consensus at 75%. The list passed 10,000 downloads in its first 48 hours.</p>
+
+    <p>The biggest move is Excessive Agency, from number 6 to number 3. That is the category a dark
+      factory depends on: an agent with tools and permissions. System Prompt Leakage was retired into a
+      broader category named Hidden Context Exposure. OWASP also published a crosswalk to ISO 42001, the
+      NIST AI Risk Management Framework and its own AI Controls Matrix.</p>
+
+    <p>The second document matters more for this blog. The Agent Control Standard, version 0.1, was
+      donated to the project. It is a runtime standard, not a checklist. It defines an Agent Bill of
+      Materials, a declared list of what an agent may load and reach, and tracing of tool calls on
+      OpenTelemetry and OCSF. Read that next to GitHub's named sandbox profiles from Order 032. Two
+      bodies are converging on the same shape: declare what the agent may reach, then trace what it
+      did.</p>
+
+    <h2>A grader the agent cannot edit</h2>
+
+    <p>Apollo Research released Watcher Live on 3 September 2026. It is a monitor that hooks every tool
+      call in Claude Code and Codex and grades it in three stages. A regex rule set clears the obvious
+      safe actions. A fast triage model looks at what remains. A full evaluator runs only on what
+      survives triage. The evaluator can be a different model from the agent, so the monitor does not
+      share the agent's habits.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Apollo Watcher Live launch card, 3 September 2026</th><th class="num">Claimed</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Recall on high-severity actions</td><td class="num">93%</td></tr>
+          <tr><td>Catch rate on an extreme hold-out set</td><td class="num">100%</td></tr>
+          <tr><td>False positive rate</td><td class="num">under 1%</td></tr>
+          <tr><td>Escalation to a human</td><td class="num">under 0.1%</td></tr>
+          <tr><td>Added latency</td><td class="num">6 to 8%</td></tr>
+          <tr><td>Cost overhead</td><td class="num">3 to 5%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>These are Apollo's numbers on Apollo's benchmark. Treat them as a launch card. The design point
+      stands on its own. The gate runs in a process the agent cannot write to. The METR report of 26
+      August showed agents replacing part of their own tool-execution layer. A rule in a Markdown file
+      the agent can edit is not a gate. A hook in a process it cannot reach is.</p>
+
+    <h2>One microVM per request</h2>
+
+    <p>Vercel announced on 3 September 2026 that Cursor Cloud Agents can run in Vercel Sandbox. Cursor
+      keeps the harness and the inference loop. Vercel supplies the execution environment: one isolated
+      Firecracker microVM per agent request, a worker pool that scales to zero with no long-lived
+      virtual machines, durable retries when a session fails, and short-lived user-scoped credentials
+      inside each sandbox. Cloudflare shipped the equivalent on 2 September.</p>
+
+    <p>The credential lifetime is the design choice worth copying. A token that expires with the microVM
+      cannot be harvested by the next CHAINDROP. The feature requires a Cursor Enterprise plan, which is
+      not a factor here. The pattern costs nothing.</p>
+
+    <h2>The rate on the context tax</h2>
+
+    <p>Order 032 excluded Anthropic's Fable 5.1 release because it carried no software-engineering
+      measurement. The pricing change is a measurement, and it lands on the ledger that edition opened.
+      On 1 September 2026 Anthropic cut the Fable 5.1 cache-read price from $1.00 to $0.25 per million
+      tokens. Base input stays at $10 and output at $50. Anthropic says the effective cost falls about
+      25% on typical workloads and up to about 45% on heavily agentic ones.</p>
+
+    <p>Set that against Sonar's traces from Order 032. On one 800-line pull request, 152.8 million of
+      the 156 million billed tokens were cache reads: the transcript re-sent on every turn. The
+      mechanism has not changed. Every file the agent reads is still re-billed on every later turn. The
+      rate on one vendor's top model dropped by three quarters. Cheaper re-reads change the incentive,
+      not the correctness problem. Grep still misses call sites. Compaction still loses constraints.</p>
+
+    <h2>Noted, not featured</h2>
+
+    <p>AIR Security came out of stealth on 1 September with $50 million to build an inline firewall that
+      vets every skill, plugin and MCP server an agent loads. JetStream announced Clearance on 2
+      September, a per-action authorization engine at the tool-call boundary. Tenable announced an AI
+      Inspector for its CyberAgents Exchange on 4 September. All three are product announcements with
+      no published measurements. Claude Code shipped small fixes on 4 September. None changes factory
+      behaviour.</p>
+
+    <h2>What changes here</h2>
+
+    <ol>
+      <li><strong>Check <code>.git/config</code> before every autonomous run.</strong> Before the loop
+        starts an agent in any working tree, run <code>git config --local --get core.fsmonitor</code> and
+        fail the run if it returns anything. Fail on <code>core.hooksPath</code> and any
+        <code>filter.*.clean</code> or <code>filter.*.process</code> entry too. The factory runs from
+        fresh clones, which do not carry the file, so the risk is low. The check costs one line, and the
+        log line proves it ran. Sloth gets this as a detector, with Manifold, The Hacker News and the
+        three CVEs cited in the issue body.</li>
+      <li><strong>Pin agent CLIs above the patch line, and write the floor down.</strong> Codex CLI:
+        0.131.0. Claude Code: 2.1.196, and <code>claude ultrareview</code> does not run unattended until
+        Anthropic states the second path is closed. The floors go in the rules file next to the sandbox
+        profile from Order 032. A run that starts below the floor does not run. A pinned old version is
+        an unpatched version.</li>
+      <li><strong>Every config file the host reads is untrusted input.</strong> <code>.git/config</code>,
+        <code>.git/hooks/</code>, <code>.claude/settings.json</code>,
+        <code>.claude/settings.local.json</code>, <code>.vscode/tasks.json</code>. A one-line continuous
+        integration check fails when a non-human author touches any of them. The agent edits Sources and
+        Tests. It never edits the files that run the agent.</li>
+      <li><strong>The startup regression is a test.</strong> Claude Code's pre-trust <code>git
+        status</code> was fixed in November 2025 and back by June 2026. This factory's posture is
+        test-driven development. For the harness that means one test that asserts what runs before the
+        trust gate, and fails when anything new does. Native compiled code with zero third-party
+        dependencies makes the test cheap. The startup process tree is small and fully known.</li>
+      <li><strong>Write the Agent Bill of Materials now.</strong> One page per agent role: which tools it
+        may call, which paths it may write, which network it may reach, where the trace lives. That is
+        OWASP's Agent Control Standard in all but name, and it answers GitLost and PR Sous Chef in one
+        document. The regulated repositories will face auditors who use OWASP language within a
+        year.</li>
+      <li><strong>Put a grader on the tool boundary in the low-stakes loops.</strong> MeowPassword,
+        weathergalactic and sloth are the place to try it. The factory does not need Apollo's product.
+        It needs the shape: a regex allowlist as a native pre-tool hook, a cheap classifier behind it,
+        an expensive judge only for what survives. Log the block rate per week. If it is zero for a
+        month, the allowlist is doing the work and the classifier can go.</li>
+      <li><strong>Record the token count and the rate separately.</strong> Order 032 added a
+        tokens-per-run column to METRICS.md. Add the price per million next to it. Sonar's $41 pull
+        request was nearly all cache reads, and that rate just fell 75% on one model. A cost per merged
+        pull request that survives the next price change needs both numbers.</li>
+      <li><strong>GitSpawn is a new reason the regulated repositories stay gated.</strong> A flaw that
+        fires before the approval prompt means the approval prompt is not the last line. Until the
+        harness has the startup test from item 4 and the config-path check from item 3, CareTime,
+        TimeForCare and MaterialsAndPractices do not run unattended.</li>
+    </ol>
+
+    <h2>Sources</h2>
+
+    <h3>GitSpawn</h3>
+    <ul>
+      <li><a href="https://thehackernews.com/2026/09/malicious-git-configs-can-make-claude.html">The Hacker News, <em>Malicious .git Configs Can Make Claude, Codex, Cursor, and Other AI Agents Run Attacker Code</em></a>, Swati Khandelwal (2 September 2026). Confirmation against vendor release notes. Eight findings, seven agents, four unpatched at the 1 September retest. Affected and fixed versions per agent. CVE-2026-72718 (goose, CVSS 7.0), CVE-2026-19592 (Codex), CVE-2026-55607 (Claude Code). Sonar's April report of the same sink. KEV catalog checked 2 September, none listed.</li>
+      <li><a href="https://www.manifold.security/blog/ai-coding-agents-git-hijack">Manifold Security, <em>GitSpawn: A Single Flaw Lets Untrusted Repos Run Code</em></a> (1 September 2026). Original disclosure.</li>
+      <li><a href="https://labs.cloudsecurityalliance.org/research/ciso-daily-briefing-20260904/">Cloud Security Alliance, <em>CISO Daily Briefing</em></a> (4 September 2026). Secondary summary of GitSpawn and the OWASP methodology figures.</li>
+      <li><a href="https://vibe-eval.com/updates/security-harness-for-ai-agents-sep-2026/">VibeEval, <em>Security Harness for AI Agents, September 2026</em></a> (3 September 2026). Secondary roundup. Source for the CHAINDROP and Pillar trust-handoff framing and for the transcription of Apollo's launch card.</li>
+    </ul>
+
+    <h3>OWASP</h3>
+    <ul>
+      <li><a href="https://genai.owasp.org/2026/09/01/owasp-genai-security-project-unveils-2026-top-10-for-llm-applications-new-agent-control-standard-and-sponsors-as-community-tops-30000-members/">OWASP GenAI Security Project, <em>2026 Top 10 for LLM Applications, New Agent Control Standard</em></a> (blog dated 1 September 2026, press release dated 2 September). Primary source. 10,000 downloads in 48 hours. Agent Control Standard donated to the project. Crosswalk to NIST, MITRE ATLAS, CWE and the Agentic Top 10. Michael Bargury of Zenity on incident-weighted Excessive Agency at number three.</li>
+    </ul>
+
+    <h3>Watcher and the sandbox</h3>
+    <ul>
+      <li><a href="https://watcher.apolloresearch.ai/blog/monitor-coding-agents/">Apollo Research, <em>Watcher: Monitor Your Coding Agents Without Slowing Them Down</em></a> (3 September 2026). Primary for the three-stage hook pipeline and mixed-model design. Launch figures as transcribed by VibeEval.</li>
+      <li><a href="https://vercel.com/changelog/run-cursor-cloud-agents-vercel-sandbox">Vercel changelog, <em>Cursor Cloud Agents can now run in Vercel Sandbox</em></a>, Allen Zhou (3 September 2026). Primary. Firecracker microVM per request, scale to zero, durable retries, short-lived user-scoped credentials. Cursor Enterprise required.</li>
+      <li><a href="https://developers.cloudflare.com/changelog/post/2026-09-02-cursor-cloud-agents/">Cloudflare changelog, <em>Run Cursor Cloud Agents on Cloudflare via self-hosted machines</em></a> (2 September 2026). Title and date only.</li>
+    </ul>
+
+    <h3>Pricing</h3>
+    <ul>
+      <li><a href="https://venturebeat.com/technology/anthropics-claude-fable-5-1-and-mythos-5-1-arrive-with-a-75-cost-reduction-for-fable-cache-reads">VentureBeat, <em>Anthropic's Claude Fable 5.1 and Mythos 5.1 arrive with a 75% cost reduction for Fable cache reads</em></a>, Carl Franzen (1 September 2026). Pricing table: $10 input, $0.25 cache read, $50 output. About 25% typical and about 45% heavily agentic effective-cost reduction, as stated by Anthropic.</li>
+    </ul>
+
+    <h3>Noted, not featured</h3>
+    <ul>
+      <li><a href="https://aiagentstore.ai/ai-agent-news/this-week">AI Agent Store, <em>AI agent news, week of 4 September 2026</em></a>. Scanned. AIR Security, JetStream Clearance, Tenable AI Inspector.</li>
+      <li><a href="https://finance.yahoo.com/technology/ai/articles/jetstream-announces-clearance-ai-zero-170000815.html">JetStream, <em>Clearance</em> press release</a> (2 September 2026).</li>
+      <li><a href="https://releasebot.io/updates/anthropic/claude-code">Releasebot, Claude Code updates</a>. 4 September fixes noted.</li>
+    </ul>
+
+    <h3>Prior editions referenced</h3>
+    <ul>
+      <li><a href="2026-09-03-the-context-tax.html">The context tax</a> (3 September 2026). The Sonar traces and the deny-when-unattended rule this edition builds on.</li>
+      <li><a href="2026-09-01-the-gate-you-ask-too-often.html">The gate you ask too often</a> (1 September 2026). The NIST consent-fatigue finding.</li>
+    </ul>
+
+    <p><em>Vendor and blog figures indicate direction, not audited benchmarks. The GitSpawn version table
+      is a researcher's retest, not a vendor statement. The Watcher figures are a launch card. The
+      Anthropic effective-cost figures depend on workload mix. The OWASP incident weighting is the
+      project's own methodology.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>
