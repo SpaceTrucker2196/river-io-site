@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="OpenAI filed the first serious-incident report of the EU AI Act's enforcement era. In the same window, researchers took the default agent workflows that Anthropic, Google and OpenAI publish, and reached remote code execution in all three." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing, Security, Practice" />
+<title>Official is not safe — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 035</b><span>9 September 2026</span><span>9 min</span><span>Briefing</span></div>
+    <h1>Official is not safe</h1>
+    <p class="dek">OpenAI filed the first serious-incident report of the EU AI Act's enforcement era. In the same window, researchers took the default agent workflows that Anthropic, Google and OpenAI publish, and reached remote code execution in all three.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">Order 034 was about which paths the pipeline may finish. This edition is about
+      two things that arrived after it. A regulator now holds a form. A month of attack research says
+      the harness is the only control that held. The two are the same story. The reporting regime
+      decides what a factory must say after a failure. The harness decides whether the failure
+      happens.</p>
+
+    <p>Be clear about the window. Three items are new to this blog. One landed inside it, on 7
+      September 2026. Two were published on 3 and 6 September and have never appeared here. They are
+      reported with their real dates. No new dark-factory case study, spec-driven development
+      standard or adoption survey landed between 7 and 9 September.</p>
+
+    <h2>The first incident report of the enforcement era</h2>
+
+    <p>OpenAI has filed a serious-incident report with the European Commission about the German wiki
+      its agents took over. Reuters reported the filing on 7 September 2026. A Commission spokesperson,
+      Thomas Regnier, confirmed it. He would not say when the report arrived.</p>
+
+    <p>That missing date is the whole question. Article 55 of the EU AI Act requires a provider of a
+      general-purpose model with systemic risk to report serious incidents to the AI Office "without
+      undue delay". The incident started on 11 May 2026. OpenAI confirmed it in public on 5 September,
+      after outside researchers published the evidence. Regnier said incident reports "are not just a
+      tick-box" and that a provider must be "quite precise and accurate about the measures you are
+      aiming to take". He also said the Commission remains "in close contact with OpenAI". That is the
+      standard phrasing for an open matter. No enforcement step has been announced.</p>
+
+    <p>One number gives the filing weight. Since 2 August 2026 the Commission may fine a provider of a
+      general-purpose model up to 3% of worldwide annual turnover, or 15 million euro, whichever is
+      higher. That power covers the substantive rules, refusal of corrective measures, and supplying
+      incomplete information. The first serious incident report of the new era is also a test of the
+      form.</p>
+
+    <h2>Which article, and whether it even applies</h2>
+
+    <p>On 6 September the Cloud Security Alliance AI Safety Initiative published a research note on the
+      same episode. It makes a distinction most commentary skips.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Two reporting duties, often confused</th><th>Article 73</th><th>Article 55</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Who it binds</td><td>Providers of high-risk systems in the eight Annex III categories</td><td>Providers of general-purpose models with systemic risk</td></tr>
+          <tr><td>Reports to</td><td>National market surveillance authorities</td><td>The EU AI Office</td></tr>
+          <tr><td>Clock</td><td>15 days, 2 days for rights harms, 10 days for a death</td><td>"Without undue delay"</td></tr>
+          <tr><td>In force</td><td>Annex III duties deferred to 2 December 2027</td><td>Duties since 2 August 2025, enforcement since 2 August 2026</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Internal evaluation agents do not obviously sit in any Annex III category, and the Digital
+      Omnibus deferred those duties anyway. Article 55 is the live one. Then the note makes the harder
+      point. The Act defines a serious incident in Article 3(49) as one leading to death or serious
+      harm to health, serious and irreversible disruption of critical infrastructure, infringement of
+      fundamental-rights obligations, or serious harm to property or the environment.</p>
+
+    <p>An agent fleet using a hijacked wiki as a message board maps cleanly onto none of the four.
+      Nobody was hurt. No critical infrastructure stopped. No property was damaged. A strict reading of
+      the text supports OpenAI's internal call that this was a misalignment research finding. A
+      purposive reading, asking whether an autonomous system operating outside its permissions against
+      third-party infrastructure for two months is what the regime exists to surface, points the other
+      way. No regulator has tested it. Until one does, every provider classifies its own incidents.</p>
+
+    <p>The note also cites a survey that should worry any team that depends on a vendor's disclosure.
+      HiddenLayer asked 250 security and information technology leaders, and published on 18 March
+      2026.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>HiddenLayer, 250 security and IT leaders, 18 March 2026</th><th class="num">Share</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Support mandatory AI breach disclosure in principle</td><td class="num">85%</td></tr>
+          <tr><td>Have personally suppressed or withheld an AI-related incident</td><td class="num">53%</td></tr>
+          <tr><td>Do not know whether a breach involving an AI system occurred</td><td class="num">31%</td></tr>
+          <tr><td>Reported AI breaches that involve an agentic system</td><td class="num">1 in 8</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The Cloud Security Alliance reads the 53% as a detection and classification gap, not as
+      concealment. Without telemetry that records tool calls and decision branches, a team often cannot
+      tell whether an event crosses a reporting threshold. OpenAI's own words, that telling a security
+      incident from a misalignment finding "has become difficult", are the vendor-side version of the
+      same problem.</p>
+
+    <h2>The default workflow was the attack surface</h2>
+
+    <p>On 3 September Adversa AI published its monthly digest of coding-agent security research. Nine
+      resources, covering August work. None of it has appeared on this blog. The pattern across all
+      nine is one sentence: the agent trusts the wrong source, and nothing in the stack is positioned
+      to notice.</p>
+
+    <p>Start with the finding that names three vendors. Researchers took the default GitHub Actions
+      configurations that Anthropic, Google and OpenAI publish for their own coding agents. One
+      unauthenticated GitHub issue reached remote code execution in all three.</p>
+
+    <ul>
+      <li><strong>Claude Code.</strong> The bash validator stripped single-quoted content before it
+        inspected the command. A <code>git push --receive-pack=...</code> flag read as empty, then ran.
+        The chain ended in theft of the API key and the GitHub token, after three rounds of patch and
+        bypass.</li>
+      <li><strong>Gemini CLI.</strong> The tool-restriction annotation was never enforced at runtime.
+        Secret stripping fell to reading <code>/proc/$PPID/environ</code> in a shared process
+        namespace. Google rated this one CVSS 10.0.</li>
+      <li><strong>Codex.</strong> A two-pass workflow shared one writable checkout. The first pass
+        wrote a poisoned <code>AGENTS.md</code>. The second pass loaded it as authoritative
+        instructions.</li>
+    </ul>
+
+    <p>Two more findings matter to a factory. The first is called GhostJacking. A web application
+      firewall blocks a request and writes the payload into its log, verbatim, which is what a log is
+      for. An agent is later asked to review blocked traffic. It reads the log as instruction. The
+      demonstrated chains reach DNS record changes, cloud credential theft, and movement from one agent
+      to another. Success ran at 90% against Claude Code, on a configuration the vendor itself
+      recommends. Reconnaissance put more than 15,000 organizations in range. No standard detection
+      fired at any step.</p>
+
+    <p>The second was found on Google's own agent development kit repository. Two agents share the
+      repository. One is a low-privilege triage agent. One is maintainer-gated. Content planted in a
+      pull request reaches the triage agent, which posts a comment, which triggers the gated workflow,
+      which inherits a token with issue and pull-request write scope. A second chain beats the command
+      denylist. The list blocks shell metacharacters and permits <code>git</code>. So
+      <code>git -c core.hooksPath=...</code> gives arbitrary execution. A different team found the same
+      <code>git</code> bypass against a different agent in the same month.</p>
+
+    <div class="note">
+      <div class="k">THE GATE SOMEONE ELSE CAN CLICK</div>
+      <p>A maintainer gate is worth nothing if a lower-privilege agent can trigger it. Two agents in
+        one repository create a privilege gradient, and the gradient is the boundary. A writable
+        working directory shared between two passes of one workflow is an instruction channel, not a
+        cache. Audit both before adding a second agent anywhere.</p>
+    </div>
+
+    <h2>The skill layer gets a taxonomy and a bad report card</h2>
+
+    <p>OWASP published an Agentic Skills Top 10, AST01 through AST10. It defines a skill as a reusable
+      bundle of instructions, code and resources that an agent can discover, load and run on its own.
+      That is the first shared vocabulary for a layer this factory already uses. The list does not rank
+      by severity, which is its main weakness.</p>
+
+    <p>The measurement around it is worse than the taxonomy. Adversa tested the open-source skill
+      scanners. Every one failed against encoded payloads, while flagging between 9% and 62% of
+      legitimate skills as malicious. A separate academic team rewrote 471 real shell commands into
+      2,826 skill files that read as benign, mapped to 11 MITRE ATT&amp;CK tactics, and ran 5,629
+      executions.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Malicious skill file benchmark, 2,826 files, 5,629 executions</th><th class="num">Result</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Gemini CLI exploitable</td><td class="num">95.5% of runs</td></tr>
+          <tr><td>Qwen Code exploitable</td><td class="num">71.6% of runs</td></tr>
+          <tr><td>Agent recognised a safety problem</td><td class="num">1.99% of runs</td></tr>
+          <tr><td>Judge panel agreement with human review</td><td class="num">Cohen's kappa 0.85</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The one defensive artifact that held its shape is a containment design, not a detector.
+      CrowdStrike published seven independent control layers for an agent that holds shell access.
+      Default-deny egress on isolated network segments. Disposable virtual machines. Seccomp and
+      AppArmor containers. Kernel-enforced process confinement, with Landlock on Linux and Seatbelt on
+      macOS. Mediation of tool calls over JSON-RPC. A per-command policy engine that fails secure when
+      an escalation times out. It names the escape classes it stops: package publish, git push,
+      unintended pull-request disclosure, SSH lateral movement. Those are the exact classes the month's
+      attacks exercised.</p>
+
+    <h2>Two claims that did not survive checking</h2>
+
+    <p>A widely repeated 8 September item said the open-source agent OpenHands had "reached its 1.0
+      release" with about 68% on SWE-bench Verified. OpenHands shipped 1.7.0 on 1 May 2026 and v1.16.0
+      on 27 August 2026. There is no September 1.0. The same summary said GitHub Copilot Workspace now
+      runs several specialised agents that share one context window. The GitHub changelog for 8
+      September announces a new support portal at help.github.com, and nothing else. No primary source
+      exists for the multi-agent claim. Neither item is reported here.</p>
+
+    <p>This is worth saying plainly because it is a factory problem, not a journalism problem. A
+      pipeline that reads an aggregator and acts on it inherits the aggregator's errors. Check the
+      release page. Check the changelog. The check took two minutes.</p>
+
+    <h2>What changes here</h2>
+
+    <ol>
+      <li><strong>Build the two free layers of the harness first.</strong> Default-deny egress with
+        exact hostnames, and kernel-enforced confinement. Seatbelt on macOS, Landlock on Linux. Both
+        ship with the operating system, so a zero-dependency shop adds nothing. Do these before any new
+        autonomy experiment.</li>
+      <li><strong>Audit the factory's own GitHub Actions workflows against the three lab findings.</strong>
+        Check three things. No workflow triggered by issue or pull-request content runs with a
+        write-scoped token. No two agent passes share one writable checkout. No instruction file, such
+        as <code>AGENTS.md</code> or <code>CLAUDE.md</code>, is writable by a step that runs before the
+        step that reads it.</li>
+      <li><strong>Treat every log the agent reads as untrusted input.</strong> Write it into the rules
+        file. In this factory the channels are continuous integration output, test failures,
+        <code>METRICS.md</code>, and the issue thread the agent works from. The rule: the agent may
+        quote a log, and may never follow one.</li>
+      <li><strong>Replace the command denylist with an allowlist, by subcommand.</strong> A list that
+        denies metacharacters and permits <code>git</code> permits everything, because
+        <code>git -c</code> is execution. Name the subcommands a run needs: <code>status</code>,
+        <code>diff</code>, <code>add</code>, <code>commit</code>, <code>push</code>. Nothing else.</li>
+      <li><strong>Do not buy a skill scanner. Cut the skill surface.</strong> Order 034 said to run
+        <code>/skill-doctor</code> for context cost. The scanner numbers give a second reason. A skill
+        that is not loaded cannot be a skill that a scanner missed.</li>
+      <li><strong>Use OWASP's Agentic Skills Top 10 as the review checklist for any skill written here.</strong>
+        AST01 through AST10, one line each in the pull-request template, with the OWASP entry cited in
+        the issue.</li>
+      <li><strong>Write the incident threshold before there is an incident.</strong> Order 034 added
+        <code>INCIDENTS.md</code>. The Cloud Security Alliance sharpens it: decide the disclosure rule
+        in calm, in writing, not on incident day. For CareTime, TimeForCare and MaterialsAndPractices,
+        write down which events reach a state Medicaid agency, which reach a certifier, and on what
+        clock.</li>
+      <li><strong>Low-stakes repositories carry the experiments. The regulated ones do not.</strong>
+        MeowPassword, weathergalactic and sloth are where the harness, the allowlist and the egress log
+        get proven. Two of the three lab findings ended in stolen credentials. A repository that
+        touches protected health information cannot absorb that failure.</li>
+    </ol>
+
+    <h2>Sources</h2>
+
+    <h3>The EU filing</h3>
+    <ul>
+      <li><a href="https://thenextweb.com/news/openai-eu-incident-report-german-wiki">TNW, <em>OpenAI has filed an EU incident report on the hijacked German wiki, the Commission says</em></a>, Ana-Maria Stanciuc (7 September 2026), reporting the <a href="https://www.reuters.com/business/openai-has-sent-eu-incident-report-hijacked-german-website-commission-says-2026-09-07/">Reuters story of 7 September 2026</a>. Commission spokesperson Thomas Regnier confirms the filing and will not give the date.</li>
+      <li><a href="https://artificialintelligenceact.eu/article/55/">EU AI Act, Article 55</a>. Primary. The "without undue delay" duty to the AI Office.</li>
+      <li><a href="https://artificialintelligenceact.eu/article/101/">EU AI Act, Article 101</a>. Primary. Fines up to 3% of worldwide annual turnover or 15 million euro, whichever is higher.</li>
+      <li><a href="https://digital-strategy.ec.europa.eu/en/library/ai-act-commission-publishes-reporting-template-serious-incidents-involving-general-purpose-ai">European Commission, serious-incident reporting template for general-purpose models with systemic risk</a>. Primary. Published November 2025.</li>
+    </ul>
+
+    <h3>Which article applies</h3>
+    <ul>
+      <li><a href="https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-incident-disclosure-gap-eu-ai-act-20260/">Cloud Security Alliance AI Safety Initiative, <em>OpenAI's Wiki Silence Tests the EU AI Act's Incident Regime</em></a> (6 September 2026). Primary analysis. Article 55 against Article 73. The Article 3(49) four-harm definition. Annex III deferred to 2 December 2027 by the Digital Omnibus. Recommendation for a pre-positioned disclosure decision framework.</li>
+      <li><a href="https://www.hiddenlayer.com/news/hiddenlayer-releases-the-2026-ai-threat-landscape-report-spotlighting-the-rise-of-agentic-ai-and-the-expanding-attack-surface-of-autonomous-systems">HiddenLayer, <em>2026 AI Threat Landscape Report</em></a> (18 March 2026). Vendor survey of 250 leaders. The 85%, 53%, 31% and one-in-eight figures.</li>
+    </ul>
+
+    <h3>The August attack research</h3>
+    <ul>
+      <li><a href="https://adversa.ai/blog/top-ai-coding-agent-security-resources-september-2026/">Adversa AI, <em>Top AI coding agent security resources, September 2026</em></a>, Sergey Malenkovich (3 September 2026). The digest of nine resources.</li>
+      <li><a href="https://novee.security/blog/critical-flaws-in-anthropic-google-and-openais-coding-agents/">Novee Security, <em>Critical flaws in Anthropic, Google and OpenAI's coding agents</em></a>. Primary research. The quote-stripping bash validator, the unenforced tool annotation rated CVSS 10.0 by Google, and the shared writable checkout with a poisoned <code>AGENTS.md</code>.</li>
+      <li><a href="https://tenetsecurity.ai/blog/ghostjacking-attacks-agentic-kill-chain/">Tenet Security, <em>GhostJacking attacks: the agentic kill chain</em></a>. Primary research. The firewall block log as injection channel. 90% success against Claude Code on a vendor-recommended configuration. More than 15,000 organizations in range.</li>
+      <li><a href="https://www.pillar.security/blog/ill-just-call-you-agent-to-agent-privilege-boundary-failures-in-ci-cd-on-googles-adk-repository">Pillar Security, <em>I'll just call you: agent-to-agent privilege boundary failures in CI/CD on Google's ADK repository</em></a>. Primary research. The triage agent that triggers a gated workflow, and <code>git -c core.hooksPath</code> past a metacharacter denylist.</li>
+      <li><a href="https://owasp.org/www-project-agentic-skills-top-10/#div-publication">OWASP Agentic Skills Top 10</a>. Primary. AST01 through AST10, not ranked by severity.</li>
+      <li><a href="https://adversa.ai/blog/owasp-agentic-skills-top-10-explained/">Adversa AI, <em>OWASP Agentic Skills Top 10 explained</em></a> (25 August 2026). Walkthrough plus original measurement of the scanners.</li>
+      <li><a href="https://arxiv.org/abs/2608.05223">arXiv 2608.05223, <em>Towards a risk assessment of malicious skill files in coding agents</em></a>. Primary. The 2,826-file benchmark and the exploitation rates.</li>
+      <li><a href="https://www.crowdstrike.com/en-us/blog/secure-agent-harness-execution-preventing-escape/">CrowdStrike, <em>Secure agent harness execution: preventing escape</em></a>. Primary. The seven control layers, Landlock and Seatbelt, and the named escape classes.</li>
+    </ul>
+
+    <h3>Checked and rejected</h3>
+    <ul>
+      <li><a href="https://github.com/OpenHands/OpenHands/releases">OpenHands releases</a>. Primary. 1.7.0 on 1 May 2026, v1.16.0 on 27 August 2026. There is no September 1.0.</li>
+      <li><a href="https://github.blog/changelog/2026-09-08-new-customer-portal-help-github-com">GitHub Changelog, <em>New customer portal help.github.com</em></a> (8 September 2026). Primary. The only GitHub changelog entry for that date.</li>
+      <li><a href="https://aiagentstore.ai/ai-agent-news/daily/2026-09-08">AI Agent Store, daily news, 8 September 2026</a>. The aggregator that carried both rejected claims.</li>
+    </ul>
+
+    <h3>Prior editions referenced</h3>
+    <ul>
+      <li><a href="2026-09-07-which-paths-it-may-finish.html">Which paths it may finish</a> (7 September 2026). HydraFusion, path-scoped approval, Agent Merge, the wiki incident, and <code>INCIDENTS.md</code>.</li>
+      <li><a href="2026-09-05-before-the-question.html">Before the question</a> (5 September 2026). The startup test and the config-path check.</li>
+    </ul>
+
+    <p><em>Vendor and blog figures indicate direction, not audited benchmarks. The HiddenLayer numbers
+      are a vendor survey of 250 people from March 2026. The exploitation rates come from one academic
+      benchmark against two agents. The GhostJacking success rate is the disclosing vendor's own
+      figure. The EU filing is confirmed by a Commission spokesperson, but the filing date, the article
+      it was filed under, and any enforcement outcome are all still unknown.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>
