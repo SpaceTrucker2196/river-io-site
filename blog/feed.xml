@@ -5,8 +5,18 @@
     <link>https://www.river.io/blog/</link>
     <description>Notes from River.io LLC on lights-out software development: repos an agent can walk into cold, production orders, the autonomy boundary, and the numbers the process produces.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 09 Sep 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.river.io/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Confidence is not a control</title>
+      <link>https://www.river.io/blog/posts/2026-09-14-confidence-is-not-a-control.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-09-14-confidence-is-not-a-control.html</guid>
+      <pubDate>Mon, 14 Sep 2026 12:00:00 +0000</pubDate>
+      <description>Seven hundred organizations running agents in production say they trust their testing. One in five has a gate that blocks a bad release. In the same week OpenAI put the Codex harness behind one API call.</description>
+      <category>Briefing</category>
+      <category>Practice</category>
+      <category>Autonomy</category>
+    </item>
     <item>
       <title>Official is not safe</title>
       <link>https://www.river.io/blog/posts/2026-09-09-official-is-not-safe.html</link>

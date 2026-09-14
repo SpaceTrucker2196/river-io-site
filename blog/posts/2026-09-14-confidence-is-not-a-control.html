@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Seven hundred organizations running agents in production say they trust their testing. One in five has a gate that blocks a bad release. In the same week OpenAI put the Codex harness behind one API call." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing, Practice, Autonomy" />
+<title>Confidence is not a control — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+  <script src="/analytics.js" defer></script>
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 036</b><span>14 September 2026</span><span>9 min</span><span>Briefing</span></div>
+    <h1>Confidence is not a control</h1>
+    <p class="dek">Seven hundred organizations running agents in production say they trust their testing. One in five has a gate that blocks a bad release. In the same week OpenAI put the Codex harness behind one API call.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">Order 035 was about the harness holding when nothing else did. This edition is
+      about what the harness became, and about a control that most teams do not have. A survey counted
+      the gap. A vendor turned the harness into a product. The two arrived on the same day.</p>
+
+    <p>Be clear about the window. The last edition here was 9 September 2026. This one covers five
+      days, not two. Three items landed between 10 and 12 September. One is older and has never
+      appeared here. It is reported with its real date.</p>
+
+    <h2>Seven hundred organizations, and a gap in every column</h2>
+
+    <p>On 10 September 2026 Harness published <em>The State of Agent DLC 2026</em>. It asked 700
+      organizations that already run agents in production how confident they were, across five areas:
+      testing, security, inventory, cost and rollback. Confidence came back between 74% and 77% every
+      time. Then it asked what controls they had.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Harness, 700 organizations, 10 September 2026</th><th class="num">Confident</th><th class="num">Control in place</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Testing would catch a production-impacting failure</td><td class="num">74%</td><td class="num">19%</td></tr>
+          <tr><td>Agents are secure end to end</td><td class="num">75%</td><td class="num">23%</td></tr>
+          <tr><td>Complete inventory of every agent, MCP server and model</td><td class="num">77%</td><td class="num">44%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Read the first row again. 74% trust their testing. 19% have a gate that automatically blocks
+      every bad release. Among the organizations confident in their evaluations, about four in five
+      have no automatic block. A change that could damage production can still ship with nothing
+      standing in the way.</p>
+
+    <p>The security row is the same shape. 75% say their agents are secure end to end. 23% run a
+      security layer built for agents. The rest run general-purpose security tooling, or nothing
+      dedicated, or do not know. General-purpose tooling was built for a different threat model. It
+      was not built to watch MCP attack surfaces. An MCP server is a process that exposes tools to an
+      agent over a standard protocol.</p>
+
+    <p>The inventory row gives the sharpest number in the report. 77% are confident they hold a
+      complete inventory and that no unregistered agent runs anywhere. 44% run tooling that could
+      check. Put those together and <strong>41% of the whole sample declare an absence with nothing
+      running that could detect a presence</strong>. If an unregistered agent appeared in those
+      organizations tomorrow, nothing would change. Not the inventory. Not the confidence.</p>
+
+    <p>Three more rows matter to a small factory. <strong>58% report more production incidents per 100
+      changes since they started deploying agents. 25% report fewer.</strong> More than four in ten
+      organizations that push agent changes to production have no fixed promotion standard, and decide
+      case by case. 9% still need a full code redeploy to edit a prompt.</p>
+
+    <div class="note">
+      <div class="k">THE CHEAPEST AUDIT IN THIS EDITION</div>
+      <p>Harness asks it better than I can: when did your gate last block a release? A gate that has
+        never blocked anything is either perfect or not a gate. The question costs nothing and the
+        answer is a fact, not a feeling.</p>
+    </div>
+
+    <p>Weigh the source. Harness sells agent lifecycle tooling, and the report ends by noting that 76%
+      of respondents expect to buy some within six months. Read the direction, not the decimals. The
+      direction is still worth reading, because the gap it measures is one this blog has argued from
+      principle for months with no number attached.</p>
+
+    <h2>The harness became a product</h2>
+
+    <p>On the same day, 10 September 2026, OpenAI shipped the Agents API into public beta. It puts the
+      managed Codex harness behind one API call. A harness is the loop around a model: it manages
+      context, calls tools, keeps state and enforces approvals. Until now a small shop wrote its own.</p>
+
+    <p>The API has four parts. An <strong>agent</strong> is a model, instructions, tools and MCP
+      servers. An <strong>environment</strong> is an optional sandbox where the agent reads files,
+      loads skills and runs commands. A <strong>session</strong> is a durable agent instance that can
+      work for days. <strong>Events and items</strong> are the inputs and the outputs.</p>
+
+    <p>The harness handles four things a factory usually builds by hand. It compacts earlier context
+      automatically as a session nears its limit. Tool search loads a tool definition only when the
+      agent needs it, which cuts tokens and preserves the cache. Programmatic tool calling lets the
+      agent chain calls and filter results in code, so only the relevant part returns to context.
+      Subagents each keep their own context while a main agent coordinates them.</p>
+
+    <p>Execution runs in one of three places. An OpenAI-hosted sandbox. Your own infrastructure, where
+      you run <code>codex exec-server</code> and it registers over an outbound WebSocket. Or one of
+      nine partner sandboxes: Blaxel, Cloudflare, Daytona, DigitalOcean, E2B, Modal, Oracle, Runloop
+      and Vercel. There is no extra fee beyond model tokens, tool use and container time.</p>
+
+    <p>Now read the limits, because they decide whether this factory can use it. <strong>Data is
+      US-only. Zero Data Retention is not supported.</strong> OpenAI states both plainly. For CareTime,
+      TimeForCare and anything else that touches protected health information, that is not a caveat to
+      manage. It is a stop.</p>
+
+    <p>OpenAI published four customer results. All are customer-reported and vendor-published, so
+      treat them as direction. Ciridae's evaluation score rose from 0.71 to 0.85, with a 4x latency
+      reduction on subagent flows. SafetyKit reported 60% lower cost per case. Hypha reported 86%
+      fewer failed agent responses after it separated the harness from the sandbox. Nash.ai runs
+      thousands of long-running agents across logistics networks.</p>
+
+    <p>The Hypha number is the interesting one, because it is an architecture result and not a model
+      result. Separating the loop from the place the loop executes cut failures by most of what was
+      there. That matches the containment argument in Order 035 from the other direction.</p>
+
+    <h2>A lab bound itself to an auditor it cannot edit</h2>
+
+    <p>On 12 September 2026 Dario Amodei published an essay, <em>We Must Pace the Frontier</em>, on his
+      personal site. It proposes three escalating steps to slow the rate at which AI capabilities
+      improve. Anthropic committed unilaterally to the first one.</p>
+
+    <p>Step 1 is embedded evaluators. Each frontier lab gives a third-party team, such as METR, ongoing
+      employee-like access. Amodei is specific: desks, badges, company laptops, and permissions
+      comparable to internal risk teams. The evaluators assess training pipelines, not only finished
+      models. They may publish findings without the lab's editorial control. The lab may redact
+      security-sensitive or privileged material. It may not redact unfavorable findings.</p>
+
+    <p>Step 2 is common safety standards across frontier labs in democracies, preferably by regulation,
+      with capability checkpoints as the example mechanism. Step 3 is coordination with authoritarian
+      governments, chiefly China, across four levels. Amodei calls level 1 feasible and level 4
+      unlikely soon.</p>
+
+    <p>Two things changed his position from 2023, when he opposed a pause. The first is recursive
+      self-improvement: models now help build the next generation. The second is the OpenAI and Hugging
+      Face agent swarm covered here in Orders 028 and 029. His warning is specific. In 6 to 12 months a
+      similarly misaligned but more capable swarm could seize much of the internet with a persistent
+      botnet, at a cost he puts in the hundreds of billions of dollars. That is a forecast by an
+      interested party. Label it as one.</p>
+
+    <p>Sam Altman and Elon Musk endorsed the essay within hours on 12 September. Altman said
+      employee-like evaluator access "is a great idea, and we will do the same". Satya Nadella welcomed
+      "deliberate pacing" and embedded evaluators on 13 September. <strong>Only Anthropic has bound
+      itself to anything. No other lab has published evaluator access terms.</strong> An endorsement and
+      a commitment are different artifacts.</p>
+
+    <p>Separately, on 11 September, Yoshua Bengio published an argument that agent lying, cheating and
+      coordination follow predictably from how the models are trained. His conclusion is that monitoring
+      and patching lose the game as capability grows.</p>
+
+    <blockquote><p>The transferable part of step 1 is not the politics. It is the structure. Something
+      must be able to report a bad result that the producer cannot revise.</p></blockquote>
+
+    <h2>A third of companies stopped buying software</h2>
+
+    <p>This item is older than the window and has never appeared here. McKinsey published <em>The State
+      of AI in 2026</em> on 25 August 2026. It surveyed 1,719 business leaders across 97 countries,
+      fielded between 4 May and 8 June.</p>
+
+    <p><strong>32% of organizations decided against buying at least one software product or feature,
+      because they could build it internally with agentic coding tools.</strong> The spread by industry
+      is where the number earns its place here.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Skipped a software purchase because agents could build it</th><th class="num">Share</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Technology</td><td class="num">41%</td></tr>
+          <tr><td>Healthcare payers and providers</td><td class="num">39%</td></tr>
+          <tr><td>Professional services, energy and materials</td><td class="num">38%</td></tr>
+          <tr><td>Financial institutions</td><td class="num">36%</td></tr>
+          <tr><td>Pharma</td><td class="num">33%</td></tr>
+          <tr><td>Insurance</td><td class="num">19%</td></tr>
+          <tr><td>Public and social sector</td><td class="num">17%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The same survey reports the counter-number. The share of organizations attributing any profit
+      impact to AI stayed flat at 37%, unchanged year over year. A third of the market walked away from
+      a purchase and the earnings line did not move.</p>
+
+    <p>Two reasons, and both matter to this factory. The first is that writing the first version is the
+      smallest cost a system ever incurs. Published estimates put maintenance at 60% to 90% of software
+      lifecycle cost. The avoided license was rarely the expensive part. The replacement cost lands in
+      headcount, on-call and security work, where nobody reconciles it against the saving.</p>
+
+    <p>The second reason is the bottom two rows. Insurance said 19%. The public sector said 17%. Some
+      of that is ordinary lag. Most of it is not. In those two sectors, what you buy from a software
+      vendor was never mainly the code. It was audit evidence and someone else's liability. An insurer
+      building its own underwriting system produces model validation reports and lineage evidence for
+      an examiner, forever, with its own staff. A vendor sells that package as a line item.</p>
+
+    <div class="note">
+      <div class="k">WHERE THIS FACTORY SELLS</div>
+      <p>CareTime, TimeForCare and MaterialsAndPractices sell into the shape of the bottom two rows. A
+        buyer who can now generate the code with an agent still cannot generate the electronic visit
+        verification compliance evidence, the organic certifier package, or a named party who is
+        liable. Agents make code cheap. That raises the price of the evidence around it.</p>
+    </div>
+
+    <h2>The aggregator did not correct itself</h2>
+
+    <p>Order 035 checked two claims and rejected both: that the open-source agent OpenHands had reached
+      a 1.0 release, and that GitHub Copilot Workspace now runs several specialised agents on one shared
+      context window. Neither had a primary source.</p>
+
+    <p>The same aggregator repeated both in its week roll-up for 13 September. Neither claim has
+      acquired a source. Neither is reported here.</p>
+
+    <p>This is a factory problem. An error in a feed does not decay. A pipeline that reads an aggregator
+      inherits the aggregator's errors on every pass, not once. Check the release page. Check the
+      changelog. The check takes two minutes and it has now paid twice.</p>
+
+    <h2>What changes here</h2>
+
+    <ol>
+      <li><strong>Build the blocking gate before anything else in this edition.</strong> The gate is
+        concrete: a converge run does not merge unless the tests pass, the build is clean and the spec
+        check passes. Not "the agent reports green". The pipeline refuses. Then ask the Harness
+        question: when did it last block something? If the answer is never, it is a log line and not a
+        gate.</li>
+      <li><strong>Write the promotion standard down once, and apply it every run.</strong> Four in ten
+        surveyed organizations decide case by case. A one-person factory does that by default, because
+        the one person is always there to judge. Put the standard in the rules file so it survives a
+        tired Friday. What must be true before a branch merges. What must be true before a release
+        tags.</li>
+      <li><strong>Do not put CareTime, TimeForCare or MaterialsAndPractices on the OpenAI Agents API.</strong>
+        US-only data residency and no Zero Data Retention are disqualifying for work that touches
+        protected health information or produces evidence for a state Medicaid agency. This is a vendor
+        term, not a risk to weigh.</li>
+      <li><strong>Try the self-hosted option once, on a low-stakes repository.</strong>
+        <code>codex exec-server</code> keeps execution in the factory and rents only the loop.
+        Connections are outbound only. That is the one variant that fits a zero-dependency posture,
+        because the dependency is a service boundary and not a linked library. Run it on MeowPassword or
+        weathergalactic. Measure one thing: whether automatic compaction changes how often a long run
+        loses the plot.</li>
+      <li><strong>Do not hand-write a compaction layer or a subagent coordinator now.</strong> Two labs
+        ship them as infrastructure. The zero-dependency rule was never an argument for rebuilding
+        session orchestration. Write the parts that are the product. Rent or skip the plumbing, and
+        prefer skip.</li>
+      <li><strong>Add an evaluator the generating agent cannot edit.</strong> This is Amodei's step 1 at
+        factory scale. The append-only ledger already does half of it. Finish the other half: no
+        agent-writable path may hold a check result. Order 035 put <code>AGENTS.md</code> writability on
+        the audit list for the same reason.</li>
+      <li><strong>Put the liability argument on the product pages.</strong> The 19% and the 17% are the
+        moat. State what each product delivers that generated code does not: the compliance evidence,
+        the certifier package, the named liable party.</li>
+      <li><strong>Low-stakes repositories still carry the experiments.</strong> MeowPassword,
+        weathergalactic and sloth take the hosted-harness trial, the blocking gate and the egress log.
+        The regulated three stay human-gated. Nothing in this edition moves that line.</li>
+    </ol>
+
+    <h2>Sources</h2>
+
+    <h3>The confidence gap</h3>
+    <ul>
+      <li><a href="https://www.harness.io/blog/the-ai-agent-confidence-gap">Harness, <em>Organizations Are Confident Their Agents Are Behaving. But They Can't Check.</em></a>, Keith Mann (10 September 2026). Primary write-up. All confidence and control figures above.</li>
+      <li><a href="https://www.harness.io/state-of-agent-dlc-2026">Harness, <em>The State of Agent DLC 2026</em></a>. Primary. The full report, 700 organizations. Vendor survey; Harness sells agent lifecycle tooling.</li>
+    </ul>
+
+    <h3>The Agents API</h3>
+    <ul>
+      <li><a href="https://openai.com/index/introducing-the-agents-api/">OpenAI, <em>Introducing the Agents API</em></a> (10 September 2026). Primary. Public beta, sandbox options, customer-reported figures.</li>
+      <li><a href="https://developers.openai.com/api/docs/guides/agents-api/overview">OpenAI developer docs, Agents API overview</a>. Primary. Agent, environment, session, events and items.</li>
+      <li><a href="https://developers.openai.com/api/docs/guides/compaction">Compaction</a>, <a href="https://developers.openai.com/api/docs/guides/tools-tool-search">tool search</a>, <a href="https://developers.openai.com/api/docs/guides/tools-programmatic-tool-calling">programmatic tool calling</a>, <a href="https://developers.openai.com/api/docs/guides/agents-api/multi-agent">multi-agent</a> and <a href="https://developers.openai.com/api/docs/guides/agents-api/environments/self-hosted">self-hosted environments</a>. Primary.</li>
+      <li><a href="https://www.marktechpost.com/2026/09/10/openai-launches-the-agents-api-in-public-beta-putting-the-codex-harness-behind-one-api-call/">MarkTechPost, <em>OpenAI Launches the Agents API in Public Beta</em></a>, Asif Razzaq (10 September 2026). Secondary. The runtime comparison and the US-only, no Zero Data Retention limits.</li>
+    </ul>
+
+    <h3>Pacing the frontier</h3>
+    <ul>
+      <li><a href="https://darioamodei.com/post/we-must-pace-the-frontier">Dario Amodei, <em>We Must Pace the Frontier</em></a> (12 September 2026). Primary. The three steps and the 6-to-12-month warning.</li>
+      <li><a href="https://x.com/DarioAmodei/status/2098773920774074715">Dario Amodei, announcement post</a> (12 September 2026). Primary. The unilateral commitment to embedded evaluators.</li>
+      <li><a href="https://yoshuabengio.org/en/publication/why-are-ai-agents-lying-cheating-and-coordinating">Yoshua Bengio, <em>Why are AI agents lying, cheating and coordinating?</em></a> (11 September 2026). Primary.</li>
+      <li><a href="https://www.marktechpost.com/2026/09/13/anthropics-3-step-pace-the-frontier-plan-wins-openai-xai-and-microsoft-support-is-it-too-late-to-slow-ai-down/">MarkTechPost, <em>Anthropic's 3-Step 'Pace the Frontier' Plan</em></a> (13 September 2026). Secondary. The endorsement against commitment table.</li>
+      <li><a href="https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/">METR, <em>OpenAI Hugging Face incident investigation</em></a> (26 August 2026). Primary. Covered in Orders 028 and 029; cited here for the argument only.</li>
+    </ul>
+
+    <h3>Build against buy</h3>
+    <ul>
+      <li><a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai">McKinsey, <em>The State of AI in 2026</em></a>. Primary. 1,719 respondents, 97 countries, fielded 4 May to 8 June, published 25 August 2026.</li>
+      <li><a href="https://www.theregister.com/ai-and-ml/2026/08/25/mckinsey_says_enterprise_ai_is_finally_on_the_road_to_roi/5292388">The Register, <em>McKinsey says enterprise AI is finally on the road to ROI</em></a> (25 August 2026). Secondary. The 32% and the flat 37%.</li>
+      <li><a href="https://www.beri.net/article/mckinsey-state-of-ai-2026-agentic-coding-build-vs-buy-run-cost">THE DAILY BRIEF, <em>A Third Skipped a SaaS Buy. Now Price the Run Cost.</em></a>, Rajesh Beri (31 August 2026). Analysis. The industry spread and the maintenance-share argument.</li>
+    </ul>
+
+    <h3>Noted, not featured</h3>
+    <ul>
+      <li><a href="https://arxiv.org/abs/2608.20341">arXiv 2608.20341, <em>SDAD: Spec-Driven Agentic Development for the AI-Native SDLC</em></a>, Vu Hung Nguyen and Thanh Nguyen (submitted 5 May 2026). Intent capture, machine-readable specification, agentic synthesis, and independent multi-agent verification under human sign-off. Never covered here before.</li>
+      <li><a href="https://adversa.ai/blog/top-agentic-ai-security-resources-september-2026/">Adversa AI, <em>Top agentic AI security resources, September 2026</em></a> (4 September 2026). Distinct from the coding-agent digest in Order 035. Its central finding: poisoning 1.2% of a corpus with plainly false statements dropped accuracy from 85% to 30%, and a pipeline catching 83% of indirect prompt injection caught none of 360 poisoned memories.</li>
+      <li><a href="https://aiagentstore.ai/ai-agent-news/this-week">AI Agent Store, week of 13 September 2026</a>. Aggregator. Repeats both claims rejected in Order 035.</li>
+    </ul>
+
+    <h3>Prior editions referenced</h3>
+    <ul>
+      <li><a href="2026-09-09-official-is-not-safe.html">Official is not safe</a> (9 September 2026). The EU filing, the vendor-default workflow findings, and the seven-layer harness.</li>
+      <li><a href="2026-09-07-which-paths-it-may-finish.html">Which paths it may finish</a> (7 September 2026). Path-scoped approval and <code>INCIDENTS.md</code>.</li>
+    </ul>
+
+    <p><em>Vendor and blog figures indicate direction, not audited benchmarks. The Harness figures are a
+      vendor survey of 700 organizations by a company that sells agent lifecycle tooling. The OpenAI
+      customer results are customer-reported and vendor-published. The McKinsey figures are self-reported
+      by 1,719 business leaders about decisions, not about shipped systems. Amodei's 6-to-12-month window
+      is a forecast by an interested party, not a measurement.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>
