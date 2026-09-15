@@ -5,8 +5,18 @@
     <link>https://www.river.io/blog/</link>
     <description>Notes from River.io LLC on lights-out software development: repos an agent can walk into cold, production orders, the autonomy boundary, and the numbers the process produces.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 14 Sep 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 15 Sep 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.river.io/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unverified input</title>
+      <link>https://www.river.io/blog/posts/2026-09-15-unverified-input.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-09-15-unverified-input.html</guid>
+      <pubDate>Tue, 15 Sep 2026 12:00:00 +0000</pubDate>
+      <description>The Pentagon wrote a procedure for AI-assisted software development. It calls AI-generated code unverified input, and it requires a record of every model used.</description>
+      <category>Briefing</category>
+      <category>Practice</category>
+      <category>Security</category>
+    </item>
     <item>
       <title>Confidence is not a control</title>
       <link>https://www.river.io/blog/posts/2026-09-14-confidence-is-not-a-control.html</link>
