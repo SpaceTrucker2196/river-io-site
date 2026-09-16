@@ -1,0 +1,17 @@
+To: ddobrijevic@space.com
+Subject: Solstice pitch: what the Stonehenge sunrise actually did in 2500 BC
+
+Daisy,
+
+A skywatching story for December rather than a review request.
+
+Most Stonehenge coverage quietly uses modern obliquity and a flat horizon. Do it properly and two things change. Solving Laskar's obliquity polynomial per epoch moves the alignment as you travel through time, because the Earth's tilt in 2500 BC was not what it is now. And computing the sunrise over the real Salisbury Plain skyline from NASA/USGS radar topography, rather than a mathematical horizon, moves the bearing by about a full degree, which at Stonehenge is the difference between an alignment and a coincidence.
+
+The result I find most interesting is the one that does not flatter the popular story. The monument's built axis surveys at 49.9 degrees. The computed 2500 BC midsummer sunrise over the real skyline comes out at 49.08, eight tenths off. The midwinter sunset along the same line lands two tenths off. Midwinter is the tighter fit.
+
+I built the software this comes out of, and I am happy for that to be a footnote rather than the subject. If it is useful I can produce figures, renders at any date you name, or the numbers behind any of it. If you would rather have it as a contributed piece than as reporting, I can write it.
+
+Jeff Kunzelman
+river.io
+608-865-1284
+www.river.io/software/

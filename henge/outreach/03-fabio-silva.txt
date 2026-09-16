@@ -1,0 +1,17 @@
+To: fsilva@stonexsky.com
+Subject: Independent cross-check against skyscapeR's horizon and declination code
+
+Dr Silva,
+
+I am a software engineer, not an archaeologist, and I have written an independent implementation of the astronomy that skyscapeR covers: Meeus for solar and lunar position, VSOP87D truncated to terms worth 0.2 arcseconds or more across five millennia, Laskar's obliquity polynomial solved per epoch, and Hipparcos with real proper motions. It drives a real-time model of Stonehenge over SRTM terrain.
+
+Two independent implementations of the same physics are worth more than either alone, and I would like to offer you a cross-validation. If you point me at a horizon profile and a set of target dates, I will run both, publish the diff in full including anywhere mine is wrong, and hand you the comparison. No conditions attached, and I am happy for it to appear under your name or nobody's.
+
+My interest is selfish in one narrow sense. The first question anyone sensible asks me is "how do I know your numbers are right", and at the moment my answer is a set of internal tests. A published diff against the field's reference implementation is a much better answer than "trust me."
+
+On the testing, since it is the part I actually know something about: the shadow geometry is solved analytically in a module that imports no graphics code at all, the renderer draws it independently, and a test then measures where the drawn shadow edge actually lands in a headless render and fails the build if the two disagree by more than 0.28 metres on the ground. That tolerance was measured rather than chosen. I would rather submit that discipline to someone who can break it.
+
+Jeff Kunzelman
+river.io
+608-865-1284
+www.river.io/software/

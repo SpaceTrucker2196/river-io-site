@@ -1,0 +1,17 @@
+To: insap2026@inaf.it
+Subject: INSAP XIV: is the extended abstract deadline still open?
+
+Dear Professor Gandolfi, Dr Danizi,
+
+The INSAP XIV pages note that the abstract deadline has been extended but do not give the new date. Is the call still open?
+
+I am an independent software engineer. I have built a real-time simulator of Stonehenge in which the terrain is NASA/USGS SRTM radar topography of Salisbury Plain rather than an artist's landscape, and the sun, moon, planets and stars are computed from published ephemerides across five millennia rather than animated.
+
+One result from it may suit "All Roads Lead to the Sky": computing the 2500 BC midsummer sunrise over the real skyline rather than a flat mathematical horizon moves the answer by roughly a degree, which is the difference between an alignment and a coincidence. I would be glad to submit a proper abstract if there is still time.
+
+Either way, could I be added to the INSAP mailing list?
+
+Jeff Kunzelman
+river.io
+608-865-1284
+www.river.io/software/

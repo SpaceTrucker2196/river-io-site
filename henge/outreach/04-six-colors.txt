@@ -1,0 +1,18 @@
+To: apps@sixcolors.com
+Subject: Henge: a photoreal Stonehenge that runs on real ephemerides
+
+Philip,
+
+Henge is a photoreal Stonehenge for iPhone, iPad and Mac that is also a working sky simulator. Nothing in it is animated: the sun, moon, planets and stars are computed from the same published ephemerides astronomers use, accurate across five thousand years, and the stones cast exactly the shadows that sky demands, so you can stand at the Altar Stone on any date from 3000 BC to AD 3000 and watch the light arrive.
+
+The ground is NASA/USGS radar topography of Salisbury Plain, the sky is the ESA Hipparcos catalogue with real proper motions, and the renderer is hand-written Metal 3 with no game engine and zero third-party dependencies.
+
+Twelve minute walkthrough: https://www.youtube.com/watch?v=q7Fuo2rVkuE
+App Store: https://apps.apple.com/us/app/henge/id6798126839
+
+Free to explore, one purchase to unlock, no subscription and no account. Happy to send a promo code.
+
+Jeff Kunzelman
+river.io
+608-865-1284
+www.river.io/software/

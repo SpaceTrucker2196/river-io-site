@@ -1,0 +1,84 @@
+Fiverr reply to Sardarkhan (haroonkhan164) — App Store Marketing for Henge
+DRAFT. The $750 / $300 figures are placeholders. Confirm or change before sending.
+
+---
+
+Good catches on two of three, and one correction.
+
+The macOS verification flag is real and I had missed it. Fixing today.
+
+Category: agree. Moving primary to Reference and keeping Education secondary.
+Every one-time-purchase astronomy app at my price lives in Reference, and
+Education is where I would be competing for attention with language-learning
+budgets.
+
+On keywords, one thing you cannot see from outside. The 100-character keyword
+field is already:
+
+stonehenge,solstice,sunrise,calendar,druid,astronomy,archaeology,sundial,equinox,megalith,moon
+
+That field is not public, so you were reasoning from title and subtitle, which
+is fair. But astronomy and solstice are already in there.
+
+Where I would push back is direction. I pulled the top three organic results
+for each term and summed their lifetime rating counts as a proxy for how
+entrenched the incumbents are:
+
+  planetarium   904,000
+  star chart    892,000
+  astronomy     886,000
+  stonehenge         26
+
+Night Sky, Sky Guide and Stellarium own the head. Stonehenge is empty, and so
+are megalith, archaeoastronomy and ancient astronomy. I do not think I can win
+the head terms at any budget I have, and I do not think I need to. The
+uncontested tail is small but it is mine.
+
+Title and subtitle I agree need work. "Henge" alone is bad enough that
+searching "henge" on the US store returns Hinge, Bumble and Tinder. My Japanese
+and Chinese listings already append "Stonehenge" to the app name and English
+does not, which is an oversight rather than a decision.
+
+On measurement, partly agree. App Store Connect already gives me app units, IAP
+units and proceeds, so my aggregate download-to-purchase rate is measurable
+now, for free. Apple Ads reports taps, installs and cost per install per
+keyword natively through Apple's own attribution, with no SDK. What I genuinely
+cannot get is purchases attributed back to a specific keyword or campaign.
+That is a real gap and it is the one that matters for optimisation, so you are
+right that it constrains what Meta can do.
+
+But I am not adding an attribution SDK. No network, no account, nothing
+collected is the product, not a setting. It is in the privacy label, the
+marketing and the architecture, and the app ships with zero third-party
+dependencies by design. Instrumenting it to measure a channel that may not pay
+back is trading the differentiator for the measurement.
+
+One number you did not ask for and were reasoning without: the unlock is
+$19.99, not a couple of dollars. I repriced it this week. At that price a
+sub-$0.60 cost per tap needs only a 3 to 5 percent purchase rate to clear,
+which is plausible on terms nobody is bidding on. At the US median of $1.91 it
+needs about 19 percent, which is not. So the entire ads question reduces to one
+measurable thing: what cost per tap actually comes in at on the uncontested
+set.
+
+Budget. I would rather not buy a plan. I already have positioning, competitive
+keyword data, seasonality and a channel shortlist. What I do not have is
+someone to execute and own the numbers.
+
+So the scope I would pay for is execution:
+
+  - rewrite title, subtitle and keyword field
+  - move the category
+  - screenshot and app preview guidance, and the store page conversion work
+  - build a solstice In-App Event for December
+  - set up and run an Apple Search Ads test on the uncontested terms, with a
+    stated kill criterion at $0.60 cost per tap
+
+I have set aside $750 for the work plus $300 of ad spend. If that fits, send me
+a scope and we will start with the metadata, since it is free and upstream of
+everything else.
+
+One timing note that changes the sequencing. Search interest in "stonehenge"
+peaks at the June solstice, not December. December's spike belongs to the
+phrase "winter solstice" and it is about a week wide. So I am treating December
+as a rehearsal and June 2027 as the real moment.

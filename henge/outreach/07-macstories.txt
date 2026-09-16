@@ -1,0 +1,20 @@
+To: johnvoorhees@macstories.net
+Subject: Henge: a Stonehenge you can set to 2500 BC
+
+John,
+
+Henge is a photoreal Stonehenge for iPhone, iPad and Mac where nothing is animated. The sun, moon, planets and stars are computed from published ephemerides, the ground is NASA/USGS radar topography of Salisbury Plain, and the stones cast the shadows that sky actually demands.
+
+The demo that tends to land: wind the date back to 2800 BC and watch Polaris drift off the celestial pole while Thuban arrives in its place. Nobody hardcoded that. It falls out of real Hipparcos proper motions and properly solved precession, which is also why it took a while to get right.
+
+Hand-written Metal 3, no game engine, zero third-party dependencies, no network, no account, nothing collected. Nine languages.
+
+https://apps.apple.com/us/app/henge/id6798126839
+https://www.youtube.com/watch?v=q7Fuo2rVkuE
+
+Promo code whenever you want one.
+
+Jeff Kunzelman
+river.io
+608-865-1284
+www.river.io/software/

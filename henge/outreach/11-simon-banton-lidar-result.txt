@@ -1,0 +1,30 @@
+To: novacaster@googlemail.com
+Subject: Re: Petrie numbers — the re-run, and it makes my earlier number look silly
+
+Simon,
+
+Thank you for the landscape file. I said I would re-run the lot and publish whatever came out, including if it embarrassed the earlier figure. It did, twice over, and the result now sits about where yours does.
+
+Two things were wrong, and they were hiding each other.
+
+The first was refraction. My rise/set solver was using Bennett's formula (Meeus 16.4), which takes an apparent altitude, on a true altitude. At the horizon that gives 34.5 arcminutes where Saemundsson's 16.3 gives 29.0. Every rising sun was lifted 5.5 arcminutes too far, which at Stonehenge's latitude is half a degree of bearing to the north. Both numbers are famous and both are right for their own question, which is how it got past me.
+
+The second was the skyline, and this is where your file did the work. The app's terrain was baked from SRTM. Read against David Hoyle's panorama, the SRTM skyline sat a quarter of a degree high all the way round the horizon. SRTM is radar and reports the tree canopy on the Larkhill ridge as ground. I have replaced it with the Environment Agency's bare-earth LiDAR composite, fetched straight from Defra's service. The LiDAR skyline and the panorama now agree round the full 360 degrees (correlation 0.96, mean difference 0.03 degrees), and both read 0.57 to 0.60 degrees at the solstice bearing.
+
+The result, first gleam, upper limb on the skyline, refraction applied:
+
+  2500 BC midsummer sunrise   49.31   (you: 49.37; the app said 49.08 before)
+  2026 midsummer sunrise      50.33
+  2026 midwinter sunset      231.47   (1.57 off the 229.9 reciprocal)
+
+So we are 0.06 degrees apart, which is inside anything I would defend given the axis question you raised. The tidy story I half expected, that the axis fits 2500 BC better than today, does not survive: the modern sun rises 0.43 south of 49.9 and the builders' rose 0.59 north of it. The line sits between the two eras, both inside a solar diameter. Midwinter is still the looser fit on my numbers, not the tighter one I first told you.
+
+One thing I should raise rather than sit on. Your note said the 2500 BC sun crosses a horizon at 0.35 degrees. I could not find that in the panorama at the sunrise bearing. Reading the skyline straight off the image's alpha channel with side 0 starting at north, which is the orientation that matches the LiDAR, it gives 0.57 to 0.60 there; values near 0.35 only appear around 60 to 70 degrees, and again near 315. That smells like a landscape rotation in the Stellarium setup rather than anything about the ground, but you will know your own configuration far better than I can guess at it, and if I have the panorama's orientation wrong I would like to hear it.
+
+Both you and David Hoyle are credited in the app's info screen, in all nine languages, for the skyline check. If you would rather be named differently or not at all, say so and it changes.
+
+On the iPhone 8: the Mac build needs no App Store and runs on anything from macOS 14 up, at river.io/henge, if a Mac is to hand.
+
+And the offer of stone renders by Petrie number stands.
+
+Jeff

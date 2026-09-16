@@ -1,0 +1,23 @@
+To: hengemaster@stonesofstonehenge.org.uk
+Subject: Petrie numbers, and an axis question I can't settle on my own
+
+Simon,
+
+I have spent a lot of the last year on stonesofstonehenge.org.uk. I built a real-time model of the monument in which every stone carries its Petrie number, and yours is the reference I kept going back to when I needed to know what a particular stone actually looks like from a given side.
+
+I would like to offer you something before I ask you anything. I can render any stone, by Petrie number, from an arbitrary viewpoint and lighting condition, including ones that are hard to photograph in situ. If a set of those would be useful to you, say the word and they are yours, no conditions and no credit required.
+
+The question I cannot settle alone. Working from a survey-derived axis of 49.9 degrees, I compute the 2500 BC midsummer sunrise over an SRTM-derived skyline at 49.08, about eight tenths off. The midwinter sunset along the same line lands about two tenths off. So on my numbers midwinter is the tighter fit.
+
+I do not trust that comparison yet, for a reason you will see faster than I did: I do not know what the uncertainty on "49.9 degrees" is. The Stone 55/56 gap, the Heel Stone, the Avenue ditches and the Slaughter Stone do not all give the same azimuth, and if the spread across reasonable definitions is wider than the 0.6 degree gap between my two results, then "midwinter fits better" is not a result at all.
+
+Which definition of the axis would you use, and roughly what spread would you expect across the others?
+
+Two things I should be upfront about. SRTM is a radar surface model, so it includes present-day canopy, and I am planning to re-run the whole thing on Environment Agency LIDAR bare-earth to see how much the answer moves. And I am not making any claim about what the builders intended. I compute geometry and report it, including when it does not flatter the tidy story.
+
+I also publish the number that does not flatter me, which is why you are getting 0.8 rather than a rounder figure.
+
+Jeff Kunzelman
+river.io
+608-865-1284
+www.river.io/software/

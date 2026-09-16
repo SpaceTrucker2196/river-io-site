@@ -1,0 +1,9 @@
+The Coneybury Hill sightline is the part I would most like to test properly, because it is close enough for the horizon model to matter.
+
+I have built a real-time model of the monument that computes the sky from published ephemerides (Meeus, VSOP87D, Laskar's obliquity solved per epoch) over NASA/USGS SRTM radar topography of the plain, so I can run the Stone 58 notch to Stone 53 edge line against a real skyline rather than a flat horizon. Happy to do that and publish whatever comes out, including if it does not support the 80 degrees.
+
+One caveat I would rather raise myself. SRTM is a radar surface model, so it includes present-day canopy. On a distant horizon that is negligible in altitude terms. Coneybury is close enough that a few metres of tree height could move the horizon altitude, and therefore the azimuth, by more than the effect being measured. So I would want to re-run it on Environment Agency LIDAR bare-earth and report both numbers rather than one.
+
+For calibration on my own figures: from a survey-derived primary axis of 49.9 degrees I get the 2500 BC midsummer sunrise over the SRTM skyline at 49.08, and the midwinter sunset about two tenths off. That would make midwinter the tighter fit, but I do not trust the comparison yet, because I do not know the uncertainty on the axis definition itself. If the spread across reasonable definitions exceeds the 0.6 degree gap between my two results then it is not a result at all.
+
+Which definition of the primary axis do you work from?

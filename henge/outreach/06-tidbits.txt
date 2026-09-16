@@ -1,0 +1,22 @@
+To: ace@tidbits.com
+Subject: A Stonehenge that computes rather than animates
+
+Adam,
+
+I read your July piece on pitching in the AI era before writing this, so: no press release, and this is a personal note.
+
+You said you are interested in old concepts only with a legitimately new take. The old concept is a 3D Stonehenge, of which there are several. The new take is that every one of them is an artist's impression and mine is not. The terrain is NASA/USGS SRTM radar topography of Salisbury Plain. The stones trace to cited survey dimensions and carry the Petrie numbers archaeologists have used since the 1870s. The sky is the ESA Hipparcos catalogue, 8,870 stars with their real measured proper motions. The planets are VSOP87D. The sun and moon are Meeus.
+
+That means it functions as an instrument rather than an illustration. Set it to any date between 3000 BC and AD 3000 and the alignments genuinely move, because obliquity is solved per epoch rather than assumed.
+
+The backstory, since you asked for one. I am a solo developer and I wrote the renderer by hand in Metal 3, no game engine, no third-party dependencies, a cold clone builds offline. The part I am actually proud of is a test: the shadow geometry is solved analytically in a module that imports no graphics code, the renderer draws it separately, and a test measures where the drawn edge lands in a headless render and fails the build if they disagree by more than 0.28 metres on the ground. I could not find anyone else testing a renderer against an independent solver that way, and it caught real bugs.
+
+App Store: https://apps.apple.com/us/app/henge/id6798126839
+Walkthrough: https://www.youtube.com/watch?v=q7Fuo2rVkuE
+
+Promo code on request, and I am glad to answer anything technical.
+
+Jeff Kunzelman
+river.io
+608-865-1284
+www.river.io/software/

@@ -1,0 +1,29 @@
+To: novacaster@googlemail.com
+Subject: Re: Petrie numbers, and an axis question I can't settle on my own
+
+Simon,
+
+That is exactly the answer I needed, and it costs me a correction straight away.
+
+I told you the 49.08 came from an SRTM-derived skyline. It does not, and I should have checked my own code before I wrote. The terrain in the app is SRTM, but the bearing comes out of the rise/set solver, and that takes the skyline as a single scalar altitude, currently 0.6 degrees for the north-east. One assumed number, not a profile. Yours is a real profile from real LIDAR. So the honest framing is your measurement against my assumption, and I would not expect mine to win that.
+
+On the georeferencing, the answer is thinner than you might assume. Everything is computed for one site coordinate, 51.1789 N, 1.8262 W at 101 m, with the stones laid out around it in a local metric frame from published survey dimensions. They are not independently georeferenced, and nothing in the bearing calculation uses the best-fit centre of the outer sarsen circle the way yours does. So my 49.08 is not really a horizon-profile result at all, and you were right to find it too far north.
+
+On what counts as sunrise, we agree that is the crux, and it turns out we are already using the same definition. Henge solves for the moment the upper limb touches the skyline: apparent altitudes with refraction applied, target set at the horizon altitude minus a solar semi-diameter of 0.267 degrees. So mine is first gleam, and your first gleam is 49.37. Same definition, 0.29 degrees apart. That points at my 0.6 rather than at the limb question.
+
+Which is useful, because it inverts. Given your three figures I can solve for the skyline altitude that would reproduce 49.37 at first gleam and see how far that sits from 0.6. If you are willing to share the horizon profile, or even just the altitude at the relevant azimuth, I will re-run the lot and publish whatever comes out, including if it makes my earlier number look silly.
+
+Your instinct for full orb is interesting and I had not considered it that way. The Heel Stone shadow is a physical argument for a definition rather than a conventional one, which is rarer than it should be. Henge can report all three, and on reflection it probably ought to show all three rather than quietly pick one.
+
+Thank you also for Atkinson at 49.91 as an average-derived value, and Lockyer at 49.6 revised to 49.57 with Penrose, and for the point that they were working before Hawley straightened the north-east arc and were guessing at the 55/56 separation. That is exactly the uncertainty I could not put a number on. Roughly a third of a degree across the published values is narrower than I feared, though it is still the same order as the effect I was claiming, which is sobering.
+
+The renders: yes, gladly. Tell me which stones, from what angle and what lighting, and whether you would rather have them by Petrie number as individual images or as a contact sheet. If it is easier I will just start with the ones that are awkward to photograph in situ and you can tell me what is useless.
+
+The app is here if you want to poke at it, and I would rather you had the full version than paid to check my arithmetic, so say the word and I will send a code:
+
+https://apps.apple.com/us/app/henge/id6798126839
+
+Jeff Kunzelman
+river.io
+608-865-1284
+www.river.io/software/
