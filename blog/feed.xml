@@ -5,8 +5,18 @@
     <link>https://www.river.io/blog/</link>
     <description>Notes from River.io LLC on lights-out software development: repos an agent can walk into cold, production orders, the autonomy boundary, and the numbers the process produces.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 15 Sep 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 17 Sep 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.river.io/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The enforcer inside</title>
+      <link>https://www.river.io/blog/posts/2026-09-17-the-enforcer-inside.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-09-17-the-enforcer-inside.html</guid>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 +0000</pubDate>
+      <description>Four sandbox escapes from three vendors share one shape: the thing that enforces the boundary sits inside the thing it enforces. A survey puts a number on the human re-check.</description>
+      <category>Briefing</category>
+      <category>Security</category>
+      <category>Practice</category>
+    </item>
     <item>
       <title>Unverified input</title>
       <link>https://www.river.io/blog/posts/2026-09-15-unverified-input.html</link>
