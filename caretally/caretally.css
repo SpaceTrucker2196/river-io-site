@@ -1,0 +1,138 @@
+/* CareTally — shared styles for river.io/caretally.
+   Same family as the CareTime page: warm paper, teal, clay. Plain and
+   readable for a tired caregiver on a phone. */
+:root {
+  --ink: #1c2b2d;
+  --ink-soft: #4a5e60;
+  --paper: #f4efe6;
+  --paper-warm: #ece4d6;
+  --card: #fffdf8;
+  --teal: #1f6f6b;
+  --teal-deep: #16524f;
+  --clay: #c66a4a;
+  --clay-deep: #a8543a;
+  --line: #d8cebb;
+  --warn-bg: #fbeee6;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Newsreader', Georgia, serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  font-size: 17px;
+}
+.wrap { max-width: 740px; margin: 0 auto; padding: 0 20px; }
+a { color: var(--teal-deep); }
+a:hover { color: var(--clay-deep); }
+
+/* Top bar */
+.top {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 8px; padding: 18px 0 0; font-size: .92rem;
+}
+.top .brand { font-family: 'Fraunces', serif; font-weight: 600; color: var(--ink); text-decoration: none; font-size: 1.1rem; }
+.top nav { display: flex; gap: 4px; flex-wrap: wrap; }
+.top nav a {
+  color: var(--ink-soft); text-decoration: none; padding: 6px 12px; border-radius: 100px;
+}
+.top nav a:hover, .top nav a[aria-current="page"] { color: var(--teal-deep); background: var(--paper-warm); }
+
+/* Header */
+header.hero { padding: 40px 0 8px; text-align: center; }
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: .8rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--teal-deep); font-weight: 500;
+  border: 1px solid var(--line); border-radius: 100px; padding: 7px 16px; background: var(--card);
+}
+.badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--clay); }
+h1 {
+  font-family: 'Fraunces', serif; font-weight: 600;
+  font-size: clamp(2.3rem, 8.5vw, 3.6rem); line-height: 1.05;
+  letter-spacing: -.02em; margin: 24px 0 14px;
+}
+h1 em { color: var(--teal); font-weight: 500; }
+.tagline { font-size: clamp(1.1rem, 3.6vw, 1.3rem); color: var(--ink-soft); max-width: 36ch; margin: 0 auto; }
+
+/* Sections */
+section { margin: 52px 0; }
+h2 {
+  font-family: 'Fraunces', serif; font-weight: 600;
+  font-size: clamp(1.5rem, 5vw, 1.95rem); line-height: 1.18;
+  letter-spacing: -.01em; margin-bottom: 16px;
+}
+h2 em { color: var(--teal); font-weight: 500; }
+h3 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.2rem; line-height: 1.25; margin-bottom: 8px; }
+p { color: var(--ink-soft); margin-bottom: 14px; }
+p:last-child { margin-bottom: 0; }
+strong { color: var(--ink); font-weight: 600; }
+ul.plain { list-style: none; }
+ul.plain li { padding: 9px 0 9px 26px; position: relative; color: var(--ink-soft); border-bottom: 1px solid var(--line); }
+ul.plain li:last-child { border-bottom: 0; }
+ul.plain li::before { content: "✓"; position: absolute; left: 2px; top: 9px; color: var(--teal); font-weight: 600; }
+
+.card {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 18px; padding: 24px; margin-bottom: 14px;
+}
+.soft { background: var(--paper-warm); border: 1px solid var(--line); border-radius: 20px; padding: 26px; }
+.notice {
+  background: var(--warn-bg); border: 1px solid #e6c7b6; border-left: 4px solid var(--clay);
+  border-radius: 12px; padding: 18px 20px;
+}
+.notice p { color: var(--ink); }
+
+/* Buyers */
+.who { display: grid; gap: 14px; }
+@media (min-width: 640px) { .who { grid-template-columns: 1fr 1fr 1fr; } }
+.who .card { margin: 0; }
+.who .card p { font-size: .97rem; }
+
+/* Pricing */
+.plans { display: grid; gap: 14px; }
+@media (min-width: 560px) { .plans { grid-template-columns: 1fr 1fr; } }
+.plans .card { margin: 0; }
+.price { font-family: 'Fraunces', serif; font-size: 1.9rem; font-weight: 600; color: var(--ink); line-height: 1.1; }
+.price small { font-size: .95rem; color: var(--ink-soft); font-weight: 400; }
+
+/* Tables */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); border-radius: 14px; background: var(--card); }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--ink); background: var(--paper-warm); font-size: .88rem; }
+tr:last-child td { border-bottom: 0; }
+td { color: var(--ink-soft); }
+td strong { color: var(--ink); }
+.cite { font-size: .82rem; color: var(--ink-soft); font-style: italic; }
+
+/* Figures */
+figure { margin: 18px 0; }
+figure img { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); box-shadow: 0 18px 40px -24px rgba(28,43,45,.45); background: #fff; }
+figcaption { font-size: .88rem; color: var(--ink-soft); margin-top: 8px; text-align: center; }
+.pages { display: grid; gap: 14px; }
+@media (min-width: 640px) { .pages { grid-template-columns: 1fr 1fr; } }
+
+blockquote {
+  border-left: 3px solid var(--teal); padding: 4px 0 4px 18px; margin: 14px 0;
+  color: var(--ink); font-style: italic;
+}
+
+.cta {
+  display: inline-block; background: var(--teal); color: #fff; text-decoration: none;
+  padding: 12px 22px; border-radius: 100px; font-weight: 500;
+}
+.cta:hover { background: var(--teal-deep); color: #fff; }
+
+footer {
+  margin: 64px 0 40px; padding-top: 22px; border-top: 1px solid var(--line);
+  font-size: .88rem; color: var(--ink-soft); text-align: center;
+}
+footer a { color: var(--ink-soft); }
+
+/* Policy pages */
+.policy h2 { font-size: 1.35rem; margin-top: 34px; }
+.policy li { color: var(--ink-soft); margin: 0 0 8px 20px; }
+.meta { font-size: .9rem; color: var(--ink-soft); }
