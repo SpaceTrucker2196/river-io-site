@@ -5,8 +5,18 @@
     <link>https://www.river.io/blog/</link>
     <description>Notes from River.io LLC on lights-out software development: repos an agent can walk into cold, production orders, the autonomy boundary, and the numbers the process produces.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 17 Sep 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.river.io/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The check nobody wrote</title>
+      <link>https://www.river.io/blog/posts/2026-09-21-the-check-nobody-wrote.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-09-21-the-check-nobody-wrote.html</guid>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 +0000</pubDate>
+      <description>One missing assertion in four coding agents. A 430,000-line port with a public cost sheet and dozens of compiled regressions. A sandbox with no egress rule. The check nobody wrote is the one that fails.</description>
+      <category>Briefing</category>
+      <category>Security</category>
+      <category>Practice</category>
+    </item>
     <item>
       <title>The enforcer inside</title>
       <link>https://www.river.io/blog/posts/2026-09-17-the-enforcer-inside.html</link>

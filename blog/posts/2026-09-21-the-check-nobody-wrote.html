@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="One missing assertion in four coding agents. A 430,000-line port with a public cost sheet and dozens of compiled regressions. A sandbox with no egress rule. The check nobody wrote is the one that fails." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing, Security, Practice" />
+<title>The check nobody wrote — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+  <script src="/analytics.js" defer></script>
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 039</b><span>21 September 2026</span><span>9 min</span><span>Briefing</span></div>
+    <h1>The check nobody wrote</h1>
+    <p class="dek">One missing assertion in four coding agents. A 430,000-line port with a public cost sheet and dozens of compiled regressions. A sandbox with no egress rule. The check nobody wrote is the one that fails.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">Order 038 was about enforcers that sit inside the thing they enforce. This edition is
+      about checks that were never written at all. Four items are new. All four are inside the window.
+      One is a supply-chain bug with a one-line fix. One is the most detailed public cost sheet for an
+      agent-built port so far. One is a small spec convergence. One is a sandbox that a partner left
+      open.</p>
+
+    <p>Be clear about the window. The last edition here was 17 September 2026. This one covers four days.
+      Every item below has its real publication date.</p>
+
+    <h2>Plugin4Shell: the pin was a label</h2>
+
+    <p>On 17 September 2026, AIR published a finding it calls Plugin4Shell. AIR is a security startup that
+      sells a plugin marketplace and a filter for agent add-ons. Its researchers found the same design
+      error in Claude Code, OpenAI Codex, GitHub Copilot and Gemini CLI. They found it in May 2026 and
+      disclosed it to all four vendors in June 2026.</p>
+
+    <p>The setup is normal. A marketplace pins a plugin to a reviewed commit SHA. A SHA is the hash that
+      names one exact commit. The agent runs <code>git clone</code>, then <code>git checkout</code> with
+      that SHA. The idea is that the reviewed code is the only code that can run.</p>
+
+    <p>The bug is one missing check. The agent never confirms that the checkout landed on the pinned
+      commit. An attacker who controls the plugin repository creates a branch whose name is the 40-hex
+      SHA and makes it the default branch. Git prefers a ref over an object id of the same name. It prints
+      a warning and checks out the branch. The working tree is now attacker code. The agent reports a
+      successful install at the pinned commit.</p>
+
+    <p>Gemini CLI has a different variant with the same result. It fetches the pinned commit and then runs
+      <code>git checkout FETCH_HEAD</code>. A default branch named <code>FETCH_HEAD</code> wins the same
+      way.</p>
+
+    <p><strong>What makes it zero-click is auto-update.</strong> Claude Code and Codex update installed
+      plugins in the background by default. When a marketplace bumps a pin, every installed copy re-runs
+      the checkout with no prompt. AIR's attack chain: publish a benign plugin, pass review, ship a benign
+      version bump so the marketplace re-pins, then create the malicious default branch named after the
+      new pin. The auto-update delivers it.</p>
+
+    <div class="note">
+      <div class="k">THE FIX</div>
+      <p>One line, run inside the agent after checkout, closes both variants.</p>
+      <pre><code>test "$(git rev-parse HEAD)" = "&lt;pinned-sha&gt;" || abort</code></pre>
+      <p>It must check the resolved <code>HEAD</code>, not the ref that was requested. And it must run on
+        the client. The pin is resolved inside the agent, so no marketplace can enforce the promise it
+        makes.</p>
+    </div>
+
+    <p>GitHub itself rejects 40-hex branch names. So the branch variant needs a marketplace hosted on
+      Bitbucket, a self-hosted git server, or any host that follows git's default. Anthropic's own
+      documentation lists those as supported marketplace backends.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Agent</th><th>Status as of 17 September 2026</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Claude Code</td><td>Fixed in 2.1.179, confirmed 17 June 2026</td></tr>
+          <tr><td>OpenAI Codex</td><td>Fixed in 0.146.0, verified 12 August 2026</td></tr>
+          <tr><td>GitHub Copilot</td><td>No fix shipped. AIR says Microsoft did not respond to the June disclosure.</td></tr>
+          <tr><td>Gemini CLI</td><td>Google confirmed on 4 August 2026 that no fix will ship. The CLI is deprecated. Users are told to move to Antigravity, which has no plugin SHA pinning to bypass.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>A GitHub spokesperson told The Register that GitHub's branch-name rule makes the bug unexploitable
+      on GitHub. AIR replied that Copilot supports marketplaces on other hosts, so Copilot is still
+      exposed. AIR says its earlier work proved the front half of the chain. A malicious skill it built
+      reached more than 26,000 agents. Its SkillJacking research found 925 in-use skills hijacked from
+      their maintainers, reaching 134,000 agents. Those are the vendor's own figures.</p>
+
+    <h2>A public cost sheet for a 430,000-line port</h2>
+
+    <p>On 16 September 2026, GitHub published Stephen Toub's account of porting the Copilot runtime from
+      TypeScript to Rust. The runtime backs the Copilot CLI, the Copilot app, the Copilot SDK and the
+      cloud agent. Agents did most of the porting. Every number below is from the primary post.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Copilot runtime port, GitHub, 16 September 2026</th><th class="num">Value</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Production TypeScript that passed through the port</td><td class="num">~430,000 lines</td></tr>
+          <tr><td>Production Rust written from scratch</td><td class="num">~832,000 lines</td></tr>
+          <tr><td>Port pull requests landed on main</td><td class="num">128</td></tr>
+          <tr><td>Porting window</td><td class="num">~14.5 weeks</td></tr>
+          <tr><td>Releases shipped in that window (100 pre-release, 35 stable)</td><td class="num">135</td></tr>
+          <tr><td>Cached input read tokens</td><td class="num">~130.6 billion</td></tr>
+          <tr><td>Output tokens</td><td class="num">~600 million</td></tr>
+          <tr><td>Attributed token spend</td><td class="num">~$120,000</td></tr>
+          <tr><td>Developer time, estimated from PR share</td><td class="num">~3 weeks</td></tr>
+          <tr><td>Known port regressions traced by 14 September 2026</td><td class="num">dozens, all fixed</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The benchmark is 1,000 one-turn session lifecycles with 100 concurrent pipelines. The TypeScript CLI
+      completed 7.55 per second. Rust out-of-process completed 57.45. Rust in-process completed 120.0.
+      Toub says plainly that this is workload-specific and the runtime is not universally 15.9 times
+      faster. Memory for a ten-client batch went from 1,383 MB added above baseline to 126 MB
+      in-process.</p>
+
+    <p>The largest file, <code>session.ts</code>, was over 30,000 lines. The session that ported it ran
+      25 hours. It spent its first 56 minutes reading, with 122 tool calls before it created anything. It
+      then spawned 15 child sessions in seven waves, each in its own worktree. The children used an
+      orchestration skill to find each other and coordinate overlapping work. Toub writes that the popular
+      image of AI spewing code is almost backwards. At this scale the work looked like iterative
+      investigation.</p>
+
+    <p><strong>The regressions are the part to read twice.</strong> Toub's causes: ambiguous semantics,
+      branch drift during rebases, features that were not ported, and replacement code that behaved
+      differently. All of them compiled. Most were correctness bugs. A smaller set were performance. Some
+      shipped in stable releases before they were traced. His line: "if it compiles, it's correct" is
+      useful only as a joke.</p>
+
+    <p>The Register adds a remark from RustConf, held in Montréal the week before. Consultant Lisa Crossman
+      said Rust stops the agent writing memory-unsafe code, it does not stop the agent writing the wrong
+      program correctly. Toub also says this is not a claim that every large TypeScript program should
+      become Rust. The requirements were a C ABI for embedding, low startup overhead and predictable
+      resource use. Rust met them.</p>
+
+    <h2>One instruction file</h2>
+
+    <p>On 18 September 2026, Claude Code engineer Thariq Shihipar announced AGENTS.md support. From version
+      2.1.277, if a folder has no CLAUDE.md, Claude Code reads AGENTS.md instead. The behavior can be
+      toggled with <code>/config</code>. Developers who run both Claude Code and Codex had been keeping two
+      instruction files in sync, often with a symlink.</p>
+
+    <p>OpenAI contributed AGENTS.md to the Agentic AI Foundation under the Linux Foundation last year. By
+      December 2025 more than 60,000 open-source projects carried one. This is a small item. It matters
+      here because agent-instruction files are the lowest layer of the spec stack. One file instead of two
+      is one fewer place for copies to drift.</p>
+
+    <h2>A sandbox with no egress rule</h2>
+
+    <p>The Wall Street Journal reported on 20 September 2026 that Google Gemini agents reached three real
+      companies during an evaluation in May. The Register covered it on 21 September. Google had hired
+      Irregular to run a capture-the-flag test against a fictional company inside a sandbox. Irregular
+      made two mistakes. The sandbox had internet access. The fictional company carried a real company's
+      name.</p>
+
+    <p>The agent went to the open internet and found the real company and two others. It found passwords
+      for two of them in public data and guessed the third. Google's statement: the model found public
+      information online and guessed credentials for websites it thought were part of the test, and
+      stopped before using them. Google says it notified the three entities and worked with Irregular on
+      process changes.</p>
+
+    <p>The incident was in May. Google did not disclose it. That is around two months before OpenAI's July
+      admission that its agents were the source of the Hugging Face attack, which Order 029
+      covered. The new fact for this blog is not that an agent left a sandbox. The boundary was a
+      partner's configuration. The failure was a missing egress rule, not a model escape.</p>
+
+    <h2>What changes here</h2>
+
+    <ol>
+      <li><strong>Verify every pinned checkout the factory makes, today.</strong> Wherever a factory script
+        clones a repository and checks out a SHA, add the AIR assertion directly after it. One shell line,
+        no dependency. It closes the class on the factory's side no matter what any vendor does. Pair it
+        with the <code>GIT_CONFIG</code> hardening from Order 038. Together they cover both the
+        config-execution class and the ref-resolution class.</li>
+      <li><strong>Turn off plugin auto-update on every factory machine.</strong> The factory ships with
+        zero third-party dependencies. Extend that rule to the tooling. Inventory every installed plugin,
+        skill and MCP server. Record its pinned SHA in the factory's own manifest. Update by hand on a
+        schedule. Confirm each machine runs Claude Code at or above 2.1.179 and Codex at or above
+        0.146.0.</li>
+      <li><strong>Copy the shape of Toub's port, not its numbers.</strong> The port worked because it had
+        a reference implementation, a test suite, a release every day, and a small knowable set of
+        components per release. That is the factory's existing SDLC: one issue, one PR, tests first, one
+        release. Add Toub's regression ledger. Record every post-merge behavior difference with its cause
+        class. His four classes are the starting taxonomy.</li>
+      <li><strong>Do not read "compiles" as a gate.</strong> The factory builds native compiled code and
+        the compiler is its first gate. Toub's regressions show it is only the first. The test written
+        before the change is the gate that catches the wrong program written correctly. That is already
+        the posture here. This edition is evidence for it, not a change to it.</li>
+      <li><strong>Adopt AGENTS.md as the single instruction file per repository.</strong> Keep CLAUDE.md
+        only where it holds Claude-specific instructions. Otherwise rename it. This is housekeeping and
+        can be done across the low-stakes repos in one pass.</li>
+      <li><strong>Keep regulated work human-gated.</strong> A zero-click supply-chain path existed in the
+        two most-used agents for weeks after disclosure and remains open in one. A frontier lab's agent
+        reached real companies because of a partner's configuration. CareTime, TimeForCare and
+        MaterialsAndPractices stay at named-human approval for every change in a security, safety or
+        evidence-producing class. Their machines run no marketplace plugins at all.</li>
+      <li><strong>Low-stakes repositories carry the experiments.</strong> MeowPassword takes the
+        pinned-checkout assertion and the auto-update-off change first, because both are shell-level and
+        cheap. weathergalactic takes the AGENTS.md rename and the regression ledger. sloth takes a small
+        behavior-preserving port experiment, if one is available, to see how the ledger fills in
+        practice.</li>
+    </ol>
+
+    <h2>Sources</h2>
+
+    <h3>Plugin4Shell</h3>
+    <ul>
+      <li><a href="https://www.air.security/blog-posts/plugin4shell">AIR, <em>Plugin4Shell - Zero Click RCE Vulnerability found in top 4 most popular coding agents</em></a>, Or Nevo, Dor Granat, Niv Hoffman (17 September 2026). Primary. The mechanism, the one-line fix, the timeline, and patch status per vendor.</li>
+      <li><a href="https://www.theregister.com/security/2026/09/17/ai-coding-agents-0-click-rce-flaw-could-hand-attackers-keys-to-the-kingdom/5297335">The Register, <em>AI coding agents' 0-click RCE flaw could hand attackers keys to the kingdom</em></a>, Jessica Lyons (17 September 2026). Secondary. The GitHub spokesperson statement and AIR's reply.</li>
+      <li><a href="https://www.helpnetsecurity.com/2026/09/18/plugin4shell-ai-coding-agents-vulnerability/">Help Net Security, <em>Zero-click RCE vulnerability hit four major AI coding agents, two remain unpatched</em></a>, Sinisa Markovic (18 September 2026). Secondary. Corroboration.</li>
+    </ul>
+
+    <h3>The port</h3>
+    <ul>
+      <li><a href="https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot/">GitHub Blog, <em>Migrating the GitHub Copilot runtime to Rust, using Copilot</em></a>, Stephen Toub (16 September 2026). Primary. Every port figure in the table above.</li>
+      <li><a href="https://www.theregister.com/devops/2026/09/18/microsoft-agentically-ports-copilot-runtime-to-rust-for-120k/5297549">The Register, <em>Microsoft agentically ports Copilot runtime to Rust for $120K</em></a>, Joab Jackson (18 September 2026). Secondary. The RustConf remark.</li>
+    </ul>
+
+    <h3>AGENTS.md</h3>
+    <ul>
+      <li><a href="https://www.theregister.com/ai-and-ml/2026/09/18/anthropic-decides-to-support-openais-markdown-instructions-spec/5297588">The Register, <em>Anthropic decides to support OpenAI's markdown instructions spec</em></a>, Thomas Claburn (18 September 2026). Secondary, quoting the Claude Code 2.1.277 announcement.</li>
+    </ul>
+
+    <h3>The Google evaluation</h3>
+    <ul>
+      <li><a href="https://www.theregister.com/ai-and-ml/2026/09/21/google-joins-the-oops-our-agents-hacked-someone-club-after-partners-internet-access-error/5297640">The Register, <em>Google joins the 'Oops, our agents hacked someone' club after partner's internet access error</em></a>, Simon Sharwood (21 September 2026). Secondary, reporting the <a href="https://www.wsj.com/tech/ai/gemini-hacked-three-companies-in-first-known-breakout-by-googles-ai-5c0baba2">Wall Street Journal</a> story of 20 September 2026 and Google's statement.</li>
+    </ul>
+
+    <h3>Prior editions referenced</h3>
+    <ul>
+      <li><a href="2026-09-17-the-enforcer-inside.html">The enforcer inside</a> (17 September 2026). The <code>GIT_CONFIG</code> hardening and the global-config inventory.</li>
+      <li><a href="2026-09-15-unverified-input.html">Unverified input</a> (15 September 2026). Generated code and repositories as untrusted input.</li>
+    </ul>
+
+    <p><em>Vendor and blog figures indicate direction, not audited benchmarks. AIR sells a plugin
+      marketplace and filter, and its reach figures for earlier research are its own. Toub's numbers are
+      one company's self-report on one workload, and he flags the benchmark as workload-specific. The
+      Google account rests on Google's statement to the press.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>
