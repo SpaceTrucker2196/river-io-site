@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="The software register of River.io LLC — sixteen native, compiled, on-device products for iPhone, iPad, Apple Watch, Android, Mac and Linux: ClientAPT, CareTime EVV, Materials &amp; Practices, Corn 3000, MaizeRunner, Spacetrucker Galactic, Nighthawk Tube, Henge, Martin, United Cat Foods, Sloth, Meowpass, MeowPass, Otter, Cygnus and Crane." />
+<meta name="description" content="River.io LLC builds and ships production software with a documented agent factory: gated on a green test suite, every decision recorded, every token billed from a ledger. Native iOS, Android, Mac, Linux and server work by Jeff Kunzelman. Seventeen products shipped." />
 <meta name="color-scheme" content="light dark" />
-<title>Software — river.io</title>
+<title>Software built by agents, to a standard — river.io</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -198,7 +198,47 @@
   .reveal{opacity:0;transition:opacity .4s linear}
   .reveal.in{opacity:1}
   @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transition:none}}
+  /* ── services layer ─────────────────────────────────────── */
+  .cta-row{display:flex;flex-wrap:wrap;gap:0;margin:34px 0 0;
+    border-top:1px solid var(--line);border-left:1px solid var(--line);width:fit-content;max-width:100%}
+  .cta-row a{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-decoration:none;
+    color:var(--ink);padding:13px 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    transition:background .12s,color .12s}
+  .cta-row a:hover{background:var(--brand);color:#fff}
+  .cta-row a.key{background:var(--ink);color:var(--bg);font-weight:600}
+  .cta-row a.key:hover{background:var(--brand);color:#fff}
+
+  .offers{border-bottom:1px solid var(--line)}
+  .offers .in{max-width:var(--maxw);margin:0 auto;padding:70px var(--gut) 78px}
+  .triad{display:grid;grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--line-strong);border-left:1px solid var(--line)}
+  @media (max-width:900px){.triad{grid-template-columns:1fr}}
+  .triad > div{padding:26px 24px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    display:flex;flex-direction:column}
+  .triad .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:16px}
+  .triad h4{margin:0 0 10px;font-size:1.12rem;font-weight:600;letter-spacing:-.02em}
+  .triad p{margin:0 0 16px;font-size:.9rem;line-height:1.55;color:var(--ink-2)}
+  .triad ul{margin:0 0 20px;padding-left:1.1em;font-size:.86rem;line-height:1.6;color:var(--ink-2)}
+  .triad li{margin-bottom:5px}
+  .triad .shape{margin-top:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);padding-top:13px}
+
+  .creds{display:grid;grid-template-columns:repeat(2,1fr);margin:44px 0 0;
+    border-top:1px solid var(--line-strong);border-left:1px solid var(--line)}
+  @media (max-width:800px){.creds{grid-template-columns:1fr}}
+  .creds > div{padding:20px 22px 24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .creds .who{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:9px}
+  .creds p{margin:0;font-size:.9rem;line-height:1.55;color:var(--ink-2)}
+  .creds p b{color:var(--ink);font-weight:600}
+
+  .contact{border-bottom:1px solid var(--line);background:var(--surface)}
+  .contact .in{max-width:var(--maxw);margin:0 auto;padding:70px var(--gut) 76px}
+  .contact h3{margin:0 0 12px}
+  .contact .sub{margin-bottom:0}
 </style>
+  <script src="/analytics.js" defer></script>
 </head>
 <body>
 
@@ -206,10 +246,11 @@
   <div class="in">
     <a class="id" href="../">river.io<b>/</b><span>software</span></a>
     <nav class="top">
+      <a href="#services">Services</a>
       <a href="#register">Register</a>
       <a href="#rules">Standard</a>
+      <a href="#contact">Contact</a>
       <a href="../blog/">Blog</a>
-      <a href="../jeff/">Who</a>
       <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
     </nav>
   </div>
@@ -217,21 +258,128 @@
 
 <div class="masthead">
   <div class="in">
-    <div class="kicker"><span>River.io LLC</span><span>Software register</span><b>2026</b></div>
-    <h1>Sixteen products.<br /><span>One engineering standard.</span></h1>
-    <p class="lede">Everything River.io ships is <b>native and compiled</b>, carries its own tests, and
-      keeps its data <b>on the machine that made it</b>. Six are on the App Store, one is on its way,
-      two are open source, seven are in development. No telemetry, no subscriptions, and no account to
-      create before the software does its job.</p>
+    <div class="kicker"><span>River.io LLC</span><span>Software, built by agents</span><b>2026</b></div>
+    <h1>Agents do the typing.<br /><span>The standard does not move.</span></h1>
+    <p class="lede">River.io builds and ships production software using a documented agent factory:
+      a repository that runs its own build loop, gated on a <b>green test suite</b>, with every
+      decision recorded, every claim sourced, and <b>every token billed from a ledger rather than
+      estimated</b>. Native and compiled, for iPhone, Android, Mac, Linux and the servers behind
+      them. Twenty-five years of test-driven engineering, now with a factory attached.</p>
+    <div class="cta-row">
+      <a class="key" href="mailto:jeff@river.io?subject=river.io%20project%20enquiry">Start a project</a>
+      <a href="#services">What I do</a>
+      <a href="#register">The work</a>
+      <a href="https://github.com/SpaceTrucker2196/DF_Template">The factory, open</a>
+    </div>
     <div class="strip">
-      <div><span class="n">16</span><span class="l">Products</span></div>
-      <div><span class="n">6</span><span class="l">On the App Store</span></div>
-      <div><span class="n">1</span><span class="l">On the way</span></div>
-      <div><span class="n">2</span><span class="l">Open source</span></div>
-      <div><span class="n">7</span><span class="l">In development</span></div>
+      <div><span class="n">16</span><span class="l">Products shipped</span></div>
+      <div><span class="n">7</span><span class="l">Live on the stores</span></div>
+      <div><span class="n">51</span><span class="l">Factory orders run</span></div>
+      <div><span class="n">96%</span><span class="l">Green first pass</span></div>
+      <div><span class="n">25</span><span class="l">Years engineering</span></div>
     </div>
   </div>
 </div>
+
+<section class="offers" id="services">
+  <div class="in">
+    <h3>Three ways to work together.</h3>
+    <p class="sub">Every engagement is fixed-price and quoted before any work starts. Time and token
+      cost are recorded as they happen in an append-only ledger, and you get that ledger at handoff.
+      Nothing is estimated after the fact.</p>
+
+    <div class="triad">
+      <div>
+        <div class="k">01 · Install</div>
+        <h4>Factory Install</h4>
+        <p>Your repository, running itself. I install and adapt the dark factory to your existing
+          stack and CI, then hand it over with your team trained on it.</p>
+        <ul>
+          <li>Agent instructions matched to your real conventions, not generic ones</li>
+          <li>A test oracle that gates every merge, so no agent lands a red build</li>
+          <li>Decision and refusal record, so dead ends are never rebuilt</li>
+          <li>Per-commit token ledger you can bill or budget from</li>
+        </ul>
+        <div class="shape">Fixed price · 1 to 2 weeks</div>
+      </div>
+      <div>
+        <div class="k">02 · Build</div>
+        <h4>Built to Ship</h4>
+        <p>A product delivered end to end through the factory: native mobile, desktop, embedded, or
+          the service behind it. You get the source, the suite and the ledger.</p>
+        <ul>
+          <li>Swift, Kotlin, C, Elixir, Python. Compiled, not wrapped</li>
+          <li>Tests written alongside the code, not bolted on after</li>
+          <li>On-device and offline-first where the data deserves it</li>
+          <li>App Store and Play submission handled, not handed back to you</li>
+        </ul>
+        <div class="shape">Fixed price · scoped per project</div>
+      </div>
+      <div>
+        <div class="k">03 · Audit</div>
+        <h4>Agent Code Audit</h4>
+        <p>You have agents writing code and no way to tell whether it is any good. I read the
+          repository as evidence and tell you plainly where it is drifting.</p>
+        <ul>
+          <li>Dependency cycles, coverage gaps and orphaned code, mapped</li>
+          <li>Where the tests assert nothing and the green build is lying</li>
+          <li>What the agents keep re-litigating because nothing was written down</li>
+          <li>A written report with a prioritised remediation list</li>
+        </ul>
+        <div class="shape">Fixed price · about one week</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:64px">What I have actually shipped.</h3>
+    <p class="sub">No client case studies yet, so here is the real thing instead: software in public
+      hands, and a factory whose numbers you can check yourself.</p>
+
+    <div class="creds">
+      <div>
+        <div class="who">Family caregivers</div>
+        <p>Helped family caregivers get paid for self-directed care work, by shipping
+          <b>CareTime EVV</b> to the App Store: on-device visit verification, a tamper-evident
+          SHA-256 audit chain, and timesheet PDFs for whichever channel the billing provider
+          accepts. Four languages. No account, no server. <b>CareTally</b> takes it further for
+          Arizona: the state's programs by name, with their hour limits, service codes and the
+          citation each one came from.</p>
+      </div>
+      <div>
+        <div class="who">Solo service providers</div>
+        <p>Helped tattoo artists, stylists and cleaners keep a client list that is nobody else's
+          business, by shipping <b>ClientAPT</b> to iPhone and Android at strict parity, with an
+          encrypted on-device vault, a per-client PIN and a duress PIN that opens a decoy.</p>
+      </div>
+      <div>
+        <div class="who">Certified organic farms</div>
+        <p>Helped organic growers produce every record an inspector asks for, by shipping
+          <b>Materials &amp; Practices</b> with a USDA cultivar database, soil and lab tracking,
+          FSMA harvest-safety checklists and full amendment traceability, in English and Spanish.</p>
+      </div>
+      <div>
+        <div class="who">The factory itself</div>
+        <p>Proved the method on <b>sloth</b>, a C99 network monitor built almost entirely through
+          the factory: <b>51 production orders, 50 shipped, 49 green on the first converge
+          iteration, 2,122 tests passing</b>, with mutation testing gating the suite. The
+          repository and the skeleton are both public, so the numbers are checkable.</p>
+      </div>
+    </div>
+
+    <p class="foot-note">Factory skeleton:
+      <a href="https://github.com/SpaceTrucker2196/DF_Template" style="color:var(--brand)">DF_Template</a> ·
+      Reference implementation:
+      <a href="https://github.com/SpaceTrucker2196/sloth" style="color:var(--brand)">sloth</a></p>
+  </div>
+</section>
+
+<section class="rules">
+  <div class="in" style="padding-bottom:0">
+    <h3>The register.</h3>
+    <p class="sub">Seventeen products, built to one standard. Seven are live on the stores, one is
+      submitted, three are open source, the rest are in development. This is the portfolio, and it is also the argument:
+      a solo practice that ships at this rate is running a factory, not working weekends.</p>
+  </div>
+</section>
 
 <main class="register" id="register">
 
@@ -578,7 +726,7 @@
         <p>A turn-based historical farming life for iPhone. Inherit a mortgaged quarter-section
           anywhere from 1930 to today and farm it for thirty seasons against real USDA prices, NOAA
           weather and the actual farm bills of the era — the almanac, the newspaper, the ledger and
-          the reckoning. Paid once. No ads, no accounts, entirely on your device.</p>
+          the reckoning. Free. No ads, no accounts, entirely on your device.</p>
         <div class="chips">
           <span>SwiftUI</span><span>USDA price series</span><span>NOAA weather</span><span>39 locales</span>
         </div>
@@ -587,7 +735,7 @@
         <dl>
           <dt>Platform</dt><dd>iPhone</dd>
           <dt>Version</dt><dd>1.0.1</dd>
-          <dt>Price</dt><dd>$0.99, paid once</dd>
+          <dt>Price</dt><dd>Free</dd>
           <dt>Data</dt><dd>Entirely on device</dd>
         </dl>
         <div class="links">
@@ -885,11 +1033,58 @@
     </div>
   </section>
 
+  <!-- 17 ─────────────────────────────────────────── CareTally -->
+  <section class="entry reveal" style="--a:#1d8ea3">
+    <div class="head">
+      <div class="ord">17</div>
+      <div class="name">
+        <span class="sig" aria-hidden="true"></span>
+        <h2><a href="../caretally/">CareTally</a></h2>
+        <span class="tag">Log care now, not from memory.</span>
+      </div>
+      <div class="state">Submitted to the App Store</div>
+    </div>
+    <div class="row">
+      <div class="cell"><div class="plate"><img src="icons/caretally.png" alt="CareTally icon" width="256" height="256" loading="lazy" /></div></div>
+      <div class="cell prose">
+        <p>A paid family caregiver's own record, for the week they would otherwise rebuild from
+          memory on a Sunday night. Tap a task to start, tap again to stop, then say how much help
+          it took — on their own, watched, some help, full help. By the time the timesheet is due it
+          is already written, totalled by the service the fiscal agent actually pays for. Arizona's
+          programs are known by name: Parents as Paid Caregivers, Self-Directed Attendant Care,
+          Agency with Choice and the rest arrive with their own hour limits, allowed hours, service
+          codes and billing modifiers, each carrying the citation it came from — and anything
+          unconfirmed says so rather than hardening into a fact. It warns before a limit is crossed
+          and never stops the timer. The Care Summary is the other half, for the assessor who asks
+          whether this care goes beyond what any parent would do: what was done, how often, and how
+          much help it took. It is <em>not</em> an EVV app and transmits nowhere — keep using the
+          one the agency supplied; CareTally sits beside it.</p>
+        <div class="chips">
+          <span>SwiftUI</span><span>State rules packs</span><span>SHA-256 audit chain</span>
+          <span>Timesheet · Care Summary PDFs</span><span>EN · ES · VI · FIL</span>
+        </div>
+      </div>
+      <div class="cell specs">
+        <dl>
+          <dt>Platform</dt><dd>iPhone</dd>
+          <dt>Version</dt><dd>1.0</dd>
+          <dt>Price</dt><dd>Free · Pro $3.99/mo or $29.99/yr</dd>
+          <dt>Data</dt><dd>On device. No account.</dd>
+        </dl>
+        <div class="links">
+          <a class="key" href="../caretally/">Overview</a>
+          <a href="../caretally/arizona.html">Arizona</a>
+          <a href="../caretally/privacy.html">Privacy</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <section class="rules" id="rules">
   <div class="in">
-    <h3>How all sixteen are built.</h3>
+    <h3>How all seventeen are built.</h3>
     <p class="sub">Not dogma — a set of trade-offs made deliberately, and made the same way every
       time.</p>
     <div class="quad">
@@ -919,6 +1114,21 @@
       </div>
     </div>
     <p class="foot-note">Versions and prices are current as of the last deploy of this page.</p>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="in">
+    <h3>Start a project.</h3>
+    <p class="sub">Tell me what you are building, or what your agents have already made a mess of.
+      You will get a straight answer about whether I am the right person for it, and a fixed price
+      before any work begins.</p>
+    <div class="cta-row">
+      <a class="key" href="mailto:jeff@river.io?subject=river.io%20project%20enquiry">jeff@river.io</a>
+      <a href="https://github.com/SpaceTrucker2196">GitHub</a>
+      <a href="../jeff/">Who builds these</a>
+    </div>
+    <p class="foot-note">River.io LLC · Chandler, Arizona · Remote, US-wide</p>
   </div>
 </section>
 
