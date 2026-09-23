@@ -5,8 +5,18 @@
     <link>https://www.river.io/blog/</link>
     <description>Notes from River.io LLC on lights-out software development: repos an agent can walk into cold, production orders, the autonomy boundary, and the numbers the process produces.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 21 Sep 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 23 Sep 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.river.io/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The approval and the action</title>
+      <link>https://www.river.io/blog/posts/2026-09-23-the-approval-and-the-action.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-09-23-the-approval-and-the-action.html</guid>
+      <pubDate>Wed, 23 Sep 2026 12:00:00 +0000</pubDate>
+      <description>A human approves operation A and the framework runs operation B. A model release that can answer from a different model than the one you called. A gate tool that publishes its own friction. The approval and the action are two objects.</description>
+      <category>Briefing</category>
+      <category>Security</category>
+      <category>Practice</category>
+    </item>
     <item>
       <title>The check nobody wrote</title>
       <link>https://www.river.io/blog/posts/2026-09-21-the-check-nobody-wrote.html</link>
