@@ -1,0 +1,84 @@
+To: Simon Banton <novacaster@googlemail.com>
+Subject: Re: Petrie numbers, and an axis question I can't settle on my own
+
+Simon,
+
+The short answer is no. Henge doesn't hold that data.
+
+I checked the code before replying. The bluestones in the app are generated
+from a ring radius and a count, so every stone in the circle is 0.95 m by
+0.62 m and every stone in the horseshoe is 0.9 by 0.6. Fifty-nine stones,
+two cross-sections between them. The sarsen circle uses one width for all
+thirty. Petrie numbers are assigned by position in a loop, so my stone 31
+isn't reliably your stone 31. It's a reading of a plan rather than a survey,
+and I'd rather say so than have you find it.
+
+Since I couldn't answer from the app, I spent a couple of days on what is
+actually out there. Some of this you'll know already.
+
+The laser scan report's Appendix 1 has surface area and volume alongside the
+weights you use (printed pages 59 and 60, report at
+https://historicengland.org.uk/research/results/reports/32-2012). I tried to
+get a width and thickness out of those by treating the surface area as a
+prism's surface. It doesn't work. The quadratic you end up solving has a
+discriminant of (w - t)^2, so it recovers the difference between the two
+dimensions and reconstructs them from it, and for a near-square section any
+error in the surface area takes it negative. On eight test stones, four
+failed outright, three of them bluestones, and one returned a 26 cm thickness.
+The surface-area column seems to be scanned visible faces rather than a
+closed solid, so there's no perimeter in it.
+
+What does come out cleanly is cross-sectional area, from volume over your
+Cleal heights, and from that the equal-area circle:
+
+    stone            area (m2)   circle d (m)
+    1  sarsen          1.376        1.32
+    16 sarsen          2.295        1.71
+    53 sarsen          1.459        1.36
+    56 sarsen          1.467        1.37
+    31 bluestone       0.362        0.68
+    49 bluestone       0.195        0.50
+    62 bluestone       0.202        0.51
+    68 bluestone       0.285        0.60
+
+Stone 16 lands within half a percent of the 2.1 by 1.1 m usually quoted.
+It's a mean over the above-ground height, not the at-ground figure, the
+volumes are 2011 and the heights are 1919 and Atkinson, and Table 2 only
+covers 24 bluestones with no Altar Stone. So it's a check, not the answer.
+
+Three other things I found.
+
+Tim's footprint data went up this morning (stonehenge-block-3d on GitHub,
+CC BY-SA). Per stone it has width, thickness, footprint along and across,
+and an accuracy class. It's digitised from the Rees 1989 sheet rather than
+measured, and the accuracy classes say so honestly, but it's the first
+per-stone footprint set anyone has published. You'll have seen it.
+
+Petrie's 1880 book has a per-stone table on pages 10 to 12: height and top
+level in inches for everything standing in 1877, and Plate I draws each
+stone's horizontal section at ground level. Public domain, full view on
+Google Books. Pre-restoration, so it's an independent check rather than a
+current plan, but as far as I can tell nobody has digitised Plate I.
+
+And the only route I found to measured at-ground sections is a request to
+the Historic England Archive. Trevor Cox at Salford got a 157-stone CAD
+model derived from the scan in 2019 for the acoustic model, and his 2020
+paper ran statistics on 81 bluestones from it. So the model exists and has
+been handed out with a research case behind it.
+
+Two offers, no conditions on either. I'll run the volume-over-height
+diameter across both Appendix 1 tables and send you the numbers, the code,
+and the list of stones where it disagrees badly with Tim's footprints, since
+that disagreement is itself useful. And if a request to Historic England
+would land better with your name on it than mine alone, I'd put mine
+alongside.
+
+What are you testing with it? If it's a check on the weights, the mean
+section is fine. If it's how the stones were shaped, or what fits through a
+gap, then only the archive model will do and I'd rather know before building
+the wrong thing.
+
+Jeff Kunzelman
+river.io
+608-865-1284
+www.river.io/software/

@@ -1,0 +1,200 @@
+Henge — data pack for Sardarkhan
+Pulled from App Store Connect and the repo, 22 September 2026.
+
+=======================================================================
+1. APP STORE CONNECT ANALYTICS, Aug 23 to Sep 21 (30 days)
+=======================================================================
+
+  Impressions              656
+  Product page views        47
+  Total downloads            8
+  Conversion rate         1.63%
+  In-app purchases           1
+  Proceeds                  $4   (all United States, all "Full version")
+
+  Downloads by day, the only non-zero days:
+    Aug 27  2      Sep 8   1
+    Sep 2   1      Sep 16  2
+    Sep 7   1      Sep 21  1
+
+  Product page views by day, non-zero days:
+    Aug 27  4   Aug 28  2   Aug 29  1   Aug 30  1   Aug 31  2
+    Sep 2   2   Sep 3   1   Sep 4   1   Sep 7   4   Sep 8   1
+    Sep 9   2   Sep 10  1   Sep 11  7   Sep 15  1   Sep 16  2
+    Sep 17  1   Sep 18  4   Sep 20  3   Sep 21  7
+
+  SOURCE BREAKDOWN (product page views, unique devices):
+    App Store Search          the only source with any volume
+    App Store Browse          none
+    Web Referrer              none
+    App Referrer              none
+    Institutional Purchase    none
+    Unavailable               none
+
+  Note on that last block: Web Referrer is empty. The YouTube walkthrough,
+  the Facebook posts and the river.io site have produced no measurable
+  App Store traffic at all. Everything that has happened came from
+  someone typing something into App Store search.
+
+  Retention and crash data are opt-in only and show "Not enough data".
+  Day 1 / Day 7 / Day 35 download-to-paid all show "Not enough data".
+
+=======================================================================
+2. CURRENT KEYWORD FIELD (en-US, the hidden 100 characters)
+=======================================================================
+
+stonehenge,solstice,sunrise,calendar,druid,astronomy,archaeology,sundial,equinox,megalith,moon
+
+  That is 95 of the 100 characters. Title is "Henge".
+  Subtitle is "Stonehenge keeps real time".
+
+=======================================================================
+3. PRICE AND UNLOCKS
+=======================================================================
+
+  Current price   $19.99, non-consumable, product id io.river.henge.full
+  Previous price  $4.99
+  Repriced        8 September 2026, effective immediately, 175 regions
+  Unlocks to date 1
+  Proceeds        $4
+
+  The single unlock happened before the reprice, so it was a $4.99 sale.
+  $4 of proceeds on a $4.99 sale is consistent with the 15% small-business
+  commission rate rather than 30%. Small Business Program enrolment was
+  submitted on 8 September.
+
+=======================================================================
+4. MAC: NATIVE BUILD OR IPAD APP ON MAC?
+=======================================================================
+
+  Both exist, and this is the part worth reading twice.
+
+  On the App Store, the Mac presence is the iOS app running on Apple
+  silicon. "Make this app available on Apple silicon Macs" is checked,
+  minimum set to Automatic (macOS 14.0). App Store Connect currently
+  shows "This app's compatibility with Apple silicon Macs hasn't been
+  verified yet", which is the flag you spotted. There is a Verify
+  Compatibility action available and it has not been used.
+
+  Separately there is a genuine native macOS build, a distinct target in
+  the project, distributed as a direct .dmg from river.io/henge. That
+  build is v0.1.0 dated 3 August, it is behind the 0.2.0 App Store
+  build, and it is not notarized, so first launch needs right-click Open.
+
+  So: Mac App Store = iPad app on Mac, unverified. Native Mac = direct
+  download only, and stale.
+
+=======================================================================
+5. PROMOTIONAL TEXT
+=======================================================================
+
+  Set, en-US:
+
+  "Midsummer sunrise arrives on the axis, as it has for forty-five
+  centuries. Stand where the builders stood and watch the light come."
+
+=======================================================================
+6. LOCALISATION: STORE LISTING OR IN-APP ONLY?
+=======================================================================
+
+  Both. Nine locales have a full store listing, each with its own
+  subtitle, description and keyword field, not just a translated app.
+
+    de-DE   Henge                    "Stonehenge in Echtzeit"
+    en-US   Henge                    "Stonehenge keeps real time"
+    es-ES   Henge                    "Stonehenge en tiempo real"
+    fr-FR   Henge                    "Stonehenge en temps réel"
+    it      Henge                    "Stonehenge in tempo reale"
+    ja      Henge · ストーンヘンジ暦      "実時間で動くストーンヘンジ"
+    ko      Henge                    "실시간으로 움직이는 스톤헨지"
+    pt-BR   Henge                    "Stonehenge em tempo real"
+    zh-Hans Henge · 巨石阵历           "实时运转的巨石阵"
+
+  Worth noting: Japanese and Chinese are the only two where the app NAME
+  carries "Stonehenge". Every other locale, English included, is the bare
+  word "Henge".
+
+=======================================================================
+7. TERRITORIES
+=======================================================================
+
+  Live in 175 countries and regions. Base storefront United States.
+  Prices auto-derived by Apple from the USD base.
+
+=======================================================================
+8. FACEBOOK: WHERE AND WHAT
+=======================================================================
+
+  Honest summary: very little actually went out, and none of it moved
+  the needle (see the Web Referrer line in section 1).
+
+  Posted:
+    - Spacetrucker2196 page, a launch post about the app being built
+      from published survey data, with the YouTube link
+    - Megalithic Routes group, the 49.9 degree axis finding
+
+  Written but never posted:
+    - Earth Ancients and The Atlantean Group, two alternative-history
+      groups. Join requests were never sent. Held back deliberately:
+      the app's positioning rests on every claim carrying a tier and a
+      citation, and those communities would undercut it.
+
+  Research on which groups are worth it exists and can be shared.
+
+=======================================================================
+9. RAW FOOTAGE
+=======================================================================
+
+  Yes. ProRes 1080p, in the repo at capture/. All 30 seconds, 900 frames.
+
+    b01-altar-daycycle.mov              149 MB
+    b05-chrome-01-aerial.mov             83 MB
+    b05-chrome-02-altar-stone.mov        99 MB
+    b05-clean-03-aerial-rotated.mov      68 MB
+    b05-clean-04-altar-stone-rotated.mov 272 MB
+    b09-aerial-daycycle-chrome.mov       90 MB
+    b09-timelapse-aerial.mov             85 MB
+    b12-weather-cycle.mov                 7 MB
+
+  Clean and with-chrome variants of the same shots, plus day cycles,
+  a timelapse and a weather cycle. More can be captured to order: the
+  capture rig is scripted and documented.
+
+  There is also a 13-beat voiceover master, 11:51, with a cut map that
+  yields a 21-second App Store preview, a 1:19 social cut and a
+  2-minute site cut from the same recording. No vertical 9:16 exists yet.
+
+=======================================================================
+10. NEXT 3 MONTHS
+=======================================================================
+
+  Planned, not yet done:
+    - Rewrite title and subtitle to carry "Stonehenge" in English
+    - Move primary category from Education to Reference
+    - Verify Apple silicon Mac compatibility
+    - Solstice In-App Event, published 7 Dec for a 14 to 27 Dec window
+    - App Store featuring nomination, filed by 30 Nov
+    - No price change planned. $19.99 is two weeks old.
+
+  Timing note that should shape the plan: search interest in "stonehenge"
+  peaks at the JUNE solstice, not December. December's spike belongs to
+  the phrase "winter solstice" and is about one week wide. Treating
+  December as a rehearsal and June 2027 as the real moment.
+
+=======================================================================
+11. EXISTING AUDIENCE
+=======================================================================
+
+  No email list.
+
+  Other apps on the same developer account, all small: Nighthawk Tube,
+  CareTime, clientAPT, MeowPassword, MeowGram. No cross-promotion is
+  currently set up between any of them.
+
+  Owned channels: the Spacetrucker2196 Facebook page, a YouTube channel
+  with the 12:33 walkthrough, and a public GitHub repo for the project.
+
+  One genuinely warm thread, not an audience but worth knowing: Simon
+  Banton, who runs the reference site stonesofstonehenge.org.uk and has
+  published in the Journal of Skyscape Archaeology, is in active
+  correspondence about the app's astronomy and has asked to see more.
