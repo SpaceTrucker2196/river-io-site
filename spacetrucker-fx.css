@@ -1,0 +1,67 @@
+/* ────────────────────────────────────────────────────────────────
+   Spacetrucker motion layer, after 2Advanced Studios' Attractor (v5).
+   Panels boot in from a line and fill with a dot grid; bracket corners
+   draw on; status lines type; headings resolve out of scrambled glyphs;
+   a beam descends to the mark. Driven by spacetrucker-fx.js, which adds
+   the classes. Everything is still under prefers-reduced-motion.
+   Loaded by jeff/index.html and spacetrucker/index.html.
+   ──────────────────────────────────────────────────────────────── */
+:root{ --fx-phos:#6bffcc; --fx-glow:rgba(107,255,204,.55); --fx-dot:rgba(107,255,204,.10); --fx-ease:cubic-bezier(.2,.9,.2,1); }
+
+/* the HUD panel: a fine dot grid, chamfered corners, brackets in the corners */
+.hud{position:relative;background-image:radial-gradient(var(--fx-dot) .7px,transparent 1.2px);background-size:6px 6px;
+  clip-path:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px)}
+.hud::before,.hud::after{content:"";position:absolute;width:18px;height:18px;border:1px solid var(--fx-phos);pointer-events:none;opacity:.8}
+.hud::before{left:6px;top:6px;border-right:0;border-bottom:0}
+.hud::after{right:6px;bottom:6px;border-left:0;border-top:0}
+
+/* boot-in: a line draws across the top, the panel opens from that line, the scan bar sweeps once */
+.fx-armed .fx-panel{opacity:0}
+.fx-armed .fx-panel.fx-in{animation:fx-open .9s var(--fx-ease) both}
+.fx-armed .fx-panel.fx-in::before{animation:fx-line .5s var(--fx-ease) both}
+.fx-armed .fx-panel{position:relative}
+.fx-panel > .fx-scan{position:absolute;left:0;right:0;top:0;height:22%;pointer-events:none;opacity:0;
+  background:linear-gradient(180deg,transparent,rgba(107,255,204,.16) 60%,rgba(107,255,204,.35));mix-blend-mode:screen}
+.fx-armed .fx-panel.fx-in > .fx-scan{animation:fx-scan 1.1s .35s var(--fx-ease) both}
+@keyframes fx-open{0%{opacity:0;transform:scaleY(.02);filter:brightness(2.2)}35%{opacity:1;transform:scaleY(.04)}100%{opacity:1;transform:scaleY(1);filter:brightness(1)}}
+.fx-panel{transform-origin:50% 50%}
+@keyframes fx-line{0%{transform:scaleX(0);opacity:0}30%{opacity:1}100%{transform:scaleX(1);opacity:.8}}
+@keyframes fx-scan{0%{top:0;opacity:0}15%{opacity:1}100%{top:100%;opacity:0}}
+.fx-panel.fx-in::before{transform-origin:left center}
+
+/* labels resolve: tracking eases in from wide, glow blooms then settles */
+.fx-armed .fx-label{opacity:0}
+.fx-armed .fx-label.fx-in{animation:fx-label 1s var(--fx-ease) both}
+@keyframes fx-label{0%{opacity:0;letter-spacing:.6em;filter:blur(2px)}60%{opacity:1;filter:blur(0)}100%{letter-spacing:inherit}}
+
+/* decode: the JS swaps glyphs; the CSS only holds the glow while it runs */
+.fx-decoding{text-shadow:0 0 18px var(--fx-glow),0 0 40px rgba(107,255,204,.25)}
+.fx-decoding .fx-junk{color:var(--fx-phos);opacity:.7}
+
+/* the typed status line and its rule */
+.fx-boot{font-family:inherit;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--fx-phos);white-space:nowrap;overflow:hidden;
+  border-bottom:1px solid rgba(107,255,204,.55);padding:0 0 6px;display:inline-block;min-width:8ch;margin:0 0 22px;position:relative}
+.fx-boot::after{content:"";position:absolute;right:0;bottom:-1px;height:1px;width:0;background:var(--fx-phos);box-shadow:0 0 8px var(--fx-phos)}
+.fx-boot.fx-run::after{animation:fx-rule 2.4s linear both}
+.fx-boot .fx-cursor{display:inline-block;width:.55ch;height:1em;background:var(--fx-phos);vertical-align:-.15em;margin-left:.2ch;box-shadow:0 0 8px var(--fx-phos);animation:fx-blink .9s steps(1) infinite}
+@keyframes fx-rule{to{width:100%}}
+@keyframes fx-blink{50%{opacity:0}}
+
+/* the beam: a thin line of light descending to the mark, once, on load */
+.fx-beam{position:absolute;left:50%;top:0;width:1px;height:0;background:linear-gradient(180deg,transparent,var(--fx-phos));box-shadow:0 0 12px var(--fx-phos);pointer-events:none;z-index:0}
+.fx-beam.fx-run{animation:fx-beam 1.6s var(--fx-ease) both}
+.fx-beam.fx-run::after{content:"";position:absolute;left:50%;bottom:0;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:#fff;
+  box-shadow:0 0 18px 6px var(--fx-phos),0 0 60px 20px rgba(107,255,204,.35);animation:fx-bloom 1.2s 1.2s var(--fx-ease) both}
+@keyframes fx-beam{0%{height:0;opacity:0}20%{opacity:1}100%{height:var(--fx-beam-h,160px);opacity:1}}
+@keyframes fx-bloom{0%{transform:scale(.2);opacity:0}40%{transform:scale(1.6);opacity:1}100%{transform:scale(1);opacity:.9}}
+
+/* lamps and readouts */
+.fx-lamp{animation:fx-lamp 2.8s steps(1) infinite}
+@keyframes fx-lamp{0%,92%{opacity:1}96%{opacity:.25}}
+.fx-tick{font-variant-numeric:tabular-nums}
+
+@media (prefers-reduced-motion:reduce){
+  .fx-armed .fx-panel,.fx-armed .fx-label{opacity:1;animation:none}
+  .fx-armed .fx-panel.fx-in,.fx-armed .fx-panel.fx-in::before,.fx-armed .fx-panel.fx-in > .fx-scan,.fx-boot.fx-run::after,.fx-beam.fx-run,.fx-beam.fx-run::after,.fx-lamp,.fx-boot .fx-cursor{animation:none}
+  .fx-beam{display:none}
+}

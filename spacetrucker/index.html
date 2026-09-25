@@ -94,16 +94,16 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap">
 <style>
 :root{
-  --bg:#0A0F0E;
-  --panel:#101A17;
-  --panel-2:#15211D;
-  --phos:#45E5A8;
-  --phos-hi:#B4FFDC;
-  --phos-mid:#2FBE8C;
-  --phos-dim:#2A9C74;
-  --rule:#17392E;
-  --amber:#FFB000;
-  --amber-dim:#8A6100;
+  --bg:#0a0512;
+  --panel:#0e0817;
+  --panel-2:#0e0817;
+  --phos:#6bffcc;
+  --phos-hi:#d9fff3;
+  --phos-mid:#43d6a8;
+  --phos-dim:#2b8f74;
+  --rule:#163a30;
+  --amber:#ff8c26;
+  --amber-dim:#8a5f18;
   --mono:"Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
 *{box-sizing:border-box}
@@ -141,7 +141,7 @@ body::after{
 .wrap{max-width:1120px;margin:0 auto;padding:0 22px 120px;position:relative}
 
 a{color:var(--phos-hi);text-decoration:none;border-bottom:1px dotted var(--phos-dim)}
-a:hover{border-bottom-style:solid;text-shadow:0 0 8px rgba(69,229,168,.6)}
+a:hover{border-bottom-style:solid;text-shadow:0 0 8px rgba(107,255,204,.6)}
 a:focus-visible{outline:1px solid var(--phos-hi);outline-offset:3px}
 a.ext::after{content:" ↗";font-size:.85em;opacity:.6}
 
@@ -156,7 +156,7 @@ h1{
   letter-spacing:.02em;
   margin:0 0 6px;
   color:var(--phos-hi);
-  text-shadow:0 0 14px rgba(69,229,168,.45);
+  text-shadow:0 0 14px rgba(107,255,204,.45);
   text-wrap:balance;
 }
 .subtitle{
@@ -235,7 +235,7 @@ section{margin:66px 0 0;scroll-margin-top:20px}
 }
 h2{
   font-size:clamp(20px,3.2vw,32px);font-weight:600;line-height:1.15;margin:0 0 4px;
-  color:var(--phos-hi);letter-spacing:.01em;text-shadow:0 0 10px rgba(69,229,168,.3);
+  color:var(--phos-hi);letter-spacing:.01em;text-shadow:0 0 10px rgba(107,255,204,.3);
 }
 .series-dates{color:var(--phos-dim);font-size:13px;letter-spacing:.1em}
 .scope{
@@ -266,7 +266,7 @@ h3.sub span{color:var(--phos-dim);letter-spacing:.1em;float:right;text-transform
 .cat-body{min-width:0}
 .title{
   color:var(--phos-hi);font-size:17px;font-weight:600;line-height:1.3;margin:0 0 2px;
-  text-shadow:0 0 8px rgba(69,229,168,.28);
+  text-shadow:0 0 8px rgba(107,255,204,.28);
 }
 .title i{font-style:italic;font-weight:500}
 .byline{color:var(--phos-mid);font-size:13px;margin:0 0 12px}
@@ -372,7 +372,7 @@ tr:last-child td{border-bottom:0}
 .rd dd a{color:var(--phos);text-decoration:none;border-bottom:1px dotted var(--phos-dim)}
 .rd dd a:hover{border-bottom-color:var(--phos)}
 .lb dl.rd dd.q{color:var(--phos-mid)}
-#lb-hist{display:block;width:100%;height:110px;border:1px solid var(--rule);background:#070C0A}
+#lb-hist{display:block;width:100%;height:110px;border:1px solid var(--rule);background:#050208}
 .lb-ramp{height:9px;margin-top:6px;border:1px solid var(--rule);
   background:linear-gradient(to right,#000,#fff)}
 .lb-rampl{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.12em;color:var(--phos-dim);margin-top:3px}
@@ -394,6 +394,8 @@ footer{border-top:1px solid var(--phos-dim);margin-top:80px;padding-top:24px;col
 footer a{color:var(--phos-mid)}
 </style>
   <script src="/analytics.js" defer></script>
+<link rel="stylesheet" href="/spacetrucker-fx.css" />
+<script src="/spacetrucker-fx.js" defer></script>
 </head>
 <body>
 <div class="wrap">
@@ -2163,7 +2165,7 @@ Compiled August 2026. Nine series, three appendices, 44 accession records, numbe
   var c=$('lb-hist'),g=c.getContext('2d'),W=c.width,H=c.height;
   g.clearRect(0,0,W,H);
   // graticule, like a scope face
-  g.strokeStyle='rgba(69,229,168,.10)';g.lineWidth=1;
+  g.strokeStyle='rgba(107,255,204,.10)';g.lineWidth=1;
   for(var d=1;d<8;d++){g.beginPath();g.moveTo(W/8*d,0);g.lineTo(W/8*d,H);g.stroke()}
   for(var e=1;e<4;e++){g.beginPath();g.moveTo(0,H/4*e);g.lineTo(W,H/4*e);g.stroke()}
   var oc=document.createElement('canvas'),sw=360,
@@ -2199,7 +2201,7 @@ Compiled August 2026. Nine series, three appendices, 44 accession records, numbe
     if(fill){g.fillStyle=fill;g.fill()}
     g.strokeStyle=stroke;g.lineWidth=1;g.stroke();
   }
-  trace(L,peak,'rgba(69,229,168,.55)','rgba(69,229,168,.14)');
+  trace(L,peak,'rgba(107,255,204,.55)','rgba(107,255,204,.14)');
   trace(R,pk2,'rgba(196,124,116,.30)',null);
   trace(G,pk2,'rgba(124,190,150,.30)',null);
   trace(B,pk2,'rgba(116,150,200,.30)',null);
