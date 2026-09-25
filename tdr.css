@@ -2,8 +2,10 @@
    river.io — house theme, after The Designers Republic (1990s)
    Homage, not a copy. Source: design-systems/styles/designers-republic-90s/style.md
 
-   Paper ground with one orange accent in the light theme; ink ground
-   with one acid accent in the dark theme. Flat, hard, printed: no
+   Paper ground with one process-blue accent in the light theme; deep-water
+   ground with one stargate cyan-blue accent in the dark theme. Water and
+   river devices in the flat printed language: a dot-matrix wave under the
+   mastheads, a scalloped waterline band, a depth-gauge ruler, current lines (#6). Flat, hard, printed: no
    gradients that pretend to be light, no shadows, no radii. Big
    numerals next to small legal text. Crop marks, hazard bands, a
    colour bar and a barcode as content. Deadpan copy in uppercase
@@ -15,12 +17,12 @@
 
 :root{
   --paper:#F4F3EE; --ink:#0B0B0B; --orange:#FF5A00; --acid:#D9FF00; --magenta:#FF2D8A;
-  --cyan:#00B4FF; --purple:#4B2A8A; --silver:#B9BCC0; --grey:#7A7D80; --red:#E10600;
+  --cyan:#00B4FF; --purple:#4B2A8A; --silver:#B9BCC0; --grey:#7A7D80; --red:#E10600; --blue:#0038FF; --deep:#06101C;
 
   --bg:var(--paper); --surface:#ECEBE4; --surface-2:#E2E1D9;
   --fg:var(--ink); --ink-2:#2A2A2A; --muted:var(--grey);
-  --line:var(--ink); --line-strong:var(--ink); --ac:var(--orange); --ac-ink:#fff;
-  --brand:var(--orange);
+  --line:var(--ink); --line-strong:var(--ink); --ac:var(--blue); --ac-ink:#fff;
+  --brand:var(--blue);
 
   --display:"Archivo","Helvetica Neue",Arial,sans-serif;
   --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
@@ -30,13 +32,13 @@
   --maxw:1180px; --measure:66ch; --gut:32px; --rule:3px;
 }
 @media (prefers-color-scheme:dark){
-  :root{ --bg:var(--ink); --surface:#161616; --surface-2:#222; --fg:var(--paper); --ink-2:#D6D5CF;
-         --muted:#8E9093; --line:var(--paper); --line-strong:var(--paper); --ac:var(--acid); --ac-ink:var(--ink); --brand:var(--acid); }
+  :root{ --bg:var(--deep); --surface:#0C1A2B; --surface-2:#12243A; --fg:var(--paper); --ink-2:#D6D5CF;
+         --muted:#8E9093; --line:var(--paper); --line-strong:var(--paper); --ac:var(--cyan); --ac-ink:var(--ink); --brand:var(--cyan); }
 }
-:root[data-theme="dark"]{ --bg:var(--ink); --surface:#161616; --surface-2:#222; --fg:var(--paper); --ink-2:#D6D5CF;
-  --muted:#8E9093; --line:var(--paper); --line-strong:var(--paper); --ac:var(--acid); --ac-ink:var(--ink); --brand:var(--acid); }
+:root[data-theme="dark"]{ --bg:var(--deep); --surface:#0C1A2B; --surface-2:#12243A; --fg:var(--paper); --ink-2:#D6D5CF;
+  --muted:#8E9093; --line:var(--paper); --line-strong:var(--paper); --ac:var(--cyan); --ac-ink:var(--ink); --brand:var(--cyan); }
 :root[data-theme="light"]{ --bg:var(--paper); --surface:#ECEBE4; --surface-2:#E2E1D9; --fg:var(--ink); --ink-2:#2A2A2A;
-  --muted:var(--grey); --line:var(--ink); --line-strong:var(--ink); --ac:var(--orange); --ac-ink:#fff; --brand:var(--orange); }
+  --muted:var(--grey); --line:var(--ink); --line-strong:var(--ink); --ac:var(--blue); --ac-ink:#fff; --brand:var(--blue); }
 
 /* ── base ─────────────────────────────────────────────────────── */
 *{box-sizing:border-box}
@@ -56,9 +58,12 @@ body::before{left:14px;top:14px;border-width:0 0 2px 2px;transform:translate(-10
 body::after{right:14px;bottom:14px;border-width:2px 2px 0 0;transform:translate(100%,100%) translate(-28px,-28px)}
 
 /* ── devices ──────────────────────────────────────────────────── */
-.hz,.masthead::after,.article-head .rule,.rules::before{
-  display:block;height:18px;border:0;margin:0;
-  background:repeating-linear-gradient(45deg,var(--fg) 0 14px,var(--ac) 14px 28px)}
+.hz,.article-head .rule,.rules::before,.hero::after,article.post hr{
+  display:block;height:18px;border:0;margin:0;background-color:var(--fg);
+  background-image:radial-gradient(circle at 50% 0,var(--ac) 0 46%,transparent 47%);background-size:28px 18px;background-repeat:repeat-x;background-position:0 7px}
+/* the river.io dot wave, in the accent, under every masthead: a pixel wave, not a picture of water */
+.masthead::after,.wave{content:"";display:block;height:150px;background-color:var(--ac);
+  -webkit-mask:url(/assets/tdr-wave.svg) center bottom/1440px 150px repeat-x;mask:url(/assets/tdr-wave.svg) center bottom/1440px 150px repeat-x}
 .colour-bar,footer::before{content:"";display:block;height:14px;margin:0 0 24px;outline:2px solid var(--fg);outline-offset:-2px;
   background:linear-gradient(90deg,var(--orange) 0 12.5%,var(--acid) 12.5% 25%,var(--magenta) 25% 37.5%,var(--cyan) 37.5% 50%,
     var(--silver) 50% 62.5%,var(--paper) 62.5% 75%,var(--ink) 75% 87.5%,var(--purple) 87.5% 100%)}
@@ -132,7 +137,7 @@ article.post p,article.post ul,article.post ol,article.post blockquote,article.p
 article.post p{margin:0 0 24px;font-size:1.06rem;line-height:1.66;color:var(--ink-2)}
 article.post p strong,article.post li strong{color:var(--fg);font-weight:600}
 article.post h2{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:1.7rem;line-height:1;letter-spacing:-.01em;text-transform:uppercase;
-  margin:60px 0 18px;padding-top:16px;border-top:var(--rule) solid var(--line);color:var(--fg)}
+  margin:60px 0 18px;padding-top:16px;border-top:var(--rule) solid var(--line);color:var(--fg);box-shadow:0 -7px 0 0 var(--bg),0 -9px 0 0 var(--ac)}
 article.post h3{font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);margin:40px 0 12px}
 article.post ul,article.post ol{margin:0 0 24px;padding-left:22px}
 article.post li{margin:9px 0;font-size:1.06rem;line-height:1.6;color:var(--ink-2)}
@@ -141,12 +146,11 @@ article.post a:hover{background:var(--ac);color:var(--ac-ink)}
 article.post blockquote{margin:0 0 26px;padding:22px 26px;background:var(--fg);color:var(--bg);border-left:14px solid var(--ac)}
 article.post blockquote p{margin:0;color:inherit;font-family:var(--display);font-stretch:125%;font-weight:700;font-size:1.15rem;line-height:1.25;text-transform:uppercase}
 article.post code{font-size:.88em;background:var(--surface-2);padding:2px 6px}
-article.post pre{background:var(--ink);color:var(--acid);border:var(--rule) solid var(--line);padding:18px 20px;overflow-x:auto;margin:0 0 26px;position:relative}
-article.post pre::before{content:"BAD // OUTPUT";display:block;font-family:var(--bitmap);font-size:11px;letter-spacing:.06em;color:var(--ink);background:var(--acid);
+article.post pre{background:var(--ink);color:var(--cyan);border:var(--rule) solid var(--line);padding:18px 20px;overflow-x:auto;margin:0 0 26px;position:relative}
+article.post pre::before{content:"BAD // OUTPUT";display:block;font-family:var(--bitmap);font-size:11px;letter-spacing:.06em;color:var(--ink);background:var(--cyan);
   margin:-18px -20px 14px;padding:6px 20px}
 article.post pre code{background:none;padding:0;font-size:.84rem;line-height:1.6;color:inherit}
-article.post hr{border:0;height:18px;margin:48px 0;max-width:var(--measure);
-  background:repeating-linear-gradient(45deg,var(--fg) 0 14px,var(--ac) 14px 28px)}
+article.post hr{margin:48px 0;max-width:var(--measure)}
 article.post .lede-cap::first-letter{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:4.2rem;line-height:.75;
   float:left;margin:8px 12px 0 0;color:var(--ac)}
 article.post .note{border:var(--rule) solid var(--line);padding:22px 24px 24px;margin:0 0 30px;background:var(--surface)}
@@ -247,12 +251,16 @@ footer a{color:var(--fg);text-decoration:none;border-bottom:2px solid var(--ac)}
 footer a:hover{background:var(--ac);color:var(--ac-ink)}
 body > footer:not(:has(.in)){padding:28px var(--gut) 64px;font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-align:left}
 footer .roman{font-family:var(--bitmap);color:var(--muted);margin-left:1em}
+footer .in::after{content:"";display:block;width:100%;height:22px;margin-top:20px;
+  background:repeating-linear-gradient(90deg,var(--fg) 0 2px,transparent 2px 10px) 0 12px/100% 10px no-repeat,
+  repeating-linear-gradient(90deg,var(--fg) 0 2px,transparent 2px 50px) 0 0/100% 22px no-repeat,
+  linear-gradient(var(--fg),var(--fg)) 0 100%/100% 2px no-repeat}
 
 /* ── who page (jeff): the résumé markup, flattened ────────────── */
 .hero{position:relative;overflow:hidden;border-bottom:0}
 .hero .grid-bg{display:none}
 .hero .in{position:relative;z-index:1;padding:64px 0 56px}
-.hero::after{content:"";display:block;height:18px;background:repeating-linear-gradient(45deg,var(--fg) 0 14px,var(--ac) 14px 28px)}
+.hero::after{content:""}
 .status{display:inline-flex;flex-wrap:wrap;gap:0;color:var(--fg);border:2px solid var(--line);padding:0;margin-bottom:28px;background:transparent;border-radius:0}
 .status span{padding:8px 14px;border-right:2px solid var(--line);white-space:nowrap}
 .status span:last-child{border-right:0}
@@ -283,12 +291,12 @@ p{max-width:66ch}
 .app{background:transparent;border:var(--rule) solid var(--line);border-bottom:0;border-radius:0;overflow:hidden;box-shadow:none}
 .app:last-child{border-bottom:var(--rule) solid var(--line)}
 .app .bar{position:static;display:flex;align-items:center;gap:12px;padding:10px 20px;border:0;border-bottom:2px solid var(--line);
-  font-family:var(--bitmap);font-size:11px;letter-spacing:.04em;color:var(--ink);background:var(--acid);z-index:auto}
+  font-family:var(--bitmap);font-size:11px;letter-spacing:.04em;color:var(--ac-ink);background:var(--ac);z-index:auto}
 .app .bar .lights{display:flex;gap:6px}
-.app .bar .lights i{width:10px;height:10px;border-radius:0;background:var(--ink);display:block}
-.app .bar .path{color:var(--ink)}
-.app .bar .pill{margin-left:auto;font-family:var(--sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:4px 9px;border-radius:0;border:2px solid var(--ink);color:var(--ink)}
-.app .bar .pill.live{color:var(--paper);background:var(--ink);border-color:var(--ink)}
+.app .bar .lights i{width:10px;height:10px;border-radius:0;background:var(--ac-ink);display:block}
+.app .bar .path{color:var(--ac-ink)}
+.app .bar .pill{margin-left:auto;font-family:var(--sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:4px 9px;border-radius:0;border:2px solid var(--ac-ink);color:var(--ac-ink)}
+.app .bar .pill.live{color:var(--ac);background:var(--ac-ink);border-color:var(--ac-ink)}
 .app .body{padding:24px 24px 26px;display:grid;grid-template-columns:1.4fr 1fr;gap:26px}
 @media (max-width:720px){.app .body{grid-template-columns:1fr;gap:18px}}
 .app h3{margin:0;font-size:1.6rem}
