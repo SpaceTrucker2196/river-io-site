@@ -44,7 +44,7 @@
 /* ── base ─────────────────────────────────────────────────────── */
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.5;
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:17px;line-height:1.55;
   -webkit-font-smoothing:antialiased;position:relative;min-height:100vh}
 a{color:inherit}
 img{display:block;max-width:100%;height:auto}
@@ -98,7 +98,7 @@ nav.top a:hover,.toplinks a:hover,.toggle:hover,.themetoggle:hover{background:va
 h1,h1.title{font-family:var(--display);font-weight:500;font-size:clamp(2.4rem,8vw,7.2rem);line-height:.92;
   letter-spacing:-.01em;text-transform:uppercase;margin:0;max-width:16ch}
 h1 span,h1.title span{color:var(--ac);font-weight:900}
-.standfirst,.lede{font-size:clamp(1.05rem,1.6vw,1.25rem);line-height:1.45;color:var(--ink-2);max-width:56ch;margin:32px 0 0}
+.standfirst,.lede{font-size:clamp(1.12rem,1.7vw,1.32rem);line-height:1.45;color:var(--ink-2);max-width:56ch;margin:32px 0 0}
 .standfirst b,.lede b{color:var(--fg);font-weight:600}
 .strip{display:grid;grid-template-columns:repeat(4,1fr);margin:52px 0 0;border-top:var(--rule) solid var(--line);border-left:var(--rule) solid var(--line)}
 .masthead .strip{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
@@ -120,7 +120,7 @@ h1 span,h1.title span{color:var(--ac);font-weight:900}
   text-transform:uppercase;max-width:26ch}
 .post-row h2 a{text-decoration:none}
 .post-row h2 a:hover{background:var(--ac);color:var(--ac-ink)}
-.post-row .dek{margin:14px 0 0;color:var(--ink-2);font-size:1rem;max-width:60ch}
+.post-row .dek{margin:14px 0 0;color:var(--ink-2);font-size:1.08rem;max-width:60ch}
 .tags{display:flex;flex-wrap:wrap;gap:0;margin-top:16px;border-top:2px solid var(--line);border-left:2px solid var(--line);width:fit-content;max-width:100%}
 .tags span{font-size:10.5px;color:var(--fg);padding:6px 10px;border-right:2px solid var(--line);border-bottom:2px solid var(--line);white-space:nowrap}
 .when{color:var(--fg);padding-top:8px}
@@ -132,34 +132,34 @@ h1 span,h1.title span{color:var(--ac);font-weight:900}
 .article-head .meta{color:var(--ac);display:flex;flex-wrap:wrap;gap:6px 20px;margin:0 0 30px}
 .article-head .meta b{color:var(--fg);font-weight:600}
 .article-head h1{font-size:clamp(2.4rem,6.5vw,5.2rem);max-width:18ch}
-.article-head .dek{font-size:clamp(1.05rem,1.6vw,1.25rem);line-height:1.45;color:var(--ink-2);max-width:58ch;margin:30px 0 0}
+.article-head .dek{font-size:clamp(1.12rem,1.7vw,1.32rem);line-height:1.45;color:var(--ink-2);max-width:58ch;margin:30px 0 0}
 .article-head .rule{margin:44px 0 0}
 article.post{padding:0 0 20px}
 article.post .in{padding:56px var(--gut) 0}
 article.post p,article.post ul,article.post ol,article.post blockquote,article.post h2,article.post h3,article.post .note,article.post figure,article.post table,article.post pre{max-width:var(--measure)}
-article.post p{margin:0 0 24px;font-size:1.06rem;line-height:1.66;color:var(--ink-2)}
+article.post p{margin:0 0 26px;font-size:1.15rem;line-height:1.66;color:var(--ink-2)}
 article.post p strong,article.post li strong{color:var(--fg);font-weight:600}
 article.post h2{font-family:var(--display);font-weight:500;font-size:1.7rem;line-height:1;letter-spacing:-.01em;text-transform:uppercase;
   margin:60px 0 18px;padding-top:16px;border-top:var(--rule) solid var(--line);color:var(--fg);box-shadow:0 -7px 0 0 var(--bg),0 -9px 0 0 var(--ac)}
 article.post h3{font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);margin:40px 0 12px}
 article.post ul,article.post ol{margin:0 0 24px;padding-left:22px}
-article.post li{margin:9px 0;font-size:1.06rem;line-height:1.6;color:var(--ink-2)}
+article.post li{margin:9px 0;font-size:1.15rem;line-height:1.6;color:var(--ink-2)}
 article.post a{color:var(--fg);text-decoration:none;border-bottom:2px solid var(--ac)}
 article.post a:hover{background:var(--ac);color:var(--ac-ink)}
 article.post blockquote{margin:0 0 26px;padding:22px 26px;background:var(--fg);color:var(--bg);border-left:14px solid var(--ac)}
-article.post blockquote p{margin:0;color:inherit;font-family:var(--display);font-weight:500;font-size:1.15rem;line-height:1.25;text-transform:uppercase}
+article.post blockquote p{margin:0;color:inherit;font-family:var(--display);font-weight:500;font-size:1.25rem;line-height:1.25;text-transform:uppercase}
 article.post code{font-size:.88em;background:var(--surface-2);padding:2px 6px}
 article.post pre{background:var(--ink);color:var(--cyan);border:var(--rule) solid var(--line);padding:18px 20px;overflow-x:auto;margin:0 0 26px;position:relative}
 article.post pre::before{content:"BAD // OUTPUT";display:block;font-family:var(--bitmap);font-size:11px;letter-spacing:.06em;color:var(--ink);background:var(--cyan);
   margin:-18px -20px 14px;padding:6px 20px}
-article.post pre code{background:none;padding:0;font-size:.84rem;line-height:1.6;color:inherit}
+article.post pre code{background:none;padding:0;font-size:.9rem;line-height:1.6;color:inherit}
 article.post hr{margin:48px 0;max-width:var(--measure)}
 article.post .lede-cap::first-letter{font-family:var(--display);font-weight:500;font-size:4.2rem;line-height:.75;
   float:left;margin:8px 12px 0 0;color:var(--ac)}
 article.post .note{border:var(--rule) solid var(--line);padding:22px 24px 24px;margin:0 0 30px;background:var(--surface)}
 article.post .note .k{color:var(--ac);margin-bottom:12px}
 article.post .note p:last-child{margin:0}
-article.post table{border-collapse:collapse;width:100%;margin:0 0 28px;font-size:.92rem}
+article.post table{border-collapse:collapse;width:100%;margin:0 0 28px;font-size:1rem}
 article.post th,article.post td{border-top:2px solid var(--line);padding:10px 12px;text-align:left;color:var(--ink-2);vertical-align:top}
 article.post thead th{border-top:var(--rule) solid var(--line);border-bottom:2px solid var(--line);font-size:10.5px;color:var(--ac);font-weight:600}
 article.post td.num,article.post th.num{text-align:right;font-variant-numeric:tabular-nums}
@@ -196,13 +196,13 @@ article.post td.num,article.post th.num{text-align:right;font-variant-numeric:ta
 .plate:hover img{filter:none}
 .plate.mark{display:flex;align-items:center;justify-content:center;font-family:var(--display);font-stretch:125%;font-size:1.9rem;font-weight:900;color:var(--a);background:var(--surface)}
 @media (max-width:640px){.plate{width:110px}}
-.prose p{margin:0;font-size:.96rem;line-height:1.58;color:var(--ink-2);max-width:64ch}
+.prose p{margin:0;font-size:1.04rem;line-height:1.6;color:var(--ink-2);max-width:64ch}
 .prose p em{font-style:normal;color:var(--fg);font-weight:600}
 .chips{display:flex;flex-wrap:wrap;gap:0;margin-top:20px;border-top:2px solid var(--line);border-left:2px solid var(--line);width:fit-content;max-width:100%}
 .chips span{font-size:10.5px;color:var(--fg);padding:6px 11px;border-right:2px solid var(--line);border-bottom:2px solid var(--line);white-space:nowrap}
 .specs dl{margin:0;display:grid;grid-template-columns:96px minmax(0,1fr);gap:0}
 .specs dt{color:var(--ac);padding:9px 0;border-top:2px solid var(--line);font-size:10.5px}
-.specs dd{margin:0;font-size:.88rem;color:var(--ink-2);padding:9px 0;border-top:2px solid var(--line)}
+.specs dd{margin:0;font-size:.95rem;color:var(--ink-2);padding:9px 0;border-top:2px solid var(--line)}
 .specs dt:first-of-type,.specs dd:first-of-type{border-top:0;padding-top:0}
 .links{display:flex;flex-wrap:wrap;gap:0;margin-top:22px;border-top:2px solid var(--line);border-left:2px solid var(--line);width:fit-content;max-width:100%}
 .links a{font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--fg);padding:10px 13px;
@@ -214,14 +214,14 @@ article.post td.num,article.post th.num{text-align:right;font-variant-numeric:ta
 .rules::before{content:""}
 .rules .in{padding:64px var(--gut) 72px}
 h3{font-family:var(--display);font-weight:500;font-size:clamp(1.8rem,3.6vw,2.8rem);line-height:.95;text-transform:uppercase;margin:0 0 12px}
-.sub{color:var(--ink-2);margin:0 0 40px;max-width:58ch;font-size:1rem}
+.sub{color:var(--ink-2);margin:0 0 40px;max-width:58ch;font-size:1.08rem}
 .quad{display:grid;grid-template-columns:repeat(4,1fr);border-top:var(--rule) solid var(--line);border-left:var(--rule) solid var(--line)}
 @media (max-width:900px){.quad{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:540px){.quad{grid-template-columns:1fr}}
 .quad > div{padding:22px 22px 26px;border-right:var(--rule) solid var(--line);border-bottom:var(--rule) solid var(--line)}
 .quad .k{color:var(--ac);margin-bottom:14px}
 .quad h4{margin:0 0 8px;font-family:var(--display);font-weight:500;font-size:1.05rem;text-transform:uppercase}
-.quad p{margin:0;font-size:.9rem;line-height:1.5;color:var(--ink-2)}
+.quad p{margin:0;font-size:.98rem;line-height:1.5;color:var(--ink-2)}
 .foot-note{color:var(--muted);margin-top:22px;font-size:11px}
 .reveal{opacity:1}
 
@@ -240,7 +240,7 @@ body > main section:first-of-type .label{border-top:0;padding-top:0}
 body > main h1{margin:0 0 20px}
 .tagline{font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg);margin:0 0 22px}
 body > main .lede{margin:0}
-.body-text{max-width:var(--measure);color:var(--ink-2);font-size:1.04rem;line-height:1.66}
+.body-text{max-width:var(--measure);color:var(--ink-2);font-size:1.13rem;line-height:1.66}
 .body-text p{margin:0 0 20px}
 .body-text a{color:var(--fg);text-decoration:none;border-bottom:2px solid var(--ac)}
 .body-text a:hover{background:var(--ac);color:var(--ac-ink)}
