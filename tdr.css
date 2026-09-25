@@ -2,6 +2,7 @@
    river.io — house theme, after The Designers Republic (1990s)
    Homage, not a copy. Source: design-systems/styles/designers-republic-90s/style.md
 
+   Headlines in Helvetica Neue Medium (Archivo 500 as the stand-in), never black weights (#7).
    Paper ground with one process-blue accent in the light theme; deep-water
    ground with one stargate cyan-blue accent in the dark theme. Water and
    river devices in the flat printed language: a dot-matrix wave under the
@@ -13,7 +14,7 @@
    legal pages and the who page. The home page and every per-app page
    keep their own design and never load this file.
    ──────────────────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,400;100,600;125,700;125,900&family=Saira+Extra+Condensed:wght@800&family=Silkscreen&family=IBM+Plex+Mono:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Saira+Extra+Condensed:wght@800&family=Silkscreen&family=IBM+Plex+Mono:wght@400;600&display=swap');
 
 :root{
   --paper:#F4F3EE; --ink:#0B0B0B; --orange:#FF5A00; --acid:#D9FF00; --magenta:#FF2D8A;
@@ -24,7 +25,7 @@
   --line:var(--ink); --line-strong:var(--ink); --ac:var(--blue); --ac-ink:#fff;
   --brand:var(--blue);
 
-  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --display:"Helvetica Neue",Helvetica,"Archivo",Arial,sans-serif;
   --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
   --cond:"Saira Extra Condensed",Impact,"Arial Narrow",sans-serif;
   --bitmap:"Silkscreen",ui-monospace,monospace;
@@ -92,15 +93,15 @@ nav.top a:hover,.toplinks a:hover,.toggle:hover,.themetoggle:hover{background:va
 .masthead .in{padding:64px var(--gut) 0}
 .kicker{color:var(--ac);display:flex;flex-wrap:wrap;gap:6px 22px;margin:0 0 30px}
 .kicker b{color:var(--fg);font-weight:600}
-h1,h1.title{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:clamp(2.4rem,8vw,7.2rem);line-height:.9;
-  letter-spacing:-.02em;text-transform:uppercase;margin:0;max-width:14ch}
+h1,h1.title{font-family:var(--display);font-weight:500;font-size:clamp(2.4rem,8vw,7.2rem);line-height:.92;
+  letter-spacing:-.01em;text-transform:uppercase;margin:0;max-width:16ch}
 h1 span,h1.title span{color:var(--ac);font-weight:900}
 .standfirst,.lede{font-size:clamp(1.05rem,1.6vw,1.25rem);line-height:1.45;color:var(--ink-2);max-width:56ch;margin:32px 0 0}
 .standfirst b,.lede b{color:var(--fg);font-weight:600}
 .strip{display:grid;grid-template-columns:repeat(4,1fr);margin:52px 0 0;border-top:var(--rule) solid var(--line);border-left:var(--rule) solid var(--line)}
 .masthead .strip{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
 .strip div{border-right:var(--rule) solid var(--line);border-bottom:var(--rule) solid var(--line);padding:18px 18px 20px}
-.strip .n{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:clamp(2.6rem,5vw,4.2rem);line-height:.9;letter-spacing:-.03em;
+.strip .n{font-family:var(--display);font-weight:500;font-size:clamp(2.6rem,5vw,4.2rem);line-height:.9;letter-spacing:-.03em;
   color:var(--ac);font-variant-numeric:tabular-nums;display:block;margin-bottom:12px}
 .strip .l{font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg);display:block}
 .masthead::after{content:""}
@@ -113,7 +114,7 @@ h1 span,h1.title span{color:var(--ac);font-weight:900}
 @media (max-width:860px){.post-row .in{grid-template-columns:110px minmax(0,1fr);gap:20px}.post-row .when{grid-column:2;margin-top:6px}}
 @media (max-width:560px){.post-row .in{grid-template-columns:1fr;gap:10px}.post-row .when{grid-column:1}}
 .order{font-family:var(--cond);font-weight:800;font-size:64px;line-height:.8;letter-spacing:0;color:var(--ac);text-transform:uppercase;padding-top:2px}
-.post-row h2{margin:0;font-family:var(--display);font-stretch:125%;font-weight:900;font-size:clamp(1.4rem,2.4vw,2rem);line-height:1;letter-spacing:-.01em;
+.post-row h2{margin:0;font-family:var(--display);font-weight:500;font-size:clamp(1.4rem,2.4vw,2rem);line-height:1;letter-spacing:-.01em;
   text-transform:uppercase;max-width:26ch}
 .post-row h2 a{text-decoration:none}
 .post-row h2 a:hover{background:var(--ac);color:var(--ac-ink)}
@@ -136,7 +137,7 @@ article.post .in{padding:56px var(--gut) 0}
 article.post p,article.post ul,article.post ol,article.post blockquote,article.post h2,article.post h3,article.post .note,article.post figure,article.post table,article.post pre{max-width:var(--measure)}
 article.post p{margin:0 0 24px;font-size:1.06rem;line-height:1.66;color:var(--ink-2)}
 article.post p strong,article.post li strong{color:var(--fg);font-weight:600}
-article.post h2{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:1.7rem;line-height:1;letter-spacing:-.01em;text-transform:uppercase;
+article.post h2{font-family:var(--display);font-weight:500;font-size:1.7rem;line-height:1;letter-spacing:-.01em;text-transform:uppercase;
   margin:60px 0 18px;padding-top:16px;border-top:var(--rule) solid var(--line);color:var(--fg);box-shadow:0 -7px 0 0 var(--bg),0 -9px 0 0 var(--ac)}
 article.post h3{font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);margin:40px 0 12px}
 article.post ul,article.post ol{margin:0 0 24px;padding-left:22px}
@@ -144,14 +145,14 @@ article.post li{margin:9px 0;font-size:1.06rem;line-height:1.6;color:var(--ink-2
 article.post a{color:var(--fg);text-decoration:none;border-bottom:2px solid var(--ac)}
 article.post a:hover{background:var(--ac);color:var(--ac-ink)}
 article.post blockquote{margin:0 0 26px;padding:22px 26px;background:var(--fg);color:var(--bg);border-left:14px solid var(--ac)}
-article.post blockquote p{margin:0;color:inherit;font-family:var(--display);font-stretch:125%;font-weight:700;font-size:1.15rem;line-height:1.25;text-transform:uppercase}
+article.post blockquote p{margin:0;color:inherit;font-family:var(--display);font-weight:500;font-size:1.15rem;line-height:1.25;text-transform:uppercase}
 article.post code{font-size:.88em;background:var(--surface-2);padding:2px 6px}
 article.post pre{background:var(--ink);color:var(--cyan);border:var(--rule) solid var(--line);padding:18px 20px;overflow-x:auto;margin:0 0 26px;position:relative}
 article.post pre::before{content:"BAD // OUTPUT";display:block;font-family:var(--bitmap);font-size:11px;letter-spacing:.06em;color:var(--ink);background:var(--cyan);
   margin:-18px -20px 14px;padding:6px 20px}
 article.post pre code{background:none;padding:0;font-size:.84rem;line-height:1.6;color:inherit}
 article.post hr{margin:48px 0;max-width:var(--measure)}
-article.post .lede-cap::first-letter{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:4.2rem;line-height:.75;
+article.post .lede-cap::first-letter{font-family:var(--display);font-weight:500;font-size:4.2rem;line-height:.75;
   float:left;margin:8px 12px 0 0;color:var(--ac)}
 article.post .note{border:var(--rule) solid var(--line);padding:22px 24px 24px;margin:0 0 30px;background:var(--surface)}
 article.post .note .k{color:var(--ac);margin-bottom:12px}
@@ -174,7 +175,7 @@ article.post td.num,article.post th.num{text-align:right;font-variant-numeric:ta
 .ord{font-family:var(--cond);font-weight:800;font-size:60px;line-height:.8;color:var(--ac);font-variant-numeric:tabular-nums}
 .name{display:flex;align-items:center;gap:16px;min-width:0}
 .sig{width:16px;height:16px;background:var(--a);flex:0 0 16px;outline:2px solid var(--fg);outline-offset:-2px}
-.name h2{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:1.35rem;letter-spacing:0;text-transform:uppercase;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.name h2{font-family:var(--display);font-weight:500;font-size:1.35rem;letter-spacing:0;text-transform:uppercase;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .name h2 a{text-decoration:none}
 .name h2 a:hover{background:var(--ac);color:var(--ac-ink)}
 .name .tag{font-weight:400;font-size:12px;letter-spacing:.06em;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:none}
@@ -210,14 +211,14 @@ article.post td.num,article.post th.num{text-align:right;font-variant-numeric:ta
 .rules{border-bottom:0;position:relative}
 .rules::before{content:""}
 .rules .in{padding:64px var(--gut) 72px}
-h3{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:clamp(1.8rem,3.6vw,2.8rem);line-height:.95;text-transform:uppercase;margin:0 0 12px}
+h3{font-family:var(--display);font-weight:500;font-size:clamp(1.8rem,3.6vw,2.8rem);line-height:.95;text-transform:uppercase;margin:0 0 12px}
 .sub{color:var(--ink-2);margin:0 0 40px;max-width:58ch;font-size:1rem}
 .quad{display:grid;grid-template-columns:repeat(4,1fr);border-top:var(--rule) solid var(--line);border-left:var(--rule) solid var(--line)}
 @media (max-width:900px){.quad{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:540px){.quad{grid-template-columns:1fr}}
 .quad > div{padding:22px 22px 26px;border-right:var(--rule) solid var(--line);border-bottom:var(--rule) solid var(--line)}
 .quad .k{color:var(--ac);margin-bottom:14px}
-.quad h4{margin:0 0 8px;font-family:var(--display);font-stretch:125%;font-weight:900;font-size:1.05rem;text-transform:uppercase}
+.quad h4{margin:0 0 8px;font-family:var(--display);font-weight:500;font-size:1.05rem;text-transform:uppercase}
 .quad p{margin:0;font-size:.9rem;line-height:1.5;color:var(--ink-2)}
 .foot-note{color:var(--muted);margin-top:22px;font-size:11px}
 .reveal{opacity:1}
@@ -279,7 +280,7 @@ body > section,main > section.contact,section.contact{padding:64px 0;border-bott
 .eyebrow{display:flex;align-items:center;gap:12px;color:var(--ac);margin:0 0 24px}
 .eyebrow .num{font-family:var(--cond);font-weight:800;font-size:44px;line-height:.8;letter-spacing:0;color:var(--ac)}
 .eyebrow .rule{flex:1;height:var(--rule);background:var(--line);max-width:170px}
-h2{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:.95;letter-spacing:-.01em;text-transform:uppercase;margin:0 0 10px}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:.95;letter-spacing:-.01em;text-transform:uppercase;margin:0 0 10px}
 .section-lede{color:var(--ink-2);max-width:64ch;margin:0 0 30px}
 p{max-width:66ch}
 .specs{display:grid;gap:0;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));border-top:var(--rule) solid var(--line);border-left:var(--rule) solid var(--line)}
@@ -317,7 +318,7 @@ p{max-width:66ch}
 .posture{display:grid;gap:0;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));border-top:var(--rule) solid var(--line);border-left:var(--rule) solid var(--line)}
 .tenet{padding:20px;border:0;border-right:var(--rule) solid var(--line);border-bottom:var(--rule) solid var(--line);border-radius:0;background:transparent}
 .tenet .n{font-family:var(--cond);font-weight:800;font-size:44px;line-height:.8;color:var(--ac);letter-spacing:0}
-.tenet h4{margin:10px 0 6px;font-family:var(--display);font-stretch:125%;font-weight:900;font-size:1rem;text-transform:uppercase}
+.tenet h4{margin:10px 0 6px;font-family:var(--display);font-weight:500;font-size:1rem;text-transform:uppercase}
 .tenet p{margin:0;font-size:.9rem;color:var(--ink-2);max-width:none}
 .xp{display:flex;flex-direction:column;border-top:var(--rule) solid var(--line)}
 .xp .row{display:grid;grid-template-columns:140px 1fr;gap:22px;padding:16px 0;border-bottom:2px solid var(--line);align-items:baseline;max-width:none}
@@ -338,7 +339,7 @@ section.contact .btn{margin-top:0}
 .shot{border:var(--rule) solid var(--line);margin:14px 0 0;background:var(--surface)}
 .shot img{filter:grayscale(1) contrast(1.2)}
 .shot:hover img{filter:none}
-.big{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:clamp(1.3rem,3vw,2.4rem);line-height:1.1;text-transform:uppercase;margin-top:10px}
+.big{font-family:var(--display);font-weight:500;font-size:clamp(1.3rem,3vw,2.4rem);line-height:1.1;text-transform:uppercase;margin-top:10px}
 .big a{text-decoration:none;border-bottom:4px solid var(--ac)}
 .big a:hover{background:var(--ac);color:var(--ac-ink)}
 .wrap.in{padding:64px var(--gut) 56px}
