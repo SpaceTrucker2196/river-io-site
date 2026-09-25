@@ -1,0 +1,75 @@
+/* ────────────────────────────────────────────────────────────────
+   river.io theme motion, after 2Advanced Prophecy v4 (2004):
+   a boot strip, cascading labels and menus with a hard leading edge,
+   circuit traces drawn across the masthead with a bright head, typed
+   readouts with a blinking bar, counters that tick. Hard edges, no
+   glow, stepped where it can be. Driven by tdr-fx.js. Still under
+   prefers-reduced-motion. Loaded by every /tdr.css page.
+   ──────────────────────────────────────────────────────────────── */
+:root{ --fx-step:steps(10,end); --fx-ease:cubic-bezier(.16,1,.3,1); }
+
+/* boot strip: a turning registration target and a typed status line, top left, then it leaves */
+.fx-boot{position:fixed;left:40px;top:14px;z-index:70;display:flex;align-items:center;gap:12px;
+  font-family:var(--sans,sans-serif);font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--fg);pointer-events:none}
+.fx-boot i{width:14px;height:14px;border:2px solid var(--fg);border-radius:50%;position:relative;animation:fx-turn .8s steps(8) infinite}
+.fx-boot i::after{content:"";position:absolute;left:50%;top:50%;width:50%;height:50%;background:var(--ac)}
+.fx-boot b{font-weight:600}
+.fx-boot .fx-bar{display:inline-block;width:.6em;height:1em;background:var(--ac);vertical-align:-.15em;margin-left:.3em;animation:fx-blink .6s steps(1) infinite}
+.fx-boot.fx-out{animation:fx-leave .3s var(--fx-ease) both}
+@keyframes fx-turn{to{transform:rotate(360deg)}}
+@keyframes fx-blink{50%{opacity:0}}
+@keyframes fx-leave{to{transform:translateX(-40px);opacity:0}}
+
+/* the page holds until the boot strip has typed, then everything cascades */
+html.fx-hold .masthead,html.fx-hold .list,html.fx-hold .register,html.fx-hold .rules,html.fx-hold .article-head,html.fx-hold article.post,
+html.fx-hold .article-foot,html.fx-hold footer,html.fx-hold body > main{visibility:hidden}
+
+/* cascade: each item wipes in from the left with a 3 px accent bar on the leading edge, 70 ms apart */
+html.fx-on .fx-c{animation:fx-wipe .5s var(--fx-step) both;animation-delay:calc(var(--i,0) * 70ms + var(--d,0ms))}
+html.fx-on .fx-c::after{content:"";position:absolute;top:0;bottom:0;width:3px;background:var(--ac);pointer-events:none;
+  animation:fx-wiper .5s var(--fx-step) both;animation-delay:calc(var(--i,0) * 70ms + var(--d,0ms))}
+.fx-c{position:relative}
+@keyframes fx-wipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes fx-wiper{from{left:0;opacity:1}90%{opacity:1}to{left:100%;opacity:0}}
+
+/* typed readout: a rule extends from the kicker, then a small label types on with a blinking bar */
+.fx-readout{display:inline-flex;align-items:center;gap:12px;margin-left:8px;white-space:nowrap;vertical-align:middle}
+.fx-readout .fx-rule{display:inline-block;height:2px;width:0;background:var(--fg)}
+html.fx-on .fx-readout .fx-rule{animation:fx-extend .4s var(--fx-step) both;animation-delay:var(--d,0ms)}
+.fx-readout .fx-txt{color:var(--fg)}
+.fx-readout .fx-bar{display:inline-block;width:.6em;height:1em;background:var(--ac);vertical-align:-.15em;animation:fx-blink .6s steps(1) infinite}
+@keyframes fx-extend{from{width:0}to{width:120px}}
+
+/* circuit traces over the masthead: orthogonal paths with 45° bends, node squares, one bright head */
+.fx-traces{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:2}
+.fx-traces path{fill:none;stroke:var(--ac);stroke-width:2;stroke-linejoin:miter;stroke-linecap:square}
+html.fx-on .fx-traces path{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:fx-draw .9s var(--fx-step) both;animation-delay:var(--d,0ms)}
+.fx-traces rect{fill:var(--fg);stroke:var(--ac);stroke-width:2;opacity:0}
+html.fx-on .fx-traces rect{animation:fx-node .2s steps(1) both;animation-delay:calc(var(--d,0ms) + .9s)}
+.fx-traces .fx-head{fill:var(--paper);stroke:var(--ac);stroke-width:2;opacity:0}
+html.fx-on .fx-traces .fx-head{offset-path:var(--p);offset-rotate:0deg;animation:fx-run 1.4s var(--fx-step) both;animation-delay:calc(var(--d,0ms) + .9s)}
+@keyframes fx-draw{to{stroke-dashoffset:0}}
+@keyframes fx-node{to{opacity:1}}
+@keyframes fx-run{0%{offset-distance:0%;opacity:1}90%{opacity:1}100%{offset-distance:100%;opacity:0}}
+
+/* one vertical hairline crosses the masthead, once */
+.fx-hair{position:absolute;top:0;bottom:0;width:2px;background:var(--fg);opacity:0;pointer-events:none;z-index:3}
+html.fx-on .fx-hair{animation:fx-hair 1.2s var(--fx-step) both;animation-delay:.2s}
+@keyframes fx-hair{0%{left:0;opacity:.9}100%{left:100%;opacity:0}}
+
+/* nav: a trace draws under the item you point at */
+nav.top a,.toplinks a,nav.nav .links a{position:relative}
+nav.top a::before,nav.nav .links a::before{content:"";position:absolute;left:12px;right:12px;bottom:8px;height:2px;background:var(--ac);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--fx-step)}
+nav.top a:hover::before,nav.nav .links a:hover::before{transform:scaleX(1)}
+
+.fx-tick{font-variant-numeric:tabular-nums}
+
+@media (prefers-reduced-motion:reduce){
+  html.fx-hold .masthead,html.fx-hold .list,html.fx-hold .register,html.fx-hold .rules,html.fx-hold .article-head,html.fx-hold article.post,html.fx-hold .article-foot,html.fx-hold footer,html.fx-hold body > main{visibility:visible}
+  html.fx-on .fx-c,html.fx-on .fx-c::after,html.fx-on .fx-readout .fx-rule,html.fx-on .fx-traces path,html.fx-on .fx-traces rect,html.fx-on .fx-traces .fx-head,html.fx-on .fx-hair,.fx-boot i,.fx-bar{animation:none}
+  html.fx-on .fx-c::after{display:none}
+  .fx-readout .fx-rule{width:120px}
+  html.fx-on .fx-traces path{stroke-dashoffset:0}
+  html.fx-on .fx-traces rect{opacity:1}
+  .fx-boot,.fx-hair{display:none}
+}
