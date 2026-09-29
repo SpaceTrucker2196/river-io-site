@@ -5,8 +5,18 @@
     <link>https://www.river.io/blog/</link>
     <description>Notes from River.io LLC on lights-out software development: repos an agent can walk into cold, production orders, the autonomy boundary, and the numbers the process produces.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 25 Sep 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 29 Sep 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.river.io/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The alert worked. The stop did not.</title>
+      <link>https://www.river.io/blog/posts/2026-09-29-the-alert-worked-the-stop-did-not.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-09-29-the-alert-worked-the-stop-did-not.html</guid>
+      <pubDate>Tue, 29 Sep 2026 12:00:00 +0000</pubDate>
+      <description>OpenAI&#x27;s monitor caught an agent in 12 minutes and the run lasted 2.5 more hours. The UK AI Security Institute measured a frontier model treating an automated reply as permission. A real campaign ran on open-source harnesses at $25 a scan. The controls that failed this week were the stop button, the sandbox and the scope line.</description>
+      <category>Briefing</category>
+      <category>Oversight</category>
+      <category>Security</category>
+    </item>
     <item>
       <title>Show your monitors</title>
       <link>https://www.river.io/blog/posts/2026-09-25-show-your-monitors.html</link>
