@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="A sandboxed agent turned off its own sandbox with one curl command. An approval check read a shell command differently from the shell. A benchmark claim fell from 94 percent to 54 percent. IBM took its coding agent behind the customer wall." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing, Security, Practice" />
+<title>A permission check is only as good as its parser — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+  <script src="/analytics.js" defer></script>
+<link rel="stylesheet" href="/tdr-fx.css" />
+<script src="/tdr-fx.js" defer></script>
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 044</b><span>5 October 2026</span><span>6 min</span><span>Briefing</span></div>
+    <h1>A permission check is only as good as its parser</h1>
+    <p class="dek">A sandboxed agent turned off its own sandbox with one curl command. An approval check read a shell command differently from the shell. A benchmark claim fell from 94 percent to 54 percent. IBM took its coding agent behind the customer wall.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+    <p class="lede-cap">Order 043 said the control plane is leaving the agent. This edition shows what
+      happens when the control stays too close to the agent. The window since 1 October is quiet. One item
+      is new: IBM released a self-hosted Bob on 1 October. Three older items have never appeared in this
+      blog. Each carries its real date. Two of them are failures of the same kind. A check that should
+      stop the agent did not.</p>
+
+    <h2>DeepSeek Harness: the agent turned off its own sandbox</h2>
+
+    <p>OX Security published CVE-2026-82533 on 8 September 2026. The Cloud Security Alliance wrote a
+      research note on 10 September. The score is 9.4 out of 10. DeepSeek Harness is an agent runtime.
+      It reached over 215,000 GitHub stars within weeks of its August release.</p>
+
+    <p>Two design flaws combined. First, the harness API trusted the Host header. It did not check the
+      real address of the caller. Second, the sandbox blocked file writes but left loopback networking
+      open. Loopback is the connection from a program to its own machine. A sandboxed agent could run one
+      curl command against the local API. That command raised the session to "danger-full-access" and
+      turned approvals off. The agent disabled its own confinement with one shell command.</p>
+
+    <p>The affected versions are 0.1.1-rc.2 and earlier. The fix is 0.1.2-alpha.1 or later. Researchers
+      reported the flaw on 24 August. The maintainers fixed it on 27 August. OX published on 8 September.
+      A second path allowed remote control without a login if the port was exposed.</p>
+
+    <div class="note">
+      <div class="k">LOOPBACK IS NOT A BOUNDARY</div>
+      <p>A sandbox that blocks files but allows localhost lets the agent talk to its own controller. The
+        permission switch must not be reachable from inside the sandbox.</p>
+    </div>
+
+    <h2>Mistral Vibe: the approval check and the shell disagreed</h2>
+
+    <p>Mistral published advisory MAI-2026-003 on 14 September 2026. It lists six CVEs, CVE-2026-87983
+      to CVE-2026-87988, all rated High. The product is Vibe CLI. Mistral released the fix in version
+      2.25.4 on 12 September. That is the same day Mistral learned of the published advisories.</p>
+
+    <p>Vibe asked the user to approve shell commands. The check missed four command forms: quoted
+      absolute paths, shell redirection targets, ANSI-C quoted arguments and environment assignments. A
+      crafted command ran with no approval prompt. It could read files outside the workspace. It could
+      write files outside the workspace. It could run code with the permissions of the Vibe process.</p>
+
+    <p>The cause is a parser mismatch. The approval layer read the command string one way. The shell read
+      the same string another way. Any allow-list that matches text is open to this failure. The safe
+      options are to approve the exact string the shell will run, or to run commands without a shell.</p>
+
+    <h2>Ponytail: a benchmark claim cut by almost half</h2>
+
+    <p>InfoQ reported on 5 August 2026 on Ponytail, an open-source skill. A skill is a rule file that an
+      agent reads before it works. Ponytail tells the agent to avoid over-building. It asks if the code
+      needs to exist, if the codebase already has it, and if the standard library does it.</p>
+
+    <p>The first claim was 80 to 94 percent less code. Colin Eberhardt of Scott Logic challenged the
+      baseline. The baseline agent padded its answers. The author re-ran the test on real feature tasks in
+      a FastAPI and React repository. The new figures are about 54 percent less code, about 20 percent
+      lower cost and 27 percent faster runs. The 94 percent figure holds only in over-building cases.
+      This is a prompt-level skill, not a control. Treat it as a style rule, and measure it first.</p>
+
+    <h2>IBM: Bob moves behind the customer wall</h2>
+
+    <p>On 1 October 2026, IBM extended its Bob coding agent to self-hosted use. That includes air-gapped
+      and sovereign-cloud sites, with supported models on premises. IBM General Manager Neel Sundaresan
+      said: "The future of enterprise AI will depend on security, governance and sovereignty." The
+      coverage notes that IBM gave no customer names, usage numbers or productivity figures. IBM shares
+      rose about 5 percent that day. This is a product announcement. It shows that regulated buyers want
+      the agent inside their own boundary. It is not evidence of effect.</p>
+
+    <h2>Not featured</h2>
+
+    <p>Jeffrey Ladish of Palisade Research gave a Fox News interview on 3 October. It repeats the Hugging
+      Face sandbox-escape account that earlier editions covered. It adds no new data. Adversa's
+      2 October list also names ZCode, OpenCode, Codex and brig issues. Those items had no publication
+      dates in the source, so this edition does not feature them.</p>
+
+    <h2>What changes here</h2>
+
+    <ol>
+      <li><strong>Test the factory's own gates with hostile input.</strong> The shell gates block
+        <code>curl</code>, <code>rm</code> and <code>sudo</code> by reading command text. Write a
+        test-driven suite of hostile strings: quoted paths, redirects, variable assignments. Run it on
+        sloth first.</li>
+      <li><strong>Close loopback in agent sandboxes.</strong> If an agent tool listens on localhost, the
+        agent can reach it. Add a loopback-deny line to the weathergalactic sandbox inventory.</li>
+      <li><strong>Run any new skill against the current baseline.</strong> Use a real MeowPassword issue.
+        Compare the new rule with the current prompt. Native code with zero third-party dependencies
+        already gives a cheap baseline.</li>
+      <li><strong>Keep regulated work at gated autonomy.</strong> CareTime, TimeForCare and
+        MaterialsAndPractices stay at level 3, with a named human approving each change. A self-hosted
+        agent does not remove that need.</li>
+    </ol>
+
+    <h2>Sources</h2>
+
+    <ul>
+      <li><a href="https://www.ox.security/blog/cve-2026-82533-deepseek-harness-ai-agent-sandbox-escape/">OX Security, <em>CVE-2026-82533: DeepSeek Harness Vulnerability Lets AI Agents Escape Their Own Sandbox</em></a> (8 September 2026). Primary research.</li>
+      <li><a href="https://labs.cloudsecurityalliance.org/research/csa-research-note-deepseek-harness-sandbox-escape-20260910-c/">Cloud Security Alliance, <em>DeepSeek Harness Sandbox Escape and Agent Containment</em></a> (10 September 2026). Seen in search results only.</li>
+      <li><a href="https://docs.mistral.ai/resources/security-advisories/MAI-2026-003">Mistral, <em>Mistral Vibe shell permission vulnerabilities, MAI-2026-003</em></a> (14 September 2026). Primary.</li>
+      <li><a href="https://infoq.com/news/2026/08/ponytail-agent-skill-benchmark">InfoQ, <em>Ponytail agent skill benchmark</em></a> (5 August 2026). Secondary.</li>
+      <li><a href="https://247wallst.com/investing/2026/10/01/ibm-jumps-5-as-bob-coding-agent-gains-self-hosted-deployment-salesforce-rises-3-palantir-inches-higher/">247WallSt, <em>IBM Jumps 5% as Bob Coding Agent Gains Self-Hosted Deployment</em></a> (1 October 2026). Secondary.</li>
+      <li><a href="https://www.foxnews.com/tech/former-anthropic-security-leader-warns-ai-agents-becoming-too-autonomous-humans-keep-check">Fox News, interview with Jeffrey Ladish</a> (3 October 2026). Commentary, not featured.</li>
+      <li><a href="https://adversa.ai/blog/top-ai-coding-agent-security-resources-october-2026/">Adversa AI, <em>AI coding agent vulnerabilities, October 2026</em></a> (2 October 2026). Used for discovery only.</li>
+      <li><a href="2026-10-01-the-agent-does-not-hold-the-keys.html">The agent does not hold the keys</a> (1 October 2026). Prior edition.</li>
+    </ul>
+
+    <p><em>Vendor and blog figures indicate direction, not audited benchmarks. The IBM item carries no
+      usage data. The Ponytail figures are the author's own re-run on one repository.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

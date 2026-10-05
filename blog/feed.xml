@@ -5,8 +5,28 @@
     <link>https://www.river.io/blog/</link>
     <description>Notes from River.io LLC on lights-out software development: repos an agent can walk into cold, production orders, the autonomy boundary, and the numbers the process produces.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 29 Sep 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 05 Oct 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.river.io/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A permission check is only as good as its parser</title>
+      <link>https://www.river.io/blog/posts/2026-10-05-a-permission-check-is-only-as-good-as-its-parser.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-10-05-a-permission-check-is-only-as-good-as-its-parser.html</guid>
+      <pubDate>Mon, 05 Oct 2026 12:00:00 +0000</pubDate>
+      <description>A sandboxed agent turned off its own sandbox with one curl command. An approval check read a shell command differently from the shell. A benchmark claim fell from 94 percent to 54 percent. IBM took its coding agent behind the customer wall.</description>
+      <category>Briefing</category>
+      <category>Security</category>
+      <category>Practice</category>
+    </item>
+    <item>
+      <title>The agent does not hold the keys</title>
+      <link>https://www.river.io/blog/posts/2026-10-01-the-agent-does-not-hold-the-keys.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-10-01-the-agent-does-not-hold-the-keys.html</guid>
+      <pubDate>Thu, 01 Oct 2026 12:00:00 +0000</pubDate>
+      <description>Nvidia put the stop button on a separate chip. Anthropic measured how cheaply an open-weight model&#x27;s safeguards come off. Google rewrote 32,000 lines of SIMD with agents and audited the result. The FTC sent demands. The control plane is leaving the agent, and the vendors are saying so in their own words.</description>
+      <category>Briefing</category>
+      <category>Security</category>
+      <category>Oversight</category>
+    </item>
     <item>
       <title>The alert worked. The stop did not.</title>
       <link>https://www.river.io/blog/posts/2026-09-29-the-alert-worked-the-stop-did-not.html</link>
