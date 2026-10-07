@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Microsoft added hooks to Copilot Studio, and its own notes say a failed hook does not stop the agent. Four AI firms refused to guarantee agent compliance to a city council. A survey says 90 percent of developers use coding agents weekly." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing, Security, Practice" />
+<title>A gate that fails open is not a gate · The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+  <script src="/analytics.js" defer></script>
+<link rel="stylesheet" href="/tdr-fx.css" />
+<script src="/tdr-fx.js" defer></script>
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 045</b><span>7 October 2026</span><span>5 min</span><span>Briefing</span></div>
+    <h1>A gate that fails open is not a gate</h1>
+    <p class="dek">Microsoft added hooks to Copilot Studio, and its own notes say a failed hook does not stop the agent. Four AI firms refused to guarantee agent compliance to a city council. A survey says 90 percent of developers use coding agents weekly.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+    <p class="lede-cap">Order 044 showed two checks that failed to stop an agent. This edition adds a third
+      case. The window since 5 October is quiet. Three items are new, all dated 5 or 6 October. Each one
+      points to the same rule. The guarantee must come from the factory's own gates, and each gate must
+      block when it cannot run.</p>
+
+    <h2>Microsoft Hooks: the event runs the rule, not the agent</h2>
+
+    <p>Cloud Wars reported on 6 October 2026 that Microsoft added Hooks to Copilot Studio. The feature is
+      in preview. A hook has two parts: an event and an action. The event can be a session start, a tool
+      run or an error. The action is a published workflow. When the event happens, the workflow runs and
+      sends its result back into the conversation.</p>
+
+    <p>The key point is that a hook fires every time the event occurs. A normal tool works differently.
+      The agent must choose to call a tool. Microsoft lists four uses. A hook can add context at session
+      start. It can check business rules before a tool runs. It can redact data and write an audit log
+      after a tool runs. It can retry, skip or stop on an error.</p>
+
+    <p>The article also lists caveats. A hook does not stop the agent if the workflow fails. It does not
+      stop the agent if the workflow times out. It does not stop the agent if the workflow returns
+      unreadable content. Workflows must be published to work. An edit to one workflow changes every hook
+      that uses it. This design fails open. Fails open means that a broken check lets the run continue.</p>
+
+    <div class="note">
+      <div class="k">FAIL CLOSED</div>
+      <p>A gate must block when it cannot run. A gate that crashes, times out or prints garbage must stop
+        the run. Test each of these three cases.</p>
+    </div>
+
+    <h2>JetBrains: 90 percent use agents weekly</h2>
+
+    <p>Gulf News reported on 6 October 2026 on the JetBrains Developer Ecosystem Survey 2026. The survey
+      ran from May to July 2026. The headline figure is that 90 percent of developers use AI coding agents
+      at work every week. The article does not give the sample size or the question wording. Treat the
+      figure as direction only.</p>
+
+    <p>Nadia Rinsky of JetBrains said the focus is moving from speed to software that is "safe, reliable
+      and properly reviewed." The article says review rules differ by project type. Prototypes get more
+      autonomy. Critical systems get human review of every change. This matches the stakes-matched
+      autonomy that this blog has used since the first posts. Adoption is not proof that review keeps
+      pace.</p>
+
+    <h2>New York City Council: no vendor will give the guarantee</h2>
+
+    <p>On 5 October 2026, representatives of OpenAI, Anthropic, Meta and Google testified before the New
+      York City Council. Fox News reported the hearing in a live blog on 6 October. Council Speaker Julie
+      Menin asked for sworn assurance that AI agents always follow safety safeguards. None of the four
+      gave it.</p>
+
+    <p>Morgan Dwyer of OpenAI said it is not possible to guarantee that any technology is without risk.
+      Logan Graham of Anthropic said the science of doing this is "fundamentally hard and unsettled."
+      Google's Alice Friend said that a promise of perfection would not be possible with any product. Meta's
+      Shane Cahill offered only a commitment to try. This is one outlet and a hearing, not a rule. The
+      signal is clear: the factory must build its own assurance.</p>
+
+    <h2>Not featured</h2>
+
+    <p>Adversa's 2 October list and the Pillar Security review of 22 July add nothing beyond earlier
+      editions. GitSpawn, the git-config attack on coding agents, appeared in September editions. This
+      edition does not repeat it. Aggregator pages were used for discovery only.</p>
+
+    <h2>What changes here</h2>
+
+    <ol>
+      <li><strong>Audit every gate for fail-open behavior.</strong> For each pre-commit and pre-merge
+        gate, crash it, time it out and feed it garbage. The run must stop each time. Write this as a
+        test-driven suite. Run it on sloth first.</li>
+      <li><strong>Review edits to shared gate scripts.</strong> One edit can change many hooks. Treat it
+        as a structural change that needs a named human.</li>
+      <li><strong>Do not read adoption as safety.</strong> Track review time for each agent pull request
+        in MeowPassword before any change to autonomy levels.</li>
+      <li><strong>Keep regulated work at gated autonomy.</strong> CareTime, TimeForCare and
+        MaterialsAndPractices stay at level 3. No vendor will carry that accountability. Native code with
+        zero third-party dependencies keeps the gate surface small.</li>
+    </ol>
+
+    <h2>Sources</h2>
+
+    <ul>
+      <li><a href="https://cloudwars.com/ai/need-ai-agents-to-run-workflows-with-no-exceptions-microsoft-has-a-hook-for-that">Cloud Wars, <em>Need AI agents to run workflows with no exceptions? Microsoft has a hook for that</em></a> (6 October 2026). Secondary. Microsoft documentation not read.</li>
+      <li><a href="https://gulfnews.com/technology/90-of-developers-surveyed-now-use-ai-coding-agents-at-work-jetbrains-says-1.500700542">Gulf News, <em>90% of developers surveyed now use AI coding agents at work, JetBrains says</em></a> (6 October 2026). Secondary. JetBrains release not read.</li>
+      <li><a href="https://foxnews.com/live-news/ai-super-intelligence-safety-10-06">Fox News live blog, <em>OpenAI, Anthropic, Meta, Google stop short of AI safety guarantee</em></a> (6 October 2026, hearing on 5 October). Secondary, single source.</li>
+      <li><a href="https://aiagentsdirectory.com/news/ai-agents-news-brief-october-6-2026">AI Agents Directory, news brief of 6 October 2026</a>. Used for discovery only.</li>
+      <li><a href="https://devops.com/security-risks-from-ai-coding-agents-expand-beyond-the-sandbox-pillar/">DevOps.com, <em>Security Risks from AI Coding Agents Expand Beyond the Sandbox: Pillar</em></a> (22 July 2026). Not featured.</li>
+      <li><a href="2026-10-05-a-permission-check-is-only-as-good-as-its-parser.html">A permission check is only as good as its parser</a> (5 October 2026). Prior edition.</li>
+    </ul>
+
+    <p><em>Vendor and blog figures indicate direction, not audited benchmarks. The survey gives no sample size. The hearing comes from one outlet.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>
