@@ -5,8 +5,17 @@
     <link>https://www.river.io/blog/</link>
     <description>Notes from River.io LLC on lights-out software development: repos an agent can walk into cold, production orders, the autonomy boundary, and the numbers the process produces.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 07 Oct 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 09 Oct 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.river.io/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dark Factory Digest, week of October 5, 2026</title>
+      <link>https://www.river.io/blog/posts/2026-10-09-dark-factory-digest-week-of-october-5-2026.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-10-09-dark-factory-digest-week-of-october-5-2026.html</guid>
+      <pubDate>Fri, 09 Oct 2026 12:00:00 +0000</pubDate>
+      <description>The control must sit outside the agent: a gate that the agent can reach, that misreads text, or that fails open is not a gate.</description>
+      <category>Digest</category>
+      <category>Briefing</category>
+    </item>
     <item>
       <title>A gate that fails open is not a gate</title>
       <link>https://www.river.io/blog/posts/2026-10-07-a-gate-that-fails-open-is-not-a-gate.html</link>
