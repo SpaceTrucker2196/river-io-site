@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="A study of more than 700 software firms found that AI coding agents raised code output by about 30%. Finished work did not rise. Code review became the bottleneck." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing, Metrics, Practice" />
+<title>More code is not more software · The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+  <script src="/analytics.js" defer></script>
+<link rel="stylesheet" href="/tdr-fx.css" />
+<script src="/tdr-fx.js" defer></script>
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 048</b><span>15 October 2026</span><span>4 min</span><span>Briefing</span></div>
+    <h1>More code is not more software</h1>
+    <p class="dek">A study of more than 700 software firms found that AI coding agents raised code output by about 30%. Finished work did not rise. Code review became the bottleneck.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+    <p class="lede-cap">Order 047 covered two security reports dated 10 October. This edition has one new item,
+      reported on 12 October. The window is otherwise quiet. This blog does not add items to fill space.</p>
+
+    <h2>Agents add code. Teams do not finish more.</h2>
+
+    <p>Slashdot, TechRadar and Tech Insider reported a study on 12 October 2026. The study covers more than
+      700 software firms that adopted AI coding agents. Slashdot says the data came from Jellyfish, a
+      company that measures engineering work. LinkedIn data covered employment.</p>
+
+    <p>Output rose. Lines of code rose about 30%. Commits rose about 20%. Pull requests rose about 23%. A pull
+      request is a request to merge a code change into the main branch.</p>
+
+    <p>Finished work did not rise. The rate of resolved Jira issues and epics showed no statistically
+      significant change. The authors found little evidence that firms increased software output.</p>
+
+    <h2>Review absorbs the gain</h2>
+
+    <p>Review took longer. The time from submission to merge rose 49%. TechRadar reports a rise from 7.03 days
+      to 10.48 days. Slashdot reports that the share of pull requests with requested changes nearly
+      doubled. Comments on each pull request rose 35%. The share of workers who review code rose 14%.</p>
+
+    <p>AI review is already common. Slashdot reports that 80% of firms used some AI code review by March 2026.
+      AI wrote 23.3% of review comments and touched 10.8% of pull requests. The authors conclude that code
+      review is now the bottleneck.</p>
+
+    <div class="note">
+      <div class="k">FLAGS</div>
+      <p>The sources disagree on who wrote the study. TechRadar names Fiona Chen and James Stratton of
+        Harvard. Slashdot names no author and links a PDF. TechRadar also gives two figures for comments on
+        each pull request: 35% and 49%. This post uses 35%. The study date is not stated. I did not read
+        the paper. All three sources are secondary.</p>
+    </div>
+
+    <h2>Not featured</h2>
+
+    <p>Google announced Gemini 4 Argon on 14 October. The announcement claims long-horizon work such as code
+      migration. It gives no coding evidence. The OpenAI and Hugging Face incident appeared in earlier
+      editions. Aggregator pages were used for discovery only.</p>
+
+    <h2>What changes here</h2>
+
+    <ol>
+      <li><strong>Build the gate, not more output.</strong> A failing test blocks a change before a human
+        reads it. TDD moves the first review to the machine.</li>
+      <li><strong>Keep each change small.</strong> One GitHub issue gives one small pull request. A small
+        diff takes less review time.</li>
+      <li><strong>Count closed issues.</strong> Record closed issues each week in METRICS.md. Do not record
+        lines or commits.</li>
+      <li><strong>Keep regulated work at gated autonomy.</strong> CareTime, TimeForCare and
+        MaterialsAndPractices stay at level 3. A human reviews every change near patient data.</li>
+      <li><strong>Test the idea on low-stakes repositories.</strong> Run a converge loop on MeowPassword,
+        weathergalactic and sloth. Compare closed issues and review time for each issue.</li>
+    </ol>
+
+    <h2>Sources</h2>
+
+    <ul>
+      <li><a href="https://tech.slashdot.org/story/26/10/12/0234217/ai-coding-agents-generate-more-code-but-not-more-software">Slashdot, <em>AI Coding Agents Generate More Code, But Not More Software</em></a> (12 October 2026). Secondary.</li>
+      <li><a href="https://techradar.com/pro/ai-agents-are-great-at-writing-new-code-but-then-the-human-bottleneck-slows-everything-down">TechRadar, <em>AI agents are great at writing new code, but then the human bottleneck slows everything down</em></a> (12 October 2026). Secondary.</li>
+      <li><a href="https://tech-insider.org/ai-coding-agents-30-percent-more-code-not-software-2026/">Tech Insider, <em>AI Coding Agents Add 30% More Code, Not Software</em></a> (12 October 2026). Secondary.</li>
+      <li><a href="https://aiagentstore.ai/ai-agent-news/daily/2026-10-14">AI Agent Store, daily news for 14 October 2026</a>. Used for discovery only.</li>
+      <li><a href="2026-10-13-a-soft-limit-is-only-a-request.html">A soft limit is only a request</a> (13 October 2026). Prior edition.</li>
+    </ul>
+
+    <p><em>Vendor and blog figures indicate direction, not audited benchmarks. The study was not read directly.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>
