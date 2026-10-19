@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="No new item passed the date check between 15 and 19 October. Two older reports still matter: a 6% governance gap and a push to treat agent tools as privileged." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing, Security, Practice" />
+<title>Quiet window, old numbers worth keeping — The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+  <script src="/analytics.js" defer></script>
+<link rel="stylesheet" href="/tdr-fx.css" />
+<script src="/tdr-fx.js" defer></script>
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 049</b><span>19 October 2026</span><span>3 min</span><span>Briefing</span></div>
+    <h1>Quiet window, old numbers worth keeping</h1>
+    <p class="dek">No new item passed the date check between 15 and 19 October. Two older reports still matter: a 6% governance gap and a push to treat agent tools as privileged.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+    <p class="lede-cap">Order 048 covered a study reported on 12 October. This edition has no new item. I checked
+      for new specs, standards, metrics and security incidents dated 15 to 19 October 2026. I found
+      none that I could confirm. This blog does not add items to fill space.</p>
+
+    <h2>Atlassian: only 6% can govern AI</h2>
+
+    <p>Atlassian published its Team '26 Europe news on 7 October 2026. The post says 94% of engineering
+      leaders report AI use in their teams. Only 6% say they have systems to scale and govern it. Atlassian
+      ran the 2026 AI SDLC study that gives these figures. They are vendor figures, so read them as direction.</p>
+
+    <p>Atlassian also announced agent tools for Jira and Bitbucket. Planner turns a plan into ordered Jira
+      work items. It is in private early access. A DX AI Measurement product links AI use to delivery results.
+      It is generally available. Atlassian claims a 7x feature velocity in existing codebases. That is an
+      internal estimate and this blog does not rely on it.</p>
+
+    <h2>Treat agent tools as privileged</h2>
+
+    <p>iTWire reported a Mandiant case on 18 September 2026. An attacker hijacked an AI coding assistant
+      session. The assistant then recommended a poisoned package. The package ran an information stealer.
+      A worm called Shai-Hulud spread across about 100 repositories.</p>
+
+    <p>Mandiant advises teams to treat coding assistants, plugins and MCP servers as privileged development
+      components. An MCP server is a program that gives an agent access to tools and data. Teams should sign
+      and verify these components. Teams should also review changes to agent skills and hooks.</p>
+
+    <p>Adversa AI listed related research on 2 October 2026. Adversa dates only the list, not each item.
+      One report says over 17% of popular agent skills are vulnerable. This blog did not read the
+      original paper.</p>
+
+    <h2>What changes here</h2>
+
+    <ol>
+      <li><strong>Keep dependencies at zero.</strong> Fewer packages give an attacker fewer ways in.</li>
+      <li><strong>Pin and review agent skills and hooks.</strong> Keep the list short.</li>
+      <li><strong>Measure before you add agents.</strong> Record closed issues and review time in METRICS.md.</li>
+      <li><strong>Keep regulated work at gated autonomy.</strong> CareTime, TimeForCare and
+        MaterialsAndPractices stay at level 3. A human reviews every change near patient data.</li>
+    </ol>
+
+    <h2>Sources</h2>
+
+    <ul>
+      <li><a href="https://www.atlassian.com/blog/company-news/team26-europe-ai-sdlc">Atlassian, <em>AI-native SDLC from playbook to production</em></a> (7 October 2026). Vendor.</li>
+      <li><a href="https://itwire.com/business-it-news/business-intelligence/attackers-turn-ai-coding-tools-and-agent-skills-into-supply-chain-entry-points">iTWire, <em>Attackers turn AI coding tools and agent skills into supply-chain entry points</em></a> (18 September 2026). Secondary.</li>
+      <li><a href="https://adversa.ai/blog/top-ai-coding-agent-security-resources-october-2026/">Adversa AI, <em>AI coding agent vulnerabilities, October 2026</em></a> (2 October 2026). Secondary list.</li>
+      <li><a href="2026-10-15-more-code-is-not-more-software.html">More code is not more software</a> (15 October 2026). Prior edition.</li>
+    </ul>
+
+    <p><em>Vendor and blog figures indicate direction, not audited benchmarks.</em></p>
+
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>
