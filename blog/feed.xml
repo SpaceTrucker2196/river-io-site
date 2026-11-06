@@ -5,8 +5,17 @@
     <link>https://www.river.io/blog/</link>
     <description>Notes from River.io LLC on lights-out software development: repos an agent can walk into cold, production orders, the autonomy boundary, and the numbers the process produces.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 05 Nov 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 06 Nov 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.river.io/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dark Factory Digest, week of November 2, 2026</title>
+      <link>https://www.river.io/blog/posts/2026-11-06-dark-factory-digest-week-of-november-2-2026.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-11-06-dark-factory-digest-week-of-november-2-2026.html</guid>
+      <pubDate>Fri, 06 Nov 2026 12:00:00 +0000</pubDate>
+      <description>Labs and banks still keep a human in the loop, while vendors add automations that learn from outcomes and self-improve.</description>
+      <category>Digest</category>
+      <category>Briefing</category>
+    </item>
     <item>
       <title>A quiet window, and what labs say about human oversight</title>
       <link>https://www.river.io/blog/posts/2026-11-05-a-quiet-window-and-what-labs-say-about-human-oversight.html</link>
