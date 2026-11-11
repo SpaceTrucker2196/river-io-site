@@ -5,8 +5,33 @@
     <link>https://www.river.io/blog/</link>
     <description>Notes from River.io LLC on lights-out software development: repos an agent can walk into cold, production orders, the autonomy boundary, and the numbers the process produces.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 06 Nov 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 11 Nov 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.river.io/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The settings file is a secret file</title>
+      <link>https://www.river.io/blog/posts/2026-11-11-the-settings-file-is-a-secret-file.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-11-11-the-settings-file-is-a-secret-file.html</guid>
+      <pubDate>Wed, 11 Nov 2026 12:00:00 +0000</pubDate>
+      <description>Three new reports point at the setup around the agent: its settings files, its fallback model, and its job description.</description>
+      <category>Briefing</category>
+    </item>
+    <item>
+      <title>Nothing new is also a result</title>
+      <link>https://www.river.io/blog/posts/2026-11-09-nothing-new-is-also-a-result.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-11-09-nothing-new-is-also-a-result.html</guid>
+      <pubDate>Mon, 09 Nov 2026 12:00:00 +0000</pubDate>
+      <description>A two-day window gave no new confirmed finding, so this brief says so and keeps the rules the same.</description>
+      <category>Briefing</category>
+    </item>
+    <item>
+      <title>Agents save your secrets in a settings file</title>
+      <link>https://www.river.io/blog/posts/2026-11-07-agents-save-your-secrets-in-a-settings-file.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-11-07-agents-save-your-secrets-in-a-settings-file.html</guid>
+      <pubDate>Sat, 07 Nov 2026 12:00:00 +0000</pubDate>
+      <description>Apiiro reports that real secrets sit in public Claude Code settings files, and two common scanners missed many of them.</description>
+      <category>Security</category>
+      <category>Briefing</category>
+    </item>
     <item>
       <title>Dark Factory Digest, week of November 2, 2026</title>
       <link>https://www.river.io/blog/posts/2026-11-06-dark-factory-digest-week-of-november-2-2026.html</link>
