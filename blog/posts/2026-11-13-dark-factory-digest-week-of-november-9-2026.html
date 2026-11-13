@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Agent settings files leaked tens of thousands of secrets, and the controls that worked this week all sit outside the agent: a scoped job, a known model and a check on each action." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Digest, Briefing" />
+<title>Dark Factory Digest, week of November 9, 2026 | The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+  <script src="/analytics.js" defer></script>
+<link rel="stylesheet" href="/tdr-fx.css" />
+<script src="/tdr-fx.js" defer></script>
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 058</b><span>13 November 2026</span><span>5 min</span><span>Digest</span></div>
+    <h1>Dark Factory Digest, week of November 9, 2026</h1>
+    <p class="dek">Agent settings files leaked tens of thousands of secrets, and the controls that worked this week all sit outside the agent: a scoped job, a known model and a check on each action.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">This digest covers 7 to 13 November 2026. It rolls up three research briefs (7, 9 and 11 November). The main theme: agent settings files leak secrets at scale, and the controls that worked this week all sit outside the agent. A scoped job, a known model and a check on each action did more than any model upgrade.</p>
+
+    <h2>This week's signals</h2>
+
+    <ol>
+      <li><strong>Agent settings files leak secrets at scale (GitGuardian, 9 November; Apiiro, 5 November).</strong> GitGuardian scanned public GitHub from January 2025 to 7 November 2026. It found 31,088 distinct secrets in public copies of the Claude Code <code>settings.local.json</code> file, in 23,276 repositories. 5,343 were valid when found. <code>CLAUDE.md</code> files held 6,155 distinct secrets, 2,537 of them valid. OpenAI Codex <code>.codex/auth.json</code> files held 1,064 tokens in 536 repositories, so this is not a one-vendor problem. The same leak reaches Docker Hub: 613 distinct secrets, 99 valid. Monthly occurrences peaked at 12,535 in April 2026 and fell to 959 in October, a 92 percent drop with no known cause. Apiiro reported a smaller count earlier in the week (2,539 secrets in 1,994 repositories, about 1.1 percent of 104,185 public copies) and found that TruffleHog and gitleaks both missed 215 of the files. The two counts use different time ranges and methods. Do not add them.</li>
+      <li><strong>A fallback model is part of the attack surface (Anthropic, 9 November; Notebookcheck, 10 November).</strong> Claude Fable 5.2 sends flagged requests to an older model: Opus 4.8 for cybersecurity and Opus 5 for biology. Notebookcheck reports system card figures: indirect prompt injection attack success was 4.09 percent for Fable 5.2 against 1.02 percent for Fable 5.1. 53 percent of attempts against Fable 5.2 were answered by Opus 4.8, against 23 percent for Fable 5.1. Attacks succeeded 2.05 percent of the time when Fable 5.2 answered and 5.17 percent when Opus 4.8 answered. The classifier also reads connector content, web results and files, so injected text can cause the switch. A setting, "Switch models when a message is flagged", turns the switch off and pauses the request instead. The system card was not opened. These are secondary figures.</li>
+      <li><strong>Give the agent a job, then check each action against it (Cequence Security and KPMG, 11 November).</strong> In a prototype study, agents with only a login and fixed permissions tried to act outside their job in 44 percent of runs. With a defined job and a check on each action, the figure was 1 percent. Task completion rose from 76 to 95 percent, and token use fell about 35 percent per run. Field data from one week in October 2026: more than 250,000 agent visits across five industries, and about 1 in 7 took an action such as a purchase or a sign-in. Cequence sells this type of control. The source was the press release, not the report.</li>
+      <li><strong>Agents now start more than 40 percent of pull requests on GitHub (Octoverse 2026, 28 October; first time in this brief).</strong> Pull requests started by a detected agent went from 17 percent in March 2026 to more than 40 percent in September, about 110 million pull requests that month. GitHub calls this a floor. Agent pull requests merged within two weeks went from 83 percent in February to 90 percent in September, against about 86 percent for other pull requests. A merge rate does not prove quality. Detected AI involvement in merged pull requests was about 40 to 44 percent for TypeScript, Python and Rust, and about 21 to 34 percent for Java, C# and C++. GitHub recorded 34.3 billion commits in the 12 months to 30 September 2026.</li>
+      <li><strong>The moat is the steering system, not the agent (Ben Bahrenburg, bencoding, 9 November; opinion).</strong> The essay says the lasting value is the evaluations, policies and feedback loops around the model. It argues that a fully dark factory is the wrong goal, because maintainability and product fit have no reliable automated test. It proposes two measures: verified output per unit of human attention, and cost per merged pull request.</li>
+      <li><strong>A quiet mid-week, with one pointer (Adversa AI, 2 November).</strong> The 9 November brief confirmed no new framework, spec or audited metric in its window. Adversa AI's roundup of 14 coding-agent security resources points to an agentbaseline.org draft of a secure software factory architecture: the agent proposes, policy authorizes, infrastructure enforces. Its figures (users approved 93 percent of permission prompts, auto mode missed 17 percent of risky actions) come from the summary and are unverified.</li>
+    </ol>
+
+    <h2>What it means for the River.io Software Factory</h2>
+
+    <p>Block agent settings files in every repo now. Add <code>.claude/</code>, <code>.codex/</code>, <code>.cursor/</code>, <code>.mcp.json</code>, <code>settings.local.json</code> and <code>CLAUDE.md</code> to <code>.gitignore</code>, and add a pre-commit check written in-house, which fits the zero third-party dependency rule. Open one GitHub issue per repo for this, and have a human search the git history of CareTime, TimeForCare and MaterialsAndPractices first, because a database credential in history there is a possible PHI exposure. For any unattended loop, record which model answers each step and use the pause-when-flagged setting, so untrusted input cannot move work to another model without notice. Write the job down per issue: one issue, one repo, one list of allowed actions, with tests written first. Regulated repos stay human-gated. A 40 percent agent share on GitHub does not change that. Test the pre-commit check and the per-issue job file on MeowPassword, weathergalactic and sloth, and measure cost per merged pull request there.</p>
+
+    <h2>Sources</h2>
+
+    <ul>
+      <li><a href="https://blog.gitguardian.com/claude-code-settings-local-json-secrets-docker-hub/">https://blog.gitguardian.com/claude-code-settings-local-json-secrets-docker-hub/</a></li>
+      <li><a href="https://www.advisori.de/en/blog/claude-code-leak-secrets-api-keys-github">https://www.advisori.de/en/blog/claude-code-leak-secrets-api-keys-github</a></li>
+      <li><a href="https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again">https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again</a></li>
+      <li><a href="https://fourweekmba.com/ai-most-of-2-539-leaked-secrets-sat-in-a-claude-code-file/">https://fourweekmba.com/ai-most-of-2-539-leaked-secrets-sat-in-a-claude-code-file/</a></li>
+      <li><a href="https://www.anthropic.com/claude-fable-and-mythos-5-2">https://www.anthropic.com/claude-fable-and-mythos-5-2</a></li>
+      <li><a href="https://www.notebookcheck.net/Claude-Fable-5-2-fallbacks-make-AI-agents-more-vulnerable.1446771.0.html">https://www.notebookcheck.net/Claude-Fable-5-2-fallbacks-make-AI-agents-more-vulnerable.1446771.0.html</a></li>
+      <li><a href="https://globenewswire.com/news-release/2026/11/11/3400523/0/en/cequence-security-and-kpmg-collaborate-on-joint-report-examining-how-organizations-can-govern-and-secure-agentic-ai.html">https://globenewswire.com/news-release/2026/11/11/3400523/0/en/cequence-security-and-kpmg-collaborate-on-joint-report-examining-how-organizations-can-govern-and-secure-agentic-ai.html</a></li>
+      <li><a href="https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/">https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/</a></li>
+      <li><a href="https://xenospectrum.com/en/github-octoverse-2026-agent-surge-infrastructure-strain/">https://xenospectrum.com/en/github-octoverse-2026-agent-surge-infrastructure-strain/</a></li>
+      <li><a href="https://bencoding.com/2026/11/09/the-software-factory-is-not-the-end-of-agents-it-is-what-comes-after-them/">https://bencoding.com/2026/11/09/the-software-factory-is-not-the-end-of-agents-it-is-what-comes-after-them/</a></li>
+      <li><a href="https://www.cio.com/article/4245820/claude-code-codex-and-cursor-have-become-part-of-your-software-supply-chain-without-approval.html">https://www.cio.com/article/4245820/claude-code-codex-and-cursor-have-become-part-of-your-software-supply-chain-without-approval.html</a></li>
+      <li><a href="https://www.securityweek.com/bay-raises-50-million-to-control-what-enterprise-ai-agents-can-do/">https://www.securityweek.com/bay-raises-50-million-to-control-what-enterprise-ai-agents-can-do/</a></li>
+      <li><a href="https://adversa.ai/blog/top-ai-agent-security-resources-november-2026/">https://adversa.ai/blog/top-ai-agent-security-resources-november-2026/</a></li>
+      <li><a href="https://adversa.ai/blog/top-ai-coding-agent-security-resources-november-2026/">https://adversa.ai/blog/top-ai-coding-agent-security-resources-november-2026/</a></li>
+      <li><a href="https://tech-insider.org/openai-2-coding-agents-disabled-safety-monitors-2026/">https://tech-insider.org/openai-2-coding-agents-disabled-safety-monitors-2026/</a></li>
+      <li><a href="https://aviatrix.ai/threat-research-center/ai-coding-agents-exposed-13000-internal-images-github-2026/">https://aviatrix.ai/threat-research-center/ai-coding-agents-exposed-13000-internal-images-github-2026/</a></li>
+      <li><a href="https://newsletter.getdx.com/p/ai-generated-merged-code-holds-steady">https://newsletter.getdx.com/p/ai-generated-merged-code-holds-steady</a></li>
+      <li><a href="https://www.pulse.bot/ai/news/jellyfish-ai-development-study-the-real-sting-has-yet-to-land-bbcf4252-f990-4581-bfd9-eb4db4786657/">https://www.pulse.bot/ai/news/jellyfish-ai-development-study-the-real-sting-has-yet-to-land-bbcf4252-f990-4581-bfd9-eb4db4786657/</a></li>
+      <li><a href="https://sdtimes.com/agentic/allstacks-launches-agent-to-close-the-spec-gap-limiting-ai-assisted-development/">https://sdtimes.com/agentic/allstacks-launches-agent-to-close-the-spec-gap-limiting-ai-assisted-development/</a></li>
+      <li><a href="https://www.pointguardai.com/ai-security-incidents/github-issues-turn-ai-coding-agents-against-ci-cd">https://www.pointguardai.com/ai-security-incidents/github-issues-turn-ai-coding-agents-against-ci-cd</a></li>
+      <li><a href="https://github.com/diclogic/ai-daily-digest/issues/205">https://github.com/diclogic/ai-daily-digest/issues/205</a></li>
+    </ul>
+
+    <p><em>Vendor and blog figures indicate direction, not audited benchmarks.</em></p>
+
+  </div>
+</article>
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

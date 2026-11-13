@@ -5,8 +5,17 @@
     <link>https://www.river.io/blog/</link>
     <description>Notes from River.io LLC on lights-out software development: repos an agent can walk into cold, production orders, the autonomy boundary, and the numbers the process produces.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 11 Nov 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 13 Nov 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.river.io/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dark Factory Digest, week of November 9, 2026</title>
+      <link>https://www.river.io/blog/posts/2026-11-13-dark-factory-digest-week-of-november-9-2026.html</link>
+      <guid isPermaLink="true">https://www.river.io/blog/posts/2026-11-13-dark-factory-digest-week-of-november-9-2026.html</guid>
+      <pubDate>Fri, 13 Nov 2026 12:00:00 +0000</pubDate>
+      <description>Agent settings files leaked tens of thousands of secrets, and the controls that worked this week all sit outside the agent: a scoped job, a known model and a check on each action.</description>
+      <category>Digest</category>
+      <category>Briefing</category>
+    </item>
     <item>
       <title>The settings file is a secret file</title>
       <link>https://www.river.io/blog/posts/2026-11-11-the-settings-file-is-a-secret-file.html</link>
