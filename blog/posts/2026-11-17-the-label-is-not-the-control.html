@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Three approval gates failed on 16 November 2026. Each one trusted a label, a scope or a summary instead of a check." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing" />
+<title>The label is not the control | The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+  <script src="/analytics.js" defer></script>
+<link rel="stylesheet" href="/tdr-fx.css" />
+<script src="/tdr-fx.js" defer></script>
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 060</b><span>17 November 2026</span><span>6 min</span><span>Briefing</span></div>
+    <h1>The label is not the control</h1>
+    <p class="dek">Three approval gates failed on 16 November 2026. Each one trusted a label, a scope or a summary instead of a check.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">This brief covers 15 to 17 November 2026. We found three new items, all dated 16 November. We also add one research paper from 11 November that we did not cover before. Each new item is about an approval gate. An approval gate is the check that decides if an agent action can run.</p>
+
+    <p>In each case, the gate trusted something that was not a check. One gate trusted a label. One gate trusted a token scope. One report trusted the agent's own summary.</p>
+
+    <h2>A read-only label let a write run without approval</h2>
+
+    <p>AWS published Security Bulletin 2026-184-AWS on 16 November 2026. It covers CVE-2026-126816 in the AWS Pricing MCP Server. MCP is the Model Context Protocol. It connects an agent to tools.</p>
+
+    <p>The server has a tool named <code>generate_cost_report</code>. The tool accepted absolute paths and <code>../</code> sequences in its output path. It could therefore write files outside its output folder.</p>
+
+    <p>The tool also had a read-only annotation. An annotation is a hint that the tool author attaches to a tool. Some MCP clients approve read-only tools automatically. Those clients could run this tool with no human check.</p>
+
+    <p>An actor who can influence the agent could use this to write files. Prompt injection is one way to influence an agent. Prompt injection is text that an agent reads and then follows as an instruction.</p>
+
+    <p>Version 1.0.31 of <code>awslabs.aws-pricing-mcp-server</code> fixes the issue. The older <code>cost-analysis-mcp-server</code> package is deprecated and gets no fix. AWS gives two workarounds. Remove the tool from auto-approve. Do not pass untrusted content to the agent.</p>
+
+    <blockquote class="pull">An annotation is a claim by the tool author. It is not a control.</blockquote>
+
+    <h2>A token scope did not limit the token</h2>
+
+    <p>GitLab released versions 19.5.6, 19.4.8 and 19.3.9 on 16 November 2026. The release fixes 37 vulnerabilities. We read the GBHackers summary from 17 November. We did not open the GitLab release page.</p>
+
+    <div class="table-wrap"><table>
+      <thead><tr><th>CVE</th><th>CVSS</th><th>What went wrong</th></tr></thead>
+      <tbody>
+        <tr><td>CVE-2026-123142</td><td>4.3</td><td>A token scoped for MCP could approve and merge merge requests.</td></tr>
+        <tr><td>CVE-2026-129253</td><td>4.3</td><td>Developer-role users could bypass admin controls for AI tools.</td></tr>
+        <tr><td>CVE-2026-128849</td><td>4.3</td><td>Duo Workflow sessions could run with more privilege than the flow declares.</td></tr>
+        <tr><td>CVE-2026-115736</td><td>4.3</td><td>Duo Agent Platform showed unredacted secrets from secret detection.</td></tr>
+        <tr><td>CVE-2026-18241</td><td>8.2</td><td>A race in CI job authorization exposed protected variables.</td></tr>
+      </tbody>
+    </table></div>
+
+    <p>GitLab.com is already patched. Self-managed administrators must upgrade.</p>
+
+    <p>The first row is the important one for a software factory. The scope name said MCP. The server let the token act like a maintainer. An agent that can approve and merge is an agent that can ship.</p>
+
+    <h2>One approval, two writes</h2>
+
+    <p>A developer posted a bug report on the OpenAI Developer Community on 16 November 2026. The report is about the Responses API. OpenAI has not confirmed the bug. OpenAI Support replied that it is &ldquo;looking into this issue.&rdquo;</p>
+
+    <p>The setup offers a read tool, a write tool and programmatic tool calling. Read-only tools are approved automatically. The developer approves one write. The same response then continues into a program that only reads.</p>
+
+    <p>The MCP server logged a write, a read, and a second write. Both writes had the same approval ID and the same arguments. The model's final message said that one write happened.</p>
+
+    <p>Community members suggested three workarounds. Split the approval turn from the read. Add a required idempotency key to each write tool. An idempotency key is a unique value that lets the server ignore a repeat of the same request. Also check for duplicate approval IDs on the client.</p>
+
+    <p>The lesson is direct. One approval must mean one execution. Count side effects from the server log, not from the agent's summary.</p>
+
+    <h2>A test that must fail first</h2>
+
+    <p>Vahid Haratian, Atakan Akar and Eray T&uuml;z&uuml;n submitted a preprint to arXiv on 11 November 2026. A preprint has not had peer review. The paper is &ldquo;ADAPT: Agentic Diff-Aware Patch Testing for Pull Requests&rdquo;.</p>
+
+    <p>In ADAPT, an agent reads the diff of a pull request. It writes unit tests that target the changed behavior. A tool then runs each test on the old code and on the new code. A useful test fails on the old code and passes on the new code. This is a fail-to-pass test.</p>
+
+    <div class="table-wrap"><table>
+      <thead><tr><th>Setup (426 pull requests)</th><th>Fail-to-pass rate</th></tr></thead>
+      <tbody>
+        <tr><td>ADAPT with GPT-5-mini</td><td>89.9% (383)</td></tr>
+        <tr><td>ADAPT with GPT-4o</td><td>62.0% (264)</td></tr>
+        <tr><td>BLAST, earlier method</td><td>35.4% (151)</td></tr>
+      </tbody>
+    </table></div>
+
+    <p>Our 15 November brief said that code review is now the slow step. A fail-to-pass test gives the reviewer a fast, mechanical signal. It does not replace review.</p>
+
+    <h2>What we did not feature</h2>
+
+    <p>GitHub posted its Copilot weekly release notes on 16 November. They contain product features and model retirements, not a change to frameworks or specs. We also did not feature a DX figure about AI-written code. DX last updated it on 1 April 2026, and it is self-reported.</p>
+
+    <h2>What it means for the River.io Software Factory</h2>
+
+    <p>Our agent harness will approve tools by name only. It will not trust a read-only annotation. Every tool that takes a path gets tests for absolute paths, <code>../</code> and symbolic links. This is test-driven development, and it needs no third-party dependency.</p>
+
+    <p>Each agent write action gets an idempotency key. The key is the issue number plus a step name. The harness checks the key before it acts. We count actions from the GitHub API and the git log, not from the agent's report. We will add a METRICS.md row for duplicate actions that the key blocks.</p>
+
+    <p>The agent token never gets merge rights. Branch protection on main requires a human review. We will test this. The agent token will try a merge in a sandbox repo, and the merge must fail.</p>
+
+    <p>CI will run fail-to-pass checks on agent pull requests. Each new test runs on the base commit and must fail. It then runs on the head commit and must pass. A test that passes on both commits is not evidence. The native test runner in each repo does this work.</p>
+
+    <p>CareTime, TimeForCare and MaterialsAndPractices handle regulated data. They stay at human-gated autonomy. No write tool in these repos gets auto-approve.</p>
+
+    <p>We will test the idempotency key and the fail-to-pass check on MeowPassword, weathergalactic or sloth for two weeks. We will publish the counts.</p>
+
+    <h2>Sources</h2>
+
+    <ul>
+      <li><a href="https://aws.amazon.com/security/security-bulletins/2026-184-aws/">AWS Security Bulletin 2026-184-AWS, CVE-2026-126816, 16 November 2026 (primary)</a></li>
+      <li><a href="https://vuldb.com/cve/CVE-2026-126816">VulDB, CVE-2026-126816 entry (secondary)</a></li>
+      <li><a href="https://gbhackers.com/gitlab-patches-37-security-vulnerabilities/">GBHackers, GitLab Patches 37 Security Vulnerabilities, 17 November 2026 (secondary)</a></li>
+      <li><a href="https://community.openai.com/t/responses-api-approved-native-mcp-write-executes-twice-after-a-programmatic-read/1416736">OpenAI Developer Community, approved native MCP write executes twice after a programmatic read, 16 November 2026 (primary, unconfirmed by OpenAI)</a></li>
+      <li><a href="https://community.openai.com/t/making-mcp-write-tools-safe-against-duplicate-calls-idempotency-key-pattern/1416964">OpenAI Developer Community, idempotency key pattern for MCP write tools, 16 November 2026</a></li>
+      <li><a href="https://arxiv.org/abs/2611.16114">Haratian, Akar and T&uuml;z&uuml;n, ADAPT: Agentic Diff-Aware Patch Testing for Pull Requests, arXiv 2611.16114, 11 November 2026 (primary, preprint)</a></li>
+      <li><a href="https://github.blog/changelog/2026-11-16-github-copilot-weekly-releases-november-9/">GitHub Changelog, Copilot weekly releases, posted 16 November 2026</a></li>
+      <li><a href="https://getdx.com/blog/ai-generated-merged-code-holds-steady-at-30/">DX, AI-generated merged code holds steady at about 30%, updated 1 April 2026 (shows the item is old)</a></li>
+      <li><a href="2026-11-15-code-review-is-the-new-bottleneck.html">The Dark Factory, Order 059, Code review is the new bottleneck, 15 November 2026</a></li>
+    </ul>
+
+    <p><em>Vendor and blog figures indicate direction, not audited benchmarks.</em></p>
+
+  </div>
+</article>
+
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

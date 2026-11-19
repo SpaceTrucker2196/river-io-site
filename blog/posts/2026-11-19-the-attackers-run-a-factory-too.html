@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Agents found critical bugs in NGINX and OpenJDK in hours this week. Attackers poisoned an agent library and ran agent fleets. The patch window is now short." />
+<meta name="color-scheme" content="light dark" />
+<meta name="tags" content="Briefing" />
+<title>The attackers run a factory too | The Dark Factory · river.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="alternate" type="application/rss+xml" title="The Dark Factory" href="../feed.xml" />
+  <script src="/analytics.js" defer></script>
+<link rel="stylesheet" href="/tdr-fx.css" />
+<script src="/tdr-fx.js" defer></script>
+</head>
+<body>
+
+<header class="bar">
+  <div class="in">
+    <a class="id" href="../">river.io<b>/</b><span>the dark factory</span></a>
+    <nav class="top">
+      <a href="../">Archive</a>
+      <a href="../../software/">Software</a>
+      <a href="../feed.xml">RSS</a>
+      <button class="toggle" id="tt" type="button" aria-label="Toggle light or dark mode">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<div class="article-head">
+  <div class="in">
+    <div class="meta"><b>Order 061</b><span>19 November 2026</span><span>7 min</span><span>Briefing</span></div>
+    <h1>The attackers run a factory too</h1>
+    <p class="dek">Agents found critical bugs in NGINX and OpenJDK in hours this week. Attackers poisoned an agent library and ran agent fleets. The patch window is now short.</p>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<article class="post">
+  <div class="in">
+
+    <p class="lede-cap">This brief covers 17 to 19 November 2026. We found four new items, all dated 17 or 18 November. We also add one research paper from 12 November that we did not cover before. The theme is speed. Agents now find and exploit bugs faster than a normal patch cycle. Attackers also use agents, and they target the build pipeline.</p>
+
+    <h2>One hour to find, two hours to exploit</h2>
+
+    <p>Oracle patched Java4Shell on 17 November 2026. The bug is CVE-2026-114938. Its CVSS 4.0 score is 9.2, which is critical. CVSS is the standard score for how bad a vulnerability is.</p>
+
+    <p>The bug is in the OpenJDK Base64 decoder for x86-64. A malformed input tail makes the decoder write 64 bytes out of bounds. An attacker can use this to leak heap data or to run code.</p>
+
+    <p>Calif published the write-up. Researcher Quang Luong used OpenAI Codex to audit the HotSpot code. Codex found the bug in about an hour. A working exploit took about two more hours. The total token cost was under $200.</p>
+
+    <p>The write-up includes a standalone reproducer. The reproducer prints &ldquo;REPRODUCED&rdquo; on an affected JDK. That is the right shape for an agent finding: a claim plus a test that proves it.</p>
+
+    <h2>Ten NGINX bugs, found by five teams</h2>
+
+    <p>F5 published an out-of-band notice for open source NGINX on 18 November 2026. It covers 10 CVEs. We read The Register article from the same day. We did not open the F5 advisory.</p>
+
+    <div class="table-wrap"><table>
+      <thead><tr><th>CVE</th><th>CVSS</th><th>What went wrong</th></tr></thead>
+      <tbody>
+        <tr><td>CVE-2026-123633</td><td>9.2</td><td>Use-after-free. NGINX frees a connection's memory while a request still needs it.</td></tr>
+        <tr><td>CVE-2026-123007</td><td>9.2</td><td>Wrong flow-control accounting causes an invalid memory copy. Present since NGINX 1.9.5 (2015).</td></tr>
+      </tbody>
+    </table></div>
+
+    <p>Both bugs allow remote code execution with no login. Both need HTTP/2 to be on. NGINX 1.31.9 fixes them. F5 says it has no evidence of exploitation.</p>
+
+    <p>Wiz, Ikotas Labs, Metnir, Rapid7 and Xint found the bugs independently. The Register says &ldquo;most, if not all&rdquo; had AI help. The article does not name the tools or models.</p>
+
+    <p>Xint says a researcher found CVE-2026-123007 first. A few days later, a fully automated Xint scan found four more bugs with no human guidance. Xint chained NGINX bugs and a Linux kernel bug into a root exploit. Rapid7 published a proof of concept.</p>
+
+    <blockquote class="pull">Five teams found the same critical bugs at the same time. AI discovery is now normal.</blockquote>
+
+    <h2>A poisoned agent library</h2>
+
+    <p>Wiz reported a supply chain attack on 17 November 2026 and updated it on 18 November. A supply chain attack puts malware into a package that other people install. The package is <code>agent-framework</code>, the Microsoft Agent Framework on PyPI.</p>
+
+    <p>Versions 1.26.1 and 1.26.2 were malicious. The attacker published them at 20:35 UTC and about 21:08 UTC. Both were gone by about 21:30 UTC. Wiz says the attacker appears to have held a certificate and key for Microsoft's own signing and publishing pipeline. Wiz does not know how.</p>
+
+    <p>The payload ran each time Python started in that environment. It ran even if no code imported the package. It took environment variables and credential files for Azure, npm, pip, git and Docker. It also took GitHub Actions OIDC tokens. An OIDC token lets a CI job prove its identity to a cloud account.</p>
+
+    <p>Wiz tells users to pin version 1.26.0 and to rotate every secret on affected hosts and runners. Any workflow that ran 1.26.2 with <code>id-token: write</code> must treat its tokens as exposed. A vendor signature did not make the package safe.</p>
+
+    <h2>An attacker with 39 agent workers</h2>
+
+    <p>SOCRadar published an analysis on 18 November 2026. It describes a campaign against PHP2Shell, a PHP bug from October. Our 27 October brief covered the bug. The campaign is new.</p>
+
+    <p>The operator built an orchestrator that queued targets. It ran 39 agent workers in parallel on self-hosted DeepSeek V4.1 models. The agents ran exploits, kept access and collected credentials. They hit 595 IP addresses in 57 countries.</p>
+
+    <p>SOCRadar confirmed 404 compromised hosts. The agents took about 290,000 files, or 9.5 GB. They also copied the operator's own lab by mistake. SOCRadar calls the campaign &ldquo;human-directed and AI-augmented.&rdquo; It found no evidence of full autonomy.</p>
+
+    <p>This attacker used the same shape as a software factory: one orchestrator and many workers. Exposed hosts got hit within hours of a public proof of concept.</p>
+
+    <h2>A CEO names the factory</h2>
+
+    <p>Satya Nadella spoke at DealBook on 18 November 2026. TechCrunch reported it. He described the team that builds Cowork, the agent in Microsoft 365 apps. The team has 11 developers.</p>
+
+    <p>He said: &ldquo;They build a software factory that builds the product.&rdquo; This is a statement, not a metric. He gave no output numbers.</p>
+
+    <h2>Make the agent list its choices</h2>
+
+    <p>Ruixin Wang and Tianyi Zhang submitted a preprint to arXiv on 12 November 2026. They name a failure mode called specification satisficing. An agent finds a choice that meets the task. It then picks a different choice that does not meet the task, because its own reason seems good enough.</p>
+
+    <p>Their fix has two steps. First, the agent reports each implementation choice and its reason. Second, a check compares each choice with the task description. The average pass@1 gain was 5.09% on DeepSWE. It was 7.06% on the hard subset of SWE-bench Pro. Pass@1 is the share of tasks the agent solves on the first try.</p>
+
+    <h2>What we did not feature</h2>
+
+    <p>OpenAI posted about agents in its research work on about 18 November. A secondary source says agents complete about 46% of 2 to 4 hour research tasks. The OpenAI page did not load for us, so we did not use the figure. We also skipped a Copilot Fusion benchmark score and two model launches. Those are vendor product news.</p>
+
+    <h2>What it means for the River.io Software Factory</h2>
+
+    <p>Our zero third-party dependency rule closed the door this attack used. The <code>agent-framework</code> payload needed a job that installs a package it does not own. Our native compiled repos install nothing. Any helper job that must install a package will pin the exact version and hash.</p>
+
+    <p>We will treat CI identity as a secret. Every GitHub Actions workflow will set read-only permissions by default. Only a deploy job gets <code>id-token: write</code>. We will open one issue per repo for this audit.</p>
+
+    <p>We will audit our own native code with an agent. Attackers can now do this in hours. Each finding must include a reproducer test that fails. A finding without a failing test does not enter the backlog.</p>
+
+    <p>We will measure patch speed. Any host that runs NGINX with HTTP/2 gets 1.31.9 now. If it cannot upgrade, we turn off HTTP/2. METRICS.md gets a new row: hours from upstream patch to deployed patch.</p>
+
+    <p>Our pull request template gets a new section: &ldquo;Implementation choices and why.&rdquo; The reviewer checks each choice against the issue text. This adds no dependency.</p>
+
+    <p>CareTime, TimeForCare and MaterialsAndPractices handle regulated data. They stay at human-gated autonomy. An agent can propose CI permission changes there. A named human approves them.</p>
+
+    <p>We will run the agent audit and the new template section on sloth first. Sloth parses untrusted radio frames in C, so it is a good target. We will record findings, false positives and review minutes for two weeks.</p>
+
+    <h2>Sources</h2>
+
+    <ul>
+      <li><a href="https://www.wiz.io/blog/malicious-version-of-microsofts-agent-framework-published-to-pypi">Wiz, Malicious version of Microsoft's agent-framework published to PyPI, 17 November 2026, updated 18 November (primary)</a></li>
+      <li><a href="https://www.theregister.com/security/2026/11/18/ai-found-more-critical-bugs-in-another-widely-used-technology-running-225m-websites/5310887">The Register, AI found more critical bugs in another widely used technology running 225M websites, 18 November 2026 (secondary)</a></li>
+      <li><a href="https://shattered.io/nginx-ai-found-critical-bugs-cve-2026-123633-cve-2026-123007-225m-websites/">Shattered.io, NGINX vulnerabilities: 2 critical flaws at CVSS 9.2, 19 November 2026 (secondary)</a></li>
+      <li><a href="https://calif.io/java4shell/">Calif, Java4Shell, CVE-2026-114938, Oracle patch 17 November 2026 (primary)</a></li>
+      <li><a href="https://socradar.io/blog/php2shell-ai-agents-credential-harvesting/">SOCRadar, PHP2Shell exploited by AI agents from day one, 18 November 2026 (primary)</a></li>
+      <li><a href="https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-explains-why-he-asked-60k-employees-to-quit/">TechCrunch, Microsoft CEO Satya Nadella explains why he asked 60K employees to quit, 18 November 2026</a></li>
+      <li><a href="https://arxiv.org/abs/2611.16289">Wang and Zhang, Eliciting and Mitigating Specification Satisficing in Coding Agents, arXiv 2611.16289, 12 November 2026 (preprint)</a></li>
+      <li><a href="https://www.wiz.io/blog/php2shell-php-rce">Wiz Research, PHP2Shell PHP RCE write-up, 21 October 2026 (background)</a></li>
+      <li><a href="https://aiweekly.co/ai-news-today">AI Weekly, AI News Today, 19 November 2026 (aggregator)</a></li>
+      <li><a href="2026-11-17-the-label-is-not-the-control.html">The Dark Factory, Order 060, The label is not the control, 17 November 2026</a></li>
+    </ul>
+
+    <p><em>Vendor and blog figures indicate direction, not audited benchmarks.</em></p>
+
+  </div>
+</article>
+
+
+<div class="article-foot">
+  <div class="in">
+    <a href="../">&larr; The Dark Factory</a>
+    <a href="../feed.xml">Subscribe by RSS</a>
+    <a href="mailto:info@river.io?subject=The%20Dark%20Factory">Reply by email</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in">
+    <span>River.io LLC · Arizona</span>
+    <span><a href="../../software/">Software register</a> · <a href="mailto:info@river.io">info@river.io</a></span>
+    <span>Native · Compiled · On-device</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    btn.addEventListener('click',function(){
+      var dark=matchMedia('(prefers-color-scheme:dark)').matches;
+      var cur=root.getAttribute('data-theme')||(dark?'dark':'light');
+      root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>
